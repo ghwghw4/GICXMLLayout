@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GICXMLLayout_Example' do
+  pod 'GICXMLLayout', :path => '../'
+
+  target 'GICXMLLayout_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

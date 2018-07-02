@@ -1,0 +1,914 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D8D13506E07AA69179256BF37E42B86 /* GDataXMLNode_GIC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CDD4FEBBE13BBA4E91DE89B4E6DAA /* GDataXMLNode_GIC-dummy.m */; };
+		2937B48CA2B65AF4E4F997F1B6C16135 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */; };
+		2AE39B8FD3EFC75A1270B88EB15E06D3 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC5A8AC533EDEE2F842E63BBDE4CB6D /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-ObjC -fno-objc-arc"; }; };
+		2E497F2506F45CAF501513514A4F1635 /* GDataXMLNode_GIC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3907081275C31DD0054A8246A11C815B /* GDataXMLNode_GIC.framework */; };
+		36E870771360579F2F095AD94E2EFAC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */; };
+		498E421F293E006CA792FA2412C939B6 /* UIColor+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 39ECA99B8BDE0410C9BE7015CBD28531 /* UIColor+Extension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4EE8C3248F68C17C40FDACAF99717B /* Pods-GICXMLLayout_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 037B38F60EF04716EDE77D4165C22F40 /* Pods-GICXMLLayout_Tests-dummy.m */; };
+		6834A9C874CAF7B081F71E60D313CF9E /* GICXMLLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC22EA3442CD1A1997CD04D2F59B4C /* GICXMLLayout-dummy.m */; };
+		7362E2A8134508926B3D2C8D6948809E /* GICXMLLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A5678F9F3267B72378760EB3EE028728 /* GICXMLLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C27E29428091392A8F71B2F766D1CF0 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = C6043BF88DED9AD70C210C1A5465363D /* GDataXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A3A55B849394833C55EB74180F0C3E94 /* Pods-GICXMLLayout_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 09A64B16588A3A3F735F4237BEC8509B /* Pods-GICXMLLayout_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE01380BB8D09D4103F5564CC48273AF /* UIView+LayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CFFA6D48B05A36F6B5698CF5DC375 /* UIView+LayoutView.m */; };
+		AE4C9BF54AB3410A3A3488AD5E96EA8C /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F877ECFC286261A59179AF7E8739EE18 /* UIColor+Extension.m */; };
+		BEE902AE491BFAD2D4C5A3E55A42593E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */; };
+		C4FC62C7FEB2493624872682F3DFC5D9 /* Pods-GICXMLLayout_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0662442F8CF34A8A92E8671DA2447 /* Pods-GICXMLLayout_Example-dummy.m */; };
+		D139C2394F4697DF4F317442AE2051A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */; };
+		EF82CB3A8B308F2A3AF7E661A022C404 /* UIView+LayoutView.h in Headers */ = {isa = PBXBuildFile; fileRef = F78202251F1470A41B9886CBC8C08880 /* UIView+LayoutView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC081477A6AC2DA5F69C5A8E2D0940A1 /* Pods-GICXMLLayout_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6564A7E0D160AED6EB43E3EA1EE4D539 /* Pods-GICXMLLayout_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEF86002642E4C00F1B10505791A585E /* GDataXMLNode_GIC-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B8DC536879DAC5C0C9DC2675227EAD5 /* GDataXMLNode_GIC-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AC66902045E845DAE613E8DFDB24DBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F0E45ED8FE8D7F6C296621735DA404;
+			remoteInfo = GDataXMLNode_GIC;
+		};
+		3B5CC008682285C762ACC75B23C7F448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04F0E45ED8FE8D7F6C296621735DA404;
+			remoteInfo = GDataXMLNode_GIC;
+		};
+		610840352FC8FE634E992CC9C4410102 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 115253F4302A1A738144C6BC0DF8CD6F;
+			remoteInfo = GICXMLLayout;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		037B38F60EF04716EDE77D4165C22F40 /* Pods-GICXMLLayout_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GICXMLLayout_Tests-dummy.m"; sourceTree = "<group>"; };
+		082FB518FB4DE390B9A61462438713C2 /* GDataXMLNode_GIC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GDataXMLNode_GIC.modulemap; sourceTree = "<group>"; };
+		09A64B16588A3A3F735F4237BEC8509B /* Pods-GICXMLLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GICXMLLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
+		0A50533A3321A95EF413F69B7AA98911 /* Pods-GICXMLLayout_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GICXMLLayout_Tests-resources.sh"; sourceTree = "<group>"; };
+		0C2E3A0DD682D7A1A99BBCE763EBAFEA /* Pods-GICXMLLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GICXMLLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1A4CDD4FEBBE13BBA4E91DE89B4E6DAA /* GDataXMLNode_GIC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode_GIC-dummy.m"; sourceTree = "<group>"; };
+		1BECE20D0E3E0702E99EF49B30E48263 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21BCC441B7E519D696DF1E7F3B6A94A7 /* Pods-GICXMLLayout_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GICXMLLayout_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		276BF7A6AF01CEA7C13C39EF5B82C5F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30D52CDFE7C16FC16F7B8B3F4E7BFD33 /* Pods-GICXMLLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GICXMLLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3324A2360F21E4D2501453375C007972 /* Pods-GICXMLLayout_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GICXMLLayout_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3382F757E07FD3AC09EDB7589C728746 /* GICXMLLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GICXMLLayout-prefix.pch"; sourceTree = "<group>"; };
+		3907081275C31DD0054A8246A11C815B /* GDataXMLNode_GIC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GDataXMLNode_GIC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39ECA99B8BDE0410C9BE7015CBD28531 /* UIColor+Extension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+Extension.h"; path = "GICXMLLayout/Classes/UIColor+Extension.h"; sourceTree = "<group>"; };
+		3B8DC536879DAC5C0C9DC2675227EAD5 /* GDataXMLNode_GIC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode_GIC-umbrella.h"; sourceTree = "<group>"; };
+		3C9987F29FC3E487DC10FA725992EAA0 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
+		412DEBAD6C59B3A35C57AED2EFEECFBA /* Pods-GICXMLLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GICXMLLayout_Example.modulemap"; sourceTree = "<group>"; };
+		48F0662442F8CF34A8A92E8671DA2447 /* Pods-GICXMLLayout_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GICXMLLayout_Example-dummy.m"; sourceTree = "<group>"; };
+		495CFFA6D48B05A36F6B5698CF5DC375 /* UIView+LayoutView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LayoutView.m"; path = "GICXMLLayout/Classes/UIView+LayoutView.m"; sourceTree = "<group>"; };
+		4B85DC5C6B4A466C8BC1A248033DA140 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CBC22EA3442CD1A1997CD04D2F59B4C /* GICXMLLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GICXMLLayout-dummy.m"; sourceTree = "<group>"; };
+		5FB48C6D84125A6D33445EDD5DCA2039 /* Pods-GICXMLLayout_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GICXMLLayout_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6564A7E0D160AED6EB43E3EA1EE4D539 /* Pods-GICXMLLayout_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GICXMLLayout_Example-umbrella.h"; sourceTree = "<group>"; };
+		6CB8CBA49C4A67826DEF7F3C08270746 /* Pods-GICXMLLayout_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GICXMLLayout_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		7FD1FE07B671F6554D121A7827C648C6 /* Pods_GICXMLLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GICXMLLayout_Example.framework; path = "Pods-GICXMLLayout_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		98DF8DE994CC9CCB8BE829BACC7B6410 /* Pods_GICXMLLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GICXMLLayout_Tests.framework; path = "Pods-GICXMLLayout_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E069F9D0593BF30968AFEDE0F67C893 /* Pods-GICXMLLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GICXMLLayout_Tests.modulemap"; sourceTree = "<group>"; };
+		A5678F9F3267B72378760EB3EE028728 /* GICXMLLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GICXMLLayout-umbrella.h"; sourceTree = "<group>"; };
+		ABAE86F76B723D8A5338362D276D397E /* GICXMLLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GICXMLLayout.modulemap; sourceTree = "<group>"; };
+		B3B6C33069A55E854511064DA8E7710F /* GICXMLLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GICXMLLayout.xcconfig; sourceTree = "<group>"; };
+		B4C764EC09FECE118213535F42D19DF7 /* Pods-GICXMLLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GICXMLLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		BE2D3DEFFE0947435D19F2B929890FD2 /* GDataXMLNode_GIC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GDataXMLNode_GIC.framework; path = GDataXMLNode_GIC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6043BF88DED9AD70C210C1A5465363D /* GDataXMLNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = GDataXMLNode/Classes/GDataXMLNode.h; sourceTree = "<group>"; };
+		C828DB2815F9A3A1096334BB6567B7C8 /* Pods-GICXMLLayout_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GICXMLLayout_Example-frameworks.sh"; sourceTree = "<group>"; };
+		CBC5A8AC533EDEE2F842E63BBDE4CB6D /* GDataXMLNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = GDataXMLNode/Classes/GDataXMLNode.m; sourceTree = "<group>"; };
+		CF0F9BD7810B9F551AB053ED10557DA4 /* Pods-GICXMLLayout_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GICXMLLayout_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D476DBF29D620B98A76C3304573D2368 /* GDataXMLNode_GIC.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GDataXMLNode_GIC.xcconfig; sourceTree = "<group>"; };
+		E041EFAFF3783150C507FDE8E00DB3F6 /* Pods-GICXMLLayout_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GICXMLLayout_Example-resources.sh"; sourceTree = "<group>"; };
+		EFE3E44E15C065A295DC13D51754FBF2 /* GDataXMLNode_GIC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode_GIC-prefix.pch"; sourceTree = "<group>"; };
+		F2834E149C2B936B3E687A348D1E5651 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F31B00B20C8692F90367B1EFAA4C3419 /* GICXMLLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GICXMLLayout.framework; path = GICXMLLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78202251F1470A41B9886CBC8C08880 /* UIView+LayoutView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LayoutView.h"; path = "GICXMLLayout/Classes/UIView+LayoutView.h"; sourceTree = "<group>"; };
+		F877ECFC286261A59179AF7E8739EE18 /* UIColor+Extension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Extension.m"; path = "GICXMLLayout/Classes/UIColor+Extension.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12856277119BB32B8020752A7908908B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D139C2394F4697DF4F317442AE2051A6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6750B3BB2C50AC16B777977CD0ED9023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E870771360579F2F095AD94E2EFAC3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F45BB0D0F98CA22C9595850A17C17BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2937B48CA2B65AF4E4F997F1B6C16135 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF72B129F5D4244F07A3F4B5495D98E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE902AE491BFAD2D4C5A3E55A42593E /* Foundation.framework in Frameworks */,
+				2E497F2506F45CAF501513514A4F1635 /* GDataXMLNode_GIC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0AC058FF608925520A3606F168A04F82 /* GICXMLLayout */ = {
+			isa = PBXGroup;
+			children = (
+				39ECA99B8BDE0410C9BE7015CBD28531 /* UIColor+Extension.h */,
+				F877ECFC286261A59179AF7E8739EE18 /* UIColor+Extension.m */,
+				F78202251F1470A41B9886CBC8C08880 /* UIView+LayoutView.h */,
+				495CFFA6D48B05A36F6B5698CF5DC375 /* UIView+LayoutView.m */,
+				11D1EC8E76E58FDAA9A8ED4BD2CE7EE5 /* Support Files */,
+			);
+			name = GICXMLLayout;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		11D1EC8E76E58FDAA9A8ED4BD2CE7EE5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ABAE86F76B723D8A5338362D276D397E /* GICXMLLayout.modulemap */,
+				B3B6C33069A55E854511064DA8E7710F /* GICXMLLayout.xcconfig */,
+				5CBC22EA3442CD1A1997CD04D2F59B4C /* GICXMLLayout-dummy.m */,
+				3382F757E07FD3AC09EDB7589C728746 /* GICXMLLayout-prefix.pch */,
+				A5678F9F3267B72378760EB3EE028728 /* GICXMLLayout-umbrella.h */,
+				F2834E149C2B936B3E687A348D1E5651 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/GICXMLLayout";
+			sourceTree = "<group>";
+		};
+		48894D2FBFE69076DF9F3DFF8C57D30B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE2D3DEFFE0947435D19F2B929890FD2 /* GDataXMLNode_GIC.framework */,
+				F31B00B20C8692F90367B1EFAA4C3419 /* GICXMLLayout.framework */,
+				7FD1FE07B671F6554D121A7827C648C6 /* Pods_GICXMLLayout_Example.framework */,
+				98DF8DE994CC9CCB8BE829BACC7B6410 /* Pods_GICXMLLayout_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		687F6A3B6ED31074CBC7E6D6DACBAC6A /* Pods-GICXMLLayout_Example */ = {
+			isa = PBXGroup;
+			children = (
+				276BF7A6AF01CEA7C13C39EF5B82C5F5 /* Info.plist */,
+				412DEBAD6C59B3A35C57AED2EFEECFBA /* Pods-GICXMLLayout_Example.modulemap */,
+				CF0F9BD7810B9F551AB053ED10557DA4 /* Pods-GICXMLLayout_Example-acknowledgements.markdown */,
+				21BCC441B7E519D696DF1E7F3B6A94A7 /* Pods-GICXMLLayout_Example-acknowledgements.plist */,
+				48F0662442F8CF34A8A92E8671DA2447 /* Pods-GICXMLLayout_Example-dummy.m */,
+				C828DB2815F9A3A1096334BB6567B7C8 /* Pods-GICXMLLayout_Example-frameworks.sh */,
+				E041EFAFF3783150C507FDE8E00DB3F6 /* Pods-GICXMLLayout_Example-resources.sh */,
+				6564A7E0D160AED6EB43E3EA1EE4D539 /* Pods-GICXMLLayout_Example-umbrella.h */,
+				B4C764EC09FECE118213535F42D19DF7 /* Pods-GICXMLLayout_Example.debug.xcconfig */,
+				3C9987F29FC3E487DC10FA725992EAA0 /* Pods-GICXMLLayout_Example.release.xcconfig */,
+			);
+			name = "Pods-GICXMLLayout_Example";
+			path = "Target Support Files/Pods-GICXMLLayout_Example";
+			sourceTree = "<group>";
+		};
+		68D0BBF2B153851C49A46807EFE17280 /* GDataXMLNode_GIC */ = {
+			isa = PBXGroup;
+			children = (
+				C6043BF88DED9AD70C210C1A5465363D /* GDataXMLNode.h */,
+				CBC5A8AC533EDEE2F842E63BBDE4CB6D /* GDataXMLNode.m */,
+				987860F64B06DD01F2CF0D1480A0F784 /* Support Files */,
+			);
+			name = GDataXMLNode_GIC;
+			path = GDataXMLNode_GIC;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				AF2E35AA01970CE2EFCC9E4BEB35BBF2 /* Development Pods */,
+				7F108F08EFF14E6FE7568E4E01C32ABD /* Frameworks */,
+				F90BE0CBC22A2FC469F443E82E45F07B /* Pods */,
+				48894D2FBFE69076DF9F3DFF8C57D30B /* Products */,
+				E2251C7D567F0D973C81A3F695B5CE97 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		7F108F08EFF14E6FE7568E4E01C32ABD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3907081275C31DD0054A8246A11C815B /* GDataXMLNode_GIC.framework */,
+				AEBA8A596F3A26AD62AA9D3BDD0B0D4B /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		987860F64B06DD01F2CF0D1480A0F784 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				082FB518FB4DE390B9A61462438713C2 /* GDataXMLNode_GIC.modulemap */,
+				D476DBF29D620B98A76C3304573D2368 /* GDataXMLNode_GIC.xcconfig */,
+				1A4CDD4FEBBE13BBA4E91DE89B4E6DAA /* GDataXMLNode_GIC-dummy.m */,
+				EFE3E44E15C065A295DC13D51754FBF2 /* GDataXMLNode_GIC-prefix.pch */,
+				3B8DC536879DAC5C0C9DC2675227EAD5 /* GDataXMLNode_GIC-umbrella.h */,
+				4B85DC5C6B4A466C8BC1A248033DA140 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GDataXMLNode_GIC";
+			sourceTree = "<group>";
+		};
+		AEBA8A596F3A26AD62AA9D3BDD0B0D4B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				91A61D00EB5C071BDD74FF7ACF62C2C7 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		AF2E35AA01970CE2EFCC9E4BEB35BBF2 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0AC058FF608925520A3606F168A04F82 /* GICXMLLayout */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		DE6E56B62634C83525716E99B47890A0 /* Pods-GICXMLLayout_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1BECE20D0E3E0702E99EF49B30E48263 /* Info.plist */,
+				9E069F9D0593BF30968AFEDE0F67C893 /* Pods-GICXMLLayout_Tests.modulemap */,
+				3324A2360F21E4D2501453375C007972 /* Pods-GICXMLLayout_Tests-acknowledgements.markdown */,
+				5FB48C6D84125A6D33445EDD5DCA2039 /* Pods-GICXMLLayout_Tests-acknowledgements.plist */,
+				037B38F60EF04716EDE77D4165C22F40 /* Pods-GICXMLLayout_Tests-dummy.m */,
+				6CB8CBA49C4A67826DEF7F3C08270746 /* Pods-GICXMLLayout_Tests-frameworks.sh */,
+				0A50533A3321A95EF413F69B7AA98911 /* Pods-GICXMLLayout_Tests-resources.sh */,
+				09A64B16588A3A3F735F4237BEC8509B /* Pods-GICXMLLayout_Tests-umbrella.h */,
+				30D52CDFE7C16FC16F7B8B3F4E7BFD33 /* Pods-GICXMLLayout_Tests.debug.xcconfig */,
+				0C2E3A0DD682D7A1A99BBCE763EBAFEA /* Pods-GICXMLLayout_Tests.release.xcconfig */,
+			);
+			name = "Pods-GICXMLLayout_Tests";
+			path = "Target Support Files/Pods-GICXMLLayout_Tests";
+			sourceTree = "<group>";
+		};
+		E2251C7D567F0D973C81A3F695B5CE97 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				687F6A3B6ED31074CBC7E6D6DACBAC6A /* Pods-GICXMLLayout_Example */,
+				DE6E56B62634C83525716E99B47890A0 /* Pods-GICXMLLayout_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F90BE0CBC22A2FC469F443E82E45F07B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68D0BBF2B153851C49A46807EFE17280 /* GDataXMLNode_GIC */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		85A0B6CB0A7FE7C285A61AC4DCB9C5F3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7362E2A8134508926B3D2C8D6948809E /* GICXMLLayout-umbrella.h in Headers */,
+				498E421F293E006CA792FA2412C939B6 /* UIColor+Extension.h in Headers */,
+				EF82CB3A8B308F2A3AF7E661A022C404 /* UIView+LayoutView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA78C07B65EAC291EA6784144ED3F3AE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C27E29428091392A8F71B2F766D1CF0 /* GDataXMLNode.h in Headers */,
+				FEF86002642E4C00F1B10505791A585E /* GDataXMLNode_GIC-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7A7D4F6EFD5E1A7503817D2DC8318BF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3A55B849394833C55EB74180F0C3E94 /* Pods-GICXMLLayout_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E15BD19290BB30DE6DDC8C5B79BACE83 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC081477A6AC2DA5F69C5A8E2D0940A1 /* Pods-GICXMLLayout_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04F0E45ED8FE8D7F6C296621735DA404 /* GDataXMLNode_GIC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAC124D18623D5093254996858804D2D /* Build configuration list for PBXNativeTarget "GDataXMLNode_GIC" */;
+			buildPhases = (
+				97947DFB07F892B659535838462364C8 /* Sources */,
+				12856277119BB32B8020752A7908908B /* Frameworks */,
+				AA78C07B65EAC291EA6784144ED3F3AE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GDataXMLNode_GIC;
+			productName = GDataXMLNode_GIC;
+			productReference = BE2D3DEFFE0947435D19F2B929890FD2 /* GDataXMLNode_GIC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		115253F4302A1A738144C6BC0DF8CD6F /* GICXMLLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF2B8E388324E11F69EBC7B24C5C7907 /* Build configuration list for PBXNativeTarget "GICXMLLayout" */;
+			buildPhases = (
+				96DB7C72E93DB2747F5141BBDE3B369D /* Sources */,
+				AF72B129F5D4244F07A3F4B5495D98E9 /* Frameworks */,
+				85A0B6CB0A7FE7C285A61AC4DCB9C5F3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D2648F72AA41C654EE08EEE07B97782 /* PBXTargetDependency */,
+			);
+			name = GICXMLLayout;
+			productName = GICXMLLayout;
+			productReference = F31B00B20C8692F90367B1EFAA4C3419 /* GICXMLLayout.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		466536882E308A42AABC8577442ED386 /* Pods-GICXMLLayout_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0AFC937F06A559828CC322B2C2F7F80D /* Build configuration list for PBXNativeTarget "Pods-GICXMLLayout_Tests" */;
+			buildPhases = (
+				A5485399E33B9871198237FA872B99FC /* Sources */,
+				6750B3BB2C50AC16B777977CD0ED9023 /* Frameworks */,
+				B7A7D4F6EFD5E1A7503817D2DC8318BF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-GICXMLLayout_Tests";
+			productName = "Pods-GICXMLLayout_Tests";
+			productReference = 98DF8DE994CC9CCB8BE829BACC7B6410 /* Pods_GICXMLLayout_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6F452A761570ED9C1F3422DE29E67344 /* Pods-GICXMLLayout_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A774C186CB37CFDEFF40512B0A449AC /* Build configuration list for PBXNativeTarget "Pods-GICXMLLayout_Example" */;
+			buildPhases = (
+				4C52D443F0631FAD82A75CB02CBB522B /* Sources */,
+				9F45BB0D0F98CA22C9595850A17C17BF /* Frameworks */,
+				E15BD19290BB30DE6DDC8C5B79BACE83 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D01B39B124BEB7252E4D4C20B0C90E29 /* PBXTargetDependency */,
+				B44019202E6DE12CF7E1156F1770347E /* PBXTargetDependency */,
+			);
+			name = "Pods-GICXMLLayout_Example";
+			productName = "Pods-GICXMLLayout_Example";
+			productReference = 7FD1FE07B671F6554D121A7827C648C6 /* Pods_GICXMLLayout_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 48894D2FBFE69076DF9F3DFF8C57D30B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04F0E45ED8FE8D7F6C296621735DA404 /* GDataXMLNode_GIC */,
+				115253F4302A1A738144C6BC0DF8CD6F /* GICXMLLayout */,
+				6F452A761570ED9C1F3422DE29E67344 /* Pods-GICXMLLayout_Example */,
+				466536882E308A42AABC8577442ED386 /* Pods-GICXMLLayout_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C52D443F0631FAD82A75CB02CBB522B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FC62C7FEB2493624872682F3DFC5D9 /* Pods-GICXMLLayout_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96DB7C72E93DB2747F5141BBDE3B369D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6834A9C874CAF7B081F71E60D313CF9E /* GICXMLLayout-dummy.m in Sources */,
+				AE4C9BF54AB3410A3A3488AD5E96EA8C /* UIColor+Extension.m in Sources */,
+				AE01380BB8D09D4103F5564CC48273AF /* UIView+LayoutView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97947DFB07F892B659535838462364C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AE39B8FD3EFC75A1270B88EB15E06D3 /* GDataXMLNode.m in Sources */,
+				1D8D13506E07AA69179256BF37E42B86 /* GDataXMLNode_GIC-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5485399E33B9871198237FA872B99FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E4EE8C3248F68C17C40FDACAF99717B /* Pods-GICXMLLayout_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1D2648F72AA41C654EE08EEE07B97782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GDataXMLNode_GIC;
+			target = 04F0E45ED8FE8D7F6C296621735DA404 /* GDataXMLNode_GIC */;
+			targetProxy = 3B5CC008682285C762ACC75B23C7F448 /* PBXContainerItemProxy */;
+		};
+		B44019202E6DE12CF7E1156F1770347E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GICXMLLayout;
+			target = 115253F4302A1A738144C6BC0DF8CD6F /* GICXMLLayout */;
+			targetProxy = 610840352FC8FE634E992CC9C4410102 /* PBXContainerItemProxy */;
+		};
+		D01B39B124BEB7252E4D4C20B0C90E29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GDataXMLNode_GIC;
+			target = 04F0E45ED8FE8D7F6C296621735DA404 /* GDataXMLNode_GIC */;
+			targetProxy = 3AC66902045E845DAE613E8DFDB24DBB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04A60B54213A005A17D6232E37EBAD1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D476DBF29D620B98A76C3304573D2368 /* GDataXMLNode_GIC.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GDataXMLNode_GIC/GDataXMLNode_GIC-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GDataXMLNode_GIC/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GDataXMLNode_GIC/GDataXMLNode_GIC.modulemap";
+				PRODUCT_NAME = GDataXMLNode_GIC;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1F41C7D58F3AC5E4061AC060B010A650 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C9987F29FC3E487DC10FA725992EAA0 /* Pods-GICXMLLayout_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GICXMLLayout_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GICXMLLayout_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		35C4081BA8435CB496931E4B2CA7D342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30D52CDFE7C16FC16F7B8B3F4E7BFD33 /* Pods-GICXMLLayout_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GICXMLLayout_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GICXMLLayout_Tests/Pods-GICXMLLayout_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GICXMLLayout_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		42CA3DDC207E23844A6C5910AF231A6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C2E3A0DD682D7A1A99BBCE763EBAFEA /* Pods-GICXMLLayout_Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GICXMLLayout_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GICXMLLayout_Tests/Pods-GICXMLLayout_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GICXMLLayout_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5011B865762FC0C0A28ECEC4CB63DC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		56555E276786BF36072640DF47C3655E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3B6C33069A55E854511064DA8E7710F /* GICXMLLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GICXMLLayout/GICXMLLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GICXMLLayout/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GICXMLLayout/GICXMLLayout.modulemap";
+				PRODUCT_NAME = GICXMLLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		827269710C98D60C14D46BC6AF9BF728 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		9465915EA184BA6066C13302830330B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D476DBF29D620B98A76C3304573D2368 /* GDataXMLNode_GIC.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GDataXMLNode_GIC/GDataXMLNode_GIC-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GDataXMLNode_GIC/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GDataXMLNode_GIC/GDataXMLNode_GIC.modulemap";
+				PRODUCT_NAME = GDataXMLNode_GIC;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A75B68870A39C3584B504AF3D2E4A6A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3B6C33069A55E854511064DA8E7710F /* GICXMLLayout.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GICXMLLayout/GICXMLLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GICXMLLayout/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GICXMLLayout/GICXMLLayout.modulemap";
+				PRODUCT_NAME = GICXMLLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B17A9922ED2475E6A415B0E077580E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4C764EC09FECE118213535F42D19DF7 /* Pods-GICXMLLayout_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GICXMLLayout_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_GICXMLLayout_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0AFC937F06A559828CC322B2C2F7F80D /* Build configuration list for PBXNativeTarget "Pods-GICXMLLayout_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35C4081BA8435CB496931E4B2CA7D342 /* Debug */,
+				42CA3DDC207E23844A6C5910AF231A6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5011B865762FC0C0A28ECEC4CB63DC68 /* Debug */,
+				827269710C98D60C14D46BC6AF9BF728 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A774C186CB37CFDEFF40512B0A449AC /* Build configuration list for PBXNativeTarget "Pods-GICXMLLayout_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B17A9922ED2475E6A415B0E077580E03 /* Debug */,
+				1F41C7D58F3AC5E4061AC060B010A650 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF2B8E388324E11F69EBC7B24C5C7907 /* Build configuration list for PBXNativeTarget "GICXMLLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56555E276786BF36072640DF47C3655E /* Debug */,
+				A75B68870A39C3584B504AF3D2E4A6A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAC124D18623D5093254996858804D2D /* Build configuration list for PBXNativeTarget "GDataXMLNode_GIC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04A60B54213A005A17D6232E37EBAD1F /* Debug */,
+				9465915EA184BA6066C13302830330B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

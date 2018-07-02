@@ -10,7 +10,8 @@
 @class GDataXMLElement;
 
 @interface UIView (LayoutView)
-+(NSString *)elementName;
+
+
 -(void)parseElement:(GDataXMLElement *)element;
 
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;

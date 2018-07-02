@@ -8,6 +8,7 @@
 
 #import "GICViewController.h"
 #import <GDataXMLNode_GIC/GDataXMLNode.h>
+#import "GICXMLLayout.h"
 
 @interface GICViewController ()
 
@@ -18,15 +19,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [GICXMLLayout regiterAllElements];
 	// Do any additional setup after loading the view, typically from a nib.
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template.xml"]];
-    
-    //    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-    //    parser.delegate = self;
-    //    BOOL b = [parser parse];
-    
-    NSError *error = nil;
-    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    UIView *p = [GICXMLLayout parseLayout:xmlData];
+    //    [p parseAttributes:[self convertAttributes:rootElement.attributes]];
+    [self.view addSubview:p];
+    p.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning

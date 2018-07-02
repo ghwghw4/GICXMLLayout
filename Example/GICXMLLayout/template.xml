@@ -1,3 +1,13 @@
-<stack-panel background-color="666666">
-    <lable text="龚海伟"></lable>
+<stack-panel name="root-panel">
+    <stack-panel name="panel1">
+        <image background-color="ffffff" url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="80" margin="64 10 0 10"></image>
+        <lable text="龚海伟" background-color="ffffff" height = "40" margin="10 90 0 10"></lable>
+        <lable text="龚海伟2" background-color="565656" height = "40" margin="10 10 0 10"></lable>
+    </stack-panel>
+    
+    <stack-panel background-color="666666" name="panel2" margin="10 0 0 10">
+        <image url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="80"></image>
+        <lable text="龚海伟2" background-color="ffffff" height = "40" margin="10 90 0 10"></lable>
+        <lable text="龚海伟3" background-color="565656" height = "40" margin="10 10 0 10"></lable>
+    </stack-panel>
 </stack-panel>

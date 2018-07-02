@@ -395,11 +395,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GDataXMLNode_GIC/GDataXMLNode_GIC.framework",
 				"${BUILT_PRODUCTS_DIR}/GICXMLLayout/GICXMLLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDataXMLNode_GIC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GICXMLLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

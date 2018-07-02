@@ -19,9 +19,20 @@
     "ios": "8.0"
   },
   "source_files": "GICXMLLayout/Classes/**/*",
+  "prefix_header_file": "XMLLayoutPrefixHeader.pch",
   "dependencies": {
     "GDataXMLNode_GIC": [
 
+    ],
+    "Masonry": [
+
+    ],
+    "SDWebImage": [
+
     ]
+  },
+  "libraries": "xml2",
+  "xcconfig": {
+    "HEADER_SEARCH_PATHS": "${SDK_DIR}/usr/include/libxml2"
   }
 }

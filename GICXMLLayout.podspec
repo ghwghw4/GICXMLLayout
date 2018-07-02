@@ -38,6 +38,10 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    s.prefix_header_file = 'XMLLayoutPrefixHeader.pch'
     s.dependency 'GDataXMLNode_GIC'
+    s.dependency 'Masonry'
+    s.dependency 'SDWebImage'
+    s.libraries = 'xml2'
+    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
 end

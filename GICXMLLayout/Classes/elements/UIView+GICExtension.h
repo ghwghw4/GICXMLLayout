@@ -13,4 +13,6 @@
 @property (nonatomic,assign)UIEdgeInsets gic_margin;
 
 @property (nonatomic,strong)NSString *gic_Name;
+
+@property (nonatomic,assign)NSInteger gic_ZIndex;
 @end

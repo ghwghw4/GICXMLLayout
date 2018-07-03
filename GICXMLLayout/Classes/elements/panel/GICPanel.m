@@ -14,7 +14,19 @@
 }
 
 -(CGFloat)calcuActualHeight{
-    return self.frame.size.height;
+    CGFloat maxHeight  = 0;
+    for(UIView *v in self.subviews){
+        maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_margin.bottom);
+    }
+    return maxHeight;
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    CGFloat h = [self calcuActualHeight];
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(h);
+    }];
 }
 
 -(void)addSubview:(UIView *)view{
@@ -26,8 +38,12 @@
     UIEdgeInsets margin = view.gic_margin;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(margin.left);
-        [self setTopConstrant:make marginTop:margin.top];
-        [self setHeightBottomConstrant:make view:view margin:margin];
+         make.top.mas_offset(margin.top);
+        
+        if(view.gic_Height>0)
+            make.height.mas_equalTo(view.gic_Height);
+        else
+            make.bottom.mas_offset(-margin.bottom);
         
         if(view.gic_Width > 0)
             make.width.mas_equalTo(view.gic_Width);
@@ -36,16 +52,6 @@
     }];
 }
 
--(void)setHeightBottomConstrant:(MASConstraintMaker *)make view:(UIView *)view margin:(UIEdgeInsets)margin{
-    if(view.gic_Height>0)
-        make.height.mas_equalTo(view.gic_Height);
-    else
-        make.bottom.mas_offset(-margin.bottom);
-}
-
--(void)setTopConstrant:(MASConstraintMaker *)make marginTop:(CGFloat)top{
-    make.top.mas_offset(top);
-}
 
 -(void)elementParseCompelte{
     

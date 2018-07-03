@@ -10,9 +10,9 @@
 #import <Masonry/Masonry.h>
 
 @interface GICPanel : UIView<LayoutElementProtocol>
--(void)setTopConstrant:(MASConstraintMaker *)make marginTop:(CGFloat)top;
--(void)setHeightBottomConstrant:(MASConstraintMaker *)make view:(UIView *)view margin:(UIEdgeInsets)margin;
-
+//-(void)setTopConstrant:(MASConstraintMaker *)make marginTop:(CGFloat)top;
+//-(void)setHeightBottomConstrant:(MASConstraintMaker *)make view:(UIView *)view margin:(UIEdgeInsets)margin;
+-(void)layoutView:(UIView *)view;
 /**
  计算实际的高度
 

@@ -9,6 +9,7 @@
 #import "GICViewController.h"
 #import <GDataXMLNode_GIC/GDataXMLNode.h>
 #import "GICXMLLayout.h"
+#import <Masonry/Masonry.h>
 
 @interface GICViewController ()
 
@@ -25,7 +26,10 @@
     UIView *p = [GICXMLLayout parseLayout:xmlData];
     //    [p parseAttributes:[self convertAttributes:rootElement.attributes]];
     [self.view addSubview:p];
-    p.frame = self.view.bounds;
+    [p mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+//    p.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning

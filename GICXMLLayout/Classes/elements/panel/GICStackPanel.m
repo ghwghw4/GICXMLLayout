@@ -13,22 +13,7 @@
     return @"stack-panel";
 }
 
--(void)layoutSubviews{
-    [super layoutSubviews];
-    CGFloat h = [self calcuActualHeight];
-    NSString *name = self.gic_Name;
-    NSLog(@"%@",name);
-    NSLog(@"%@",self);
-    if(![name isEqualToString:@"root-panel"]){
-        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(h);
-        }];
-    }
-}
 
--(void)setHeightBottomConstrant:(MASConstraintMaker *)make view:(UIView *)view margin:(UIEdgeInsets)margin{
-    make.height.mas_equalTo(view.gic_Height);
-}
 
 -(void)addSubview:(UIView *)view{
     [super addSubview:view];
@@ -40,13 +25,34 @@
 //    }];
 }
 
--(void)setTopConstrant:(MASConstraintMaker *)make marginTop:(CGFloat)top{
-    if(self.subviews.count>1){
-        UIView *preView = [self.subviews objectAtIndex:self.subviews.count-2];
-        make.top.mas_equalTo(preView.mas_bottom).mas_offset(top);
-    }else{
-        [super setTopConstrant:make marginTop:top];
+-(void)layoutView:(UIView *)view{
+    UIEdgeInsets margin = view.gic_margin;
+    UIView *preView = nil;
+    NSInteger index = [self.subviews indexOfObject:view];
+    if(index>0){
+        preView = [self.subviews objectAtIndex:index-1];
     }
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        // left
+        make.left.mas_offset(margin.left);
+        
+        // top
+        if(preView){
+            make.top.mas_equalTo(preView.mas_bottom).mas_offset(margin.top + preView.gic_margin.bottom);
+        }else{
+            make.top.mas_offset(margin.top);
+        }
+        
+        // height
+        make.height.mas_equalTo(view.gic_Height);
+        
+        // width
+        if(view.gic_Width > 0)
+            make.width.mas_equalTo(view.gic_Width);
+        else
+            make.right.mas_offset(-margin.right);
+    }];
 }
 
 -(CGFloat)calcuActualHeight{
@@ -54,7 +60,7 @@
         return self.gic_Height;
     }
     UIView *lastSubview = [self.subviews lastObject];
-    return CGRectGetMaxY(lastSubview.frame);
+    return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_margin.bottom;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

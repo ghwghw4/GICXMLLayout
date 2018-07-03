@@ -44,4 +44,12 @@
 -(NSString *)gic_Name{
     return objc_getAssociatedObject(self, "gic_Name");
 }
+
+-(void)setGic_ZIndex:(NSInteger)gic_ZIndex{
+     objc_setAssociatedObject(self, "gic_ZIndex", @(gic_ZIndex), OBJC_ASSOCIATION_ASSIGN);
+}
+
+-(NSInteger)gic_ZIndex{
+    return [objc_getAssociatedObject(self, "gic_ZIndex") integerValue];
+}
 @end

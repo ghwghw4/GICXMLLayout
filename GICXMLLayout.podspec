@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/ghwghw4/GICXMLLayout.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '7.0'
 
   s.source_files = 'GICXMLLayout/Classes/**/*'
   
@@ -38,7 +38,7 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-    s.prefix_header_file = 'XMLLayoutPrefixHeader.pch'
+    s.prefix_header_file = 'GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch'
     s.dependency 'GDataXMLNode_GIC'
     s.dependency 'Masonry'
     s.dependency 'SDWebImage'

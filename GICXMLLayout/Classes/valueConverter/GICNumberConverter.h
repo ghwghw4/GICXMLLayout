@@ -8,6 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "GICValueConverter.h"
 
-@interface GICConverter : GICValueConverter
+@interface GICNumberConverter : GICValueConverter
 -(NSNumber *)convert:(NSString *)xmlStringValue;
 @end

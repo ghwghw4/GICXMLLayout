@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 
 #import "GICColorConverter.h"
-#import "GICFloatConverter.h"
+#import "GICNumberConverter.h"
 #import "GICEdgeConverter.h"
 #import "GICStringConverter.h"
 
@@ -26,10 +26,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
                              [view setBackgroundColor:value];
                          }],
-                         @"height":[[GICFloatConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                         @"height":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
                              view.gic_Height = [value floatValue];
                          }],
-                         @"width":[[GICFloatConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                         @"width":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
                              view.gic_Width = [value floatValue];
                          }],
                          @"margin":[[GICEdgeConverter alloc] initWithPropertySetter:^(UIView *view, id value) {

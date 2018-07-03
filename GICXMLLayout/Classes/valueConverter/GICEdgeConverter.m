@@ -12,9 +12,15 @@
     NSArray *array = [xmlStringValue componentsSeparatedByString:@" "];
     UIEdgeInsets edg;
     if(array.count == 4){
-        edg = UIEdgeInsetsMake([array[0] floatValue], [array[1] floatValue], [array[2] floatValue], [array[3] floatValue]);
+        edg = UIEdgeInsetsMake([GICUtils numberConverter:array[0]],
+                               [GICUtils numberConverter:array[1]],
+                               [GICUtils numberConverter:array[2]],
+                               [GICUtils numberConverter:array[3]]);
     }else if (array.count == 2){
-        edg = UIEdgeInsetsMake([array[0] floatValue], [array[1] floatValue], [array[0] floatValue], [array[1] floatValue]);
+        edg = UIEdgeInsetsMake([GICUtils numberConverter:array[0]],
+                               [GICUtils numberConverter:array[1]],
+                               [GICUtils numberConverter:array[0]],
+                               [GICUtils numberConverter:array[1]]);
     }else{
         edg = UIEdgeInsetsZero;
     }

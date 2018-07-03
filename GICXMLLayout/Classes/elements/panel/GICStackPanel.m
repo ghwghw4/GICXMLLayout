@@ -33,10 +33,11 @@
         preView = [self.subviews objectAtIndex:index-1];
     }
     
+    NSAssert(view.gic_Height>0 || [view isKindOfClass:[UILabel class]] || [view isKindOfClass:[GICPanel class]] , @"stackpanel 所有的元素(除了lable、panel)都必须显示设置高度,否则按照高度为0处理");
+    
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         // left
         make.left.mas_offset(margin.left);
-        
         // top
         if(preView){
             make.top.mas_equalTo(preView.mas_bottom).mas_offset(margin.top + preView.gic_margin.bottom);
@@ -44,8 +45,8 @@
             make.top.mas_offset(margin.top);
         }
         
-        // height
-        make.height.mas_equalTo(view.gic_Height);
+        if(view.gic_Height>0)
+            make.height.mas_equalTo(view.gic_Height);
         
         // width
         if(view.gic_Width > 0)

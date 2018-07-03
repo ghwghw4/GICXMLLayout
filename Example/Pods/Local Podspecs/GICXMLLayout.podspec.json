@@ -16,10 +16,10 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "7.0"
   },
   "source_files": "GICXMLLayout/Classes/**/*",
-  "prefix_header_file": "XMLLayoutPrefixHeader.pch",
+  "prefix_header_file": "GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch",
   "dependencies": {
     "GDataXMLNode_GIC": [
 

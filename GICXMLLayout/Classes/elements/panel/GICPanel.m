@@ -47,8 +47,14 @@
         
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);
-        else
-            make.bottom.mas_offset(-margin.bottom);
+        else{
+            if(margin.bottom!=0 || ![view isKindOfClass:[UILabel class]]){
+                make.bottom.mas_offset(-margin.bottom);
+            }
+        }
+        
+        
+        
         
         if(view.gic_Width > 0)
             make.width.mas_equalTo(view.gic_Width);

@@ -12,6 +12,9 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
 #import "LayoutElement.h"
+#import "GICUtils.h"
+
+#define NumberAuto 12345654
 
 
 #endif /* XMLLayoutPrefixHeader_pch */

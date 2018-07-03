@@ -5,10 +5,10 @@
 //  Created by 龚海伟 on 2018/7/2.
 //
 
-#import "GICFloatConverter.h"
+#import "GICNumberConverter.h"
 
-@implementation GICFloatConverter
+@implementation GICNumberConverter
 -(NSNumber *)convert:(NSString *)xmlStringValue{
-    return @([xmlStringValue floatValue]);
+    return @([GICUtils numberConverter:xmlStringValue]);
 }
 @end

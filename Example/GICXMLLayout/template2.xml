@@ -1,0 +1,35 @@
+
+<stack-panel name="root-panel">
+    <panel>
+        <panel margin="16" background-color="white" name="panel2">
+            <image background-color="ffffff" url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>
+            <lable text="小区精修好房出租" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
+            <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
+            <lable text="西湖  青园小区" font-color="666666" font-size="12" margin="40 116 0 0"/>
+            <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
+            <lable text="昨日点击 123" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
+        </panel>
+    </panel>
+    
+    <panel>
+        <panel margin="16" background-color="white" name="panel2">
+            <image background-color="ffffff" url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>
+            <lable text="小区精修好房出租" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
+            <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
+            <lable text="西湖  青园小区" font-color="666666" font-size="12" margin="40 116 0 0"/>
+            <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
+            <lable text="昨日点击 123" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
+        </panel>
+    </panel>
+    
+    <panel>
+        <panel margin="16" background-color="white" name="panel2">
+            <image background-color="ffffff" url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>
+            <lable text="小区精修好房出租" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
+            <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
+            <lable text="西湖  青园小区" font-color="666666" font-size="12" margin="40 116 0 0"/>
+            <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
+            <lable text="昨日点击 123" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
+        </panel>
+    </panel>
+</stack-panel>

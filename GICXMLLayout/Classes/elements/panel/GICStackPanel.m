@@ -60,6 +60,7 @@
 //    if(self.gic_Height>0){
 //        return self.gic_Height;
 //    }
+     [self setNeedsLayout];
     UIView *lastSubview = [self.subviews lastObject];
     return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_margin.bottom;
 }

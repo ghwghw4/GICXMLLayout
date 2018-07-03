@@ -18,6 +18,8 @@
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters;
 
 -(void)elementParseCompelte;
+
+-(CGFloat)calcuActualHeight;
 @end
 
 #endif /* LayoutElement_h */

@@ -22,7 +22,7 @@
     [super viewDidLoad];
     [GICXMLLayout regiterAllElements];
 	// Do any additional setup after loading the view, typically from a nib.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template.xml"]];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template2.xml"]];
     UIView *p = [GICXMLLayout parseLayout:xmlData];
     //    [p parseAttributes:[self convertAttributes:rootElement.attributes]];
     [self.view addSubview:p];

@@ -14,9 +14,14 @@
 }
 
 -(CGFloat)calcuActualHeight{
+    [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，这样一来肯定会有性能影响。
     CGFloat maxHeight  = 0;
     for(UIView *v in self.subviews){
-        maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_margin.bottom);
+        if([v respondsToSelector:@selector(calcuActualHeight)]){
+            maxHeight = [(id)v calcuActualHeight] + v.gic_margin.bottom + v.gic_margin.top;
+        }else{
+            maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_margin.bottom);
+        }
     }
     return maxHeight;
 }
@@ -32,6 +37,8 @@
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(h);
     }];
+    
+    NSLog(@"%@",self.gic_Name);
 }
 
 -(void)addSubview:(UIView *)view{
@@ -45,16 +52,19 @@
         make.left.mas_offset(margin.left);
          make.top.mas_offset(margin.top);
         
+        if([view isKindOfClass:[GICPanel class]]){
+            CGFloat f = [(GICPanel *)view calcuActualHeight];
+            NSLog(@"%f",f);
+        }
+        
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);
         else{
+            // NOTE:对于UILabel来说，当底部边距显示不为0的时候才会去设置bottom，否则采用自适应高度的方式
             if(margin.bottom!=0 || ![view isKindOfClass:[UILabel class]]){
                 make.bottom.mas_offset(-margin.bottom);
             }
         }
-        
-        
-        
         
         if(view.gic_Width > 0)
             make.width.mas_equalTo(view.gic_Width);

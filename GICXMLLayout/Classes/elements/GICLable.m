@@ -8,6 +8,8 @@
 #import "GICLable.h"
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
+#import "GICColorConverter.h"
+#import "GICTextAlignmentConverter.h"
 
 @implementation GICLable
 +(NSString *)gic_elementName{
@@ -21,7 +23,17 @@
              }],
              @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
                  [(UILabel *)view setNumberOfLines:[value integerValue]];
-             }]
+             }],
+             @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                 [(UILabel *)view setTextColor:value];
+             }],
+             @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                 [(UILabel *)view setFont:[UIFont systemFontOfSize:[value floatValue]]];
+             }],
+             @"text-align":[[GICTextAlignmentConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                 [(UILabel *)view setTextAlignment:[value integerValue]];
+             }],
+             
                  };
 }
 

@@ -21,6 +21,12 @@
                                [GICUtils numberConverter:array[1]],
                                [GICUtils numberConverter:array[0]],
                                [GICUtils numberConverter:array[1]]);
+    }else if(array.count==1){
+        CGFloat v = [GICUtils numberConverter:array[0]];
+        edg = UIEdgeInsetsMake(v,
+                               v,
+                               v,
+                               v);
     }else{
         edg = UIEdgeInsetsZero;
     }

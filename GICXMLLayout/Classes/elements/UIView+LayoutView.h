@@ -6,12 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSObject+LayoutView.h"
 
 @class GDataXMLElement;
 
 @interface UIView (LayoutView)
 
--(void)parseElement:(GDataXMLElement *)element;
+//-(void)parseElement:(GDataXMLElement *)element;
 
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;
 

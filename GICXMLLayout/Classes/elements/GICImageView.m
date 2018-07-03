@@ -16,8 +16,8 @@
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return @{
-             @"url":[[GICURLConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                 [(GICImageView *)view setImageUrl:value];
+             @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICImageView *)target setImageUrl:value];
              }]
              };
 }

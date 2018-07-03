@@ -25,6 +25,8 @@
 
 -(CGFloat)gic_calcuActualHeight{
     [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，这样一来肯定会有性能影响。
+    if(self.subviews.count==0)
+        return self.gic_Height;
     CGFloat maxHeight  = 0;
     for(UIView *v in self.subviews){
         if([v respondsToSelector:@selector(gic_calcuActualHeight)]){
@@ -38,15 +40,17 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat h = 0;
-    if(self.gic_Height>0){
-        h = self.gic_Height;
-    }else{
-         h = [self gic_calcuActualHeight];
+    if(self.subviews.count>0){
+        CGFloat h = 0;
+        if(self.gic_Height>0){
+            h = self.gic_Height;
+        }else{
+            h = [self gic_calcuActualHeight];
+        }
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(h);
+        }];
     }
-    [self mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(h);
-    }];
 }
 
 -(void)addSubview:(UIView *)view{

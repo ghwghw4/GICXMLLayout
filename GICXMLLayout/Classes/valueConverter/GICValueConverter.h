@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^GICPropertySetter)(UIView *view,id value);
+typedef void (^GICPropertySetter)(NSObject *target,id value);
 @interface GICValueConverter : NSObject
 @property (nonatomic,copy)GICPropertySetter propertySetter;
 //-(id)initWithName:(NSString *)name;

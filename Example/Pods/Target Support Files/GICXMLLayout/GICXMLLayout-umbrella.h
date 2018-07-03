@@ -12,7 +12,10 @@
 
 #import "GICImageView.h"
 #import "GICLable.h"
+#import "GICLableParagraph.h"
+#import "GICLableSubString.h"
 #import "LayoutElement.h"
+#import "NSObject+LayoutView.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "UIView+GICExtension.h"
@@ -25,6 +28,7 @@
 #import "GICFloatConverter.h"
 #import "GICNumberConverter.h"
 #import "GICStringConverter.h"
+#import "GICTextAlignmentConverter.h"
 #import "GICURLConverter.h"
 #import "GICValueConverter.h"
 

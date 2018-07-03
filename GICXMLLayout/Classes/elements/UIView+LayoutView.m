@@ -23,57 +23,34 @@
 static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 +(void)initialize{
     propertyConverts = @{
-                         @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             [view setBackgroundColor:value];
+                         @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [(UIView *)target setBackgroundColor:value];
                          }],
-                         @"height":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_Height = [value floatValue];
+                         @"height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_Height = [value floatValue];
                          }],
-                         @"width":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_Width = [value floatValue];
+                         @"width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_Width = [value floatValue];
                          }],
-                         @"margin":[[GICEdgeConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             [view setValue:value forKey:@"gic_margin"];
+                         @"margin":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [target setValue:value forKey:@"gic_margin"];
                          }],
-                         @"name":[[GICStringConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             [view setValue:value forKey:@"gic_Name"];
+                         @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [target setValue:value forKey:@"gic_Name"];
                          }],
-                         @"margin-top":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_marginTop = [value floatValue];
+                         @"margin-top":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_marginTop = [value floatValue];
                          }],
-                         @"margin-left":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_marginLeft = [value floatValue];
+                         @"margin-left":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_marginLeft = [value floatValue];
                          }],
-                         @"margin-right":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_marginRight = [value floatValue];
+                         @"margin-right":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_marginRight = [value floatValue];
                          }],
-                         @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
-                             view.gic_marginBottom = [value floatValue];
+                         @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_marginBottom = [value floatValue];
                          }],
                          };
-}
-
-
-
-
-
-
--(void)parseElement:(GDataXMLElement *)element{
-    [self parseAttributes:[self convertAttributes:element.attributes]];
-
-    // 解析子元素
-    if([self respondsToSelector:@selector(gic_parseSubViews:)]){
-        [(id)self gic_parseSubViews:element.children];
-    }
-//    for(GDataXMLElement *child in element.children){
-//        UIView *childView =[GICXMLLayout createElement:child];
-//        if(childView){
-//           [self addSubview:childView];
-//        }
-//    }
-    if([self respondsToSelector:@selector(gic_elementParseCompelte)]){
-        [self performSelector:@selector(gic_elementParseCompelte)];
-    }
 }
 
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict{
@@ -87,14 +64,5 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
             converter.propertySetter(self, [converter convert:[attributeDict objectForKey:key]]);
         }
     }
-}
-
-
--(NSDictionary *)convertAttributes:(NSArray<GDataXMLNode *> *)atts{
-    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
-    [atts enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dict setValue:[obj stringValue] forKey:[obj name]];
-    }];
-    return dict;
 }
 @end

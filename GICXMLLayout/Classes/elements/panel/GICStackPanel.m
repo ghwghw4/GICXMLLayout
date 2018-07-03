@@ -46,6 +46,8 @@
 
 -(CGFloat)gic_calcuActualHeight{
     [self setNeedsLayout];
+    if(self.subviews.count==0)
+        return self.frame.size.height;
     UIView *lastSubview = [self.subviews lastObject];
     return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_margin.bottom;
 }

@@ -13,7 +13,7 @@
 
 //+(Class)classFromElementName:(NSString *)elementName;
 
-+(UIView *)createElement:(GDataXMLElement *)element;
++(NSObject *)createElement:(GDataXMLElement *)element;
 
 
 +(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView;

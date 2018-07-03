@@ -36,10 +36,10 @@ static NSMutableDictionary *registedElements = nil;
 //    return [registedElements objectForKey:elementName];
 //}
 
-+(UIView *)createElement:(GDataXMLElement *)element{
++(NSObject *)createElement:(GDataXMLElement *)element{
     Class c = [registedElements objectForKey:element.name];
     if(c){
-        UIView *v = [c new];
+        NSObject *v = [c new];
         [v parseElement:element];
         return v;
     }

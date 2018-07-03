@@ -16,5 +16,5 @@
 +(UIView *)createElement:(GDataXMLElement *)element;
 
 
-+(UIView *)parseLayout:(NSData *)xmlData;
++(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView;
 @end

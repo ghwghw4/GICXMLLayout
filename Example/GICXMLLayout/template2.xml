@@ -1,5 +1,5 @@
 
-<stack-panel name="root-panel">
+<stack-panel name="root-panel" margin="64 0 0 0 ">
     <panel>
         <panel margin="16" background-color="white" name="panel2">
             <image background-color="ffffff" url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>

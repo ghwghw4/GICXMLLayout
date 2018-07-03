@@ -23,12 +23,12 @@
     [GICXMLLayout regiterAllElements];
 	// Do any additional setup after loading the view, typically from a nib.
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template2.xml"]];
-    UIView *p = [GICXMLLayout parseLayout:xmlData];
+   [GICXMLLayout parseLayout:xmlData toView:self.view];
     //    [p parseAttributes:[self convertAttributes:rootElement.attributes]];
-    [self.view addSubview:p];
-    [p mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsZero);
-    }];
+//    [self.view addSubview:p];
+//    [p mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(UIEdgeInsetsZero);
+//    }];
 //    p.frame = self.view.bounds;
 }
 

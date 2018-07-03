@@ -37,8 +37,6 @@
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(h);
     }];
-    
-    NSLog(@"%@",self.gic_Name);
 }
 
 -(void)addSubview:(UIView *)view{
@@ -51,11 +49,6 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(margin.left);
          make.top.mas_offset(margin.top);
-        
-        if([view isKindOfClass:[GICPanel class]]){
-            CGFloat f = [(GICPanel *)view calcuActualHeight];
-            NSLog(@"%f",f);
-        }
         
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);

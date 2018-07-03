@@ -13,18 +13,6 @@
     return @"stack-panel";
 }
 
-
-
--(void)addSubview:(UIView *)view{
-    [super addSubview:view];
-//    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        self.textLabelLeftLayout = make.left.equalTo(self.checkedButton.mas_right);
-//        make.centerY.equalTo(self.mas_centerY);
-//        make.height.mas_equalTo(checkBoxWidth);
-//        make.right.lessThanOrEqualTo(self.mas_right);
-//    }];
-}
-
 -(void)layoutView:(UIView *)view{
     UIEdgeInsets margin = view.gic_margin;
     UIView *preView = nil;
@@ -33,7 +21,7 @@
         preView = [self.subviews objectAtIndex:index-1];
     }
     
-    NSAssert(view.gic_Height>0 || [view isKindOfClass:[UILabel class]] || [view isKindOfClass:[GICPanel class]] , @"stackpanel 所有的元素(除了lable、panel)都必须显示设置高度,否则按照高度为0处理");
+    NSAssert(view.gic_Height>0 || [view isKindOfClass:[UILabel class]] || [view isKindOfClass:[GICPanel class]] , @"stackpanel 所有的元素(除了lable、panel)都必须显示设置高度");
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         // left
@@ -44,7 +32,7 @@
         }else{
             make.top.mas_offset(margin.top);
         }
-        
+        // height
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);
         
@@ -56,20 +44,9 @@
     }];
 }
 
--(CGFloat)calcuActualHeight{
-//    if(self.gic_Height>0){
-//        return self.gic_Height;
-//    }
-     [self setNeedsLayout];
+-(CGFloat)gic_calcuActualHeight{
+    [self setNeedsLayout];
     UIView *lastSubview = [self.subviews lastObject];
     return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_margin.bottom;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 @end

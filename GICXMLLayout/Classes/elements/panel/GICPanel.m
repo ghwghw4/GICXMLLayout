@@ -7,18 +7,28 @@
 
 #import "GICPanel.h"
 #import "UIView+GICExtension.h"
+#import "GICXMLLayout.h"
 
 @implementation GICPanel
 +(NSString *)gic_elementName{
     return @"panel";
 }
 
--(CGFloat)calcuActualHeight{
+-(void)gic_parseSubViews:(NSArray<GDataXMLElement *> *)children{
+    for(GDataXMLElement *child in children){
+        UIView *childView =[GICXMLLayout createElement:child];
+        if(childView){
+            [self addSubview:childView];
+        }
+    }
+}
+
+-(CGFloat)gic_calcuActualHeight{
     [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，这样一来肯定会有性能影响。
     CGFloat maxHeight  = 0;
     for(UIView *v in self.subviews){
-        if([v respondsToSelector:@selector(calcuActualHeight)]){
-            maxHeight = [(id)v calcuActualHeight] + v.gic_margin.bottom + v.gic_margin.top;
+        if([v respondsToSelector:@selector(gic_calcuActualHeight)]){
+            maxHeight = [(id)v gic_calcuActualHeight] + v.gic_margin.bottom + v.gic_margin.top;
         }else{
             maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_margin.bottom);
         }
@@ -32,7 +42,7 @@
     if(self.gic_Height>0){
         h = self.gic_Height;
     }else{
-         h = [self calcuActualHeight];
+         h = [self gic_calcuActualHeight];
     }
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(h);
@@ -48,7 +58,7 @@
     UIEdgeInsets margin = view.gic_margin;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(margin.left);
-         make.top.mas_offset(margin.top);
+        make.top.mas_offset(margin.top);
         
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);
@@ -65,10 +75,4 @@
             make.right.mas_offset(-margin.right);
     }];
 }
-
-
--(void)elementParseCompelte{
-    
-}
-
 @end

@@ -38,6 +38,18 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          @"name":[[GICStringConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
                              [view setValue:value forKey:@"gic_Name"];
                          }],
+                         @"margin-top":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                             view.gic_marginTop = [value floatValue];
+                         }],
+                         @"margin-left":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                             view.gic_marginLeft = [value floatValue];
+                         }],
+                         @"margin-right":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                             view.gic_marginRight = [value floatValue];
+                         }],
+                         @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(UIView *view, id value) {
+                             view.gic_marginBottom = [value floatValue];
+                         }],
                          };
 }
 
@@ -48,14 +60,19 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 
 -(void)parseElement:(GDataXMLElement *)element{
     [self parseAttributes:[self convertAttributes:element.attributes]];
-    for(GDataXMLElement *child in element.children){
-        UIView *childView =[GICXMLLayout createElement:child];
-        if(childView){
-           [self addSubview:childView];
-        }
+
+    // 解析子元素
+    if([self respondsToSelector:@selector(gic_parseSubViews:)]){
+        [(id)self gic_parseSubViews:element.children];
     }
-    if([self respondsToSelector:@selector(elementParseCompelte)]){
-        [self performSelector:@selector(elementParseCompelte)];
+//    for(GDataXMLElement *child in element.children){
+//        UIView *childView =[GICXMLLayout createElement:child];
+//        if(childView){
+//           [self addSubview:childView];
+//        }
+//    }
+    if([self respondsToSelector:@selector(gic_elementParseCompelte)]){
+        [self performSelector:@selector(gic_elementParseCompelte)];
     }
 }
 

@@ -9,6 +9,7 @@
 #define LayoutElement_h
 
 #import "GICValueConverter.h"
+@class GDataXMLElement;
 
 @protocol LayoutElementProtocol
 @required
@@ -17,9 +18,15 @@
 @optional
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters;
 
--(void)elementParseCompelte;
 
--(CGFloat)calcuActualHeight;
+/**
+ 解析子元素
+ */
+-(void)gic_parseSubViews:(NSArray<GDataXMLElement *> *)children;
+
+-(void)gic_elementParseCompelte;
+
+-(CGFloat)gic_calcuActualHeight;
 @end
 
 #endif /* LayoutElement_h */

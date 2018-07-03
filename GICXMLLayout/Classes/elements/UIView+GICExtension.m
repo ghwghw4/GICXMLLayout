@@ -52,4 +52,46 @@
 -(NSInteger)gic_ZIndex{
     return [objc_getAssociatedObject(self, "gic_ZIndex") integerValue];
 }
+
+-(void)setGic_marginTop:(CGFloat)gic_marginTop{
+    UIEdgeInsets margin = [self gic_margin];
+    margin.top = gic_marginTop;
+    self.gic_margin = margin;
+}
+
+-(CGFloat)gic_marginTop{
+    return self.gic_margin.top;
+}
+
+
+-(void)setGic_marginLeft:(CGFloat)gic_marginLeft{
+    UIEdgeInsets margin = [self gic_margin];
+    margin.left = gic_marginLeft;
+    self.gic_margin = margin;
+}
+
+-(CGFloat)gic_marginLeft{
+    return self.gic_margin.left;
+}
+
+-(void)setGic_marginRight:(CGFloat)gic_marginRight{
+    UIEdgeInsets margin = [self gic_margin];
+    margin.right = gic_marginRight;
+    self.gic_margin = margin;
+}
+
+-(CGFloat)gic_marginRight{
+    return self.gic_margin.right;
+}
+
+-(void)setGic_marginBottom:(CGFloat)gic_marginBottom{
+    UIEdgeInsets margin = [self gic_margin];
+    margin.bottom = gic_marginBottom;
+    self.gic_margin = margin;
+}
+
+-(CGFloat)gic_marginBottom{
+    return self.gic_margin.bottom;
+}
 @end
+

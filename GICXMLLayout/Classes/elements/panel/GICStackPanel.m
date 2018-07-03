@@ -56,9 +56,9 @@
 }
 
 -(CGFloat)calcuActualHeight{
-    if(self.gic_Height>0){
-        return self.gic_Height;
-    }
+//    if(self.gic_Height>0){
+//        return self.gic_Height;
+//    }
     UIView *lastSubview = [self.subviews lastObject];
     return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_margin.bottom;
 }

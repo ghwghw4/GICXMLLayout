@@ -23,7 +23,12 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat h = [self calcuActualHeight];
+    CGFloat h = 0;
+    if(self.gic_Height>0){
+        h = self.gic_Height;
+    }else{
+         h = [self calcuActualHeight];
+    }
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(h);
     }];

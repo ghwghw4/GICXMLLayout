@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GDataXMLNode.h"
+#import "NSObject+GICDataContext.h"
 
 @interface GICXMLLayout : NSObject
 +(void)regiterAllElements;

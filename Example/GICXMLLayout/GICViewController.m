@@ -21,15 +21,13 @@
 {
     [super viewDidLoad];
     [GICXMLLayout regiterAllElements];
+    
+    NSDictionary *data = @{@"obj":@{@"name":@"hello word 111",@"loc":@"西湖  青园小区111"}};
+    
 	// Do any additional setup after loading the view, typically from a nib.
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template2.xml"]];
-   [GICXMLLayout parseLayout:xmlData toView:self.view];
-    //    [p parseAttributes:[self convertAttributes:rootElement.attributes]];
-//    [self.view addSubview:p];
-//    [p mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(UIEdgeInsetsZero);
-//    }];
-//    p.frame = self.view.bounds;
+    UIView *v = [GICXMLLayout parseLayout:xmlData toView:self.view];
+    v.gic_DataContenxt = data;
 }
 
 - (void)didReceiveMemoryWarning

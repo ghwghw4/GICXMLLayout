@@ -16,7 +16,8 @@
 #import "GICNumberConverter.h"
 #import "GICEdgeConverter.h"
 #import "GICStringConverter.h"
-
+#import "GICDataBinding.h"
+#import "NSObject+GICDataBinding.h"
 
 @implementation UIView (LayoutView)
 
@@ -50,6 +51,9 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((UIView *)target).gic_marginBottom = [value floatValue];
                          }],
+                         @"data-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [(UIView *)target setGic_dataModelKey:value];
+                         }],
                          };
 }
 
@@ -59,9 +63,19 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
         [ps addEntriesFromDictionary:[[self class] performSelector:@selector(gic_propertySetters)]];
     }
     for(NSString *key in attributeDict.allKeys){
+        NSString *value = [attributeDict objectForKey:key];
         GICValueConverter *converter = [ps objectForKey:key];
+        if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
+            NSString *propertyName = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
+            GICDataBinding *binding = [GICDataBinding new];
+            binding.valueConverter = converter;
+            binding.dataSourceValueKey = propertyName;
+            binding.target = self;
+            [self.gic_Bindings addObject:binding];
+            continue;
+        }
         if(converter){
-            converter.propertySetter(self, [converter convert:[attributeDict objectForKey:key]]);
+            converter.propertySetter(self, [converter convert:value]);
         }
     }
 }

@@ -25,8 +25,6 @@
 #import <UIKit/UIKit.h>
 #import "LayoutElement.h"
 #import "GICUtils.h"
-
-#define NumberAuto 12345654
-
+#import "NSObject+LayoutElement.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

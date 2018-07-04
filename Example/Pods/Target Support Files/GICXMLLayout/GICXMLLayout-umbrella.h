@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "GICDataBinding.h"
+#import "NSObject+GICDataContext.h"
 #import "GICImageView.h"
 #import "GICLable.h"
 #import "NSMutableAttributedString+GICLableSubString.h"

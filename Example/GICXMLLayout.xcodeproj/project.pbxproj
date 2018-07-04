@@ -10,6 +10,7 @@
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
 		37A2643020E9D3590058589D /* template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2642F20E9D3590058589D /* template.xml */; };
 		37A2646F20EB497A0058589D /* template2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2646E20EB497A0058589D /* template2.xml */; };
+		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		37A2642F20E9D3590058589D /* template.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.xml; sourceTree = "<group>"; };
 		37A2646E20EB497A0058589D /* template2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template2.xml; sourceTree = "<group>"; };
+		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -128,6 +131,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,

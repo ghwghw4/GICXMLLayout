@@ -124,7 +124,19 @@ typedef NSUInteger GDataXMLNodeKind;
 
 + (id)textWithStringValue:(NSString *)value;
 
+/**
+ 获取去除了两头空格和换行符的字符串
+
+ @return <#return value description#>
+ */
 - (NSString *)stringValue;
+
+/**
+ 获取原始字符串
+
+ @return <#return value description#>
+ */
+- (NSString *)stringValueOrginal;
 - (void)setStringValue:(NSString *)str;
 
 - (NSUInteger)childCount;

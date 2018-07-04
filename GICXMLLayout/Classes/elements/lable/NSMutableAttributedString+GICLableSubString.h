@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GDataXMLNode.h"
 
-@interface NSMutableAttributedString (GICLableSubString)<LayoutElementProtocol>
-
+@interface NSMutableAttributedString (GICLableSubString)
+-(id)initWithXmlElement:(GDataXMLElement *)xmlElement;
 @end

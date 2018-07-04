@@ -9,4 +9,5 @@
 
 @interface UIColor (Extension)
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert;
++ (UIColor *)colorAndAlphaWithHexString:(NSString *)stringToConvert;
 @end

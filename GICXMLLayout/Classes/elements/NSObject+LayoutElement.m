@@ -5,10 +5,10 @@
 //  Created by 龚海伟 on 2018/7/3.
 //
 
-#import "NSObject+LayoutView.h"
+#import "NSObject+LayoutElement.h"
 #import "GICXMLLayout.h"
 
-@implementation NSObject (LayoutView)
+@implementation NSObject (LayoutElement)
 -(void)parseElement:(GDataXMLElement *)element{
     [self parseAttributes:[self convertAttributes:element.attributes]];
     

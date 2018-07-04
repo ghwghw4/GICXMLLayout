@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSObject+LayoutView.h"
+#import "NSObject+LayoutElement.h"
 
 @class GDataXMLElement;
 

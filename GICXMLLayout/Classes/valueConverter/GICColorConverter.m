@@ -52,6 +52,9 @@ static NSDictionary<NSString *,UIColor *> *colorMap;
     if(temp){
         return temp;
     }
+    if(xmlStringValue.length == 8)
+        return [UIColor colorAndAlphaWithHexString:xmlStringValue];
+        
     return [UIColor colorWithHexString:xmlStringValue];
 }
 

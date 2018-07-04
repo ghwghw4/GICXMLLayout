@@ -409,31 +409,34 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 }
 
 - (NSString *)stringValue {
+  return [[self stringValueOrginal] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
 
-  NSString *str = nil;
-
-  if (xmlNode_ != NULL) {
-
-    if (xmlNode_->type == XML_NAMESPACE_DECL) {
-
-      // for a namespace node, the value is the namespace URI
-      xmlNsPtr nsNode = (xmlNsPtr)xmlNode_;
-
-      str = [self stringFromXMLString:(nsNode->href)];
-
-    } else {
-
-      // attribute or element node
-      xmlChar* chars = xmlNodeGetContent(xmlNode_);
-      if (chars) {
-
-        str = [self stringFromXMLString:chars];
-
-        xmlFree(chars);
-      }
+- (NSString *)stringValueOrginal{
+    NSString *str = nil;
+    
+    if (xmlNode_ != NULL) {
+        
+        if (xmlNode_->type == XML_NAMESPACE_DECL) {
+            
+            // for a namespace node, the value is the namespace URI
+            xmlNsPtr nsNode = (xmlNsPtr)xmlNode_;
+            
+            str = [self stringFromXMLString:(nsNode->href)];
+            
+        } else {
+            
+            // attribute or element node
+            xmlChar* chars = xmlNodeGetContent(xmlNode_);
+            if (chars) {
+                
+                str = [self stringFromXMLString:chars];
+                
+                xmlFree(chars);
+            }
+        }
     }
-  }
-  return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return str;
 }
 
 - (NSString *)XMLString {

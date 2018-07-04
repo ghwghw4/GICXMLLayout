@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (LayoutView)
+@interface NSObject (LayoutElement)
 -(void)parseElement:(GDataXMLElement *)element;
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;
 @end

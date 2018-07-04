@@ -1,5 +1,5 @@
 PODS:
-  - GDataXMLNode_GIC (0.1.0)
+  - GDataXMLNode_GIC (0.1.1)
   - GICXMLLayout (0.1.0):
     - GDataXMLNode_GIC
     - Masonry
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GDataXMLNode_GIC: a6560187f6657a8008810254df6d288c910d2a62
+  GDataXMLNode_GIC: a5e2db9702379b334be50657cb98591e54cbf636
   GICXMLLayout: d4c54e4a61c0ac50985677884ca6c0cdb06af812
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4

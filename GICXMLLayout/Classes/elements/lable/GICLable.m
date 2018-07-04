@@ -11,10 +11,16 @@
 #import "GICColorConverter.h"
 #import "GICTextAlignmentConverter.h"
 #import "GICXMLLayout.h"
-#import "GICLableSubString.h"
-#import "NSObject+LayoutView.h"
+#import "NSObject+LayoutElement.h"
+#import "NSMutableAttributedString+GICLableSubString.h"
 
 @implementation GICLable
+
+static NSArray *supportElementNames;
++(void)initialize{
+    supportElementNames = @[@"s",@"img"];
+}
+
 +(NSString *)gic_elementName{
     return @"lable";
 }
@@ -43,8 +49,8 @@
 -(void)gic_parseSubViews:(NSArray<GDataXMLElement *> *)children{
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
     for(GDataXMLElement *child in children){
-        if([child.name isEqualToString:@"s"]){
-            NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithString:[child stringValue]];
+        if([supportElementNames containsObject:child.name]){
+            NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
             [s parseElement:child];
             [attString appendAttributedString:s];
         }

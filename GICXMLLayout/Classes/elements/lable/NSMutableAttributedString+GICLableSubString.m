@@ -6,10 +6,11 @@
 //
 
 #import "NSMutableAttributedString+GICLableSubString.h"
-#import "NSObject+LayoutView.h"
+#import "NSObject+LayoutElement.h"
 #import "GDataXMLNode.h"
 #import "GICNumberConverter.h"
 #import "GICColorConverter.h"
+#import "GICStringConverter.h"
 
 @implementation NSMutableAttributedString (GICLableSubString)
 
@@ -28,27 +29,28 @@
                  NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                  [str addAttribute:NSBackgroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
              }],
+             @"img-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                 
+                 NSTextAttachment * textAttachment = [[NSTextAttachment alloc ] initWithData:nil ofType:nil];
+                 textAttachment.image = [UIImage imageNamed:value];
+                 NSAttributedString *attImage=[NSAttributedString attributedStringWithAttachment:textAttachment];
+                 [str appendAttributedString:attImage];
+             }],
              };
 }
 
-+(NSString *)gic_elementName{
-    return @"s";
-}
-
--(void)parseElement:(GDataXMLElement *)element{
-//    attrs = [NSMutableDictionary dictionary];
-    [super parseElement:element];
-    
-    //     NSString *str = [element stringValue];
-    //    [super initWithString:str attributes:attrs];
-    
-//    NSString *str = [element stringValue];
-    
-//    [self add]
-    //    if(attrs.count>0){
-    //       [self appendAttributedString:[[NSAttributedString alloc] initWithString:str attributes:attrs]];
-    //    }else{
-    //        [self appendAttributedString:[[NSAttributedString alloc] initWithString:str]];
-    //    }
+-(id)initWithXmlElement:(GDataXMLElement *)xmlElement{
+    NSLog(@"name = %@",xmlElement.name);
+    if([xmlElement.name isEqualToString:@"img"]){
+        self = [self init];
+    }else{
+        NSString *text = [xmlElement stringValueOrginal];
+        if([text length]==0){
+            text = [[xmlElement attributeForName:@"text"] stringValueOrginal];
+        }
+        self = [self initWithString:text];
+    }
+    return self;
 }
 @end

@@ -14,8 +14,6 @@
 @interface GICDataBinding : NSObject
 @property (nonatomic,weak)id dataSource;
 @property (nonatomic,weak)id target;
-@property (nonatomic,strong)NSString *dataSourceValueKey;
-//@property (nonatomic,strong)NSString *targetValueKey;
 @property (nonatomic,weak)GICValueConverter *valueConverter;
 @property (nonatomic,strong)NSString *expression;// 绑定的js 表达式
 

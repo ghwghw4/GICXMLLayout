@@ -6,11 +6,18 @@
 //
 
 #import "GICDataBinding.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @implementation GICDataBinding
 -(void)update{
-    id value = [self.dataSource objectForKey:self.dataSourceValueKey];
+    JSContext *context = [[JSContext alloc] init];
+    for(NSString *key in [self.dataSource allKeys]){
+        id value = [self.dataSource objectForKey:key];
+        context[key] = value;
+    }
+    NSString *jsCode = self.expression;
+    JSValue *value = [context evaluateScript:jsCode];
     if(value)
-        self.valueConverter.propertySetter(self.target,value);
+        self.valueConverter.propertySetter(self.target,[value toString]);
 }
 @end

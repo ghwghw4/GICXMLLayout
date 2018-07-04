@@ -42,6 +42,7 @@ TODO: Add long description of the pod here.
     s.dependency 'GDataXMLNode_GIC'
     s.dependency 'Masonry'
     s.dependency 'SDWebImage'
+    s.frameworks = 'JavaScriptCore'
     s.libraries = 'xml2'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
 end

@@ -66,11 +66,11 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
         NSString *value = [attributeDict objectForKey:key];
         GICValueConverter *converter = [ps objectForKey:key];
         if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
-            NSString *propertyName = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
+            NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
             GICDataBinding *binding = [GICDataBinding new];
             binding.valueConverter = converter;
-            binding.dataSourceValueKey = propertyName;
             binding.target = self;
+            binding.expression = expression;
             [self.gic_Bindings addObject:binding];
             continue;
         }

@@ -10,18 +10,19 @@
 #endif
 #endif
 
+#import "LayoutElementProtocol.h"
+#import "NSObject+LayoutElement.h"
+#import "UIView+GICExtension.h"
+#import "UIView+LayoutView.h"
 #import "GICDataBinding.h"
 #import "NSObject+GICDataBinding.h"
 #import "NSObject+GICDataContext.h"
 #import "GICImageView.h"
+#import "GICInpute.h"
 #import "GICLable.h"
 #import "NSMutableAttributedString+GICLableSubString.h"
-#import "LayoutElementProtocol.h"
-#import "NSObject+LayoutElement.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
-#import "UIView+GICExtension.h"
-#import "UIView+LayoutView.h"
 #import "GICXMLLayout.h"
 #import "GICUtils.h"
 #import "UIColor+Extension.h"

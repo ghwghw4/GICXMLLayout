@@ -10,6 +10,8 @@
 
 #import "GICValueConverter.h"
 @class GDataXMLElement;
+// 双向绑定中value改变的事件
+typedef void (^GICTowWayBindingValueChanged)(id newValue);
 
 @protocol LayoutElementProtocol
 @required
@@ -34,6 +36,16 @@
 -(void)gic_elementParseCompelte;
 
 -(CGFloat)gic_calcuActualHeight;
+
+
+#pragma mark binding相关
+/**
+ 创建双向绑定
+
+ @param attributeName <#attributeName description#>
+ @param valueChanged <#valueChanged description#>
+ */
+-(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withValueChangedCallback:(GICTowWayBindingValueChanged)valueChanged;
 @end
 
 #endif /* LayoutElement_h */

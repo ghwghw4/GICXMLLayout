@@ -23,7 +23,7 @@ typedef enum {
 @property (nonatomic,weak)id target;
 @property (nonatomic,weak)GICValueConverter *valueConverter;
 @property (nonatomic,strong)NSString *expression;// 绑定的js 表达式
-
+@property (nonatomic,strong)NSString *attributeName;//
 @property (nonatomic,assign,readonly)BOOL isInitBinding;
 
 /**

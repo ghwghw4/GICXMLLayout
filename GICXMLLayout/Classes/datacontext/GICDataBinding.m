@@ -87,6 +87,20 @@
                 }];
             }
         }
+        
+        // 处理双向绑定
+        if(self.bingdingMode == GICBingdingMode_TowWay){
+            if([self.target respondsToSelector:@selector(gic_createTowWayBindingWithAttributeName:withValueChangedCallback:)]){
+                @weakify(self)
+                [self.target gic_createTowWayBindingWithAttributeName:self.attributeName withValueChangedCallback:^(id newValue) {
+                    @strongify(self)
+                    if(![newValue isEqual:[self.dataSource objectForKey:self.expression]]){
+                        // 将新值更新到数据源
+                        [self.dataSource setValue:newValue forKey:self.expression];
+                    }
+                }];
+            }
+        }
     }
 }
 

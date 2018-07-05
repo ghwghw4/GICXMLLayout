@@ -8,7 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "GICDataBinding.h"
 
-@interface UIView (GICDataBinding)
+//@class JSContext;
+
+@interface NSObject (GICDataBinding)
 
 /**
  元素的数据绑定列表
@@ -24,5 +26,8 @@
 /**
  更新数据绑定
  */
--(void)gic_updateDataBinding:(id)dataContenxt;
+-(void)gic_updateDataBinding:(id)superDataContenxt;
+
+//-(JSContext *)gic_getJSContext;
+
 @end

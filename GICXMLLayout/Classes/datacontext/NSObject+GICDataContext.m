@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 #import "NSObject+GICDataBinding.h"
 
-@implementation UIView (GICDataContext)
+@implementation NSObject (GICDataContext)
 -(void)setGic_DataContenxt:(id)gic_DataContenxt{
     objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContenxt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self gic_updateDataBinding:gic_DataContenxt];

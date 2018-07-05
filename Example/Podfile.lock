@@ -1,10 +1,14 @@
 PODS:
   - GDataXMLNode_GIC (0.1.1)
+  - GICJsonParser (0.9.0)
   - GICXMLLayout (0.1.0):
     - GDataXMLNode_GIC
+    - GICJsonParser
     - Masonry
+    - ReactiveObjC
     - SDWebImage
   - Masonry (1.1.0)
+  - ReactiveObjC (3.1.0)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
@@ -19,8 +23,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   GDataXMLNode_GIC: a5e2db9702379b334be50657cb98591e54cbf636
-  GICXMLLayout: fea5edb6a3078f202c562d91eee61049a50b2ce4
+  GICJsonParser: 5a5980a2b45e9494c3ac3cf29ffcc55104fafe4b
+  GICXMLLayout: d4ee83805b4bad8c7833c6209f6adf5d5bd9e04b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
 
 PODFILE CHECKSUM: 5083716bac02bdd8749a50119f462bb65ca5c1de

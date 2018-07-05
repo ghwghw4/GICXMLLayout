@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UIView (GICDataContext)
+@interface NSObject (GICDataContext)
 /**
  数据上下文
  */

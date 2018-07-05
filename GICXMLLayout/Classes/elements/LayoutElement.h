@@ -22,7 +22,14 @@
 /**
  解析子元素
  */
--(void)gic_parseSubViews:(NSArray<GDataXMLElement *> *)children;
+-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children;
+
+/**
+ 获取所有的子元素
+
+ @return 子元素
+ */
+-(NSArray *)gic_subElements;
 
 -(void)gic_elementParseCompelte;
 

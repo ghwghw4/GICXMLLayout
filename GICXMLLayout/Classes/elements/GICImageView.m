@@ -10,16 +10,21 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation GICImageView
+static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
++(void)initialize{
+    propertyConverts = @{
+                         @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [(GICImageView *)target setImageUrl:value];
+                         }]
+                         };
+}
+
 +(NSString *)gic_elementName{
     return @"image";
 }
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
-    return @{
-             @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICImageView *)target setImageUrl:value];
-             }]
-             };
+    return propertyConverts;
 }
 
 -(void)setImageUrl:(NSURL *)imageUrl{

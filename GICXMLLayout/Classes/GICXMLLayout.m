@@ -55,8 +55,7 @@ static NSMutableDictionary *registedElements = nil;
     }
     // 取根节点
     GDataXMLElement *rootElement = [xmlDocument rootElement];
-    UIView *p = [self createElement:rootElement];
-    
+    UIView *p = (UIView *)[self createElement:rootElement];
     [superView addSubview:p];
     UIEdgeInsets margin = p.gic_margin;
     [p mas_makeConstraints:^(MASConstraintMaker *make) {

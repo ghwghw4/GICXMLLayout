@@ -29,6 +29,12 @@
     ],
     "SDWebImage": [
 
+    ],
+    "GICJsonParser": [
+
+    ],
+    "ReactiveObjC": [
+
     ]
   },
   "frameworks": "JavaScriptCore",

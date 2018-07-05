@@ -14,13 +14,17 @@
     return @"panel";
 }
 
--(void)gic_parseSubViews:(NSArray<GDataXMLElement *> *)children{
+-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     for(GDataXMLElement *child in children){
-        UIView *childView =[GICXMLLayout createElement:child];
+        UIView *childView = (UIView *)[GICXMLLayout createElement:child];
         if(childView){
             [self addSubview:childView];
         }
     }
+}
+
+-(NSArray *)gic_subElements{
+    return self.subviews;
 }
 
 -(CGFloat)gic_calcuActualHeight{

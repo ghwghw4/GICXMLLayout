@@ -36,9 +36,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          @"margin":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [target setValue:value forKey:@"gic_margin"];
                          }],
-                         @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             [target setValue:value forKey:@"gic_Name"];
-                         }],
                          @"margin-top":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((UIView *)target).gic_marginTop = [value floatValue];
                          }],
@@ -50,9 +47,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          }],
                          @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((UIView *)target).gic_marginBottom = [value floatValue];
-                         }],
-                         @"data-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             [(UIView *)target setGic_dataModelKey:value];
                          }],
                          };
 }

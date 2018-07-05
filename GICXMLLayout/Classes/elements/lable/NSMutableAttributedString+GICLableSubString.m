@@ -14,30 +14,35 @@
 
 @implementation NSMutableAttributedString (GICLableSubString)
 
+static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
++(void)initialize{
+    propertyConverts = @{
+                         @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str addAttribute:NSForegroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
+                         }],
+                         @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:[value floatValue]] range:NSMakeRange(0, str.length)];
+                         }],
+                         @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str addAttribute:NSBackgroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
+                         }],
+                         @"img-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             
+                             NSTextAttachment * textAttachment = [[NSTextAttachment alloc ] initWithData:nil ofType:nil];
+                             textAttachment.image = [UIImage imageNamed:value];
+                             NSAttributedString *attImage=[NSAttributedString attributedStringWithAttachment:textAttachment];
+                             [str appendAttributedString:attImage];
+                         }],
+                         };
+}
+
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
-    return @{
-             @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                 [str addAttribute:NSForegroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
-             }],
-             @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                 [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:[value floatValue]] range:NSMakeRange(0, str.length)];
-             }],
-             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                 [str addAttribute:NSBackgroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
-             }],
-             @"img-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                 
-                 NSTextAttachment * textAttachment = [[NSTextAttachment alloc ] initWithData:nil ofType:nil];
-                 textAttachment.image = [UIImage imageNamed:value];
-                 NSAttributedString *attImage=[NSAttributedString attributedStringWithAttachment:textAttachment];
-                 [str appendAttributedString:attImage];
-             }],
-             };
+    return propertyConverts;
 }
 
 -(id)initWithXmlElement:(GDataXMLElement *)xmlElement{

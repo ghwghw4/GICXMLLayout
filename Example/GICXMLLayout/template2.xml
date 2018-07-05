@@ -12,10 +12,10 @@
     </panel>
     
     <panel name="panel1">
-        <panel margin="16" background-color="white" name="panel2" data-model="obj">
+        <panel margin="16" background-color="white" name="panel2">
             <image url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>
             <stack-panel margin="0 116 0.1 0">
-                <lable text="{{ name }}" font-color="333333" font-size="16" lines="2"/>
+                <lable text="{{ name }}" data-model="obj" font-color="333333" font-size="16" lines="2"/>
                 <lable text="2室2厅  89平" font-color="666666" font-size="12" margin-top="4"/>
                 <lable text="西湖  青园小区" font-color="666666" font-size="12" margin-top="4"/>
                 <panel>

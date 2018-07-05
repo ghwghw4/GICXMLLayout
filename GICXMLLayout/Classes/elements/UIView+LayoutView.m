@@ -51,26 +51,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          };
 }
 
--(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict{
-    NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithDictionary:propertyConverts];
-    if([[self class] respondsToSelector:@selector(gic_propertySetters)]){
-        [ps addEntriesFromDictionary:[[self class] performSelector:@selector(gic_propertySetters)]];
-    }
-    for(NSString *key in attributeDict.allKeys){
-        NSString *value = [attributeDict objectForKey:key];
-        GICValueConverter *converter = [ps objectForKey:key];
-        if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
-            NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
-            GICDataBinding *binding = [GICDataBinding new];
-            binding.valueConverter = converter;
-            binding.target = self;
-            binding.expression = expression;
-            [self.gic_Bindings addObject:binding];
-            continue;
-        }
-        if(converter){
-            converter.propertySetter(self, [converter convert:value]);
-        }
-    }
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
+    return propertyConverts;
 }
 @end

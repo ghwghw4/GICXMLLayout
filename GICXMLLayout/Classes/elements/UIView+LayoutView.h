@@ -12,8 +12,4 @@
 
 @interface UIView (LayoutView)
 
-//-(void)parseElement:(GDataXMLElement *)element;
-
--(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;
-
 @end

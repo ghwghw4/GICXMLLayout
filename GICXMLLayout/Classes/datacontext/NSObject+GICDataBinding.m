@@ -73,6 +73,7 @@
         if(v){
             if(self.gic_DataContenxt !=v){
                 self.gic_DataContenxt = v;
+                superDataContenxt = v;
                 // 创建绑定
                 GICDataModelBinding_ *tmp = self.gic_dataModelBinding;
                 if(tmp==nil){
@@ -81,7 +82,6 @@
                     self.gic_dataModelBinding = tmp;
                 }
                 [tmp updateDataSource:superDataContenxt];
-                return;
             }
         }
     }
@@ -96,24 +96,4 @@
         }
     }
 }
-
-//-(JSContext *)gic_getJSContext{
-//    JSContext *context = objc_getAssociatedObject(self, "gic_JSContext");
-//    if(context)
-//        return context;
-//    id temp = [self gic_DataContenxt];
-//    if(temp){
-//        NSDictionary *dict = [GICJsonParser objectSerializeToJsonDictionary:temp];
-//        if(dict){
-//            JSContext *context = [[JSContext alloc] init];
-//            for(NSString *key in [dict allKeys]){
-//                id value = [dict objectForKey:key];
-//                context[key] = value;
-//            }
-//            objc_setAssociatedObject(self, "gic_JSContext", context, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//            return context;
-//        }
-//    }
-//    return nil;
-//}
 @end

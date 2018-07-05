@@ -16,7 +16,7 @@
 #import "GICImageView.h"
 #import "GICLable.h"
 #import "NSMutableAttributedString+GICLableSubString.h"
-#import "LayoutElement.h"
+#import "LayoutElementProtocol.h"
 #import "NSObject+LayoutElement.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"

@@ -9,8 +9,49 @@
 #import "GICXMLLayout.h"
 #import "GICStringConverter.h"
 #import "NSObject+GICDataBinding.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (LayoutElement)
+
+/**
+ converts 缓存
+
+ @return <#return value description#>
+ */
++ (NSMutableDictionary<NSString *,NSDictionary<NSString *,GICValueConverter *> *> *)gic_classPropertyConvertsCache {
+    static NSMutableDictionary *_instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [NSMutableDictionary dictionary];
+    });
+    return _instance;
+}
+
++(NSDictionary<NSString *, GICValueConverter *> *)_gic_getPropertyConverts:(Class)klass{
+    if(klass == [NSObject class]){
+        return nil;
+    }
+    
+    NSString *className = NSStringFromClass(klass);
+    NSDictionary<NSString *,GICValueConverter *> *value = [self.gic_classPropertyConvertsCache objectForKey:className];
+    if (value) {
+        return value;
+    }
+    
+    NSMutableDictionary<NSString *, GICValueConverter *> *dict = [NSMutableDictionary dictionary];
+    if([klass respondsToSelector:@selector(gic_propertySetters)]){
+        [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_propertySetters)]];
+    }
+    [dict addEntriesFromDictionary:[NSObject _gic_getPropertyConverts:class_getSuperclass(klass)]];
+    
+    // 保存到缓存中
+    [self.gic_classPropertyConvertsCache setValue:dict forKey:className];
+    return dict;
+}
+
+
+
+
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     static dispatch_once_t onceToken;
@@ -37,12 +78,7 @@
         if(children.count>0)
             [(id)self gic_parseSubElements:element.children];
     }
-    //    for(GDataXMLElement *child in element.children){
-    //        UIView *childView =[GICXMLLayout createElement:child];
-    //        if(childView){
-    //           [self addSubview:childView];
-    //        }
-    //    }
+    
     if([self respondsToSelector:@selector(gic_elementParseCompelte)]){
         [self performSelector:@selector(gic_elementParseCompelte)];
     }
@@ -57,16 +93,26 @@
     return dict;
 }
 
+// 解析属性
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict{
-    NSMutableDictionary *ps = [NSMutableDictionary dictionary];
-    if([[self class] respondsToSelector:@selector(gic_propertySetters)]){
-        [ps addEntriesFromDictionary:[[self class] performSelector:@selector(gic_propertySetters)]];
-    }
+    NSDictionary *ps = [NSObject _gic_getPropertyConverts:[self class]];
     for(NSString *key in attributeDict.allKeys){
+        NSString *value = [attributeDict objectForKey:key];
         GICValueConverter *converter = [ps objectForKey:key];
+        if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
+            NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
+            GICDataBinding *binding = [GICDataBinding new];
+            binding.valueConverter = converter;
+            binding.target = self;
+            binding.expression = expression;
+            [self.gic_Bindings addObject:binding];
+            continue;
+        }
         if(converter){
-            converter.propertySetter(self, [converter convert:[attributeDict objectForKey:key]]);
+            converter.propertySetter(self, [converter convert:value]);
         }
     }
 }
+
+
 @end

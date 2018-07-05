@@ -23,7 +23,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                              [(GICInpute *)target setPlaceholder:value];
                          }],
                          @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             [(GICInpute *)target setText:value];
+                             GICInpute *inpute = (GICInpute *)target;
+                             if(![value isEqual:inpute.text]){
+                                 [(GICInpute *)target setText:value];
+                             }
                          }],
                          };
 }
@@ -32,12 +35,11 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return propertyConverts;
 }
 
--(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withValueChangedCallback:(GICTowWayBindingValueChanged)valueChanged{
+-(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName{
     if([attributeName isEqualToString:@"text"]){
-        [[self rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
-            valueChanged(x);
-        }];
+        return [self rac_textSignal];
     }
+    return nil;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

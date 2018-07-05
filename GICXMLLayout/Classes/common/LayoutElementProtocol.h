@@ -10,8 +10,9 @@
 
 #import "GICValueConverter.h"
 @class GDataXMLElement;
+@class RACSignal;
 // 双向绑定中value改变的事件
-typedef void (^GICTowWayBindingValueChanged)(id newValue);
+//typedef void (^GICTowWayBindingValueChanged)(id newValue);
 
 @protocol LayoutElementProtocol
 @required
@@ -45,7 +46,7 @@ typedef void (^GICTowWayBindingValueChanged)(id newValue);
  @param attributeName <#attributeName description#>
  @param valueChanged <#valueChanged description#>
  */
--(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withValueChangedCallback:(GICTowWayBindingValueChanged)valueChanged;
+-(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName;
 @end
 
 #endif /* LayoutElement_h */

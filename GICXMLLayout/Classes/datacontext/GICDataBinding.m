@@ -18,22 +18,66 @@
 @end
 
 @implementation GICDataBinding
+
++(instancetype)createBindingFromExpression:(NSString *)expString{
+    GICDataBinding *b = [GICDataBinding new];
+    
+    NSString *regularString = expString;
+    if([regularString characterAtIndex:regularString.length - 1] != ','){
+        regularString = [regularString stringByAppendingString:@","];
+    }
+    
+    NSString *exp = [self getBindingPartString:regularString key:@"exp"];
+    if(exp){//解析表达式
+        b.expression = exp;
+        // 解析mode
+        NSString *mode = [[self getBindingPartString:regularString key:@"mode"] lowercaseString];
+        if(mode){
+            if([mode isEqualToString:@"0"] || [mode isEqualToString:@"once"]){
+                b.bingdingMode = GICBingdingMode_Once;
+            }else if([mode isEqualToString:@"1"] || [mode isEqualToString:@"oneway"]){
+                b.bingdingMode = GICBingdingMode_OneWay;
+            }else if([mode isEqualToString:@"2"] || [mode isEqualToString:@"towway"]){
+                b.bingdingMode = GICBingdingMode_TowWay;
+            }
+        }
+    }else{
+         b.expression = expString;
+    }
+    return b;
+}
+
++(NSString *)getBindingPartString:(NSString *)regularString key:(NSString *)keyname{
+    NSString *re = [GICUtils regularMatchFirst:regularString pattern:[NSString stringWithFormat:@"%@\s*=(.*?),",keyname]];
+    if(re){
+        NSString *tmp = [GICUtils regularMatchFirst:re pattern:[NSString stringWithFormat:@"%@\s*=",keyname]];
+        return [[re stringByReplacingOccurrencesOfString:tmp withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    }
+    return nil;
+}
+
 -(void)refreshExpression{
     JSContext *context = [[JSContext alloc] init];
+    // 将数据源解析成纯dictionary
     NSDictionary *dict = [GICJsonParser objectSerializeToJsonDictionary:self.dataSource];
-    for(NSString *key in dict.allKeys){
-        id value = [dict objectForKey:key];
-        context[key] = value;
+    if(dict){
+        for(NSString *key in dict.allKeys){
+            id value = [dict objectForKey:key];
+            context[key] = value;
+        }
     }
     NSString *jsCode = self.expression;
     JSValue *value = [context evaluateScript:jsCode];
-    if(value)
+    if([value isUndefined])
+        self.valueConverter.propertySetter(self.target,nil);
+    else
         self.valueConverter.propertySetter(self.target,[value toString]);
     
     if(!self.isInitBinding){
-//        if(self.bingdingMode == GICBingdingMode_Once){
-//            return;
-//        }
+        if(self.bingdingMode == GICBingdingMode_Once){
+            return;
+        }
+        // 创建数据绑定
         for(NSString *key in dict.allKeys){
             if([self.expression containsString:key]){
                 @weakify(self)

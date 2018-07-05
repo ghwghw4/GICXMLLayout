@@ -21,7 +21,6 @@
 {
     [super viewDidLoad];
     [GICXMLLayout regiterAllElements];
-    
     NSMutableDictionary *data = [@{@"obj":[@{@"name":@"hello word 111",@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png"} mutableCopy]} mutableCopy];
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -30,10 +29,13 @@
     v.gic_DataContenxt = data;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[data objectForKey:@"obj"] setValue:@"1231231会hiuhuihiuhiuhiuhiuhuihiuhiuhiuhiuhiuh2" forKey:@"name"];
-        [[data objectForKey:@"obj"] setValue:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530767605274&di=09dc516c16904f4c0af6b73ce0bf2bf7&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e92584fbb491f9082d158cdbf4eb0.jpg" forKey:@"url"];
-//        [data setValue:@{@"name":@"hhhhhhhhh",@"url":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530767605274&di=09dc516c16904f4c0af6b73ce0bf2bf7&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e92584fbb491f9082d158cdbf4eb0.jpg"} forKey:@"obj"];
+//        [[data objectForKey:@"obj"] setValue:@"1231231会hiuhuihiuhiuhiuhiuhuihiuhiuhiuhiuhiuh2" forKey:@"name"];
+//        [[data objectForKey:@"obj"] setValue:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530767605274&di=09dc516c16904f4c0af6b73ce0bf2bf7&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e92584fbb491f9082d158cdbf4eb0.jpg" forKey:@"url"];
+//         [[data objectForKey:@"obj"] setValue:@(30) forKey:@"clickCount"];
+        [data setValue:@{@"name":@"hhhhhhhhh",@"url":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530767605274&di=09dc516c16904f4c0af6b73ce0bf2bf7&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e92584fbb491f9082d158cdbf4eb0.jpg"} forKey:@"obj"];
     });
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

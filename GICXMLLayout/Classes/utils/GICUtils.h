@@ -9,4 +9,6 @@
 
 @interface GICUtils : NSObject
 +(CGFloat)numberConverter:(NSString *)stringValue;
+
++(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern;
 @end

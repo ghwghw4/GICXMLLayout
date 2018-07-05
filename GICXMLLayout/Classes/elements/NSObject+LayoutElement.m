@@ -101,10 +101,9 @@
         GICValueConverter *converter = [ps objectForKey:key];
         if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
             NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
-            GICDataBinding *binding = [GICDataBinding new];
+            GICDataBinding *binding = [GICDataBinding createBindingFromExpression:expression];
             binding.valueConverter = converter;
             binding.target = self;
-            binding.expression = expression;
             [self.gic_Bindings addObject:binding];
             continue;
         }

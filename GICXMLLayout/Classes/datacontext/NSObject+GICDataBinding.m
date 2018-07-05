@@ -73,7 +73,6 @@
         if(v){
             if(self.gic_DataContenxt !=v){
                 self.gic_DataContenxt = v;
-                superDataContenxt = v;
                 // 创建绑定
                 GICDataModelBinding_ *tmp = self.gic_dataModelBinding;
                 if(tmp==nil){
@@ -82,6 +81,8 @@
                     self.gic_dataModelBinding = tmp;
                 }
                 [tmp updateDataSource:superDataContenxt];
+                // 以便更新当前object的绑定
+                superDataContenxt = v;
             }
         }
     }

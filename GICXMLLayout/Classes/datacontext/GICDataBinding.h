@@ -37,4 +37,6 @@ typedef enum {
  强制刷绑定的表达式的value。也即是重新计算表达式
  */
 -(void)refreshExpression;
+
++(instancetype)createBindingFromExpression:(NSString *)exp;
 @end

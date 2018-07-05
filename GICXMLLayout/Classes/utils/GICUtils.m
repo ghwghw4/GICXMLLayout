@@ -14,4 +14,13 @@
 //    }
     return [stringValue floatValue];
 }
+
++(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern{
+    NSRange range = [str rangeOfString:pattern options:NSRegularExpressionSearch];
+    if(range.location != NSNotFound)
+        return  [str substringWithRange:range];
+    else
+        return nil;
+    return nil;
+}
 @end

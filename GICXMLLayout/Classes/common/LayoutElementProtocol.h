@@ -34,7 +34,7 @@
  */
 -(NSArray *)gic_subElements;
 
--(void)gic_addSubElement:(id)subElement;
+-(void)gic_addSubElement:(NSObject *)subElement;
 
 -(void)gic_elementParseCompelte;
 

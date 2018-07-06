@@ -1,4 +1,4 @@
-<scroll-view margin="64 0 0 0 ">
+<scroll-view margin="64 0 0 0">
     <stack-panel name="root-panel">
         <for>
             <panel name="panel1">

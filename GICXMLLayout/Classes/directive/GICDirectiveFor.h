@@ -8,7 +8,6 @@
 #import "GICDirective.h"
 
 @interface GICDirectiveFor : GICDirective{
-    
+    GDataXMLDocument *xmlDoc;
 }
-@property (nonatomic,strong)GDataXMLElement *templateElement;
 @end

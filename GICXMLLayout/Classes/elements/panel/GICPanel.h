@@ -7,12 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+GICExtension.h"
-#import <Masonry/Masonry.h>
 
 /**
  Panle的作用其实就是类似于UIView，也类似于Hmtl中的canvas布局。
  所有的元素都是绝对布局。
  */
 @interface GICPanel : UIView<LayoutElementProtocol>
--(void)layoutView:(UIView *)view;
+//-(void)layoutView:(UIView *)view;
 @end

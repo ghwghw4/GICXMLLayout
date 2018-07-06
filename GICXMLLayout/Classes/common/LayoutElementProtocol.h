@@ -21,7 +21,7 @@
 @optional
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters;
 
-
+#pragma mark 子元素解析相关
 /**
  解析子元素
  */
@@ -36,7 +36,16 @@
 
 -(void)gic_addSubElement:(NSObject *)subElement;
 
--(void)gic_elementParseCompelte;
+/**
+ 是否支持单个子元素
+
+ @return 不实现本方法，或者返回YES，那么只能是单个子元素
+ */
+-(BOOL)gic_parseOnlyOneSubElement;
+
+
+
+
 
 -(CGFloat)gic_calcuActualHeight;
 
@@ -49,6 +58,10 @@
  @param valueChanged <#valueChanged description#>
  */
 -(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName;
+
+
+
+-(void)gic_elementParseCompelte;
 @end
 
 #endif /* LayoutElement_h */

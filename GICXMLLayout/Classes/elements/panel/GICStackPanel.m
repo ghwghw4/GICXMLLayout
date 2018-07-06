@@ -13,7 +13,7 @@
     return @"stack-panel";
 }
 
--(void)layoutView:(UIView *)view{
+-(void)gic_LayoutSubView:(UIView *)view{
     UIEdgeInsets margin = view.gic_margin;
     UIView *preView = nil;
     NSInteger index = [self.subviews indexOfObject:view];

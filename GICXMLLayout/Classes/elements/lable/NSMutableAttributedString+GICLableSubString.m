@@ -46,7 +46,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 }
 
 -(id)initWithXmlElement:(GDataXMLElement *)xmlElement{
-    NSLog(@"name = %@",xmlElement.name);
     if([xmlElement.name isEqualToString:@"img"]){
         self = [self init];
     }else{

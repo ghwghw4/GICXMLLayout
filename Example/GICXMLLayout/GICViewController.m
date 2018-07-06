@@ -27,15 +27,15 @@
     
     
     NSMutableArray *temp3Data = [NSMutableArray array];
-    for(int i=0;i<2;i++){
+    for(int i=0;i<5;i++){
         [temp3Data addObject:@{@"name":@"hello word 111",@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png"}];
     }
     
     
 	// Do any additional setup after loading the view, typically from a nib.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template3.xml"]];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template4.xml"]];
     UIView *v = [GICXMLLayout parseLayout:xmlData toView:self.view];
-    v.gic_DataContenxt = temp3Data;
+//    v.gic_DataContenxt = temp3Data;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [[data objectForKey:@"obj"] setValue:@"1231231会hiuhuihiuhiuhiuhiuhuihiuhiuhiuhiuhiuh2" forKey:@"name"];

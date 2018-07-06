@@ -81,4 +81,22 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     }
 }
 
+-(void)gic_LayoutSubView:(UIView *)subView{
+    UIEdgeInsets margin = subView.gic_margin;
+    [subView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_offset(margin.top);
+        make.left.mas_offset(margin.left);
+        
+        if(subView.gic_Width > 0)
+            make.width.mas_equalTo(subView.gic_Width);
+        else
+            make.right.mas_offset(-margin.right);
+        
+        if(subView.gic_Height > 0)
+            make.height.mas_equalTo(subView.gic_Height);
+        else
+            make.bottom.mas_offset(-margin.bottom);
+    }];
+}
+
 @end

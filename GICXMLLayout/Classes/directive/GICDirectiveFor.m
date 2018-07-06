@@ -16,10 +16,13 @@
 }
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
-    NSAssert(children.count <= 1, @"for 指令只支持单个子元素");
     if(children.count==1){
-       self.templateElement = children[0];
+        self->xmlDoc =  [[GDataXMLDocument alloc] initWithRootElement:children[0]];
     }
+}
+
+-(BOOL)gic_parseOnlyOneSubElement{
+    return YES;
 }
 
 -(void)updateDataSource:(id)dataSource{
@@ -45,7 +48,7 @@
 }
 
 -(void)addAElement:(id)data{
-    NSObject *childElement = [GICXMLLayout createElement:self.templateElement];
+    NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement]];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContenxt = data;
     [self.target gic_addSubElement:childElement];

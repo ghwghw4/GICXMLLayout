@@ -12,4 +12,10 @@
 
 @interface UIView (LayoutView)<LayoutElementProtocol>
 
+/**
+ 通用的子元素布局
+
+ @param subView <#subView description#>
+ */
+-(void)gic_LayoutSubView:(UIView *)subView;
 @end

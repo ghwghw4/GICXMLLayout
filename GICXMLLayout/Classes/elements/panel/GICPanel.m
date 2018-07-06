@@ -43,15 +43,18 @@
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(h);
         }];
+        
+        
+        
     }
 }
 
 -(void)addSubview:(UIView *)view{
     [super addSubview:view];
-    [self layoutView:view];
+    [self gic_LayoutSubView:view];
 }
 
--(void)layoutView:(UIView *)view{
+-(void)gic_LayoutSubView:(UIView *)view{
     UIEdgeInsets margin = view.gic_margin;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(margin.left);

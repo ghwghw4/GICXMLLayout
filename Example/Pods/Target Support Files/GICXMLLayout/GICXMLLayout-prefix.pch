@@ -28,5 +28,8 @@
 #import "NSObject+LayoutElement.h"
 #import "GICXMLLayout.h"
 #import "UIView+LayoutView.h"
+#import "GDataXMLNode.h"
+#import <Masonry/Masonry.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 #endif /* XMLLayoutPrefixHeader_pch */

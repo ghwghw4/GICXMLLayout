@@ -11,4 +11,6 @@
 +(CGFloat)numberConverter:(NSString *)stringValue;
 
 +(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern;
+
++ (NSString *)uuidString;
 @end

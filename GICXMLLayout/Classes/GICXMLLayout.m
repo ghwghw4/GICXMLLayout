@@ -46,9 +46,7 @@ static NSMutableDictionary *registedElements = nil;
 
 +(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView{
     NSError *error = nil;
-    
-    static GDataXMLDocument *xmlDocument = nil;
-    xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);
         return nil;
@@ -57,21 +55,7 @@ static NSMutableDictionary *registedElements = nil;
     GDataXMLElement *rootElement = [xmlDocument rootElement];
     UIView *p = (UIView *)[self createElement:rootElement];
     [superView addSubview:p];
-    UIEdgeInsets margin = p.gic_margin;
-    [p mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_offset(margin.top);
-        make.left.mas_offset(margin.left);
-        
-        if(p.gic_Width > 0)
-            make.width.mas_equalTo(p.gic_Width);
-        else
-            make.right.mas_offset(-margin.right);
-        
-        if(p.gic_Height > 0)
-            make.height.mas_equalTo(p.gic_Height);
-        else
-            make.bottom.mas_offset(-margin.bottom);
-    }];
+    [superView gic_LayoutSubView:p];
     return p;
 }
 @end

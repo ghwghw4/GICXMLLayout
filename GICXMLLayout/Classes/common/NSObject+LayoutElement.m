@@ -75,8 +75,16 @@
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;
-        if(children.count>0)
+        if(children.count>0){
+            // 检查是否支持单个子元素
+            if([self respondsToSelector:@selector(gic_parseOnlyOneSubElement)] && [(id)self gic_parseOnlyOneSubElement]){
+                NSAssert1(children.count <= 1, @"%@只支持单个子元素", element.name);
+                if(children.count!=1){
+                    return;
+                }
+            }
             [(id)self gic_parseSubElements:element.children];
+        }
     }
     
     if([self respondsToSelector:@selector(gic_elementParseCompelte)]){

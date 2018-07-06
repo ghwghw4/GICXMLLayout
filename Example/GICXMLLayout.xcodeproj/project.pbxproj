@@ -11,6 +11,7 @@
 		37A2643020E9D3590058589D /* template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2642F20E9D3590058589D /* template.xml */; };
 		37A2646F20EB497A0058589D /* template2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2646E20EB497A0058589D /* template2.xml */; };
 		37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AF9920EEF8FA006AADC2 /* template3.xml */; };
+		37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFB820EF45F1006AADC2 /* template4.xml */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		37BA55FA20EDB276003DC99A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BA55F920EDB276003DC99A /* TestClass.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -46,6 +47,7 @@
 		37A2642F20E9D3590058589D /* template.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.xml; sourceTree = "<group>"; };
 		37A2646E20EB497A0058589D /* template2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template2.xml; sourceTree = "<group>"; };
 		37A7AF9920EEF8FA006AADC2 /* template3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template3.xml; sourceTree = "<group>"; };
+		37A7AFB820EF45F1006AADC2 /* template4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template4.xml; sourceTree = "<group>"; };
 		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		37BA55F820EDB276003DC99A /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		37BA55F920EDB276003DC99A /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				37BA55F820EDB276003DC99A /* TestClass.h */,
 				37BA55F920EDB276003DC99A /* TestClass.m */,
 				37A7AF9920EEF8FA006AADC2 /* template3.xml */,
+				37A7AFB820EF45F1006AADC2 /* template4.xml */,
 			);
 			name = "Example for GICXMLLayout";
 			path = GICXMLLayout;
@@ -296,6 +299,7 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				37A2646F20EB497A0058589D /* template2.xml in Resources */,
 				37A2643020E9D3590058589D /* template.xml in Resources */,

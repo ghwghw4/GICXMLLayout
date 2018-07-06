@@ -34,6 +34,8 @@
  */
 -(NSArray *)gic_subElements;
 
+-(void)gic_addSubElement:(id)subElement;
+
 -(void)gic_elementParseCompelte;
 
 -(CGFloat)gic_calcuActualHeight;

@@ -15,7 +15,7 @@
 /**
  元素的数据绑定列表
  */
-@property (nonatomic,readonly,strong)NSMutableArray<GICDataBinding *> *gic_Bindings;
+@property (nonatomic,readonly,strong)NSArray<GICDataBinding *> *gic_Bindings;
 
 
 /**
@@ -23,10 +23,22 @@
  */
 @property (nonatomic,strong)NSString *gic_dataModelKey;
 
+
+
+
+
 /**
  更新数据绑定
  */
 -(void)gic_updateDataBinding:(id)superDataContenxt;
+
+
+/**
+ 添加绑定
+
+ @param binding <#binding description#>
+ */
+-(void)gic_addBinding:(GICDataBinding *)binding;
 
 //-(JSContext *)gic_getJSContext;
 

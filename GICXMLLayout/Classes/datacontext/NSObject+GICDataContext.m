@@ -19,5 +19,16 @@
     return objc_getAssociatedObject(self, "gic_DataContenxt");
 }
 
+-(void)setGic_isAutoInheritDataModel:(BOOL)gic_isAutoInheritDataModel{
+    objc_setAssociatedObject(self, "gic_isAutoInheritDataModel", @(gic_isAutoInheritDataModel), OBJC_ASSOCIATION_ASSIGN);
+}
+
+-(BOOL)gic_isAutoInheritDataModel{
+    id v = objc_getAssociatedObject(self, "gic_isAutoInheritDataModel");
+    if(v){
+        return [v boolValue];
+    }
+    return YES;
+}
 
 @end

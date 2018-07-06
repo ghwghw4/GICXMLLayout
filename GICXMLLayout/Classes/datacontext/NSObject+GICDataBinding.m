@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "NSObject+GICDirective.h"
 
 
 /**
@@ -42,13 +43,19 @@
 
 
 @implementation NSObject (GICDataBinding)
--(NSMutableArray<GICDataBinding *> *)gic_Bindings{
-    NSMutableArray *t = objc_getAssociatedObject(self, "gic_Bindings");
-    if(t==nil){
-        t = [NSMutableArray array];
-        objc_setAssociatedObject(self, "gic_Bindings", t, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(NSArray<GICDataBinding *> *)gic_Bindings{
+   return objc_getAssociatedObject(self, "gic_Bindings");
+}
+
+-(void)gic_addBinding:(GICDataBinding *)binding{
+    if(binding==nil)
+        return;
+    NSMutableArray<GICDataBinding *> * bindings= (NSMutableArray<GICDataBinding *> *)self.gic_Bindings;
+    if(bindings==nil){
+        bindings = [NSMutableArray array];
+        objc_setAssociatedObject(self, "gic_Bindings", bindings, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return t;
+    [bindings addObject:binding];
 }
 
 -(void)setGic_dataModelKey:(NSString *)gic_dataModelKey{
@@ -66,6 +73,8 @@
 -(GICDataModelBinding_ *)gic_dataModelBinding{
     return objc_getAssociatedObject(self, "gic_dataModelBinding");
 }
+
+
 
 -(void)gic_updateDataBinding:(id)superDataContenxt{
     if(self.gic_dataModelKey){
@@ -91,9 +100,15 @@
         [b updateDataSource:superDataContenxt];
     }
     
+    for(GICDirective *d in self.gic_directives){
+        [d updateDataSource:superDataContenxt];
+    }
+    
     if([self respondsToSelector:@selector(gic_subElements)]){
         for(NSObject *sub in [self performSelector:@selector(gic_subElements)]){
-            [sub gic_updateDataBinding:superDataContenxt];
+            if(sub.gic_isAutoInheritDataModel){
+                 [sub gic_updateDataBinding:superDataContenxt];
+            }
         }
     }
 }

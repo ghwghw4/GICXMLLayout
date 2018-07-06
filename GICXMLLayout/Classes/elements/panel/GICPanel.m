@@ -8,6 +8,8 @@
 #import "GICPanel.h"
 #import "UIView+GICExtension.h"
 #import "GICXMLLayout.h"
+#import "GICDirective.h"
+#import "NSObject+GICDirective.h"
 
 @implementation GICPanel
 +(NSString *)gic_elementName{
@@ -16,10 +18,10 @@
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     for(GDataXMLElement *child in children){
-        UIView *childView = (UIView *)[GICXMLLayout createElement:child];
-        if(childView){
-            [self addSubview:childView];
-        }
+        id childElement = [GICXMLLayout createElement:child];
+        if(childElement == nil)
+            continue;
+        [self gic_addSubElement:childElement];
     }
 }
 
@@ -54,6 +56,14 @@
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(h);
         }];
+    }
+}
+
+-(void)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[UIView class]]){
+        [self addSubview:subElement];
+    }else if ([subElement isKindOfClass:[GICDirective class]]){//如果是指令，那么交给指令自己执行
+        [self gic_addDirective:subElement];
     }
 }
 

@@ -105,7 +105,7 @@
             binding.valueConverter = converter;
             binding.target = self;
             binding.attributeName = key;
-            [self.gic_Bindings addObject:binding];
+            [self gic_addBinding:binding];
             continue;
         }
         if(converter){

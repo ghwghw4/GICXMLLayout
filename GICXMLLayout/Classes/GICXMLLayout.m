@@ -25,16 +25,14 @@ static NSMutableDictionary *registedElements = nil;
             Class candidateClass = classes[i];
             if(class_getClassMethod(candidateClass, @selector(gic_elementName))){
                 NSString *name = [candidateClass performSelector:@selector(gic_elementName)];
-                [registedElements setValue:candidateClass forKey:name];
+                if(name && [name length]>0){
+                    [registedElements setValue:candidateClass forKey:name];
+                }
             }
         }
         free(classes);
     }
 }
-
-//+(Class)classFromElementName:(NSString *)elementName{
-//    return [registedElements objectForKey:elementName];
-//}
 
 +(NSObject *)createElement:(GDataXMLElement *)element{
     Class c = [registedElements objectForKey:element.name];
@@ -48,7 +46,9 @@ static NSMutableDictionary *registedElements = nil;
 
 +(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView{
     NSError *error = nil;
-    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    
+    static GDataXMLDocument *xmlDocument = nil;
+    xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);
         return nil;

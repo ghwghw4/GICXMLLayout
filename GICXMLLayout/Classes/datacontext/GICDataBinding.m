@@ -68,9 +68,9 @@
     }
     NSString *jsCode = self.expression;
     JSValue *value = [context evaluateScript:jsCode];
-    if([value isUndefined])
-        self.valueConverter.propertySetter(self.target,nil);
-    else
+//    if([value isUndefined])
+//        self.valueConverter.propertySetter(self.target,nil);
+//    else
         self.valueConverter.propertySetter(self.target,[value toString]);
     
     if(!self.isInitBinding){

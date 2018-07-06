@@ -31,6 +31,8 @@
             }];
             [self.contentView addSubview:childElement];
             [self.contentView gic_LayoutSubView:childElement];
+        }else{
+            NSAssert(false, @"list-item 只支持 panel作为子元素");
         }
     }
 }

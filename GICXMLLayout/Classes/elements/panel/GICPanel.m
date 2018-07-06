@@ -63,8 +63,8 @@
         if(view.gic_Height>0)
             make.height.mas_equalTo(view.gic_Height);
         else{
-            // NOTE:对于UILabel来说，当底部边距显示不为0的时候才会去设置bottom，否则采用自适应高度的方式
-            if(margin.bottom!=0 || ![view isKindOfClass:[UILabel class]]){
+            // NOTE:对于UILabel来说，不会设置bottom，否则采用自适应高度的方式
+            if(margin.bottom!=0 && ![view isKindOfClass:[UILabel class]]){
                 make.bottom.mas_offset(-margin.bottom);
             }
         }

@@ -18,6 +18,7 @@
 #import "GICStringConverter.h"
 #import "GICDataBinding.h"
 #import "NSObject+GICDataBinding.h"
+#import "NSObject+GICDirective.h"
 
 @implementation UIView (LayoutView)
 
@@ -54,4 +55,30 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return propertyConverts;
 }
+
++(NSString *)gic_elementName{
+    return nil;
+}
+
+-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+    for(GDataXMLElement *child in children){
+        id childElement = [GICXMLLayout createElement:child];
+        if(childElement == nil)
+            continue;
+        [self gic_addSubElement:childElement];
+    }
+}
+
+-(NSArray *)gic_subElements{
+    return self.subviews;
+}
+
+-(void)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[UIView class]]){
+        [self addSubview:subElement];
+    }else if ([subElement isKindOfClass:[GICDirective class]]){//如果是指令，那么交给指令自己执行
+        [self gic_addDirective:subElement];
+    }
+}
+
 @end

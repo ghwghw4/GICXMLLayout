@@ -22,6 +22,7 @@
 #import "NSObject+GICDirective.h"
 #import "GICImageView.h"
 #import "GICInpute.h"
+#import "GICScrollView.h"
 #import "GICLable.h"
 #import "NSMutableAttributedString+GICLableSubString.h"
 #import "GICPanel.h"

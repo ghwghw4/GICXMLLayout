@@ -10,6 +10,6 @@
 
 @class GDataXMLElement;
 
-@interface UIView (LayoutView)
+@interface UIView (LayoutView)<LayoutElementProtocol>
 
 @end

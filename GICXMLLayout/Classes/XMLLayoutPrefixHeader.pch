@@ -15,5 +15,6 @@
 #import "GICUtils.h"
 #import "NSObject+LayoutElement.h"
 #import "GICXMLLayout.h"
+#import "UIView+LayoutView.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

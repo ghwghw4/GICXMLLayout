@@ -27,12 +27,20 @@
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
-        self->xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
+        self->_xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
     }
 }
 
--(NSObject *)createElement{
-    NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement]];
-    return childElement;
-}
+//-(NSObject *)createElement{
+//    NSObject *childElement = [GICXMLLayout createElement:[self.xmlDoc rootElement]];
+//    return childElement;
+//}
+
+//-(NSObject *)createElementWithSlotsMap:(NSMutableDictionary<NSString *, GDataXMLDocument *> *)slotMap{
+//    GDataXMLElement *rootElement = [self->xmlDoc rootElement];
+//    return nil;
+//}
+
+//-(void)
+
 @end

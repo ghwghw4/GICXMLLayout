@@ -8,7 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "GICTemplate.h"
 
-@interface GICTemplateRef : NSObject<LayoutElementProtocol>
+@interface GICTemplateRef : NSObject<LayoutElementProtocol>{
+    NSMutableDictionary<NSString *, NSString *> *slotsXmlDocMap;
+    
+    NSMutableDictionary<NSString *,NSString *> *tempConvertSlotMap;
+}
 @property (nonatomic,strong)NSString *templateName;
 -(NSObject *)parseTemplate:(GICTemplate *)t;
 

@@ -11,9 +11,15 @@
  核心组件，模板
  */
 @interface GICTemplate : NSObject<LayoutElementProtocol>{
-    GDataXMLDocument *xmlDoc;
+    
 }
 @property (nonatomic,strong)NSString *name;
+@property (nonatomic,strong,readonly)GDataXMLDocument *xmlDoc;
 
--(NSObject *)createElement;
+
+//-(NSObject *)createElement;
+
+//-(NSObject *)createElementWithSlotsMap:(NSMutableDictionary<NSString *, GDataXMLDocument *> *)slotMap;
+
+//NSMutableDictionary<NSString *, GDataXMLDocument *> *
 @end

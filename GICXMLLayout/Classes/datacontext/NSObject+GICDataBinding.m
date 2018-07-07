@@ -30,7 +30,7 @@
         @weakify(self)
         [[self.dataSource rac_valuesAndChangesForKeyPath:[self.target gic_dataModelKey] options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
             @strongify(self)
-            [self.target gic_updateDataBinding:self.dataSource];
+            [self.target gic_updateUpdateContext:self.dataSource];
         }];
     }
 }
@@ -76,7 +76,7 @@
 
 
 
--(void)gic_updateDataBinding:(id)superDataContenxt{
+-(void)gic_updateUpdateContext:(id)superDataContenxt{
     if(self.gic_dataModelKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
         id v = [superDataContenxt valueForKey:self.gic_dataModelKey];
         if(![GICUtils isNull:v]){
@@ -101,13 +101,14 @@
     }
     
     for(GICDirective *d in self.gic_directives){
-        [d updateDataSource:superDataContenxt];
+        [d gic_updateUpdateContext:superDataContenxt];
+//        [d updateDataSource:superDataContenxt];
     }
     
     if([self respondsToSelector:@selector(gic_subElements)]){
         for(NSObject *sub in [self performSelector:@selector(gic_subElements)]){
             if(sub.gic_isAutoInheritDataModel){
-                 [sub gic_updateDataBinding:superDataContenxt];
+                 [sub gic_updateUpdateContext:superDataContenxt];
             }
         }
     }

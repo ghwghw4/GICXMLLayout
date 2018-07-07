@@ -35,6 +35,8 @@
 }
 
 +(BOOL)isNull:(id)obj{
-    return obj && ![obj isKindOfClass:[NSNull class]];
+    if(!obj || [obj isKindOfClass:[NSNull class]])
+        return YES;
+    return NO;
 }
 @end

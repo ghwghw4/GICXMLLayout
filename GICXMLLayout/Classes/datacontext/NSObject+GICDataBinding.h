@@ -27,10 +27,7 @@
 
 
 
-/**
- 更新数据绑定
- */
--(void)gic_updateDataBinding:(id)superDataContenxt;
+
 
 
 /**

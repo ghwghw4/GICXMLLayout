@@ -18,4 +18,9 @@
  如果设为 no，那么只有在显示设置DataContenxt的情况下才会触发绑定更新
  */
 @property (nonatomic,assign)BOOL gic_isAutoInheritDataModel;
+
+/**
+ 更新数据源
+ */
+-(void)gic_updateUpdateContext:(id)superDataContenxt;
 @end

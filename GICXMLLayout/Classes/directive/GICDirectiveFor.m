@@ -26,6 +26,11 @@
     return YES;
 }
 
+-(void)gic_updateUpdateContext:(id)superDataContenxt{
+    [super gic_updateUpdateContext:superDataContenxt];
+    [self updateDataSource:superDataContenxt];
+}
+
 -(void)updateDataSource:(id)dataSource{
     //TODO: 对data-model的支持
     if([dataSource isKindOfClass:[NSArray class]] && [self.target respondsToSelector:@selector(gic_addSubElement:)]){

@@ -82,8 +82,6 @@
 		35D3ADC45FE7092E6064852D4F63B28B /* RACReplaySubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D250E845EBA8CC84F82D3012503B02 /* RACReplaySubject.m */; };
 		361612E53FEC69FD2CB0EB5CCD112B1F /* GICStringConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED415DE426ACA554F1B90D4881A640D /* GICStringConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3758D3D99E0F71695239F7E2F9238DF4 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 486D503AF5C94710CBC83FE1A3EB580F /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3767541E20F0D8A10019A521 /* GICTemplateSlot.h in Headers */ = {isa = PBXBuildFile; fileRef = 3767541C20F0D8A10019A521 /* GICTemplateSlot.h */; };
-		3767541F20F0D8A10019A521 /* GICTemplateSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767541D20F0D8A10019A521 /* GICTemplateSlot.m */; };
 		37B23490E2F4D130DBDAAF4ADB68397D /* NSString+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6CE05D11AA94BF3C584CA5B9616B6 /* NSString+RACSupport.m */; };
 		38CE58888E54A9262E1CC40E53776075 /* GICReflectorPropertyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFD6DA0B6BF835F1FCE4D9B1C150D0 /* GICReflectorPropertyInfo.m */; };
 		396469E25566E36057DFF058D0D571E9 /* NSURLConnection+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 40530BA53C8BE1213AAB3A00F5306DD5 /* NSURLConnection+RACSupport.m */; };
@@ -564,8 +562,6 @@
 		36A0A5AB94853576D3A6E34D527BC8C9 /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
 		36EDB308ABDB6B50768CE4F3C7472225 /* RACMulticastConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACMulticastConnection.h; path = ReactiveObjC/RACMulticastConnection.h; sourceTree = "<group>"; };
 		3716E10AADF1DCD45A6E632B398903A5 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
-		3767541C20F0D8A10019A521 /* GICTemplateSlot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICTemplateSlot.h; sourceTree = "<group>"; };
-		3767541D20F0D8A10019A521 /* GICTemplateSlot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICTemplateSlot.m; sourceTree = "<group>"; };
 		38D25AEF5193AF17E8B4378A83E3A597 /* NSObject+Reflector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Reflector.h"; path = "JsonParser/Classes/NSObject+Reflector.h"; sourceTree = "<group>"; };
 		390F5B2BBFAAD92C373613F4AC075B1F /* RACSubject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSubject.h; path = ReactiveObjC/RACSubject.h; sourceTree = "<group>"; };
 		393358C378773DE1D925965DD2146FD5 /* NSObject+GICTemplate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+GICTemplate.h"; sourceTree = "<group>"; };
@@ -976,8 +972,6 @@
 				2F5E9DA5DFE517CBC0760A7FAD22181B /* GICTemplates.m */,
 				393358C378773DE1D925965DD2146FD5 /* NSObject+GICTemplate.h */,
 				535600FA45E6AE429B072874CCF4E7E7 /* NSObject+GICTemplate.m */,
-				3767541C20F0D8A10019A521 /* GICTemplateSlot.h */,
-				3767541D20F0D8A10019A521 /* GICTemplateSlot.m */,
 			);
 			name = template;
 			path = GICXMLLayout/Classes/template;
@@ -1866,7 +1860,6 @@
 				42C5AF51F49E1DAE92709D236444AD30 /* GICFloatConverter.h in Headers */,
 				BE9DDD245DC1F53AC5531B7DB9C84CE7 /* GICImageView.h in Headers */,
 				ED502216B7DFD962D3C08391882C88F4 /* GICInpute.h in Headers */,
-				3767541E20F0D8A10019A521 /* GICTemplateSlot.h in Headers */,
 				79E0CC9AAABE9522FB0D4326A7C748E2 /* GICLable.h in Headers */,
 				05388378B5D26D718635151872FC869B /* GICListHeader.h in Headers */,
 				614C401F7E4495182C4BA03A9F9CCCA0 /* GICListItem.h in Headers */,
@@ -2232,7 +2225,6 @@
 				130879214C7481AABA05A10E73180575 /* GICInpute.m in Sources */,
 				5F878703F2BA8B1AB11FF9A740EA19EB /* GICLable.m in Sources */,
 				828EC884A50322534444E40DD84550A5 /* GICListHeader.m in Sources */,
-				3767541F20F0D8A10019A521 /* GICTemplateSlot.m in Sources */,
 				F28E1F71A8074D0ABE0184B2951D3832 /* GICListItem.m in Sources */,
 				1C38A2C56D7CE607F80FED9451FF1891 /* GICListView.m in Sources */,
 				5274BB78111C7F113A8DC81A3FAE61D7 /* GICNumberConverter.m in Sources */,

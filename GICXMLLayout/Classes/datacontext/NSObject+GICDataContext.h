@@ -8,6 +8,12 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (GICDataContext)
+
+/**
+ 绑定的数据模型的key
+ */
+@property (nonatomic,strong)NSString *gic_dataModelKey;
+
 /**
  数据上下文
  */

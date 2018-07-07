@@ -19,18 +19,6 @@
 
 
 /**
- 绑定的数据模型的key
- */
-@property (nonatomic,strong)NSString *gic_dataModelKey;
-
-
-
-
-
-
-
-
-/**
  添加绑定
 
  @param binding <#binding description#>

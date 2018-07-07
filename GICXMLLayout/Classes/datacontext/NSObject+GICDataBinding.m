@@ -58,14 +58,6 @@
     [bindings addObject:binding];
 }
 
--(void)setGic_dataModelKey:(NSString *)gic_dataModelKey{
-    objc_setAssociatedObject(self, "gic_dataModelKey", gic_dataModelKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
--(NSString *)gic_dataModelKey{
-    return objc_getAssociatedObject(self, "gic_dataModelKey");
-}
-
 -(void)setGic_dataModelBinding:(GICDataModelBinding_ *)gic_dataModelBinding{
     objc_setAssociatedObject(self, "gic_dataModelBinding", gic_dataModelBinding, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

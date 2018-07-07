@@ -8,6 +8,7 @@
 #import "GICTemplateRef.h"
 #import "GICStringConverter.h"
 #import "NSObject+GICTemplate.h"
+#import "NSObject+GICDataContext.h"
 
 @implementation GICTemplateRef
 +(NSString *)gic_elementName{
@@ -18,7 +19,7 @@
     return @{
              @"t-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICTemplateRef *)target setTemplateName:value];
-             }]
+             }],
              };;
 }
 
@@ -37,6 +38,7 @@
 
 
 -(NSObject *)parseTemplate:(GICTemplate *)t{
+    NSObject *childElement = nil;
     if(slotsXmlDocMap && slotsXmlDocMap.count>0){
         // 如果有slot，那么久开始执行替换slot流程
         tempConvertSlotMap = [NSMutableDictionary dictionary];
@@ -46,14 +48,19 @@
             for(NSString *slotName in tempConvertSlotMap.allKeys){
                 xmlString = [xmlString stringByReplacingOccurrencesOfString:[tempConvertSlotMap objectForKey:slotName] withString:[slotsXmlDocMap objectForKey:slotName]];
             }
-            tempConvertSlotMap = nil;
             GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlString options:0 error:nil];
-            return  [GICXMLLayout createElement:[xmlDoc rootElement]];
+            childElement =  [GICXMLLayout createElement:[xmlDoc rootElement]];
         }
         tempConvertSlotMap = nil;
     }
-    
-    NSObject *childElement = [GICXMLLayout createElement:[t.xmlDoc rootElement]];
+    if(childElement==nil){
+        childElement = [GICXMLLayout createElement:[t.xmlDoc rootElement]];
+    }
+    NSString *s1 = self.gic_dataModelKey;
+    NSString *s2  = childElement.gic_dataModelKey;
+    if(self.gic_dataModelKey && !childElement.gic_dataModelKey){
+        childElement.gic_dataModelKey = self.gic_dataModelKey;
+    }
     return childElement;
 }
 

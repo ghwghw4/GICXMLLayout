@@ -35,7 +35,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template3.xml"]];
     [GICXMLLayout parseLayout:xmlData toView:self.view withParseCompelete:^(UIView *view) {
-        view.gic_DataContenxt = temp3Data;
+        view.gic_DataContenxt = temp2data;
     }];
   
     

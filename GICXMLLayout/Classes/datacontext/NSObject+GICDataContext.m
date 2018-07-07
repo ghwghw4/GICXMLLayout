@@ -10,6 +10,14 @@
 #import "NSObject+GICDataBinding.h"
 
 @implementation NSObject (GICDataContext)
+-(void)setGic_dataModelKey:(NSString *)gic_dataModelKey{
+    objc_setAssociatedObject(self, "gic_dataModelKey", gic_dataModelKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(NSString *)gic_dataModelKey{
+    return objc_getAssociatedObject(self, "gic_dataModelKey");
+}
+
 -(void)setGic_DataContenxt:(id)gic_DataContenxt{
     objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContenxt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self gic_updateUpdateContext:gic_DataContenxt];

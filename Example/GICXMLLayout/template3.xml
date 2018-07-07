@@ -17,16 +17,18 @@
         </templates>
 <!--        -->
 <!--        <panel>-->
-              <template-ref t-name="test1">
-                  <lable slot-name = "haha" text="bbbbbbbbbb" font-color="666666" font-size="12" margin="84 116 0 0"/>
+              <template-ref t-name="test1" data-model="obj">
+                  <lable slot-name = "haha" text="{{ exp=name,mode=1 }}" font-color="666666" font-size="12" margin="84 116 0 0"/>
               </template-ref>
               
               <template-ref t-name="test1">
                   <lable slot-name = "haha" text="基本框架不亢不卑" font-color="666666" font-size="12" margin="94 116 0 0"/>
               </template-ref>
 <!--        </panel>-->
-        <for>
-            <template-ref t-name="test1"/>
+        <for data-model="datas">
+            <template-ref t-name="test1">
+                <lable slot-name = "haha" text="{{ exp=name,mode=1 }}" font-color="666666" font-size="12" margin="84 116 0 0"/>
+            </template-ref>
         </for>
     </stack-panel>
 </scroll-view>

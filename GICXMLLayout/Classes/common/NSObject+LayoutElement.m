@@ -35,7 +35,7 @@
 }
 
 +(NSDictionary<NSString *, GICValueConverter *> *)_gic_getPropertyConverts:(Class)klass{
-    if(klass == [NSObject class]){
+    if(!klass){
         return nil;
     }
     

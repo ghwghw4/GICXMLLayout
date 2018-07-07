@@ -19,5 +19,6 @@
 #import "GDataXMLNode.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "GICXMLParserContext.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

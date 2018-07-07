@@ -10,8 +10,15 @@
 #import "GICStringConverter.h"
 #import "NSObject+GICDataBinding.h"
 #import <objc/runtime.h>
+#import "NSObject+GICDirective.h"
+#import "NSObject+GICTemplate.h"
+#import "GICTemplateRef.h"
 
 @implementation NSObject (LayoutElement)
+
++(NSString *)gic_elementName{
+    return nil;
+}
 
 /**
  converts 缓存
@@ -50,8 +57,6 @@
 }
 
 
-
-
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     static dispatch_once_t onceToken;
@@ -66,6 +71,33 @@
                              };
     });
     return propertyConverts;
+}
+
+-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+    for(GDataXMLElement *child in children){
+        id childElement = [GICXMLLayout createElement:child];
+        if(childElement == nil)
+            continue;
+        [self gic_addSubElement:childElement];
+    }
+}
+
+-(void)gic_addSubElement:(NSObject *)subElement{
+    if ([subElement isKindOfClass:[GICDirective class]]){//如果是指令，那么交给指令自己执行
+        [self gic_addDirective:(GICDirective *)subElement];
+    }else if ([subElement isKindOfClass:[GICTemplates class]]){
+        self.gic_templates = (GICTemplates *)subElement;
+        // 将模板加入临时上下文中
+        [[[GICXMLParserContext currentInstance] currentTemplates] addEntriesFromDictionary:self.gic_templates.templats];
+    }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
+        // 模板引用
+        GICTemplateRef *tr = (GICTemplateRef *)subElement;
+        GICTemplate *t = [self gic_getTemplateFromName:tr.templateName];
+        if(t){
+            [self gic_addSubElement:[tr parseTemplate:t]];
+        }
+        
+    }
 }
 
 

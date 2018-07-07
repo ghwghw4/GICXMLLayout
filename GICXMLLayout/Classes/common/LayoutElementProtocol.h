@@ -9,6 +9,7 @@
 #define LayoutElement_h
 
 #import "GICValueConverter.h"
+
 @class GDataXMLElement;
 @class RACSignal;
 // 双向绑定中value改变的事件
@@ -37,6 +38,11 @@
 -(void)gic_addSubElement:(NSObject *)subElement;
 
 /**
+ 获取父级元素
+ */
+-(NSObject *)gic_getSuperElement;
+
+/**
  是否支持单个子元素
 
  @return 不实现本方法，或者返回YES，那么只能是单个子元素
@@ -62,6 +68,9 @@
 
 
 -(void)gic_elementParseCompelte;
+
+
+
 @end
 
 #endif /* LayoutElement_h */

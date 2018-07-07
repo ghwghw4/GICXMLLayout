@@ -11,6 +11,7 @@
 #import "UIView+LayoutView.h"
 #import <Masonry/Masonry.h>
 #import "UIView+GICExtension.h"
+#import "GICXMLParserContext.h"
 
 @implementation GICXMLLayout
 static NSMutableDictionary *registedElements = nil;
@@ -44,18 +45,24 @@ static NSMutableDictionary *registedElements = nil;
     return nil;
 }
 
-+(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView{
++(void)parseLayout:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);
-        return nil;
+        compelte(nil);
+        return;
     }
     // 取根节点
-    GDataXMLElement *rootElement = [xmlDocument rootElement];
-    UIView *p = (UIView *)[self createElement:rootElement];
-    [superView addSubview:p];
-    [superView gic_LayoutSubView:p];
-    return p;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GDataXMLElement *rootElement = [xmlDocument rootElement];
+        [GICXMLParserContext resetInstance:xmlDocument];
+        UIView *p = (UIView *)[self createElement:rootElement];
+        [superView addSubview:p];
+        [superView gic_LayoutSubView:p];
+        [GICXMLParserContext parseCompelete];
+        compelte(p);
+    });
+
 }
 @end

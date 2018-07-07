@@ -18,7 +18,6 @@
 #import "GICStringConverter.h"
 #import "GICDataBinding.h"
 #import "NSObject+GICDataBinding.h"
-#import "NSObject+GICDirective.h"
 
 @implementation UIView (LayoutView)
 
@@ -60,14 +59,14 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return nil;
 }
 
--(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
-    for(GDataXMLElement *child in children){
-        id childElement = [GICXMLLayout createElement:child];
-        if(childElement == nil)
-            continue;
-        [self gic_addSubElement:childElement];
-    }
-}
+//-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+//    for(GDataXMLElement *child in children){
+//        id childElement = [GICXMLLayout createElement:child];
+//        if(childElement == nil)
+//            continue;
+//        [self gic_addSubElement:childElement];
+//    }
+//}
 
 -(NSArray *)gic_subElements{
     return self.subviews;
@@ -76,8 +75,8 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 -(void)gic_addSubElement:(NSObject *)subElement{
     if([subElement isKindOfClass:[UIView class]]){
         [self addSubview:(UIView *)subElement];
-    }else if ([subElement isKindOfClass:[GICDirective class]]){//如果是指令，那么交给指令自己执行
-        [self gic_addDirective:(GICDirective *)subElement];
+    }else{
+        [super gic_addSubElement:subElement];
     }
 }
 
@@ -99,4 +98,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     }];
 }
 
+-(NSObject *)gic_getSuperElement{
+    return [self superview];
+}
 @end

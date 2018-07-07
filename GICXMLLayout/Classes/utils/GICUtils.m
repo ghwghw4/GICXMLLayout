@@ -33,4 +33,8 @@
     CFRelease(uuid_string_ref);
     return [uuid lowercaseString];
 }
+
++(BOOL)isNull:(id)obj{
+    return obj && ![obj isKindOfClass:[NSNull class]];
+}
 @end

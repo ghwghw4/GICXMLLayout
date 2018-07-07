@@ -13,4 +13,6 @@
 +(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern;
 
 + (NSString *)uuidString;
+
++(BOOL)isNull:(id)obj;
 @end

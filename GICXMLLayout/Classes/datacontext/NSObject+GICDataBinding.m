@@ -77,9 +77,9 @@
 
 
 -(void)gic_updateDataBinding:(id)superDataContenxt{
-    if(self.gic_dataModelKey){
-        id v = [superDataContenxt objectForKey:self.gic_dataModelKey];
-        if(v){
+    if(self.gic_dataModelKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
+        id v = [superDataContenxt valueForKey:self.gic_dataModelKey];
+        if(![GICUtils isNull:v]){
             if(self.gic_DataContenxt !=v){
                 self.gic_DataContenxt = v;
                 // 创建绑定

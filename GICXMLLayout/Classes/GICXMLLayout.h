@@ -17,5 +17,5 @@
 +(NSObject *)createElement:(GDataXMLElement *)element;
 
 
-+(UIView *)parseLayout:(NSData *)xmlData toView:(UIView *)superView;
++(void)parseLayout:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
 @end

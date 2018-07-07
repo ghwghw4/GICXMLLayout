@@ -33,9 +33,11 @@
     
     
 	// Do any additional setup after loading the view, typically from a nib.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template4.xml"]];
-    UIView *v = [GICXMLLayout parseLayout:xmlData toView:self.view];
-//    v.gic_DataContenxt = temp3Data;
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template3.xml"]];
+    [GICXMLLayout parseLayout:xmlData toView:self.view withParseCompelete:^(UIView *view) {
+        view.gic_DataContenxt = temp3Data;
+    }];
+  
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [[data objectForKey:@"obj"] setValue:@"1231231会hiuhuihiuhiuhiuhiuhuihiuhiuhiuhiuhiuh2" forKey:@"name"];

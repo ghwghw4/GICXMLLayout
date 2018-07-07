@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "GICXMLParserContext.h"
 #import "LayoutElementProtocol.h"
 #import "NSObject+LayoutElement.h"
 #import "UIView+GICExtension.h"
@@ -27,12 +28,15 @@
 #import "NSMutableAttributedString+GICLableSubString.h"
 #import "GICListHeader.h"
 #import "GICListItem.h"
-#import "GICListTableViewCell.h"
 #import "GICListView.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "UIScrollView+GICScrollView.h"
 #import "GICXMLLayout.h"
+#import "GICTemplate.h"
+#import "GICTemplateRef.h"
+#import "GICTemplates.h"
+#import "NSObject+GICTemplate.h"
 #import "GICUtils.h"
 #import "UIColor+Extension.h"
 #import "GICColorConverter.h"

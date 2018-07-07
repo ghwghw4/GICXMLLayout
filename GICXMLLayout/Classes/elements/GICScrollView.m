@@ -15,12 +15,6 @@
     return @"scroll-view";
 }
 
-//-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
-//    NSAssert(children.count <= 1, @"scroll-view只支持单个子元素");
-//    if(children.count==1){
-//        [super gic_parseSubElements:children];
-//    }
-//}
 -(BOOL)gic_parseOnlyOneSubElement{
     return YES;
 }

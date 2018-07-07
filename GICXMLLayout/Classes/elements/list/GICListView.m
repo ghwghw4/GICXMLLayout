@@ -9,10 +9,12 @@
 #import "NSObject+GICDataContext.h"
 #import "GICListItem.h"
 
-@interface GICListView ()<UITableViewDelegate,UITableViewDataSource>{
+@interface GICListView ()<UITableViewDelegate,UITableViewDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
     
     BOOL t;
+    
+    id<RACSubscriber> subscriber;
 }
 @end
 
@@ -34,23 +36,25 @@
     listItems = [NSMutableArray array];
     self.dataSource = self;
     self.delegate = self;
+    
+    // 创建一个0.2秒的节流阀
+    __weak typeof(self) wself = self;
+    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        self->subscriber = subscriber;
+        return nil;
+    }] throttle:0.2] subscribeNext:^(id  _Nullable x) {
+        [wself reloadData];
+    }];
     return self;
 }
 
 -(void)gic_addSubElement:(id)subElement{
-    NSAssert([subElement isKindOfClass:[GICListItem class]], @"list 的子元素必须是list-item");
     if([subElement isKindOfClass:[GICListItem class]]){
         [listItems addObject:subElement];
+        [self->subscriber sendNext:subElement];
+    }else{
+        [super gic_addSubElement:subElement];
     }
-}
-
--(void)layoutSubviews{
-    [super layoutSubviews];
-    if(!t){
-        [self reloadData];
-        t = YES;
-    }
-    
 }
 
 #pragma mark datasource
@@ -63,7 +67,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [[listItems objectAtIndex:indexPath.row] cellHeight];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    [listItems objectAtIndex:indexPath.row].delegate = self;
     return [listItems objectAtIndex:indexPath.row];
 }
 
@@ -73,5 +79,13 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [UIView new];
+}
+
+-(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight{
+    [subscriber sendNext:nil];
+}
+
+-(void)dealloc{
+    [subscriber sendCompleted];
 }
 @end

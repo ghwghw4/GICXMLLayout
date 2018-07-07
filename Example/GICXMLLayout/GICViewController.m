@@ -10,6 +10,7 @@
 #import <GDataXMLNode_GIC/GDataXMLNode.h>
 #import "GICXMLLayout.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface GICViewController ()
 
@@ -33,9 +34,9 @@
     
     
 	// Do any additional setup after loading the view, typically from a nib.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template3.xml"]];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template4.xml"]];
     [GICXMLLayout parseLayout:xmlData toView:self.view withParseCompelete:^(UIView *view) {
-        view.gic_DataContenxt = temp2data;
+        view.gic_DataContenxt = temp3Data;
     }];
   
     
@@ -51,6 +52,16 @@
         
         [temp3Data addObjectsFromArray:[temp3Data copy]];
     });
+    
+//    RACSignal *siganl = [RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]];
+//   __block int a=10;
+//    //定时器执行代码
+//    [siganl subscribeNext:^(id x) {
+//        a++;
+//        [temp3Data addObject:@{@"name":[NSString stringWithFormat:@"hello word %@",@(a)],@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png"}];
+//    }];
+    
+    
     
     
 }

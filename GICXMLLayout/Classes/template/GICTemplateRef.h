@@ -16,9 +16,10 @@
     NSMutableDictionary<NSString *, NSString *> *slotsXmlDocMap;
     
     NSMutableDictionary<NSString *,NSString *> *tempConvertSlotMap;
+    __weak id target;
 }
 @property (nonatomic,strong)NSString *templateName;
--(NSObject *)parseTemplate:(GICTemplate *)t;
+//-(NSObject *)parseTemplate:(GICTemplate *)t;
 
 -(NSObject *)parseTemplateFromTarget:(id)target;
 @end

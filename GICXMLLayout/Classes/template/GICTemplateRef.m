@@ -56,8 +56,6 @@
     if(childElement==nil){
         childElement = [GICXMLLayout createElement:[t.xmlDoc rootElement]];
     }
-    NSString *s1 = self.gic_dataModelKey;
-    NSString *s2  = childElement.gic_dataModelKey;
     if(self.gic_dataModelKey && !childElement.gic_dataModelKey){
         childElement.gic_dataModelKey = self.gic_dataModelKey;
     }
@@ -78,6 +76,7 @@
 }
 
 -(NSObject *)parseTemplateFromTarget:(id)target{
+    self->target = target;
     GICTemplate *t = [target gic_getTemplateFromName:self.templateName];
     if(t){
         return [self parseTemplate:t];

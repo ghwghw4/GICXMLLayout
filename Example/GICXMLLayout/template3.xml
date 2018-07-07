@@ -2,41 +2,25 @@
     <stack-panel name="root-panel">
         <templates>
             <template t-name="test1">
-                <panel>
+                <panel name="panel1">
                     <panel margin="16" background-color="white" name="panel2">
-                        <image url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106"></image>
-                        <stack-panel margin="0 116 0.1 0">
-                            <lable text="撒大声地所多所多所多" data-model="obj" font-color="333333" font-size="16" lines="2"/>
-                            <lable text="2室2厅  89平" font-color="666666" font-size="12" margin-top="4"/>
-                            <lable text="西湖  青园小区" font-color="666666" font-size="12" margin-top="4"/>
-                            <panel>
-                                <lable font-color="FF542E" font-size="16" margin-top="9">
-                                    <s font-size="16">5300</s>
-                                    <s font-size="12" font-color="orange">元/月</s>
-                                </lable>
-                                <lable text="昨日点击 123" font-color="666666" font-size="12" margin-top="12" text-align="right"/>
-                            </panel>
-                        </stack-panel>
+                        <image background-color="ffffff" url="{{ url }}" height = "80" width="106"></image>
+                        <lable text="{{ exp=name,mode=1 }}" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
+                        <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
+                        <lable text="{{ loc1 + ' ' + (clickCount>20?'222':'111')  }}" font-color="666666" font-size="12" margin="40 116 0 0"/>
+                        <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
+                        <lable text="{{ exp='昨日点击 '+ clickCount,mode=1 }}" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
                     </panel>
                 </panel>
             </template>
         </templates>
-        
-        <panel>
-              <template-ref t-name="test1"/>
-        </panel>
-      
-<!--        <for>-->
-<!--            <panel name="panel1">-->
-<!--                <panel margin="16" background-color="white" name="panel2" data-model="obj">-->
-<!--                    <image background-color="ffffff" url="{{ url }}" height = "80" width="106"></image>-->
-<!--                    <lable text="{{ exp=name,mode=1 }}" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>-->
-<!--                    <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>-->
-<!--                    <lable text="{{ loc1 + ' ' + (clickCount>20?'222':'111')  }}" font-color="666666" font-size="12" margin="40 116 0 0"/>-->
-<!--                    <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>-->
-<!--                    <lable text="{{ exp='昨日点击 '+ clickCount,mode=1 }}" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>-->
-<!--                </panel>-->
-<!--            </panel>-->
-<!--        </for>-->
+<!--        -->
+<!--        <panel>-->
+<!--              <template-ref t-name="test1"/>-->
+<!--        </panel>-->
+
+        <for>
+            <template-ref t-name="test1"/>
+        </for>
     </stack-panel>
 </scroll-view>

@@ -92,11 +92,7 @@
     }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
-        GICTemplate *t = [self gic_getTemplateFromName:tr.templateName];
-        if(t){
-            [self gic_addSubElement:[tr parseTemplate:t]];
-        }
-        
+        [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }
 }
 

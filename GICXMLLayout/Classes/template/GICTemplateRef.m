@@ -7,6 +7,7 @@
 
 #import "GICTemplateRef.h"
 #import "GICStringConverter.h"
+#import "NSObject+GICTemplate.h"
 
 @implementation GICTemplateRef
 +(NSString *)gic_elementName{
@@ -27,5 +28,13 @@
 
 -(NSObject *)parseTemplate:(GICTemplate *)t{
     return [t createElement];
+}
+
+-(NSObject *)parseTemplateFromTarget:(id)target{
+    GICTemplate *t = [target gic_getTemplateFromName:self.templateName];
+    if(t){
+        return [self parseTemplate:t];
+    }
+    return nil;
 }
 @end

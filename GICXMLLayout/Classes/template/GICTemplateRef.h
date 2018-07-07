@@ -11,4 +11,6 @@
 @interface GICTemplateRef : NSObject<LayoutElementProtocol>
 @property (nonatomic,strong)NSString *templateName;
 -(NSObject *)parseTemplate:(GICTemplate *)t;
+
+-(NSObject *)parseTemplateFromTarget:(id)target;
 @end

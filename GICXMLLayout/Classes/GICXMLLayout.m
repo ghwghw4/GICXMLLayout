@@ -12,6 +12,8 @@
 #import <Masonry/Masonry.h>
 #import "UIView+GICExtension.h"
 #import "GICXMLParserContext.h"
+#import "GICTemplateRef.h"
+#import "NSObject+GICTemplate.h"
 
 @implementation GICXMLLayout
 static NSMutableDictionary *registedElements = nil;
@@ -40,6 +42,11 @@ static NSMutableDictionary *registedElements = nil;
     if(c){
         NSObject *v = [c new];
         [v parseElement:element];
+//        if([childElement isKindOfClass:[GICTemplateRef class]]){
+//            GICTemplateRef *tf = (GICTemplateRef *)childElement;
+//            GICTemplate *t = [self.target gic_getTemplateFromName:tf.templateName];
+//            childElement = [tf parseTemplate:t];
+//        }
         return v;
     }
     return nil;

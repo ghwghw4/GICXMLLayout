@@ -7,6 +7,9 @@
 
 #import "GICDirective.h"
 
+/**
+ for 指令.
+ */
 @interface GICDirectiveFor : GICDirective{
     GDataXMLDocument *xmlDoc;
 }

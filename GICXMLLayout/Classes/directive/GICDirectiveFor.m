@@ -9,6 +9,7 @@
 #import "NSObject+GICDataBinding.h"
 #import "NSObject+GICDataContext.h"
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "GICTemplateRef.h"
 
 @implementation GICDirectiveFor
 +(NSString *)gic_elementName{
@@ -26,6 +27,7 @@
 }
 
 -(void)updateDataSource:(id)dataSource{
+    //TODO: 对data-model的支持
     if([dataSource isKindOfClass:[NSArray class]] && [self.target respondsToSelector:@selector(gic_addSubElement:)]){
         for(id data in dataSource){
             [self addAElement:data];
@@ -49,6 +51,9 @@
 
 -(void)addAElement:(id)data{
     NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement]];
+    if([childElement isKindOfClass:[GICTemplateRef class]]){
+        childElement = [(GICTemplateRef *)childElement parseTemplateFromTarget:self.target];
+    }
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContenxt = data;
     [self.target gic_addSubElement:childElement];

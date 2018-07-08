@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GICListTableViewCell.h"
 
 @class GICListItem;
 
@@ -15,11 +16,16 @@
 
 @end
 
-@interface GICListItem : UITableViewCell<LayoutElementProtocol>{
+@interface GICListItem : NSObject<LayoutElementProtocol>{
 //    UIView *elementView;
+    GDataXMLDocument *xmlDoc;
+    
+    GICListTableViewCell *cell;
 }
 @property (nonatomic,assign)CGFloat cellHeight;
 @property (nonatomic,strong,readonly)NSString *identifyString;
 
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
+
+-(GICListTableViewCell *)getCell:(UITableView *)target;
 @end

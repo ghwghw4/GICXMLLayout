@@ -82,6 +82,8 @@
 		35D3ADC45FE7092E6064852D4F63B28B /* RACReplaySubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D250E845EBA8CC84F82D3012503B02 /* RACReplaySubject.m */; };
 		361612E53FEC69FD2CB0EB5CCD112B1F /* GICStringConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ED415DE426ACA554F1B90D4881A640D /* GICStringConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3758D3D99E0F71695239F7E2F9238DF4 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 486D503AF5C94710CBC83FE1A3EB580F /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3767542220F187C10019A521 /* GICListTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3767542020F187C10019A521 /* GICListTableViewCell.h */; };
+		3767542320F187C10019A521 /* GICListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542120F187C10019A521 /* GICListTableViewCell.m */; };
 		37B23490E2F4D130DBDAAF4ADB68397D /* NSString+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6CE05D11AA94BF3C584CA5B9616B6 /* NSString+RACSupport.m */; };
 		38CE58888E54A9262E1CC40E53776075 /* GICReflectorPropertyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFD6DA0B6BF835F1FCE4D9B1C150D0 /* GICReflectorPropertyInfo.m */; };
 		396469E25566E36057DFF058D0D571E9 /* NSURLConnection+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 40530BA53C8BE1213AAB3A00F5306DD5 /* NSURLConnection+RACSupport.m */; };
@@ -562,6 +564,8 @@
 		36A0A5AB94853576D3A6E34D527BC8C9 /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
 		36EDB308ABDB6B50768CE4F3C7472225 /* RACMulticastConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACMulticastConnection.h; path = ReactiveObjC/RACMulticastConnection.h; sourceTree = "<group>"; };
 		3716E10AADF1DCD45A6E632B398903A5 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
+		3767542020F187C10019A521 /* GICListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICListTableViewCell.h; sourceTree = "<group>"; };
+		3767542120F187C10019A521 /* GICListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICListTableViewCell.m; sourceTree = "<group>"; };
 		38D25AEF5193AF17E8B4378A83E3A597 /* NSObject+Reflector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Reflector.h"; path = "JsonParser/Classes/NSObject+Reflector.h"; sourceTree = "<group>"; };
 		390F5B2BBFAAD92C373613F4AC075B1F /* RACSubject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSubject.h; path = ReactiveObjC/RACSubject.h; sourceTree = "<group>"; };
 		393358C378773DE1D925965DD2146FD5 /* NSObject+GICTemplate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+GICTemplate.h"; sourceTree = "<group>"; };
@@ -1161,6 +1165,8 @@
 				D6CE5BEBF410CBA725A6D84B2FDDCF3C /* GICListItem.m */,
 				98021250DEBB58002F534789A458D13B /* GICListView.h */,
 				1279760A1C66529F02EABC8771077665 /* GICListView.m */,
+				3767542020F187C10019A521 /* GICListTableViewCell.h */,
+				3767542120F187C10019A521 /* GICListTableViewCell.m */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -1886,6 +1892,7 @@
 				59DB787729C430A70014B2E2FE92F410 /* NSObject+GICDirective.h in Headers */,
 				C53F1852AAEA00B5C568D59A462831EC /* NSObject+GICTemplate.h in Headers */,
 				138501FFA05591C40E43D1C0AF7BEF60 /* NSObject+LayoutElement.h in Headers */,
+				3767542220F187C10019A521 /* GICListTableViewCell.h in Headers */,
 				CB5513E6C15D48789530C7AC95E5ACA9 /* UIColor+Extension.h in Headers */,
 				9E4E840EEB222A2087341266AFBF39EB /* UIScrollView+GICScrollView.h in Headers */,
 				C5FBA01A4ACC53884B4F00A486CF4728 /* UIView+GICExtension.h in Headers */,
@@ -2231,6 +2238,7 @@
 				E78EC7293DF34FDC2DE33EFBFE162EFA /* GICPanel.m in Sources */,
 				7BA8073D5E437609B76CBEB6EBA587E8 /* GICScrollView.m in Sources */,
 				5BF0BB7258CBF2C8EE3EECF1D9BC2871 /* GICStackPanel.m in Sources */,
+				3767542320F187C10019A521 /* GICListTableViewCell.m in Sources */,
 				F9DAF7F7F7DD05D65440CDFE4B05344A /* GICStringConverter.m in Sources */,
 				4C5D999013BCB2E2A59B9833766BCAA8 /* GICTemplate.m in Sources */,
 				EFC0492E132C2C6E2AFBDD9DB84FE451 /* GICTemplateRef.m in Sources */,

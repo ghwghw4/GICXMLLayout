@@ -69,8 +69,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    [listItems objectAtIndex:indexPath.row].delegate = self;
-    return [listItems objectAtIndex:indexPath.row];
+//    [listItems objectAtIndex:indexPath.row].delegate = self;
+    return [[listItems objectAtIndex:indexPath.row] getCell:self];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

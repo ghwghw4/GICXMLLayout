@@ -17,18 +17,17 @@
     <!--            <template-ref t-name="test1"/>-->
     <for>
         <list-item>
-
-<panel name="panel1">
-    <panel margin="16" background-color="white" name="panel2">
-        <image background-color="ffffff" url="{{ url }}" height = "80" width="106"></image>
-        <lable text="{{ exp=name,mode=1 }}" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
-        <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
-        <lable text="{{ loc1 + ' ' + (clickCount>20?'222':'111')  }}" font-color="666666" font-size="12" margin="40 116 0 0"/>
-        <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
-        <lable text="{{ exp='昨日点击 '+ clickCount,mode=1 }}" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
-        <template-slot slot-name = "haha" ></template-slot>
-    </panel>
-</panel>
+            <panel name="panel1">
+                <panel margin="16" background-color="white" name="panel2">
+                    <image background-color="ffffff" url="{{ url }}" height = "80" width="106"></image>
+                    <lable text="{{ exp=name,mode=1 }}" font-color="333333" font-size="16" lines="1" margin="0 116 0 0"/>
+                    <lable text="2室2厅  89平" font-color="666666" font-size="12" margin="24 116 0 0"/>
+                    <lable text="{{ loc1 + ' ' + (clickCount>20?'222':'111')  }}" font-color="666666" font-size="12" margin="40 116 0 0"/>
+                    <lable text="5300元/月" font-color="FF542E" font-size="16" margin="64 116 0 0"/>
+                    <lable text="{{ exp='昨日点击 '+ clickCount,mode=1 }}" font-color="666666" font-size="12" margin="68 116 0 0" text-align="right"/>
+                    <template-slot slot-name = "haha" ></template-slot>
+                </panel>
+            </panel>
         </list-item>
     </for>
 </list>

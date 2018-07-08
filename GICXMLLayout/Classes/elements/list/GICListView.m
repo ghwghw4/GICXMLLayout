@@ -8,6 +8,7 @@
 #import "GICListView.h"
 #import "NSObject+GICDataContext.h"
 #import "GICListItem.h"
+#import "GICNumberConverter.h"
 
 @interface GICListView ()<UITableViewDelegate,UITableViewDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
@@ -23,13 +24,13 @@
     return @"list";
 }
 
-//-(NSArray *)dataArray{
-//    id tmp =  self.gic_DataContenxt;
-//    if([tmp isKindOfClass:[NSArray class]]){
-//        return tmp;
-//    }
-//    return nil;
-//}
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
+    return @{
+             @"defualt-item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target setDefualtItemHeight:[value floatValue]];
+             }],
+             };
+}
 
 -(id)init{
     self = [super init];
@@ -48,8 +49,13 @@
     return self;
 }
 
+-(NSArray *)gic_subElements{
+    return listItems;
+}
+
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
+        [(GICListItem *)subElement setDelegate:self];
         [listItems addObject:subElement];
         [self->subscriber sendNext:subElement];
     }else{
@@ -65,11 +71,13 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [[listItems objectAtIndex:indexPath.row] cellHeight];
+    CGFloat height = [[listItems objectAtIndex:indexPath.row] cellHeight];
+    if(height==0)
+        return self.defualtItemHeight;
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [listItems objectAtIndex:indexPath.row].delegate = self;
     return [[listItems objectAtIndex:indexPath.row] getCell:self];
 }
 

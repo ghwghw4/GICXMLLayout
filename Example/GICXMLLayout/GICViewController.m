@@ -28,8 +28,9 @@
     
     
     NSMutableArray *temp3Data = [NSMutableArray array];
-    for(int i=0;i<20;i++){
-        [temp3Data addObject:@{@"name":[NSString stringWithFormat:@"hello word 111 ::: %@",@(i)],@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png"}];
+    for(int i=0;i<10;i++){
+        [temp3Data addObject:@{@"name":[NSString stringWithFormat:@"hello word 111 ::: %@",@(i)],@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png",@"id":@(1)}];
+        [temp3Data addObject:@{@"name":[NSString stringWithFormat:@"hello word 222 ::: %@",@(i)],@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png",@"id":@(2)}];
     }
     
     

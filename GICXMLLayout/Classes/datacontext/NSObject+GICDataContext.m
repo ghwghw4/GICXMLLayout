@@ -24,7 +24,14 @@
 }
 
 -(id)gic_DataContenxt{
-    return objc_getAssociatedObject(self, "gic_DataContenxt");
+    id dc = objc_getAssociatedObject(self, "gic_DataContenxt");
+    if(dc){
+        return dc;
+    }
+    if([self respondsToSelector:@selector(gic_getSuperElement)]){
+        return [[self gic_getSuperElement] gic_DataContenxt];
+    }
+    return nil;
 }
 
 -(void)setGic_isAutoInheritDataModel:(BOOL)gic_isAutoInheritDataModel{

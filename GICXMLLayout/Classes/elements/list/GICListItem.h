@@ -19,9 +19,9 @@
 @interface GICListItem : NSObject<LayoutElementProtocol>{
 //    UIView *elementView;
     GDataXMLDocument *xmlDoc;
-    
-    GICListTableViewCell *cell;
+    GICListTableViewCell *tempcell;
 }
+
 @property (nonatomic,assign)CGFloat cellHeight;
 @property (nonatomic,strong,readonly)NSString *identifyString;
 

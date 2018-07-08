@@ -57,7 +57,7 @@
         [tempcell.contentView addSubview:(GICPanel *)childElement];
         [tempcell.contentView gic_LayoutSubView:(GICPanel *)childElement];
     }else{
-         childElement.gic_DataContenxt = self.gic_DataContenxt;
+//         childElement.gic_DataContenxt = self.gic_DataContenxt;
          [super gic_addSubElement:childElement];
     }
 }

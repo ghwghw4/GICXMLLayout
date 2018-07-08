@@ -92,6 +92,7 @@
     }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
+        tr.gic_DataContenxt = self.gic_DataContenxt;
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }
 }
@@ -103,7 +104,7 @@
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;
-        if(children.count>0){
+        if(children.count>0 && [children[0] isKindOfClass:[GDataXMLElement class]]){// 添加后面这个判断主要是为了解决某些标签在有结束标签的时候添加了换行，有可能会出现解析出错。
             // 检查是否支持单个子元素
             if([self respondsToSelector:@selector(gic_parseOnlyOneSubElement)] && [(id)self gic_parseOnlyOneSubElement]){
                 NSAssert1(children.count <= 1, @"%@只支持单个子元素", element.name);

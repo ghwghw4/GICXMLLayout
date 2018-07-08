@@ -17,7 +17,7 @@
 }
 
 -(CGFloat)gic_calcuActualHeight{
-    [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，这样一来肯定会有性能影响。
+    [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，但是这样一来肯定会有性能影响。
     if(self.subviews.count==0)
         return self.gic_Height;
     CGFloat maxHeight  = 0;
@@ -28,7 +28,8 @@
             maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_margin.bottom);
         }
     }
-    return maxHeight;
+    UIEdgeInsets margin = self.gic_margin;
+    return maxHeight + margin.top + margin.bottom;
 }
 
 -(void)layoutSubviews{
@@ -43,9 +44,6 @@
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(h);
         }];
-        
-        
-        
     }
 }
 

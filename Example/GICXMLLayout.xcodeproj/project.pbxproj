@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
+		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
+		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		37A2643020E9D3590058589D /* template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2642F20E9D3590058589D /* template.xml */; };
 		37A2646F20EB497A0058589D /* template2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2646E20EB497A0058589D /* template2.xml */; };
 		37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AF9920EEF8FA006AADC2 /* template3.xml */; };
@@ -44,6 +46,9 @@
 /* Begin PBXFileReference section */
 		00A1A556B8FDC9DDFCDF2A8F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
+		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
+		3767542A20F22B5D0019A521 /* IndexPage.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IndexPage.xml; sourceTree = "<group>"; };
 		37A2642F20E9D3590058589D /* template.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.xml; sourceTree = "<group>"; };
 		37A2646E20EB497A0058589D /* template2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template2.xml; sourceTree = "<group>"; };
 		37A7AF9920EEF8FA006AADC2 /* template3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template3.xml; sourceTree = "<group>"; };
@@ -114,6 +119,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3767542520F22AFF0019A521 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
+				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		3767542620F22B130019A521 /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				3767542A20F22B5D0019A521 /* IndexPage.xml */,
+			);
+			path = templates;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +174,8 @@
 		6003F593195388D20070C39A /* Example for GICXMLLayout */ = {
 			isa = PBXGroup;
 			children = (
+				3767542620F22B130019A521 /* templates */,
+				3767542520F22AFF0019A521 /* viewmodel */,
 				37A2642F20E9D3590058589D /* template.xml */,
 				6003F59C195388D20070C39A /* GICAppDelegate.h */,
 				6003F59D195388D20070C39A /* GICAppDelegate.m */,
@@ -297,6 +321,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */,
+				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -373,6 +398,7 @@
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,13 @@
 #import "NSObject+GICDataContext.h"
 #import "GICListItem.h"
 #import "GICNumberConverter.h"
+#import "GICEdgeConverter.h"
+#import "GICListHeader.h"
+#import "GICListFooter.h"
 
 @interface GICListView ()<UITableViewDelegate,UITableViewDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
-    
     BOOL t;
-    
     id<RACSubscriber> subscriber;
 }
 @end
@@ -29,15 +30,21 @@
              @"defualt-item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target setDefualtItemHeight:[value floatValue]];
              }],
+             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target setSeparatorStyle:[value integerValue]];
+             }],
+             @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [target setValue:value forKey:@"separatorInset"];
+             }],
              };
 }
 
 -(id)init{
     self = [super init];
     listItems = [NSMutableArray array];
+    
     self.dataSource = self;
     self.delegate = self;
-    
     // 创建一个0.2秒的节流阀
     __weak typeof(self) wself = self;
     [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -57,10 +64,25 @@
     if([subElement isKindOfClass:[GICListItem class]]){
         [(GICListItem *)subElement setDelegate:self];
         [listItems addObject:subElement];
-        [self->subscriber sendNext:subElement];
+        [self->subscriber sendNext:nil];
+    }else if ([subElement isKindOfClass:[GICListHeader class]]){
+        self.tableHeaderView = subElement;
+        [self.tableHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(self.mas_width);
+        }];
+    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+//        self.tableFooterView = subElement;
+//        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(self.mas_width);
+//        }];
     }else{
         [super gic_addSubElement:subElement];
     }
+}
+
+-(void)gic_removeAllSubElements{
+    [listItems removeAllObjects];
+    [self->subscriber sendNext:nil];
 }
 
 #pragma mark datasource
@@ -87,6 +109,10 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [UIView new];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 -(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight{

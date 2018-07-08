@@ -8,6 +8,7 @@
 #import "GICListItem.h"
 #import "GICPanel.h"
 #import "GICStringConverter.h"
+#import "GICNumberConverter.h"
 
 @implementation GICListItem
 +(NSString *)gic_elementName{
@@ -19,6 +20,9 @@
              @"id":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  item->_identifyString = value;
+             }],
+             @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [target setValue:value forKey:@"selectionStyle"];
              }],
              };
 }
@@ -71,6 +75,10 @@
         [self gic_addSubElement:childElement];
         tempcell = nil;
     }
+    // 设置cell的样式
+    cell.selectionStyle = self.selectionStyle;
+    
+    
     if(cell.layoutSubviewsSignlDisposable && !cell.layoutSubviewsSignlDisposable.isDisposed){
         [cell.layoutSubviewsSignlDisposable dispose];
     }

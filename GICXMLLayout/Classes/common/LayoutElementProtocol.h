@@ -42,6 +42,12 @@
  */
 -(NSObject *)gic_getSuperElement;
 
+
+/**
+ 删除所有的子元素
+ */
+-(void)gic_removeAllSubElements;
+
 /**
  是否支持单个子元素
 

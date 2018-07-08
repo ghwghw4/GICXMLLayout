@@ -10,6 +10,7 @@
 #import <GDataXMLNode_GIC/GDataXMLNode.h>
 #import "GICXMLLayout.h"
 #import <Masonry/Masonry.h>
+#import "IndexPageViewModel.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface GICViewController ()
@@ -35,10 +36,10 @@
     
     
 	// Do any additional setup after loading the view, typically from a nib.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template4.xml"]];
-    [GICXMLLayout parseLayout:xmlData toView:self.view withParseCompelete:^(UIView *view) {
-        view.gic_DataContenxt = temp3Data;
-    }];
+//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
+//    [GICXMLLayout parseLayoutView:xmlData toView:self.view withParseCompelete:^(UIView *view) {
+//        view.gic_DataContenxt = [IndexPageViewModel new];
+//    }];
   
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

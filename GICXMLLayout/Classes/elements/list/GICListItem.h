@@ -25,6 +25,8 @@
 @property (nonatomic,assign)CGFloat cellHeight;
 @property (nonatomic,strong,readonly)NSString *identifyString;
 
+@property (nonatomic) UITableViewCellSelectionStyle   selectionStyle;
+
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
 
 -(GICListTableViewCell *)getCell:(UITableView *)target;

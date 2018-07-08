@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface GICListHeader : NSObject
+#import "GICPanel.h"
+@interface GICListHeader : GICPanel<LayoutElementProtocol>
 
 @end

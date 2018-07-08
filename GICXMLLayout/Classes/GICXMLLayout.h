@@ -17,5 +17,13 @@
 +(NSObject *)createElement:(GDataXMLElement *)element;
 
 
-+(void)parseLayout:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
++(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
+
+/**
+ 直接解析一个page
+
+ @param xmlData <#xmlData description#>
+ @param compelte <#compelte description#>
+ */
++(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte;
 @end

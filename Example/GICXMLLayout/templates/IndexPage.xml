@@ -1,0 +1,14 @@
+<!--page 相当于 UIViewController-->
+<page title="首页" view-model="IndexPageViewModel">
+    <!--list 相当于UITableView-->
+    <list separator-inset = "0 15 0 15">
+        <for data-model="listDatas">
+            <list-item selection-style="2">
+                <panel margin="15" background-color="white">
+                    <lable text="{{ name }}"></lable>
+                </panel>
+            </list-item>
+        </for>
+    </list>
+</page>
+

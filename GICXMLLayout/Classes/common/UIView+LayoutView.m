@@ -101,4 +101,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 -(NSObject *)gic_getSuperElement{
     return [self superview];
 }
+
+-(void)gic_removeAllSubElements{
+    for(UIView *v in self.subviews){
+        [v removeFromSuperview];
+    }
+}
 @end

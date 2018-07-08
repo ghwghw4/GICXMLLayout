@@ -8,5 +8,7 @@
 #import "GICListHeader.h"
 
 @implementation GICListHeader
-
++(NSString *)gic_elementName{
+    return @"list-header";
+}
 @end

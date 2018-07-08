@@ -52,7 +52,7 @@ static NSMutableDictionary *registedElements = nil;
     return nil;
 }
 
-+(void)parseLayout:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
++(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
@@ -70,6 +70,27 @@ static NSMutableDictionary *registedElements = nil;
         [GICXMLParserContext parseCompelete];
         compelte(p);
     });
+}
 
++(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte{
+    NSError *error = nil;
+    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    if (error) {
+        NSLog(@"error : %@", error);
+        compelte(nil);
+        return;
+    }
+    // 取根节点
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GDataXMLElement *rootElement = [xmlDocument rootElement];
+        if([rootElement.name isEqualToString:@"page"]){
+            [GICXMLParserContext resetInstance:xmlDocument];
+            UIViewController *p = (UIViewController *)[self createElement:rootElement];
+            [GICXMLParserContext parseCompelete];
+            compelte(p);
+        }else{
+            compelte(nil);
+        }
+    });
 }
 @end

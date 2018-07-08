@@ -615,32 +615,35 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 }
 
 - (NSArray *)children {
+    return [self childrenIncludeComment:NO];
+}
 
-  if (cachedChildren_ != nil) {
-    return cachedChildren_;
-  }
-
-  NSMutableArray *array = nil;
-
-  if (xmlNode_ != NULL) {
-
-    xmlNodePtr currChild = xmlNode_->children;
-
-    while (currChild != NULL) {
-      GDataXMLNode *node = [GDataXMLNode nodeBorrowingXMLNode:currChild];
-
-      if (array == nil) {
-        array = [NSMutableArray arrayWithObject:node];
-      } else {
-        [array addObject:node];
-      }
-
-      currChild = currChild->next;
+- (NSArray *)childrenIncludeComment:(BOOL)isInclude{
+    if (cachedChildren_ != nil) {
+        return cachedChildren_;
     }
-
-    cachedChildren_ = [array retain];
-  }
-  return array;
+    
+    NSMutableArray *array = nil;
+    
+    if (xmlNode_ != NULL) {
+        
+        xmlNodePtr currChild = xmlNode_->children;
+        
+        while (currChild != NULL) {
+            GDataXMLNode *node = [GDataXMLNode nodeBorrowingXMLNode:currChild];
+            if(isInclude || [node isKindOfClass:[GDataXMLElement class]] || ![node.name isEqualToString:@"comment"]){
+                if (array == nil) {
+                    array = [NSMutableArray arrayWithObject:node];
+                } else {
+                    [array addObject:node];
+                }
+            }
+            currChild = currChild->next;
+        }
+        
+        cachedChildren_ = [array retain];
+    }
+    return array;
 }
 
 - (GDataXMLNode *)childAtIndex:(unsigned)index {

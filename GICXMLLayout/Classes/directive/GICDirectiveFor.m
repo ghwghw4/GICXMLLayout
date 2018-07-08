@@ -34,6 +34,7 @@
 -(void)updateDataSource:(id)dataSource{
     //TODO: 对data-model的支持
     if([dataSource isKindOfClass:[NSArray class]] && [self.target respondsToSelector:@selector(gic_addSubElement:)]){
+        [self.target gic_removeAllSubElements];//更新数据源以后需要清空原来是数据，然后重新添加数据
         for(id data in dataSource){
             [self addAElement:data];
         }

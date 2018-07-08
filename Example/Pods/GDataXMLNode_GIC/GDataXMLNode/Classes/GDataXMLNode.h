@@ -141,6 +141,7 @@ typedef NSUInteger GDataXMLNodeKind;
 
 - (NSUInteger)childCount;
 - (NSArray *)children;
+- (NSArray *)childrenIncludeComment:(BOOL)isInclude;// 获取子节点的时候同时获取comment节点
 - (GDataXMLNode *)childAtIndex:(unsigned)index;
 
 - (NSString *)localName;

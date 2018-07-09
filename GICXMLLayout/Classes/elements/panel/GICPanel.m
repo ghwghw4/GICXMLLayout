@@ -18,14 +18,16 @@
 
 -(CGFloat)gic_calcuActualHeight{
     [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，但是这样一来肯定会有性能影响。
-    if(self.subviews.count==0)
-        return self.gic_ExtensionProperties.height;
     CGFloat maxHeight  = 0;
-    for(UIView *v in self.subviews){
-        if([v respondsToSelector:@selector(gic_calcuActualHeight)]){
-            maxHeight = [(id)v gic_calcuActualHeight] + v.gic_ExtensionProperties.margin.bottom + v.gic_ExtensionProperties.margin.top;
-        }else{
-            maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_ExtensionProperties.margin.bottom);
+    if(self.subviews.count==0)
+        maxHeight =  self.gic_ExtensionProperties.height;
+    else{
+        for(UIView *v in self.subviews){
+            if([v respondsToSelector:@selector(gic_calcuActualHeight)]){
+                maxHeight = [(id)v gic_calcuActualHeight] + v.gic_ExtensionProperties.margin.bottom + v.gic_ExtensionProperties.margin.top;
+            }else{
+                maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame) + v.gic_ExtensionProperties.margin.bottom);
+            }
         }
     }
     UIEdgeInsets margin = self.gic_ExtensionProperties.margin;
@@ -62,8 +64,12 @@
             make.height.mas_equalTo(view.gic_ExtensionProperties.height);
         else{
             // NOTE:对于UILabel来说，不会设置bottom，否则采用自适应高度的方式
-            if(margin.bottom!=0 && ![view isKindOfClass:[UILabel class]]){
+            if(![view isKindOfClass:[UILabel class]]){
                 make.bottom.mas_offset(-margin.bottom);
+            }else{
+                if(margin.bottom!=0){
+                    make.bottom.mas_offset(-margin.bottom);
+                }
             }
         }
         

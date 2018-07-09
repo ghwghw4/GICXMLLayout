@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GICPage : UIViewController<LayoutElementProtocol>{
-    id _viewModel;
+//    id _viewModel;
 }
 
 @end

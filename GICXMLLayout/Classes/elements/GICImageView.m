@@ -8,6 +8,9 @@
 #import "GICImageView.h"
 #import "GICURLConverter.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "GICNumberConverter.h"
+#import "GICStringConverter.h"
+#import "UIView+GICExtension.h"
 
 @implementation GICImageView
 static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
@@ -15,7 +18,13 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     propertyConverts = @{
                          @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [(GICImageView *)target setImageUrl:value];
-                         }]
+                         }],
+                         @"local-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [(GICImageView *)target setLocalImageName:value];
+                         }],
+                         @"fill-mode":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [(GICImageView *)target setContentMode:[value integerValue]];
+                         }],
                          };
 }
 
@@ -29,7 +38,24 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 
 -(void)setImageUrl:(NSURL *)imageUrl{
     _imageUrl = imageUrl;
+    self.clipsToBounds =YES;
     [self sd_setImageWithURL:imageUrl];
+}
+
+-(void)setLocalImageName:(NSString *)localImageName{
+    _localImageName = localImageName;
+    self.clipsToBounds =YES;
+    self.image =[UIImage imageNamed:localImageName];
+}
+
+-(void)gic_elementParseCompelte{
+    [super gic_elementParseCompelte];
+    if(self.localImageName && self.image){
+        if(self.gic_ExtensionProperties.width ==0)
+            self.gic_ExtensionProperties.width = self.image.size.width;
+        if(self.gic_ExtensionProperties.height == 0)
+            self.gic_ExtensionProperties.height = self.image.size.height;
+    }
 }
 
 /*

@@ -55,6 +55,12 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                              GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
                              [(UIView *)target gic_event_addEvent:e];
                          }],
+                         @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).gic_ExtensionProperties.dockHorizalModel = [value integerValue];
+                         }],
+                         @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                              ((UIView *)target).gic_ExtensionProperties.dockVerticalModel = [value integerValue];
+                         }],
                          };
 }
 
@@ -118,4 +124,8 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
         [v removeFromSuperview];
     }
 }
+
+//-(void)gic_elementParseCompelte{
+//    [super gic_elementParseCompelte];
+//}
 @end

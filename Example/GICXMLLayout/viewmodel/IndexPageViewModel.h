@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface IndexPageViewModel : NSObject
-@property (nonatomic,strong)NSArray *listDatas;
+@property (nonatomic,strong,readonly)NSArray *listDatas;
 @end

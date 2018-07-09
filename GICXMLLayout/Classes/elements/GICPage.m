@@ -24,12 +24,12 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
-             @"view-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 Class class = NSClassFromString(value);
-                 if(class){
-                     ((GICPage *)target)->_viewModel = [class new];
-                 }
-             }],
+//             @"view-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 Class class = NSClassFromString(value);
+//                 if(class){
+//                     ((GICPage *)target)->_viewModel = [class new];
+//                 }
+//             }],
              };
 }
 
@@ -40,7 +40,13 @@
         [self.view gic_LayoutSubView:(UIView *)subElement];
         
         [(UIView *)subElement gic_ExtensionProperties].foreSuperElement = self;
+    }else{
+        [super gic_addSubElement:subElement];
     }
+}
+
+-(NSObject *)gic_getSuperElement{
+    return nil;
 }
 
 -(NSArray *)gic_subElements{
@@ -52,14 +58,14 @@
 
 }
 
-
--(void)gic_elementParseCompelte{
-    if(self->_viewModel){
-        self.gic_DataContenxt = self->_viewModel;
-        self->_viewModel = nil;
-    }
-    
-}
+//
+//-(void)gic_elementParseCompelte{
+//    if(self->_viewModel){
+//        self.gic_DataContenxt = self->_viewModel;
+//        self->_viewModel = nil;
+//    }
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

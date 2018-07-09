@@ -9,4 +9,5 @@
 
 @interface GICImageView : UIImageView<LayoutElementProtocol>
 @property (nonatomic,strong)NSURL *imageUrl;
+@property (nonatomic,strong)NSString *localImageName;
 @end

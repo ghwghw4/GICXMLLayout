@@ -26,8 +26,8 @@
     return YES;
 }
 
--(void)gic_updateUpdateContext:(id)superDataContenxt{
-    [super gic_updateUpdateContext:superDataContenxt];
+-(void)gic_updateDataContext:(id)superDataContenxt{
+    [super gic_updateDataContext:superDataContenxt];
     [self updateDataSource:superDataContenxt];
 }
 

@@ -58,6 +58,14 @@
 
 -(void)refreshExpression{
     JSContext *context = [[JSContext alloc] init];
+     NSString *jsCode = self.expression;
+    if(self.expression.length==0){
+        context[@"$original_data"] = self.dataSource;
+        jsCode = @"$original_data";
+        JSValue *value = [context evaluateScript:jsCode];
+        self.valueConverter.propertySetter(self.target,[value toString]);
+        return;
+    }
     // 将数据源解析成纯dictionary
     NSDictionary *dict = [GICJsonParser objectSerializeToJsonDictionary:self.dataSource];
     if(dict){
@@ -66,12 +74,8 @@
             context[key] = value;
         }
     }
-    NSString *jsCode = self.expression;
     JSValue *value = [context evaluateScript:jsCode];
-//    if([value isUndefined])
-//        self.valueConverter.propertySetter(self.target,nil);
-//    else
-        self.valueConverter.propertySetter(self.target,[value toString]);
+    self.valueConverter.propertySetter(self.target,[value toString]);
     
     if(!self.isInitBinding){
         if(self.bingdingMode == GICBingdingMode_Once){

@@ -1,0 +1,104 @@
+
+<page title="布局系统">
+    <templates>
+        <template t-name="title">
+            <lable text="{{ }}" margin-bottom="10" font-size="25" font-color="blue"/>
+        </template>
+        
+        <template t-name="desc">
+            <lable text="{{ }}" margin-bottom="10" font-size="16" font-color="565656"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <stack-panel>
+            <stack-panel margin = "15 15 0 15">
+                <lable text="目前框架支持两种布局模型，panel、stack-panel、dock-panel。所有的布局模型都支持自动计算高度的功能，因此你无需显示指定panel的高度" margin-bottom="10" font-size="12" font-color="red"/>
+                
+                <lable text="所有的UI元素都支持maring、width、height、marginTop、marginLeft、marginRight、marginBottom等属性。" margin-bottom="10" font-size="12" font-color="red"/>
+                
+                <lable text="注意：maring和其他四个(marginTop、marginLeft、marginRight、marginBottom)属性是冲突的，您不应该同时设置" margin-bottom="10" font-size="15" font-color="red"/>
+                
+                <template-ref t-name="title" data-context="panel 布局"/>
+                <template-ref t-name="desc" data-context="panel 的作用类似于UIView，所有的子元素都需要绝对布局，默认情况下，当没有设置元素的 height、width、margin等属性的情况下，会默认将子元素撑满整个panel。如下："/>
+                <panel height="50" background-color="black">
+                    <!--         子元素完全撑满父级panel           -->
+                    <panel background-color="red"/>
+                </panel>
+                <template-ref t-name="desc" data-context="当设置了margin属性的情况下，panel会按照从上到下、从左到右的顺序依次按照marin的top left right bottom 等属性进行布局。marin在未设置的情况下，默认为 0 0 0 0，如下："/>
+                <panel height="50" background-color="black">
+                    <!--         子元素按照margin撑满父级panel           -->
+                    <panel background-color="red" margin="5 10 20 30"/>
+                </panel>
+                
+                <template-ref t-name="desc" data-context="当设置了height、width等属性的情况下，panel首先会满足top和left的margin 布局，然后如果设置了width,那么会忽略margin的right，如果设置了height，那么会忽略margin的bottom，如下："/>
+                <panel height="50" background-color="black">
+                    <!--         子元素按照marign 和 width、height布局           -->
+                    <panel background-color="red" margin="5 10 20 30" height="10" width="50"/>
+                </panel>
+                
+                <template-ref t-name="desc" data-context="上面的例子中，所有的父级panel都设置了height属性，事实上，如果您没有设置height属性，panel会自动计算出所需的高度，而且panel会自动根据所有的子元素，计算出最合适的高度，以满足子元素设置了margin-bottom的情况，如下："/>
+                <panel background-color="black">
+                    <!--         子元素按照marign 和 width、height布局           -->
+                    <panel background-color="red" margin="5 10 5 30" height="10" width="50"/>
+                    <panel background-color="red" margin="30 10 5 30" height="30" width="100"/>
+                </panel>
+                
+                <template-ref t-name="title" data-context='stack-panel 布局'/>
+                
+                <template-ref t-name="desc" data-context="stack-panel顾名思义，是栈式布局，目前仅支持垂直从上到下布局。所有的子元素(除了panel、lable)都需要显示指定height属性，这样stack-panel才能自动计算出准确的高度。而如果您未设置width的情况，默认子元素的宽度跟父级元素的宽度一致。如下："/>
+                
+                <stack-panel background-color="black">
+                    <lable text="hello world，我是lable,你可以无需指定高度" font-color="white"></lable>
+                    <!--         指定了高度，而未设置宽度，元素的宽度跟父级元素一致           -->
+                    <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50"/>
+                    
+                    <!--         指定了高度和宽度，以及margin-top，那么stack-panel会自动计算所需的高度          -->
+                    <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" margin-top="10"  margin-bottom="10" width="50"/>
+                </stack-panel>
+                
+                
+                
+                <template-ref t-name="title" data-context='dock-panel 布局'/>
+                <template-ref t-name="desc" data-context="dock-panel对于子元素忽略margin属性，依靠子元素的dock-horizal、dock-vertical属性来布局"/>
+                
+                <panel height="80" background-color="black">
+                    <dock-panel>
+                        <!--       水平和垂直居中对齐             -->
+                        <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" width="50" fill-mode="2"/>
+                        <!--        垂直居中，水平靠右对齐            -->
+                        <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" width="50" fill-mode="2" dock-horizal="2"/>
+                        
+                        <!--        垂直底部，水平靠左对齐            -->
+                        <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" width="50" fill-mode="2" dock-vertical="2" dock-horizal="1"/>
+                    </dock-panel>
+                </panel>
+                
+                
+                
+                <lable text="下面的例子是一个混合布局：" margin-bottom="10" margin-top="10"  font-size="12" font-color="red"/>
+                
+                <dock-panel background-color="yellow">
+                    <!-- 由于 dock-panel不支持margin属性，因此需要嵌套一个panel来使得 stack-panel的margin属性生效 -->
+                    <panel>
+                        <stack-panel margin="0 116 0.1 0">
+                            <lable text="我是标题" data-model="obj" font-color="333333" font-size="16" lines="2"/>
+                            <lable text="2室2厅  89平" font-color="666666" font-size="12" margin-top="4"/>
+                            <lable text="西湖  青园小区" font-color="666666" font-size="12" margin-top="4"/>
+                            <panel>
+                                <lable font-color="FF542E" font-size="16" margin-top="9">
+                                    <s font-size="16">5300</s>
+                                    <s font-size="12" font-color="orange">元/月</s>
+                                </lable>
+                                <lable text="昨日点击 123" font-color="666666" font-size="12" margin-top="12" text-align="right"/>
+                            </panel>
+                        </stack-panel>
+                    </panel>
+                    <!--       左边显示图片             -->
+                    <image url="http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png" height = "80" width="106" dock-horizal="1"></image>
+                    <!--         在右边显示箭头           -->
+                    <image local-name="cell_arrow" dock-horizal="2"></image>
+                </dock-panel>
+            </stack-panel>
+        </stack-panel>
+    </scroll-view>
+</page>

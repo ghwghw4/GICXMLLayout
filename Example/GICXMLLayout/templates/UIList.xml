@@ -1,0 +1,83 @@
+<page title="支持的UI元素" data-context="UIListPageViewModel">
+    <templates>
+        <template t-name="title">
+            <lable text="{{ }}" margin-bottom="10" font-size="25" font-color="blue"/>
+        </template>
+        
+        <template t-name="desc">
+            <lable text="{{ }}" margin-bottom="10" font-size="16" font-color="565656"/>
+        </template>
+    </templates>
+    
+    <scroll-view background-color="white">
+        <stack-panel>
+            <stack-panel margin="15 15 0 15">
+                <lable text="所有的UI元素都支持设置background-color属性，用来指定背景色" margin-bottom="10" font-size="12" font-color="red"/>
+                
+                <template-ref t-name="title" data-context="input"/>
+                <template-ref t-name="desc" data-context="input对应ios的UITextField"/>
+                <input placehold = "输入用户名" height="40"/>
+                <input placehold = "输入密码" height="40" secure="1"/>
+                
+                
+                <template-ref t-name="title" data-context="lable"/>
+                <template-ref t-name="desc" data-context="lable 事实上就是对应ios中的UILable"/>
+                <template-ref t-name="desc" data-context="你可以设置多行，文本，如果指定了lines属性，那么会显示lines指定的行数，如果为设置，那么默认全部显示."/>
+                <!--      显示2行文本          -->
+                <lable text="多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本" lines="2" margin-bottom="10"/>
+                <template-ref t-name="desc" data-context="你也可以设置font-size、font-color"/>
+                
+                <lable text="我是指定了文本颜色和大小的lable" font-size="10" font-color="green"/>
+                
+                <lable text="靠右显示" font-size="10" font-color="green" text-align="2"/>
+                <lable text="居中显示" font-size="10" font-color="green" text-align="1"/>
+                
+                <template-ref t-name="desc" data-context="lable也支持富文本显示"/>
+                <lable font-color="999999" font-size="12" margin-top="9" margin-left="16">
+                    <s>200m内  </s>
+                    <img img-name="location"/>
+                    <s> 国际大市场 </s>
+                    <s font-color="346AA1" background-color="0285F014"> #我是富文本显示 </s>
+                    <s>换行咯 换行咯换行咯换行咯换行咯换行咯换行咯换行咯</s>
+                </lable>
+                
+                <template-ref t-name="title" data-context="image"/>
+                <template-ref t-name="desc" data-context="image对应UIImageView。图片的加载使用sdwebimage实现。图片有也支持fill-mode属性来设置图片的填充方式，可以直接使用int数字来指定，对应ios中的UIViewContentMode"/>
+                <panel background-color="black">
+                    <!--          不指定fill-mode          -->
+                    <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" margin-top="10"  margin-bottom="10" width="50"/>
+                    
+                    <!--          指定fill-mode为 UIViewContentModeScaleAspectFit        -->
+                    <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" margin-top="10"  margin-left="60" width="50" fill-mode="1"/>
+                    
+                    <!--          指定fill-mode为 UIViewContentModeScaleAspectFill        -->
+                    <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" margin-top="10"  margin-left="120" width="50" fill-mode="2"/>
+                </panel>
+                
+                <template-ref t-name="desc" data-context="image 也可以设置local-name属性，用来加载本地图片。这时候如果没有显示设置width、height属性，那么本地图片加载成功后会自动将图片的size设置为image的height、width。比如下面的箭头图片"/>
+                <image local-name="cell_arrow"></image>
+                
+                <template-ref t-name="title" data-context="scroll-view"/>
+                <template-ref t-name="desc" data-context="scroll-view只是提供滚动功能，不提供布局功能，只支持一个子元素，并且子元素必须是某个panle。子元素会撑满整个scroll-view"/>
+                
+                
+                <template-ref t-name="title" data-context="list"/>
+                <template-ref t-name="desc" data-context="list对应ios中的UITableView。支持cell重用。list的运行特性跟UITableView完全一致。"/>
+                
+                <template-ref t-name="title" data-context="button"/>
+                <template-ref t-name="desc" data-context="框架本身并不提供button的元素，但是我们可以扩展模拟出一个button"/>
+                <panel height="44" background-color="black" event-tap="onButtonClicked">
+                    <lable text="我是button" margin-bottom="0.1" text-align="1" font-color="white"/>
+                </panel>
+                
+                <stack-panel background-color="black" event-tap="onButtonClicked" margin-top="10">
+                    <dock-panel>
+                        <image url="http://imgsrc.baidu.com/imgad/pic/item/34fae6cd7b899e51fab3e9c048a7d933c8950d21.jpg" height="50" width="50" fill-mode="2"/>
+                    </dock-panel>
+                    <lable text="我也是button" text-align="1" font-color="white"/>
+                </stack-panel>
+            </stack-panel>
+        </stack-panel>
+    </scroll-view>
+</page>
+

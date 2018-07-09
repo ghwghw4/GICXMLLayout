@@ -14,8 +14,13 @@
 		37A2646F20EB497A0058589D /* template2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2646E20EB497A0058589D /* template2.xml */; };
 		37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AF9920EEF8FA006AADC2 /* template3.xml */; };
 		37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFB820EF45F1006AADC2 /* template4.xml */; };
+		37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFD620F31167006AADC2 /* LayoutSample.xml */; };
+		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		37BA55FA20EDB276003DC99A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BA55F920EDB276003DC99A /* TestClass.m */; };
+		37C8069820F34776002EEF55 /* UIList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C8069720F34776002EEF55 /* UIList.xml */; };
+		37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */; };
+		37C806A520F357F4002EEF55 /* ListSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806A420F357F4002EEF55 /* ListSample.xml */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -53,9 +58,16 @@
 		37A2646E20EB497A0058589D /* template2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template2.xml; sourceTree = "<group>"; };
 		37A7AF9920EEF8FA006AADC2 /* template3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template3.xml; sourceTree = "<group>"; };
 		37A7AFB820EF45F1006AADC2 /* template4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template4.xml; sourceTree = "<group>"; };
+		37A7AFD620F31167006AADC2 /* LayoutSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LayoutSample.xml; sourceTree = "<group>"; };
+		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
+		37A7AFD920F311B2006AADC2 /* UtilsHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsHelp.m; sourceTree = "<group>"; };
 		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		37BA55F820EDB276003DC99A /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		37BA55F920EDB276003DC99A /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
+		37C8069720F34776002EEF55 /* UIList.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UIList.xml; sourceTree = "<group>"; };
+		37C8069920F347A5002EEF55 /* UIListPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListPageViewModel.h; sourceTree = "<group>"; };
+		37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIListPageViewModel.m; sourceTree = "<group>"; };
+		37C806A420F357F4002EEF55 /* ListSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample.xml; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +136,8 @@
 			children = (
 				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
 				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
+				37C8069920F347A5002EEF55 /* UIListPageViewModel.h */,
+				37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -132,6 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
+				37A7AFD620F31167006AADC2 /* LayoutSample.xml */,
+				37C8069720F34776002EEF55 /* UIList.xml */,
+				37C806A420F357F4002EEF55 /* ListSample.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -190,6 +207,8 @@
 				37BA55F920EDB276003DC99A /* TestClass.m */,
 				37A7AF9920EEF8FA006AADC2 /* template3.xml */,
 				37A7AFB820EF45F1006AADC2 /* template4.xml */,
+				37A7AFD820F311B2006AADC2 /* UtilsHelp.h */,
+				37A7AFD920F311B2006AADC2 /* UtilsHelp.m */,
 			);
 			name = "Example for GICXMLLayout";
 			path = GICXMLLayout;
@@ -319,11 +338,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C8069820F34776002EEF55 /* UIList.xml in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */,
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
+				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
 				37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				37A2646F20EB497A0058589D /* template2.xml in Resources */,
@@ -412,7 +434,9 @@
 			files = (
 				37BA55FA20EDB276003DC99A /* TestClass.m in Sources */,
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
+				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
+				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
 			);

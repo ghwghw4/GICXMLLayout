@@ -7,6 +7,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    GICDockPanelHorizalModel_Center,
+    GICDockPanelHorizalModel_Left,
+    GICDockPanelHorizalModel_Right
+}GICDockPanelHorizalModel;
+
+typedef enum {
+    GICDockPanelVerticalModel_Center,
+    GICDockPanelVerticalModel_Top,
+    GICDockPanelVerticalModel_Bottom
+}GICDockPanelVerticalModel;
+
 @interface GICViewExtensionProperties : NSObject
 @property (nonatomic,assign)CGFloat width;
 @property (nonatomic,assign)CGFloat height;
@@ -21,6 +33,9 @@
 //@property (nonatomic,strong)NSString *name;
 
 @property (nonatomic,assign)NSInteger zIndex;
+
+@property (nonatomic,assign)GICDockPanelHorizalModel dockHorizalModel;
+@property (nonatomic,assign)GICDockPanelVerticalModel dockVerticalModel;
 
 
 /**

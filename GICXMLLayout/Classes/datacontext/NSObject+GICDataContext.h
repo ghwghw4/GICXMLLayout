@@ -28,7 +28,15 @@
 /**
  更新数据源
  */
--(void)gic_updateUpdateContext:(id)superDataContenxt;
+-(void)gic_updateDataContext:(id)superDataContenxt;
+
+
+/**
+ 获取本身已经设置的数据源。非递归获取
+
+ @return <#return value description#>
+ */
+-(id)gic_self_dataContext;
 
 /**
  获取数据源，但是忽略非自动继承的数据源

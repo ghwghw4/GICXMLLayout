@@ -13,6 +13,7 @@
 #import "NSObject+GICDirective.h"
 #import "NSObject+GICTemplate.h"
 #import "GICTemplateRef.h"
+#import "GICDataContextConverter.h"
 
 @implementation NSObject (LayoutElement)
 
@@ -24,6 +25,13 @@
     return objc_getAssociatedObject(self, "gic_name");
 }
 
+-(void)setGic_tempDataContext:(id)gic_tempDataContext{
+    objc_setAssociatedObject(self, "gic_tempDataContext", gic_tempDataContext ,OBJC_ASSOCIATION_RETAIN);
+}
+
+-(id)gic_tempDataContext{
+    return objc_getAssociatedObject(self, "gic_tempDataContext");
+}
 
 +(NSString *)gic_elementName{
     return nil;
@@ -77,10 +85,9 @@
                              @"data-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  [target setGic_dataModelKey:value];
                              }],
-//                             @"data-context":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                                 //data-context 对应的其实就是gic_DataContext。支持json 格式
-//                                 [target setGic_dataModelKey:value];
-//                             }],
+                             @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 target.gic_tempDataContext = value;
+                             }],
                              };
     });
     return propertyConverts;
@@ -105,7 +112,9 @@
     }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
-        tr.gic_DataContenxt = self.gic_DataContenxt;
+        if(![tr gic_self_dataContext]){
+           tr.gic_DataContenxt = self.gic_DataContenxt;
+        }
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }
 }
@@ -129,10 +138,7 @@
         }
     }
     
-    if([self respondsToSelector:@selector(gic_elementParseCompelte)]){
-        [self performSelector:@selector(gic_elementParseCompelte)];
-    }
-    
+    [self performSelector:@selector(gic_elementParseCompelte)];
 }
 
 -(NSDictionary *)convertAttributes:(NSArray<GDataXMLNode *> *)atts{
@@ -161,6 +167,15 @@
         if(converter){
             converter.propertySetter(self, [converter convert:value]);
         }
+    }
+}
+
+-(void)gic_elementParseCompelte{
+    id temp = self.gic_tempDataContext;
+    if(temp){
+        self.gic_DataContenxt = temp;
+        self.gic_tempDataContext = nil;
+        self.gic_isAutoInheritDataModel = NO;
     }
 }
 

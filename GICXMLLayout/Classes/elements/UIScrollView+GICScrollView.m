@@ -7,14 +7,15 @@
 
 #import "UIScrollView+GICScrollView.h"
 #import "GICNumberConverter.h"
+#import "GICBoolConverter.h"
 
 @implementation UIScrollView (GICScrollView)
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return @{
-             @"show-ver-scroll":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(UIScrollView *)target setShowsVerticalScrollIndicator:[value boolValue]];
              }],
-             @"show-hor-scroll":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(UIScrollView *)target setShowsHorizontalScrollIndicator:[value boolValue]];
              }],
              };;

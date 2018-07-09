@@ -59,6 +59,11 @@
     if(self.gic_dataModelKey && !childElement.gic_dataModelKey){
         childElement.gic_dataModelKey = self.gic_dataModelKey;
     }
+    
+    if([self gic_self_dataContext]){
+         childElement.gic_DataContenxt = [self gic_self_dataContext];
+    }
+    childElement.gic_isAutoInheritDataModel = self.gic_isAutoInheritDataModel;
     return childElement;
 }
 

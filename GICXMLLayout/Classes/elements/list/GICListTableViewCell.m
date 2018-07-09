@@ -49,7 +49,7 @@
         listItem.cellHeight = h;
     }];
     self.gic_isAutoInheritDataModel = NO;
-    [self gic_updateUpdateContext:listItem.gic_DataContenxt];
+    [self gic_updateDataContext:listItem.gic_DataContenxt];
 //    self.gic_DataContenxt = listItem.gic_DataContenxt;
     
     

@@ -25,14 +25,18 @@
     }];
     
     [self.eventSubject subscribeNext:^(id  _Nullable x) {
-        NSLog(@"on event  %@",x);
         @strongify(self)
         SEL se = NSSelectorFromString(self->expressionString);
-        id vm = [self.target gic_DataContenxtIgnorNotAutoInherit:YES];
-        if([vm respondsToSelector:se]){
-            GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
-            [vm performSelector:se withObject:eventInfo];
-        }
+        id t = self.target;
+        do {
+            id vm = [t gic_DataContenxt];
+            if([vm respondsToSelector:se]){
+                GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
+                [vm performSelector:se withObject:eventInfo];
+                break;
+            }
+            t = [t gic_getSuperElement];
+        } while (t);
     }];
 }
 

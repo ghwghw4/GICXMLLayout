@@ -20,11 +20,15 @@
 
 -(void)setGic_DataContenxt:(id)gic_DataContenxt{
     objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContenxt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self gic_updateUpdateContext:gic_DataContenxt];
+    [self gic_updateDataContext:gic_DataContenxt];
 }
 
 -(id)gic_DataContenxt{
     return [self gic_DataContenxtIgnorNotAutoInherit:NO];
+}
+
+-(id)gic_self_dataContext{
+    return objc_getAssociatedObject(self, "gic_DataContenxt");
 }
 
 -(id)gic_DataContenxtIgnorNotAutoInherit:(BOOL)isIgnorNotAutoInherit{

@@ -1,5 +1,5 @@
 <!--page 相当于 UIViewController-->
-<page title="首页" view-model="IndexPageViewModel">
+<page title="首页" data-context="IndexPageViewModel">
     <!--list 相当于UITableView-->
     <list separator-inset = "0 15 0 15">
         <for data-model="listDatas">

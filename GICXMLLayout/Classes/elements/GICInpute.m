@@ -10,6 +10,7 @@
 #import "GICNumberConverter.h"
 #import "GICColorConverter.h"
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "GICBoolConverter.h"
 
 @implementation GICInpute
 +(NSString *)gic_elementName{
@@ -27,6 +28,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                              if(![value isEqual:inpute.text]){
                                  [(GICInpute *)target setText:value];
                              }
+                         }],
+                         @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             GICInpute *inpute = (GICInpute *)target;
+                             [inpute setSecureTextEntry:[value boolValue]];
                          }],
                          };
 }

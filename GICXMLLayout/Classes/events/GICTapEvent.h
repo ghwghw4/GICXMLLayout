@@ -10,6 +10,5 @@
 /**
  点击事件
  */
-@interface GICClickeEvent : GICEvent
-
+@interface GICTapEvent : GICEvent
 @end

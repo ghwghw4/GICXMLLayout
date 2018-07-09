@@ -10,5 +10,12 @@
 
 @interface UIView (GICEvent)
 @property (nonatomic,strong,readonly)NSArray<GICEvent *> *gic_events;
--(void)gic_addEvent:(GICEvent *)event;
+-(void)gic_event_addEvent:(GICEvent *)event;
+
+///**
+// 创建一个tap事件
+//
+// @return <#return value description#>
+// */
+//-(RACSignal *)gic_event_createTapEvent;
 @end

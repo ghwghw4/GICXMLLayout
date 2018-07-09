@@ -7,6 +7,7 @@
 
 #import "GICPage.h"
 #import "GICStringConverter.h"
+#import "UIView+GICExtension.h"
 
 @interface GICPage ()
 
@@ -37,6 +38,8 @@
         NSAssert(self.view.subviews.count==0, @"page 只允许添加一个子元素");
         [self.view addSubview:(UIView *)subElement];
         [self.view gic_LayoutSubView:(UIView *)subElement];
+        
+        [(UIView *)subElement gic_ExtensionProperties].foreSuperElement = self;
     }
 }
 
@@ -46,6 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 }
 
 

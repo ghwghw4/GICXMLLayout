@@ -7,6 +7,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GICEvent : NSObject
--(void)onAttachTo:(UIView *)target;
+@interface GICEvent : NSObject{
+    NSString *expressionString;
+}
+@property (nonatomic,weak)id target;
+@property (nonatomic,readonly,strong)RACSubject *eventSubject;
+
+-(void)onAttachTo:(id)target;
+
+-(id)initWithExpresion:(NSString *)expresion;
+
+-(RACSignal *)createEventSignal;
 @end

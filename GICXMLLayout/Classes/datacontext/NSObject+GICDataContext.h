@@ -29,4 +29,11 @@
  更新数据源
  */
 -(void)gic_updateUpdateContext:(id)superDataContenxt;
+
+/**
+ 获取数据源，但是忽略非自动继承的数据源
+
+ @return <#return value description#>
+ */
+-(id)gic_DataContenxtIgnorNotAutoInherit:(BOOL)isIgnorNotAutoInherit;
 @end

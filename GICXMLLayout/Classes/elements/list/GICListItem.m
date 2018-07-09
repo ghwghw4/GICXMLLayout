@@ -6,9 +6,16 @@
 //
 
 #import "GICListItem.h"
-#import "GICPanel.h"
+
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
+#import "GICListTableViewCell.h"
+
+//@interface GICListItem (){
+//    
+//}
+//
+//@end
 
 @implementation GICListItem
 +(NSString *)gic_elementName{
@@ -23,6 +30,11 @@
              }],
              @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [target setValue:value forKey:@"selectionStyle"];
+             }],
+             @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICListItem *item = (GICListItem *)target;
+                 item.itemSelectEvent = [[GICListItemSelectedEvent alloc] initWithExpresion:value];
+                 [item.itemSelectEvent onAttachTo:target];
              }],
              };
 }
@@ -51,46 +63,17 @@
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
-        self->xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
+        self.xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
     }
 }
 
--(void)gic_addSubElement:(NSObject *)childElement{
-    // 必须是panel才能被加入节点
-    if([childElement isKindOfClass:[GICPanel class]]){
-        [tempcell.contentView addSubview:(GICPanel *)childElement];
-        [tempcell.contentView gic_LayoutSubView:(GICPanel *)childElement];
-    }else{
-//         childElement.gic_DataContenxt = self.gic_DataContenxt;
-         [super gic_addSubElement:childElement];
-    }
-}
-
--(GICListTableViewCell *)getCell:(UITableView *)target{
+-(UITableViewCell *)getCell:(UITableView *)target{
     GICListTableViewCell *cell = [target dequeueReusableCellWithIdentifier:self.identifyString];
     if(cell == nil){
-         cell = [[GICListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.identifyString];
-        tempcell = cell;
-        GICPanel *childElement = (GICPanel *)[GICXMLLayout createElement:[self->xmlDoc rootElement]];
-        [self gic_addSubElement:childElement];
-        tempcell = nil;
+         cell = [[GICListTableViewCell alloc] initWithListItem:self];
+    }else{
+        cell.listItem = self;
     }
-    // 设置cell的样式
-    cell.selectionStyle = self.selectionStyle;
-    
-    
-    if(cell.layoutSubviewsSignlDisposable && !cell.layoutSubviewsSignlDisposable.isDisposed){
-        [cell.layoutSubviewsSignlDisposable dispose];
-    }
-    UIView *v = [cell.contentView.subviews firstObject];
-    @weakify(self)
-    cell.layoutSubviewsSignlDisposable = [[v rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(RACTuple * _Nullable x) {
-        @strongify(self)
-        CGFloat h = [v gic_calcuActualHeight];
-        self.cellHeight = h;
-    }];
-    cell.gic_isAutoInheritDataModel = NO;
-    cell.gic_DataContenxt = self.gic_DataContenxt;
     return cell;
 }
 @end

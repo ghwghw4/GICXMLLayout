@@ -13,7 +13,7 @@
     return objc_getAssociatedObject(self, "gic_events");
 }
 
--(void)gic_addEvent:(GICEvent *)event{
+-(void)gic_event_addEvent:(GICEvent *)event{
     if(event==nil)
         return;
     NSMutableArray<GICEvent *> * dirs= (NSMutableArray<GICEvent *> *)self.gic_events;
@@ -24,4 +24,10 @@
     [dirs addObject:event];
     [event onAttachTo:self];
 }
+
+//-(RACSignal *)gic_event_createTapEvent{
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+//    [self addGestureRecognizer:tap];
+//    return [tap rac_gestureSignal];
+//}
 @end

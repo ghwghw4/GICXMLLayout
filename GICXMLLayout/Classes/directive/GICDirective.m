@@ -14,4 +14,8 @@
 -(void)updateDataSource:(id)dataSource{
     
 }
+
+-(NSObject *)gic_getSuperElement{
+    return self.target;
+}
 @end

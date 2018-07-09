@@ -24,12 +24,19 @@
 }
 
 -(id)gic_DataContenxt{
-    id dc = objc_getAssociatedObject(self, "gic_DataContenxt");
+    return [self gic_DataContenxtIgnorNotAutoInherit:NO];
+}
+
+-(id)gic_DataContenxtIgnorNotAutoInherit:(BOOL)isIgnorNotAutoInherit{
+    id dc = nil;
+    if(!isIgnorNotAutoInherit || self.gic_isAutoInheritDataModel){
+        dc = objc_getAssociatedObject(self, "gic_DataContenxt");
+    }
     if(dc){
         return dc;
     }
     if([self respondsToSelector:@selector(gic_getSuperElement)]){
-        return [[self gic_getSuperElement] gic_DataContenxt];
+        return [[self gic_getSuperElement] gic_DataContenxtIgnorNotAutoInherit:isIgnorNotAutoInherit];
     }
     return nil;
 }

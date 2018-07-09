@@ -30,7 +30,7 @@
     [super layoutSubviews];
     UIView *v =[self.subviews firstObject];
     if(v){
-        UIEdgeInsets margin = v.gic_margin;
+        UIEdgeInsets margin = v.gic_ExtensionProperties.margin;
         [v mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_offset(margin.left);
             make.top.mas_offset(margin.top);

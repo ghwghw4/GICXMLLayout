@@ -3,7 +3,7 @@
     <!--list 相当于UITableView-->
     <list separator-inset = "0 15 0 15">
         <for data-model="listDatas">
-            <list-item selection-style="2">
+            <list-item selection-style="2" event-item-select="onSelect:">
                 <panel margin="15" background-color="white">
                     <lable text="{{ name }}"></lable>
                 </panel>

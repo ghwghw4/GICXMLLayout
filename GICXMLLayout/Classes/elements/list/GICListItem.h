@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GICListTableViewCell.h"
+#import "GICListItemSelectedEvent.h"
 
 @class GICListItem;
 
@@ -17,9 +17,8 @@
 @end
 
 @interface GICListItem : NSObject<LayoutElementProtocol>{
-//    UIView *elementView;
-    GDataXMLDocument *xmlDoc;
-    GICListTableViewCell *tempcell;
+//    GDataXMLDocument *xmlDoc;
+//    GICListTableViewCell *tempcell;
 }
 
 @property (nonatomic,assign)CGFloat cellHeight;
@@ -28,6 +27,8 @@
 @property (nonatomic) UITableViewCellSelectionStyle   selectionStyle;
 
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
+@property (nonatomic,strong)GDataXMLDocument *xmlDoc;
+@property (nonatomic,strong)GICListItemSelectedEvent *itemSelectEvent;
 
--(GICListTableViewCell *)getCell:(UITableView *)target;
+-(UITableViewCell *)getCell:(UITableView *)target;
 @end

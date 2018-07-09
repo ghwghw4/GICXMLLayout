@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (LayoutElement)<LayoutElementProtocol>
+@property (nonatomic,strong)NSString *gic_name;
 -(void)parseElement:(GDataXMLElement *)element;
 -(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;
 @end

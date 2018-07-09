@@ -43,8 +43,8 @@
 
 
 #if (MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4) || defined(GDATA_TARGET_NAMESPACE)
-  // we need NSInteger for the 10.4 SDK, or we're using target namespace macros
-  #import "GDataDefines.h"
+// we need NSInteger for the 10.4 SDK, or we're using target namespace macros
+#import "GDataDefines.h"
 #endif
 
 #undef _EXTERN
@@ -73,44 +73,44 @@ _EXTERN const char* kGDataXMLXPathDefaultNamespacePrefix _INITIALIZE_AS("_def_ns
 @class GDataXMLElement, GDataXMLDocument;
 
 enum {
-  GDataXMLInvalidKind = 0,
-  GDataXMLDocumentKind,
-  GDataXMLElementKind,
-  GDataXMLAttributeKind,
-  GDataXMLNamespaceKind,
-  GDataXMLProcessingInstructionKind,
-  GDataXMLCommentKind,
-  GDataXMLTextKind,
-  GDataXMLDTDKind,
-  GDataXMLEntityDeclarationKind,
-  GDataXMLAttributeDeclarationKind,
-  GDataXMLElementDeclarationKind,
-  GDataXMLNotationDeclarationKind
+    GDataXMLInvalidKind = 0,
+    GDataXMLDocumentKind,
+    GDataXMLElementKind,
+    GDataXMLAttributeKind,
+    GDataXMLNamespaceKind,
+    GDataXMLProcessingInstructionKind,
+    GDataXMLCommentKind,
+    GDataXMLTextKind,
+    GDataXMLDTDKind,
+    GDataXMLEntityDeclarationKind,
+    GDataXMLAttributeDeclarationKind,
+    GDataXMLElementDeclarationKind,
+    GDataXMLNotationDeclarationKind
 };
 
 typedef NSUInteger GDataXMLNodeKind;
 
 @interface GDataXMLNode : NSObject {
 @protected
-  // NSXMLNodes can have a namespace URI or prefix even if not part
-  // of a tree; xmlNodes cannot.  When we create nodes apart from
-  // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
-  // like
-  //   "prefix:name"
-  // or
-  //   "{http://uri}:name"
-  //
-  // We will fix up the node's namespace and name (and those of any children)
-  // later when adding the node to a tree with addChild: or addAttribute:.
-  // See fixUpNamespacesForNode:.
-
-  xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
-  BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
-
-  // cached values
-  NSString *cachedName_;
-  NSArray *cachedChildren_;
-  NSArray *cachedAttributes_;
+    // NSXMLNodes can have a namespace URI or prefix even if not part
+    // of a tree; xmlNodes cannot.  When we create nodes apart from
+    // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
+    // like
+    //   "prefix:name"
+    // or
+    //   "{http://uri}:name"
+    //
+    // We will fix up the node's namespace and name (and those of any children)
+    // later when adding the node to a tree with addChild: or addAttribute:.
+    // See fixUpNamespacesForNode:.
+    
+    xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
+    BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
+    
+    // cached values
+    NSString *cachedName_;
+    NSArray *cachedChildren_;
+    NSArray *cachedAttributes_;
 }
 
 + (GDataXMLElement *)elementWithName:(NSString *)name;
@@ -126,22 +126,22 @@ typedef NSUInteger GDataXMLNodeKind;
 
 /**
  获取去除了两头空格和换行符的字符串
-
+ 
  @return <#return value description#>
  */
 - (NSString *)stringValue;
 
 /**
  获取原始字符串
-
+ 
  @return <#return value description#>
  */
 - (NSString *)stringValueOrginal;
 - (void)setStringValue:(NSString *)str;
 
 - (NSUInteger)childCount;
-- (NSArray *)children;
-- (NSArray *)childrenIncludeComment:(BOOL)isInclude;// 获取子节点的时候同时获取comment节点
+- (NSArray *)children;// 获取不包括注释的节点
+- (NSArray *)childrenIncludeComment:(BOOL)isInclude;// 获取子节点的时候同时获取注释的节点
 - (GDataXMLNode *)childAtIndex:(unsigned)index;
 
 - (NSString *)localName;
@@ -199,7 +199,7 @@ typedef NSUInteger GDataXMLNodeKind;
 
 @interface GDataXMLDocument : NSObject {
 @protected
-  xmlDoc* xmlDoc_; // strong; always free'd in dealloc
+    xmlDoc* xmlDoc_; // strong; always free'd in dealloc
 }
 
 - (id)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;

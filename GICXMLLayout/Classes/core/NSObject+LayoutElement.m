@@ -16,6 +16,15 @@
 
 @implementation NSObject (LayoutElement)
 
+-(void)setGic_name:(NSString *)gic_name{
+    objc_setAssociatedObject(self, "gic_name", gic_name ,OBJC_ASSOCIATION_RETAIN);
+}
+
+-(NSString *)gic_name{
+    return objc_getAssociatedObject(self, "gic_name");
+}
+
+
 +(NSString *)gic_elementName{
     return nil;
 }
@@ -63,11 +72,15 @@
     dispatch_once(&onceToken, ^{
         propertyConverts = @{
                              @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 [target setValue:value forKey:@"gic_Name"];
+                                 [target setValue:value forKey:@"gic_name"];
                              }],
                              @"data-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  [target setGic_dataModelKey:value];
                              }],
+//                             @"data-context":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                                 //data-context 对应的其实就是gic_DataContext。支持json 格式
+//                                 [target setGic_dataModelKey:value];
+//                             }],
                              };
     });
     return propertyConverts;

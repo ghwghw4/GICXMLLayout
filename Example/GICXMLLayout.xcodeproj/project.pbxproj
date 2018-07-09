@@ -21,6 +21,7 @@
 		37C8069820F34776002EEF55 /* UIList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C8069720F34776002EEF55 /* UIList.xml */; };
 		37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */; };
 		37C806A520F357F4002EEF55 /* ListSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806A420F357F4002EEF55 /* ListSample.xml */; };
+		37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -68,6 +69,8 @@
 		37C8069920F347A5002EEF55 /* UIListPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListPageViewModel.h; sourceTree = "<group>"; };
 		37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIListPageViewModel.m; sourceTree = "<group>"; };
 		37C806A420F357F4002EEF55 /* ListSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample.xml; sourceTree = "<group>"; };
+		37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSamplePageViewModel.h; sourceTree = "<group>"; };
+		37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSamplePageViewModel.m; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
 				37C8069920F347A5002EEF55 /* UIListPageViewModel.h */,
 				37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */,
+				37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */,
+				37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 				37BA55FA20EDB276003DC99A /* TestClass.m in Sources */,
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
+				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

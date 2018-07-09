@@ -1,0 +1,27 @@
+<page title="list Sample" data-context="ListSamplePageViewModel">
+    <list separator-inset = "0 15 0 15">
+        <list-item selection-style="2" event-item-select="onSelect1">
+            <panel margin="15" background-color="white">
+                <lable text="普通列表"></lable>
+            </panel>
+        </list-item>
+        
+        <list-item selection-style="2" event-item-select="onSelect:">
+            <panel margin="15" background-color="white">
+                <lable text="模板列表"></lable>
+            </panel>
+        </list-item>
+        
+        <list-item selection-style="2" event-item-select="onSelect:">
+            <panel margin="15" background-color="white">
+                <lable text="动态列表"></lable>
+            </panel>
+        </list-item>
+        
+        <list-item selection-style="2" event-item-select="onSelect:">
+            <panel margin="15" background-color="white">
+                <lable text="不同模板对应不同数据源列表(很高级的功能)"></lable>
+            </panel>
+        </list-item>
+    </list>
+</page>

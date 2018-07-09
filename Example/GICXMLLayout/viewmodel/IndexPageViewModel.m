@@ -17,7 +17,7 @@
     _listDatas = @[
                        @{@"name":@"布局系统",@"pagePath":@"LayoutSample"},
                        @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
-                       @{@"name":@"list",@"pagePath":@"UIList"},
+                       @{@"name":@"list",@"pagePath":@"ListSample"},
                        @{@"name":@"数据绑定",@"pagePath":@""},
                        @{@"name":@"模板",@"pagePath":@""},
                        @{@"name":@"事件",@"pagePath":@""},

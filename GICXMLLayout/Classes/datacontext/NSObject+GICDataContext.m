@@ -10,12 +10,12 @@
 #import "NSObject+GICDataBinding.h"
 
 @implementation NSObject (GICDataContext)
--(void)setGic_dataModelKey:(NSString *)gic_dataModelKey{
-    objc_setAssociatedObject(self, "gic_dataModelKey", gic_dataModelKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void)setGic_dataPathKey:(NSString *)gic_dataPathKey{
+    objc_setAssociatedObject(self, "gic_dataPathKey", gic_dataPathKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
--(NSString *)gic_dataModelKey{
-    return objc_getAssociatedObject(self, "gic_dataModelKey");
+-(NSString *)gic_dataPathKey{
+    return objc_getAssociatedObject(self, "gic_dataPathKey");
 }
 
 -(void)setGic_DataContenxt:(id)gic_DataContenxt{
@@ -39,9 +39,7 @@
     if(dc){
         return dc;
     }
-    if([self respondsToSelector:@selector(gic_getSuperElement)]){
-        return [[self gic_getSuperElement] gic_DataContenxtIgnorNotAutoInherit:isIgnorNotAutoInherit];
-    }
+    return [[self gic_getSuperElement] gic_DataContenxtIgnorNotAutoInherit:isIgnorNotAutoInherit];
     return nil;
 }
 

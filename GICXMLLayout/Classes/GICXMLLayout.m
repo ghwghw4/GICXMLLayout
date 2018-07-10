@@ -41,7 +41,7 @@ static NSMutableDictionary *registedElements = nil;
     Class c = [registedElements objectForKey:element.name];
     if(c){
         NSObject *v = [c new];
-        [v parseElement:element];
+        [v gic_parseElement:element];
 //        if([childElement isKindOfClass:[GICTemplateRef class]]){
 //            GICTemplateRef *tf = (GICTemplateRef *)childElement;
 //            GICTemplate *t = [self.target gic_getTemplateFromName:tf.templateName];

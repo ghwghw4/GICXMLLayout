@@ -53,7 +53,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     for(GDataXMLElement *child in children){
         if([supportElementNames containsObject:child.name]){
             NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
-            [s parseElement:child];
+            [s gic_parseElement:child];
             [attString appendAttributedString:s];
         }
     }

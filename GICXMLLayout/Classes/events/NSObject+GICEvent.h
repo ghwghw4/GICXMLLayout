@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "GICEvent.h"
 
-@interface UIView (GICEvent)
+@interface NSObject (GICEvent)
 @property (nonatomic,strong,readonly)NSArray<GICEvent *> *gic_events;
 -(void)gic_event_addEvent:(GICEvent *)event;
 

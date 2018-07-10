@@ -1,0 +1,28 @@
+<page title="动态列表" data-context='ListSample3ViewModel' background-color="white">
+    <templates>
+        <template t-name="list-template">
+            <panel>
+                <lable text="{{  }}" margin="0 15 0.1 15"></lable>
+            </panel>
+        </template>
+        
+        <template t-name="button">
+            <panel width="100">
+                <lable text="{{ }}" margin="0 15 0.1 15"></lable>
+            </panel>
+        </template>
+    </templates>
+    <panel margin-top="64">
+        <dock-panel height= "60" background-color="yellow">
+            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="1"/>
+            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
+        </dock-panel>
+        <list separator-inset = "0 15 0 15" margin-top="60">
+            <for data-path="listDatas">
+                <list-item item-height="45">
+                    <template-ref t-name="list-template"/>
+                </list-item>
+            </for>
+        </list>
+    </panel>
+</page>

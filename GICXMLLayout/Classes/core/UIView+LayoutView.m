@@ -18,9 +18,7 @@
 #import "GICStringConverter.h"
 #import "GICDataBinding.h"
 #import "NSObject+GICDataBinding.h"
-#import "GICTapEvent.h"
 #import "GICStringConverter.h"
-#import "UIView+GICEvent.h"
 
 @implementation UIView (LayoutView)
 
@@ -50,10 +48,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          }],
                          @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((UIView *)target).gic_ExtensionProperties.marginBottom = [value floatValue];
-                         }],
-                         @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
-                             [(UIView *)target gic_event_addEvent:e];
                          }],
                          @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((UIView *)target).gic_ExtensionProperties.dockHorizalModel = [value integerValue];
@@ -119,9 +113,11 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return [self superview];
 }
 
--(void)gic_removeAllSubElements{
-    for(UIView *v in self.subviews){
-        [v removeFromSuperview];
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    for(id sub in subElements){
+        if([sub isKindOfClass:[UIView class]]  && [self.subviews containsObject:sub]){
+            [sub removeFromSuperview];
+        }
     }
 }
 

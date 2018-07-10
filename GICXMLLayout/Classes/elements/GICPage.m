@@ -8,7 +8,7 @@
 #import "GICPage.h"
 #import "GICStringConverter.h"
 #import "UIView+GICExtension.h"
-
+#import "GICColorConverter.h"
 @interface GICPage ()
 
 @end
@@ -24,12 +24,9 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
-//             @"view-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 Class class = NSClassFromString(value);
-//                 if(class){
-//                     ((GICPage *)target)->_viewModel = [class new];
-//                 }
-//             }],
+             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICPage *)target).view setBackgroundColor:value];
+             }],
              };
 }
 

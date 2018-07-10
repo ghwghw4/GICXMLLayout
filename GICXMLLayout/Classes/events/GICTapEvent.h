@@ -10,5 +10,7 @@
 /**
  点击事件
  */
-@interface GICTapEvent : GICEvent
+@interface GICTapEvent : GICEvent{
+    UITapGestureRecognizer *tapges;
+}
 @end

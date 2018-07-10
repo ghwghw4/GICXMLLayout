@@ -12,7 +12,8 @@
 
 -(id)initWithListItem:(GICListItem *)listItem{
     self =[self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:listItem.identifyString];
-    [self createContentView:listItem.xmlDoc];
+//    _listItem = listItem;
+//    [self createContentView:listItem.xmlDoc];
     self.listItem = listItem;
     return self;
 }
@@ -25,6 +26,10 @@
     }else{
         [super gic_addSubElement:childElement];
     }
+}
+
+-(NSObject *)gic_getSuperElement{
+    return self.listItem;
 }
 
 -(void)createContentView:(GDataXMLDocument *)xmlDoc{
@@ -43,6 +48,10 @@
         [layoutSubviewsSignlDisposable dispose];
     }
     
+    if(self.contentView.subviews.count == 0){
+        [self createContentView:listItem.xmlDoc];
+    }
+    
     UIView *v = [self.contentView.subviews firstObject];
     layoutSubviewsSignlDisposable = [[v rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(RACTuple * _Nullable x) {
         CGFloat h = [v gic_calcuActualHeight];
@@ -50,17 +59,6 @@
     }];
     self.gic_isAutoInheritDataModel = NO;
     [self gic_updateDataContext:listItem.gic_DataContenxt];
-//    self.gic_DataContenxt = listItem.gic_DataContenxt;
-    
-    
-//    // 绑定事件
-//    if(itemSelectedSignlDisposable && !itemSelectedSignlDisposable.isDisposed){
-//        [itemSelectedSignlDisposable dispose];
-//    }
-//    
-//    if(listItem.itemSelectEvent){
-//        
-//    }
 }
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

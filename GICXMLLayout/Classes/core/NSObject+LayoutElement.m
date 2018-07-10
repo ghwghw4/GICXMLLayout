@@ -14,23 +14,35 @@
 #import "NSObject+GICTemplate.h"
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
+#import "NSObject+GICEvent.h"
+#import "GICTapEvent.h"
 
 @implementation NSObject (LayoutElement)
 
--(void)setGic_name:(NSString *)gic_name{
-    objc_setAssociatedObject(self, "gic_name", gic_name ,OBJC_ASSOCIATION_RETAIN);
-}
+//-(void)setGic_name:(NSString *)gic_name{
+//    objc_setAssociatedObject(self, "gic_name", gic_name ,OBJC_ASSOCIATION_RETAIN);
+//}
+//
+//-(NSString *)gic_name{
+//    return objc_getAssociatedObject(self, "gic_name");
+//}
+//
+//-(void)setGic_tempDataContext:(id)gic_tempDataContext{
+//    objc_setAssociatedObject(self, "gic_tempDataContext", gic_tempDataContext ,OBJC_ASSOCIATION_RETAIN);
+//}
+//
+//-(id)gic_tempDataContext{
+//    return objc_getAssociatedObject(self, "gic_tempDataContext");
+//}
 
--(NSString *)gic_name{
-    return objc_getAssociatedObject(self, "gic_name");
-}
 
--(void)setGic_tempDataContext:(id)gic_tempDataContext{
-    objc_setAssociatedObject(self, "gic_tempDataContext", gic_tempDataContext ,OBJC_ASSOCIATION_RETAIN);
-}
-
--(id)gic_tempDataContext{
-    return objc_getAssociatedObject(self, "gic_tempDataContext");
+-(GICNSObjectExtensionProperties *)gic_ExtensionProperties{
+    GICNSObjectExtensionProperties *v =objc_getAssociatedObject(self, "gic_ExtensionProperties");
+    if(!v){
+        v = [GICNSObjectExtensionProperties new];
+        objc_setAssociatedObject(self, "gic_ExtensionProperties", v, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return v;
 }
 
 +(NSString *)gic_elementName{
@@ -80,13 +92,17 @@
     dispatch_once(&onceToken, ^{
         propertyConverts = @{
                              @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 [target setValue:value forKey:@"gic_name"];
+                                 target.gic_ExtensionProperties.name = value;
                              }],
-                             @"data-model":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 [target setGic_dataModelKey:value];
+                             @"data-path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 [target setGic_dataPathKey:value];
                              }],
                              @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 target.gic_tempDataContext = value;
+                                 target.gic_ExtensionProperties.tempDataContext = value;
+                             }],
+                             @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
+                                 [target gic_event_addEvent:e];
                              }],
                              };
     });
@@ -115,14 +131,18 @@
         if(![tr gic_self_dataContext]){
            tr.gic_DataContenxt = self.gic_DataContenxt;
         }
+//        tr.gic_ExtensionProperties.foreSuperElement = self;
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }
 }
 
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    // 由子类自己实现
+}
 
--(void)parseElement:(GDataXMLElement *)element{
-    [self parseAttributes:[self convertAttributes:element.attributes]];
-    
+
+-(void)gic_parseElement:(GDataXMLElement *)element{
+    [self gic_parseAttributes:element];
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;
@@ -141,16 +161,14 @@
     [self performSelector:@selector(gic_elementParseCompelte)];
 }
 
--(NSDictionary *)convertAttributes:(NSArray<GDataXMLNode *> *)atts{
-    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
-    [atts enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dict setValue:[obj stringValue] forKey:[obj name]];
+-(void)gic_parseAttributes:(GDataXMLElement *)element{
+    // convert attributes
+    NSMutableDictionary<NSString *, NSString *> *attributeDict=[NSMutableDictionary dictionary];
+    [element.attributes enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [attributeDict setValue:[obj stringValue] forKey:[obj name]];
     }];
-    return dict;
-}
-
-// 解析属性
--(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict{
+    
+    
     NSDictionary *ps = [NSObject _gic_getPropertyConverts:[self class]];
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];
@@ -171,13 +189,19 @@
 }
 
 -(void)gic_elementParseCompelte{
-    id temp = self.gic_tempDataContext;
+    id temp = self.gic_ExtensionProperties.tempDataContext;
     if(temp){
         self.gic_DataContenxt = temp;
-        self.gic_tempDataContext = nil;
+        self.gic_ExtensionProperties.tempDataContext = nil;
         self.gic_isAutoInheritDataModel = NO;
     }
 }
 
-
+-(NSObject *)gic_getSuperElement{
+    UIView *force = self.gic_ExtensionProperties.foreSuperElement;
+    if(force){
+        return force;
+    }
+    return nil;
+}
 @end

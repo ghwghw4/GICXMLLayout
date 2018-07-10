@@ -5,10 +5,10 @@
 //  Created by gonghaiwei on 2018/7/8.
 //
 
-#import "UIView+GICEvent.h"
+#import "NSObject+GICEvent.h"
 #import <objc/runtime.h>
 
-@implementation UIView (GICEvent)
+@implementation NSObject (GICEvent)
 -(NSArray<GICEvent *> *)gic_events{
     return objc_getAssociatedObject(self, "gic_events");
 }
@@ -22,7 +22,7 @@
         objc_setAssociatedObject(self, "gic_events", dirs, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     [dirs addObject:event];
-    [event onAttachTo:self];
+    [event attachTo:self];
 }
 
 //-(RACSignal *)gic_event_createTapEvent{

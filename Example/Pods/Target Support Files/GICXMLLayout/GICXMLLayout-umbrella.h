@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "GICNSObjectExtensionProperties.h"
 #import "GICViewExtensionProperties.h"
 #import "GICXMLParserContext.h"
 #import "LayoutElementProtocol.h"
@@ -34,6 +35,7 @@
 #import "GICListItemSelectedEvent.h"
 #import "GICListTableViewCell.h"
 #import "GICListView.h"
+#import "GICDockPanel.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "UIScrollView+GICScrollView.h"

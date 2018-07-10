@@ -13,6 +13,15 @@
     return @"stack-panel";
 }
 
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    [super gic_removeSubElements:subElements];
+    // 删除后重新计算布局
+    for(UIView *v in self.subviews){
+        [self gic_LayoutSubView:v];
+    }
+}
+
+
 -(void)gic_LayoutSubView:(UIView *)view{
     UIEdgeInsets margin = view.gic_ExtensionProperties.margin;
     UIView *preView = nil;

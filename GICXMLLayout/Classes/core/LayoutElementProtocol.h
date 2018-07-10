@@ -37,16 +37,20 @@
 
 -(void)gic_addSubElement:(NSObject *)subElement;
 
+
+
+
 /**
  获取父级元素
  */
 -(NSObject *)gic_getSuperElement;
 
-
 /**
- 删除所有的子元素
+ 删除子元素
+ 
+ @param subElements <#subElement description#>
  */
--(void)gic_removeAllSubElements;
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements;
 
 /**
  是否支持单个子元素

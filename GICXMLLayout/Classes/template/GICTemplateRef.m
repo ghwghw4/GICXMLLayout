@@ -9,6 +9,7 @@
 #import "GICStringConverter.h"
 #import "NSObject+GICTemplate.h"
 #import "NSObject+GICDataContext.h"
+#import "NSObject+GICEvent.h"
 
 @implementation GICTemplateRef
 +(NSString *)gic_elementName{
@@ -36,9 +37,18 @@
     }
 }
 
+-(void)gic_parseAttributes:(GDataXMLElement *)element{
+    self.templateName = [[element attributeForName:@"t-name"] stringValue];
+}
+
+-(void)gic_parseElement:(GDataXMLElement *)element{
+    selfElement = element;
+    [super gic_parseElement:element];
+}
 
 -(NSObject *)parseTemplate:(GICTemplate *)t{
     NSObject *childElement = nil;
+    NSString *xmlDocString = nil;
     if(slotsXmlDocMap && slotsXmlDocMap.count>0){
         // 如果有slot，那么久开始执行替换slot流程
         tempConvertSlotMap = [NSMutableDictionary dictionary];
@@ -48,22 +58,44 @@
             for(NSString *slotName in tempConvertSlotMap.allKeys){
                 xmlString = [xmlString stringByReplacingOccurrencesOfString:[tempConvertSlotMap objectForKey:slotName] withString:[slotsXmlDocMap objectForKey:slotName]];
             }
-            GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlString options:0 error:nil];
-            childElement =  [GICXMLLayout createElement:[xmlDoc rootElement]];
+            xmlDocString = xmlString;
         }
         tempConvertSlotMap = nil;
-    }
-    if(childElement==nil){
-        childElement = [GICXMLLayout createElement:[t.xmlDoc rootElement]];
-    }
-    if(self.gic_dataModelKey && !childElement.gic_dataModelKey){
-        childElement.gic_dataModelKey = self.gic_dataModelKey;
+    }else{
+        xmlDocString = [[t.xmlDoc rootElement] XMLString];
     }
     
-    if([self gic_self_dataContext]){
-         childElement.gic_DataContenxt = [self gic_self_dataContext];
+    GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];
+    for(GDataXMLNode *node in selfElement.attributes){
+        [xmlDoc.rootElement addAttribute:node];
     }
-    childElement.gic_isAutoInheritDataModel = self.gic_isAutoInheritDataModel;
+    childElement = [GICXMLLayout createElement:[xmlDoc rootElement]];
+    
+//    if(self.gic_dataPathKey && !childElement.gic_dataPathKey){
+//        childElement.gic_dataPathKey = self.gic_dataPathKey;
+//    }
+//
+//    if([self gic_self_dataContext]){
+//         childElement.gic_DataContenxt = [self gic_self_dataContext];
+//    }
+//    childElement.gic_isAutoInheritDataModel = self.gic_isAutoInheritDataModel;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    // 自动继承事件
+//    if(self.gic_events.count>0){
+//        for(GICEvent *e in self.gic_events){
+//            [childElement gic_event_addEvent:e];
+//            [e attachTo:childElement];
+//        }
+//    }
     return childElement;
 }
 

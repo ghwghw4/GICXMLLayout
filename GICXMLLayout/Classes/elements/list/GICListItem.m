@@ -34,7 +34,11 @@
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  item.itemSelectEvent = [[GICListItemSelectedEvent alloc] initWithExpresion:value];
-                 [item.itemSelectEvent onAttachTo:target];
+                 [item.itemSelectEvent attachTo:target];
+             }],
+             @"item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICListItem *item = (GICListItem *)target;
+                 item->itemHeight = [value floatValue];
              }],
              };
 }
@@ -43,9 +47,15 @@
     return YES;
 }
 
+-(CGFloat)cellHeight{
+    if(self->itemHeight>0)
+        return self->itemHeight;
+    return _cellAutoHeight;
+}
+
 -(void)setCellHeight:(CGFloat)cellHeight{
-    if(cellHeight>_cellHeight){
-        _cellHeight = cellHeight;
+    if(cellHeight>_cellAutoHeight){
+        _cellAutoHeight = cellHeight;
         if(self.delegate)
             [self.delegate listItem:self cellHeightUpdate:cellHeight];
 

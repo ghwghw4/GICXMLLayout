@@ -16,7 +16,7 @@
 @interface GICListView ()<UITableViewDelegate,UITableViewDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
     BOOL t;
-    id<RACSubscriber> subscriber;
+    id<RACSubscriber> reloadSubscriber;
 }
 @end
 
@@ -48,7 +48,7 @@
     // 创建一个0.2秒的节流阀
     __weak typeof(self) wself = self;
     [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        self->subscriber = subscriber;
+        self->reloadSubscriber = subscriber;
         return nil;
     }] throttle:0.2] subscribeNext:^(id  _Nullable x) {
         [wself reloadData];
@@ -64,25 +64,33 @@
     if([subElement isKindOfClass:[GICListItem class]]){
         [(GICListItem *)subElement setDelegate:self];
         [listItems addObject:subElement];
-        [self->subscriber sendNext:nil];
+        [self->reloadSubscriber sendNext:nil];
     }else if ([subElement isKindOfClass:[GICListHeader class]]){
+//        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 100)];
+//        self.tableHeaderView.backgroundColor = [UIColor yellowColor];
         self.tableHeaderView = subElement;
+//        [self.tableHeaderView addSubview:subElement];
+//        [self.tableHeaderView gic_LayoutSubView:subElement];
         [self.tableHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(self.mas_width);
         }];
     }else if ([subElement isKindOfClass:[GICListFooter class]]){
-//        self.tableFooterView = subElement;
-//        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(self.mas_width);
-//        }];
+        self.tableFooterView = subElement;
+        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(self.mas_width);
+        }];
     }else{
         [super gic_addSubElement:subElement];
     }
 }
 
--(void)gic_removeAllSubElements{
-    [listItems removeAllObjects];
-    [self->subscriber sendNext:nil];
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    for(id subElement in subElements){
+        if([subElement isKindOfClass:[GICListItem class]]){
+            [listItems removeObject:(GICListItem *)subElement];
+        }
+        [self->reloadSubscriber sendNext:nil];
+    }
 }
 
 #pragma mark datasource
@@ -116,10 +124,10 @@
 }
 
 -(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight{
-    [subscriber sendNext:nil];
+    [reloadSubscriber sendNext:nil];
 }
 
 -(void)dealloc{
-    [subscriber sendCompleted];
+    [reloadSubscriber sendCompleted];
 }
 @end

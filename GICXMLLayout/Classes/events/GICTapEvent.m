@@ -10,8 +10,18 @@
 
 @implementation GICTapEvent
 -(RACSignal *)createEventSignal{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    [self.target addGestureRecognizer:tap];
-    return [tap rac_gestureSignal];
+    if([self.target isKindOfClass:[UIView class]]){
+        tapges = [[UITapGestureRecognizer alloc] init];
+        [self.target addGestureRecognizer:tapges];
+        return [tapges rac_gestureSignal];
+    }
+    return nil;
+}
+
+-(void)unAttach{
+    if([self.target isKindOfClass:[UIView class]]){
+        [self.target removeGestureRecognizer:tapges];
+        tapges = nil;
+    }
 }
 @end

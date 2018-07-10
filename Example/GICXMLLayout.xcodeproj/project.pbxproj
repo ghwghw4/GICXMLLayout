@@ -22,6 +22,10 @@
 		37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */; };
 		37C806A520F357F4002EEF55 /* ListSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806A420F357F4002EEF55 /* ListSample.xml */; };
 		37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */; };
+		37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806AE20F430D2002EEF55 /* ListSample2.xml */; };
+		37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806B120F43E63002EEF55 /* ListSample3.xml */; };
+		37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806BE20F48372002EEF55 /* ListSample4.xml */; };
+		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -71,6 +75,11 @@
 		37C806A420F357F4002EEF55 /* ListSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample.xml; sourceTree = "<group>"; };
 		37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSamplePageViewModel.h; sourceTree = "<group>"; };
 		37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSamplePageViewModel.m; sourceTree = "<group>"; };
+		37C806AE20F430D2002EEF55 /* ListSample2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample2.xml; sourceTree = "<group>"; };
+		37C806B120F43E63002EEF55 /* ListSample3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample3.xml; sourceTree = "<group>"; };
+		37C806BE20F48372002EEF55 /* ListSample4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample4.xml; sourceTree = "<group>"; };
+		37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample3ViewModel.h; sourceTree = "<group>"; };
+		37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample3ViewModel.m; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -137,6 +146,7 @@
 		3767542520F22AFF0019A521 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
+				37C806B020F43156002EEF55 /* list */,
 				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
 				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
 				37C8069920F347A5002EEF55 /* UIListPageViewModel.h */,
@@ -150,12 +160,32 @@
 		3767542620F22B130019A521 /* templates */ = {
 			isa = PBXGroup;
 			children = (
+				37C806AD20F430A5002EEF55 /* list */,
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
 				37A7AFD620F31167006AADC2 /* LayoutSample.xml */,
 				37C8069720F34776002EEF55 /* UIList.xml */,
 				37C806A420F357F4002EEF55 /* ListSample.xml */,
 			);
 			path = templates;
+			sourceTree = "<group>";
+		};
+		37C806AD20F430A5002EEF55 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				37C806AE20F430D2002EEF55 /* ListSample2.xml */,
+				37C806B120F43E63002EEF55 /* ListSample3.xml */,
+				37C806BE20F48372002EEF55 /* ListSample4.xml */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
+		37C806B020F43156002EEF55 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */,
+				37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */,
+			);
+			path = list;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -350,8 +380,11 @@
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
+				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
+				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
 				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
 				37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */,
+				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				37A2646F20EB497A0058589D /* template2.xml in Resources */,
 				37A2643020E9D3590058589D /* template.xml in Resources */,
@@ -442,6 +475,7 @@
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
+				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,

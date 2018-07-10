@@ -6,13 +6,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICNSObjectExtensionProperties.h"
 
 @interface NSObject (LayoutElement)<LayoutElementProtocol>
-@property (nonatomic,strong)NSString *gic_name;
-// 临时的数据源
-@property (nonatomic,strong)id gic_tempDataContext;
+//@property (nonatomic,strong)NSString *gic_name;
+//// 临时的数据源
+//@property (nonatomic,strong)id gic_tempDataContext;
+
+@property (nonatomic,strong,readonly)GICNSObjectExtensionProperties *gic_ExtensionProperties;
 
 
--(void)parseElement:(GDataXMLElement *)element;
--(void)parseAttributes:(NSDictionary<NSString *, NSString *> *)attributeDict;
+-(void)gic_parseElement:(GDataXMLElement *)element;
+-(void)gic_parseAttributes:(GDataXMLElement *)element;
 @end

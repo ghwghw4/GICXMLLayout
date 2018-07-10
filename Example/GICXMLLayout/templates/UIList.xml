@@ -18,28 +18,36 @@
                 <template-ref t-name="desc" data-context="input对应ios的UITextField"/>
                 <input placehold = "输入用户名" height="40"/>
                 <input placehold = "输入密码" height="40" secure="1"/>
-                
-                
+                <!--      lable 介绍         -->
                 <template-ref t-name="title" data-context="lable"/>
                 <template-ref t-name="desc" data-context="lable 事实上就是对应ios中的UILable"/>
                 <template-ref t-name="desc" data-context="你可以设置多行，文本，如果指定了lines属性，那么会显示lines指定的行数，如果为设置，那么默认全部显示."/>
                 <!--      显示2行文本          -->
                 <lable text="多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本多行文本" lines="2" margin-bottom="10"/>
-                <template-ref t-name="desc" data-context="你也可以设置font-size、font-color"/>
                 
-                <lable text="我是指定了文本颜色和大小的lable" font-size="10" font-color="green"/>
+                <lable text="你也可以设置font-size、font-color" font-size="10" font-color="green"/>
                 
                 <lable text="靠右显示" font-size="10" font-color="green" text-align="2"/>
                 <lable text="居中显示" font-size="10" font-color="green" text-align="1"/>
                 
-                <template-ref t-name="desc" data-context="lable也支持富文本显示"/>
-                <lable font-color="999999" font-size="12" margin-top="9" margin-left="16">
+                <lable font-color="999999" font-size="12" margin-top="9">
                     <s>200m内  </s>
                     <img img-name="location"/>
                     <s> 国际大市场 </s>
                     <s font-color="346AA1" background-color="0285F014"> #我是富文本显示 </s>
                     <s>换行咯 换行咯换行咯换行咯换行咯换行咯换行咯换行咯</s>
                 </lable>
+                
+                <lable text="注意：lable 默认是自动换行的，因此你无需设置lable的高度，lable会自适应高度。但是这里面需要注意一点。在panel中如果要想让lable在height方面自动撑满，您需要显示设置一个不为0的margin-bottom，比如：0.1" margin-bottom="10" font-size="15" font-color="red"/>
+                <panel height="50" background-color="black">
+                    <lable text="我是height没有撑满panel的lable，因为我没有设置margin-bottom" font-size="10" font-color="green" background-color="ffffff66"/>
+                </panel>
+                
+                <panel height="50" background-color="black" margin-top="10">
+                    <lable text="我是height撑满panel的lable，因为我设置了margin-bottom" font-size="10" font-color="green" margin="0 0 0.1 0" background-color="ffffff66"/>
+                </panel>
+                
+                <!--      image 介绍          -->
                 
                 <template-ref t-name="title" data-context="image"/>
                 <template-ref t-name="desc" data-context="image对应UIImageView。图片的加载使用sdwebimage实现。图片有也支持fill-mode属性来设置图片的填充方式，可以直接使用int数字来指定，对应ios中的UIViewContentMode"/>

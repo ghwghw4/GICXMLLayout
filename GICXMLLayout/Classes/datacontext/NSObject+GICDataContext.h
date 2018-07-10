@@ -12,7 +12,7 @@
 /**
  绑定的数据模型的key
  */
-@property (nonatomic,strong)NSString *gic_dataModelKey;
+@property (nonatomic,strong)NSString *gic_dataPathKey;
 
 /**
  数据上下文

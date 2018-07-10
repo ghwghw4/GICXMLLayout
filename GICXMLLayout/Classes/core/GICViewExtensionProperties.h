@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICNSObjectExtensionProperties.h"
 
 typedef enum {
     GICDockPanelHorizalModel_Center,
@@ -19,7 +20,7 @@ typedef enum {
     GICDockPanelVerticalModel_Bottom
 }GICDockPanelVerticalModel;
 
-@interface GICViewExtensionProperties : NSObject
+@interface GICViewExtensionProperties : GICNSObjectExtensionProperties
 @property (nonatomic,assign)CGFloat width;
 @property (nonatomic,assign)CGFloat height;
 
@@ -37,9 +38,4 @@ typedef enum {
 @property (nonatomic,assign)GICDockPanelHorizalModel dockHorizalModel;
 @property (nonatomic,assign)GICDockPanelVerticalModel dockVerticalModel;
 
-
-/**
- 强制的父级元素。有事后有些元素并不能正确获取父级元素，这时候可以设置一个强制的父级元素来准确获取
- */
-@property (nonatomic,weak)id foreSuperElement;
 @end

@@ -13,17 +13,9 @@
     self = [self init];
     _eventSubject = [RACSubject subject];
     expressionString = expresion;
-    return self;
-}
-
--(void)onAttachTo:(id)target{
-    self.target = target;
-    @weakify(self)
-    [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
-        [self.eventSubject sendNext:x];
-    }];
     
+    // 触发view-model的事件代理
+    @weakify(self)
     [self.eventSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         SEL se = NSSelectorFromString(self->expressionString);
@@ -38,6 +30,26 @@
             t = [t gic_getSuperElement];
         } while (t);
     }];
+    return self;
+}
+
+-(void)attachTo:(id)target{
+    if(self.target){
+        // 先取消绑定
+        [self  unAttach];
+    }
+    self.target = target;
+    @weakify(self)
+    signlDisposable = [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        [self.eventSubject sendNext:x];
+    }];
+}
+
+-(void)unAttach{
+    if(signlDisposable && ![signlDisposable isDisposed]){
+        [signlDisposable dispose];
+    }
 }
 
 -(RACSignal *)createEventSignal{

@@ -7,6 +7,7 @@
 //
 
 #import "ListSamplePageViewModel.h"
+#import "UtilsHelp.h"
 
 @implementation ListSamplePageViewModel
 -(void)onSelect1{
@@ -15,7 +16,10 @@
 }
 
 -(void)onSelect2{
-//    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"title" message:@"直接查看ListSample.xml文件吧" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//    [alertView show];
+    [UtilsHelp navigateToGICPage:@"ListSample2"];
+}
+
+-(void)onSelect3{
+    [UtilsHelp navigateToGICPage:@"ListSample3"];
 }
 @end

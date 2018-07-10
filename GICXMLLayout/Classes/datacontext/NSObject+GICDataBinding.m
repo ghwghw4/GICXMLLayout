@@ -28,7 +28,7 @@
 -(void)refreshExpression{
     if(!self.isInitBinding){
         @weakify(self)
-        [[self.dataSource rac_valuesAndChangesForKeyPath:[self.target gic_dataModelKey] options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
+        [[self.dataSource rac_valuesAndChangesForKeyPath:[self.target gic_dataPathKey] options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
             @strongify(self)
             [self.target gic_updateDataContext:self.dataSource];
         }];
@@ -69,8 +69,8 @@
 
 
 -(void)gic_updateDataContext:(id)superDataContenxt{
-    if(self.gic_dataModelKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
-        id v = [superDataContenxt valueForKey:self.gic_dataModelKey];
+    if(self.gic_dataPathKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
+        id v = [superDataContenxt valueForKey:self.gic_dataPathKey];
         if(![GICUtils isNull:v]){
             if(self.gic_DataContenxt !=v){
                 self.gic_DataContenxt = v;

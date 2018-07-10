@@ -18,7 +18,7 @@
             </panel>
         </list-item>
         
-        <list-item selection-style="2" event-item-select="onSelect:">
+        <list-item selection-style="2" event-item-select="onSelect4">
             <panel margin="15" background-color="white">
                 <lable text="动态模板(根据数据自动选择模板,很高级的功能)"></lable>
             </panel>

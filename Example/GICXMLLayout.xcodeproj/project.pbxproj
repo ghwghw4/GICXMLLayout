@@ -26,6 +26,7 @@
 		37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806B120F43E63002EEF55 /* ListSample3.xml */; };
 		37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806BE20F48372002EEF55 /* ListSample4.xml */; };
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
+		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 		37C806BE20F48372002EEF55 /* ListSample4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample4.xml; sourceTree = "<group>"; };
 		37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample3ViewModel.h; sourceTree = "<group>"; };
 		37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample3ViewModel.m; sourceTree = "<group>"; };
+		37C806C320F48DAE002EEF55 /* ListSample4ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample4ViewModel.h; sourceTree = "<group>"; };
+		37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample4ViewModel.m; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -184,6 +187,8 @@
 			children = (
 				37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */,
 				37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */,
+				37C806C320F48DAE002EEF55 /* ListSample4ViewModel.h */,
+				37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37BA55FA20EDB276003DC99A /* TestClass.m in Sources */,
+				37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */,
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,

@@ -58,7 +58,7 @@
     if(self.subviews.count==0)
         return self.frame.size.height;
     UIView *lastSubview = [self.subviews lastObject];
-    UIEdgeInsets margin = self.gic_ExtensionProperties.margin;
-    return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_ExtensionProperties.margin.bottom + margin.top + margin.bottom;
+//    UIEdgeInsets margin = self.gic_ExtensionProperties.margin;
+    return CGRectGetMaxY(lastSubview.frame) + lastSubview.gic_ExtensionProperties.margin.bottom;
 }
 @end

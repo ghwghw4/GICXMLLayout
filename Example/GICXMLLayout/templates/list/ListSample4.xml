@@ -1,28 +1,48 @@
-<page title="动态模板" data-context='ListSample3ViewModel' background-color="white">
+<page title="动态模板" data-context='ListSample4ViewModel' background-color="white">
+    <!-- 实际的需求中，我们经常碰到一个列表中不同的数据对应不同cell的情况。下面的示例就是为了解决这个问题的   -->
     <templates>
-        <template t-name="list-template">
+        <template t-name="base-template">
             <panel>
-                <lable text="{{  }}" margin="0 15 0.1 15"></lable>
+                <image url="{{ headurl }}" width="32" height="32" margin="16 16 0 0" corner-radius="16"/>
+                <stack-panel margin="16 56 14 16">
+                    <lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>
+                    <lable font-size="12" font-color="999999" margin-top="6" lines="1">
+                        <s text="{{ time +' ' }}"></s>
+                        <s text="{{ loc +' '}}"></s>
+                        <s>200米</s>
+                    </lable>
+                    <lable text="{{ text }}" margin-top="6" font-size="15" font-color="333333"/>
+                    <template-slot slot-name = "content" />
+                    <dock-panel height="22" margin-top="12">
+                        <panel height="20">
+                            <image local-name="comment"/>
+                            <lable text="评论" font-size="12" font-color="666666" margin-left="25" margin-bottom="0.1"/>
+                            <image local-name="active" margin-left="80"/>
+                            <lable text="赞" font-size="12" font-color="666666" margin-left="105" margin-bottom="0.1"/>
+                        </panel>
+                        <lable text="{{ ' #'+tag+' ' }}" width="90" height="22" background-color="F2F6F9" font-size="14" font-color="5A6B92" text-align="1" dock-horizal="2" corner-radius="11"/>
+                    </dock-panel>
+                </stack-panel>
             </panel>
         </template>
         
-        <template t-name="button">
-            <panel width="100">
-                <lable text="{{ }}" margin="0 15 0.1 15"></lable>
-            </panel>
+        <template t-name="template1">
+            <template-ref t-name="base-template">
+                <lable text="我是模板1" font-size="14" slot-name = "content" font-color="red"/>
+            </template-ref>
+        </template>
+        
+        <template t-name="template2">
+            <template-ref t-name="base-template">
+                <lable text="我是模板2" font-size="14" slot-name = "content" font-color="red"/>
+            </template-ref>
         </template>
     </templates>
-    <panel margin-top="64">
-        <dock-panel height= "60" background-color="yellow">
-            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="1"/>
-            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
-        </dock-panel>
-        <list separator-inset = "0 15 0 15" margin-top="60">
-            <for data-path="listDatas">
-                <list-item item-height="45">
-                    <template-ref t-name="list-template"/>
-                </list-item>
-            </for>
-        </list>
-    </panel>
+    <list separator-inset = "0 15 0 15" margin-top="60">
+        <for data-path="listDatas">
+            <list-item id="{{ 'test' + type }}">
+                <template-ref t-name="{{ 'template' + type }}"/>
+            </list-item>
+        </for>
+    </list>
 </page>

@@ -11,31 +11,47 @@
 #import "GICNumberConverter.h"
 #import "GICColorConverter.h"
 #import "GICStringConverter.h"
+#import <objc/runtime.h>
 
 @implementation NSMutableAttributedString (GICLableSubString)
+
+-(void)setGic_attributDict:(NSMutableDictionary *)gic_attributDict{
+    objc_setAssociatedObject(self, "gic_attributDict", gic_attributDict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(NSMutableDictionary *)gic_attributDict{
+    return objc_getAssociatedObject(self, "gic_attributDict");
+}
 
 static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 +(void)initialize{
     propertyConverts = @{
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                             [str addAttribute:NSForegroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
+                             [str.gic_attributDict setValue:value forKey:NSForegroundColorAttributeName];
                          }],
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                             [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:[value floatValue]] range:NSMakeRange(0, str.length)];
+                             [str.gic_attributDict setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
                          }],
                          @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                             [str addAttribute:NSBackgroundColorAttributeName value:value range:NSMakeRange(0, str.length)];
+                             [str.gic_attributDict setValue:value forKey:NSBackgroundColorAttributeName];
                          }],
                          @"img-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
-                             
                              NSTextAttachment * textAttachment = [[NSTextAttachment alloc ] initWithData:nil ofType:nil];
                              textAttachment.image = [UIImage imageNamed:value];
                              NSAttributedString *attImage=[NSAttributedString attributedStringWithAttachment:textAttachment];
                              [str appendAttributedString:attImage];
+                         }],
+                         @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str deleteCharactersInRange:NSMakeRange(0, str.length)];
+                             [str appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+                             if(str.gic_attributDict){
+                                 [str setAttributes:str.gic_attributDict range:NSMakeRange(0, str.length)];
+                             }
                          }],
                          };
 }
@@ -50,11 +66,15 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
         self = [self init];
     }else{
         NSString *text = [xmlElement stringValueOrginal];
-        if([text length]==0){
-            text = [[xmlElement attributeForName:@"text"] stringValueOrginal];
-        }
         self = [self initWithString:text];
     }
+    self.gic_attributDict = [NSMutableDictionary dictionary];
     return self;
+}
+
+-(void)gic_elementParseCompelte{
+//    if(self.gic_attributDict){
+        [self setAttributes:self.gic_attributDict range:NSMakeRange(0, self.length)];
+//    }
 }
 @end

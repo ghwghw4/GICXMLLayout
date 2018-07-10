@@ -7,6 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICLable : UILabel<LayoutElementProtocol>
+@interface GICLable : UILabel<LayoutElementProtocol>{
+    GDataXMLElement *xmlDoc;
+    NSMutableArray<NSMutableAttributedString *> *attbuteStringArray;
+//    id<RACSubscriber> reloadStringSubscriber;
+}
 
 @end

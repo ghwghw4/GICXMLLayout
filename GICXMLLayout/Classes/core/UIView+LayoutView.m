@@ -55,6 +55,16 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                               ((UIView *)target).gic_ExtensionProperties.dockVerticalModel = [value integerValue];
                          }],
+                         @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).layer.cornerRadius = [value floatValue];
+                             ((UIView *)target).layer.masksToBounds = YES;
+                         }],
+                         @"boder-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).layer.borderColor = [(UIColor *)value CGColor];
+                         }],
+                         @"border-width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             ((UIView *)target).layer.borderWidth = [value floatValue];
+                         }],
                          };
 }
 

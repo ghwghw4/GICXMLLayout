@@ -10,4 +10,5 @@
 
 @interface NSMutableAttributedString (GICLableSubString)
 -(id)initWithXmlElement:(GDataXMLElement *)xmlElement;
+@property (nonatomic,strong)NSMutableDictionary *gic_attributDict;
 @end

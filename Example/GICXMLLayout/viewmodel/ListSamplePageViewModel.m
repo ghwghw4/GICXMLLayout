@@ -22,4 +22,7 @@
 -(void)onSelect3{
     [UtilsHelp navigateToGICPage:@"ListSample3"];
 }
+-(void)onSelect4{
+    [UtilsHelp navigateToGICPage:@"ListSample4"];
+}
 @end

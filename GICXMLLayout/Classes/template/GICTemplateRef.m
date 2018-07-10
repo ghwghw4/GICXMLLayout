@@ -37,10 +37,6 @@
     }
 }
 
--(void)gic_parseAttributes:(GDataXMLElement *)element{
-    self.templateName = [[element attributeForName:@"t-name"] stringValue];
-}
-
 -(void)gic_parseElement:(GDataXMLElement *)element{
     selfElement = element;
     [super gic_parseElement:element];

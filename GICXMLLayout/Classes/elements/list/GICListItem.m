@@ -60,8 +60,8 @@
             [self.delegate listItem:self cellHeightUpdate:cellHeight];
 
     }
-//    if(_cellHeight != cellHeight){
-//        _cellHeight = cellHeight;
+//    if(_cellAutoHeight != cellHeight){
+//        _cellAutoHeight = cellHeight;
 //        if(self.delegate)
 //            [self.delegate listItem:self cellHeightUpdate:cellHeight];
 //    }

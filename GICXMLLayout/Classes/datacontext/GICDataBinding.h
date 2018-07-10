@@ -34,7 +34,7 @@ typedef enum {
 -(void)updateDataSource:(id)dataSource;
 
 /**
- 强制刷绑定的表达式的value。也即是重新计算表达式
+ 强制刷绑定的表达式的value。也即是重新计算表达式。当数据源或者绑定的数据改变的时候会调用
  */
 -(void)refreshExpression;
 

@@ -165,7 +165,7 @@
     // convert attributes
     NSMutableDictionary<NSString *, NSString *> *attributeDict=[NSMutableDictionary dictionary];
     [element.attributes enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [attributeDict setValue:[obj stringValue] forKey:[obj name]];
+        [attributeDict setValue:[obj stringValueOrginal] forKey:[obj name]];
     }];
     
     
@@ -173,16 +173,16 @@
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];
         GICValueConverter *converter = [ps objectForKey:key];
-        if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
-            NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
-            GICDataBinding *binding = [GICDataBinding createBindingFromExpression:expression];
-            binding.valueConverter = converter;
-            binding.target = self;
-            binding.attributeName = key;
-            [self gic_addBinding:binding];
-            continue;
-        }
         if(converter){
+            if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
+                NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
+                GICDataBinding *binding = [GICDataBinding createBindingFromExpression:expression];
+                binding.valueConverter = converter;
+                binding.target = self;
+                binding.attributeName = key;
+                [self gic_addBinding:binding];
+                continue;
+            }
             converter.propertySetter(self, [converter convert:value]);
         }
     }

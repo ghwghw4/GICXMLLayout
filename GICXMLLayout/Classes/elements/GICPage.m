@@ -13,9 +13,8 @@
 #import "GICStackPanel.h"
 
 @interface GICPage (){
-    GICPanel *viewNode;
 }
-@property (nonatomic, strong) id customNode;
+@property (nonatomic, strong) ASDisplayNode *displayNode;
 @end
 
 @implementation GICPage
@@ -35,16 +34,23 @@
              };
 }
 
+#pragma mark - Lifecycle Methods
 -(id)initWithXmlElement:(GDataXMLElement *)element{
     [self gic_parseElement:element];
-    self =[super initWithNode:viewNode];
+    self =[self init];
+    return self;
+}
+- (instancetype)init
+{
+    self = [super initWithNode:_displayNode];
     return self;
 }
 
 -(void)gic_addSubElement:(id)subElement{
-    if([subElement isKindOfClass:[GICPanel class]]){
-        NSAssert(viewNode == nil, @"page 只允许添加一个子元素");
-        viewNode =subElement;
+    if([subElement isKindOfClass:[ASDisplayNode class]]){
+        NSAssert(_displayNode == nil, @"page 只允许添加一个子元素");
+        _displayNode =subElement;
+        [(ASDisplayNode *)subElement gic_ExtensionProperties].foreSuperElement = self;
     }else{
         [super gic_addSubElement:subElement];
     }
@@ -55,27 +61,7 @@
 }
 
 -(NSArray *)gic_subElements{
-    return self.view.subviews;
+    return @[_displayNode];
 }
-
-
-//
-//-(void)gic_elementParseCompelte{
-//    if(self->_viewModel){
-//        self.gic_DataContenxt = self->_viewModel;
-//        self->_viewModel = nil;
-//    }
-//
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

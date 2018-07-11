@@ -13,7 +13,7 @@
 #import "GICListHeader.h"
 #import "GICListFooter.h"
 
-@interface GICListView ()<UITableViewDelegate,UITableViewDataSource,GICListItemDelegate>{
+@interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
     BOOL t;
     id<RACSubscriber> reloadSubscriber;
@@ -31,10 +31,10 @@
                  [(GICListView *)target setDefualtItemHeight:[value floatValue]];
              }],
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICListView *)target setSeparatorStyle:[value integerValue]];
+                 [[(GICListView *)target view] setSeparatorStyle:[value integerValue]];
              }],
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [target setValue:value forKey:@"separatorInset"];
+                 [[(GICListView *)target view] setValue:value forKey:@"separatorInset"];
              }],
              };
 }
@@ -42,7 +42,6 @@
 -(id)init{
     self = [super init];
     listItems = [NSMutableArray array];
-    
     self.dataSource = self;
     self.delegate = self;
     // 创建一个0.2秒的节流阀
@@ -65,21 +64,19 @@
         [(GICListItem *)subElement setDelegate:self];
         [listItems addObject:subElement];
         [self->reloadSubscriber sendNext:nil];
-    }else if ([subElement isKindOfClass:[GICListHeader class]]){
-//        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 100)];
-//        self.tableHeaderView.backgroundColor = [UIColor yellowColor];
-        self.tableHeaderView = subElement;
-//        [self.tableHeaderView addSubview:subElement];
-//        [self.tableHeaderView gic_LayoutSubView:subElement];
-        [self.tableHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(self.mas_width);
-        }];
-    }else if ([subElement isKindOfClass:[GICListFooter class]]){
-        self.tableFooterView = subElement;
-        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(self.mas_width);
-        }];
-    }else{
+    }
+//    else if ([subElement isKindOfClass:[GICListHeader class]]){
+//        self.tableHeaderView = subElement;
+//        [self.tableHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(self.mas_width);
+//        }];
+//    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+//        self.tableFooterView = subElement;
+//        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(self.mas_width);
+//        }];
+//    }
+    else{
         [super gic_addSubElement:subElement];
     }
 }
@@ -93,35 +90,39 @@
     }
 }
 
-#pragma mark datasource
+#pragma mark - ASTableDelegate, ASTableDataSource
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section{
     return listItems.count;
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height = [[listItems objectAtIndex:indexPath.row] cellHeight];
-    if(height==0)
-        return self.defualtItemHeight;
-    return height;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    CGFloat height = [[listItems objectAtIndex:indexPath.row] cellHeight];
+//    if(height==0)
+//        return self.defualtItemHeight;
+//    return height;
+//}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (ASCellNode *)tableNode:(ASTableNode *)tableNode nodeForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [[listItems objectAtIndex:indexPath.row] getCell:self];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.5;
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    return 0.5;
+//}
+//
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    return [UIView new];
+//}
+
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//}
+-(void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableNode deselectRowAtIndexPath:indexPath animated:NO];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return [UIView new];
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
 
 -(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight{
     [reloadSubscriber sendNext:nil];

@@ -73,6 +73,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 }
 
 -(void)gic_elementParseCompelte{
+    [self gic_elementParseCompelte];
 //    if(self.gic_attributDict){
         [self setAttributes:self.gic_attributDict range:NSMakeRange(0, self.length)];
 //    }

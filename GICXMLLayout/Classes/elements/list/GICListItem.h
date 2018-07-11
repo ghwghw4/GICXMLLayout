@@ -17,11 +17,11 @@
 @end
 
 @interface GICListItem : NSObject<LayoutElementProtocol>{
-    CGFloat itemHeight;//lsit-item的固定高度
+//    CGFloat itemHeight;//lsit-item的固定高度
     
     CGFloat _cellAutoHeight;//自动计算的高度
 }
-@property (nonatomic,assign)CGFloat cellHeight;
+//@property (nonatomic,assign)CGFloat cellHeight;
 @property (nonatomic,strong,readonly)NSString *identifyString;
 
 @property (nonatomic) UITableViewCellSelectionStyle   selectionStyle;
@@ -30,5 +30,5 @@
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong)GICListItemSelectedEvent *itemSelectEvent;
 
--(UITableViewCell *)getCell:(UITableView *)target;
+-(ASCellNode *)getCell:(ASTableNode *)target;
 @end

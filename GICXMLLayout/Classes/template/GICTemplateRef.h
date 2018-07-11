@@ -17,7 +17,7 @@
     
     NSMutableDictionary<NSString *,NSString *> *tempConvertSlotMap;
     __weak id target;
-    GDataXMLElement *selfElement;
+    GDataXMLDocument *selfElement;
 }
 @property (nonatomic,strong)NSString *templateName;
 //-(NSObject *)parseTemplate:(GICTemplate *)t;

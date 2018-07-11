@@ -38,7 +38,7 @@
 }
 
 -(void)gic_parseElement:(GDataXMLElement *)element{
-    selfElement = element;
+    selfElement = [[GDataXMLDocument alloc] initWithXMLString:element.XMLString options:0 error:nil];
     [super gic_parseElement:element];
 }
 
@@ -62,36 +62,10 @@
     }
     
     GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];
-    for(GDataXMLNode *node in selfElement.attributes){
+    for(GDataXMLNode *node in selfElement.rootElement.attributes){
         [xmlDoc.rootElement addAttribute:node];
     }
     childElement = [GICXMLLayout createElement:[xmlDoc rootElement]];
-    
-//    if(self.gic_dataPathKey && !childElement.gic_dataPathKey){
-//        childElement.gic_dataPathKey = self.gic_dataPathKey;
-//    }
-//
-//    if([self gic_self_dataContext]){
-//         childElement.gic_DataContenxt = [self gic_self_dataContext];
-//    }
-//    childElement.gic_isAutoInheritDataModel = self.gic_isAutoInheritDataModel;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    // 自动继承事件
-//    if(self.gic_events.count>0){
-//        for(GICEvent *e in self.gic_events){
-//            [childElement gic_event_addEvent:e];
-//            [e attachTo:childElement];
-//        }
-//    }
     return childElement;
 }
 

@@ -25,6 +25,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     propertyConverts = @{
                          @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              ((GICLable *)target)->mutAttString = [[NSMutableAttributedString alloc] initWithString:value];
+                             [(GICLable *)target updateSting];
                          }],
                          @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [(GICLable *)target setMaximumNumberOfLines:[value integerValue]];
@@ -58,11 +59,15 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 }
 
 -(void)gic_elementParseCompelte{
-    [self->mutAttString setAttributes:self->attributes range:NSMakeRange(0, self->mutAttString.length)];
+    [super gic_elementParseCompelte];
+    [self updateSting];
+}
+
+-(void)updateSting{
+    if(attributes){
+        [self->mutAttString setAttributes:self->attributes range:NSMakeRange(0, self->mutAttString.length)];
+    }
     self.attributedText = self->mutAttString;
-    
-    self->mutAttString = nil;
-    self->attributes = nil;
 }
 //
 //-(void)gic_parseElement:(GDataXMLElement *)element{

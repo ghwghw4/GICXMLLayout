@@ -1,12 +1,12 @@
 <!--page 相当于 UIViewController-->
-<page title="GICXMLLayout" data-context="IndexPageViewModel">
+<page title="GICXMLLayout11" data-context="IndexPageViewModel">
     <!--list 相当于UITableView-->
-    <list separator-inset = "0 15 0 15">
+    <list separator-inset = "0 15 0 15" background-color="white">
         <for data-path="listDatas">
-            <list-item selection-style="2" item-height="45" event-item-select="onSelect:">
-                <panel background-color="white">
-                    <lable text="{{ name }}" margin="0 15 0.1 15"></lable>
-                </panel>
+            <list-item selection-style="2" event-item-select="onSelect:">
+                <inset-panel background-color="white" inset="15">
+                    <lable text="{{ name }}" font-size="15"></lable>
+                </inset-panel>
             </list-item>
         </for>
     </list>

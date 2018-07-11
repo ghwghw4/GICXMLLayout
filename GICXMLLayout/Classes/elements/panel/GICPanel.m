@@ -22,15 +22,15 @@
     return self;
 }
 
--(void)gic_addSubElement:(id)subElement{
-    if([subElement isKindOfClass:[ASDisplayNode class]]){
-        [self addSubnode:subElement];
-    }else{
-        [super gic_addSubElement:subElement];
-    }
-    
-//    self.style.spacingAfter
-}
+//-(void)gic_addSubElement:(id)subElement{
+//    if([subElement isKindOfClass:[ASDisplayNode class]]){
+//        [self addSubnode:subElement];
+//    }else{
+//        [super gic_addSubElement:subElement];
+//    }
+//    
+////    self.style.spacingAfter
+//}
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.subnodes];

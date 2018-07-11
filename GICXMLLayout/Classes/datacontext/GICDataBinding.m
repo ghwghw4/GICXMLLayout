@@ -75,7 +75,7 @@
         }
     }
     JSValue *value = [context evaluateScript:jsCode];
-    self.valueConverter.propertySetter(self.target,[value toString]);
+    self.valueConverter.propertySetter(self.target,[self.valueConverter convert:[value toString]]);
     
     if(!self.isInitBinding){
         if(self.bingdingMode == GICBingdingMode_Once){

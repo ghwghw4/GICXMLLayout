@@ -41,7 +41,7 @@
                                  node.style.width = ASDimensionMake(size.width);
                                  node.style.height = ASDimensionMake(size.height);
                              }],
-                             @"point":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             @"position":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  CGPoint point = [(NSValue *)value CGPointValue];
                                  ASDisplayNode *node =  (ASDisplayNode *)target;
                                  node.style.layoutPosition = point;

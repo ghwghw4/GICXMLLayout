@@ -8,21 +8,37 @@
 #import "GICListTableViewCell.h"
 #import "GICPanel.h"
 
+@implementation NSAttributedString (Additions)
+
++ (NSAttributedString *)attributedStringWithString:(NSString *)string fontSize:(CGFloat)size color:(nullable UIColor *)color
+{
+    if (string == nil) {
+        return nil;
+    }
+    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName: color ? : [UIColor blackColor],
+                                 NSFontAttributeName: [UIFont boldSystemFontOfSize:size]};
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+    [attributedString addAttributes:attributes range:NSMakeRange(0, string.length)];
+    
+    return attributedString;
+}
+
+@end
+
 @implementation GICListTableViewCell
 
 -(id)initWithListItem:(GICListItem *)listItem{
-    self =[self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:listItem.identifyString];
-//    _listItem = listItem;
-//    [self createContentView:listItem.xmlDoc];
+    self =[super init];
     self.listItem = listItem;
+    self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
 -(void)gic_addSubElement:(NSObject *)childElement{
     // 必须是panel才能被加入节点
-    if([childElement isKindOfClass:[GICPanel class]]){
-        [self.contentView addSubview:(GICPanel *)childElement];
-//        [self.contentView gic_LayoutSubView:(GICPanel *)childElement];
+    if([childElement isKindOfClass:[ASDisplayNode class]]){
+        [self addSubnode:(ASDisplayNode *)childElement];
     }else{
         [super gic_addSubElement:childElement];
     }
@@ -48,29 +64,35 @@
         [layoutSubviewsSignlDisposable dispose];
     }
     
-    if(self.contentView.subviews.count == 0){
+    if(self.subnodes.count == 0){
         [self createContentView:listItem.xmlDoc];
     }
-    
-    UIView *v = [self.contentView.subviews firstObject];
-    layoutSubviewsSignlDisposable = [[v rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(RACTuple * _Nullable x) {
-        CGFloat h = [v gic_calcuActualHeight];
-        listItem.cellHeight = h;
-    }];
+
     self.gic_isAutoInheritDataModel = NO;
     [self gic_updateDataContext:listItem.gic_DataContenxt];
 }
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    return self;
-}
+//-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    return self;
+//}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//    // Configure the view for the selected state
+//    if(self.listItem.itemSelectEvent && selected){
+//        [self.listItem.itemSelectEvent.eventSubject sendNext:@(selected)];
+//    }
+//}
+
+-(void)setSelected:(BOOL)selected{
+    [super setSelected:selected];
     if(self.listItem.itemSelectEvent && selected){
         [self.listItem.itemSelectEvent.eventSubject sendNext:@(selected)];
     }
 }
 
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
+{
+    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:self.subnodes.firstObject];
+}
 @end

@@ -39,7 +39,12 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    stackLayoutSpec.children = self.subnodes;
-    return stackLayoutSpec;
+    ASStackLayoutSpec *temp = [[ASStackLayoutSpec alloc] init];
+    temp.direction = stackLayoutSpec.direction;
+    temp.justifyContent = stackLayoutSpec.justifyContent;
+    temp.alignItems = stackLayoutSpec.alignItems;
+    temp.spacing = stackLayoutSpec.spacing;
+    temp.children = [self.subnodes copy];
+    return temp;
 }
 @end

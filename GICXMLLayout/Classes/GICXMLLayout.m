@@ -14,6 +14,7 @@
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
 #import "GICPage.h"
+#import "OverviewViewController.h"
 
 @implementation GICXMLLayout
 static NSMutableDictionary *registedElements = nil;
@@ -85,9 +86,12 @@ static NSMutableDictionary *registedElements = nil;
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         if([rootElement.name isEqualToString:@"page"]){
             [GICXMLParserContext resetInstance:xmlDocument];
-            GICPage *p =[[GICPage alloc] initWithXmlElement:rootElement];
+            GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
+//            OverviewViewController *vc =[[OverviewViewController alloc] initWithXmlElement:rootElement];
             [GICXMLParserContext parseCompelete];
-            compelte(p);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+                compelte(vc);
+//            });
         }else{
             compelte(nil);
         }

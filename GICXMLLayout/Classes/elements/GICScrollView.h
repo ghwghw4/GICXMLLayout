@@ -7,6 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICScrollView : UIScrollView<LayoutElementProtocol>
+@interface GICScrollView : ASScrollNode<LayoutElementProtocol>
 
 @end

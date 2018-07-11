@@ -9,35 +9,35 @@
 #import <Masonry/Masonry.h>
 #import "UIView+GICExtension.h"
 #import "GICPanel.h"
+#import "GICBoolConverter.h"
 
 @implementation GICScrollView
 +(NSString *)gic_elementName{
     return @"scroll-view";
 }
 
--(BOOL)gic_parseOnlyOneSubElement{
-    return YES;
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
+    return @{
+             @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [[(GICScrollView *)target view] setShowsVerticalScrollIndicator:[value boolValue]];
+             }],
+             @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [[(GICScrollView *)target view] setShowsHorizontalScrollIndicator:[value boolValue]];
+             }],
+             };;
 }
 
--(void)gic_addSubElement:(id)subElement{
-    NSAssert([subElement isKindOfClass:[GICPanel class]], @"scroll-view 的子元素必须是panel及其子类");
-    if([subElement isKindOfClass:[GICPanel class]]){
-        [super gic_addSubElement:subElement];
-    }
+-(id)init{
+    self =[super init];
+    self.automaticallyManagesSubnodes = YES;
+    self.automaticallyManagesContentSize = YES;
+    return self;
 }
 
--(void)layoutSubviews{
-    [super layoutSubviews];
-    UIView *v =[self.subviews firstObject];
-    if(v){
-        UIEdgeInsets margin = v.gic_ExtensionProperties.margin;
-        [v mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(margin.left);
-            make.top.mas_offset(margin.top);
-            make.bottom.mas_offset(-margin.bottom);
-            make.width.mas_equalTo(self.frame.size.width);
-        }];
-    }
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    ASStackLayoutSpec *stackLayoutSpec = [ASStackLayoutSpec verticalStackLayoutSpec];
+    stackLayoutSpec.children = self.subnodes;
+    return stackLayoutSpec;
 }
 
 

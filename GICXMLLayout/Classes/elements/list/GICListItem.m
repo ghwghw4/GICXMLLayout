@@ -24,10 +24,10 @@
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return @{
-             @"id":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 GICListItem *item = (GICListItem *)target;
-                 item->_identifyString = value;
-             }],
+//             @"id":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 GICListItem *item = (GICListItem *)target;
+//                 item->_identifyString = value;
+//             }],
              @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [target setValue:value forKey:@"selectionStyle"];
              }],
@@ -36,10 +36,10 @@
                  item.itemSelectEvent = [[GICListItemSelectedEvent alloc] initWithExpresion:value];
                  [item.itemSelectEvent attachTo:target];
              }],
-             @"item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 GICListItem *item = (GICListItem *)target;
-                 item->itemHeight = [value floatValue];
-             }],
+//             @"item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 GICListItem *item = (GICListItem *)target;
+//                 item->itemHeight = [value floatValue];
+//             }],
              };
 }
 
@@ -47,25 +47,25 @@
     return YES;
 }
 
--(CGFloat)cellHeight{
-    if(self->itemHeight>0)
-        return self->itemHeight;
-    return _cellAutoHeight;
-}
+//-(CGFloat)cellHeight{
+//    if(self->itemHeight>0)
+//        return self->itemHeight;
+//    return _cellAutoHeight;
+//}
 
--(void)setCellHeight:(CGFloat)cellHeight{
-    if(cellHeight>_cellAutoHeight){
-        _cellAutoHeight = cellHeight;
-        if(self.delegate)
-            [self.delegate listItem:self cellHeightUpdate:cellHeight];
-
-    }
-//    if(_cellAutoHeight != cellHeight){
+//-(void)setCellHeight:(CGFloat)cellHeight{
+//    if(cellHeight>_cellAutoHeight){
 //        _cellAutoHeight = cellHeight;
 //        if(self.delegate)
 //            [self.delegate listItem:self cellHeightUpdate:cellHeight];
+//
 //    }
-}
+////    if(_cellAutoHeight != cellHeight){
+////        _cellAutoHeight = cellHeight;
+////        if(self.delegate)
+////            [self.delegate listItem:self cellHeightUpdate:cellHeight];
+////    }
+//}
 
 -(NSObject *)gic_getSuperElement{
     return (NSObject *)self.delegate;
@@ -77,13 +77,13 @@
     }
 }
 
--(UITableViewCell *)getCell:(UITableView *)target{
-    GICListTableViewCell *cell = [target dequeueReusableCellWithIdentifier:self.identifyString];
-    if(cell == nil){
-         cell = [[GICListTableViewCell alloc] initWithListItem:self];
-    }else{
-        cell.listItem = self;
-    }
+-(ASCellNode *)getCell:(UITableView *)target{
+    GICListTableViewCell *cell = [[GICListTableViewCell alloc] initWithListItem:self];
+//    if(cell == nil){
+//         cell = [[GICListTableViewCell alloc] initWithListItem:self];
+//    }else{
+//        cell.listItem = self;
+//    }
     return cell;
 }
 @end

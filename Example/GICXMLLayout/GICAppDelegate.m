@@ -15,8 +15,7 @@
 {
     [GICXMLLayout regiterAllElements];
     // Override point for customization after application launch.
-//    UIViewController *vc=[[UIViewController alloc] init];
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template5.xml"]];
     [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
         UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
         self.window.rootViewController =nav;

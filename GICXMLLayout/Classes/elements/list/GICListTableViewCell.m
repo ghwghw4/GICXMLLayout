@@ -22,7 +22,7 @@
     // 必须是panel才能被加入节点
     if([childElement isKindOfClass:[GICPanel class]]){
         [self.contentView addSubview:(GICPanel *)childElement];
-        [self.contentView gic_LayoutSubView:(GICPanel *)childElement];
+//        [self.contentView gic_LayoutSubView:(GICPanel *)childElement];
     }else{
         [super gic_addSubElement:childElement];
     }

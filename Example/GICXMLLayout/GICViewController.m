@@ -13,7 +13,11 @@
 #import "IndexPageViewModel.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
-@interface GICViewController ()
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+
+@interface GICViewController (){
+      ASTextNode *_node;
+}
 
 @end
 
@@ -34,11 +38,24 @@
         [temp3Data addObject:@{@"name":[NSString stringWithFormat:@"hello word 222 ::: %@",@(i)],@"loc1":@"西湖",@"loc2":@"青园小区哈哈",@"clickCount":@(20),@"url":@"http://ppt.downhot.com/d/file/p/2014/07/24/afd8b2135086cc9f2787d114bd73005a.png",@"id":@(2)}];
     }
     
+    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:12.0f] };
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"1\n2\n3\n4\n5" attributes:attrs];
     
-	// Do any additional setup after loading the view, typically from a nib.
-//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
+    _node = [[ASTextNode alloc] init];
+    _node.maximumNumberOfLines = 3;
+    _node.backgroundColor = [UIColor lightGrayColor];
+    _node.attributedText = string;
+    _node.frame = CGRectMake(70, 400, 40, 100);
+    [self.view addSubnode:_node];
+    
+//    // Do any additional setup after loading the view, typically from a nib.
+//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template5.xml"]];
+////    [GICXMLLayout parseLayoutView:xmlData toView:self.view withParseCompelete:^(UIView *view) {
+////        view.gic_DataContenxt = [IndexPageViewModel new];
+////    }];
+//    
 //    [GICXMLLayout parseLayoutView:xmlData toView:self.view withParseCompelete:^(UIView *view) {
-//        view.gic_DataContenxt = [IndexPageViewModel new];
+//        
 //    }];
   
     

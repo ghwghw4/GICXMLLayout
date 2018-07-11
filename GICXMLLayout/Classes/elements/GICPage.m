@@ -9,8 +9,13 @@
 #import "GICStringConverter.h"
 #import "UIView+GICExtension.h"
 #import "GICColorConverter.h"
-@interface GICPage ()
+#import "GICPanel.h"
+#import "GICStackPanel.h"
 
+@interface GICPage (){
+    GICPanel *viewNode;
+}
+@property (nonatomic, strong) id customNode;
 @end
 
 @implementation GICPage
@@ -24,19 +29,22 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
-             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [((GICPage *)target).view setBackgroundColor:value];
-             }],
+//             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 [((GICPage *)target)->viewNode setBackgroundColor:value];
+//             }],
              };
 }
 
--(void)gic_addSubElement:(NSObject *)subElement{
-    if([subElement isKindOfClass:[UIView class]]){
-        NSAssert(self.view.subviews.count==0, @"page 只允许添加一个子元素");
-        [self.view addSubview:(UIView *)subElement];
-        [self.view gic_LayoutSubView:(UIView *)subElement];
-        
-        [(UIView *)subElement gic_ExtensionProperties].foreSuperElement = self;
+-(id)initWithXmlElement:(GDataXMLElement *)element{
+    [self gic_parseElement:element];
+    self =[super initWithNode:viewNode];
+    return self;
+}
+
+-(void)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[GICPanel class]]){
+        NSAssert(viewNode == nil, @"page 只允许添加一个子元素");
+        viewNode =subElement;
     }else{
         [super gic_addSubElement:subElement];
     }
@@ -50,10 +58,6 @@
     return self.view.subviews;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-}
 
 //
 //-(void)gic_elementParseCompelte{
@@ -63,11 +67,6 @@
 //    }
 //
 //}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation

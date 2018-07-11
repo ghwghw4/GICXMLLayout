@@ -44,6 +44,7 @@ TODO: Add long description of the pod here.
     s.dependency 'SDWebImage'
     s.dependency 'GICJsonParser'
     s.dependency 'ReactiveObjC'
+    s.dependency 'Texture'
     s.frameworks = 'JavaScriptCore'
     s.libraries = 'xml2'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }

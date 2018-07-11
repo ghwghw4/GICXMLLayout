@@ -12,6 +12,8 @@
  Panle的作用其实就是类似于UIView，也类似于Hmtl中的canvas布局。
  所有的元素都是绝对布局。
  */
-@interface GICPanel : UIView<LayoutElementProtocol>
+@interface GICPanel : ASDisplayNode<LayoutElementProtocol>
+@property (nonatomic,strong,readonly)ASLayoutSpec *layoutSpec;
 //-(void)layoutView:(UIView *)view;
+-(id)initWithLayoutSpec:(ASLayoutSpec *)layoutSpec;
 @end

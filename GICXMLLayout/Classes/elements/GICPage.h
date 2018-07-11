@@ -7,8 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICPage : UIViewController<LayoutElementProtocol>{
+@interface GICPage : ASViewController<LayoutElementProtocol>{
 //    id _viewModel;
 }
 
+-(id)initWithXmlElement:(GDataXMLElement *)element;
 @end

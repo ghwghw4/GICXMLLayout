@@ -9,8 +9,9 @@
 #import "NSObject+LayoutElement.h"
 
 @class GDataXMLElement;
+@class ASDisplayNode;
 
-@interface UIView (LayoutView)<LayoutElementProtocol>
+@interface ASDisplayNode (LayoutView)<LayoutElementProtocol>
 
 /**
  通用的子元素布局

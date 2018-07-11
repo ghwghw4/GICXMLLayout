@@ -35,6 +35,9 @@
     ],
     "ReactiveObjC": [
 
+    ],
+    "Texture": [
+
     ]
   },
   "frameworks": "JavaScriptCore",

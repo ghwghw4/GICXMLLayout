@@ -8,12 +8,12 @@
 #import "GICXMLLayout.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import "UIView+LayoutView.h"
 #import <Masonry/Masonry.h>
 #import "UIView+GICExtension.h"
 #import "GICXMLParserContext.h"
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
+#import "GICPage.h"
 
 @implementation GICXMLLayout
 static NSMutableDictionary *registedElements = nil;
@@ -66,7 +66,7 @@ static NSMutableDictionary *registedElements = nil;
         [GICXMLParserContext resetInstance:xmlDocument];
         UIView *p = (UIView *)[self createElement:rootElement];
         [superView addSubview:p];
-        [superView gic_LayoutSubView:p];
+//        [superView gic_LayoutSubView:p];
         [GICXMLParserContext parseCompelete];
         compelte(p);
     });
@@ -85,7 +85,7 @@ static NSMutableDictionary *registedElements = nil;
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         if([rootElement.name isEqualToString:@"page"]){
             [GICXMLParserContext resetInstance:xmlDocument];
-            UIViewController *p = (UIViewController *)[self createElement:rootElement];
+            GICPage *p =[[GICPage alloc] initWithXmlElement:rootElement];
             [GICXMLParserContext parseCompelete];
             compelte(p);
         }else{

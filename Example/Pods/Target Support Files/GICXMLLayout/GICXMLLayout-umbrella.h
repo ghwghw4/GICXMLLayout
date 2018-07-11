@@ -10,13 +10,13 @@
 #endif
 #endif
 
+#import "ASDisplayNode+LayoutView.h"
 #import "GICNSObjectExtensionProperties.h"
 #import "GICViewExtensionProperties.h"
 #import "GICXMLParserContext.h"
 #import "LayoutElementProtocol.h"
 #import "NSObject+LayoutElement.h"
 #import "UIView+GICExtension.h"
-#import "UIView+LayoutView.h"
 #import "GICDataBinding.h"
 #import "NSObject+GICDataBinding.h"
 #import "NSObject+GICDataContext.h"
@@ -42,7 +42,7 @@
 #import "GICEvent.h"
 #import "GICEventInfo.h"
 #import "GICTapEvent.h"
-#import "UIView+GICEvent.h"
+#import "NSObject+GICEvent.h"
 #import "GICXMLLayout.h"
 #import "GICTemplate.h"
 #import "GICTemplateRef.h"

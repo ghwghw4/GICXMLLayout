@@ -16,21 +16,29 @@
     return @"panel";
 }
 
-//-(id)init{
-//    self = [super init];
-//    return self;
-//}
-
--(id)initWithLayoutSpec:(ASLayoutSpec *)layoutSpec{
+-(id)init{
     self = [super init];
-    self.automaticallyManagesSubnodes = YES;
-    _layoutSpec = layoutSpec;
+     self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    return self.layoutSpec;
+-(void)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[ASDisplayNode class]]){
+        [self addSubnode:subElement];
+    }else{
+        [super gic_addSubElement:subElement];
+    }
+    
+//    self.style.spacingAfter
 }
+
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.subnodes];
+    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
+    return absoluteSpec;
+}
+
+
 
 //-(CGFloat)gic_calcuActualHeight{
 //    [self setNeedsLayout];//必须添加这样代码，确保在计算子元素高度的时候，子元素已经正确计算，但是这样一来肯定会有性能影响。

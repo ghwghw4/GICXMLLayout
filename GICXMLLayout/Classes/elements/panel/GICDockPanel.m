@@ -7,62 +7,55 @@
 
 #import "GICDockPanel.h"
 #import "GICNumberConverter.h"
+#import "ASDisplayNode+GICExtension.h"
 
 @implementation GICDockPanel
 +(NSString *)gic_elementName{
     return @"dock-panel";
 }
-//
-//-(void)gic_LayoutSubView:(UIView *)view{
-//    UIEdgeInsets margin = view.gic_ExtensionProperties.margin;
-//    GICViewExtensionProperties *viewExtensionProperties = view.gic_ExtensionProperties;
-//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        if(viewExtensionProperties.width == 0){
-//            make.left.right.mas_offset(0);
-//        }else{
-//            make.width.mas_equalTo(viewExtensionProperties.width);
-//            switch (viewExtensionProperties.dockHorizalModel) {
-//                case GICDockPanelHorizalModel_Left:
-//                     make.left.mas_offset(0);
-//                    break;
-//                case GICDockPanelHorizalModel_Center:
-//                    make.centerX.mas_equalTo(self.mas_centerX);
-//                    break;
-//                case GICDockPanelHorizalModel_Right:
-//                    make.right.mas_offset(0);
-//                    break;
-//    
-//                default:
-//                    break;
-//            }
-//        }
-//        
-//        if(viewExtensionProperties.height == 0){
-//            make.top.bottom.mas_offset(0);
-//        }else{
-//            make.height.mas_equalTo(viewExtensionProperties.height);
-//            switch (viewExtensionProperties.dockVerticalModel) {
-//                case GICDockPanelVerticalModel_Top:
-//                    make.top.mas_offset(0);
-//                    break;
-//                case GICDockPanelVerticalModel_Center:
-//                    make.centerY.mas_equalTo(self.mas_centerY);
-//                    break;
-//                case GICDockPanelVerticalModel_Bottom:
-//                    make.bottom.mas_offset(0);
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-//        }
-//    }];
-//}
-//
-//
-//-(CGFloat)gic_calcuActualHeight{
-//    CGFloat height = [super gic_calcuActualHeight];
-//    
-//    return height;
+
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    
+    NSMutableArray *children= [NSMutableArray array];
+    for(ASDisplayNode *node in self.subnodes){
+        GICDisplayNodeExtensionProperties *properties = node.gic_ExtensionProperties;
+        ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
+        switch (properties.dockHorizalModel) {
+            case GICDockPanelHorizalModel_Left:
+                hor = ASRelativeLayoutSpecPositionStart;
+                break;
+            case GICDockPanelHorizalModel_Center:
+                hor = ASRelativeLayoutSpecPositionCenter;
+                break;
+            case GICDockPanelHorizalModel_Right:
+                hor = ASRelativeLayoutSpecPositionEnd;
+                break;
+        }
+        
+        ASRelativeLayoutSpecPosition ver = ASRelativeLayoutSpecPositionStart;
+        switch (properties.dockVerticalModel) {
+            case GICDockPanelVerticalModel_Top:
+                ver = ASRelativeLayoutSpecPositionStart;
+                break;
+            case GICDockPanelVerticalModel_Center:
+                ver = ASRelativeLayoutSpecPositionCenter;
+                break;
+            case GICDockPanelVerticalModel_Bottom:
+                ver = ASRelativeLayoutSpecPositionEnd;
+                break;
+        }
+        
+        ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:hor verticalPosition:ver sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:node];
+        [children addObject:relativeLayout];
+    }
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
+    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
+    return absoluteSpec;
+}
+
+
+//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+//    ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:ASRelativeLayoutSpecPositionEnd verticalPosition:ASRelativeLayoutSpecPositionStart sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:self.childNodeA];
+//    return relativeLayout;
 //}
 @end

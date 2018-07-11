@@ -11,6 +11,11 @@
 #import "GICEdgeConverter.h"
 #import "GICStringConverter.h"
 #import "GICStringConverter.h"
+#import "GICSizeConverter.h"
+#import "CGPointConverter.h"
+
+
+#import "ASDisplayNode+GICExtension.h"
 
 
 @implementation ASDisplayNodeUtiles
@@ -22,32 +27,46 @@
                              @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  [(ASDisplayNode *)target setBackgroundColor:value];
                              }],
-                             @"height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.height = [value floatValue];
+                             @"height":[[GICNumberConverter alloc] initWithPropertySetter:^(id target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.height = ASDimensionMake([value floatValue]);
                              }],
                              @"width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.width = [value floatValue];
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.width = ASDimensionMake([value floatValue]);
                              }],
-                             @"margin":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             [((UIView *)target).gic_ExtensionProperties setValue:value forKey:@"margin"];
+                             @"size":[[GICSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 CGSize size = [(NSValue *)value CGSizeValue];
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.width = ASDimensionMake(size.width);
+                                 node.style.height = ASDimensionMake(size.height);
                              }],
-                             @"margin-top":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.marginTop = [value floatValue];
+                             @"point":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 CGPoint point = [(NSValue *)value CGPointValue];
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.layoutPosition = point;
                              }],
-                             @"margin-left":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.marginLeft = [value floatValue];
+                             @"max-width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.maxWidth = ASDimensionMake([value floatValue]);
                              }],
-                             @"margin-right":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.marginRight = [value floatValue];
+                             @"max-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.maxHeight = ASDimensionMake([value floatValue]);
                              }],
-                             @"margin-bottom":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.marginBottom = [value floatValue];
+                             @"space-before":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.spacingBefore = [value floatValue];
+                             }],
+                             @"space-after":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.spacingAfter = [value floatValue];
                              }],
                              @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                             ((UIView *)target).gic_ExtensionProperties.dockHorizalModel = [value integerValue];
+                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockHorizalModel = [value integerValue];
                              }],
                              @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 //                              ((UIView *)target).gic_ExtensionProperties.dockVerticalModel = [value integerValue];
+                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockVerticalModel = [value integerValue];
                              }],
                              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  //                             ((UIView *)target).layer.cornerRadius = [value floatValue];

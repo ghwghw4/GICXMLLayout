@@ -9,15 +9,15 @@
 #import "GICNSObjectExtensionProperties.h"
 
 typedef enum {
-    GICDockPanelHorizalModel_Center,
-    GICDockPanelHorizalModel_Left,
-    GICDockPanelHorizalModel_Right
+    GICDockPanelHorizalModel_Left = 0,
+    GICDockPanelHorizalModel_Center = 1,
+    GICDockPanelHorizalModel_Right = 2
 }GICDockPanelHorizalModel;
 
 typedef enum {
-    GICDockPanelVerticalModel_Center,
-    GICDockPanelVerticalModel_Top,
-    GICDockPanelVerticalModel_Bottom
+    GICDockPanelVerticalModel_Top = 0,
+    GICDockPanelVerticalModel_Center = 1,
+    GICDockPanelVerticalModel_Bottom = 2
 }GICDockPanelVerticalModel;
 
 @interface GICViewExtensionProperties : GICNSObjectExtensionProperties

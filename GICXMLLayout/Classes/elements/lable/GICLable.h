@@ -7,10 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICLable : UILabel<LayoutElementProtocol>{
+@interface GICLable : ASTextNode2<LayoutElementProtocol>{
     GDataXMLElement *xmlDoc;
     NSMutableArray<NSMutableAttributedString *> *attbuteStringArray;
-//    id<RACSubscriber> reloadStringSubscriber;
+    NSMutableDictionary<NSString *,id> *attributes;
+    NSMutableAttributedString *mutAttString;
+    NSMutableParagraphStyle *paragraphStyle;
 }
 
 @end

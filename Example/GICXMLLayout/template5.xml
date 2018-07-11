@@ -1,6 +1,29 @@
 
 <page title="GICXMLLayout" >
-   <stack-panel background-color="red">
-       
-   </stack-panel>
+    <inset-panel background-color="white" inset="64 10 10 10">
+        <stack-panel background-color="yellow">
+            <lable slot-name = "haha" text="基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑" font-color="666666" font-size="20" lines="3"/>
+            <lable slot-name = "haha" text="基本框架不亢不卑2" text-align="1" font-color="666666" font-size="12" space-before="20"/>
+            <lable slot-name = "haha" text="基本框架不亢不卑3" text-align="2"  font-color="666666" font-size="12"/>
+            <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>
+            <panel height="100" background-color="black" space-before="20">
+               <dock-panel background-color="red" width="100" height="100">
+               </dock-panel>
+               
+               <stack-panel space="20" is-horizon="1" background-color="blue" justify-content="3" align-items="1">
+                   <panel background-color="yellow" size="50" dock-vertical="1" dock-horizal="1">
+                       
+                   </panel>
+                   
+                   <panel background-color="yellow" size="50" dock-vertical="0" dock-horizal="0">
+                       
+                   </panel>
+                   
+                   <panel background-color="yellow" size="50" dock-vertical="2" dock-horizal="2">
+                       
+                   </panel>
+               </stack-panel>
+            </panel>
+        </stack-panel>
+    </inset-panel>
 </page>

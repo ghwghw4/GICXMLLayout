@@ -13,7 +13,7 @@
  所有的元素都是绝对布局。
  */
 @interface GICPanel : ASDisplayNode<LayoutElementProtocol>
-@property (nonatomic,strong,readonly)ASLayoutSpec *layoutSpec;
+//@property (nonatomic,strong,readonly)ASLayoutSpec *layoutSpec;
 //-(void)layoutView:(UIView *)view;
--(id)initWithLayoutSpec:(ASLayoutSpec *)layoutSpec;
+//-(id)initWithLayoutSpec:(ASLayoutSpec *)layoutSpec;
 @end

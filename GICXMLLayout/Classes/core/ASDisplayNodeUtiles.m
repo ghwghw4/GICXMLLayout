@@ -62,11 +62,19 @@
                                  ASDisplayNode *node =  (ASDisplayNode *)target;
                                  node.style.spacingAfter = [value floatValue];
                              }],
+                             @"flex-grow":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.flexGrow = [value integerValue];
+                             }],
+                             @"flex-shrink":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                 ASDisplayNode *node =  (ASDisplayNode *)target;
+                                 node.style.flexShrink = [value integerValue];
+                             }],
                              @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockHorizalModel = [value integerValue];
+                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
                              }],
                              @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockVerticalModel = [value integerValue];
+                                 ((ASDisplayNode *)target).gic_ExtensionProperties.dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
                              }],
                              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  //                             ((UIView *)target).layer.cornerRadius = [value floatValue];

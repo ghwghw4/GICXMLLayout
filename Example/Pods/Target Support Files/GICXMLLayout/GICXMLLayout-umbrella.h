@@ -10,8 +10,9 @@
 #endif
 #endif
 
+#import "GICBehavior.h"
+#import "NSObject+GICBehavior.h"
 #import "ASDisplayNode+GICExtension.h"
-#import "GICDisplayNodeExtensionProperties.h"
 #import "GICElementLayoutStyleProtocl.h"
 #import "GICLayoutUtils.h"
 #import "GICNSObjectExtensionProperties.h"

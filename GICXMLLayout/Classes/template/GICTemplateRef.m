@@ -9,7 +9,6 @@
 #import "GICStringConverter.h"
 #import "NSObject+GICTemplate.h"
 #import "NSObject+GICDataContext.h"
-#import "NSObject+GICEvent.h"
 
 @implementation GICTemplateRef
 +(NSString *)gic_elementName{

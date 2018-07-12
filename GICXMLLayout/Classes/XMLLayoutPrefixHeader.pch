@@ -19,6 +19,7 @@
 #import "GDataXMLNode.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICXMLParserContext.h"
+#import "NSObject+GICBehavior.h"
 #import "ASDisplayNode+GICExtension.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

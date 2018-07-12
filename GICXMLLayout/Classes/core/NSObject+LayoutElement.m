@@ -14,7 +14,6 @@
 #import "NSObject+GICTemplate.h"
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
-#import "NSObject+GICEvent.h"
 #import "GICTapEvent.h"
 
 @implementation NSObject (LayoutElement)
@@ -112,7 +111,7 @@
                              }],
                              @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
-                                 [target gic_event_addEvent:e];
+                                 [target gic_addBehavior:e];
                              }],
                              };
     });

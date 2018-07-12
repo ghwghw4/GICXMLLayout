@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "NSObject+GICDirective.h"
 
 
 /**
@@ -92,7 +91,7 @@
         [b updateDataSource:superDataContenxt];
     }
     
-    for(GICDirective *d in self.gic_directives){
+    for(GICBehavior *d in self.gic_Behaviors.behaviors){
         [d gic_updateDataContext:superDataContenxt];
     }
     

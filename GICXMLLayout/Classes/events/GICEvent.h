@@ -13,11 +13,15 @@
 }
 @property (nonatomic,weak)id target;
 @property (nonatomic,readonly,strong)RACSubject *eventSubject;
--(id)initWithExpresion:(NSString *)expresion;
-/**
- 创建事件信号，由子类实现
+@property (nonatomic,assign,readonly)BOOL onlyExistOne;//是否一个元素上面只能存在一个。默认yes
 
- @return <#return value description#>
- */
--(RACSignal *)createEventSignal;
+
+-(id)initWithExpresion:(NSString *)expresion;
+///**
+// 创建事件信号，由子类实现
+//
+// @return <#return value description#>
+// */
+//-(RACSignal *)createEventSignal;
+//-(void)createEventSignal:(void (^)(RACSignal *signal))handel;
 @end

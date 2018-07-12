@@ -12,8 +12,6 @@
 
 @protocol GICListItemDelegate
 
--(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight;
-
 @end
 
 @interface GICListItem : NSObject<LayoutElementProtocol>{
@@ -24,7 +22,7 @@
 //@property (nonatomic,assign)CGFloat cellHeight;
 @property (nonatomic,strong,readonly)NSString *identifyString;
 
-@property (nonatomic) UITableViewCellSelectionStyle   selectionStyle;
+@property (nonatomic,readonly) NSMutableDictionary *cellStyle;
 
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;

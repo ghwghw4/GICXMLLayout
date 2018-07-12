@@ -10,30 +10,11 @@
 #import "GICStringConverter.h"
 #import "NSObject+GICDataBinding.h"
 #import <objc/runtime.h>
-#import "NSObject+GICDirective.h"
 #import "NSObject+GICTemplate.h"
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
-#import "GICTapEvent.h"
 
 @implementation NSObject (LayoutElement)
-
-//-(void)setGic_name:(NSString *)gic_name{
-//    objc_setAssociatedObject(self, "gic_name", gic_name ,OBJC_ASSOCIATION_RETAIN);
-//}
-//
-//-(NSString *)gic_name{
-//    return objc_getAssociatedObject(self, "gic_name");
-//}
-//
-//-(void)setGic_tempDataContext:(id)gic_tempDataContext{
-//    objc_setAssociatedObject(self, "gic_tempDataContext", gic_tempDataContext ,OBJC_ASSOCIATION_RETAIN);
-//}
-//
-//-(id)gic_tempDataContext{
-//    return objc_getAssociatedObject(self, "gic_tempDataContext");
-//}
-
 
 -(GICNSObjectExtensionProperties *)gic_ExtensionProperties{
     GICNSObjectExtensionProperties *v =objc_getAssociatedObject(self, "gic_ExtensionProperties");
@@ -108,11 +89,7 @@
                              }],
                              @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                  target.gic_ExtensionProperties.tempDataContext = value;
-                             }],
-                             @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
-                                 [target gic_addBehavior:e];
-                             }],
+                             }]
                              };
     });
     return propertyConverts;
@@ -128,8 +105,8 @@
 }
 
 -(void)gic_addSubElement:(NSObject *)subElement{
-    if ([subElement isKindOfClass:[GICDirective class]]){//如果是指令，那么交给指令自己执行
-        [self gic_addDirective:(GICDirective *)subElement];
+    if ([subElement isKindOfClass:[GICBehavior class]]){//如果是指令，那么交给指令自己执行
+        [self gic_addBehavior:(GICBehavior *)subElement];
     }else if ([subElement isKindOfClass:[GICTemplates class]]){
         self.gic_templates = (GICTemplates *)subElement;
         // 将模板加入临时上下文中
@@ -140,8 +117,11 @@
         if(![tr gic_self_dataContext]){
            tr.gic_DataContenxt = self.gic_DataContenxt;
         }
-//        tr.gic_ExtensionProperties.foreSuperElement = self;
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
+    }else if ([subElement isKindOfClass:[GICBehaviors class]]){
+        for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
+            [self gic_addBehavior:b];
+        }
     }
 }
 

@@ -33,17 +33,21 @@
     return self;
 }
 
+-(BOOL)isOnlyExistOne{
+    return YES;
+}
+
 -(void)attachTo:(id)target{
     if(self.target){
         // 先取消绑定
         [self  unAttach];
     }
     self.target = target;
-    @weakify(self)
-    signlDisposable = [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
-        [self.eventSubject sendNext:x];
-    }];
+//    @weakify(self)
+//    signlDisposable = [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
+//        @strongify(self)
+//        [self.eventSubject sendNext:x];
+//    }];
 }
 
 -(void)unAttach{
@@ -52,7 +56,7 @@
     }
 }
 
--(RACSignal *)createEventSignal{
-    return nil;
-}
+//-(RACSignal *)createEventSignal{
+//    return nil;
+//}
 @end

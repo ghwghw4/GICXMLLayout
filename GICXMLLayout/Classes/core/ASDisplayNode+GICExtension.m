@@ -10,6 +10,8 @@
 #import "GICNumberConverter.h"
 #import "GICLayoutUtils.h"
 #import <objc/runtime.h>
+#import "GICStringConverter.h"
+#import "GICTapEvent.h"
 
 @implementation ASDisplayNode (GICExtension)
 +(NSString *)gic_elementName{
@@ -28,18 +30,22 @@
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     NSMutableDictionary *mutDict=  [@{
                                       @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-        [(ASDisplayNode *)target setBackgroundColor:value];
-    }],
+                                            [(ASDisplayNode *)target setBackgroundColor:value];
+                                        }],
                                       @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-        ASDisplayNode *node = (ASDisplayNode *)target;
-        [node gic_safeView:^(UIView *view) {
-            view.layer.cornerRadius = [value floatValue];
-        }];
-//        node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
-//            CGRect bounds = CGContextGetClipBoundingBox(context);
-//            [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
-//        };
-    }],
+                                            ASDisplayNode *node = (ASDisplayNode *)target;
+//                                            [node gic_safeView:^(UIView *view) {
+//                                                view.layer.cornerRadius = [value floatValue];
+//                                            }];
+                                            node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
+                                                CGRect bounds = CGContextGetClipBoundingBox(context);
+                                                [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
+                                            };
+                                        }],
+                                      @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                            GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
+                                            [target gic_event_addEvent:e];
+                                        }],
                                       
                                       } mutableCopy];
     [mutDict addEntriesFromDictionary:[GICLayoutUtils commonPropertyConverters]];

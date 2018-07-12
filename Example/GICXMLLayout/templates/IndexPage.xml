@@ -1,7 +1,7 @@
 <!--page 相当于 UIViewController-->
 <page title="GICXMLLayout11" data-context="IndexPageViewModel">
     <!--list 相当于UITableView-->
-    <list separator-inset = "0 15 0 15" background-color="white">
+    <list background-color="white" separator-style="1">
         <for data-path="listDatas">
             <list-item selection-style="2" event-item-select="onSelect:">
                 <inset-panel background-color="white" inset="15">

@@ -2,27 +2,33 @@
     <templates>
         <template t-name="list-template">
             <panel>
-                <lable text="{{  }}" margin="0 15 0.1 15"></lable>
+                <lable text="{{  }}"></lable>
             </panel>
         </template>
         
         <template t-name="button">
-            <panel width="100">
-                <lable text="{{ }}" margin="0 15 0.1 15"></lable>
-            </panel>
+            <view>
+                <panel>
+                    <lable text="{{ }}"></lable>
+                </panel>
+            </view>
         </template>
     </templates>
-    <panel margin-top="64">
-        <dock-panel height= "60" background-color="yellow">
-            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="1"/>
-            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
-        </dock-panel>
-        <list separator-inset = "0 15 0 15" margin-top="60">
-            <for data-path="listDatas">
-                <list-item item-height="45">
-                    <template-ref t-name="list-template"/>
-                </list-item>
-            </for>
-        </list>
-    </panel>
+   <view>
+       <stack-panel>
+           <view height="60" background-color="yellow" space-before="64">
+               <dock-panel>
+                   <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="0"/>
+                   <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
+               </dock-panel>
+           </view>
+           <list  flex-grow="1" background-color="blue" flex-shrink="1">
+               <for data-path="listDatas">
+                   <list-item separator-inset = "0 15 0 15">
+                       <template-ref t-name="list-template"/>
+                   </list-item>
+               </for>
+           </list>
+       </stack-panel>
+   </view>
 </page>

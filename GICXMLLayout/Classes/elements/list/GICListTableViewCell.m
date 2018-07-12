@@ -46,9 +46,10 @@
     _listItem=listItem;
     
     // 设置cell的样式
-    self.selectionStyle = listItem.selectionStyle;
-    
-    
+    if(listItem.cellStyle.count>0){
+        [self setValuesForKeysWithDictionary:listItem.cellStyle];
+    }
+
     if(layoutSubviewsSignlDisposable && !layoutSubviewsSignlDisposable.isDisposed){
         [layoutSubviewsSignlDisposable dispose];
     }

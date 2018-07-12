@@ -11,8 +11,8 @@
     return nil;
 }
 
--(void)updateDataSource:(id)dataSource{
-    
+-(void)attachTo:(id)target{
+    self.target = target;
 }
 
 -(NSObject *)gic_getSuperElement{

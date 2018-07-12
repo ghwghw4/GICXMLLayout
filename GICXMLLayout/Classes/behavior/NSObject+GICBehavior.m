@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 
 @implementation NSObject (GICBehavior)
--(NSArray<GICBehavior *> *)gic_Behaviors{
+-(GICBehaviors *)gic_Behaviors{
     return objc_getAssociatedObject(self, "gic_Behaviors");
 }
 
@@ -21,12 +21,12 @@
     }
     if(behavior==nil)
         return;
-    NSMutableArray<GICBehavior *> * temp= (NSMutableArray<GICBehavior *> *)self.gic_Behaviors;
+    GICBehaviors * temp = self.gic_Behaviors;
     if(temp==nil){
-        temp = [NSMutableArray array];
+        temp = [GICBehaviors new];
         objc_setAssociatedObject(self, "gic_Behaviors", temp, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    [temp addObject:behavior];
+    [temp.behaviors addObject:behavior];
     [behavior attachTo:self];
 }
 @end

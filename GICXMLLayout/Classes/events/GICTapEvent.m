@@ -6,21 +6,31 @@
 //
 
 #import "GICTapEvent.h"
-//#import "UIView+GICEvent.h"
+#import "GICView.h"
 
 @implementation GICTapEvent
--(RACSignal *)createEventSignal{
-    if([self.target isKindOfClass:[UIView class]]){
+-(void)attachTo:(ASDisplayNode *)target{
+    [super attachTo:target];
+    if([target isKindOfClass:[ASDisplayNode class]]){
         tapges = [[UITapGestureRecognizer alloc] init];
-        [self.target addGestureRecognizer:tapges];
-        return [tapges rac_gestureSignal];
+        [target gic_safeView:^(UIView *view) {
+            [view addGestureRecognizer:self->tapges];
+        }];
+        @weakify(self)
+        [[tapges rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+            @strongify(self)
+//            if(x.state == UIGestureRecognizerStateEnded){
+                [self.eventSubject sendNext:x];
+//            }
+        }];
     }
-    return nil;
 }
 
 -(void)unAttach{
-    if([self.target isKindOfClass:[UIView class]]){
-        [self.target removeGestureRecognizer:tapges];
+    if([self.target isKindOfClass:[ASDisplayNode class]]){
+        [self.target gic_safeView:^(UIView *view) {
+            [view removeGestureRecognizer:self->tapges];
+        }];
         tapges = nil;
     }
 }

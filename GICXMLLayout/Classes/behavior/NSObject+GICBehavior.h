@@ -6,14 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GICBehavior.h"
+#import "GICBehaviors.h"
 
 @interface NSObject (GICBehavior)
 
 /**
  行为列表
  */
-@property (nonatomic,readonly,strong)NSArray<GICBehavior *> *gic_Behaviors;
+@property (nonatomic,readonly)GICBehaviors *gic_Behaviors;
 
 /**
  添加行为

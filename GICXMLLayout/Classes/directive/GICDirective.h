@@ -10,8 +10,6 @@
 /**
  指令功能
  */
-@interface GICDirective : NSObject<LayoutElementProtocol>
+@interface GICDirective : GICBehavior<LayoutElementProtocol>
 @property (nonatomic,weak)id target;
-
--(void)updateDataSource:(id)dataSource;
 @end

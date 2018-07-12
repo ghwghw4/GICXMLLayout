@@ -33,5 +33,6 @@
 #import "GICXMLParserContext.h"
 #import "NSObject+GICBehavior.h"
 #import "ASDisplayNode+GICExtension.h"
+#import "NSObject+GICEvent.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

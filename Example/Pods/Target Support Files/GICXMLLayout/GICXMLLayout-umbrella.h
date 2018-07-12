@@ -11,6 +11,7 @@
 #endif
 
 #import "GICBehavior.h"
+#import "GICBehaviors.h"
 #import "NSObject+GICBehavior.h"
 #import "ASDisplayNode+GICExtension.h"
 #import "GICElementLayoutStyleProtocl.h"
@@ -24,7 +25,6 @@
 #import "NSObject+GICDataContext.h"
 #import "GICDirective.h"
 #import "GICDirectiveFor.h"
-#import "NSObject+GICDirective.h"
 #import "GICImageView.h"
 #import "GICInpute.h"
 #import "GICPage.h"

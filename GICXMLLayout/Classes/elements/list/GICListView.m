@@ -10,13 +10,13 @@
 #import "GICListItem.h"
 #import "GICNumberConverter.h"
 #import "GICEdgeConverter.h"
-#import "GICListHeader.h"
-#import "GICListFooter.h"
+//#import "GICListHeader.h"
+//#import "GICListFooter.h"
 
 @interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListItemDelegate>{
     NSMutableArray<GICListItem *> *listItems;
     BOOL t;
-    id<RACSubscriber> reloadSubscriber;
+    id<RACSubscriber> insertItemsSubscriber;
 }
 @end
 
@@ -27,17 +27,9 @@
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return @{
-             @"defualt-item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICListView *)target setDefualtItemHeight:[value floatValue]];
-             }],
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target gic_safeView:^(id view) {
                      [view setSeparatorStyle:[value integerValue]];
-                 }];
-             }],
-             @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICListView *)target gic_safeView:^(UIView *view) {
-                     [view setValue:value forKey:@"separatorInset"];
                  }];
              }],
              };
@@ -49,13 +41,22 @@
     self.dataSource = self;
     self.delegate = self;
     // 创建一个0.2秒的节流阀
-    __weak typeof(self) wself = self;
-    [[[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        self->reloadSubscriber = subscriber;
+    @weakify(self)
+    [[[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        self->insertItemsSubscriber = subscriber;
         return nil;
-    }] throttle:0.2] deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
-//        [wself reloadData];
+    }] bufferWithTime:0.2 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self)
+        NSMutableArray *mutArray=[NSMutableArray array];
+        NSInteger index = self->listItems.count;
+        [self->listItems addObjectsFromArray:[x allObjects]];
+        for(int i=0 ;i<x.count;i++){
+            [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+            index ++;
+        }
+        [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
     }];
+
     return self;
 }
 
@@ -66,20 +67,12 @@
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
         [(GICListItem *)subElement setDelegate:self];
-        [listItems addObject:subElement];
-        [self->reloadSubscriber sendNext:nil];
+        if(!self.isNodeLoaded){
+            [listItems addObject:subElement];
+        }else{
+            [self->insertItemsSubscriber sendNext:subElement];
+        }
     }
-//    else if ([subElement isKindOfClass:[GICListHeader class]]){
-//        self.tableHeaderView = subElement;
-//        [self.tableHeaderView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(self.mas_width);
-//        }];
-//    }else if ([subElement isKindOfClass:[GICListFooter class]]){
-//        self.tableFooterView = subElement;
-//        [self.tableFooterView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(self.mas_width);
-//        }];
-//    }
     else{
         [super gic_addSubElement:subElement];
     }
@@ -87,10 +80,14 @@
 
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
     for(id subElement in subElements){
+        NSMutableArray *mutArray=[NSMutableArray array];
         if([subElement isKindOfClass:[GICListItem class]]){
+            [mutArray addObject:[NSIndexPath indexPathForRow:[listItems indexOfObject:subElement] inSection:0]];
             [listItems removeObject:(GICListItem *)subElement];
         }
-        [self->reloadSubscriber sendNext:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self deleteRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationFade];
+        });
     }
 }
 
@@ -102,8 +99,9 @@
 
 - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GICListItem *item = [self->listItems objectAtIndex:indexPath.row];
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
-        return [[self->listItems objectAtIndex:indexPath.row] getCell];;
+        return [item getCell];;
     };
     return cellNodeBlock;
 }
@@ -112,12 +110,16 @@
     [tableNode deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-
--(void)listItem:(GICListItem *)item cellHeightUpdate:(CGFloat)cellHeight{
-    [reloadSubscriber sendNext:nil];
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.5;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [UIView new];
+}
+
+
 -(void)dealloc{
-    [reloadSubscriber sendCompleted];
+    [insertItemsSubscriber sendCompleted];
 }
 @end

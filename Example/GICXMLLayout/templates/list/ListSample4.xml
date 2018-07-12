@@ -2,7 +2,7 @@
     <!-- 实际的需求中，我们经常碰到一个列表中不同的数据对应不同cell的情况。下面的示例就是为了解决这个问题的   -->
     <templates>
         <template t-name="base-template">
-            <inset-panel  inset="16">
+            <inset-panel  inset="16 16 14 16">
                 <stack-panel is-horizon="1" space="8">
                     <image url="{{ headurl }}" size="32" corner-radius="16"/>
                     <stack-panel flex-shrink="1" flex-grow="1">
@@ -24,7 +24,7 @@
                             </stack-panel>
                             <view background-color="F2F6F9" height="22" corner-radius="11">
                                 <dock-panel>
-                                    <lable text="{{ ' #'+tag+' ' }}" font-size="14" font-color="5A6B92"/>
+                                    <lable text="{{ '   #'+tag+'   ' }}" font-size="14" font-color="5A6B92"/>
                                 </dock-panel>
                             </view>
                         </stack-panel>
@@ -48,9 +48,9 @@
             </template-ref>
         </template>
     </templates>
-    <list separator-inset = "0 15 0 15" margin-top="60">
+    <list>
         <for data-path="listDatas">
-            <list-item>
+            <list-item separator-inset = "0 16 0 16">
                 <template-ref t-name="{{ 'template' + type }}"/>
             </list-item>
         </for>

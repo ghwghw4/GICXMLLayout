@@ -22,10 +22,10 @@
     
     // Override point for customization after application launch.
 //    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/template5.xml"]];
     [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
-        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
-        self.window.rootViewController =nav;
+//        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
+        self.window.rootViewController =page;
     }];
     [self.window makeKeyAndVisible];
     return YES;

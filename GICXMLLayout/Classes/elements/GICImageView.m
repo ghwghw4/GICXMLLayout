@@ -9,7 +9,6 @@
 #import "GICURLConverter.h"
 #import "GICNumberConverter.h"
 #import "GICStringConverter.h"
-#import "UIView+GICExtension.h"
 
 @implementation GICImageView
 +(NSString *)gic_elementName{

@@ -6,14 +6,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+GICExtension.h"
 
 /**
  Panle的作用其实就是类似于UIView，也类似于Hmtl中的canvas布局。
  所有的元素都是绝对布局。
  */
-@interface GICPanel : ASDisplayNode<LayoutElementProtocol>
-//@property (nonatomic,strong,readonly)ASLayoutSpec *layoutSpec;
-//-(void)layoutView:(UIView *)view;
-//-(id)initWithLayoutSpec:(ASLayoutSpec *)layoutSpec;
+@interface GICPanel : NSObject<LayoutElementProtocol>
+@property (nonatomic,strong,readonly)NSMutableArray *childNodes;
+
+//@property (nonatomic,strong,readonly)NSMutableArray<ASDisplayNode *> *displayNodes;
+//@property (nonatomic,strong,readonly)NSMutableArray<GICPanel *> *panels;
+
+@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
+
+
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
+
+-(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
 @end

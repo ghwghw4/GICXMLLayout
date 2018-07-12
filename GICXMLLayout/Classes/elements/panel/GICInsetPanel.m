@@ -28,9 +28,13 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    id node =self.childNodes.firstObject;
+    if([node isKindOfClass:[GICPanel class]]){
+        node = [node layoutSpecThatFits:constrainedSize];
+    }
     ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
     insetBox.insets = self.inset;
-    insetBox.child = [self.subnodes firstObject];
+    insetBox.child = node;
     return insetBox;
 }
 

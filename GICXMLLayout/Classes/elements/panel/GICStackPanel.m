@@ -39,12 +39,20 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    NSMutableArray *children = [NSMutableArray array];
+    for(id node in self.childNodes){
+        if([node isKindOfClass:[ASDisplayNode class]]){
+            [children addObject:node];
+        }else if ([node isKindOfClass:[GICPanel class]]){
+            [children addObject:[node layoutSpecThatFits:constrainedSize]];
+        }
+    }
     ASStackLayoutSpec *temp = [[ASStackLayoutSpec alloc] init];
     temp.direction = stackLayoutSpec.direction;
     temp.justifyContent = stackLayoutSpec.justifyContent;
     temp.alignItems = stackLayoutSpec.alignItems;
     temp.spacing = stackLayoutSpec.spacing;
-    temp.children = [self.subnodes copy];
+    temp.children = children;
     return temp;
 }
 @end

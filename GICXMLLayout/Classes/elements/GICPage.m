@@ -7,7 +7,6 @@
 
 #import "GICPage.h"
 #import "GICStringConverter.h"
-#import "UIView+GICExtension.h"
 #import "GICColorConverter.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"

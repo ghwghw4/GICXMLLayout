@@ -14,44 +14,43 @@
     return @"dock-panel";
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    
-    NSMutableArray *children= [NSMutableArray array];
-    for(ASDisplayNode *node in self.subnodes){
-        GICDisplayNodeExtensionProperties *properties = node.gic_ExtensionProperties;
-        ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
-        switch (properties.dockHorizalModel) {
-            case GICDockPanelHorizalModel_Left:
-                hor = ASRelativeLayoutSpecPositionStart;
-                break;
-            case GICDockPanelHorizalModel_Center:
-                hor = ASRelativeLayoutSpecPositionCenter;
-                break;
-            case GICDockPanelHorizalModel_Right:
-                hor = ASRelativeLayoutSpecPositionEnd;
-                break;
-        }
-        
-        ASRelativeLayoutSpecPosition ver = ASRelativeLayoutSpecPositionStart;
-        switch (properties.dockVerticalModel) {
-            case GICDockPanelVerticalModel_Top:
-                ver = ASRelativeLayoutSpecPositionStart;
-                break;
-            case GICDockPanelVerticalModel_Center:
-                ver = ASRelativeLayoutSpecPositionCenter;
-                break;
-            case GICDockPanelVerticalModel_Bottom:
-                ver = ASRelativeLayoutSpecPositionEnd;
-                break;
-        }
-        
-        ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:hor verticalPosition:ver sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:node];
-        [children addObject:relativeLayout];
-    }
-    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
-    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
-    return absoluteSpec;
-}
+//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+//    NSMutableArray *children= [NSMutableArray array];
+//    for(ASDisplayNode *node in self.childNodes){
+//        GICDisplayNodeExtensionProperties *properties = node.gic_ExtensionProperties;
+//        ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
+//        switch (properties.dockHorizalModel) {
+//            case GICDockPanelHorizalModel_Left:
+//                hor = ASRelativeLayoutSpecPositionStart;
+//                break;
+//            case GICDockPanelHorizalModel_Center:
+//                hor = ASRelativeLayoutSpecPositionCenter;
+//                break;
+//            case GICDockPanelHorizalModel_Right:
+//                hor = ASRelativeLayoutSpecPositionEnd;
+//                break;
+//        }
+//        
+//        ASRelativeLayoutSpecPosition ver = ASRelativeLayoutSpecPositionStart;
+//        switch (properties.dockVerticalModel) {
+//            case GICDockPanelVerticalModel_Top:
+//                ver = ASRelativeLayoutSpecPositionStart;
+//                break;
+//            case GICDockPanelVerticalModel_Center:
+//                ver = ASRelativeLayoutSpecPositionCenter;
+//                break;
+//            case GICDockPanelVerticalModel_Bottom:
+//                ver = ASRelativeLayoutSpecPositionEnd;
+//                break;
+//        }
+//        
+//        ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:hor verticalPosition:ver sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:node];
+//        [children addObject:relativeLayout];
+//    }
+//    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
+//    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
+//    return absoluteSpec;
+//}
 
 
 //-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{

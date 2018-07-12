@@ -9,10 +9,6 @@
 #import "GICNSObjectExtensionProperties.h"
 
 @interface NSObject (LayoutElement)<LayoutElementProtocol>
-//@property (nonatomic,strong)NSString *gic_name;
-//// 临时的数据源
-//@property (nonatomic,strong)id gic_tempDataContext;
-
 @property (nonatomic,strong,readonly)GICNSObjectExtensionProperties *gic_ExtensionProperties;
 
 

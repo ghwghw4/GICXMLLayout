@@ -9,7 +9,6 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import <Masonry/Masonry.h>
-#import "UIView+GICExtension.h"
 #import "GICXMLParserContext.h"
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"

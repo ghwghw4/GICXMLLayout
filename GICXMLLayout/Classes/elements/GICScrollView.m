@@ -7,7 +7,6 @@
 
 #import "GICScrollView.h"
 #import <Masonry/Masonry.h>
-#import "UIView+GICExtension.h"
 #import "GICPanel.h"
 #import "GICBoolConverter.h"
 

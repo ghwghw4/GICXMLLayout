@@ -196,6 +196,8 @@
 		36BA8B5516CE99BE7C1084C68013D307 /* GICListItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 044B7B2EDA8E029C320FCD9AB7937E9D /* GICListItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		370F851F3DE09BDBEEDD36AF2BBED104 /* UIControl+RACSignalSupportPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9220304C0E6F4B0CAE9E40AF4107C521 /* UIControl+RACSignalSupportPrivate.m */; };
 		37B24F9715C9D054131BE59991FC6CFD /* RACCompoundDisposable.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FEA5AF37E35B31EE4EDE3655F6228D /* RACCompoundDisposable.m */; };
+		37C806F420F6ED56002EEF55 /* GICView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C806F220F6ED56002EEF55 /* GICView.h */; };
+		37C806F520F6ED56002EEF55 /* GICView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806F320F6ED56002EEF55 /* GICView.m */; };
 		37E538CC7CCDF24F556D8EC1EA4189FE /* NSIndexSet+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 297925BE294FC06F151E3156E0DFF308 /* NSIndexSet+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F483BAF633AACF2522AB4719878092 /* PINGIFAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CDFD02EA2CB9A6F7B0B5AFE057F38C /* PINGIFAnimatedImage.m */; };
 		38513FC37E0E61D6D9DB9EB5FF35EAC3 /* RACScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = D52A85B1FAC2CB7C4BD0F2F12BA77180 /* RACScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -625,7 +627,6 @@
 		AEC87280302AA1D7E106E095E2724CFA /* ReactiveObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8694BDA18F4DCEB7D159C93337DFB4 /* ReactiveObjC-dummy.m */; };
 		AEF0112322CF4DBF7966C561673985F9 /* ASNetworkImageNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3545C4AB39904D6A629FF6413D74F /* ASNetworkImageNode.mm */; };
 		AF2B568709971ACFAA3D0159F06D3A2D /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8533B0CA861BF28B1B76C9CFAD9F8709 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AFF361F752B89A48BDD7FB333DAC1085 /* UIView+GICExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 215955DC7CF017F0296AC7C10AD7BF9F /* UIView+GICExtension.m */; };
 		B007902B477144354DBF0E37E1629A84 /* GICListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F55AB90C18A056BED03BD716B704F /* GICListTableViewCell.m */; };
 		B0928A042B1A639A02D964F84745BCE7 /* ASTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 91AFD2F9E53D77724734FC544EE4FC5F /* ASTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0C0209444BFA070BD0FD670192A00AD /* RACDynamicSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 60F29299405B7D7BB9543FD40A80DDBE /* RACDynamicSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -839,7 +840,6 @@
 		E77E1A9FF47EBF7E9F1620296E63E171 /* ASDisplayNode+DebugTiming.h in Headers */ = {isa = PBXBuildFile; fileRef = A44804F14ADECE84DB28DB8B02CF456C /* ASDisplayNode+DebugTiming.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E79A078638FCE7E3D61158786F5D8605 /* GICStackPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF073DA5ADB37CEFC81FE00AC0105E82 /* GICStackPanel.m */; };
 		E83D8F834BA773EBBEF8722938E9022E /* ASTextNodeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C084A9EABD585D78EF2FDD0874284B0 /* ASTextNodeTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E860A05CEC4A75CF16F1C94E3E2CB40C /* UIView+GICExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD513DB49C6AC3448EB126264F2F85F /* UIView+GICExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E864E85559191FDA5EC2126A251C012E /* ASBatchContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E49D5A4C3D2B6EB6E80C182F49EFA17D /* ASBatchContext.m */; };
 		E86B2347647799CA45BAC47173854A93 /* RACQueueScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB0D3887BBECFB0CC6AD6540297CA1E /* RACQueueScheduler.m */; };
 		E8DD9CD8329F3BE8069695AF3486CDF8 /* NSButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B360AA2C31ACA4F61ACEEF276EE4216 /* NSButton+WebCache.m */; };
@@ -1111,7 +1111,7 @@
 		0588A033226460CEAF85401262F97803 /* ASControlNode+tvOS.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ASControlNode+tvOS.m"; path = "Source/tvOS/ASControlNode+tvOS.m"; sourceTree = "<group>"; };
 		0594B64E2B689A935B2B64E20CAF4C40 /* GICInpute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICInpute.m; sourceTree = "<group>"; };
 		05B3459AEB3765C9E0A464478FFA6ECB /* _ASCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _ASCollectionViewCell.m; path = Source/Details/_ASCollectionViewCell.m; sourceTree = "<group>"; };
-		05E905E8A6EC57EFC2CB3FEDDB4EBF41 /* ReactiveObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReactiveObjC.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05E905E8A6EC57EFC2CB3FEDDB4EBF41 /* ReactiveObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06024B48AAE15A0E55802D6533734043 /* _ASTransitionContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _ASTransitionContext.m; path = Source/_ASTransitionContext.m; sourceTree = "<group>"; };
 		060ED02BF75EB0FA43781A7DE2EC662F /* RACEXTRuntimeExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTRuntimeExtensions.h; path = ReactiveObjC/extobjc/RACEXTRuntimeExtensions.h; sourceTree = "<group>"; };
 		0617CD35CDC3BCAEF0F07602D11AD267 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
@@ -1142,7 +1142,7 @@
 		0B074B2627CC42C6FBE4EAA4E51D1814 /* RACGroupedSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACGroupedSignal.m; path = ReactiveObjC/RACGroupedSignal.m; sourceTree = "<group>"; };
 		0B22CE0C1718F71A1797E9B80F566E6A /* GICStackPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICStackPanel.h; sourceTree = "<group>"; };
 		0B29187FBF846F585B77F9D5F4ED5381 /* _ASCollectionGalleryLayoutItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASCollectionGalleryLayoutItem.h; path = Source/Private/_ASCollectionGalleryLayoutItem.h; sourceTree = "<group>"; };
-		0B65602D59D1B9A96DBF468D19EA2295 /* ASTextNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextNode.mm; path = Source/ASTextNode.mm; sourceTree = "<group>"; };
+		0B65602D59D1B9A96DBF468D19EA2295 /* ASTextNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextNode.mm; path = Source/ASTextNode.mm; sourceTree = "<group>"; };
 		0BAA8FA6125015D226B1EA888C3A474D /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
 		0BCA18C8C2A3271891DF13B1C6CE5869 /* GICInsetPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICInsetPanel.h; sourceTree = "<group>"; };
 		0C0285B8C0B702A156DF4E923FB6B53F /* SDImageCacheConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheConfig.m; path = SDWebImage/SDImageCacheConfig.m; sourceTree = "<group>"; };
@@ -1151,12 +1151,12 @@
 		0C455993005BE295763CA878CDEC8CAF /* PINOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB4F3B9E8D5529F4E2835EF28D7F25D /* ASCollectionViewLayoutController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionViewLayoutController.h; path = Source/Details/ASCollectionViewLayoutController.h; sourceTree = "<group>"; };
 		0E47B3DD481B5A1AB6B6CC01A2CE6BFB /* UISegmentedControl+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISegmentedControl+RACSignalSupport.h"; path = "ReactiveObjC/UISegmentedControl+RACSignalSupport.h"; sourceTree = "<group>"; };
-		0E5248421881C544FADFFA38763A9895 /* ASCollectionLayoutState.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionLayoutState.mm; path = Source/Details/ASCollectionLayoutState.mm; sourceTree = "<group>"; };
+		0E5248421881C544FADFFA38763A9895 /* ASCollectionLayoutState.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionLayoutState.mm; path = Source/Details/ASCollectionLayoutState.mm; sourceTree = "<group>"; };
 		0F22625D3BBBA1707D00293819725E24 /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageImageIOCoder.h; path = SDWebImage/SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
 		0F22CF97CCB6DAA5226C3CDB483DCF60 /* ASBatchFetching.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASBatchFetching.m; path = Source/Private/ASBatchFetching.m; sourceTree = "<group>"; };
-		0F68D54E3A1EB143ABE47006F5B5F8D8 /* ASButtonNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASButtonNode.mm; path = Source/ASButtonNode.mm; sourceTree = "<group>"; };
+		0F68D54E3A1EB143ABE47006F5B5F8D8 /* ASButtonNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASButtonNode.mm; path = Source/ASButtonNode.mm; sourceTree = "<group>"; };
 		0F6B92D9277412D1F2D56B70E50CECED /* _ASCollectionGalleryLayoutInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASCollectionGalleryLayoutInfo.h; path = Source/Private/_ASCollectionGalleryLayoutInfo.h; sourceTree = "<group>"; };
-		0F6E950841A1D2E538BCD7688B1052BE /* ASLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASLayoutSpec.mm; path = Source/Layout/ASLayoutSpec.mm; sourceTree = "<group>"; };
+		0F6E950841A1D2E538BCD7688B1052BE /* ASLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASLayoutSpec.mm; path = Source/Layout/ASLayoutSpec.mm; sourceTree = "<group>"; };
 		0F8779DF405622E4CBA39D7EE49F2257 /* ASTableNode+Beta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASTableNode+Beta.h"; path = "Source/ASTableNode+Beta.h"; sourceTree = "<group>"; };
 		103D646B34949E9E34DBC50D15C81D71 /* ASDisplayNode+LayoutView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASDisplayNode+LayoutView.h"; sourceTree = "<group>"; };
 		10755BECE61CB0504C6AC20EAE519E99 /* ASAbsoluteLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASAbsoluteLayoutSpec.h; path = Source/Layout/ASAbsoluteLayoutSpec.h; sourceTree = "<group>"; };
@@ -1164,10 +1164,10 @@
 		10EB9DA73FC7CFB7E98DCD33FF749FED /* RACSubscriber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSubscriber.h; path = ReactiveObjC/RACSubscriber.h; sourceTree = "<group>"; };
 		115DFC57D5DBECF4E36340CED5929F34 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D47D146130D61E0CF3292D3C97E034 /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
-		11E842B4D1F4C4AD949F2FB26ACFF2B2 /* _ASDisplayView.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASDisplayView.mm; path = Source/Details/_ASDisplayView.mm; sourceTree = "<group>"; };
+		11E842B4D1F4C4AD949F2FB26ACFF2B2 /* _ASDisplayView.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASDisplayView.mm; path = Source/Details/_ASDisplayView.mm; sourceTree = "<group>"; };
 		125A50BE2268DA4697A29B98270E2717 /* ASButtonNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASButtonNode.h; path = Source/ASButtonNode.h; sourceTree = "<group>"; };
-		126C46C9CBB9CC2BED7729D838E3B488 /* ASDisplayNode+UIViewBridge.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASDisplayNode+UIViewBridge.mm"; path = "Source/Private/ASDisplayNode+UIViewBridge.mm"; sourceTree = "<group>"; };
-		128F98655DDCF8919723310AD538C0EB /* ASCollectionElement.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionElement.mm; path = Source/Details/ASCollectionElement.mm; sourceTree = "<group>"; };
+		126C46C9CBB9CC2BED7729D838E3B488 /* ASDisplayNode+UIViewBridge.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASDisplayNode+UIViewBridge.mm"; path = "Source/Private/ASDisplayNode+UIViewBridge.mm"; sourceTree = "<group>"; };
+		128F98655DDCF8919723310AD538C0EB /* ASCollectionElement.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionElement.mm; path = Source/Details/ASCollectionElement.mm; sourceTree = "<group>"; };
 		129E6813E1CC8BFA8BE63E33454B2B31 /* RACSignalSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSignalSequence.m; path = ReactiveObjC/RACSignalSequence.m; sourceTree = "<group>"; };
 		12B3B925D91136648BD57EF5C53AA3FA /* UISegmentedControl+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UISegmentedControl+RACSignalSupport.m"; path = "ReactiveObjC/UISegmentedControl+RACSignalSupport.m"; sourceTree = "<group>"; };
 		134DB5F77A3321FF38101B96CB348D0D /* ASImageNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASImageNode.h; path = Source/ASImageNode.h; sourceTree = "<group>"; };
@@ -1176,7 +1176,7 @@
 		13C5D112C692EECE890B9A4E0DE8A14D /* Masonry.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Masonry.modulemap; sourceTree = "<group>"; };
 		13FE4843C53FA988F24F6BCC6EBF5063 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		143C1BA2650DC283C168814A7C94414F /* PINRemoteImageManagerResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageManagerResult.h; path = Source/Classes/PINRemoteImageManagerResult.h; sourceTree = "<group>"; };
-		148A8FE3DB9ABFDF4F2CDEB64BD3AC09 /* ASIntegerMap.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASIntegerMap.mm; path = Source/Details/ASIntegerMap.mm; sourceTree = "<group>"; };
+		148A8FE3DB9ABFDF4F2CDEB64BD3AC09 /* ASIntegerMap.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASIntegerMap.mm; path = Source/Details/ASIntegerMap.mm; sourceTree = "<group>"; };
 		14C8F708743B463F77CF9A09632CEB80 /* GICNumberConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICNumberConverter.h; sourceTree = "<group>"; };
 		1567F159CE3FFE3571276295B60F132B /* GICValueConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICValueConverter.h; sourceTree = "<group>"; };
 		15A9EC84A4530CA70D6D299B28F6EE45 /* ASElementMap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASElementMap.m; path = Source/Details/ASElementMap.m; sourceTree = "<group>"; };
@@ -1184,7 +1184,7 @@
 		16204CE1AFBE00417AA59F0FA6A4F93F /* RACTestScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTestScheduler.h; path = ReactiveObjC/RACTestScheduler.h; sourceTree = "<group>"; };
 		1649C97832070B0BA81C283F8E42CB30 /* ASCollectionLayoutContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionLayoutContext.h; path = Source/Details/ASCollectionLayoutContext.h; sourceTree = "<group>"; };
 		168CEBA9F7133E01333CA14C82A6273D /* RACEXTScope.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTScope.h; path = ReactiveObjC/extobjc/RACEXTScope.h; sourceTree = "<group>"; };
-		169C09D4B00568AF55F91621225BA483 /* ASImageNode+AnimatedImage.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASImageNode+AnimatedImage.mm"; path = "Source/ASImageNode+AnimatedImage.mm"; sourceTree = "<group>"; };
+		169C09D4B00568AF55F91621225BA483 /* ASImageNode+AnimatedImage.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASImageNode+AnimatedImage.mm"; path = "Source/ASImageNode+AnimatedImage.mm"; sourceTree = "<group>"; };
 		16B18B8392CF230A7732EC170230FEF1 /* Pods-GICXMLLayout_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GICXMLLayout_Example-dummy.m"; sourceTree = "<group>"; };
 		16B4926EFCFFC9146197CAE78B355832 /* ASBackgroundLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASBackgroundLayoutSpec.h; path = Source/Layout/ASBackgroundLayoutSpec.h; sourceTree = "<group>"; };
 		16ED0D3C9DD503A095FA4AF66E1C3092 /* PINCachedAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINCachedAnimatedImage.h; path = Source/Classes/AnimatedImages/PINCachedAnimatedImage.h; sourceTree = "<group>"; };
@@ -1194,14 +1194,14 @@
 		17A8DA57FCB4CF7EA998193CABAFFF13 /* ASTwoDimensionalArrayUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTwoDimensionalArrayUtils.h; path = Source/Private/ASTwoDimensionalArrayUtils.h; sourceTree = "<group>"; };
 		17BEE9EBA14FB1C764E46D5F0753D381 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
 		1849D7EA96214D6667383B0BAAE2F281 /* ASLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayout.h; path = Source/Layout/ASLayout.h; sourceTree = "<group>"; };
-		18835A33876AA98C0A0A858A0E690C64 /* GICXMLLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GICXMLLayout.framework; path = GICXMLLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18835A33876AA98C0A0A858A0E690C64 /* GICXMLLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GICXMLLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A6C9DCC6FBA724DCE50DC69B525D67 /* ASCollectionInternal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASCollectionInternal.m; path = Source/Details/ASCollectionInternal.m; sourceTree = "<group>"; };
 		18CD9FBF7192E425635E8E63100C143A /* SDWebImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-prefix.pch"; sourceTree = "<group>"; };
 		18E82A7F3AA78E7E61DDA41E42C8D121 /* PINCacheMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINCacheMacros.h; path = Source/PINCacheMacros.h; sourceTree = "<group>"; };
 		193A4F75F724B00FD28B040120FAC8BA /* UIControl+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+RACSignalSupport.h"; path = "ReactiveObjC/UIControl+RACSignalSupport.h"; sourceTree = "<group>"; };
 		194A926C6BDBD3C4564FB1D0388AFD82 /* ASTableNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTableNode.h; path = Source/ASTableNode.h; sourceTree = "<group>"; };
-		19ADE4BAFFE7E7D2C6906218C8995BE9 /* ASStackUnpositionedLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASStackUnpositionedLayout.mm; path = Source/Private/Layout/ASStackUnpositionedLayout.mm; sourceTree = "<group>"; };
-		1A652863940AC37AF4E47A0AAD66B307 /* ASPendingStateController.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASPendingStateController.mm; path = Source/Private/ASPendingStateController.mm; sourceTree = "<group>"; };
+		19ADE4BAFFE7E7D2C6906218C8995BE9 /* ASStackUnpositionedLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASStackUnpositionedLayout.mm; path = Source/Private/Layout/ASStackUnpositionedLayout.mm; sourceTree = "<group>"; };
+		1A652863940AC37AF4E47A0AAD66B307 /* ASPendingStateController.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASPendingStateController.mm; path = Source/Private/ASPendingStateController.mm; sourceTree = "<group>"; };
 		1A867EC13757F2663C061B03417B2D61 /* _ASCollectionReusableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _ASCollectionReusableView.m; path = Source/Details/_ASCollectionReusableView.m; sourceTree = "<group>"; };
 		1AC0F269282700FB44D7465037310AB2 /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
 		1ACCB838303BECBE3AB6710F82FF9B22 /* _ASAsyncTransactionContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASAsyncTransactionContainer.h; path = Source/Details/Transactions/_ASAsyncTransactionContainer.h; sourceTree = "<group>"; };
@@ -1210,7 +1210,7 @@
 		1C28F4282C31B12B5370A2DBDE80CC1B /* GICListView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListView.h; sourceTree = "<group>"; };
 		1C47F48BCFBE2F95A35936841C54DAB1 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
 		1C4ACEE3EA90D39350C7CEB01F75F9DB /* GICTapEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICTapEvent.m; sourceTree = "<group>"; };
-		1D2EFF92BACF7FD55ADC8EA0B52ECE5E /* ASTextKitRenderer+TextChecking.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASTextKitRenderer+TextChecking.mm"; path = "Source/TextKit/ASTextKitRenderer+TextChecking.mm"; sourceTree = "<group>"; };
+		1D2EFF92BACF7FD55ADC8EA0B52ECE5E /* ASTextKitRenderer+TextChecking.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASTextKitRenderer+TextChecking.mm"; path = "Source/TextKit/ASTextKitRenderer+TextChecking.mm"; sourceTree = "<group>"; };
 		1D565029F4C5098320A1B34ECD3BBD9F /* PINImage+ScaledImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINImage+ScaledImage.h"; path = "Source/Classes/Categories/PINImage+ScaledImage.h"; sourceTree = "<group>"; };
 		1D8F03421C7CFB9D4DDE86AB93B16479 /* ASDisplayNode+Ancestry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ASDisplayNode+Ancestry.m"; path = "Source/Base/ASDisplayNode+Ancestry.m"; sourceTree = "<group>"; };
 		1DAC1529C429696000B38DF5CC1F8ECC /* RACReturnSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACReturnSignal.m; path = ReactiveObjC/RACReturnSignal.m; sourceTree = "<group>"; };
@@ -1221,7 +1221,7 @@
 		1E3089AFBECF2BB6C467BB9DB3959E77 /* RACDelegateProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACDelegateProxy.m; path = ReactiveObjC/RACDelegateProxy.m; sourceTree = "<group>"; };
 		1E568BD1F0FD4CC4BB8C95ED1F2188C2 /* PINSpeedRecorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINSpeedRecorder.m; path = Source/Classes/PINSpeedRecorder.m; sourceTree = "<group>"; };
 		1EB0D3887BBECFB0CC6AD6540297CA1E /* RACQueueScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACQueueScheduler.m; path = ReactiveObjC/RACQueueScheduler.m; sourceTree = "<group>"; };
-		1EE8D26B28D34D81C910A55A8CC7563A /* ASEditableTextNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASEditableTextNode.mm; path = Source/ASEditableTextNode.mm; sourceTree = "<group>"; };
+		1EE8D26B28D34D81C910A55A8CC7563A /* ASEditableTextNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASEditableTextNode.mm; path = Source/ASEditableTextNode.mm; sourceTree = "<group>"; };
 		1F604A103600F54F97471DEA3A9FD058 /* PINCaching.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINCaching.h; path = Source/PINCaching.h; sourceTree = "<group>"; };
 		1F766243A94567F18F5DC171097E2C58 /* ASPINRemoteImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASPINRemoteImageDownloader.m; path = Source/Details/ASPINRemoteImageDownloader.m; sourceTree = "<group>"; };
 		1FF7E382E09E28A027429B481A7F201C /* ASTextNode2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextNode2.h; path = Source/ASTextNode2.h; sourceTree = "<group>"; };
@@ -1232,7 +1232,6 @@
 		209333420EBAFD2DA8EECD4965F7D396 /* ASTextKitFontSizeAdjuster.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextKitFontSizeAdjuster.h; path = Source/TextKit/ASTextKitFontSizeAdjuster.h; sourceTree = "<group>"; };
 		209C9660BC583780790C0A1A2506E6F3 /* ASCollectionGalleryLayoutDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionGalleryLayoutDelegate.h; path = Source/Details/ASCollectionGalleryLayoutDelegate.h; sourceTree = "<group>"; };
 		20FA384BE43F9A5FB5977A2449E1B0A6 /* ASOverlayLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASOverlayLayoutSpec.h; path = Source/Layout/ASOverlayLayoutSpec.h; sourceTree = "<group>"; };
-		215955DC7CF017F0296AC7C10AD7BF9F /* UIView+GICExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+GICExtension.m"; sourceTree = "<group>"; };
 		21DEC3B542C46A0CE657EDC0FC41B874 /* ASTipsWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTipsWindow.h; path = Source/Private/ASTipsWindow.h; sourceTree = "<group>"; };
 		21E480B62701A9D287D634A221C9B384 /* GICListTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListTableViewCell.h; sourceTree = "<group>"; };
 		2210B5C180173A137898DECC0514E1A1 /* ASTextAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextAttribute.h; path = Source/Private/TextExperiment/String/ASTextAttribute.h; sourceTree = "<group>"; };
@@ -1240,7 +1239,7 @@
 		227DDAF5389F066940EF572D443D3252 /* GICListItemSelectedEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICListItemSelectedEvent.m; sourceTree = "<group>"; };
 		2284E47DABBB9E1A1FA90DB61F4AD01C /* ASCGImageBuffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASCGImageBuffer.m; path = Source/ASCGImageBuffer.m; sourceTree = "<group>"; };
 		2287C806BABE223F9B8D537A57FD7201 /* ASWeakSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASWeakSet.m; path = Source/Details/ASWeakSet.m; sourceTree = "<group>"; };
-		22F20EA6816FAFB0B96020A575A3A137 /* ASStackPositionedLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASStackPositionedLayout.mm; path = Source/Private/Layout/ASStackPositionedLayout.mm; sourceTree = "<group>"; };
+		22F20EA6816FAFB0B96020A575A3A137 /* ASStackPositionedLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASStackPositionedLayout.mm; path = Source/Private/Layout/ASStackPositionedLayout.mm; sourceTree = "<group>"; };
 		2331C98A01778C9DE38191C13AEE96A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		238FB2F1FCFF9D08E822DFFF3C307173 /* ASTabBarController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTabBarController.m; path = Source/ASTabBarController.m; sourceTree = "<group>"; };
 		2409DBBB81413BE85AA9360A4B44AC20 /* PINRemoteImageCategoryManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageCategoryManager.h; path = Source/Classes/PINRemoteImageCategoryManager.h; sourceTree = "<group>"; };
@@ -1250,11 +1249,11 @@
 		251C66D4461FA72A4C387D74F0D60974 /* ASPageTable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASPageTable.h; path = Source/Details/ASPageTable.h; sourceTree = "<group>"; };
 		25A94F826C13C383DF8620E539161426 /* UIStepper+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIStepper+RACSignalSupport.m"; path = "ReactiveObjC/UIStepper+RACSignalSupport.m"; sourceTree = "<group>"; };
 		25CF69F1C7D5CA7F457C45D6C2B400B1 /* RACDynamicSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACDynamicSequence.m; path = ReactiveObjC/RACDynamicSequence.m; sourceTree = "<group>"; };
-		25E4063DDBD81BB739E1E71406D20418 /* PINOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PINOperation.framework; path = PINOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25E4063DDBD81BB739E1E71406D20418 /* PINOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2609DD806EFB9AABD1EBE9C37B041119 /* ASCollectionFlowLayoutDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASCollectionFlowLayoutDelegate.m; path = Source/Details/ASCollectionFlowLayoutDelegate.m; sourceTree = "<group>"; };
 		263BCE82A75FA5AF1D803C18F4F73781 /* _ASDisplayLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASDisplayLayer.h; path = Source/Details/_ASDisplayLayer.h; sourceTree = "<group>"; };
 		267FEBA618E95B20D88A9BF82776CFA6 /* PINButton+PINRemoteImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINButton+PINRemoteImage.h"; path = "Source/Classes/ImageCategories/PINButton+PINRemoteImage.h"; sourceTree = "<group>"; };
-		2712BBEFE16EC3CCFA5D0D14569272E1 /* ASVideoPlayerNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASVideoPlayerNode.mm; path = Source/ASVideoPlayerNode.mm; sourceTree = "<group>"; };
+		2712BBEFE16EC3CCFA5D0D14569272E1 /* ASVideoPlayerNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASVideoPlayerNode.mm; path = Source/ASVideoPlayerNode.mm; sourceTree = "<group>"; };
 		271D78080BE0CBD76C86D747B7EC86E6 /* Pods-GICXMLLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GICXMLLayout_Example.modulemap"; sourceTree = "<group>"; };
 		272EBAB07F52349E5BDDE1A0CFAF2D5C /* PINOperation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PINOperation-prefix.pch"; sourceTree = "<group>"; };
 		27A2A2333A1A6D598AD93BCF523AD29C /* ASMainSerialQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASMainSerialQueue.h; path = Source/Details/ASMainSerialQueue.h; sourceTree = "<group>"; };
@@ -1274,7 +1273,7 @@
 		2B63FC54046F667CEB335CA056EFCFCF /* NSInvocation+RACTypeParsing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+RACTypeParsing.m"; path = "ReactiveObjC/NSInvocation+RACTypeParsing.m"; sourceTree = "<group>"; };
 		2B7D758C55413C9C81F94D7FE661D263 /* ASLayoutManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutManager.h; path = Source/TextKit/ASLayoutManager.h; sourceTree = "<group>"; };
 		2BB479249B27C501CE04E047537F73F8 /* SDWebImageCoderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoderHelper.m; path = SDWebImage/SDWebImageCoderHelper.m; sourceTree = "<group>"; };
-		2BB9C5AD09DE9A5178A3D4EAA3C83D7E /* ASLayoutSpec+Subclasses.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASLayoutSpec+Subclasses.mm"; path = "Source/Layout/ASLayoutSpec+Subclasses.mm"; sourceTree = "<group>"; };
+		2BB9C5AD09DE9A5178A3D4EAA3C83D7E /* ASLayoutSpec+Subclasses.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASLayoutSpec+Subclasses.mm"; path = "Source/Layout/ASLayoutSpec+Subclasses.mm"; sourceTree = "<group>"; };
 		2BC35DAB117484D7114C265FF36183AE /* PINRemoteImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImage.h; path = Source/Classes/PINRemoteImage.h; sourceTree = "<group>"; };
 		2C0FA463FFA0655B04E430B695DCE5EE /* LayoutElementProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LayoutElementProtocol.h; sourceTree = "<group>"; };
 		2C4E2B3DF6845764A3FE1604DE503924 /* ASLayoutElementPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutElementPrivate.h; path = Source/Layout/ASLayoutElementPrivate.h; sourceTree = "<group>"; };
@@ -1283,10 +1282,10 @@
 		2CFF3BBAD60D7A038CCBC06AE444CACD /* UIButton+RACCommandSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+RACCommandSupport.h"; path = "ReactiveObjC/UIButton+RACCommandSupport.h"; sourceTree = "<group>"; };
 		2DAF71F9CB9F22C80F1C580558AFFEA9 /* GICDirective.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICDirective.h; sourceTree = "<group>"; };
 		2DD958FAB1AA28D240DC8A34520152B9 /* ASLayoutRangeType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutRangeType.h; path = Source/Details/ASLayoutRangeType.h; sourceTree = "<group>"; };
-		2E2BE7D80B9BF6F8527FECCC000C02BB /* ASDisplayNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDisplayNode.mm; path = Source/ASDisplayNode.mm; sourceTree = "<group>"; };
+		2E2BE7D80B9BF6F8527FECCC000C02BB /* ASDisplayNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDisplayNode.mm; path = Source/ASDisplayNode.mm; sourceTree = "<group>"; };
 		2E3B2DAEBF78F499C6B12876C16FDD0D /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
 		2E4FCB1C255D4A517B89DAC1E80C7D84 /* PINRemoteImageBasicCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINRemoteImageBasicCache.m; path = Source/Classes/PINRemoteImageBasicCache.m; sourceTree = "<group>"; };
-		2E50BF9E7806C32ADB138169C323F457 /* ASCornerLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCornerLayoutSpec.mm; path = Source/Layout/ASCornerLayoutSpec.mm; sourceTree = "<group>"; };
+		2E50BF9E7806C32ADB138169C323F457 /* ASCornerLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCornerLayoutSpec.mm; path = Source/Layout/ASCornerLayoutSpec.mm; sourceTree = "<group>"; };
 		2E5F7E805C8A2E5BF2E49BF7E1980286 /* ASAvailability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASAvailability.h; path = Source/Base/ASAvailability.h; sourceTree = "<group>"; };
 		2E6CC74C574EEF0557FC3695D2FC5B79 /* ASTextKitEntityAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTextKitEntityAttribute.m; path = Source/TextKit/ASTextKitEntityAttribute.m; sourceTree = "<group>"; };
 		2E882765ECABB0F6A1311BB6D2516E79 /* PINRemoteImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageManager.h; path = Source/Classes/PINRemoteImageManager.h; sourceTree = "<group>"; };
@@ -1314,7 +1313,7 @@
 		33BBA455F5C148927BE963D24E9125C4 /* SDWebImageCodersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCodersManager.m; path = SDWebImage/SDWebImageCodersManager.m; sourceTree = "<group>"; };
 		33EDB8F3B86A437667E0626254369E57 /* PINAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINAnimatedImage.m; path = Source/Classes/AnimatedImages/PINAnimatedImage.m; sourceTree = "<group>"; };
 		342909CA506B21C63E641A5E61D466A2 /* NSFileHandle+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSFileHandle+RACSupport.h"; path = "ReactiveObjC/NSFileHandle+RACSupport.h"; sourceTree = "<group>"; };
-		34A257C4751C4D62875AC45D81EF1ACF /* _ASCoreAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASCoreAnimationExtras.mm; path = Source/Private/_ASCoreAnimationExtras.mm; sourceTree = "<group>"; };
+		34A257C4751C4D62875AC45D81EF1ACF /* _ASCoreAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASCoreAnimationExtras.mm; path = Source/Private/_ASCoreAnimationExtras.mm; sourceTree = "<group>"; };
 		34E3937E0572564CC521B98A5FADA665 /* NSObject+GICTemplate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+GICTemplate.h"; sourceTree = "<group>"; };
 		350A370FC018A1FFEAC64884F1D4AE5C /* ASLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLog.h; path = Source/Base/ASLog.h; sourceTree = "<group>"; };
 		3559E3B467D9CF5E5223820281321112 /* _ASCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASCollectionViewCell.h; path = Source/Details/_ASCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1327,7 +1326,9 @@
 		36F22C9EB4FC60B5BBC80BBD806237E8 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MultiFormat.m"; path = "SDWebImage/UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		371B380AF7DB5B78A82498F0FE3BC9BA /* ASBlockTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASBlockTypes.h; path = Source/ASBlockTypes.h; sourceTree = "<group>"; };
 		37AE2177E7B269B6DB0F80A88957D6FA /* UIActionSheet+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+RACSignalSupport.m"; path = "ReactiveObjC/UIActionSheet+RACSignalSupport.m"; sourceTree = "<group>"; };
-		37D264EB544BBDBCA1A3937BCAE70402 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C806F220F6ED56002EEF55 /* GICView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICView.h; sourceTree = "<group>"; };
+		37C806F320F6ED56002EEF55 /* GICView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICView.m; sourceTree = "<group>"; };
+		37D264EB544BBDBCA1A3937BCAE70402 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3820368523ABC455BE23C2CB53657C62 /* PINAlternateRepresentationProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINAlternateRepresentationProvider.m; path = Source/Classes/PINAlternateRepresentationProvider.m; sourceTree = "<group>"; };
 		382B8B65DFC311E2BE89F9313F3EAEA4 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
 		38A850DA11DF35202BCB0CD857EC2EE5 /* UIImage+ASConvenience.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ASConvenience.m"; path = "Source/UIImage+ASConvenience.m"; sourceTree = "<group>"; };
@@ -1340,7 +1341,7 @@
 		3A483D76C92CF257E8495255508FD979 /* ASDisplayNodeExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDisplayNodeExtras.h; path = Source/ASDisplayNodeExtras.h; sourceTree = "<group>"; };
 		3A62977D76D417B1F325FF187E0034C6 /* ASCollectionElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionElement.h; path = Source/Details/ASCollectionElement.h; sourceTree = "<group>"; };
 		3A89AD58654BB2A4F76501C8CFE84203 /* PINOperation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PINOperation.xcconfig; sourceTree = "<group>"; };
-		3ABE4850F07BAC33C650C3335AC433A9 /* ASMultiplexImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASMultiplexImageNode.mm; path = Source/ASMultiplexImageNode.mm; sourceTree = "<group>"; };
+		3ABE4850F07BAC33C650C3335AC433A9 /* ASMultiplexImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASMultiplexImageNode.mm; path = Source/ASMultiplexImageNode.mm; sourceTree = "<group>"; };
 		3B360AA2C31ACA4F61ACEEF276EE4216 /* NSButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSButton+WebCache.m"; path = "SDWebImage/NSButton+WebCache.m"; sourceTree = "<group>"; };
 		3B9712C7B807241863CA1F5D82CE8119 /* UITableViewCell+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+RACSignalSupport.m"; path = "ReactiveObjC/UITableViewCell+RACSignalSupport.m"; sourceTree = "<group>"; };
 		3C17982B408A9AB4DA769CB6523C6770 /* ASTableView+Undeprecated.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASTableView+Undeprecated.h"; path = "Source/Private/ASTableView+Undeprecated.h"; sourceTree = "<group>"; };
@@ -1364,7 +1365,7 @@
 		4198EF2A1808B559B2C6A69F4F2ED003 /* LayoutExampleNodes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LayoutExampleNodes.h; sourceTree = "<group>"; };
 		41C93F2EB85D26BC331C15F1CCDDECA6 /* ASTextKitTailTruncater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextKitTailTruncater.h; path = Source/TextKit/ASTextKitTailTruncater.h; sourceTree = "<group>"; };
 		421F924530A5E957A53E308D7DCA1513 /* PINRemoteImageMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageMacros.h; path = Source/Classes/PINRemoteImageMacros.h; sourceTree = "<group>"; };
-		426063A61507429B4EEF2E48931BD16C /* _ASAsyncTransaction.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASAsyncTransaction.mm; path = Source/Details/Transactions/_ASAsyncTransaction.mm; sourceTree = "<group>"; };
+		426063A61507429B4EEF2E48931BD16C /* _ASAsyncTransaction.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASAsyncTransaction.mm; path = Source/Details/Transactions/_ASAsyncTransaction.mm; sourceTree = "<group>"; };
 		43428EA6668287B0F7A2E1D046D35CA5 /* ASElementMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASElementMap.h; path = Source/Details/ASElementMap.h; sourceTree = "<group>"; };
 		4390EA0C31CBDAD34AA814E4B5B9CDB3 /* ASSectionContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSectionContext.h; path = Source/Details/ASSectionContext.h; sourceTree = "<group>"; };
 		43F66C37BC360E124E33F74E32358DB4 /* ASDefaultPlaybackButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDefaultPlaybackButton.h; path = Source/Private/ASDefaultPlaybackButton.h; sourceTree = "<group>"; };
@@ -1372,9 +1373,9 @@
 		445B2A707813B77133965F4389A8285C /* PINCache+PINRemoteImageCaching.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "PINCache+PINRemoteImageCaching.m"; path = "Source/Classes/PINCache/PINCache+PINRemoteImageCaching.m"; sourceTree = "<group>"; };
 		4487C4B7C1905C9013F8B83862BCE2B9 /* PINOperation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PINOperation-dummy.m"; sourceTree = "<group>"; };
 		448A9850AC405A9E8B7EE51F1983A3E1 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		44C29CCE5F5ADC45D642C2939BF60FB1 /* _ASHierarchyChangeSet.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASHierarchyChangeSet.mm; path = Source/Private/_ASHierarchyChangeSet.mm; sourceTree = "<group>"; };
+		44C29CCE5F5ADC45D642C2939BF60FB1 /* _ASHierarchyChangeSet.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASHierarchyChangeSet.mm; path = Source/Private/_ASHierarchyChangeSet.mm; sourceTree = "<group>"; };
 		45451C60B39CA10A6DCDADDD6EC81073 /* GICBoolConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICBoolConverter.h; sourceTree = "<group>"; };
-		4565999F0EC19777ECAE9E83BC31D155 /* ASCollectionView.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionView.mm; path = Source/ASCollectionView.mm; sourceTree = "<group>"; };
+		4565999F0EC19777ECAE9E83BC31D155 /* ASCollectionView.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionView.mm; path = Source/ASCollectionView.mm; sourceTree = "<group>"; };
 		458BEEC2131C778D28BA6D3AD5CE9D3E /* NSObject+GICDataContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GICDataContext.m"; sourceTree = "<group>"; };
 		45C9E302F114E061B82A270FA4589EAB /* SDWebImageFrame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageFrame.m; path = SDWebImage/SDWebImageFrame.m; sourceTree = "<group>"; };
 		45D4852E3F2AD7CAD368356BA925AC93 /* GICDockPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICDockPanel.h; sourceTree = "<group>"; };
@@ -1391,26 +1392,25 @@
 		481F8AAB3ADDFA49EA1399D9E572D51E /* GICUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICUtils.h; sourceTree = "<group>"; };
 		48AE42CB46C7F13C5DFE4FFBDB9A9CC1 /* NSFileHandle+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSFileHandle+RACSupport.m"; path = "ReactiveObjC/NSFileHandle+RACSupport.m"; sourceTree = "<group>"; };
 		48DBBA5A9331C773A71701D1DED1E850 /* PINRemoteImageCategoryManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINRemoteImageCategoryManager.m; path = Source/Classes/PINRemoteImageCategoryManager.m; sourceTree = "<group>"; };
-		49256445075450B4121B7AC3089F72D1 /* ASDimension.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDimension.mm; path = Source/Layout/ASDimension.mm; sourceTree = "<group>"; };
+		49256445075450B4121B7AC3089F72D1 /* ASDimension.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDimension.mm; path = Source/Layout/ASDimension.mm; sourceTree = "<group>"; };
 		492A89D40CDA65C4BF069164243556F4 /* GICEdgeConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICEdgeConverter.h; sourceTree = "<group>"; };
 		493276A5E8615C2B50299DC066084AC9 /* ASTextUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextUtilities.h; path = Source/Private/TextExperiment/Utility/ASTextUtilities.h; sourceTree = "<group>"; };
 		4995B7F993AD766E4EE3F53327596758 /* ASTableLayoutController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTableLayoutController.h; path = Source/Details/ASTableLayoutController.h; sourceTree = "<group>"; };
-		49AF6AB4F655892631837270A1319C7F /* ASAbsoluteLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASAbsoluteLayoutSpec.mm; path = Source/Layout/ASAbsoluteLayoutSpec.mm; sourceTree = "<group>"; };
+		49AF6AB4F655892631837270A1319C7F /* ASAbsoluteLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASAbsoluteLayoutSpec.mm; path = Source/Layout/ASAbsoluteLayoutSpec.mm; sourceTree = "<group>"; };
 		49FD64C842BC6238C223C60CE9F69DD0 /* ASBatchFetching.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASBatchFetching.h; path = Source/Private/ASBatchFetching.h; sourceTree = "<group>"; };
 		4A2ED46C638CFDE903489F439D68D718 /* NSArray+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+RACSequenceAdditions.h"; path = "ReactiveObjC/NSArray+RACSequenceAdditions.h"; sourceTree = "<group>"; };
 		4A30DC367DFD2A7696A236EDC76C65E7 /* ASDefaultPlayButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASDefaultPlayButton.m; path = Source/Private/ASDefaultPlayButton.m; sourceTree = "<group>"; };
-		4AB21C7409266D0D1833A69E2BF87878 /* ASDisplayNode+DebugTiming.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASDisplayNode+DebugTiming.mm"; path = "Source/Private/ASDisplayNode+DebugTiming.mm"; sourceTree = "<group>"; };
+		4AB21C7409266D0D1833A69E2BF87878 /* ASDisplayNode+DebugTiming.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASDisplayNode+DebugTiming.mm"; path = "Source/Private/ASDisplayNode+DebugTiming.mm"; sourceTree = "<group>"; };
 		4B6BD4EA90E882D04F25BA85C0C42A01 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C0AEAEFBAD995DA3736E12EC29F5D75 /* _ASPendingState.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASPendingState.mm; path = Source/Private/_ASPendingState.mm; sourceTree = "<group>"; };
-		4C326F8A1BCDFB93418639FE3B9EC948 /* ASRelativeLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASRelativeLayoutSpec.mm; path = Source/Layout/ASRelativeLayoutSpec.mm; sourceTree = "<group>"; };
-		4C519186A9BDA60685A582CAF89CB25A /* ASImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASImageNode.mm; path = Source/ASImageNode.mm; sourceTree = "<group>"; };
+		4C0AEAEFBAD995DA3736E12EC29F5D75 /* _ASPendingState.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASPendingState.mm; path = Source/Private/_ASPendingState.mm; sourceTree = "<group>"; };
+		4C326F8A1BCDFB93418639FE3B9EC948 /* ASRelativeLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRelativeLayoutSpec.mm; path = Source/Layout/ASRelativeLayoutSpec.mm; sourceTree = "<group>"; };
+		4C519186A9BDA60685A582CAF89CB25A /* ASImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASImageNode.mm; path = Source/ASImageNode.mm; sourceTree = "<group>"; };
 		4C553AC25E229F6F4A1777CEB932EEAE /* GDataXMLNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = GDataXMLNode/Classes/GDataXMLNode.m; sourceTree = "<group>"; };
 		4C90EA0EDAAE2A6067773AE142433C1E /* UIView+ASConvenience.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ASConvenience.h"; path = "Source/Details/UIView+ASConvenience.h"; sourceTree = "<group>"; };
 		4CA88C6834296A619ED38435A9E639C6 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
 		4CADBFE31E45DB254F239D07E2191687 /* PINOperationGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINOperationGroup.m; path = Source/PINOperationGroup.m; sourceTree = "<group>"; };
-		4CD513DB49C6AC3448EB126264F2F85F /* UIView+GICExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+GICExtension.h"; sourceTree = "<group>"; };
 		4D4660E5F18492606268571BE83A7A4E /* NSObject+Reflector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Reflector.m"; path = "JsonParser/Classes/NSObject+Reflector.m"; sourceTree = "<group>"; };
-		4DE3545C4AB39904D6A629FF6413D74F /* ASNetworkImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASNetworkImageNode.mm; path = Source/ASNetworkImageNode.mm; sourceTree = "<group>"; };
+		4DE3545C4AB39904D6A629FF6413D74F /* ASNetworkImageNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASNetworkImageNode.mm; path = Source/ASNetworkImageNode.mm; sourceTree = "<group>"; };
 		4E0D117264D031AEF2EB2648419EBF64 /* PINGIFAnimatedImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINGIFAnimatedImageManager.h; path = Source/Classes/PINGIFAnimatedImageManager.h; sourceTree = "<group>"; };
 		4E1B78894426A894E2B47527D69D4253 /* ASNetworkImageLoadInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASNetworkImageLoadInfo.h; path = Source/ASNetworkImageLoadInfo.h; sourceTree = "<group>"; };
 		4E5B60BF6195C89B2D0F4A52F8B297A5 /* UITextView+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+RACSignalSupport.h"; path = "ReactiveObjC/UITextView+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -1441,17 +1441,17 @@
 		554D49658F32875B3AF096C7B0579D80 /* UITableViewHeaderFooterView+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewHeaderFooterView+RACSignalSupport.m"; path = "ReactiveObjC/UITableViewHeaderFooterView+RACSignalSupport.m"; sourceTree = "<group>"; };
 		555500DAF770B5E9A1D9E679C7D9080F /* ASTraceEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTraceEvent.m; path = Source/Details/ASTraceEvent.m; sourceTree = "<group>"; };
 		556A15FB52FDD1D01B3393719E300C25 /* ASCollectionLayoutContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASCollectionLayoutContext.m; path = Source/Details/ASCollectionLayoutContext.m; sourceTree = "<group>"; };
-		557938BE3CFE116709751DB7E4BF2E2F /* ASMapNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASMapNode.mm; path = Source/ASMapNode.mm; sourceTree = "<group>"; };
+		557938BE3CFE116709751DB7E4BF2E2F /* ASMapNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASMapNode.mm; path = Source/ASMapNode.mm; sourceTree = "<group>"; };
 		557DC1A107C81FA9C3A58828445FF8F1 /* RACStream+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACStream+Private.h"; path = "ReactiveObjC/RACStream+Private.h"; sourceTree = "<group>"; };
 		558FDFC6F409798F7847B8118F32CFD6 /* GICColorConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICColorConverter.h; sourceTree = "<group>"; };
 		55AA5BBD4A34EFC7504AE984EDFB76DA /* GICInpute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICInpute.h; sourceTree = "<group>"; };
 		55C01545127717771975AD1514B7D403 /* CoreGraphics+ASConvenience.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CoreGraphics+ASConvenience.m"; path = "Source/Details/CoreGraphics+ASConvenience.m"; sourceTree = "<group>"; };
 		5676E682EBA8D531B41E0C2993D21471 /* PINOperationQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINOperationQueue.h; path = Source/PINOperationQueue.h; sourceTree = "<group>"; };
-		570F5324106752850FAAFFF75DFAA74F /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
+		570F5324106752850FAAFFF75DFAA74F /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
 		578045E076D93DCB3DB6CBE4C90C4256 /* UITableViewCell+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+RACSignalSupport.h"; path = "ReactiveObjC/UITableViewCell+RACSignalSupport.h"; sourceTree = "<group>"; };
 		583E2C7CE7B80A821E19C64ED0865BD6 /* ASCollectionLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionLayout.h; path = Source/Private/ASCollectionLayout.h; sourceTree = "<group>"; };
 		5846EC86CC648D1F642224FA2C43AFBD /* UIImage+GIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+GIF.h"; path = "SDWebImage/UIImage+GIF.h"; sourceTree = "<group>"; };
-		5876B2295A7F5A18EAD16B2F4881DA4B /* GICJsonParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GICJsonParser.framework; path = GICJsonParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5876B2295A7F5A18EAD16B2F4881DA4B /* GICJsonParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GICJsonParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58A5B555D2EF2A37AA863C509CB27AA0 /* RACArraySequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACArraySequence.h; path = ReactiveObjC/RACArraySequence.h; sourceTree = "<group>"; };
 		58E1A3A3CDEF597DE7E7D5DE8BEE12E9 /* ASWeakProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASWeakProxy.h; path = Source/Details/ASWeakProxy.h; sourceTree = "<group>"; };
 		58F499BEF5FB280E19C9C9B2F0BAC720 /* ASStackUnpositionedLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASStackUnpositionedLayout.h; path = Source/Private/Layout/ASStackUnpositionedLayout.h; sourceTree = "<group>"; };
@@ -1465,25 +1465,25 @@
 		5A73AE27A4410ED9E70F9EEB2B59D399 /* ASYogaUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASYogaUtilities.h; path = Source/Layout/ASYogaUtilities.h; sourceTree = "<group>"; };
 		5A99ADB3BCF12769F77F302AEDD033E5 /* ASCollectionViewLayoutFacilitatorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionViewLayoutFacilitatorProtocol.h; path = Source/ASCollectionViewLayoutFacilitatorProtocol.h; sourceTree = "<group>"; };
 		5AB969CDE5FEB0D11E4A85A7A69B63C2 /* GICTemplate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICTemplate.m; sourceTree = "<group>"; };
-		5B642560230F675C9E322681AC70108A /* ASEventLog.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASEventLog.mm; path = Source/Details/ASEventLog.mm; sourceTree = "<group>"; };
-		5B87063AB3409251E569C19B7A84C4E9 /* ASRectMap.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASRectMap.mm; path = Source/Private/ASRectMap.mm; sourceTree = "<group>"; };
+		5B642560230F675C9E322681AC70108A /* ASEventLog.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASEventLog.mm; path = Source/Details/ASEventLog.mm; sourceTree = "<group>"; };
+		5B87063AB3409251E569C19B7A84C4E9 /* ASRectMap.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRectMap.mm; path = Source/Private/ASRectMap.mm; sourceTree = "<group>"; };
 		5BCC8D0628320686FFE48E6B9580539E /* SDWebImageTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageTransition.h; path = SDWebImage/SDWebImageTransition.h; sourceTree = "<group>"; };
 		5BD874144805CA550759B18119DF50D6 /* GICDataContextConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICDataContextConverter.h; sourceTree = "<group>"; };
 		5BF5E32F2DBBC6945AC754EEC1ECC1DC /* LayoutExampleNodes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LayoutExampleNodes.m; sourceTree = "<group>"; };
 		5C2AC1BC93FF02B77B2E2749DF64DA2A /* ASContextTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASContextTransitioning.h; path = Source/ASContextTransitioning.h; sourceTree = "<group>"; };
-		5C907DA49D43F4EFBBCABBB3CC2790DC /* ASDisplayNodeExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDisplayNodeExtras.mm; path = Source/ASDisplayNodeExtras.mm; sourceTree = "<group>"; };
+		5C907DA49D43F4EFBBCABBB3CC2790DC /* ASDisplayNodeExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDisplayNodeExtras.mm; path = Source/ASDisplayNodeExtras.mm; sourceTree = "<group>"; };
 		5CB59B86DF441287B23B81FD0A20F182 /* ASVideoPlayerNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASVideoPlayerNode.h; path = Source/ASVideoPlayerNode.h; sourceTree = "<group>"; };
 		5CC86D74870AA37EEA8CF4B1D5C8C0B8 /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		5D0F338C8A111582A26E6B186C24CFAE /* GICDisplayNodeExtensionProperties.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICDisplayNodeExtensionProperties.h; sourceTree = "<group>"; };
 		5D551CC3F8AD8F4368A6865C2E92FFE1 /* RACBehaviorSubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACBehaviorSubject.m; path = ReactiveObjC/RACBehaviorSubject.m; sourceTree = "<group>"; };
 		5D5A09AD6D3995E5AA1C642CF3BA3537 /* UITableViewHeaderFooterView+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewHeaderFooterView+RACSignalSupport.h"; path = "ReactiveObjC/UITableViewHeaderFooterView+RACSignalSupport.h"; sourceTree = "<group>"; };
-		5DBDFF6BDD99BCAACB40E053B3420E71 /* ASBackgroundLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASBackgroundLayoutSpec.mm; path = Source/Layout/ASBackgroundLayoutSpec.mm; sourceTree = "<group>"; };
+		5DBDFF6BDD99BCAACB40E053B3420E71 /* ASBackgroundLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASBackgroundLayoutSpec.mm; path = Source/Layout/ASBackgroundLayoutSpec.mm; sourceTree = "<group>"; };
 		5E3246255CF61DC7E93C3C926F17ECCB /* AsyncDisplayKit+IGListKitMethods.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AsyncDisplayKit+IGListKitMethods.m"; path = "Source/AsyncDisplayKit+IGListKitMethods.m"; sourceTree = "<group>"; };
 		5EA856428B0EEF7D837D7CC75F63D0AC /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		5F0181A7AED100C241428855B925F340 /* GICTapEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICTapEvent.h; sourceTree = "<group>"; };
 		5F292ECAE5015B12722DDC6E89443B06 /* PINRemoteImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PINRemoteImage.modulemap; sourceTree = "<group>"; };
 		5FBB556260462DEDF48AAF8C427D3B33 /* GICSizeConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICSizeConverter.m; sourceTree = "<group>"; };
-		5FC69EF5F31C99A67DAB246F14757C52 /* ASTableNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTableNode.mm; path = Source/ASTableNode.mm; sourceTree = "<group>"; };
+		5FC69EF5F31C99A67DAB246F14757C52 /* ASTableNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTableNode.mm; path = Source/ASTableNode.mm; sourceTree = "<group>"; };
 		6035011FAEB151BD789B1791EEBA5888 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
 		6059C545CD0919AE495DFBB9A964DF81 /* PINRemoteImageProcessorTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageProcessorTask.h; path = Source/Classes/PINRemoteImageProcessorTask.h; sourceTree = "<group>"; };
 		60B9B6C254E71C88CC07B4499E953C0F /* ASCollectionLayoutContext+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASCollectionLayoutContext+Private.h"; path = "Source/Private/ASCollectionLayoutContext+Private.h"; sourceTree = "<group>"; };
@@ -1495,7 +1495,7 @@
 		61931EC46811DB5DFEDA277DC4AC70E7 /* ReactiveObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReactiveObjC-umbrella.h"; sourceTree = "<group>"; };
 		628EC23E8666D02E232837E51511258E /* ASPagerNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASPagerNode.m; path = Source/ASPagerNode.m; sourceTree = "<group>"; };
 		62BA15284CCA7B1A275218C13C6CFEDC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63310C92A19CEF41F49D46C6C4CCF7C2 /* ASLayoutElement.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASLayoutElement.mm; path = Source/Layout/ASLayoutElement.mm; sourceTree = "<group>"; };
+		63310C92A19CEF41F49D46C6C4CCF7C2 /* ASLayoutElement.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASLayoutElement.mm; path = Source/Layout/ASLayoutElement.mm; sourceTree = "<group>"; };
 		63E14E2899C8ADD1E9C154D54EA09115 /* ASAssert.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASAssert.m; path = Source/Base/ASAssert.m; sourceTree = "<group>"; };
 		63ED55E867AE611C24F8FE7CF3FB0F2E /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		64903FED64C8CE0CE56DF28B6151D932 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCacheConfig.h; path = SDWebImage/SDImageCacheConfig.h; sourceTree = "<group>"; };
@@ -1504,7 +1504,7 @@
 		64E100921836C870DDA74913AB1DF2B0 /* GICListItemSelectedEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListItemSelectedEvent.h; sourceTree = "<group>"; };
 		652048F21EFBE48B2F5FC6357251B2D1 /* NSObject+GICDirective.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+GICDirective.h"; sourceTree = "<group>"; };
 		6532CDD4BEB24E2291F11793C69DA299 /* UIRefreshControl+RACCommandSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+RACCommandSupport.m"; path = "ReactiveObjC/UIRefreshControl+RACCommandSupport.m"; sourceTree = "<group>"; };
-		65A7BC3F81E8F575A211AAD93304EE83 /* ASDimensionInternal.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDimensionInternal.mm; path = Source/Layout/ASDimensionInternal.mm; sourceTree = "<group>"; };
+		65A7BC3F81E8F575A211AAD93304EE83 /* ASDimensionInternal.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDimensionInternal.mm; path = Source/Layout/ASDimensionInternal.mm; sourceTree = "<group>"; };
 		65C463203AB1681D311685A4873E977D /* ASLayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutElement.h; path = Source/Layout/ASLayoutElement.h; sourceTree = "<group>"; };
 		66087817C256E7959F8499FD925383F8 /* GICXMLParserContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICXMLParserContext.h; sourceTree = "<group>"; };
 		6650621EA33793BDF246028C92357AA5 /* ASControlTargetAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASControlTargetAction.h; path = Source/Private/ASControlTargetAction.h; sourceTree = "<group>"; };
@@ -1512,9 +1512,9 @@
 		66EC22ECDF2E2E93EF1F440CBFE15B4B /* ASTextKitTruncating.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextKitTruncating.h; path = Source/TextKit/ASTextKitTruncating.h; sourceTree = "<group>"; };
 		672E0BEA4999BAAD48E8098CE582FF1B /* ASDisplayNode+Convenience.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASDisplayNode+Convenience.h"; path = "Source/ASDisplayNode+Convenience.h"; sourceTree = "<group>"; };
 		67486EB782C48293740D77DB861CC87E /* RACStringSequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACStringSequence.h; path = ReactiveObjC/RACStringSequence.h; sourceTree = "<group>"; };
-		68EC3649B03C4ABB0FBD4A257680C82E /* AsyncDisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AsyncDisplayKit.framework; path = Texture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68EC3649B03C4ABB0FBD4A257680C82E /* AsyncDisplayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncDisplayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6963C911995EB08EDCDB85A000EABA55 /* ASLayoutManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASLayoutManager.m; path = Source/TextKit/ASLayoutManager.m; sourceTree = "<group>"; };
-		69D93CE9404210BE89BEB72434143734 /* ASTextKitContext.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitContext.mm; path = Source/TextKit/ASTextKitContext.mm; sourceTree = "<group>"; };
+		69D93CE9404210BE89BEB72434143734 /* ASTextKitContext.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitContext.mm; path = Source/TextKit/ASTextKitContext.mm; sourceTree = "<group>"; };
 		6A3E2D57D99ED73420E72FA93A571EDD /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "SDWebImage/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		6A7C71FD78766458346CB35B67E0C277 /* _ASHierarchyChangeSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASHierarchyChangeSet.h; path = Source/Private/_ASHierarchyChangeSet.h; sourceTree = "<group>"; };
 		6AB2509B8E4BC8C410B7BB9C45726F3A /* ASTipNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTipNode.m; path = Source/Private/ASTipNode.m; sourceTree = "<group>"; };
@@ -1548,13 +1548,13 @@
 		7162395F8FEE725E83A2548D9C2B1696 /* ASTextNode+Beta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASTextNode+Beta.h"; path = "Source/ASTextNode+Beta.h"; sourceTree = "<group>"; };
 		7180D32AA3A5CDBEF97D72FDED6FC80C /* RACTupleSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTupleSequence.m; path = ReactiveObjC/RACTupleSequence.m; sourceTree = "<group>"; };
 		7185C87FDB9EA55BE250BB0814407793 /* ASRecursiveUnfairLock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASRecursiveUnfairLock.h; path = Source/Details/ASRecursiveUnfairLock.h; sourceTree = "<group>"; };
-		7211765BABD7201E7374C560D32CB44E /* ASInsetLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASInsetLayoutSpec.mm; path = Source/Layout/ASInsetLayoutSpec.mm; sourceTree = "<group>"; };
+		7211765BABD7201E7374C560D32CB44E /* ASInsetLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASInsetLayoutSpec.mm; path = Source/Layout/ASInsetLayoutSpec.mm; sourceTree = "<group>"; };
 		722FA233D0E9582597AE5BF0F56CEFDA /* ASAbsoluteLayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASAbsoluteLayoutElement.h; path = Source/Layout/ASAbsoluteLayoutElement.h; sourceTree = "<group>"; };
 		729F804E47316ED8FA0199B0FE597295 /* GICImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICImageView.h; sourceTree = "<group>"; };
 		72AF6E3B6EBAA7FB15A095982115FE9A /* GICTextAlignmentConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICTextAlignmentConverter.h; sourceTree = "<group>"; };
-		73F74BBDD12D6E70D155EB6FB35E3CB9 /* ASDisplayNode+AsyncDisplay.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASDisplayNode+AsyncDisplay.mm"; path = "Source/Private/ASDisplayNode+AsyncDisplay.mm"; sourceTree = "<group>"; };
+		73F74BBDD12D6E70D155EB6FB35E3CB9 /* ASDisplayNode+AsyncDisplay.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASDisplayNode+AsyncDisplay.mm"; path = "Source/Private/ASDisplayNode+AsyncDisplay.mm"; sourceTree = "<group>"; };
 		744D4CAE212D6C2BBF72DDD931BA1B9A /* NSAttributedString+ASText.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+ASText.m"; path = "Source/Private/TextExperiment/Utility/NSAttributedString+ASText.m"; sourceTree = "<group>"; };
-		74C461E0BB390B9F4334CE64A20C33B0 /* _ASDisplayViewAccessiblity.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASDisplayViewAccessiblity.mm; path = Source/Details/_ASDisplayViewAccessiblity.mm; sourceTree = "<group>"; };
+		74C461E0BB390B9F4334CE64A20C33B0 /* _ASDisplayViewAccessiblity.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASDisplayViewAccessiblity.mm; path = Source/Details/_ASDisplayViewAccessiblity.mm; sourceTree = "<group>"; };
 		74CB22FFF7A27A42277F17D42DD753E0 /* NSArray+Diffing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Diffing.m"; path = "Source/Details/NSArray+Diffing.m"; sourceTree = "<group>"; };
 		74D45C4368B45DF4822D679FF5499564 /* IGListAdapter+AsyncDisplayKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IGListAdapter+AsyncDisplayKit.m"; path = "Source/IGListAdapter+AsyncDisplayKit.m"; sourceTree = "<group>"; };
 		74EAE581D01C10626F7C731F25821EAC /* _ASAsyncTransaction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASAsyncTransaction.h; path = Source/Details/Transactions/_ASAsyncTransaction.h; sourceTree = "<group>"; };
@@ -1568,13 +1568,13 @@
 		773533AF234EBC5667E1FAFDDA14B845 /* PINCache+PINRemoteImageCaching.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINCache+PINRemoteImageCaching.h"; path = "Source/Classes/PINCache/PINCache+PINRemoteImageCaching.h"; sourceTree = "<group>"; };
 		779DA6E8799DE9380EE0E1A9D5DE8FD9 /* UIView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCache.m"; path = "SDWebImage/UIView+WebCache.m"; sourceTree = "<group>"; };
 		77D2533B3612B69D1483F11862D3BEA1 /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SDWebImage.modulemap; sourceTree = "<group>"; };
-		781904560D579829C392B6DA5D8225E2 /* ASRunLoopQueue.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASRunLoopQueue.mm; path = Source/ASRunLoopQueue.mm; sourceTree = "<group>"; };
+		781904560D579829C392B6DA5D8225E2 /* ASRunLoopQueue.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRunLoopQueue.mm; path = Source/ASRunLoopQueue.mm; sourceTree = "<group>"; };
 		788456BE8659B9AEAB281A21C6C5684A /* RACTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTuple.h; path = ReactiveObjC/RACTuple.h; sourceTree = "<group>"; };
 		795153FE70AC4AF71D10D35D5A165365 /* RACSubject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSubject.h; path = ReactiveObjC/RACSubject.h; sourceTree = "<group>"; };
 		79A68CABB87A2971FD10AE49EBE31326 /* ASCollectionViewProtocols.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionViewProtocols.h; path = Source/ASCollectionViewProtocols.h; sourceTree = "<group>"; };
 		79B673EE4FAF96C6C1FA4044CD688168 /* RACReplaySubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACReplaySubject.m; path = ReactiveObjC/RACReplaySubject.m; sourceTree = "<group>"; };
-		79DDC050A2A91E8C7BCDCD5DB2CFFFD7 /* ASDisplayNodeLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDisplayNodeLayout.mm; path = Source/Private/ASDisplayNodeLayout.mm; sourceTree = "<group>"; };
-		79EBDA05B11D6C4185C46F644031F1A6 /* ASTextKitFontSizeAdjuster.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitFontSizeAdjuster.mm; path = Source/TextKit/ASTextKitFontSizeAdjuster.mm; sourceTree = "<group>"; };
+		79DDC050A2A91E8C7BCDCD5DB2CFFFD7 /* ASDisplayNodeLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDisplayNodeLayout.mm; path = Source/Private/ASDisplayNodeLayout.mm; sourceTree = "<group>"; };
+		79EBDA05B11D6C4185C46F644031F1A6 /* ASTextKitFontSizeAdjuster.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitFontSizeAdjuster.mm; path = Source/TextKit/ASTextKitFontSizeAdjuster.mm; sourceTree = "<group>"; };
 		7A8DFFC06B4D23E7A26E27EC604875AF /* NSObject+RACDescription.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACDescription.h"; path = "ReactiveObjC/NSObject+RACDescription.h"; sourceTree = "<group>"; };
 		7ACF3F7D5014DC75A4BBA175307A45F0 /* ASTextNodeWordKerner.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTextNodeWordKerner.m; path = Source/TextKit/ASTextNodeWordKerner.m; sourceTree = "<group>"; };
 		7B1F1D51D1F5A40C66BDA636A324EDAE /* NSEnumerator+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSEnumerator+RACSequenceAdditions.h"; path = "ReactiveObjC/NSEnumerator+RACSequenceAdditions.h"; sourceTree = "<group>"; };
@@ -1588,7 +1588,7 @@
 		7D478A0FF6A487E7DB01BE0C9E13A402 /* GICFloatConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICFloatConverter.h; sourceTree = "<group>"; };
 		7D8382F6E88D5BD19733C58A2A49F22A /* ASCenterLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCenterLayoutSpec.h; path = Source/Layout/ASCenterLayoutSpec.h; sourceTree = "<group>"; };
 		7D8C3CF3345A599B4DC373EE2EB98998 /* ASLayoutTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutTransition.h; path = Source/Private/ASLayoutTransition.h; sourceTree = "<group>"; };
-		7DFBBF6C9FF1F8C9AF7EC08C30C950D1 /* ASDisplayNode+Yoga.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASDisplayNode+Yoga.mm"; path = "Source/ASDisplayNode+Yoga.mm"; sourceTree = "<group>"; };
+		7DFBBF6C9FF1F8C9AF7EC08C30C950D1 /* ASDisplayNode+Yoga.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASDisplayNode+Yoga.mm"; path = "Source/ASDisplayNode+Yoga.mm"; sourceTree = "<group>"; };
 		7E278D01FE10C1E6CD9F4538052168D7 /* RACChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACChannel.h; path = ReactiveObjC/RACChannel.h; sourceTree = "<group>"; };
 		7E65D77BD84B738C84DFBE186095E279 /* NSMutableAttributedString+GICLableSubString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+GICLableSubString.m"; sourceTree = "<group>"; };
 		7E938376B231658C6DAC7F2CDB15024A /* NSMutableAttributedString+TextKitAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+TextKitAdditions.m"; path = "Source/Details/NSMutableAttributedString+TextKitAdditions.m"; sourceTree = "<group>"; };
@@ -1598,11 +1598,11 @@
 		80B6555901A09BBDEBC430DB478922C4 /* NSInvocation+RACTypeParsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+RACTypeParsing.h"; path = "ReactiveObjC/NSInvocation+RACTypeParsing.h"; sourceTree = "<group>"; };
 		80F9CB14D002DE8056FE5AFE17B57B13 /* PINCache-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PINCache-umbrella.h"; sourceTree = "<group>"; };
 		8105914ECD720B93EA90508A0F1CA5B0 /* GICReflectorPropertyInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GICReflectorPropertyInfo.m; path = JsonParser/Classes/GICReflectorPropertyInfo.m; sourceTree = "<group>"; };
-		818981816F08C882567A12FCDA78C9C4 /* ASOverlayLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASOverlayLayoutSpec.mm; path = Source/Layout/ASOverlayLayoutSpec.mm; sourceTree = "<group>"; };
+		818981816F08C882567A12FCDA78C9C4 /* ASOverlayLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASOverlayLayoutSpec.mm; path = Source/Layout/ASOverlayLayoutSpec.mm; sourceTree = "<group>"; };
 		83045F5C47E3240EE8AF0FBD8A06E13D /* GDataXMLNode_GIC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode_GIC-prefix.pch"; sourceTree = "<group>"; };
 		83495FD0F9C6EBB724F9A3E2D4954335 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		841C9B236EEC4E853A36B5DFC3EE0BCB /* GICPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICPage.m; sourceTree = "<group>"; };
-		8496928201E0A7EFD858AE4917D92FD9 /* ASTextKitAttributes.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitAttributes.mm; path = Source/TextKit/ASTextKitAttributes.mm; sourceTree = "<group>"; };
+		8496928201E0A7EFD858AE4917D92FD9 /* ASTextKitAttributes.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitAttributes.mm; path = Source/TextKit/ASTextKitAttributes.mm; sourceTree = "<group>"; };
 		84F239C2EF0CD58AA4FC7DEA886D0E35 /* AsyncDisplayKit+Debug.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AsyncDisplayKit+Debug.m"; path = "Source/Debug/AsyncDisplayKit+Debug.m"; sourceTree = "<group>"; };
 		8533B0CA861BF28B1B76C9CFAD9F8709 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
 		854A87FF1D270DE9FA84CCB833D7F573 /* GICNumberConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICNumberConverter.m; sourceTree = "<group>"; };
@@ -1611,31 +1611,31 @@
 		86E3CC88CEE8975DC0686C836A5D4958 /* ASNavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASNavigationController.m; path = Source/ASNavigationController.m; sourceTree = "<group>"; };
 		873B51095B2DA167AB6EECBC69F1BF50 /* ASExperimentalFeatures.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASExperimentalFeatures.m; path = Source/ASExperimentalFeatures.m; sourceTree = "<group>"; };
 		88193F8D9D334EA083ED83AC51785079 /* PINRemoteLock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteLock.h; path = Source/Classes/PINRemoteLock.h; sourceTree = "<group>"; };
-		8896C62E9E445C212F6FE1403EDE97B5 /* ASCellNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCellNode.mm; path = Source/ASCellNode.mm; sourceTree = "<group>"; };
+		8896C62E9E445C212F6FE1403EDE97B5 /* ASCellNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCellNode.mm; path = Source/ASCellNode.mm; sourceTree = "<group>"; };
 		89377FD291533DDBEE312D6DB908DA02 /* ASPagerNode+Beta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASPagerNode+Beta.h"; path = "Source/ASPagerNode+Beta.h"; sourceTree = "<group>"; };
 		899DABAE14D5D3A368F4631B55175BDE /* RACDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDisposable.h; path = ReactiveObjC/RACDisposable.h; sourceTree = "<group>"; };
 		8A564DEB4B511D51C5205B8A6D9947A4 /* LayoutExampleViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LayoutExampleViewController.h; sourceTree = "<group>"; };
 		8A996A7097861FA2502A2C6DBB1C13EE /* ASResponderChainEnumerator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASResponderChainEnumerator.h; path = Source/Private/ASResponderChainEnumerator.h; sourceTree = "<group>"; };
 		8B7F52E56C29A42559B8C5502BA564AA /* GICScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICScrollView.h; sourceTree = "<group>"; };
 		8C084A9EABD585D78EF2FDD0874284B0 /* ASTextNodeTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextNodeTypes.h; path = Source/TextKit/ASTextNodeTypes.h; sourceTree = "<group>"; };
-		8C1E5FABA670086027C05C73FF4345A2 /* ASViewController.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASViewController.mm; path = Source/ASViewController.mm; sourceTree = "<group>"; };
+		8C1E5FABA670086027C05C73FF4345A2 /* ASViewController.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASViewController.mm; path = Source/ASViewController.mm; sourceTree = "<group>"; };
 		8C4A72D2DB7BB07DC84551328EB48F9E /* PINCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINCache.h; path = Source/PINCache.h; sourceTree = "<group>"; };
 		8C5930CC1AAF8B845073F7D483930FFD /* RACCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACCommand.h; path = ReactiveObjC/RACCommand.h; sourceTree = "<group>"; };
 		8CE0AD24E02CEECB7CA14CE60703E16B /* GDataXMLNode_GIC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GDataXMLNode_GIC.modulemap; sourceTree = "<group>"; };
 		8D0AF4FE4C67D7A0A696DBF66C3FD29F /* Pods-GICXMLLayout_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GICXMLLayout_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		8D6578399FB9355CED37F0F74CEFA536 /* RACSequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSequence.h; path = ReactiveObjC/RACSequence.h; sourceTree = "<group>"; };
-		8DD487BBDF00192097240490EA9B6FD4 /* ASVideoNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASVideoNode.mm; path = Source/ASVideoNode.mm; sourceTree = "<group>"; };
+		8DD487BBDF00192097240490EA9B6FD4 /* ASVideoNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASVideoNode.mm; path = Source/ASVideoNode.mm; sourceTree = "<group>"; };
 		8DDD5623AF247082C7CC7102EBACFD30 /* ASTraitCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTraitCollection.m; path = Source/Details/ASTraitCollection.m; sourceTree = "<group>"; };
 		8E2F80A5E8332F0A6165AAA53FD32B4F /* ASRecursiveUnfairLock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASRecursiveUnfairLock.m; path = Source/Details/ASRecursiveUnfairLock.m; sourceTree = "<group>"; };
 		8E404F304C5027ABE8F2F570C1975643 /* NSObject+LayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+LayoutElement.h"; sourceTree = "<group>"; };
-		8F729F3755FF73BF0EFFD03B78A26F2F /* ASDisplayNode+Layout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASDisplayNode+Layout.mm"; path = "Source/ASDisplayNode+Layout.mm"; sourceTree = "<group>"; };
+		8F729F3755FF73BF0EFFD03B78A26F2F /* ASDisplayNode+Layout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASDisplayNode+Layout.mm"; path = "Source/ASDisplayNode+Layout.mm"; sourceTree = "<group>"; };
 		8F877DFC231300072B6A0D942DF506E8 /* PINImage+DecodedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINImage+DecodedImage.h"; path = "Source/Classes/Categories/PINImage+DecodedImage.h"; sourceTree = "<group>"; };
 		8FEA3DD437A88A552D406BA04AD103C4 /* ASTip.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTip.m; path = Source/Private/ASTip.m; sourceTree = "<group>"; };
 		8FEA8AD091500FE43619D2C23D06C87D /* ASConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASConfiguration.h; path = Source/ASConfiguration.h; sourceTree = "<group>"; };
 		9078F9CB06C8FDF094CD0BB3C4CDE09B /* ASLayoutSpecUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutSpecUtilities.h; path = Source/Private/Layout/ASLayoutSpecUtilities.h; sourceTree = "<group>"; };
 		90E6E1C290CD118DCA805A1313E303D0 /* GICListView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICListView.m; sourceTree = "<group>"; };
 		9125818CB86C86E9E23BAE0F7CA22ECD /* GICListHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListHeader.h; sourceTree = "<group>"; };
-		9134068E6387E6FF5A88C4F9195155E8 /* ASDataController.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASDataController.mm; path = Source/Details/ASDataController.mm; sourceTree = "<group>"; };
+		9134068E6387E6FF5A88C4F9195155E8 /* ASDataController.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASDataController.mm; path = Source/Details/ASDataController.mm; sourceTree = "<group>"; };
 		916FC7B47500F997ABBC3458941A3EAF /* RACScopedDisposable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACScopedDisposable.m; path = ReactiveObjC/RACScopedDisposable.m; sourceTree = "<group>"; };
 		918B7BD27A501E82FFEBE49166863031 /* RACSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSignal.m; path = ReactiveObjC/RACSignal.m; sourceTree = "<group>"; };
 		919AF5BB2D46E248B916261F99560553 /* GICPanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICPanel.m; sourceTree = "<group>"; };
@@ -1646,11 +1646,11 @@
 		9270341ADF4AEC16E172B264B9BC097C /* ASMutableAttributedStringBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASMutableAttributedStringBuilder.m; path = Source/Details/ASMutableAttributedStringBuilder.m; sourceTree = "<group>"; };
 		928151F31EB2D7AB3DAF09333214278E /* UIResponder+AsyncDisplayKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+AsyncDisplayKit.m"; path = "Source/UIResponder+AsyncDisplayKit.m"; sourceTree = "<group>"; };
 		92B35E4D6EEE6C7C4B24FC82D39192E5 /* NSIndexSet+ASHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+ASHelpers.h"; path = "Source/Details/NSIndexSet+ASHelpers.h"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93C4E10E08D26FF9327899626B4102ED /* GICJsonParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GICJsonParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9409DC9B51D430EED636038F589C2863 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		943A4A2931D66170B1A9A663825B5E7B /* ASDisplayNode+GICExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASDisplayNode+GICExtension.h"; sourceTree = "<group>"; };
-		949CC49A2A904A5DF6E0D5D41766A19B /* ASTextKitShadower.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitShadower.mm; path = Source/TextKit/ASTextKitShadower.mm; sourceTree = "<group>"; };
+		949CC49A2A904A5DF6E0D5D41766A19B /* ASTextKitShadower.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitShadower.mm; path = Source/TextKit/ASTextKitShadower.mm; sourceTree = "<group>"; };
 		94CF1E32E09FDDD8818456C1C010C608 /* NSDictionary+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+RACSequenceAdditions.h"; path = "ReactiveObjC/NSDictionary+RACSequenceAdditions.h"; sourceTree = "<group>"; };
 		955F21AC9EED0F104015571108E0B19A /* ASDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDelegateProxy.h; path = Source/Details/ASDelegateProxy.h; sourceTree = "<group>"; };
 		9577BC26EE19FDDB365242AEA58B76D2 /* ASDisplayNode+LayoutView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ASDisplayNode+LayoutView.m"; sourceTree = "<group>"; };
@@ -1662,7 +1662,7 @@
 		971E18E43727096B45D6D1C5A1FF50B9 /* ASTextInput.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTextInput.m; path = Source/Private/TextExperiment/Component/ASTextInput.m; sourceTree = "<group>"; };
 		97210CC083D858FE3463E4500DD7510B /* ASControlNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASControlNode.h; path = Source/ASControlNode.h; sourceTree = "<group>"; };
 		97AF3485DAA685A7948EE96B38C13689 /* RACKVOProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACKVOProxy.m; path = ReactiveObjC/RACKVOProxy.m; sourceTree = "<group>"; };
-		98097C1332864EF6F6FD9F4CCD5E0CD3 /* ASTextKitRenderer.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitRenderer.mm; path = Source/TextKit/ASTextKitRenderer.mm; sourceTree = "<group>"; };
+		98097C1332864EF6F6FD9F4CCD5E0CD3 /* ASTextKitRenderer.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitRenderer.mm; path = Source/TextKit/ASTextKitRenderer.mm; sourceTree = "<group>"; };
 		982E1A39EF97869715F3BD57420FC094 /* ASCellNode+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASCellNode+Internal.h"; path = "Source/Private/ASCellNode+Internal.h"; sourceTree = "<group>"; };
 		983EC2F6086E2B21B2728701F04ECB81 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		987EF525D683B8F8BD05C9FA8C1E1397 /* RACEmptySignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACEmptySignal.m; path = ReactiveObjC/RACEmptySignal.m; sourceTree = "<group>"; };
@@ -1671,7 +1671,7 @@
 		990435E8A517A1A3907C381C6176B3CD /* PINOperationTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINOperationTypes.h; path = Source/PINOperationTypes.h; sourceTree = "<group>"; };
 		99268767B9557E0C8B94CCD8F25A6EBC /* ASEditableTextNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASEditableTextNode.h; path = Source/ASEditableTextNode.h; sourceTree = "<group>"; };
 		99463841485B7BF5686A64EB94470588 /* ASTextKitEntityAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextKitEntityAttribute.h; path = Source/TextKit/ASTextKitEntityAttribute.h; sourceTree = "<group>"; };
-		9AAC55F9C62778FABD3CEDB83042A596 /* ASTextNode2.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextNode2.mm; path = Source/ASTextNode2.mm; sourceTree = "<group>"; };
+		9AAC55F9C62778FABD3CEDB83042A596 /* ASTextNode2.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextNode2.mm; path = Source/ASTextNode2.mm; sourceTree = "<group>"; };
 		9AB9BC668D187087692FABACEA93073B /* PINProgressiveImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINProgressiveImage.h; path = Source/Classes/PINProgressiveImage.h; sourceTree = "<group>"; };
 		9ADBECA807E2DCD2DDC5F154AF4357A4 /* RACEmptySignal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEmptySignal.h; path = ReactiveObjC/RACEmptySignal.h; sourceTree = "<group>"; };
 		9B093BDCF6CB276CAF6D73F3E83232C7 /* ASTwoDimensionalArrayUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTwoDimensionalArrayUtils.m; path = Source/Private/ASTwoDimensionalArrayUtils.m; sourceTree = "<group>"; };
@@ -1685,11 +1685,11 @@
 		9D912B79F7F76B7D8A9F6021580CFC0B /* Utilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9D9B7A14D30F6F3B5642686AEB6677B4 /* GICListItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICListItem.m; sourceTree = "<group>"; };
 		9DA6E1B09160AD47388C742608EDEF19 /* ASTextNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextNode.h; path = Source/ASTextNode.h; sourceTree = "<group>"; };
-		9E2EBB57FDF026E9157F87C1EFA1CAF4 /* ASYogaUtilities.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASYogaUtilities.mm; path = Source/Layout/ASYogaUtilities.mm; sourceTree = "<group>"; };
+		9E2EBB57FDF026E9157F87C1EFA1CAF4 /* ASYogaUtilities.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASYogaUtilities.mm; path = Source/Layout/ASYogaUtilities.mm; sourceTree = "<group>"; };
 		9E612D94D1914E3B1F8991858ACB620A /* RACUnarySequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACUnarySequence.h; path = ReactiveObjC/RACUnarySequence.h; sourceTree = "<group>"; };
 		9E65D0091A9F0FF5C9F9EFCED6DD7093 /* ASExperimentalFeatures.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASExperimentalFeatures.h; path = Source/ASExperimentalFeatures.h; sourceTree = "<group>"; };
 		9E7215AE6AFB212F9D77C184AAA053EE /* RACScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACScheduler.m; path = ReactiveObjC/RACScheduler.m; sourceTree = "<group>"; };
-		9E92D7F1174BA91AB35518B947BC4567 /* ASTextKitRenderer+Positioning.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "ASTextKitRenderer+Positioning.mm"; path = "Source/TextKit/ASTextKitRenderer+Positioning.mm"; sourceTree = "<group>"; };
+		9E92D7F1174BA91AB35518B947BC4567 /* ASTextKitRenderer+Positioning.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "ASTextKitRenderer+Positioning.mm"; path = "Source/TextKit/ASTextKitRenderer+Positioning.mm"; sourceTree = "<group>"; };
 		9EAB70DBA287FBAC043BA089BE060970 /* MKAnnotationView+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+RACSignalSupport.m"; path = "ReactiveObjC/MKAnnotationView+RACSignalSupport.m"; sourceTree = "<group>"; };
 		9EC46CDF1B2B967A217E67D03C9F33D5 /* RACSerialDisposable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSerialDisposable.m; path = ReactiveObjC/RACSerialDisposable.m; sourceTree = "<group>"; };
 		9EFC751A4CF65D8DED64C4D5E6E77374 /* ReactiveObjC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReactiveObjC-prefix.pch"; sourceTree = "<group>"; };
@@ -1726,7 +1726,7 @@
 		A70AA78A15B0686245C38B3879567E79 /* ReactiveObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ReactiveObjC.modulemap; sourceTree = "<group>"; };
 		A7CD13565996A01416533B4CAA1A3EA8 /* NSUserDefaults+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+RACSupport.m"; path = "ReactiveObjC/NSUserDefaults+RACSupport.m"; sourceTree = "<group>"; };
 		A922F58E6EF36D08F7FAAC5022C7C275 /* PINDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINDiskCache.h; path = Source/PINDiskCache.h; sourceTree = "<group>"; };
-		A97C7540BB224273745173E10BAAF09F /* ASCenterLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCenterLayoutSpec.mm; path = Source/Layout/ASCenterLayoutSpec.mm; sourceTree = "<group>"; };
+		A97C7540BB224273745173E10BAAF09F /* ASCenterLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCenterLayoutSpec.mm; path = Source/Layout/ASCenterLayoutSpec.mm; sourceTree = "<group>"; };
 		A9ACEDFC45C4BD25D28A6395321FC8BC /* GICListFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListFooter.h; sourceTree = "<group>"; };
 		A9C4B1CC45B475FD95BB0F80F5AAD788 /* NSURLConnection+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLConnection+RACSupport.m"; path = "ReactiveObjC/NSURLConnection+RACSupport.m"; sourceTree = "<group>"; };
 		A9D1B386993777B21920DFB451F4E381 /* GICXMLLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GICXMLLayout-prefix.pch"; sourceTree = "<group>"; };
@@ -1736,12 +1736,12 @@
 		AAC8A035A499E6D1B26AC7B084DD7E75 /* ASInsetLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASInsetLayoutSpec.h; path = Source/Layout/ASInsetLayoutSpec.h; sourceTree = "<group>"; };
 		AAC8D606B6BBB5C8AF656EE8CFA8C4C4 /* NSImage+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+WebCache.h"; path = "SDWebImage/NSImage+WebCache.h"; sourceTree = "<group>"; };
 		AB5ED0492BCC0EF3F44991F788EFC926 /* NSObject+RACDeallocating.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACDeallocating.h"; path = "ReactiveObjC/NSObject+RACDeallocating.h"; sourceTree = "<group>"; };
-		ABB0809EE9C7FD843D4A161E182518C0 /* _ASDisplayLayer.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASDisplayLayer.mm; path = Source/Details/_ASDisplayLayer.mm; sourceTree = "<group>"; };
+		ABB0809EE9C7FD843D4A161E182518C0 /* _ASDisplayLayer.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASDisplayLayer.mm; path = Source/Details/_ASDisplayLayer.mm; sourceTree = "<group>"; };
 		ABF1F3D9FC175863289C9A717A87618F /* RACErrorSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACErrorSignal.m; path = ReactiveObjC/RACErrorSignal.m; sourceTree = "<group>"; };
 		AC265F79CB38B3810CF491F727E16993 /* ASLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutSpec.h; path = Source/Layout/ASLayoutSpec.h; sourceTree = "<group>"; };
 		AC59F214DAD9520A0F6D7CC520F8B6C7 /* ASTip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTip.h; path = Source/Private/ASTip.h; sourceTree = "<group>"; };
 		AC835A4B8D084106CC7671910E88F392 /* CGPointConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CGPointConverter.h; sourceTree = "<group>"; };
-		ACA281537C8B28248453DE08B72239AB /* ASRatioLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASRatioLayoutSpec.mm; path = Source/Layout/ASRatioLayoutSpec.mm; sourceTree = "<group>"; };
+		ACA281537C8B28248453DE08B72239AB /* ASRatioLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRatioLayoutSpec.mm; path = Source/Layout/ASRatioLayoutSpec.mm; sourceTree = "<group>"; };
 		AD41E2CC2059DCCEE4139B18D38D18D5 /* ASNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASNavigationController.h; path = Source/ASNavigationController.h; sourceTree = "<group>"; };
 		AD8562CBC2A6F71468F908A01A775E7B /* GICNSObjectExtensionProperties.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICNSObjectExtensionProperties.h; sourceTree = "<group>"; };
 		AF87E2714B603588DE4ECA2CE054D203 /* UIControl+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+RACSignalSupport.m"; path = "ReactiveObjC/UIControl+RACSignalSupport.m"; sourceTree = "<group>"; };
@@ -1767,7 +1767,7 @@
 		B77F57CBD66FD3C9E7146E4DE8F5DB27 /* _ASCollectionReusableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASCollectionReusableView.h; path = Source/Details/_ASCollectionReusableView.h; sourceTree = "<group>"; };
 		B7975390E7E8A8220358AC7149C74464 /* ASTextLine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTextLine.h; path = Source/Private/TextExperiment/Component/ASTextLine.h; sourceTree = "<group>"; };
 		B7B16D39B5033915B83155912A680383 /* ASDisplayNodeUtiles.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ASDisplayNodeUtiles.m; sourceTree = "<group>"; };
-		B7B83CC8A7ED102A473F560B777C4931 /* ASHighlightOverlayLayer.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASHighlightOverlayLayer.mm; path = Source/Details/ASHighlightOverlayLayer.mm; sourceTree = "<group>"; };
+		B7B83CC8A7ED102A473F560B777C4931 /* ASHighlightOverlayLayer.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASHighlightOverlayLayer.mm; path = Source/Details/ASHighlightOverlayLayer.mm; sourceTree = "<group>"; };
 		B7CF38157ACDA7D8D260DD9ABF368F7F /* RACImmediateScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACImmediateScheduler.m; path = ReactiveObjC/RACImmediateScheduler.m; sourceTree = "<group>"; };
 		B8C566324871D880589C73F7C57BFB15 /* NSObject+GICTemplate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GICTemplate.m"; sourceTree = "<group>"; };
 		B8C815268BBC37B8D1B654B03BA0F733 /* GICDataContextConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICDataContextConverter.m; sourceTree = "<group>"; };
@@ -1779,7 +1779,7 @@
 		BAF81326823DEC1CAD700EC98E4A40CD /* RACEXTKeyPathCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTKeyPathCoding.h; path = ReactiveObjC/extobjc/RACEXTKeyPathCoding.h; sourceTree = "<group>"; };
 		BB938D2721A28238B15EE90F4BC20EBA /* UIControl+RACSignalSupportPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+RACSignalSupportPrivate.h"; path = "ReactiveObjC/UIControl+RACSignalSupportPrivate.h"; sourceTree = "<group>"; };
 		BBDA142BE159C5F22E40B2C62D0C624E /* ASDimensionInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDimensionInternal.h; path = Source/Layout/ASDimensionInternal.h; sourceTree = "<group>"; };
-		BBFB73057030C6ECB58D1C15998BEE96 /* ASLayoutTransition.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASLayoutTransition.mm; path = Source/Private/ASLayoutTransition.mm; sourceTree = "<group>"; };
+		BBFB73057030C6ECB58D1C15998BEE96 /* ASLayoutTransition.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASLayoutTransition.mm; path = Source/Private/ASLayoutTransition.mm; sourceTree = "<group>"; };
 		BC0043BD59C8137CF21C4948D85A1F18 /* ASSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSection.h; path = Source/Private/ASSection.h; sourceTree = "<group>"; };
 		BC6C858DE33B0FC823AB39997AE5FBD6 /* NSData+ImageDetectors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageDetectors.m"; path = "Source/Classes/Categories/NSData+ImageDetectors.m"; sourceTree = "<group>"; };
 		BC7F3A5EB10B4B16C9E2AF45451D2421 /* ASVisibilityProtocols.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASVisibilityProtocols.h; path = Source/ASVisibilityProtocols.h; sourceTree = "<group>"; };
@@ -1790,7 +1790,7 @@
 		BD4A50436776F4B145BA35EFD6530BCD /* ASBasicImageDownloaderInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASBasicImageDownloaderInternal.h; path = Source/Private/ASBasicImageDownloaderInternal.h; sourceTree = "<group>"; };
 		BDA4356B49942491FC9872C70A3085CE /* _ASScopeTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASScopeTimer.h; path = Source/Private/_ASScopeTimer.h; sourceTree = "<group>"; };
 		BDF8EB23116D31DF4240A701CD98814A /* UIDatePicker+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIDatePicker+RACSignalSupport.h"; path = "ReactiveObjC/UIDatePicker+RACSignalSupport.h"; sourceTree = "<group>"; };
-		BE266BEE152F5E2941AB040E743AAC06 /* ASScrollNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASScrollNode.mm; path = Source/ASScrollNode.mm; sourceTree = "<group>"; };
+		BE266BEE152F5E2941AB040E743AAC06 /* ASScrollNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASScrollNode.mm; path = Source/ASScrollNode.mm; sourceTree = "<group>"; };
 		BE6A803A285B3EA02B0AE56752CF5C34 /* AsyncDisplayKit+Debug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AsyncDisplayKit+Debug.h"; path = "Source/Debug/AsyncDisplayKit+Debug.h"; sourceTree = "<group>"; };
 		BEC94E2EE5ABA2DB0C5D92D9581D7002 /* NSURLConnection+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLConnection+RACSupport.h"; path = "ReactiveObjC/NSURLConnection+RACSupport.h"; sourceTree = "<group>"; };
 		BEF7322638EA5BFC6CF445377314C0FB /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
@@ -1800,7 +1800,7 @@
 		BF0A55674A19E8A540B1EF68BC09296A /* ASDisplayNodeLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDisplayNodeLayout.h; path = Source/Private/ASDisplayNodeLayout.h; sourceTree = "<group>"; };
 		BF9E49A36B7BC5F4B993F3E4EAD93FF4 /* ASRangeManagingNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASRangeManagingNode.h; path = Source/ASRangeManagingNode.h; sourceTree = "<group>"; };
 		BFC4C8308442E56FF29020AD971C9460 /* PINGIFAnimatedImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINGIFAnimatedImageManager.m; path = Source/Classes/PINGIFAnimatedImageManager.m; sourceTree = "<group>"; };
-		C020BCD7B2F236E2EBE83F2A2FC7C9E1 /* ASCollectionNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionNode.mm; path = Source/ASCollectionNode.mm; sourceTree = "<group>"; };
+		C020BCD7B2F236E2EBE83F2A2FC7C9E1 /* ASCollectionNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionNode.mm; path = Source/ASCollectionNode.mm; sourceTree = "<group>"; };
 		C0568143B6EE8B870A2DD4C7E1B4AB5B /* ASImageNode+CGExtras.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ASImageNode+CGExtras.m"; path = "Source/Private/ASImageNode+CGExtras.m"; sourceTree = "<group>"; };
 		C06BA44F0FBF4799230ED7E264E051F9 /* PINRemoteImageCallbacks.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINRemoteImageCallbacks.m; path = Source/Classes/PINRemoteImageCallbacks.m; sourceTree = "<group>"; };
 		C0E38811182D57BC693B534C2003DE19 /* RACReturnSignal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACReturnSignal.h; path = ReactiveObjC/RACReturnSignal.h; sourceTree = "<group>"; };
@@ -1829,12 +1829,12 @@
 		C5A764E01FEEF7DE96395049CFEB5F70 /* ASYogaLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASYogaLayoutSpec.h; path = Source/Layout/ASYogaLayoutSpec.h; sourceTree = "<group>"; };
 		C5D7068487659B8B8DC5C0DDAEE04B14 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5F855E8C8FF5CDAD7F42766ADF35B6D /* PINCache.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PINCache.modulemap; sourceTree = "<group>"; };
-		C64412FBE385A9BCFAFD25BA36E2F002 /* PINCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PINCache.framework; path = PINCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C64412FBE385A9BCFAFD25BA36E2F002 /* PINCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65CEB91055B185B617361979EF74699 /* ASStackLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASStackLayoutSpec.h; path = Source/Layout/ASStackLayoutSpec.h; sourceTree = "<group>"; };
 		C6E34D567B7D476773F3DE375D02B58D /* UISwitch+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISwitch+RACSignalSupport.h"; path = "ReactiveObjC/UISwitch+RACSignalSupport.h"; sourceTree = "<group>"; };
 		C724783EC981804A7B1CE3FE59A4C71F /* ASCollectionNode+Beta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASCollectionNode+Beta.h"; path = "Source/ASCollectionNode+Beta.h"; sourceTree = "<group>"; };
 		C77B257E785C15BE9F3A9EC1C96DEDED /* RACTargetQueueScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTargetQueueScheduler.h; path = ReactiveObjC/RACTargetQueueScheduler.h; sourceTree = "<group>"; };
-		C7DC82C59228C49155A0867CFC8FB4A6 /* ASMainSerialQueue.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASMainSerialQueue.mm; path = Source/Details/ASMainSerialQueue.mm; sourceTree = "<group>"; };
+		C7DC82C59228C49155A0867CFC8FB4A6 /* ASMainSerialQueue.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASMainSerialQueue.mm; path = Source/Details/ASMainSerialQueue.mm; sourceTree = "<group>"; };
 		C7DFC1DE302B2AD7338EAF4057F427BA /* ASCollectionViewFlowLayoutInspector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASCollectionViewFlowLayoutInspector.m; path = Source/Private/ASCollectionViewFlowLayoutInspector.m; sourceTree = "<group>"; };
 		C7FC2F24A5935C05CC1DEC5EDADC06CB /* SDWebImageCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCoder.h; path = SDWebImage/SDWebImageCoder.h; sourceTree = "<group>"; };
 		C85F417D2994A5725DF1E1CE380598EC /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
@@ -1842,11 +1842,11 @@
 		C8C5A44618FA20005D65B63AFBD73A2E /* RACStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACStream.h; path = ReactiveObjC/RACStream.h; sourceTree = "<group>"; };
 		C8FD10C7490354B476EC05041C435B7F /* NSObject+RACDeallocating.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RACDeallocating.m"; path = "ReactiveObjC/NSObject+RACDeallocating.m"; sourceTree = "<group>"; };
 		C920C30E74018F1743CBFA36201ECE47 /* ASConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASConfiguration.m; path = Source/ASConfiguration.m; sourceTree = "<group>"; };
-		C94CF1DF097D28A37F85BB2F248107A5 /* ASTextKitComponents.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitComponents.mm; path = Source/TextKit/ASTextKitComponents.mm; sourceTree = "<group>"; };
+		C94CF1DF097D28A37F85BB2F248107A5 /* ASTextKitComponents.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitComponents.mm; path = Source/TextKit/ASTextKitComponents.mm; sourceTree = "<group>"; };
 		C986EDBCAB24FE43862EF8A6A9B2C2EE /* _ASDisplayViewAccessiblity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASDisplayViewAccessiblity.h; path = Source/Details/_ASDisplayViewAccessiblity.h; sourceTree = "<group>"; };
 		C9BE9BEBABACDA05E232F55637925E9A /* RACUnit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACUnit.m; path = ReactiveObjC/RACUnit.m; sourceTree = "<group>"; };
 		C9D37802D5C3FD79CD99C0BC9B4E8C00 /* UICollectionReusableView+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UICollectionReusableView+RACSignalSupport.h"; path = "ReactiveObjC/UICollectionReusableView+RACSignalSupport.h"; sourceTree = "<group>"; };
-		CA2F0D33E15EA8E891484C180BF7D5B1 /* PINRemoteImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PINRemoteImage.framework; path = PINRemoteImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA2F0D33E15EA8E891484C180BF7D5B1 /* PINRemoteImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINRemoteImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4AB4A619FA9865CFFD16C995A3BDB0 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "SDWebImage/UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		CA84823AF5F738D6DC9C9F64C516EB22 /* ASAsciiArtBoxCreator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASAsciiArtBoxCreator.m; path = Source/Layout/ASAsciiArtBoxCreator.m; sourceTree = "<group>"; };
 		CAA56B8D84FA0FE6D8FE43D3C7673087 /* PINImageView+PINRemoteImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PINImageView+PINRemoteImage.h"; path = "Source/Classes/ImageCategories/PINImageView+PINRemoteImage.h"; sourceTree = "<group>"; };
@@ -1855,7 +1855,7 @@
 		CAD5A4842BBFD0F4E4FEC2D683076F53 /* PINRemoteImageDownloadQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINRemoteImageDownloadQueue.m; path = Source/Classes/PINRemoteImageDownloadQueue.m; sourceTree = "<group>"; };
 		CB1E25F2F8C871C9776FDF6AB5E38018 /* RACSerialDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSerialDisposable.h; path = ReactiveObjC/RACSerialDisposable.h; sourceTree = "<group>"; };
 		CB6C005A0308C7E13B5C638100B686C0 /* PINRemoteImageBasicCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageBasicCache.h; path = Source/Classes/PINRemoteImageBasicCache.h; sourceTree = "<group>"; };
-		CC00706DF99A99A41B06C58116BE6306 /* ASYogaLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASYogaLayoutSpec.mm; path = Source/Layout/ASYogaLayoutSpec.mm; sourceTree = "<group>"; };
+		CC00706DF99A99A41B06C58116BE6306 /* ASYogaLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASYogaLayoutSpec.mm; path = Source/Layout/ASYogaLayoutSpec.mm; sourceTree = "<group>"; };
 		CC3A653A99A5BCC52D5EF7B632E4D3F5 /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageRep.h; path = SDWebImage/SDAnimatedImageRep.h; sourceTree = "<group>"; };
 		CC42AA7BB54799A2FC29B9DFE0AD1E03 /* GICJsonParser-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GICJsonParser-umbrella.h"; sourceTree = "<group>"; };
 		CC9F7FC1CAF07ECA16C297B7E639AF4C /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
@@ -1866,16 +1866,16 @@
 		CE79734A38DBCB2B69D5D8B3C3CCF77B /* ASCollectionLayoutDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCollectionLayoutDefines.h; path = Source/Private/ASCollectionLayoutDefines.h; sourceTree = "<group>"; };
 		CF34A9B0242A8CC37ED3D6D0C4B19230 /* ASCGImageBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCGImageBuffer.h; path = Source/ASCGImageBuffer.h; sourceTree = "<group>"; };
 		CF56C57D72258D74E8560D090CB2589F /* NSObject+RACKVOWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RACKVOWrapper.m"; path = "ReactiveObjC/NSObject+RACKVOWrapper.m"; sourceTree = "<group>"; };
-		D066C38EB30EE077E6C297EBBCFDDA06 /* Pods_GICXMLLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GICXMLLayout_Example.framework; path = "Pods-GICXMLLayout_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D066C38EB30EE077E6C297EBBCFDDA06 /* Pods_GICXMLLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GICXMLLayout_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07D4317CAB400BFDF4C958306C04CFC /* ASLayoutController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayoutController.h; path = Source/Details/ASLayoutController.h; sourceTree = "<group>"; };
-		D08FE065E0EFF88CB1E0344AAD106426 /* _ASCollectionGalleryLayoutItem.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = _ASCollectionGalleryLayoutItem.mm; path = Source/Private/_ASCollectionGalleryLayoutItem.mm; sourceTree = "<group>"; };
+		D08FE065E0EFF88CB1E0344AAD106426 /* _ASCollectionGalleryLayoutItem.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = _ASCollectionGalleryLayoutItem.mm; path = Source/Private/_ASCollectionGalleryLayoutItem.mm; sourceTree = "<group>"; };
 		D0902FD7B4C3781C3D7EAE365E8DCF5C /* PINRemoteImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PINRemoteImage-dummy.m"; sourceTree = "<group>"; };
 		D0A35EF6A3E2DB360B8B91F04194940A /* RACDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDelegateProxy.h; path = ReactiveObjC/RACDelegateProxy.h; sourceTree = "<group>"; };
 		D16273C353DCAF37413C79046DBB70B5 /* RACSignal+Operations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RACSignal+Operations.m"; path = "ReactiveObjC/RACSignal+Operations.m"; sourceTree = "<group>"; };
 		D183D7A8F2F19575D1937EFB0C350B22 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1DD58642D843A2E789326F157C57879 /* ASStackLayoutSpecUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASStackLayoutSpecUtilities.h; path = Source/Private/Layout/ASStackLayoutSpecUtilities.h; sourceTree = "<group>"; };
 		D1E1545023A7041AF4F501ADD83FCE6E /* LayoutExampleViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LayoutExampleViewController.m; sourceTree = "<group>"; };
-		D1E2D4D9D1A4A242A355A0BACA641C2C /* ASTableView.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTableView.mm; path = Source/ASTableView.mm; sourceTree = "<group>"; };
+		D1E2D4D9D1A4A242A355A0BACA641C2C /* ASTableView.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTableView.mm; path = Source/ASTableView.mm; sourceTree = "<group>"; };
 		D1E70D5CA08F3426E505254D358FE607 /* PINImageView+PINRemoteImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "PINImageView+PINRemoteImage.m"; path = "Source/Classes/ImageCategories/PINImageView+PINRemoteImage.m"; sourceTree = "<group>"; };
 		D20BBB3767792C5FB0811D6D42CF48E7 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		D2480C8FA45E0BF6C11B20357D270735 /* UICollectionViewLayout+ASConvenience.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UICollectionViewLayout+ASConvenience.h"; path = "Source/Details/UICollectionViewLayout+ASConvenience.h"; sourceTree = "<group>"; };
@@ -1885,17 +1885,17 @@
 		D3A7B44E5418661142E0468F792BB030 /* PINRemoteImageCaching.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageCaching.h; path = Source/Classes/PINRemoteImageCaching.h; sourceTree = "<group>"; };
 		D3C88232E8591C026E855DCED93D4981 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = SDWebImage/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
 		D440518A63CCA26F8CC0368EB9DC10F6 /* ASTableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASTableView.h; path = Source/ASTableView.h; sourceTree = "<group>"; };
-		D474EB8A561262B748A23F62E39D1C0D /* ASRangeController.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASRangeController.mm; path = Source/Details/ASRangeController.mm; sourceTree = "<group>"; };
+		D474EB8A561262B748A23F62E39D1C0D /* ASRangeController.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRangeController.mm; path = Source/Details/ASRangeController.mm; sourceTree = "<group>"; };
 		D485211971EE3BCDE88377FEAE976DB9 /* UIRefreshControl+RACCommandSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+RACCommandSupport.h"; path = "ReactiveObjC/UIRefreshControl+RACCommandSupport.h"; sourceTree = "<group>"; };
 		D48966B5300A37606DCFD4BBAE66AF73 /* SDWebImageCoderHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCoderHelper.h; path = SDWebImage/SDWebImageCoderHelper.h; sourceTree = "<group>"; };
-		D493168706848DE0A71C1E942A1E4E38 /* ASLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASLayout.mm; path = Source/Layout/ASLayout.mm; sourceTree = "<group>"; };
+		D493168706848DE0A71C1E942A1E4E38 /* ASLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASLayout.mm; path = Source/Layout/ASLayout.mm; sourceTree = "<group>"; };
 		D4CA4B11B5147C99E68B7004F247AF9E /* RACSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSequence.m; path = ReactiveObjC/RACSequence.m; sourceTree = "<group>"; };
 		D4E748730CBBBA7662E48C23001397B3 /* ASThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASThread.h; path = Source/Details/ASThread.h; sourceTree = "<group>"; };
 		D52A85B1FAC2CB7C4BD0F2F12BA77180 /* RACScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACScheduler.h; path = ReactiveObjC/RACScheduler.h; sourceTree = "<group>"; };
 		D5C5F824966A3CB97E364C68440E3338 /* NSObject+Reflector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Reflector.h"; path = "JsonParser/Classes/NSObject+Reflector.h"; sourceTree = "<group>"; };
 		D6128948E4396DE2543DD4D7DF50E675 /* ASCornerLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASCornerLayoutSpec.h; path = Source/Layout/ASCornerLayoutSpec.h; sourceTree = "<group>"; };
 		D63C7B4576BD45960CE6EE4784613ED4 /* ASImageNode+CGExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASImageNode+CGExtras.h"; path = "Source/Private/ASImageNode+CGExtras.h"; sourceTree = "<group>"; };
-		D66C13CBFC55A65A830443290C78D25B /* ASCollectionGalleryLayoutDelegate.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionGalleryLayoutDelegate.mm; path = Source/Details/ASCollectionGalleryLayoutDelegate.mm; sourceTree = "<group>"; };
+		D66C13CBFC55A65A830443290C78D25B /* ASCollectionGalleryLayoutDelegate.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionGalleryLayoutDelegate.mm; path = Source/Details/ASCollectionGalleryLayoutDelegate.mm; sourceTree = "<group>"; };
 		D74612A6C2D78EEEB3B4A79964DFB7B6 /* ASTextKitRenderer+Positioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASTextKitRenderer+Positioning.h"; path = "Source/TextKit/ASTextKitRenderer+Positioning.h"; sourceTree = "<group>"; };
 		D7A343BCEBD756CD0052B1AFE0A61802 /* PINURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINURLSessionManager.m; path = Source/Classes/PINURLSessionManager.m; sourceTree = "<group>"; };
 		D7FEA5AF37E35B31EE4EDE3655F6228D /* RACCompoundDisposable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACCompoundDisposable.m; path = ReactiveObjC/RACCompoundDisposable.m; sourceTree = "<group>"; };
@@ -1917,13 +1917,13 @@
 		DC157439E0B3D145AEA577738BBE7B2A /* ASBasicImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASBasicImageDownloader.h; path = Source/Details/ASBasicImageDownloader.h; sourceTree = "<group>"; };
 		DC9CC5AFE61F11DFD429370DC9671529 /* MKAnnotationView+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+RACSignalSupport.h"; path = "ReactiveObjC/MKAnnotationView+RACSignalSupport.h"; sourceTree = "<group>"; };
 		DD02661F08156C1AD4A3284A94F64FAC /* UIActionSheet+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+RACSignalSupport.h"; path = "ReactiveObjC/UIActionSheet+RACSignalSupport.h"; sourceTree = "<group>"; };
-		DD19F632A4155DE4C3060935085FF365 /* GDataXMLNode_GIC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GDataXMLNode_GIC.framework; path = GDataXMLNode_GIC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD19F632A4155DE4C3060935085FF365 /* GDataXMLNode_GIC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GDataXMLNode_GIC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1F1003316CC6828980A42512641167 /* ASMultiplexImageNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASMultiplexImageNode.h; path = Source/ASMultiplexImageNode.h; sourceTree = "<group>"; };
 		DD3E10566103992FCE10377645DB544F /* RACScheduler+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACScheduler+Subclass.h"; path = "ReactiveObjC/RACScheduler+Subclass.h"; sourceTree = "<group>"; };
 		DDBA324DB7117C1255F73DA515AE4EA2 /* ASControlNode+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASControlNode+Private.h"; path = "Source/Private/ASControlNode+Private.h"; sourceTree = "<group>"; };
 		DDC1080079EEF3BC54DED335ED5F19D0 /* GICXMLLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GICXMLLayout.m; path = GICXMLLayout/Classes/GICXMLLayout.m; sourceTree = "<group>"; };
 		DE18B03837C6221738C575C566A7EA65 /* ASConfigurationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASConfigurationDelegate.h; path = Source/ASConfigurationDelegate.h; sourceTree = "<group>"; };
-		DECE2109FEA687EA00AD250F06B86CF8 /* ASCollectionLayoutCache.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionLayoutCache.mm; path = Source/Private/ASCollectionLayoutCache.mm; sourceTree = "<group>"; };
+		DECE2109FEA687EA00AD250F06B86CF8 /* ASCollectionLayoutCache.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionLayoutCache.mm; path = Source/Private/ASCollectionLayoutCache.mm; sourceTree = "<group>"; };
 		DEE07AFFA91EB2967BBE5B73DEC8185E /* GDataXMLNode_GIC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode_GIC-dummy.m"; sourceTree = "<group>"; };
 		DF44D71E9AAC40B92644470D8B84C0F6 /* ASSignpost.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSignpost.h; path = Source/Base/ASSignpost.h; sourceTree = "<group>"; };
 		DF4ED7A6EB15D570F0614A2DB51B93F8 /* ASVisibilityProtocols.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASVisibilityProtocols.m; path = Source/ASVisibilityProtocols.m; sourceTree = "<group>"; };
@@ -1931,7 +1931,7 @@
 		DFAC3917C5F971C0DBAF4E6E7F0FE89C /* ASTipsController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASTipsController.m; path = Source/Private/ASTipsController.m; sourceTree = "<group>"; };
 		DFC1CE5ADC9A1D35D8ED7976D1151870 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		E0841DEF6EB8502B9601487DAC6D6F76 /* RACScopedDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACScopedDisposable.h; path = ReactiveObjC/RACScopedDisposable.h; sourceTree = "<group>"; };
-		E0AB949122CDA7BF8C01C950761ADBEE /* ASControlNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASControlNode.mm; path = Source/ASControlNode.mm; sourceTree = "<group>"; };
+		E0AB949122CDA7BF8C01C950761ADBEE /* ASControlNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASControlNode.mm; path = Source/ASControlNode.mm; sourceTree = "<group>"; };
 		E0CDFFCF431047D4080B3F0190993A58 /* SDWebImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SDWebImage.xcconfig; sourceTree = "<group>"; };
 		E1475D715B31F467686FADF8B4C997D3 /* PINCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINCache.m; path = Source/PINCache.m; sourceTree = "<group>"; };
 		E1602756705F49A25B8BBA7895B67CCA /* NSUserDefaults+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+RACSupport.h"; path = "ReactiveObjC/NSUserDefaults+RACSupport.h"; sourceTree = "<group>"; };
@@ -1958,13 +1958,13 @@
 		E4B4858F7AA3B9A92F66FB38B9704054 /* ASDispatch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASDispatch.m; path = Source/Private/ASDispatch.m; sourceTree = "<group>"; };
 		E5672F6675C5AC75E8198AFB6BE8E499 /* NSButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSButton+WebCache.h"; path = "SDWebImage/NSButton+WebCache.h"; sourceTree = "<group>"; };
 		E583D88AAA64BF228E0E17835A720142 /* UIButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+WebCache.h"; path = "SDWebImage/UIButton+WebCache.h"; sourceTree = "<group>"; };
-		E64C165C7A01AC3E1E91FE9424134233 /* ASAbstractLayoutController.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASAbstractLayoutController.mm; path = Source/Details/ASAbstractLayoutController.mm; sourceTree = "<group>"; };
+		E64C165C7A01AC3E1E91FE9424134233 /* ASAbstractLayoutController.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASAbstractLayoutController.mm; path = Source/Details/ASAbstractLayoutController.mm; sourceTree = "<group>"; };
 		E6DAE3930795FDFA6D959F215ABF5D16 /* GICDirectiveFor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICDirectiveFor.m; sourceTree = "<group>"; };
 		E6FEF3A04023D299E614DC6F768CD6E4 /* RACEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEvent.h; path = ReactiveObjC/RACEvent.h; sourceTree = "<group>"; };
 		E77168BDC57603E7D8F7D6D7B8674319 /* NSData+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+RACSupport.m"; path = "ReactiveObjC/NSData+RACSupport.m"; sourceTree = "<group>"; };
 		E79A24C70C8F44DB0859D07AC6BA2DF6 /* GICJsonParserDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GICJsonParserDelegate.h; path = JsonParser/Classes/GICJsonParserDelegate.h; sourceTree = "<group>"; };
 		E7B379168DF83A5FD21F2B100DD0CDBF /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
-		E7B8183BEF3D95B67CFE97C001FAFE9F /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
+		E7B8183BEF3D95B67CFE97C001FAFE9F /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
 		E82740CCDF954D0BB4D9DA4FF350DF48 /* GICListHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICListHeader.m; sourceTree = "<group>"; };
 		E8335784C7FB013EA2883252A326E1FB /* Utilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		E8452F599D2537EFDEFBCC74A2A65B08 /* RACBlockTrampoline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACBlockTrampoline.h; path = ReactiveObjC/RACBlockTrampoline.h; sourceTree = "<group>"; };
@@ -1994,7 +1994,7 @@
 		EF61492714776435A607822B4DF9B8B8 /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
 		EFCF5AA4F009D269EC0E161F44E4C596 /* NSData+ImageDetectors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageDetectors.h"; path = "Source/Classes/Categories/NSData+ImageDetectors.h"; sourceTree = "<group>"; };
 		EFDBD70D4D47182FBB48A5E40DBB6095 /* PINRemoteImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINRemoteImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F027C2D1A036CFC6548546F3536E653C /* ASCollectionLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASCollectionLayout.mm; path = Source/Private/ASCollectionLayout.mm; sourceTree = "<group>"; };
+		F027C2D1A036CFC6548546F3536E653C /* ASCollectionLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCollectionLayout.mm; path = Source/Private/ASCollectionLayout.mm; sourceTree = "<group>"; };
 		F07DC90CD83474FAC92D99B28B829F1A /* GICDirective.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICDirective.m; sourceTree = "<group>"; };
 		F08B04A7FFB47F30F1AEF0195DE27113 /* ASTextKitRenderer+TextChecking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASTextKitRenderer+TextChecking.h"; path = "Source/TextKit/ASTextKitRenderer+TextChecking.h"; sourceTree = "<group>"; };
 		F12050B45002A41E2340ADD48D7F77E5 /* ASSupplementaryNodeSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSupplementaryNodeSource.h; path = Source/ASSupplementaryNodeSource.h; sourceTree = "<group>"; };
@@ -2014,7 +2014,7 @@
 		F408329895454ABACB5FE0C39E8BBBDE /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		F42A934DFD211884CB1DA276002634FD /* UICollectionViewLayout+ASConvenience.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UICollectionViewLayout+ASConvenience.m"; path = "Source/Details/UICollectionViewLayout+ASConvenience.m"; sourceTree = "<group>"; };
 		F4367C43164EC0E220867752F2795733 /* RACScheduler+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACScheduler+Private.h"; path = "ReactiveObjC/RACScheduler+Private.h"; sourceTree = "<group>"; };
-		F43B9B5B0B3ABCA7BBA5196E66212EE0 /* ASBasicImageDownloader.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASBasicImageDownloader.mm; path = Source/Details/ASBasicImageDownloader.mm; sourceTree = "<group>"; };
+		F43B9B5B0B3ABCA7BBA5196E66212EE0 /* ASBasicImageDownloader.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASBasicImageDownloader.mm; path = Source/Details/ASBasicImageDownloader.mm; sourceTree = "<group>"; };
 		F47A0866A7826013303E93B3A8C0DF25 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImagePrefetcher.h; path = SDWebImage/SDWebImagePrefetcher.h; sourceTree = "<group>"; };
 		F49F739A1091BEBA63A60A52878A4AC2 /* ASDisplayNodeTipState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASDisplayNodeTipState.h; path = Source/Private/ASDisplayNodeTipState.h; sourceTree = "<group>"; };
 		F4A0DEC413289E70213C263DEAFEBE99 /* PINRemoteImageDownloadQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINRemoteImageDownloadQueue.h; path = Source/Classes/PINRemoteImageDownloadQueue.h; sourceTree = "<group>"; };
@@ -2043,17 +2043,17 @@
 		FAB97E49E4D69EC7F269D0CBA663E426 /* ASIntegerMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASIntegerMap.h; path = Source/Details/ASIntegerMap.h; sourceTree = "<group>"; };
 		FACA5F4DC7BDC53ED4DCAFCFEAB7365A /* ASStackLayoutDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASStackLayoutDefines.h; path = Source/Layout/ASStackLayoutDefines.h; sourceTree = "<group>"; };
 		FBBF2C5E904DCE7A2076B37A532974C3 /* ASInternalHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASInternalHelpers.h; path = Source/Private/ASInternalHelpers.h; sourceTree = "<group>"; };
-		FBE0BBE546129FF960C4995A9004A6D3 /* ASTextKitTailTruncater.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASTextKitTailTruncater.mm; path = Source/TextKit/ASTextKitTailTruncater.mm; sourceTree = "<group>"; };
+		FBE0BBE546129FF960C4995A9004A6D3 /* ASTextKitTailTruncater.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASTextKitTailTruncater.mm; path = Source/TextKit/ASTextKitTailTruncater.mm; sourceTree = "<group>"; };
 		FBEC859F8263F61E9A8656C389C9090A /* OverviewViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
 		FC14B08CE71EC2E078803571C8D9F540 /* NSString+RACKeyPathUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RACKeyPathUtilities.m"; path = "ReactiveObjC/NSString+RACKeyPathUtilities.m"; sourceTree = "<group>"; };
 		FC216C3C2EADCFA2C97D22E5EBEBA67C /* _ASAsyncTransactionContainer+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "_ASAsyncTransactionContainer+Private.h"; path = "Source/Details/Transactions/_ASAsyncTransactionContainer+Private.h"; sourceTree = "<group>"; };
-		FC3E561E50E8FCEE77EEEB4B73BCCDC6 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC3E561E50E8FCEE77EEEB4B73BCCDC6 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8CA7C96A5FCA1D9D788A34F5BC6FAD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		FCA171106AB3F668EDE9186DFAD8B753 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA80456E39ADAFB8AA83D655F728E1C /* ASRatioLayoutSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASRatioLayoutSpec.h; path = Source/Layout/ASRatioLayoutSpec.h; sourceTree = "<group>"; };
 		FD0E4831A4F12193C60153D5FC2C08A4 /* GICBoolConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICBoolConverter.m; sourceTree = "<group>"; };
 		FD1B690760A6F6C8343B9B3147D755E5 /* _ASTransitionContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASTransitionContext.h; path = Source/_ASTransitionContext.h; sourceTree = "<group>"; };
-		FD3FCCB3DF5660F9BD95FBD6608A4819 /* ASStackLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ASStackLayoutSpec.mm; path = Source/Layout/ASStackLayoutSpec.mm; sourceTree = "<group>"; };
+		FD3FCCB3DF5660F9BD95FBD6608A4819 /* ASStackLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASStackLayoutSpec.mm; path = Source/Layout/ASStackLayoutSpec.mm; sourceTree = "<group>"; };
 		FD793794D6C080D955BB433835201F89 /* ASDisplayNode+FrameworkPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASDisplayNode+FrameworkPrivate.h"; path = "Source/Private/ASDisplayNode+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		FE246CC0FEBFDBC9E7A88C2DFEAEF849 /* RACKVOTrampoline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACKVOTrampoline.m; path = ReactiveObjC/RACKVOTrampoline.m; sourceTree = "<group>"; };
 		FE27D705F0B10B07E0B44FAE5584372B /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
@@ -2212,8 +2212,6 @@
 				2C0FA463FFA0655B04E430B695DCE5EE /* LayoutElementProtocol.h */,
 				8E404F304C5027ABE8F2F570C1975643 /* NSObject+LayoutElement.h */,
 				315CF14AAAFE4820D3BB5D1B2EFEBDCC /* NSObject+LayoutElement.m */,
-				4CD513DB49C6AC3448EB126264F2F85F /* UIView+GICExtension.h */,
-				215955DC7CF017F0296AC7C10AD7BF9F /* UIView+GICExtension.m */,
 			);
 			name = core;
 			path = GICXMLLayout/Classes/core;
@@ -2261,6 +2259,8 @@
 				66FCE34040E567DDA45BEEDF3C3B5F4C /* lable */,
 				3C4113598DFA4F6D8077957783BDA443 /* list */,
 				A8AFA4C51E334BC14FC1A8183A2B425C /* panel */,
+				37C806F220F6ED56002EEF55 /* GICView.h */,
+				37C806F320F6ED56002EEF55 /* GICView.m */,
 			);
 			name = elements;
 			path = GICXMLLayout/Classes/elements;
@@ -2412,7 +2412,6 @@
 				1C28F4282C31B12B5370A2DBDE80CC1B /* GICListView.h */,
 				90E6E1C290CD118DCA805A1313E303D0 /* GICListView.m */,
 			);
-			name = list;
 			path = list;
 			sourceTree = "<group>";
 		};
@@ -2458,7 +2457,6 @@
 				990435E8A517A1A3907C381C6176B3CD /* PINOperationTypes.h */,
 				08F75ED6C2E0D92666311B1A1921A8F9 /* Support Files */,
 			);
-			name = PINOperation;
 			path = PINOperation;
 			sourceTree = "<group>";
 		};
@@ -2885,7 +2883,6 @@
 				51F49D1650ED12848A603E86BDE86F02 /* Core */,
 				3EF14C7448C2171496B4EE2CC941F5E5 /* Support Files */,
 			);
-			name = Texture;
 			path = Texture;
 			sourceTree = "<group>";
 		};
@@ -2939,7 +2936,6 @@
 				09772100BF4C89DA9B55D821E7D61651 /* NSMutableAttributedString+GICLableSubString.h */,
 				7E65D77BD84B738C84DFBE186095E279 /* NSMutableAttributedString+GICLableSubString.m */,
 			);
-			name = lable;
 			path = lable;
 			sourceTree = "<group>";
 		};
@@ -3037,7 +3033,6 @@
 				F02A9E8AD02524C054FBA690706B162C /* Core */,
 				8A44B832E89354A96A81787C4FB5F515 /* Support Files */,
 			);
-			name = PINCache;
 			path = PINCache;
 			sourceTree = "<group>";
 		};
@@ -3263,7 +3258,6 @@
 				6E8FFDD8D3B50396138731213E510A24 /* UITextView+RACSignalSupport.m */,
 				78BA925A497405E12EBFD0F457CB9EF2 /* Support Files */,
 			);
-			name = ReactiveObjC;
 			path = ReactiveObjC;
 			sourceTree = "<group>";
 		};
@@ -3294,7 +3288,6 @@
 				EFD5F5362C43401E0218048EC3F6534E /* Core */,
 				6404A9B10EB5BE96F050A0AD0C32F7C2 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -3305,7 +3298,6 @@
 				97F68A7A5CCE82BC617DE758388C23A4 /* PINCache */,
 				63AFDCAC70B7C5E67BAAF2E9782C5315 /* Support Files */,
 			);
-			name = PINRemoteImage;
 			path = PINRemoteImage;
 			sourceTree = "<group>";
 		};
@@ -3321,7 +3313,6 @@
 				0B22CE0C1718F71A1797E9B80F566E6A /* GICStackPanel.h */,
 				BF073DA5ADB37CEFC81FE00AC0105E82 /* GICStackPanel.m */,
 			);
-			name = panel;
 			path = panel;
 			sourceTree = "<group>";
 		};
@@ -3373,7 +3364,6 @@
 				4F9640DD2645C23B95EC9D9121CE4129 /* ViewController+MASAdditions.m */,
 				CF6F3D8608E992053EAA9BF39628880C /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -3384,7 +3374,6 @@
 				4C553AC25E229F6F4A1777CEB932EEAE /* GDataXMLNode.m */,
 				6119DEC53D6185C7E29E1377044AAD4A /* Support Files */,
 			);
-			name = GDataXMLNode_GIC;
 			path = GDataXMLNode_GIC;
 			sourceTree = "<group>";
 		};
@@ -3470,7 +3459,6 @@
 				E4368D06958269039D92C18269FF64BB /* NSString+Extension.m */,
 				00B8BCD10657971317FB09968AE06247 /* Support Files */,
 			);
-			name = GICJsonParser;
 			path = GICJsonParser;
 			sourceTree = "<group>";
 		};
@@ -3714,6 +3702,7 @@
 				2EC3252CF246E2423CEC8E1303D11F7F /* GICUtils.h in Headers */,
 				289A2ACE0D0158ABBC39D2E72D225CBA /* GICValueConverter.h in Headers */,
 				2E6F124415585F3033593679F033479A /* GICViewExtensionProperties.h in Headers */,
+				37C806F420F6ED56002EEF55 /* GICView.h in Headers */,
 				16718246431CC29759D4BE7CE5F52198 /* GICXMLLayout-umbrella.h in Headers */,
 				5C8972F1927776CCDB00A8A3DAFF0623 /* GICXMLLayout.h in Headers */,
 				F97272F99E4EECA0AE6996923DC88095 /* GICXMLParserContext.h in Headers */,
@@ -3730,7 +3719,6 @@
 				F4C6428903A8D8D05155C5C6EBA2505B /* OverviewCellNode.h in Headers */,
 				B616E1269AF4D2FD1E3C38B0CA004AA0 /* OverviewViewController.h in Headers */,
 				7E5304B1B030E698F4A17A0F8C156BF7 /* UIColor+Extension.h in Headers */,
-				E860A05CEC4A75CF16F1C94E3E2CB40C /* UIView+GICExtension.h in Headers */,
 				5E69549F2B94E180BD1002264BB39922 /* Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4385,6 +4373,7 @@
 				C90CFC72FFA1A1287EB941F5CF462B72 /* GICEdgeConverter.m in Sources */,
 				0C2320EED9C4B77E58516EA395271CAB /* GICEvent.m in Sources */,
 				2867B0A39D046A42354DA02AC95EBB7B /* GICEventInfo.m in Sources */,
+				37C806F520F6ED56002EEF55 /* GICView.m in Sources */,
 				A904FADE5AD2C189DE6AAAAC6ED6B741 /* GICImageView.m in Sources */,
 				DA8C55DEA3EB81D07D4BD92380D71B6A /* GICInpute.m in Sources */,
 				FB15E06BC7F9C7823A0B09D797A7C411 /* GICInsetPanel.m in Sources */,
@@ -4427,7 +4416,6 @@
 				34DDF1A7DFA250CF6A157FB552FE1826 /* OverviewCellNode.m in Sources */,
 				432DEFBAF204AFD8E5CE5ACA9C085CA9 /* OverviewViewController.m in Sources */,
 				7ABDED1A11B03524F61B061183A8121B /* UIColor+Extension.m in Sources */,
-				AFF361F752B89A48BDD7FB333DAC1085 /* UIView+GICExtension.m in Sources */,
 				E4AC213F8FC6EFFEE07D95E1F67F8256 /* Utilities.m in Sources */,
 				BF7795B58FC7C81110F36EAE95EE8DB0 /* XMLLayoutPrefixHeader.pch in Sources */,
 			);

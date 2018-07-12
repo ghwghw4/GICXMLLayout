@@ -8,10 +8,12 @@
 #import "GICPanel.h"
 
 /**
- 垂直布局，或者水平布局(当前只支持垂直布局)
+ box 布局
  StackPanel 的子元素都应该指定高度。(lable 和 其他panel 可以无需指定高度，因为这些元素可以自动计算高度)
  */
 @interface GICStackPanel : GICPanel{
-    ASStackLayoutSpec *stackLayoutSpec;
+//    ASStackLayoutSpec *stackLayoutSpec;
+    NSMutableDictionary<NSString *,id> *stackPanelPropertyDict;
 }
+@property (nonatomic,assign)BOOL isHorizon;
 @end

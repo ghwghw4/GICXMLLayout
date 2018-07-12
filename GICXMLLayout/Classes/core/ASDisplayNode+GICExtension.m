@@ -6,16 +6,36 @@
 //
 
 #import "ASDisplayNode+GICExtension.h"
+#import "GICColorConverter.h"
+#import "GICNumberConverter.h"
+#import "GICLayoutUtils.h"
 
 @implementation ASDisplayNode (GICExtension)
 +(NSString *)gic_elementName{
     return nil;
 }
 
--(GICDisplayNodeExtensionProperties *)gic_ExtensionProperties{
-    GICDisplayNodeExtensionProperties *v =objc_getAssociatedObject(self, "gic_ExtensionProperties");
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
+    NSMutableDictionary *mutDict=  [@{@"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+        [(ASDisplayNode *)target setBackgroundColor:value];
+    }],
+                                      @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+        ((ASLayoutElementExtensionProperties *)target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
+    }],
+                                      @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+        ((ASLayoutElementExtensionProperties *)target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
+    }],
+                                      } mutableCopy];
+    [mutDict addEntriesFromDictionary:[GICLayoutUtils commonPropertyConverters]];
+    return mutDict;
+}
+
+
+
+-(ASLayoutElementExtensionProperties *)gic_ExtensionProperties{
+    ASLayoutElementExtensionProperties *v =objc_getAssociatedObject(self, "gic_ExtensionProperties");
     if(!v){
-        v = [GICDisplayNodeExtensionProperties new];
+        v = [ASLayoutElementExtensionProperties new];
         objc_setAssociatedObject(self, "gic_ExtensionProperties", v, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return v;

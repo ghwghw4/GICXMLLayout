@@ -16,7 +16,6 @@
 #import "GICDataContextConverter.h"
 #import "NSObject+GICEvent.h"
 #import "GICTapEvent.h"
-#import "ASDisplayNodeUtiles.h"
 
 @implementation NSObject (LayoutElement)
 
@@ -78,13 +77,16 @@
    
     
     NSMutableDictionary<NSString *, GICValueConverter *> *dict = [NSMutableDictionary dictionary];
-    if(klass == [ASDisplayNode class]){
-        [dict addEntriesFromDictionary:[ASDisplayNodeUtiles commonPropertyConverters]];
-    }else{
+    
+    
+    
+//    if(klass == [ASDisplayNode class]){
+//        [dict addEntriesFromDictionary:[ASDisplayNodeUtiles commonPropertyConverters]];
+//    }else{
         if([klass respondsToSelector:@selector(gic_propertySetters)]){
             [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_propertySetters)]];
         }
-    }
+//    }
    
     [dict addEntriesFromDictionary:[NSObject _gic_getPropertyConverts:class_getSuperclass(klass)]];
     

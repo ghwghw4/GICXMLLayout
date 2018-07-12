@@ -12,15 +12,12 @@
                 <lable slot-name = "haha" text="基本框架不亢不卑2" text-align="1" font-color="666666" font-size="12" space-before="20"/>
                 <lable slot-name = "haha" text="基本框架不亢不卑3" text-align="2"  font-color="666666" font-size="12"/>
                 <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>
-                <panel background-color="black">
+                <panel>
                     <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>
                     <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" text-align="2" font-size="12"/>
-
-
-
                 </panel>
 
-                <stack-panel space="20" is-horizon="1" background-color="blue" justify-content="3" align-items="0">
+                <stack-panel space-before="20"  space="20" is-horizon="1" background-color="blue" justify-content="3" align-items="0">
                     <view background-color="red" size="50" dock-vertical="1" dock-horizal="1">
 
                     </view>
@@ -34,7 +31,7 @@
                     </view>
                 </stack-panel>
 
-                <view background-color="blue" height="50">
+                <view background-color="blue" height="50" space-before="50">
                     <!--<stack-panel>-->
                     <!--<lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>-->
                     <!--<lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" text-align="2" font-size="12"/>-->

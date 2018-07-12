@@ -35,6 +35,7 @@
     ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
     insetBox.insets = self.inset;
     insetBox.child = node;
+    [self mergeStyle:insetBox];
     return insetBox;
 }
 

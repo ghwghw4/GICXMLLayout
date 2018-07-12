@@ -13,7 +13,6 @@
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
 #import "GICPage.h"
-#import "OverviewViewController.h"
 
 @implementation GICXMLLayout
 static NSMutableDictionary *registedElements = nil;

@@ -13,14 +13,14 @@
  */
 @interface GICPanel : NSObject<LayoutElementProtocol>
 @property (nonatomic,strong,readonly)NSMutableArray *childNodes;
-
-//@property (nonatomic,strong,readonly)NSMutableArray<ASDisplayNode *> *displayNodes;
-//@property (nonatomic,strong,readonly)NSMutableArray<GICPanel *> *panels;
-
 @property (nonatomic,weak)ASDisplayNode *superDisplayNode;
+
+@property (nonatomic, readonly) ASLayoutElementStyle *style;
 
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
 
 -(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
+
+-(void)mergeStyle:(ASLayoutSpec *)spec;
 @end

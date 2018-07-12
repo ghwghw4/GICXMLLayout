@@ -17,25 +17,32 @@
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
     return @{
              @"is-horizon":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICStackPanel *)target)->stackLayoutSpec.direction = [value boolValue]?ASStackLayoutDirectionHorizontal:ASStackLayoutDirectionVertical;
+                 ((GICStackPanel *)target).isHorizon = [value boolValue];
              }],
              @"justify-content":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICStackPanel *)target)->stackLayoutSpec.justifyContent = [value integerValue];
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"justifyContent"];
              }],
              @"align-items":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICStackPanel *)target)->stackLayoutSpec.alignItems = [value integerValue];
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"alignItems"];
              }],
              @"space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICStackPanel *)target)->stackLayoutSpec.spacing = [value floatValue];
+                    [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"spacing"];
              }],
              };
 }
 
 -(id)init{
     self = [super init];
-    stackLayoutSpec = [[ASStackLayoutSpec alloc] init];
-    stackLayoutSpec.direction = ASStackLayoutDirectionVertical;
+//    stackLayoutSpec = [[ASStackLayoutSpec alloc] init];
+//    stackLayoutSpec.direction = ASStackLayoutDirectionVertical;
+    stackPanelPropertyDict = [NSMutableDictionary dictionary];
     return self;
+}
+
+-(void)mergeStyle:(ASLayoutSpec *)spec{
+    [super mergeStyle:spec];
+    if(self->stackPanelPropertyDict.count>0)
+        [spec setValuesForKeysWithDictionary:self->stackPanelPropertyDict];
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
@@ -47,12 +54,9 @@
             [children addObject:[node layoutSpecThatFits:constrainedSize]];
         }
     }
-    ASStackLayoutSpec *temp = [[ASStackLayoutSpec alloc] init];
-    temp.direction = stackLayoutSpec.direction;
-    temp.justifyContent = stackLayoutSpec.justifyContent;
-    temp.alignItems = stackLayoutSpec.alignItems;
-    temp.spacing = stackLayoutSpec.spacing;
+    ASStackLayoutSpec *temp =self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
     temp.children = children;
+    [self mergeStyle:temp];
     return temp;
 }
 @end

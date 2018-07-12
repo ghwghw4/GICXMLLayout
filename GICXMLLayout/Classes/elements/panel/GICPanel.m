@@ -8,17 +8,21 @@
 #import "GICPanel.h"
 #import "GICXMLLayout.h"
 #import "GICDirective.h"
-//#import "GICView.h"
-
+#import "GICLayoutUtils.h"
 
 @implementation GICPanel
 +(NSString *)gic_elementName{
     return @"panel";
 }
 
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
+    return [GICLayoutUtils commonPropertyConverters];
+}
+
 -(id)init{
     self = [super init];
     _childNodes = [NSMutableArray array];
+    _style = [[ASLayoutElementStyle alloc] init];
     return self;
 }
 
@@ -55,6 +59,19 @@
     }
     ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
     absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
+    [self mergeStyle:absoluteSpec];
     return absoluteSpec;
+}
+
+-(void)mergeStyle:(ASLayoutSpec *)spec{
+    spec.style.height = self.style.height;
+    spec.style.width = self.style.width;
+    spec.style.layoutPosition = self.style.layoutPosition;
+    spec.style.maxWidth = self.style.maxWidth;
+    spec.style.maxHeight = self.style.maxHeight;
+    spec.style.spacingBefore = self.style.spacingBefore;
+    spec.style.spacingAfter = self.style.spacingAfter;
+    spec.style.flexGrow = self.style.flexGrow;
+    spec.style.flexShrink = self.style.flexShrink;
 }
 @end

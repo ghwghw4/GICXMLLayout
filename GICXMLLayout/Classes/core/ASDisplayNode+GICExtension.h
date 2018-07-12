@@ -6,9 +6,9 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "GICDisplayNodeExtensionProperties.h"
+#import "ASLayoutElementExtensionProperties.h"
 @interface ASDisplayNode (GICExtension)<LayoutElementProtocol>
-@property (nonatomic,strong,readonly)GICDisplayNodeExtensionProperties *gic_ExtensionProperties;
+@property (nonatomic,strong,readonly)ASLayoutElementExtensionProperties *gic_ExtensionProperties;
 
 
 /**

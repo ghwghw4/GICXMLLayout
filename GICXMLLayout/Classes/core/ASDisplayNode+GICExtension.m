@@ -9,22 +9,35 @@
 #import "GICColorConverter.h"
 #import "GICNumberConverter.h"
 #import "GICLayoutUtils.h"
+#import <objc/runtime.h>
 
 @implementation ASDisplayNode (GICExtension)
 +(NSString *)gic_elementName{
     return nil;
 }
 
+-(void)setGic_panel:(GICPanel *)gic_panel{
+    objc_setAssociatedObject(self, "gic_panel", gic_panel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(GICPanel *)gic_panel{
+    return objc_getAssociatedObject(self, "gic_panel");
+}
+
+
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
-    NSMutableDictionary *mutDict=  [@{@"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+    NSMutableDictionary *mutDict=  [@{
+                                      @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
         [(ASDisplayNode *)target setBackgroundColor:value];
     }],
-                                      @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-        ((ASLayoutElementExtensionProperties *)target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
+                                      @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+        ASDisplayNode *node = (ASDisplayNode *)target;
+        node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
+            CGRect bounds = CGContextGetClipBoundingBox(context);
+            [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
+        };
     }],
-                                      @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-        ((ASLayoutElementExtensionProperties *)target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
-    }],
+                                      
                                       } mutableCopy];
     [mutDict addEntriesFromDictionary:[GICLayoutUtils commonPropertyConverters]];
     return mutDict;
@@ -32,23 +45,17 @@
 
 
 
--(ASLayoutElementExtensionProperties *)gic_ExtensionProperties{
-    ASLayoutElementExtensionProperties *v =objc_getAssociatedObject(self, "gic_ExtensionProperties");
-    if(!v){
-        v = [ASLayoutElementExtensionProperties new];
-        objc_setAssociatedObject(self, "gic_ExtensionProperties", v, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return v;
-}
-
-
 -(NSArray *)gic_subElements{
-    return self.subnodes;
+    if(self.gic_panel)
+        return @[self.gic_panel];
+    return nil;
 }
 
--(void)gic_addSubElement:(NSObject *)subElement{
-    if([subElement isKindOfClass:[ASDisplayNode class]]){
-        [self addSubnode:(ASDisplayNode *)subElement];
+-(void)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[GICPanel class]]){
+        self.gic_panel = subElement;
+    }else if([subElement isKindOfClass:[ASDisplayNode class]]){
+        NSAssert(NO, @"UI元素只能添加panel，不允许添加其他的UI元素");
     }else{
         [super gic_addSubElement:subElement];
     }
@@ -74,5 +81,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         cb(self.view);
     });
+}
+
+- (ASLayoutSpec *)gic_layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    if(self.gic_panel)
+        return [self.gic_panel layoutSpecThatFits:constrainedSize];
+    return [[ASAbsoluteLayoutSpec alloc] init];
 }
 @end

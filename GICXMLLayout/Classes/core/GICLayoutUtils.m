@@ -60,6 +60,12 @@
                  id<GICElementLayoutStyleProtocol> node =  (id<GICElementLayoutStyleProtocol>)target;
                  node.style.flexShrink = [value integerValue];
              }],
+             @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 (target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
+             }],
+             @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 (target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
+             }],
 //             @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
 //                 //                             ((UIView *)target).layer.cornerRadius = [value floatValue];
 //                 //                             ((UIView *)target).layer.masksToBounds = YES;

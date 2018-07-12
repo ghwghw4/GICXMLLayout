@@ -4,11 +4,8 @@ PODS:
   - GICXMLLayout (0.1.0):
     - GDataXMLNode_GIC
     - GICJsonParser
-    - Masonry
     - ReactiveObjC
-    - SDWebImage
     - Texture
-  - Masonry (1.1.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -25,9 +22,6 @@ PODS:
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
   - ReactiveObjC (3.1.0)
-  - SDWebImage (4.4.1):
-    - SDWebImage/Core (= 4.4.1)
-  - SDWebImage/Core (4.4.1)
   - Texture (2.7):
     - Texture/PINRemoteImage (= 2.7)
   - Texture/Core (2.7)
@@ -48,13 +42,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   GDataXMLNode_GIC: aef49f4c223ea6cfeeaeccc761fff62b6373c6e7
   GICJsonParser: 99c7ba9ff5650d19da2f90d0179ac423ce6dfdcb
-  GICXMLLayout: 11f17a5f4c1d80f1837718555566d0a6270a0ac8
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  GICXMLLayout: 0dc6583badcd9667cfa7321bd1f83dae51b87832
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
-  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
 
 PODFILE CHECKSUM: c8cef1ba7cf1ad77d6b7df414c0d94bc485cf12c

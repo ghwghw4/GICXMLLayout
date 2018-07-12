@@ -6,10 +6,11 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "ASLayoutElementExtensionProperties.h"
-@interface ASDisplayNode (GICExtension)<LayoutElementProtocol>
-@property (nonatomic,strong,readonly)ASLayoutElementExtensionProperties *gic_ExtensionProperties;
+#import "GICPanel.h"
 
+@interface ASDisplayNode (GICExtension)<LayoutElementProtocol>
+
+@property (nonatomic,strong)GICPanel *gic_panel;
 
 /**
  线程安全获取view
@@ -17,4 +18,7 @@
  @param cb <#cb description#>
  */
 -(void)gic_safeView:(void (^)(UIView *view))cb;
+
+
+- (ASLayoutSpec *)gic_layoutSpecThatFits:(ASSizeRange)constrainedSize;
 @end

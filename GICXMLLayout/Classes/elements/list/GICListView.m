@@ -54,7 +54,7 @@
         self->reloadSubscriber = subscriber;
         return nil;
     }] throttle:0.2] deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
-        [wself reloadData];
+//        [wself reloadData];
     }];
     return self;
 }
@@ -100,18 +100,6 @@
     return listItems.count;
 }
 
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    CGFloat height = [[listItems objectAtIndex:indexPath.row] cellHeight];
-//    if(height==0)
-//        return self.defualtItemHeight;
-//    return height;
-//}
-
-//- (ASCellNode *)tableNode:(ASTableNode *)tableNode nodeForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [[listItems objectAtIndex:indexPath.row] getCell:self];
-//}
-
 - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
@@ -120,17 +108,6 @@
     return cellNodeBlock;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 0.5;
-//}
-//
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    return [UIView new];
-//}
-
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//}
 -(void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableNode deselectRowAtIndexPath:indexPath animated:NO];
 }

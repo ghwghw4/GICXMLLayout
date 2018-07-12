@@ -13,41 +13,13 @@
     return @"view";
 }
 
--(BOOL)gic_parseOnlyOneSubElement{
-    return true;
-}
-
--(NSArray *)gic_subElements{
-    if(panel)
-        return @[panel];
-    return nil;
-}
-
--(void)gic_addSubElement:(id)subElement{
-    if([subElement isKindOfClass:[GICPanel class]]){
-        panel = subElement;
-    }else{
-        [super gic_addSubElement:subElement];
-    }
-}
-
-//-(void)gic_elementParseCompelte{
-//    [super gic_elementParseCompelte];
-//    panel.superDisplayNode = self;
-//}
-
 -(id)init{
     self =[super init];
     self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    if(panel==nil){
-        ASStackLayoutSpec *stackLayoutSpec = [[ASStackLayoutSpec alloc] init];
-        stackLayoutSpec.direction = ASStackLayoutDirectionVertical;
-        return stackLayoutSpec;
-    }
-    return [panel layoutSpecThatFits:constrainedSize];
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    return [self gic_layoutSpecThatFits:constrainedSize];
 }
 @end

@@ -8,7 +8,6 @@
 #import "GICXMLLayout.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import <Masonry/Masonry.h>
 #import "GICXMLParserContext.h"
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"

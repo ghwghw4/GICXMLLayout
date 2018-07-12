@@ -6,7 +6,6 @@
 //
 
 #import "GICScrollView.h"
-#import <Masonry/Masonry.h>
 #import "GICPanel.h"
 #import "GICBoolConverter.h"
 
@@ -33,19 +32,8 @@
     return self;
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    ASStackLayoutSpec *stackLayoutSpec = [ASStackLayoutSpec verticalStackLayoutSpec];
-    stackLayoutSpec.children = self.subnodes;
-    return stackLayoutSpec;
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
+{
+    return [self gic_layoutSpecThatFits:constrainedSize];
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 @end

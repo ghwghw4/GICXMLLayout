@@ -9,7 +9,6 @@
 #import "GICViewController.h"
 #import <GDataXMLNode_GIC/GDataXMLNode.h>
 #import "GICXMLLayout.h"
-#import <Masonry/Masonry.h>
 #import "IndexPageViewModel.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
@@ -53,9 +52,9 @@
 ////    [GICXMLLayout parseLayoutView:xmlData toView:self.view withParseCompelete:^(UIView *view) {
 ////        view.gic_DataContenxt = [IndexPageViewModel new];
 ////    }];
-//    
+//
 //    [GICXMLLayout parseLayoutView:xmlData toView:self.view withParseCompelete:^(UIView *view) {
-//        
+//
 //    }];
   
     

@@ -17,18 +17,21 @@
     return self;
 }
 
--(void)gic_addSubElement:(id)childElement{
-    // 必须是panel才能被加入节点
-    if([childElement isKindOfClass:[GICPanel class]]){
-        panel = childElement;
-    }else{
-        [super gic_addSubElement:childElement];
-    }
-}
+//-(void)gic_addSubElement:(id)childElement{
+//    // 必须是panel才能被加入节点
+//    if([childElement isKindOfClass:[GICPanel class]]){
+//        panel = childElement;
+//    }else{
+//        [super gic_addSubElement:childElement];
+//    }
+//}
 
--(NSArray *)gic_subElements{
-    return @[panel];
-}
+//-(NSArray *)gic_subElements{
+//    if(panel){
+//       return @[panel];
+//    }
+//    return nil;
+//}
 
 -(NSObject *)gic_getSuperElement{
     return self.listItem;
@@ -67,6 +70,6 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    return [panel layoutSpecThatFits:constrainedSize];
+    return [self gic_layoutSpecThatFits:constrainedSize];
 }
 @end

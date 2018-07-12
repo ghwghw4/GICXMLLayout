@@ -40,8 +40,6 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
     s.prefix_header_file = 'GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch'
     s.dependency 'GDataXMLNode_GIC'
-    s.dependency 'Masonry'
-    s.dependency 'SDWebImage'
     s.dependency 'GICJsonParser'
     s.dependency 'ReactiveObjC'
     s.dependency 'Texture'

@@ -28,9 +28,7 @@
 #import "GICUtils.h"
 #import "NSObject+LayoutElement.h"
 #import "GICXMLLayout.h"
-#import "ASDisplayNode+LayoutView.h"
 #import "GDataXMLNode.h"
-#import <Masonry/Masonry.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICXMLParserContext.h"
 #import "ASDisplayNode+GICExtension.h"

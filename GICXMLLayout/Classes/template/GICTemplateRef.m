@@ -56,6 +56,8 @@
                 xmlString = [xmlString stringByReplacingOccurrencesOfString:[tempConvertSlotMap objectForKey:slotName] withString:[slotsXmlDocMap objectForKey:slotName]];
             }
             xmlDocString = xmlString;
+        }else{
+            xmlDocString = t.xmlDocString;
         }
         tempConvertSlotMap = nil;
     }else{

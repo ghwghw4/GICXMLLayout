@@ -8,24 +8,6 @@
 #import "GICListTableViewCell.h"
 #import "GICPanel.h"
 
-@implementation NSAttributedString (Additions)
-
-+ (NSAttributedString *)attributedStringWithString:(NSString *)string fontSize:(CGFloat)size color:(nullable UIColor *)color
-{
-    if (string == nil) {
-        return nil;
-    }
-    
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: color ? : [UIColor blackColor],
-                                 NSFontAttributeName: [UIFont boldSystemFontOfSize:size]};
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attributedString addAttributes:attributes range:NSMakeRange(0, string.length)];
-    
-    return attributedString;
-}
-
-@end
-
 @implementation GICListTableViewCell
 
 -(id)initWithListItem:(GICListItem *)listItem{
@@ -93,6 +75,11 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:self.subnodes.firstObject];
+//    ASStackLayoutSpec *spec = [ASStackLayoutSpec verticalStackLayoutSpec];
+//    spec.children = self.subnodes;
+    ASInsetLayoutSpec *s= [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:self.subnodes.firstObject];
+//    s.style.preferredSize = CGSizeMake(320, <#CGFloat height#>)
+    //    s.style.width = ASDimensionMake(320);
+    return s;
 }
 @end

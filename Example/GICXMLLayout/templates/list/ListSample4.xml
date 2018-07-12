@@ -2,6 +2,21 @@
     <!-- 实际的需求中，我们经常碰到一个列表中不同的数据对应不同cell的情况。下面的示例就是为了解决这个问题的   -->
     <templates>
         <template t-name="base-template">
+            <!--<inset-panel background-color="red" inset="16">-->
+                <!--<stack-panel is-horizon="1" space="8">-->
+                    <!--<image url="{{ headurl }}" size="32" corner-radius="16"/>-->
+                    <!--<stack-panel background-color="blue">-->
+                        <!--<lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>-->
+                        <!--<lable font-size="12" font-color="999999" space-before="6" lines="1">-->
+                            <!--<s text="{{ time +' ' }}"></s>-->
+                            <!--<s text="{{ loc +' '}}" font-color="red"></s>-->
+                            <!--<s>200米</s>-->
+                        <!--</lable>-->
+                        <!--<lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>-->
+                        <!--<template-slot slot-name = "content" />-->
+                    <!--</stack-panel>-->
+                <!--</stack-panel>-->
+            <!--</inset-panel>-->
             <panel>
                 <image url="{{ headurl }}" size="32" position="16" corner-radius="16"/>
                 <inset-panel inset="16 0 16 16" position="56 0">
@@ -14,15 +29,6 @@
                         </lable>
                         <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
                         <template-slot slot-name = "content" />
-                        <!--<dock-panel height="22" space-before="12">-->
-                            <!--<panel height="20">-->
-                                <!--<image local-name="comment"/>-->
-                                <!--<lable text="评论" font-size="12" font-color="666666" margin-left="25" margin-bottom="0.1"/>-->
-                                <!--<image local-name="active" margin-left="80"/>-->
-                                <!--<lable text="赞" font-size="12" font-color="666666" margin-left="105" margin-bottom="0.1"/>-->
-                            <!--</panel>-->
-                            <!--<lable text="{{ ' #'+tag+' ' }}" width="90" height="22" background-color="F2F6F9" font-size="14" font-color="5A6B92" text-align="1" dock-horizal="2" corner-radius="11"/>-->
-                        <!--</dock-panel>-->
                         <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
                             <stack-panel  is-horizon="1" align-items="2">
                                 <image local-name="comment" width="20" fill-mode="4"/>
@@ -51,7 +57,7 @@
     </templates>
     <list separator-inset = "0 15 0 15" margin-top="60">
         <for data-path="listDatas">
-            <list-item id="{{ 'test' + type }}">
+            <list-item>
                 <template-ref t-name="{{ 'template' + type }}"/>
             </list-item>
         </for>

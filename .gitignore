@@ -36,3 +36,4 @@ Carthage/Build
 #
 # Pods/
 Example/Pods
+workspace.xml

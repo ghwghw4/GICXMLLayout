@@ -30,5 +30,5 @@
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong)GICListItemSelectedEvent *itemSelectEvent;
 
--(ASCellNode *)getCell:(ASTableNode *)target;
+-(ASCellNode *)getCell;
 @end

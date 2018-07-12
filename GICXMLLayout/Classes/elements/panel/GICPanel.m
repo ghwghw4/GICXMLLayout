@@ -33,6 +33,11 @@
 //}
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+//    for(ASDisplayNode *node in self.subnodes){
+////        if(node.style.si)
+//        node.style.preferredSize = constrainedSize.max;
+//    }
+    
     ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.subnodes];
     absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
     return absoluteSpec;

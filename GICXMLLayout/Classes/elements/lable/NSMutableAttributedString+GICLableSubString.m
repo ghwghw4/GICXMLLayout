@@ -49,9 +49,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str deleteCharactersInRange:NSMakeRange(0, str.length)];
                              [str appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
-                             if(str.gic_attributDict){
-                                 [str setAttributes:str.gic_attributDict range:NSMakeRange(0, str.length)];
-                             }
                          }],
                          };
 }
@@ -70,12 +67,5 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     }
     self.gic_attributDict = [NSMutableDictionary dictionary];
     return self;
-}
-
--(void)gic_elementParseCompelte{
-    [self gic_elementParseCompelte];
-//    if(self.gic_attributDict){
-        [self setAttributes:self.gic_attributDict range:NSMakeRange(0, self.length)];
-//    }
 }
 @end

@@ -14,7 +14,7 @@
     
 }
 @property (nonatomic,strong)NSString *name;
-@property (nonatomic,strong,readonly)GDataXMLDocument *xmlDoc;
+@property (nonatomic,strong,readonly)NSString *xmlDocString;
 
 
 //-(NSObject *)createElement;

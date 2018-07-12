@@ -31,10 +31,14 @@
                  [(GICListView *)target setDefualtItemHeight:[value floatValue]];
              }],
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [[(GICListView *)target view] setSeparatorStyle:[value integerValue]];
+                 [(GICListView *)target gic_safeView:^(id view) {
+                     [view setSeparatorStyle:[value integerValue]];
+                 }];
              }],
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [[(GICListView *)target view] setValue:value forKey:@"separatorInset"];
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
+                     [view setValue:value forKey:@"separatorInset"];
+                 }];
              }],
              };
 }
@@ -46,10 +50,10 @@
     self.delegate = self;
     // 创建一个0.2秒的节流阀
     __weak typeof(self) wself = self;
-    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    [[[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         self->reloadSubscriber = subscriber;
         return nil;
-    }] throttle:0.2] subscribeNext:^(id  _Nullable x) {
+    }] throttle:0.2] deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
         [wself reloadData];
     }];
     return self;
@@ -104,8 +108,16 @@
 //    return height;
 //}
 
-- (ASCellNode *)tableNode:(ASTableNode *)tableNode nodeForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [[listItems objectAtIndex:indexPath.row] getCell:self];
+//- (ASCellNode *)tableNode:(ASTableNode *)tableNode nodeForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return [[listItems objectAtIndex:indexPath.row] getCell:self];
+//}
+
+- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
+        return [[self->listItems objectAtIndex:indexPath.row] getCell];;
+    };
+    return cellNodeBlock;
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

@@ -74,8 +74,12 @@
             context[key] = value;
         }
     }
-    JSValue *value = [context evaluateScript:jsCode];
-    self.valueConverter.propertySetter(self.target,[self.valueConverter convert:[value toString]]);
+    JSValue *jsvalue = [context evaluateScript:jsCode];
+    id value = [self.valueConverter convert:[jsvalue toString]];
+    self.valueConverter.propertySetter(self.target,value);
+    if(self.valueUpdate){
+        self.valueUpdate(value);
+    }
     
     if(!self.isInitBinding){
         if(self.bingdingMode == GICBingdingMode_Once){

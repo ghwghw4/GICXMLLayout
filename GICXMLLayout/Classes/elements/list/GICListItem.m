@@ -77,7 +77,7 @@
     }
 }
 
--(ASCellNode *)getCell:(UITableView *)target{
+-(ASCellNode *)getCell{
     GICListTableViewCell *cell = [[GICListTableViewCell alloc] initWithListItem:self];
 //    if(cell == nil){
 //         cell = [[GICListTableViewCell alloc] initWithListItem:self];

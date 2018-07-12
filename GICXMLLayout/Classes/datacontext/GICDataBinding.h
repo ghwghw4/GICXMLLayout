@@ -14,6 +14,8 @@ typedef enum {
     GICBingdingMode_TowWay// 双向绑定，在单向绑定的基础上，增加了反向绑定，也就是说当本身某个数据改变的时候也会影响数据源本身的数据
 }GICBingdingMode;
 
+typedef void (^GICDataBingdingValueUpdateBlock)(id value);
+
 /**
  数据绑定
  */
@@ -26,10 +28,13 @@ typedef enum {
 @property (nonatomic,strong)NSString *attributeName;//
 @property (nonatomic,assign,readonly)BOOL isInitBinding;
 
+
+@property (nonatomic,copy)GICDataBingdingValueUpdateBlock valueUpdate;
+
 /**
  更新数据源
 
- @param dataSource <#dataSource description#>
+ @param dataSource dataSource description
  */
 -(void)updateDataSource:(id)dataSource;
 

@@ -82,7 +82,7 @@ static NSMutableDictionary *registedElements = nil;
         return;
     }
     // 取根节点
-    dispatch_async(dispatch_get_main_queue(), ^{
+//    dispatch_async(dispatch_queue_create("1111", nil), ^{
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         if([rootElement.name isEqualToString:@"page"]){
             [GICXMLParserContext resetInstance:xmlDocument];
@@ -95,6 +95,6 @@ static NSMutableDictionary *registedElements = nil;
         }else{
             compelte(nil);
         }
-    });
+//    });
 }
 @end

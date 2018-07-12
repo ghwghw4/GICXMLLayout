@@ -24,8 +24,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     supportElementNames = @[@"s",@"img"];
     propertyConverts = @{
                          @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             ((GICLable *)target)->mutAttString = [[NSMutableAttributedString alloc] initWithString:value];
-                             [(GICLable *)target updateSting];
+                             NSMutableAttributedString *att= ((GICLable *)target)->mutAttString;
+                             [att deleteCharactersInRange:NSMakeRange(0, att.length)];
+                             [att appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+                             [(GICLable *)target updateString];
                          }],
                          @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [(GICLable *)target setMaximumNumberOfLines:[value integerValue]];
@@ -55,17 +57,32 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 
 -(void)gic_parseElement:(GDataXMLElement *)element{
     attributes = [NSMutableDictionary dictionary];
+    mutAttString = [[NSMutableAttributedString alloc] init];
     [super gic_parseElement:element];
 }
 
 -(void)gic_elementParseCompelte{
     [super gic_elementParseCompelte];
-    [self updateSting];
+    [self updateString];
 }
 
--(void)updateSting{
-    if(attributes){
-        [self->mutAttString setAttributes:self->attributes range:NSMakeRange(0, self->mutAttString.length)];
+-(void)updateString{
+    if(attbuteStringArray.count>0){
+        [self->mutAttString deleteCharactersInRange:NSMakeRange(0, self->mutAttString.length)];
+        NSInteger offset = 0;
+        for(NSMutableAttributedString *att in attbuteStringArray){
+            [self->mutAttString appendAttributedString:att];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:attributes];
+            if(att.gic_attributDict.count>0){
+                [dict addEntriesFromDictionary:att.gic_attributDict];
+            }
+            [self->mutAttString setAttributes:dict range:NSMakeRange(offset, att.length)];
+            offset +=att.length;
+        }
+    }else{
+        if(attributes){
+            [self->mutAttString setAttributes:self->attributes range:NSMakeRange(0, self->mutAttString.length)];
+        }
     }
     self.attributedText = self->mutAttString;
 }
@@ -74,60 +91,27 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 //    [super gic_parseElement:element];
 //}
 //
-//-(NSArray *)gic_subElements{
-//    return attbuteStringArray;
-//}
-//
-//-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
-//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
-//    attbuteStringArray = [NSMutableArray array];
-//    for(GDataXMLElement *child in children){
-//        if([supportElementNames containsObject:child.name]){
-//            NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
-//            [s gic_parseElement:child];
-//            [attString appendAttributedString:s];
-//            [attbuteStringArray addObject:s];
-//            if(s.gic_Bindings.count>0){
-//                @weakify(self)
-//                for(GICDataBinding *b in s.gic_Bindings){
-//                    [[b rac_signalForSelector:@selector(refreshExpression)] subscribeNext:^(RACTuple * _Nullable x) {
-//                        @strongify(self)
-//                        [self updateString];
-//                    }];
-//                }
-//            }
-//        }
-//    }
-//    self.attributedText = attString;
-//}
-//
-//-(void)updateString{
-//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
-//    for(NSMutableAttributedString *att in attbuteStringArray){
-//        [attString appendAttributedString:att];
-//    }
-//    self.attributedText = attString;
-//}
-
-
-//-(void)layoutSubviews{
-//    [super layoutSubviews];
-//    self.preferredMaxLayoutWidth = self.frame.size.width;
-//}
-//
-//-(id)init{
-//    self = [super init];
-//    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-//    self.numberOfLines = 0;
-//    return self;
-//}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(NSArray *)gic_subElements{
+    return attbuteStringArray;
 }
-*/
-
+//
+-(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+    attbuteStringArray = [NSMutableArray array];
+    for(GDataXMLElement *child in children){
+        if([supportElementNames containsObject:child.name]){
+            NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
+            [s gic_parseElement:child];
+            [attbuteStringArray addObject:s];
+            if(s.gic_Bindings.count>0){
+                @weakify(self)
+                for(GICDataBinding *b in s.gic_Bindings){
+                    b.valueUpdate = ^(id value) {
+                        @strongify(self)
+                        [self updateString];
+                    };
+                }
+            }
+        }
+    }
+}
 @end

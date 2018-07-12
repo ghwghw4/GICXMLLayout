@@ -49,4 +49,10 @@
         }
     }
 }
+
+-(void)gic_safeView:(void (^)(UIView *view))cb{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        cb(self.view);
+    });
+}
 @end

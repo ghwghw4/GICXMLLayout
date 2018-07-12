@@ -42,7 +42,6 @@
 #import "GICInsetPanel.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
-#import "UIScrollView+GICScrollView.h"
 #import "GICEvent.h"
 #import "GICEventInfo.h"
 #import "GICTapEvent.h"

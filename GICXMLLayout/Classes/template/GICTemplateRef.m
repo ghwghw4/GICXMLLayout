@@ -48,9 +48,10 @@
     if(slotsXmlDocMap && slotsXmlDocMap.count>0){
         // 如果有slot，那么久开始执行替换slot流程
         tempConvertSlotMap = [NSMutableDictionary dictionary];
-        [self findSlotElement:[t.xmlDoc rootElement]];
+        GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:t.xmlDocString options:0 error:nil];
+        [self findSlotElement:xmlDoc.rootElement];
         if(tempConvertSlotMap.allKeys.count>0){
-            NSString *xmlString = [t.xmlDoc.rootElement XMLString];
+            NSString *xmlString = t.xmlDocString;
             for(NSString *slotName in tempConvertSlotMap.allKeys){
                 xmlString = [xmlString stringByReplacingOccurrencesOfString:[tempConvertSlotMap objectForKey:slotName] withString:[slotsXmlDocMap objectForKey:slotName]];
             }
@@ -58,7 +59,7 @@
         }
         tempConvertSlotMap = nil;
     }else{
-        xmlDocString = [[t.xmlDoc rootElement] XMLString];
+        xmlDocString = t.xmlDocString;
     }
     
     GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];

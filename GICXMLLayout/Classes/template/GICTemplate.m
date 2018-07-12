@@ -27,7 +27,7 @@
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
-        self->_xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
+        self->_xmlDocString = [children[0] XMLString];
     }
 }
 

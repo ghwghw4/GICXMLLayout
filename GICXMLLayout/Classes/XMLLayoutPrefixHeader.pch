@@ -21,6 +21,6 @@
 #import <Masonry/Masonry.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICXMLParserContext.h"
-
+#import "ASDisplayNode+GICExtension.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

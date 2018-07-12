@@ -45,18 +45,10 @@
         [spec setValuesForKeysWithDictionary:self->stackPanelPropertyDict];
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    NSMutableArray *children = [NSMutableArray array];
-    for(id node in self.childNodes){
-        if([node isKindOfClass:[ASDisplayNode class]]){
-            [children addObject:node];
-        }else if ([node isKindOfClass:[GICPanel class]]){
-            [children addObject:[node layoutSpecThatFits:constrainedSize]];
-        }
-    }
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children{
     ASStackLayoutSpec *temp =self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
     temp.children = children;
-    [self mergeStyle:temp];
     return temp;
 }
+
 @end

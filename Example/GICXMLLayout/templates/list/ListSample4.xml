@@ -22,44 +22,23 @@
                                 <image local-name="active" width="20" fill-mode="4"/>
                                 <lable text="赞" font-size="12" font-color="666666"  width="60"/>
                             </stack-panel>
-                            <view height="22" background-color="F2F6F9">
-                                <stack-panel>
-                                    <lable text="{{ ' #'+tag+' ' }}"   font-size="14" font-color="5A6B92" corner-radius="11"/>
-                                </stack-panel>
+                            <view background-color="F2F6F9" height="22" corner-radius="11">
+                                <dock-panel>
+                                    <lable text="{{ ' #'+tag+' ' }}" font-size="14" font-color="5A6B92"/>
+                                </dock-panel>
                             </view>
                         </stack-panel>
                     </stack-panel>
                 </stack-panel>
             </inset-panel>
-            <!--<panel>-->
-            <!--<image url="{{ headurl }}" size="32" position="16" corner-radius="16"/>-->
-            <!--<inset-panel inset="16 0 16 16" position="56 0">-->
-            <!--<stack-panel>-->
-            <!--<lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>-->
-            <!--<lable font-size="12" font-color="999999" space-before="6" lines="1">-->
-            <!--<s text="{{ time +' ' }}"></s>-->
-            <!--<s text="{{ loc +' '}}" font-color="red"></s>-->
-            <!--<s>200米</s>-->
-            <!--</lable>-->
-            <!--<lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>-->
-            <!--<template-slot slot-name = "content" />-->
-            <!--<stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">-->
-            <!--<stack-panel  is-horizon="1" align-items="2">-->
-            <!--<image local-name="comment" width="20" fill-mode="4"/>-->
-            <!--<lable text="评论" font-size="12" width="60" font-color="666666"/>-->
-            <!--<image local-name="active" width="20" fill-mode="4"/>-->
-            <!--<lable text="赞" font-size="12" font-color="666666"  width="60"/>-->
-            <!--</stack-panel>-->
-            <!--<lable text="{{ ' #'+tag+' ' }}" background-color="F2F6F9" font-size="14" font-color="5A6B92" dock-horizal="2" corner-radius="11"/>-->
-            <!--</stack-panel>-->
-            <!--</stack-panel>-->
-            <!--</inset-panel>-->
-            <!--</panel>-->
         </template>
         
         <template t-name="template1">
             <template-ref t-name="base-template">
-                <lable text="我是模板1" font-size="14" slot-name = "content" font-color="red"/>
+                <!--<lable text="我是模板1" font-size="14" slot-name = "content" font-color="red"/>-->
+                <panel slot-name = "content">
+                    <image url="{{ headurl }}" size="64" corner-radius="16"/>
+                </panel>
             </template-ref>
         </template>
         

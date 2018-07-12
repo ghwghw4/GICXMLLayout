@@ -32,10 +32,13 @@
     }],
                                       @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
         ASDisplayNode *node = (ASDisplayNode *)target;
-        node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
-            CGRect bounds = CGContextGetClipBoundingBox(context);
-            [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
-        };
+        [node gic_safeView:^(UIView *view) {
+            view.layer.cornerRadius = [value floatValue];
+        }];
+//        node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
+//            CGRect bounds = CGContextGetClipBoundingBox(context);
+//            [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
+//        };
     }],
                                       
                                       } mutableCopy];

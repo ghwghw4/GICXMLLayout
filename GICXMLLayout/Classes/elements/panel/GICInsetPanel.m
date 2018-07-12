@@ -27,15 +27,10 @@
     return true;
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    id node =self.childNodes.firstObject;
-    if([node isKindOfClass:[GICPanel class]]){
-        node = [node layoutSpecThatFits:constrainedSize];
-    }
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children{
     ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
     insetBox.insets = self.inset;
-    insetBox.child = node;
-    [self mergeStyle:insetBox];
+    insetBox.child = [children firstObject];
     return insetBox;
 }
 

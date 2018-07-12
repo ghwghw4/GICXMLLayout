@@ -52,6 +52,13 @@
     return mutArray;
 }
 
+
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children{
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
+    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
+    return absoluteSpec;
+}
+
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     NSMutableArray *children = [NSMutableArray array];
     for(id node in self.childNodes){
@@ -61,10 +68,9 @@
             [children addObject:[node layoutSpecThatFits:constrainedSize]];
         }
     }
-    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
-    absoluteSpec.sizing = ASAbsoluteLayoutSpecSizingSizeToFit;
-    [self mergeStyle:absoluteSpec];
-    return absoluteSpec;
+    ASLayoutSpec *spec = [self layoutSpecThatFits:constrainedSize withChildren:children];
+    [self mergeStyle:spec];
+    return spec;
 }
 
 -(void)mergeStyle:(ASLayoutSpec *)spec{

@@ -8,5 +8,10 @@
 #import "GICNSObjectExtensionProperties.h"
 
 @implementation GICNSObjectExtensionProperties
-
+-(id)init{
+    self = [super init];
+    _dockHorizalModel = GICDockPanelHorizalModel_Center;
+    _dockVerticalModel = GICDockPanelVerticalModel_Center;
+    return self;
+}
 @end

@@ -20,6 +20,15 @@
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
 
+/**
+ 由子类实现
+
+ @param constrainedSize <#constrainedSize description#>
+ @param children <#children description#>
+ @return <#return value description#>
+ */
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children;
+
 -(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
 
 -(void)mergeStyle:(ASLayoutSpec *)spec;

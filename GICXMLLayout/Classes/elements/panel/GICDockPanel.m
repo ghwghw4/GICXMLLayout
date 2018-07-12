@@ -52,6 +52,44 @@
     return absoluteSpec;
 }
 
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)childrenNodes{
+    
+    NSMutableArray *children= [NSMutableArray array];
+    for(id node in childrenNodes){
+        GICNSObjectExtensionProperties *properties = [node gic_ExtensionProperties];
+        ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
+        switch (properties.dockHorizalModel) {
+            case GICDockPanelHorizalModel_Left:
+                hor = ASRelativeLayoutSpecPositionStart;
+                break;
+            case GICDockPanelHorizalModel_Center:
+                hor = ASRelativeLayoutSpecPositionCenter;
+                break;
+            case GICDockPanelHorizalModel_Right:
+                hor = ASRelativeLayoutSpecPositionEnd;
+                break;
+        }
+        
+        ASRelativeLayoutSpecPosition ver = ASRelativeLayoutSpecPositionStart;
+        switch (properties.dockVerticalModel) {
+            case GICDockPanelVerticalModel_Top:
+                ver = ASRelativeLayoutSpecPositionStart;
+                break;
+            case GICDockPanelVerticalModel_Center:
+                ver = ASRelativeLayoutSpecPositionCenter;
+                break;
+            case GICDockPanelVerticalModel_Bottom:
+                ver = ASRelativeLayoutSpecPositionEnd;
+                break;
+        }
+        
+        ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:hor verticalPosition:ver sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:[node isKindOfClass:[ASDisplayNode class]]?node:[node layoutSpecThatFits:constrainedSize]];
+        [children addObject:relativeLayout];
+    }
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:children];
+    return absoluteSpec;
+}
+
 
 //-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
 //    ASRelativeLayoutSpec *relativeLayout = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:ASRelativeLayoutSpecPositionEnd verticalPosition:ASRelativeLayoutSpecPositionStart sizingOption:ASRelativeLayoutSpecSizingOptionDefault child:self.childNodeA];

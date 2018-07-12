@@ -17,13 +17,17 @@
     return self;
 }
 
--(void)gic_addSubElement:(NSObject *)childElement{
+-(void)gic_addSubElement:(id)childElement{
     // 必须是panel才能被加入节点
-    if([childElement isKindOfClass:[ASDisplayNode class]]){
-        [self addSubnode:(ASDisplayNode *)childElement];
+    if([childElement isKindOfClass:[GICPanel class]]){
+        panel = childElement;
     }else{
         [super gic_addSubElement:childElement];
     }
+}
+
+-(NSArray *)gic_subElements{
+    return @[panel];
 }
 
 -(NSObject *)gic_getSuperElement{
@@ -53,18 +57,6 @@
     self.gic_isAutoInheritDataModel = NO;
     [self gic_updateDataContext:listItem.gic_DataContenxt];
 }
-//-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    return self;
-//}
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    [super setSelected:selected animated:animated];
-//    // Configure the view for the selected state
-//    if(self.listItem.itemSelectEvent && selected){
-//        [self.listItem.itemSelectEvent.eventSubject sendNext:@(selected)];
-//    }
-//}
 
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
@@ -75,11 +67,6 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-//    ASStackLayoutSpec *spec = [ASStackLayoutSpec verticalStackLayoutSpec];
-//    spec.children = self.subnodes;
-    ASInsetLayoutSpec *s= [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsZero child:self.subnodes.firstObject];
-//    s.style.preferredSize = CGSizeMake(320, <#CGFloat height#>)
-    //    s.style.width = ASDimensionMake(320);
-    return s;
+    return [panel layoutSpecThatFits:constrainedSize];
 }
 @end

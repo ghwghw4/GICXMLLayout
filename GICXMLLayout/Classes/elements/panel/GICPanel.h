@@ -13,7 +13,7 @@
  */
 @interface GICPanel : NSObject<LayoutElementProtocol>
 @property (nonatomic,strong,readonly)NSMutableArray *childNodes;
-@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
+//@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
 
 @property (nonatomic, readonly) ASLayoutElementStyle *style;
 

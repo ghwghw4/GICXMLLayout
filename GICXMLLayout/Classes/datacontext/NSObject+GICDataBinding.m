@@ -94,7 +94,6 @@
     
     for(GICDirective *d in self.gic_directives){
         [d gic_updateDataContext:superDataContenxt];
-//        [d updateDataSource:superDataContenxt];
     }
     
     if([self respondsToSelector:@selector(gic_subElements)]){

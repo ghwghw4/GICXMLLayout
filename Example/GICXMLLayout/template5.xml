@@ -1,45 +1,17 @@
 
 <page title="GICXMLLayout" >
     <view background-color="yellow">
-        <!--<stack-panel background-color="white" inset="64 10 10 10">-->
-            <!--<lable slot-name = "haha" text="基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑" font-color="666666" font-size="20" lines="3"/>-->
-            <!--<lable slot-name = "haha" text="基本框架不亢不卑2" font-color="red" font-size="12"  background-color="black"/>-->
-            <!--<lable slot-name = "haha" text="基本框架不亢不卑3" text-align="2"  font-color="white" font-size="12"/>-->
-        <!--</stack-panel>-->
         <inset-panel inset="16">
-            <stack-panel background-color="yellow">
-                <lable slot-name = "haha" text="基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑基本框架不亢不卑" font-color="666666" font-size="20" lines="3"/>
-                <lable slot-name = "haha" text="基本框架不亢不卑2" text-align="1" font-color="666666" font-size="12" space-before="20"/>
-                <lable slot-name = "haha" text="基本框架不亢不卑3" text-align="2"  font-color="666666" font-size="12"/>
-                <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>
-                <panel>
-                    <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>
-                    <lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" text-align="2" font-size="12"/>
-                </panel>
-
-                <stack-panel space-before="20"  space="20" is-horizon="1" background-color="blue" justify-content="3" align-items="0">
-                    <view background-color="red" size="50" dock-vertical="1" dock-horizal="1">
-
-                    </view>
-
-                    <view background-color="red" size="100" dock-vertical="0" dock-horizal="0">
-
-                    </view>
-
-                    <view background-color="red" size="20" dock-vertical="2" dock-horizal="2">
-
-                    </view>
+            <view background-color="blue">
+                <stack-panel is-horizon="1" justify-content="0" align-items="2" space="40">
+                    <stack-panel background-color="red" flex-grow="1" flex-shrink="1">
+                        <lable slot-name = "haha" text="hannahmbanana" font-color="666666" font-size="20"/>
+                        <lable slot-name = "haha" lines="1" text="Sunset Beach, San Fransisco, CA大叔大婶多撒多撒多多" font-color="666666" font-size="20"/>
+                    </stack-panel>
+                    <lable text="30m" font-color="666666" font-size="20"/>
                 </stack-panel>
-
-                <view background-color="blue" height="50" space-before="50">
-                    <!--<stack-panel>-->
-                    <!--<lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" font-size="12"/>-->
-                    <!--<lable slot-name = "haha" text="基本框架不亢不卑4" font-color="666666" text-align="2" font-size="12"/>-->
-                    <!--</stack-panel>-->
-                </view>
-            </stack-panel>
+            </view>
         </inset-panel>
-
     </view>
     
     

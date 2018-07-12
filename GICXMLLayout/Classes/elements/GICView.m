@@ -17,21 +17,24 @@
     return true;
 }
 
+-(NSArray *)gic_subElements{
+    if(panel)
+        return @[panel];
+    return nil;
+}
+
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICPanel class]]){
         panel = subElement;
-        for(id node in [panel getAllDisplayNodes]){
-            [self addSubnode:node];
-        }
     }else{
         [super gic_addSubElement:subElement];
     }
 }
 
--(void)gic_elementParseCompelte{
-    [super gic_elementParseCompelte];
-    panel.superDisplayNode = self;
-}
+//-(void)gic_elementParseCompelte{
+//    [super gic_elementParseCompelte];
+//    panel.superDisplayNode = self;
+//}
 
 -(id)init{
     self =[super init];

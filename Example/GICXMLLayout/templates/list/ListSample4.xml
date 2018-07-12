@@ -2,10 +2,27 @@
     <!-- 实际的需求中，我们经常碰到一个列表中不同的数据对应不同cell的情况。下面的示例就是为了解决这个问题的   -->
     <templates>
         <template t-name="base-template">
-            <!--<inset-panel background-color="red" inset="16">-->
-                <!--<stack-panel is-horizon="1" space="8">-->
-                    <!--<image url="{{ headurl }}" size="32" corner-radius="16"/>-->
-                    <!--<stack-panel background-color="blue">-->
+            <inset-panel background-color="red" inset="16">
+                <stack-panel is-horizon="1" space="8">
+                    <image url="{{ headurl }}" size="32" corner-radius="16"/>
+                    <view background-color="blue" flex-shrink="1" flex-grow="1">
+                        <stack-panel>
+                            <lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>
+                            <lable font-size="12" font-color="999999" space-before="6" lines="1">
+                                <s text="{{ time +' ' }}"></s>
+                                <s text="{{ loc +' '}}" font-color="red"></s>
+                                <s>200米</s>
+                            </lable>
+                            <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
+                            <template-slot slot-name = "content" />
+                        </stack-panel>
+                    </view>
+                </stack-panel>
+            </inset-panel>
+            <!--<panel>-->
+                <!--<image url="{{ headurl }}" size="32" position="16" corner-radius="16"/>-->
+                <!--<inset-panel inset="16 0 16 16" position="56 0">-->
+                    <!--<stack-panel>-->
                         <!--<lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>-->
                         <!--<lable font-size="12" font-color="999999" space-before="6" lines="1">-->
                             <!--<s text="{{ time +' ' }}"></s>-->
@@ -14,33 +31,18 @@
                         <!--</lable>-->
                         <!--<lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>-->
                         <!--<template-slot slot-name = "content" />-->
+                        <!--<stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">-->
+                            <!--<stack-panel  is-horizon="1" align-items="2">-->
+                                <!--<image local-name="comment" width="20" fill-mode="4"/>-->
+                                <!--<lable text="评论" font-size="12" width="60" font-color="666666"/>-->
+                                    <!--<image local-name="active" width="20" fill-mode="4"/>-->
+                                    <!--<lable text="赞" font-size="12" font-color="666666"  width="60"/>-->
+                            <!--</stack-panel>-->
+                            <!--<lable text="{{ ' #'+tag+' ' }}" background-color="F2F6F9" font-size="14" font-color="5A6B92" dock-horizal="2" corner-radius="11"/>-->
+                        <!--</stack-panel>-->
                     <!--</stack-panel>-->
-                <!--</stack-panel>-->
-            <!--</inset-panel>-->
-            <panel>
-                <image url="{{ headurl }}" size="32" position="16" corner-radius="16"/>
-                <inset-panel inset="16 0 16 16" position="56 0">
-                    <stack-panel>
-                        <lable text="{{ name + id }}" font-size="14" font-color="5A6B92"/>
-                        <lable font-size="12" font-color="999999" space-before="6" lines="1">
-                            <s text="{{ time +' ' }}"></s>
-                            <s text="{{ loc +' '}}" font-color="red"></s>
-                            <s>200米</s>
-                        </lable>
-                        <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
-                        <template-slot slot-name = "content" />
-                        <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
-                            <stack-panel  is-horizon="1" align-items="2">
-                                <image local-name="comment" width="20" fill-mode="4"/>
-                                <lable text="评论" font-size="12" width="60" font-color="666666"/>
-                                    <image local-name="active" width="20" fill-mode="4"/>
-                                    <lable text="赞" font-size="12" font-color="666666"  width="60"/>
-                            </stack-panel>
-                            <lable text="{{ ' #'+tag+' ' }}" background-color="F2F6F9" font-size="14" font-color="5A6B92" dock-horizal="2" corner-radius="11"/>
-                        </stack-panel>
-                    </stack-panel>
-                </inset-panel>
-            </panel>
+                <!--</inset-panel>-->
+            <!--</panel>-->
         </template>
         
         <template t-name="template1">

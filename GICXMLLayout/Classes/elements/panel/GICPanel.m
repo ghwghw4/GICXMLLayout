@@ -36,6 +36,10 @@
     }
 }
 
+-(NSArray *)gic_subElements{
+    return self.childNodes;
+}
+
 -(NSArray<ASDisplayNode *> *)getAllDisplayNodes{
     NSMutableArray *mutArray =[NSMutableArray array];
     for(id node in self.childNodes){

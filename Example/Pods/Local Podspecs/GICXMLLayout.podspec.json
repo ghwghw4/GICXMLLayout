@@ -32,6 +32,9 @@
     ],
     "Texture": [
 
+    ],
+    "pop": [
+
     ]
   },
   "frameworks": "JavaScriptCore",

@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "GICAnimation.h"
+#import "GICAnimations.h"
+#import "NSObject+GICAnimation.h"
 #import "GICBehavior.h"
 #import "GICBehaviors.h"
 #import "NSObject+GICBehavior.h"
@@ -38,7 +41,7 @@
 #import "GICListTableViewCell.h"
 #import "GICListView.h"
 #import "GICNavBar.h"
-#import "GICNavBarButton.h"
+#import "GICNavbarButtons.h"
 #import "GICPage.h"
 #import "GICDockPanel.h"
 #import "GICInsetPanel.h"

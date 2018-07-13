@@ -12,6 +12,7 @@
 }
 
 -(void)attachTo:(id)target{
+    [super attachTo:target];
     self.target = target;
 }
 @end

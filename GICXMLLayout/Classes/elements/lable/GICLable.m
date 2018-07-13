@@ -61,6 +61,12 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     [super gic_beginParseElement:element withSuperElement:superElment];
 }
 
+//-(id)init{
+//    self = [super init];
+////    self.userInteractionEnabled = YES;
+//    return self;
+//}
+
 //-(void)gic_par
 
 -(void)gic_parseElementCompelete{

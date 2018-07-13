@@ -34,12 +34,6 @@
              };
 }
 
-+(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap{
-    return @{
-              [GICNavBar gic_elementName]:[GICNavBar class],
-             };
-}
-
 #pragma mark - Lifecycle Methods
 -(id)initWithXmlElement:(GDataXMLElement *)element{
     [self gic_beginParseElement:element withSuperElement:nil];
@@ -61,5 +55,12 @@
     }else{
         [super gic_addSubElement:subElement];
     }
+}
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    if([element.name isEqualToString:[GICNavBar gic_elementName]]){
+        return [GICNavBar new];
+    }
+    return [super gic_parseSubElementNotExist:element];
 }
 @end

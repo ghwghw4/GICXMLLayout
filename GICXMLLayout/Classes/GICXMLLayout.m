@@ -29,6 +29,8 @@
 #import "GICTemplateRef.h"
 #import "GICTemplates.h"
 
+#import "GICAnimations.h"
+
 @implementation GICXMLLayout
 static NSMutableDictionary<NSString *,Class> *registedElements = nil;
 +(void)regiterAllElements{
@@ -58,6 +60,9 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
         [self registElement:[GICTemplate class]];
         [self registElement:[GICTemplateRef class]];
         [self registElement:[GICTemplates class]];
+        
+        //动画
+        [self registElement:[GICAnimations class]];
         
        
         
@@ -90,10 +95,6 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
 +(NSObject *)createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{
     NSString *elementName = element.name;
     Class c = [registedElements objectForKey:elementName];
-    if(!c){// 如果找不到，那么从父元素的私有元素列表中获取
-        NSDictionary * dict=[[superElement class] gic_privateSubElementsMap];
-        c = [dict objectForKey:elementName];
-    }
     if(c){
         NSObject *v = [c new];
         [v gic_beginParseElement:element withSuperElement:superElement];

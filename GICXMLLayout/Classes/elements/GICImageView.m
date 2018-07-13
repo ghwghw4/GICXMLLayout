@@ -32,7 +32,7 @@
 -(void)setLocalImageName:(NSString *)localImageName{
     _localImageName = localImageName;
     self.clipsToBounds =YES;
-    self.image =[UIImage imageNamed:localImageName];
+    self.image =[UIImage as_imageNamed:localImageName];
 }
 
 @end

@@ -14,6 +14,7 @@
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
 
+
 @implementation NSObject (LayoutElement)
 
 -(GICNSObjectExtensionProperties *)gic_ExtensionProperties{
@@ -95,17 +96,21 @@
     return propertyConverts;
 }
 
-+(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap{
-    return nil;
-}
-
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     for(GDataXMLElement *child in children){
         id childElement = [GICXMLLayout createElement:child withSuperElement:self];
+        if(childElement == nil){
+            childElement = [self gic_parseSubElementNotExist:child];
+            [childElement gic_beginParseElement:child withSuperElement:self];
+        }
         if(childElement == nil)
             continue;
         [self gic_addSubElement:childElement];
     }
+}
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    return nil;
 }
 
 -(void)gic_addSubElement:(NSObject *)subElement{
@@ -122,7 +127,7 @@
            tr.gic_DataContenxt = self.gic_DataContenxt;
         }
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
-    }else if ([subElement isKindOfClass:[GICBehaviors class]]){
+    }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             [self gic_addBehavior:b];
         }

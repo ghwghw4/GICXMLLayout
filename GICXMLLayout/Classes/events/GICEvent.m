@@ -38,6 +38,7 @@
 }
 
 -(void)attachTo:(id)target{
+    [super attachTo:target];
     if(self.target){
         // 先取消绑定
         [self  unAttach];

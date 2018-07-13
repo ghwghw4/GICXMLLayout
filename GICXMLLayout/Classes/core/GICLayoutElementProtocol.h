@@ -33,14 +33,6 @@
  */
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters;
 
-/**
- 元素支持的私有的子名称。
- 这个由元素自己提供，区别于全局元素名称。
-
- @return <#return value description#>
- */
-+(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap;
-
 @optional
 
 /**
@@ -57,12 +49,6 @@
  */
 -(void)gic_addSubElement:(NSObject *)subElement;
 
-/**
- 是否自动缓存节点。如果是，那么会自动缓存到subElements数组中。
-
- @return <#return value description#>
- */
--(BOOL)gic_isAutoCacheElement;
 
 /**
  获取父级元素
@@ -104,6 +90,15 @@
  */
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children;
 
+
+/**
+  解析子元素的时候，该子元素不存在，无法解析
+
+ @param element <#element description#>
+ @return 如果可以强制解析，那么返回解析后的子元素
+ */
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element;
+
 /**
  是否只支持单个子元素
  
@@ -122,6 +117,13 @@
  解析完成
  */
 -(void)gic_parseElementCompelete;
+
+/**
+ 是否自动缓存节点。如果是，那么会自动缓存到subElements数组中。
+ 
+ @return <#return value description#>
+ */
+-(BOOL)gic_isAutoCacheElement;
 @end
 
 

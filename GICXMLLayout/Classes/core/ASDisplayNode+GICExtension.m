@@ -12,6 +12,9 @@
 #import <objc/runtime.h>
 #import "GICStringConverter.h"
 #import "GICTapEvent.h"
+#import "GICBoolConverter.h"
+#import "GICAnimations.h"
+#import "NSObject+GICAnimation.h"
 
 @implementation ASDisplayNode (GICExtension)
 -(void)setGic_panel:(GICPanel *)gic_panel{
@@ -28,15 +31,18 @@
                                       @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             [(ASDisplayNode *)target setBackgroundColor:value];
                                         }],
-                                      @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                      @"touch-enable":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                            [(ASDisplayNode *)target setUserInteractionEnabled:[value boolValue]];
+                                        }],
+                                      @"hidden":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                            [(ASDisplayNode *)target setHidden:[value boolValue]];
+                                        }],
+                                      @"alpha":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                                        [(ASDisplayNode *)target setAlpha:[value floatValue]];
+                                    }],
+                                          @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             ASDisplayNode *node = (ASDisplayNode *)target;
-                                            [node gic_safeView:^(UIView *view) {
-                                                view.layer.cornerRadius = [value floatValue];
-                                            }];
-//                                            node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
-//                                                CGRect bounds = CGContextGetClipBoundingBox(context);
-//                                                [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
-//                                            };
+                                            node.cornerRadius = [value floatValue];
                                         }],
                                       @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
@@ -53,6 +59,10 @@
         self.gic_panel = subElement;
     }else if([subElement isKindOfClass:[ASDisplayNode class]]){
         NSAssert(NO, @"UI元素只能添加panel，不允许添加其他的UI元素");
+    }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
+        for(GICAnimation *a in ((GICAnimations *)subElement).animations){
+            [self gic_addAnimation:a];
+        }
     }else{
         [super gic_addSubElement:subElement];
     }

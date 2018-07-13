@@ -14,7 +14,7 @@
 
 @end
 
-@interface GICListItem : NSObject<LayoutElementProtocol>{
+@interface GICListItem : NSObject{
 //    CGFloat itemHeight;//lsit-item的固定高度
     
     CGFloat _cellAutoHeight;//自动计算的高度

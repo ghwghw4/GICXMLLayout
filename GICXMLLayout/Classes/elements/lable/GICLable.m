@@ -61,8 +61,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     [super gic_parseElement:element];
 }
 
--(void)gic_elementParseCompelte{
-    [super gic_elementParseCompelte];
+//-(void)gic_par
+
+-(void)gic_parseElementCompelete{
+    [super gic_parseElementCompelete];
     [self updateString];
 }
 

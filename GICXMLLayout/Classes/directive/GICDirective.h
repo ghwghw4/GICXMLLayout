@@ -10,6 +10,6 @@
 /**
  指令功能
  */
-@interface GICDirective : GICBehavior<LayoutElementProtocol>
+@interface GICDirective : GICBehavior
 @property (nonatomic,weak)id target;
 @end

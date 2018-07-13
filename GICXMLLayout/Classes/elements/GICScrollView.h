@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "GICPanel.h"
 
-@interface GICScrollView : ASScrollNode<LayoutElementProtocol>{
+@interface GICScrollView : ASScrollNode{
 //    GICPanel *panel;
 }
 

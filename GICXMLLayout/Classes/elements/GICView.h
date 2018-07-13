@@ -7,7 +7,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICPanel.h"
-@interface GICView : ASDisplayNode<LayoutElementProtocol>{
+@interface GICView : ASDisplayNode{
 //    GICPanel *panel;
 }
 @end

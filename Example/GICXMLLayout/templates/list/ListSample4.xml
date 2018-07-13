@@ -48,7 +48,7 @@
             </template-ref>
         </template>
     </templates>
-    <list>
+    <list separator-style="1">
         <for data-path="listDatas">
             <list-item separator-inset = "0 16 0 16">
                 <template-ref t-name="{{ 'template' + type }}"/>

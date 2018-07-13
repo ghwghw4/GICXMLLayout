@@ -146,7 +146,7 @@
             [(id)self gic_parseSubElements:element.children];
         }
     }
-    [self performSelector:@selector(gic_elementParseCompelte)];
+    [self performSelector:@selector(gic_parseElementCompelete)];
 }
 
 -(void)gic_parseAttributes:(GDataXMLElement *)element{
@@ -176,7 +176,7 @@
     }
 }
 
--(void)gic_elementParseCompelte{
+-(void)gic_parseElementCompelete{
     id temp = self.gic_ExtensionProperties.tempDataContext;
     if(temp){
         self.gic_DataContenxt = temp;

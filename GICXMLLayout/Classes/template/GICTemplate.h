@@ -10,7 +10,7 @@
 /**
  核心组件，模板
  */
-@interface GICTemplate : NSObject<LayoutElementProtocol>{
+@interface GICTemplate : NSObject{
     
 }
 @property (nonatomic,strong)NSString *name;

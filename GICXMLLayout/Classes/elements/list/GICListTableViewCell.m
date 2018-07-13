@@ -69,8 +69,7 @@
     }
 }
 
-- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
-{
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     return [self gic_layoutSpecThatFits:constrainedSize];
 }
 @end

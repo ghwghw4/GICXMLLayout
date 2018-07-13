@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICPage : ASViewController<LayoutElementProtocol>{
+@interface GICPage : ASViewController{
 //    id _viewModel;
 }
 

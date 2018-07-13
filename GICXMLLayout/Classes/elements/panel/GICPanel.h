@@ -11,7 +11,7 @@
  Panle的作用其实就是类似于UIView，也类似于Hmtl中的canvas布局。
  所有的元素都是绝对布局。
  */
-@interface GICPanel : NSObject<LayoutElementProtocol>
+@interface GICPanel : NSObject
 @property (nonatomic,strong,readonly)NSMutableArray *childNodes;
 //@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
 

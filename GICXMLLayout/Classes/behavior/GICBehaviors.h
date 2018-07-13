@@ -7,6 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "GICBehavior.h"
-@interface GICBehaviors : NSObject<LayoutElementProtocol>
+@interface GICBehaviors : NSObject
 @property (nonatomic,readonly)NSMutableArray<GICBehavior *> *behaviors;
 @end

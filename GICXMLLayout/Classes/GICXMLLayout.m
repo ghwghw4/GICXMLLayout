@@ -11,27 +11,79 @@
 #import "GICXMLParserContext.h"
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
+
+
 #import "GICPage.h"
+#import "GICView.h"
+#import "GICPanel.h"
+#import "GICStackPanel.h"
+#import "GICInsetPanel.h"
+#import "GICDockPanel.h"
+#import "GICScrollView.h"
+#import "GICImageView.h"
+#import "GICLable.h"
+#import "GICListView.h"
+#import "GICListItem.h"
+#import "GICDirectiveFor.h"
+#import "GICTemplate.h"
+#import "GICTemplateRef.h"
+#import "GICTemplates.h"
 
 @implementation GICXMLLayout
-static NSMutableDictionary *registedElements = nil;
+static NSMutableDictionary<NSString *,Class> *registedElements = nil;
 +(void)regiterAllElements{
     if (registedElements == nil) {
+        
         registedElements = [NSMutableDictionary dictionary];
-        int numberOfClasses = objc_getClassList(NULL, 0);
-        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
-        numberOfClasses = objc_getClassList(classes, numberOfClasses);
-        // 取出所有实现了gic_elementName方法的类
-        for (int i = 0; i < numberOfClasses; i++) {
-            Class candidateClass = classes[i];
-            if(class_getClassMethod(candidateClass, @selector(gic_elementName))){
-                NSString *name = [candidateClass performSelector:@selector(gic_elementName)];
-                if(name && [name length]>0){
-                    [registedElements setValue:candidateClass forKey:name];
-                }
-            }
+        [self registElement:[GICPage class]];
+        
+        // 布局系统
+        [self registElement:[GICPanel class]];
+        [self registElement:[GICStackPanel class]];
+        [self registElement:[GICInsetPanel class]];
+        [self registElement:[GICDockPanel class]];
+
+        // UI元素
+        [self registElement:[GICView class]];
+        [self registElement:[GICScrollView class]];
+        [self registElement:[GICImageView class]];
+        [self registElement:[GICLable class]];
+        [self registElement:[GICListView class]];
+        [self registElement:[GICListItem class]];
+        
+        // 指令
+        [self registElement:[GICDirectiveFor class]];
+        
+        // 模板
+        [self registElement:[GICTemplate class]];
+        [self registElement:[GICTemplateRef class]];
+        [self registElement:[GICTemplates class]];
+        
+       
+        
+//        int numberOfClasses = objc_getClassList(NULL, 0);
+//        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
+//        numberOfClasses = objc_getClassList(classes, numberOfClasses);
+//        // 取出所有实现了gic_elementName方法的类
+//        for (int i = 0; i < numberOfClasses; i++) {
+//            Class candidateClass = classes[i];
+//            if(class_getClassMethod(candidateClass, @selector(gic_elementName))){
+//                NSString *name = [candidateClass performSelector:@selector(gic_elementName)];
+//                if(name && [name length]>0){
+//                    [registedElements setValue:candidateClass forKey:name];
+//                }
+//            }
+//        }
+//        free(classes);
+    }
+}
+
++(void)registElement:(Class)elementClass{
+    if(class_getClassMethod(elementClass, @selector(gic_elementName))){
+        NSString *name = [elementClass performSelector:@selector(gic_elementName)];
+        if(name && [name length]>0){
+            [registedElements setValue:elementClass forKey:name];
         }
-        free(classes);
     }
 }
 
@@ -40,11 +92,6 @@ static NSMutableDictionary *registedElements = nil;
     if(c){
         NSObject *v = [c new];
         [v gic_parseElement:element];
-//        if([childElement isKindOfClass:[GICTemplateRef class]]){
-//            GICTemplateRef *tf = (GICTemplateRef *)childElement;
-//            GICTemplate *t = [self.target gic_getTemplateFromName:tf.templateName];
-//            childElement = [tf parseTemplate:t];
-//        }
         return v;
     }
     return nil;

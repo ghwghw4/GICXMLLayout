@@ -7,6 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "GICPanel.h"
-@interface GICListHeader : GICPanel<LayoutElementProtocol>
+@interface GICListHeader : GICPanel
 
 @end

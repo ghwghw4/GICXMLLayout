@@ -7,6 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICInpute : UITextField<LayoutElementProtocol>
+@interface GICInpute : UITextField
 
 @end

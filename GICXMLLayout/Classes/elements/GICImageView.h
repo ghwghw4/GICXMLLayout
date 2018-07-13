@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICImageView : ASNetworkImageNode<LayoutElementProtocol>
+@interface GICImageView : ASNetworkImageNode
 //@property (nonatomic,strong)NSURL *imageUrl;
 @property (nonatomic,strong)NSString *localImageName;
 @end

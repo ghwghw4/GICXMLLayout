@@ -11,7 +11,7 @@
 /**
  模板数组
  */
-@interface GICTemplates : NSObject<LayoutElementProtocol>{
+@interface GICTemplates : NSObject{
 
 }
 @property (nonatomic,readonly)NSMutableDictionary<NSString *, GICTemplate *> *templats;

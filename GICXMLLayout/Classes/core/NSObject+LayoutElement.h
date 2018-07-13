@@ -8,10 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "GICNSObjectExtensionProperties.h"
 
-@interface NSObject (LayoutElement)<LayoutElementProtocol>
-@property (nonatomic,strong,readonly)GICNSObjectExtensionProperties *gic_ExtensionProperties;
+@interface NSObject (LayoutElement)<GICElementParserProtocol>
 
-
--(void)gic_parseElement:(GDataXMLElement *)element;
--(void)gic_parseAttributes:(GDataXMLElement *)element;
 @end

@@ -25,7 +25,7 @@
     return @"list";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
     return @{
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target gic_safeView:^(id view) {

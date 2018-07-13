@@ -22,7 +22,7 @@
     return @"page";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
     return @{
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
@@ -32,6 +32,8 @@
 //             }],
              };
 }
+
+
 
 #pragma mark - Lifecycle Methods
 -(id)initWithXmlElement:(GDataXMLElement *)element{

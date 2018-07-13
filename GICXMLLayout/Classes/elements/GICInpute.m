@@ -36,7 +36,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
                          };
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
     return propertyConverts;
 }
 

@@ -15,7 +15,7 @@
     return @"image";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
     return  @{
               @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICImageView *)target setURL:value];

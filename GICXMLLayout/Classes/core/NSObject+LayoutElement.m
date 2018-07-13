@@ -63,8 +63,8 @@
 //    if(klass == [ASDisplayNode class]){
 //        [dict addEntriesFromDictionary:[ASDisplayNodeUtiles commonPropertyConverters]];
 //    }else{
-        if([klass respondsToSelector:@selector(gic_propertySetters)]){
-            [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_propertySetters)]];
+        if([klass respondsToSelector:@selector(gic_propertyConverters)]){
+            [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_propertyConverters)]];
         }
 //    }
    
@@ -76,7 +76,7 @@
 }
 
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertySetters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
     static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

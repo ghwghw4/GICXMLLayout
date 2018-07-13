@@ -24,7 +24,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "LayoutElementProtocol.h"
+#import "GICLayoutElementProtocol.h"
 #import "GICUtils.h"
 #import "NSObject+LayoutElement.h"
 #import "GICXMLLayout.h"

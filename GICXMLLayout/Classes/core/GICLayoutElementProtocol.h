@@ -26,8 +26,6 @@
  */
 @property (nonatomic,readonly)GICNSObjectExtensionProperties *gic_ExtensionProperties;
 
-@optional
-
 /**
  支持的属性转换器列表
 
@@ -43,6 +41,8 @@
  */
 +(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap;
 
+@optional
+
 /**
  获取所有的子元素
  
@@ -56,6 +56,13 @@
  @param subElement <#subElement description#>
  */
 -(void)gic_addSubElement:(NSObject *)subElement;
+
+/**
+ 是否自动缓存节点。如果是，那么会自动缓存到subElements数组中。
+
+ @return <#return value description#>
+ */
+-(BOOL)gic_isAutoCacheElement;
 
 /**
  获取父级元素
@@ -90,7 +97,7 @@
 
  @param element <#element description#>
  */
--(void)gic_parseElement:(GDataXMLElement *)element;
+-(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment;
 
 /**
  开始解析子元素

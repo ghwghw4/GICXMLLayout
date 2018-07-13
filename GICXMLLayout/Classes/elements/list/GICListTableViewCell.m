@@ -17,28 +17,12 @@
     return self;
 }
 
-//-(void)gic_addSubElement:(id)childElement{
-//    // 必须是panel才能被加入节点
-//    if([childElement isKindOfClass:[GICPanel class]]){
-//        panel = childElement;
-//    }else{
-//        [super gic_addSubElement:childElement];
-//    }
-//}
-
-//-(NSArray *)gic_subElements{
-//    if(panel){
-//       return @[panel];
-//    }
-//    return nil;
-//}
-
 -(NSObject *)gic_getSuperElement{
     return self.listItem;
 }
 
 -(void)createContentView:(GDataXMLDocument *)xmlDoc{
-    GICPanel *childElement = (GICPanel *)[GICXMLLayout createElement:[xmlDoc rootElement]];
+    GICPanel *childElement = (GICPanel *)[GICXMLLayout createElement:[xmlDoc rootElement] withSuperElement:self];
     [self gic_addSubElement:childElement];
 }
 

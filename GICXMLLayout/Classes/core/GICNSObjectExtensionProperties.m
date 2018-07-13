@@ -12,6 +12,20 @@
     self = [super init];
     _dockHorizalModel = GICDockPanelHorizalModel_Center;
     _dockVerticalModel = GICDockPanelVerticalModel_Center;
+    _subElements = [NSMutableArray array];
     return self;
+}
+
+-(void)addSubElement:(id)subElement{
+    [(NSMutableArray *)self.subElements addObject:subElement];
+}
+
+-(void)removeSubElements:(NSArray *)subElments{
+    NSMutableArray *temp = (NSMutableArray *)self.subElements;
+    [temp removeObjectsInArray:subElments];
+}
+
+-(void)removeAllSubElements{
+     [(NSMutableArray *)self.subElements removeAllObjects];
 }
 @end

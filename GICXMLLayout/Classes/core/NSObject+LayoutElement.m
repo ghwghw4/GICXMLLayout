@@ -95,9 +95,13 @@
     return propertyConverts;
 }
 
++(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap{
+    return nil;
+}
+
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     for(GDataXMLElement *child in children){
-        id childElement = [GICXMLLayout createElement:child];
+        id childElement = [GICXMLLayout createElement:child withSuperElement:self];
         if(childElement == nil)
             continue;
         [self gic_addSubElement:childElement];
@@ -125,13 +129,14 @@
     }
 }
 
--(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
-    // 由子类自己实现
-}
 
-
--(void)gic_parseElement:(GDataXMLElement *)element{
+-(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     [self gic_parseAttributes:element];
+    if([self gic_isAutoCacheElement]){
+        [[superElment gic_ExtensionProperties] addSubElement:self];
+    }
+    
+    [self gic_ExtensionProperties].superElement = superElment;
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;
@@ -185,11 +190,24 @@
     }
 }
 
+- (BOOL)gic_parseOnlyOneSubElement {
+    return NO;
+}
+
+
 -(NSObject *)gic_getSuperElement{
-    UIView *force = self.gic_ExtensionProperties.foreSuperElement;
-    if(force){
-        return force;
-    }
-    return nil;
+    return self.gic_ExtensionProperties.superElement;
+}
+
+-(NSArray *)gic_subElements{
+    return self.gic_ExtensionProperties.subElements;
+}
+-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    // 由子类自己实现
+    [self.gic_ExtensionProperties removeSubElements:subElements];
+}
+
+-(BOOL)gic_isAutoCacheElement{
+    return YES;
 }
 @end

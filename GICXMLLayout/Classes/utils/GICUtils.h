@@ -15,4 +15,6 @@
 + (NSString *)uuidString;
 
 +(BOOL)isNull:(id)obj;
+
++(void)mainThreadExcu:(os_block_t)block;
 @end

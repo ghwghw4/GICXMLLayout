@@ -81,6 +81,7 @@
 }
 
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+    [super gic_removeSubElements:subElements];
     for(id subElement in subElements){
         NSMutableArray *mutArray=[NSMutableArray array];
         if([subElement isKindOfClass:[GICListItem class]]){

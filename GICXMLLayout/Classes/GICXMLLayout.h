@@ -15,7 +15,7 @@
 
 //+(Class)classFromElementName:(NSString *)elementName;
 
-+(NSObject *)createElement:(GDataXMLElement *)element;
++(NSObject *)createElement:(GDataXMLElement *)element withSuperElement:(id)superElement;
 
 
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;

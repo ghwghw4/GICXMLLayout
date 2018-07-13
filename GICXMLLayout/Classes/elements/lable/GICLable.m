@@ -55,10 +55,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return propertyConverts;
 }
 
--(void)gic_parseElement:(GDataXMLElement *)element{
+-(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     attributes = [NSMutableDictionary dictionary];
     mutAttString = [[NSMutableAttributedString alloc] init];
-    [super gic_parseElement:element];
+    [super gic_beginParseElement:element withSuperElement:superElment];
 }
 
 //-(void)gic_par
@@ -88,21 +88,13 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     }
     self.attributedText = self->mutAttString;
 }
-//
-//-(void)gic_parseElement:(GDataXMLElement *)element{
-//    [super gic_parseElement:element];
-//}
-//
--(NSArray *)gic_subElements{
-    return attbuteStringArray;
-}
-//
+
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     attbuteStringArray = [NSMutableArray array];
     for(GDataXMLElement *child in children){
         if([supportElementNames containsObject:child.name]){
             NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
-            [s gic_parseElement:child];
+            [s gic_beginParseElement:child withSuperElement:self];
             [attbuteStringArray addObject:s];
             if(s.gic_Bindings.count>0){
                 @weakify(self)

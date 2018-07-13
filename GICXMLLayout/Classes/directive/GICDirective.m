@@ -14,8 +14,4 @@
 -(void)attachTo:(id)target{
     self.target = target;
 }
-
--(NSObject *)gic_getSuperElement{
-    return self.target;
-}
 @end

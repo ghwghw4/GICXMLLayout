@@ -36,9 +36,9 @@
     }
 }
 
--(void)gic_parseElement:(GDataXMLElement *)element{
+-(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     selfElement = [[GDataXMLDocument alloc] initWithXMLString:element.XMLString options:0 error:nil];
-    [super gic_parseElement:element];
+    [super gic_beginParseElement:element withSuperElement:superElment];
 }
 
 -(NSObject *)parseTemplate:(GICTemplate *)t{
@@ -67,7 +67,7 @@
     for(GDataXMLNode *node in selfElement.rootElement.attributes){
         [xmlDoc.rootElement addAttribute:node];
     }
-    childElement = [GICXMLLayout createElement:[xmlDoc rootElement]];
+    childElement = [GICXMLLayout createElement:[xmlDoc rootElement] withSuperElement:target];
     return childElement;
 }
 
@@ -91,5 +91,9 @@
         return [self parseTemplate:t];
     }
     return nil;
+}
+
+-(BOOL)gic_isAutoCacheElement{
+    return NO;
 }
 @end

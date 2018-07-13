@@ -43,4 +43,8 @@
 
 //-(void)
 
+-(BOOL)gic_isAutoCacheElement{
+    return NO;
+}
+
 @end

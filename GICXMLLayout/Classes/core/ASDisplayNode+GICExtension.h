@@ -8,7 +8,7 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICPanel.h"
 
-@interface ASDisplayNode (GICExtension)<GICElementParserProtocol>
+@interface ASDisplayNode (GICExtension)
 
 @property (nonatomic,strong)GICPanel *gic_panel;
 

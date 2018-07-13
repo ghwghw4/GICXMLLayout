@@ -87,11 +87,16 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
     }
 }
 
-+(NSObject *)createElement:(GDataXMLElement *)element{
-    Class c = [registedElements objectForKey:element.name];
++(NSObject *)createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{
+    NSString *elementName = element.name;
+    Class c = [registedElements objectForKey:elementName];
+    if(!c){// 如果找不到，那么从父元素的私有元素列表中获取
+        NSDictionary * dict=[[superElement class] gic_privateSubElementsMap];
+        c = [dict objectForKey:elementName];
+    }
     if(c){
         NSObject *v = [c new];
-        [v gic_parseElement:element];
+        [v gic_beginParseElement:element withSuperElement:superElement];
         return v;
     }
     return nil;
@@ -109,7 +114,7 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         [GICXMLParserContext resetInstance:xmlDocument];
-        UIView *p = (UIView *)[self createElement:rootElement];
+        UIView *p = (UIView *)[self createElement:rootElement withSuperElement:superView];
         [superView addSubview:p];
 //        [superView gic_LayoutSubView:p];
         [GICXMLParserContext parseCompelete];
@@ -131,7 +136,6 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
         if([rootElement.name isEqualToString:@"page"]){
             [GICXMLParserContext resetInstance:xmlDocument];
             GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
-//            OverviewViewController *vc =[[OverviewViewController alloc] initWithXmlElement:rootElement];
             [GICXMLParserContext parseCompelete];
 //            dispatch_async(dispatch_get_main_queue(), ^{
                 compelte(vc);

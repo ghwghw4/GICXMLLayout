@@ -31,4 +31,13 @@ typedef enum {
 
 @property (nonatomic,assign)GICDockPanelHorizalModel dockHorizalModel;
 @property (nonatomic,assign)GICDockPanelVerticalModel dockVerticalModel;
+
+@property (nonatomic,weak)id superElement;
+@property (nonatomic,readonly)NSArray *subElements;
+
+-(void)addSubElement:(id)subElement;
+
+-(void)removeSubElements:(NSArray *)subElments;
+
+-(void)removeAllSubElements;
 @end

@@ -39,4 +39,8 @@
         return YES;
     return NO;
 }
+
++(void)mainThreadExcu:(os_block_t)block{
+    dispatch_async(dispatch_get_main_queue(), block);
+}
 @end

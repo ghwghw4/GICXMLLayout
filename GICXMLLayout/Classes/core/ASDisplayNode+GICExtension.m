@@ -14,10 +14,6 @@
 #import "GICTapEvent.h"
 
 @implementation ASDisplayNode (GICExtension)
-+(NSString *)gic_elementName{
-    return nil;
-}
-
 -(void)setGic_panel:(GICPanel *)gic_panel{
     objc_setAssociatedObject(self, "gic_panel", gic_panel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -34,13 +30,13 @@
                                         }],
                                       @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             ASDisplayNode *node = (ASDisplayNode *)target;
-//                                            [node gic_safeView:^(UIView *view) {
-//                                                view.layer.cornerRadius = [value floatValue];
-//                                            }];
-                                            node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
-                                                CGRect bounds = CGContextGetClipBoundingBox(context);
-                                                [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
-                                            };
+                                            [node gic_safeView:^(UIView *view) {
+                                                view.layer.cornerRadius = [value floatValue];
+                                            }];
+//                                            node.willDisplayNodeContentWithRenderingContext = ^(CGContextRef  _Nonnull context, id  _Nullable drawParameters) {
+//                                                CGRect bounds = CGContextGetClipBoundingBox(context);
+//                                                [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:[value floatValue]] addClip];
+//                                            };
                                         }],
                                       @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
@@ -50,14 +46,6 @@
                                       } mutableCopy];
     [mutDict addEntriesFromDictionary:[GICLayoutUtils commonPropertyConverters]];
     return mutDict;
-}
-
-
-
--(NSArray *)gic_subElements{
-    if(self.gic_panel)
-        return @[self.gic_panel];
-    return nil;
 }
 
 -(void)gic_addSubElement:(id)subElement{
@@ -70,21 +58,13 @@
     }
 }
 
--(NSObject *)gic_getSuperElement{
-    UIView *force = self.gic_ExtensionProperties.foreSuperElement;
-    if(force){
-        return force;
-    }
-    return [self supernode];
-}
-
--(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
-    for(id sub in subElements){
-        if([sub isKindOfClass:[ASDisplayNode class]]  && [self.subnodes containsObject:sub]){
-            [(ASDisplayNode *)sub removeFromSupernode];
-        }
-    }
-}
+//-(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+//    for(id sub in subElements){
+//        if([sub isKindOfClass:[ASDisplayNode class]]  && [self.subnodes containsObject:sub]){
+//            [(ASDisplayNode *)sub removeFromSupernode];
+//        }
+//    }
+//}
 
 -(void)gic_safeView:(void (^)(UIView *view))cb{
     dispatch_async(dispatch_get_main_queue(), ^{

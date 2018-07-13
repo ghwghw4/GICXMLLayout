@@ -10,6 +10,7 @@
 #import "GICColorConverter.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
+#import "GICNavBar.h"
 
 @interface GICPage (){
 }
@@ -33,14 +34,19 @@
              };
 }
 
-
++(NSDictionary<NSString *,Class> *)gic_privateSubElementsMap{
+    return @{
+              [GICNavBar gic_elementName]:[GICNavBar class],
+             };
+}
 
 #pragma mark - Lifecycle Methods
 -(id)initWithXmlElement:(GDataXMLElement *)element{
-    [self gic_parseElement:element];
+    [self gic_beginParseElement:element withSuperElement:nil];
     self =[self init];
     return self;
 }
+
 - (instancetype)init
 {
     self = [super initWithNode:_displayNode];
@@ -56,13 +62,4 @@
         [super gic_addSubElement:subElement];
     }
 }
-
--(NSObject *)gic_getSuperElement{
-    return nil;
-}
-
--(NSArray *)gic_subElements{
-    return @[_displayNode];
-}
-
 @end

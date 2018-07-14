@@ -15,7 +15,7 @@
     return @"template-ref";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return @{
              @"t-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICTemplateRef *)target setTemplateName:value];

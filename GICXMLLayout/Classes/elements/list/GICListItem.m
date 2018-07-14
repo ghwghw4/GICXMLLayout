@@ -23,7 +23,7 @@
     return @"list-item";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return @{
              @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;

@@ -31,7 +31,7 @@
 
  @return <#return value description#>
  */
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters;
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs;
 
 @optional
 

@@ -12,7 +12,7 @@
 +(NSString *)gic_elementName{
     return @"inset-panel";
 }
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return @{
              @"inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICInsetPanel *)target setValue:value forKey:@"inset"];

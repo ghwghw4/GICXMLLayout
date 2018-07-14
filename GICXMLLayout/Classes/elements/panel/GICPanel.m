@@ -15,7 +15,7 @@
     return @"panel";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return [GICLayoutUtils commonPropertyConverters];
 }
 

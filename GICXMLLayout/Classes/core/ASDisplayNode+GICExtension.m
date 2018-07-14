@@ -26,7 +26,7 @@
 }
 
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     NSMutableDictionary *mutDict=  [@{
                                       @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                                             [(ASDisplayNode *)target setBackgroundColor:value];

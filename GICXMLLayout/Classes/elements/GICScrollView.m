@@ -14,7 +14,7 @@
     return @"scroll-view";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return @{
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [[(GICScrollView *)target view] setShowsVerticalScrollIndicator:[value boolValue]];

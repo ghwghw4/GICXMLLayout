@@ -204,6 +204,8 @@
 		366114388EC81A706870EA3DFF7EDC2C /* ASAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = D49ED457CFAAF1B1B8FFF5DBEA577FB8 /* ASAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		368D0323BA63B80A51F105C968F00939 /* ASTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4AA041F7A04872509BCB3AEA641D1C /* ASTip.m */; };
 		36C21054C7990F6BFB5FC7F15A7FE3DB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E279D02A50301984BC029F299D2471C /* ImageIO.framework */; };
+		37311A6A20F9D706000D0986 /* GICElementsCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 37311A6820F9D706000D0986 /* GICElementsCache.h */; };
+		37311A6B20F9D706000D0986 /* GICElementsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A6920F9D706000D0986 /* GICElementsCache.m */; };
 		379CD395B5D1FF094E48F7CCE8D2732A /* ASRunLoopQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9EC7F438CCF454C8E4C1C798FB3024 /* ASRunLoopQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C8072420F8B6F8002EEF55 /* GICMoveAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C8072220F8B6F8002EEF55 /* GICMoveAnimation.h */; };
 		37C8072520F8B6F8002EEF55 /* GICMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8072320F8B6F8002EEF55 /* GICMoveAnimation.m */; };
@@ -1252,6 +1254,8 @@
 		364080D8CE12B55AE57AF7C8876721F4 /* GICXMLLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GICXMLLayout-dummy.m"; sourceTree = "<group>"; };
 		36E38A232AEDAC4A3AF268156DA10386 /* ASSectionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSectionController.h; path = Source/ASSectionController.h; sourceTree = "<group>"; };
 		36F06A7253F6A4479BC9F1755040464D /* IGListAdapter+AsyncDisplayKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IGListAdapter+AsyncDisplayKit.h"; path = "Source/IGListAdapter+AsyncDisplayKit.h"; sourceTree = "<group>"; };
+		37311A6820F9D706000D0986 /* GICElementsCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICElementsCache.h; sourceTree = "<group>"; };
+		37311A6920F9D706000D0986 /* GICElementsCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICElementsCache.m; sourceTree = "<group>"; };
 		37C8072220F8B6F8002EEF55 /* GICMoveAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICMoveAnimation.h; sourceTree = "<group>"; };
 		37C8072320F8B6F8002EEF55 /* GICMoveAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICMoveAnimation.m; sourceTree = "<group>"; };
 		380F311553D106471D369E89A64370E9 /* POPDecayAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPDecayAnimation.mm; path = pop/POPDecayAnimation.mm; sourceTree = "<group>"; };
@@ -2259,6 +2263,8 @@
 				4EE7508E8D8797BC4DD2BF437708B924 /* GICXMLParserContext.m */,
 				85060B5445FD9A98235B49983299C143 /* NSObject+LayoutElement.h */,
 				AA21A10D6A538D5689D76BE4957B0D7F /* NSObject+LayoutElement.m */,
+				37311A6820F9D706000D0986 /* GICElementsCache.h */,
+				37311A6920F9D706000D0986 /* GICElementsCache.m */,
 			);
 			name = core;
 			path = GICXMLLayout/Classes/core;
@@ -3883,6 +3889,7 @@
 				475E46F3D3E11A7C73BE86FADD339E90 /* GICDataBinding.h in Headers */,
 				B370F7700E3D95F8A16C3BF82298C40F /* GICDataContextConverter.h in Headers */,
 				74480872DBA44CDA781EF6477E7EEC1A /* GICDirective.h in Headers */,
+				37311A6A20F9D706000D0986 /* GICElementsCache.h in Headers */,
 				E36FB1A04C164D8D669C9DFD740C2316 /* GICDirectiveFor.h in Headers */,
 				C4E1A566E71E29538387EDCD93FBBF73 /* GICDockPanel.h in Headers */,
 				C9ABFC3B8F6B57CEA00E048B98F67E81 /* GICEdgeConverter.h in Headers */,
@@ -4408,6 +4415,7 @@
 			files = (
 				A98A2CDB7709BBD6A621E8857F0B7539 /* ASDisplayNode+GICExtension.m in Sources */,
 				87188EC919E431B59ABF7AF50562FFCA /* CGPointConverter.m in Sources */,
+				37311A6B20F9D706000D0986 /* GICElementsCache.m in Sources */,
 				BA9B7B0DBD9CECFE3DE74C2D35264B5C /* GICAnimation.m in Sources */,
 				7BCEA1E6781D9AF82234078BACBB09FD /* GICAnimations.m in Sources */,
 				4C2783788517E0C45A3E4E3A6B6ED602 /* GICBehavior.m in Sources */,

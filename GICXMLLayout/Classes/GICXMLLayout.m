@@ -11,7 +11,7 @@
 #import "GICXMLParserContext.h"
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
-
+#import "GICElementsCache.h"
 
 #import "GICPage.h"
 #import "GICView.h"
@@ -32,69 +32,55 @@
 #import "GICAnimations.h"
 
 @implementation GICXMLLayout
-static NSMutableDictionary<NSString *,Class> *registedElements = nil;
 +(void)regiterAllElements{
-    if (registedElements == nil) {
-        
-        registedElements = [NSMutableDictionary dictionary];
-        [self registElement:[GICPage class]];
-        
-        // 布局系统
-        [self registElement:[GICPanel class]];
-        [self registElement:[GICStackPanel class]];
-        [self registElement:[GICInsetPanel class]];
-        [self registElement:[GICDockPanel class]];
-
-        // UI元素
-        [self registElement:[GICView class]];
-        [self registElement:[GICScrollView class]];
-        [self registElement:[GICImageView class]];
-        [self registElement:[GICLable class]];
-        [self registElement:[GICListView class]];
-        [self registElement:[GICListItem class]];
-        
-        // 指令
-        [self registElement:[GICDirectiveFor class]];
-        
-        // 模板
-        [self registElement:[GICTemplate class]];
-        [self registElement:[GICTemplateRef class]];
-        [self registElement:[GICTemplates class]];
-        
-        //动画
-        [self registElement:[GICAnimations class]];
-        
-       
-        
-//        int numberOfClasses = objc_getClassList(NULL, 0);
-//        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
-//        numberOfClasses = objc_getClassList(classes, numberOfClasses);
-//        // 取出所有实现了gic_elementName方法的类
-//        for (int i = 0; i < numberOfClasses; i++) {
-//            Class candidateClass = classes[i];
-//            if(class_getClassMethod(candidateClass, @selector(gic_elementName))){
-//                NSString *name = [candidateClass performSelector:@selector(gic_elementName)];
-//                if(name && [name length]>0){
-//                    [registedElements setValue:candidateClass forKey:name];
-//                }
-//            }
-//        }
-//        free(classes);
-    }
-}
-
-+(void)registElement:(Class)elementClass{
-    if(class_getClassMethod(elementClass, @selector(gic_elementName))){
-        NSString *name = [elementClass performSelector:@selector(gic_elementName)];
-        if(name && [name length]>0){
-            [registedElements setValue:elementClass forKey:name];
-        }
-    }
+    [GICElementsCache registElement:[GICPage class]];
+    
+    // 布局系统
+    [GICElementsCache registElement:[GICPanel class]];
+    [GICElementsCache registElement:[GICStackPanel class]];
+    [GICElementsCache registElement:[GICInsetPanel class]];
+    [GICElementsCache registElement:[GICDockPanel class]];
+    
+    // UI元素
+    [GICElementsCache registElement:[GICView class]];
+    [GICElementsCache registElement:[GICScrollView class]];
+    [GICElementsCache registElement:[GICImageView class]];
+    [GICElementsCache registElement:[GICLable class]];
+    [GICElementsCache registElement:[GICListView class]];
+    [GICElementsCache registElement:[GICListItem class]];
+    
+    // 指令
+    [GICElementsCache registElement:[GICDirectiveFor class]];
+    
+    // 模板
+    [GICElementsCache registElement:[GICTemplate class]];
+    [GICElementsCache registElement:[GICTemplateRef class]];
+    [GICElementsCache registElement:[GICTemplates class]];
+    
+    //动画
+    [GICElementsCache registElement:[GICAnimations class]];
+    
+    
+    
+    //        int numberOfClasses = objc_getClassList(NULL, 0);
+    //        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
+    //        numberOfClasses = objc_getClassList(classes, numberOfClasses);
+    //        // 取出所有实现了gic_elementName方法的类
+    //        for (int i = 0; i < numberOfClasses; i++) {
+    //            Class candidateClass = classes[i];
+    //            if(class_getClassMethod(candidateClass, @selector(gic_elementName))){
+    //                NSString *name = [candidateClass performSelector:@selector(gic_elementName)];
+    //                if(name && [name length]>0){
+    //                    [registedElements setValue:candidateClass forKey:name];
+    //                }
+    //            }
+    //        }
+    //        free(classes);
 }
 
 +(NSObject *)createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{
     NSString *elementName = element.name;
-    Class c = [registedElements objectForKey:elementName];
+    Class c = [GICElementsCache classForElementName:elementName];
     if(c){
         NSObject *v = [c new];
         [v gic_beginParseElement:element withSuperElement:superElement];
@@ -117,7 +103,7 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
         [GICXMLParserContext resetInstance:xmlDocument];
         UIView *p = (UIView *)[self createElement:rootElement withSuperElement:superView];
         [superView addSubview:p];
-//        [superView gic_LayoutSubView:p];
+        //        [superView gic_LayoutSubView:p];
         [GICXMLParserContext parseCompelete];
         compelte(p);
     });
@@ -132,18 +118,18 @@ static NSMutableDictionary<NSString *,Class> *registedElements = nil;
         return;
     }
     // 取根节点
-//    dispatch_async(dispatch_queue_create("1111", nil), ^{
-        GDataXMLElement *rootElement = [xmlDocument rootElement];
-        if([rootElement.name isEqualToString:@"page"]){
-            [GICXMLParserContext resetInstance:xmlDocument];
-            GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
-            [GICXMLParserContext parseCompelete];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-                compelte(vc);
-//            });
-        }else{
-            compelte(nil);
-        }
-//    });
+    //    dispatch_async(dispatch_queue_create("1111", nil), ^{
+    GDataXMLElement *rootElement = [xmlDocument rootElement];
+    if([rootElement.name isEqualToString:@"page"]){
+        [GICXMLParserContext resetInstance:xmlDocument];
+        GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
+        [GICXMLParserContext parseCompelete];
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        compelte(vc);
+        //            });
+    }else{
+        compelte(nil);
+    }
+    //    });
 }
 @end

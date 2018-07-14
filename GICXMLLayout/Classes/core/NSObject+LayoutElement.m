@@ -13,6 +13,7 @@
 #import "NSObject+GICTemplate.h"
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
+#import "GICElementsCache.h"
 
 
 @implementation NSObject (LayoutElement)
@@ -30,70 +31,18 @@
     return nil;
 }
 
-/**
- converts 缓存
-
- @return <#return value description#>
- */
-+ (NSMutableDictionary<NSString *,NSDictionary<NSString *,GICValueConverter *> *> *)gic_classPropertyConvertsCache {
-    static NSMutableDictionary *_instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [NSMutableDictionary dictionary];
-    });
-    return _instance;
-}
-
-+(NSDictionary<NSString *, GICValueConverter *> *)_gic_getPropertyConverts:(Class)klass{
-    if(!klass){
-        return nil;
-    }
-    
-    NSString *className = NSStringFromClass(klass);
-    NSDictionary<NSString *,GICValueConverter *> *value = [self.gic_classPropertyConvertsCache objectForKey:className];
-    if (value) {
-        return value;
-    }
-    
-   
-    
-    NSMutableDictionary<NSString *, GICValueConverter *> *dict = [NSMutableDictionary dictionary];
-    
-    
-    
-//    if(klass == [ASDisplayNode class]){
-//        [dict addEntriesFromDictionary:[ASDisplayNodeUtiles commonPropertyConverters]];
-//    }else{
-        if([klass respondsToSelector:@selector(gic_propertyConverters)]){
-            [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_propertyConverters)]];
-        }
-//    }
-   
-    [dict addEntriesFromDictionary:[NSObject _gic_getPropertyConverts:class_getSuperclass(klass)]];
-    
-    // 保存到缓存中
-    [self.gic_classPropertyConvertsCache setValue:dict forKey:className];
-    return dict;
-}
-
-
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_propertyConverters{
-    static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        propertyConverts = @{
-                             @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 target.gic_ExtensionProperties.name = value;
-                             }],
-                             @"data-path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 [target setGic_dataPathKey:value];
-                             }],
-                             @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                                 target.gic_ExtensionProperties.tempDataContext = value;
-                             }]
-                             };
-    });
-    return propertyConverts;
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
+    return @{
+             @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 target.gic_ExtensionProperties.name = value;
+             }],
+             @"data-path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [target setGic_dataPathKey:value];
+             }],
+             @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 target.gic_ExtensionProperties.tempDataContext = value;
+             }]
+             };;
 }
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
@@ -124,7 +73,7 @@
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
         if(![tr gic_self_dataContext]){
-           tr.gic_DataContenxt = self.gic_DataContenxt;
+            tr.gic_DataContenxt = self.gic_DataContenxt;
         }
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
@@ -167,7 +116,7 @@
     }];
     
     
-    NSDictionary *ps = [NSObject _gic_getPropertyConverts:[self class]];
+    NSDictionary *ps = [GICElementsCache classAttributs:[self class]];
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];
         GICValueConverter *converter = [ps objectForKey:key];

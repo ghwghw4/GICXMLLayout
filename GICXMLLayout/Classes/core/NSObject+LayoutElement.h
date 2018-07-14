@@ -9,4 +9,5 @@
 #import "GICNSObjectExtensionProperties.h"
 
 @interface NSObject (LayoutElement)<GICElementParserProtocol>
+
 @end

@@ -18,9 +18,8 @@
 
                 <template-ref t-name="desc" data-context="设置渐变色"/>
                 <!--设置背景色-->
-                <view height="20">
-                    <gradient-background colors="red 0 yellow 0.5 blue 1"></gradient-background>
-                </view>
+                <gradient-view height="20" colors="red 0 yellow 0.5 blue 1">
+                </gradient-view>
             </stack-panel>
         </inset-panel>
     </scroll-view>

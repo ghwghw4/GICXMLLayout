@@ -1,16 +1,13 @@
 //
-//  GICGradientBackgroundInfo.h
+//  GICGradientView.h
 //  GICXMLLayout
 //
-//  Created by gonghaiwei on 2018/7/13.
+//  Created by gonghaiwei on 2018/7/14.
 //
 
-#import <Foundation/Foundation.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-/**
- 渐变色颜色信息
- */
-@interface GICGradientBackgroundInfo : NSObject
+@interface GICGradientView : ASDisplayNode
 @property (nonatomic,strong)NSArray *colors;
 @property (nonatomic,strong)NSArray *locations;
 @property (nonatomic,assign)CGPoint start;

@@ -20,6 +20,7 @@
 #import "GICInsetPanel.h"
 #import "GICDockPanel.h"
 #import "GICScrollView.h"
+#import "GICGradientView.h"
 #import "GICImageView.h"
 #import "GICLable.h"
 #import "GICListView.h"
@@ -43,6 +44,8 @@
     
     // UI元素
     [GICElementsCache registElement:[GICView class]];
+    [GICElementsCache registElement:[GICGradientView class]];
+    
     [GICElementsCache registElement:[GICScrollView class]];
     [GICElementsCache registElement:[GICImageView class]];
     [GICElementsCache registElement:[GICLable class]];

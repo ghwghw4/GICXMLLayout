@@ -7,9 +7,6 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICPanel.h"
-#import "GICGradientBackgroundInfo.h"
 @interface GICView : ASDisplayNode{
-//    GICPanel *panel;
-    GICGradientBackgroundInfo *gradientBackgroundInfo;
 }
 @end

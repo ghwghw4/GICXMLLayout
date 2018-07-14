@@ -13,7 +13,7 @@
         <inset-panel inset="0 15 15 15">
             <stack-panel>
                 <lable text="目前框架支持两种布局模型，panel、stack-panel、dock-panel。所有的布局模型都支持自动计算高度的功能，因此你无需显示指定panel的高度" space-after="10" font-size="12" font-color="red"/>
-                
+
                 <lable text="所有的UI元素都支持maring、width、height、marginTop、marginLeft、marginRight、marginBottom等属性。" space-after="10" font-size="12" font-color="red"/>
                 <!---->
                 <lable text="注意：maring和其他四个(marginTop、marginLeft、marginRight、marginBottom)属性是冲突的，您不应该同时设置" space-after="10" font-size="15" font-color="red"/>

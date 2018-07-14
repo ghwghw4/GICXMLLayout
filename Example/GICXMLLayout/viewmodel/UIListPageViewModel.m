@@ -7,16 +7,27 @@
 //
 
 #import "UIListPageViewModel.h"
+#import "GICXMLLayout.h"
+#import "UtilsHelp.h"
 
 @implementation UIListPageViewModel
 -(id)init{
     self=[super init];
     
+    _listDatas = @[
+                   @{@"name":@"view",@"pagePath":@"ViewSample"},
+//                   @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
+//                   @{@"name":@"list",@"pagePath":@"ListSample"},
+//                   @{@"name":@"数据绑定",@"pagePath":@""},
+//                   @{@"name":@"模板",@"pagePath":@""},
+//                   @{@"name":@"事件",@"pagePath":@""},
+//                   @{@"name":@"动画",@"pagePath":@""},
+                   ];
     return self;
 }
 
--(void)onButtonClicked{
-    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"title" message:@"你点击了button" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alertView show];
+-(void)onSelect:(GICEventInfo *)eventInfo{
+    NSDictionary *ds = [eventInfo.target gic_DataContenxt];
+    [UtilsHelp navigateToGICPage:[ds objectForKey:@"pagePath"]];
 }
 @end

@@ -9,6 +9,7 @@
 
 @interface GICUtils : NSObject
 +(CGFloat)numberConverter:(NSString *)stringValue;
++(UIColor *)colorConverter:(NSString *)stringValue;
 
 +(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern;
 

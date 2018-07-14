@@ -58,6 +58,10 @@ static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
         return;
     }
     
+    if([className isEqualToString:@"GICGradientBackgroundInfo"]){
+        
+    }
+    
     // 先给父类注册
     Class superClass = class_getSuperclass(klass);
     [self registClassAttributs:class_getSuperclass(klass)];

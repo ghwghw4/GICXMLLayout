@@ -9,4 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface UIListPageViewModel : NSObject
+@property (nonatomic,readonly)NSArray *listDatas;
 @end

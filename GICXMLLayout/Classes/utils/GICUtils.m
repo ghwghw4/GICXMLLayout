@@ -6,13 +6,46 @@
 //
 
 #import "GICUtils.h"
+#import "UIColor+Extension.h"
 
 @implementation GICUtils
+static NSDictionary<NSString *,UIColor *> *colorsMap;
++(void)initialize{
+    colorsMap = @{
+                 @"red":[UIColor redColor],
+                 @"white":[UIColor whiteColor],
+                 @"black":[UIColor blackColor],
+                 @"blue":[UIColor blueColor],
+                 @"dark-gray":[UIColor darkGrayColor],
+                 @"light-gray":[UIColor lightGrayColor],
+                 @"gray":[UIColor grayColor],
+                 @"green":[UIColor greenColor],
+                 @"cyan":[UIColor cyanColor],
+                 @"yellow":[UIColor yellowColor],
+                 @"magenta":[UIColor magentaColor],
+                 @"orange":[UIColor orangeColor],
+                 @"purple":[UIColor purpleColor],
+                 @"brown":[UIColor brownColor],
+                 @"clear":[UIColor clearColor],
+                 };
+}
+
 +(CGFloat)numberConverter:(NSString *)stringValue{
 //    if([stringValue.lowercaseString isEqualToString:@"auto"]){
 //        return NumberAuto;
 //    }
     return [stringValue floatValue];
+}
+
++(UIColor *)colorConverter:(NSString *)stringValue{
+    UIColor *temp = [colorsMap objectForKey:stringValue.lowercaseString];
+    if(temp){
+        return temp;
+    }
+    if(stringValue.length == 8)
+        return [UIColor colorAndAlphaWithHexString:stringValue];
+    
+    return [UIColor colorWithHexString:stringValue];
 }
 
 +(NSString *)regularMatchFirst:(NSString *)str pattern:(NSString *)pattern{

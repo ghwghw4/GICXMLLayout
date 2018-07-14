@@ -34,6 +34,24 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
+//    ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];
+//    temp.children = @[[self gic_layoutSpecThatFits:constrainedSize]];
+//    return temp;
     return [self gic_layoutSpecThatFits:constrainedSize];
 }
+//-(void)onDidLoad:(ASDisplayNodeDidLoadBlock)body{
+//    [super onDidLoad:body];
+//
+//}
+//
+//-(void)layout{
+//    [super layout];
+//    [GICUtils mainThreadExcu:^{
+//        if (@available(iOS 11.0, *)) {
+//            self.view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }];
+//}
 @end

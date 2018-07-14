@@ -111,6 +111,7 @@
 
 +(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte{
     NSError *error = nil;
+//    ASDisplayNode.shouldShowRangeDebugOverlay = YES;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);

@@ -6,7 +6,6 @@
 //
 
 #import "GICTapEvent.h"
-#import "GICView.h"
 
 @implementation GICTapEvent
 -(void)attachTo:(ASDisplayNode *)target{

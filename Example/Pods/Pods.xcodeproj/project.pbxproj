@@ -205,7 +205,6 @@
 		374AFFCA0920179D319F84BC9B87B99B /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77A2337BD6C01E80F715970BF3AB8871 /* POPSpringAnimation.mm */; };
 		3767546820FA0EEE0019A521 /* GICGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3767546620FA0EEE0019A521 /* GICGradientView.h */; };
 		3767546920FA0EEE0019A521 /* GICGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767546720FA0EEE0019A521 /* GICGradientView.m */; };
-		38307CCC020C5983EC1DF8A9ACE89ACF /* GICView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9C8388C6EB3A9E1127B4061B0F8A9 /* GICView.m */; };
 		386D33C31311ACB120FFC79FF2FEF11B /* GICLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC47A93B0E700244BE415374FC1A65 /* GICLable.m */; };
 		387F1188332A4A46C5F1BEC9DFDEB1FB /* _ASCollectionGalleryLayoutItem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A208BDE2C36ABC495E7268B4F103192 /* _ASCollectionGalleryLayoutItem.mm */; };
 		38B5F57FDCBCC6E8ECD6E7F36786B601 /* GICTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = EF85F2DDBBC7E5D80E47FC159FD4C394 /* GICTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -438,7 +437,6 @@
 		7426F5CBEFF23F376322E44EEE822788 /* RACScopedDisposable.h in Headers */ = {isa = PBXBuildFile; fileRef = C43FEFD8B1F5B7B0FF5C5AB3B0DE8D86 /* RACScopedDisposable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7458E99201E656AB8FF9816390042544 /* RACSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 52272E6F95D9AB5D2EDF6BC0E8E52B25 /* RACSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		746ADAD46A1C26BA317396BA380F0B75 /* ASWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 75533B5EAAEB012E653A8ED6B8034CDD /* ASWeakProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		754E20F0A0D9E1F92C4A7F7A6AD36396 /* GICLayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EC8D7CF99B5E7B98396AFF0E5BE60F /* GICLayoutUtils.m */; };
 		75C20F40433416C88B605CD9788AFDB4 /* NSOrderedSet+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E7B106BA61F9E2DC574CC5CEB24DF4 /* NSOrderedSet+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		761664FAEC03E8E997AEB540733D2C8C /* ASTextKitEntityAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DEF19D90221C60021B76C681F93256 /* ASTextKitEntityAttribute.m */; };
 		76D103B2F1E7E544DA9CB9434FEA595A /* ASCollectionLayoutDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A77CBA8D53B4A3CDD27509385A73CA /* ASCollectionLayoutDefines.m */; };
@@ -479,7 +477,6 @@
 		80B4CE292CDEADB44BD3FC266CEDE22C /* NSOrderedSet+RACSequenceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC712925B9DA7CE2EB468A7C3DB6FC22 /* NSOrderedSet+RACSequenceAdditions.m */; };
 		80B9AC05EFE7C43449E38F7A96279F80 /* POPBasicAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = F02C637FBFA0C5302D3B391C74BAD52B /* POPBasicAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80F6E8CEE942C6719130C5F686C58062 /* ASTipNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 464FF6F384ECC8F5A4BBB36C4BDE15F9 /* ASTipNode.m */; };
-		81654FCE89E88080B24C00A484E27624 /* GICElementLayoutStyleProtocl.h in Headers */ = {isa = PBXBuildFile; fileRef = BA08474ADBEE7E39F19001C7D2FF6D9B /* GICElementLayoutStyleProtocl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81C18211634B33FF11E4EB143E962E73 /* ASNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC3B1CB898B6FD2E7E485B2AF0F63BB /* ASNavigationController.m */; };
 		81CCD885007A4C0B8CF0ACD9FA6E69BA /* ASCornerLayoutSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E78ADAD91AF308C1791B30F9926C303 /* ASCornerLayoutSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81FDB10D45DFD6B57B010A10B126DC88 /* RACSubscriptionScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9619629AAC4E556F971CD3151D88C175 /* RACSubscriptionScheduler.m */; };
@@ -512,7 +509,6 @@
 		89B4A5365C156A25742C0DC8694546D2 /* RACAnnotations.h in Headers */ = {isa = PBXBuildFile; fileRef = E117F88DF68FF0061DD559D0A547C635 /* RACAnnotations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89C9732FA34BB68B3244E9972921A674 /* _ASCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A94D07B5B441533CE1F6B5DD575DFE82 /* _ASCollectionViewCell.m */; };
 		89D9D5E20ADC9DBEF7FB54E96BA4B8EC /* GICColorConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = BF31FA341E276CA48BD8431686DE5680 /* GICColorConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A07D7DC02B627AA00A375064C234658 /* GICLayoutUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FD9D88BFB3A349AB7591FDA415760AA /* GICLayoutUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A85B65B9B01BCD79D47A743B0F203A6 /* POPDecayAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 450CE19EA021567448826314A93A25F4 /* POPDecayAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8AA2E0896B0FCEBB68868FC663D15394 /* GICXMLLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 02F5A57A92B50FFD21F00B05C44D15E4 /* GICXMLLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8AB5B3A0AB4C080EFB163336081C0CDA /* ASConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA8F94EC6ACCA411CBAE4E252EADAC6 /* ASConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -888,7 +884,6 @@
 		F8258715B9B6CBDA91E24FBF1E0DF215 /* ASTextKitRenderer+Positioning.mm in Sources */ = {isa = PBXBuildFile; fileRef = 31EFCDC8B1BA4F2059B5D0BDD7AAAE21 /* ASTextKitRenderer+Positioning.mm */; };
 		F8437F9FFC06234D00231BB7672CB207 /* ASLayoutSpec+Subclasses.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E1E3BDEBE6A5B6D6251711B06981F8 /* ASLayoutSpec+Subclasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F856A3F12679AD868EAF1B66CBB25E5E /* GICDirective.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0F387ECC8AF7C8AEC0D4499DFCC8CC /* GICDirective.m */; };
-		F878CE9B407EA5B7D184F5676743088D /* GICView.h in Headers */ = {isa = PBXBuildFile; fileRef = C07FED7C44DCF51D31AD915BF5D5534D /* GICView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87B24E7B8C685B86DC42A1794DFB7D0 /* ASTextKitCoreTextAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E451E7C4DB1BBBE9379D89F84B7F6CF5 /* ASTextKitCoreTextAdditions.m */; };
 		F8D22754EAEF23DA08A8733926089180 /* PINDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 8715CB2D2D2436309CC536562478866D /* PINDiskCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9A473239A82CABC5B419D984727211E /* GDataXMLNode_GIC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072580AE740B6CCFE3768B529D83C2B1 /* GDataXMLNode_GIC.framework */; };
@@ -1271,7 +1266,6 @@
 		3767546620FA0EEE0019A521 /* GICGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICGradientView.h; sourceTree = "<group>"; };
 		3767546720FA0EEE0019A521 /* GICGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICGradientView.m; sourceTree = "<group>"; };
 		37AE5CAE1BE4715BFC7BDBC57646FD81 /* NSObject+LayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+LayoutElement.h"; sourceTree = "<group>"; };
-		37EC8D7CF99B5E7B98396AFF0E5BE60F /* GICLayoutUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICLayoutUtils.m; sourceTree = "<group>"; };
 		380F311553D106471D369E89A64370E9 /* POPDecayAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPDecayAnimation.mm; path = pop/POPDecayAnimation.mm; sourceTree = "<group>"; };
 		38AC9037312C5325A3FCF59CE71417A6 /* ASRunLoopQueue.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASRunLoopQueue.mm; path = Source/ASRunLoopQueue.mm; sourceTree = "<group>"; };
 		39508C3AC7031A5D13145594CE973E83 /* ASLayerBackingTipProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASLayerBackingTipProvider.h; path = Source/Private/ASLayerBackingTipProvider.h; sourceTree = "<group>"; };
@@ -1303,7 +1297,6 @@
 		3F568A7FEFF1B49A85CA8DE0941EFFC9 /* UISwitch+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISwitch+RACSignalSupport.h"; path = "ReactiveObjC/UISwitch+RACSignalSupport.h"; sourceTree = "<group>"; };
 		3F76C19E5A2DA123B582A8D2F4C57F1C /* ASImageNode+CGExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASImageNode+CGExtras.h"; path = "Source/Private/ASImageNode+CGExtras.h"; sourceTree = "<group>"; };
 		3F7D0DDA0996C0A510C94BA75DFA4058 /* ASElementMap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASElementMap.m; path = Source/Details/ASElementMap.m; sourceTree = "<group>"; };
-		3FD9D88BFB3A349AB7591FDA415760AA /* GICLayoutUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICLayoutUtils.h; sourceTree = "<group>"; };
 		401DBFE3DBBD8706DEEF09154D1C734B /* POPVector.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPVector.mm; path = pop/POPVector.mm; sourceTree = "<group>"; };
 		4036D4BCDCEB51F3AB527DEE270E11C5 /* GICListView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICListView.h; sourceTree = "<group>"; };
 		40536114964FCFDE495AD9D144AD3CCA /* _ASCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _ASCollectionViewCell.h; path = Source/Details/_ASCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1708,7 +1701,6 @@
 		B0E94C32DD813D15115B892043662038 /* PINRemoteImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PINRemoteImageManager.m; path = Source/Classes/PINRemoteImageManager.m; sourceTree = "<group>"; };
 		B0F0602226DFCFC6ED1ECAC0BBDFBC96 /* ASLayoutTransition.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASLayoutTransition.mm; path = Source/Private/ASLayoutTransition.mm; sourceTree = "<group>"; };
 		B0F969B78634F39156424487FCD88D85 /* ASRangeControllerUpdateRangeProtocol+Beta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ASRangeControllerUpdateRangeProtocol+Beta.h"; path = "Source/Details/ASRangeControllerUpdateRangeProtocol+Beta.h"; sourceTree = "<group>"; };
-		B1A9C8388C6EB3A9E1127B4061B0F8A9 /* GICView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICView.m; sourceTree = "<group>"; };
 		B1D94BC4A17F2744D2B868AA77840D42 /* POPAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimation.h; path = pop/POPAnimation.h; sourceTree = "<group>"; };
 		B1E768E6700AA5BC4D3409A22C98FB8E /* ASBackgroundLayoutSpec.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASBackgroundLayoutSpec.mm; path = Source/Layout/ASBackgroundLayoutSpec.mm; sourceTree = "<group>"; };
 		B21830843ABE9990C4AA25428D0A7E94 /* NSMutableAttributedString+TextKitAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+TextKitAdditions.m"; path = "Source/Details/NSMutableAttributedString+TextKitAdditions.m"; sourceTree = "<group>"; };
@@ -1739,7 +1731,6 @@
 		B95739FAA6B982B497754D1B40BC9800 /* ASScrollNode.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = ASScrollNode.mm; path = Source/ASScrollNode.mm; sourceTree = "<group>"; };
 		B95C16FC101E26F8364E74D5D414DC18 /* POPAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimation.mm; path = pop/POPAnimation.mm; sourceTree = "<group>"; };
 		BA065CD15F6F90A92E691D9D6FDBBD48 /* GICValueConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GICValueConverter.m; sourceTree = "<group>"; };
-		BA08474ADBEE7E39F19001C7D2FF6D9B /* GICElementLayoutStyleProtocl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICElementLayoutStyleProtocl.h; sourceTree = "<group>"; };
 		BA8F5231878368DF44B6362A557DBC1F /* PINGIFAnimatedImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PINGIFAnimatedImageManager.h; path = Source/Classes/PINGIFAnimatedImageManager.h; sourceTree = "<group>"; };
 		BB27B0F972DBADC95C5BD2FC1AFB9E12 /* CoreGraphics+ASConvenience.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CoreGraphics+ASConvenience.h"; path = "Source/Details/CoreGraphics+ASConvenience.h"; sourceTree = "<group>"; };
 		BB6C632DAB18236BC5E2E6BEC7F7968D /* GDataXMLNode_GIC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GDataXMLNode_GIC.modulemap; sourceTree = "<group>"; };
@@ -1758,7 +1749,6 @@
 		BEE6E2A9F4C05E8F92E93BEEF84043C7 /* GICStringConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICStringConverter.h; sourceTree = "<group>"; };
 		BF31FA341E276CA48BD8431686DE5680 /* GICColorConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICColorConverter.h; sourceTree = "<group>"; };
 		C062B329BA9DA9E5ACD9C871025AE605 /* ASStackLayoutSpecUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASStackLayoutSpecUtilities.h; path = Source/Private/Layout/ASStackLayoutSpecUtilities.h; sourceTree = "<group>"; };
-		C07FED7C44DCF51D31AD915BF5D5534D /* GICView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICView.h; sourceTree = "<group>"; };
 		C0C0AF9F2F0CF93866255D8E34E79B5B /* RACMulticastConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACMulticastConnection.m; path = ReactiveObjC/RACMulticastConnection.m; sourceTree = "<group>"; };
 		C12A9A8B681AE1D2D3F94AF778BC9110 /* ASLayerBackingTipProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ASLayerBackingTipProvider.m; path = Source/Private/ASLayerBackingTipProvider.m; sourceTree = "<group>"; };
 		C138849BB826F5D828B2923886E48FC4 /* GICSizeConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICSizeConverter.h; sourceTree = "<group>"; };
@@ -2158,12 +2148,9 @@
 			children = (
 				16F7090FBFECED77DF8AA3ECE6CCBC57 /* ASDisplayNode+GICExtension.h */,
 				C9ADD148989CED87BA22CD6A08E9228D /* ASDisplayNode+GICExtension.m */,
-				BA08474ADBEE7E39F19001C7D2FF6D9B /* GICElementLayoutStyleProtocl.h */,
 				A10A55ECC2143DA9F072A525130D18EE /* GICElementsCache.h */,
 				E7992039503458FA2DC1997ED37ED962 /* GICElementsCache.m */,
 				2B44755D20FBBC3DDD015B5B098D19B2 /* GICLayoutElementProtocol.h */,
-				3FD9D88BFB3A349AB7591FDA415760AA /* GICLayoutUtils.h */,
-				37EC8D7CF99B5E7B98396AFF0E5BE60F /* GICLayoutUtils.m */,
 				3503010C4FC0BAF374B2CE6D3200ACCE /* GICNSObjectExtensionProperties.h */,
 				422016A6BAE6DFD7B5F699FECF51CFB6 /* GICNSObjectExtensionProperties.m */,
 				02558B1258CD211B730CB91E4BB61169 /* GICXMLParserContext.h */,
@@ -3276,8 +3263,6 @@
 			children = (
 				0A21B2E33B264088402F64A81E3E9839 /* GICGradientColorsConverter.h */,
 				15017B400D3E94B7956C0BD11CB8CD2A /* GICGradientColorsConverter.m */,
-				C07FED7C44DCF51D31AD915BF5D5534D /* GICView.h */,
-				B1A9C8388C6EB3A9E1127B4061B0F8A9 /* GICView.m */,
 				3767546620FA0EEE0019A521 /* GICGradientView.h */,
 				3767546720FA0EEE0019A521 /* GICGradientView.m */,
 			);
@@ -3884,7 +3869,6 @@
 				9156007DA5D9B174B55037F765580C5E /* GICDirectiveFor.h in Headers */,
 				0D909608E6BD1D7350F7D2CB7AF03134 /* GICDockPanel.h in Headers */,
 				48D216AC19FD3FC8FC2BC22279A3BD5F /* GICEdgeConverter.h in Headers */,
-				81654FCE89E88080B24C00A484E27624 /* GICElementLayoutStyleProtocl.h in Headers */,
 				60FCD08C161CFD85D1E7646E741E7AF3 /* GICElementsCache.h in Headers */,
 				E34363AF1F72AD6115BAD4431321CC36 /* GICEvent.h in Headers */,
 				28856C27176A7E3B3417A9B98C3EC79F /* GICEventInfo.h in Headers */,
@@ -3896,7 +3880,6 @@
 				479B1C0EEC605A72290F40BDA1A61E07 /* GICInsetPanel.h in Headers */,
 				2EE9B172E2AF9DCA0974747996AB74A1 /* GICLable.h in Headers */,
 				6EDEBF8414835B2516A756CA30967CBC /* GICLayoutElementProtocol.h in Headers */,
-				8A07D7DC02B627AA00A375064C234658 /* GICLayoutUtils.h in Headers */,
 				DB66B26280BA6F2A96AABFB15F557475 /* GICListFooter.h in Headers */,
 				AD5BA8942A74A603029D166633FEAA47 /* GICListHeader.h in Headers */,
 				BE6382E3F1D324A3D1FBB7A47F3C7309 /* GICListItem.h in Headers */,
@@ -3922,7 +3905,6 @@
 				6827CC5B367B83E870C42B5190A4526B /* GICURLConverter.h in Headers */,
 				C2A03413D0A635935080CFF1C2187E61 /* GICUtils.h in Headers */,
 				891A4E2266CCB606518941F06ABDB142 /* GICValueConverter.h in Headers */,
-				F878CE9B407EA5B7D184F5676743088D /* GICView.h in Headers */,
 				57961AE573699837E3F6C99153EDAF8D /* GICXMLLayout-umbrella.h in Headers */,
 				8AA2E0896B0FCEBB68868FC663D15394 /* GICXMLLayout.h in Headers */,
 				51738B2869A3F4D88CC348497F6A3E5F /* GICXMLParserContext.h in Headers */,
@@ -4291,7 +4273,6 @@
 				0F65E3BEF0DF7A0EDA8F281B26674880 /* GICInpute.m in Sources */,
 				7B678D08427B96A3CC6D918C0F86F460 /* GICInsetPanel.m in Sources */,
 				386D33C31311ACB120FFC79FF2FEF11B /* GICLable.m in Sources */,
-				754E20F0A0D9E1F92C4A7F7A6AD36396 /* GICLayoutUtils.m in Sources */,
 				70A3FC3783DAA83B6C1D4A161ED0612A /* GICListFooter.m in Sources */,
 				C903E5B9D7EC231059E2A621834A26E1 /* GICListHeader.m in Sources */,
 				B42B977EF75A6A3ADA8A536E01017969 /* GICListItem.m in Sources */,
@@ -4317,7 +4298,6 @@
 				05577EAF8EB77A974D48965BDF074F5E /* GICURLConverter.m in Sources */,
 				42CB3CCAE7C468B7B687E9AE517AEF18 /* GICUtils.m in Sources */,
 				3A22E425EE9E89B00BBA8052194B8A5E /* GICValueConverter.m in Sources */,
-				38307CCC020C5983EC1DF8A9ACE89ACF /* GICView.m in Sources */,
 				BE4AACC920DA97844037D112058A3253 /* GICXMLLayout-dummy.m in Sources */,
 				CD97BB8E79B2701BBC76CBA7E1F52616 /* GICXMLLayout.m in Sources */,
 				8574D87F7916060F4A42E6844549F406 /* GICXMLParserContext.m in Sources */,

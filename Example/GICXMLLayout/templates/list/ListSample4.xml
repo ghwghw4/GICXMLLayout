@@ -14,19 +14,17 @@
                         </lable>
                         <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
                         <template-slot slot-name = "content" />
-
+                        
                         <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
-                            <stack-panel  is-horizon="1" align-items="2">
+                            <stack-panel  is-horizon="1" align-items="2" >
                                 <image local-name="comment" width="20" fill-mode="4"/>
                                 <lable text="评论" font-size="12" width="60" font-color="666666"/>
                                 <image local-name="active" width="20" fill-mode="4"/>
                                 <lable text="赞" font-size="12" font-color="666666"  width="60"/>
                             </stack-panel>
-                            <view background-color="F2F6F9" height="22" corner-radius="11">
-                                <dock-panel>
-                                    <lable text="{{ '   #'+tag+'   ' }}" font-size="14" font-color="5A6B92"/>
-                                </dock-panel>
-                            </view>
+                            <dock-panel background-color="F2F6F9" height="22" corner-radius="11">
+                                <lable text="{{ '   #'+tag+'   ' }}" font-size="14" font-color="5A6B92"/>
+                            </dock-panel>
                         </stack-panel>
                     </stack-panel>
                 </stack-panel>

@@ -27,31 +27,14 @@
 
 -(id)init{
     self =[super init];
-    self.automaticallyManagesSubnodes = YES;
     self.automaticallyManagesContentSize = YES;
     return self;
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-//    ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];
-//    temp.children = @[[self gic_layoutSpecThatFits:constrainedSize]];
-//    return temp;
-    return [self gic_layoutSpecThatFits:constrainedSize];
+    ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];
+    temp.children = self.subnodes;
+    return temp;
 }
-//-(void)onDidLoad:(ASDisplayNodeDidLoadBlock)body{
-//    [super onDidLoad:body];
-//
-//}
-//
-//-(void)layout{
-//    [super layout];
-//    [GICUtils mainThreadExcu:^{
-//        if (@available(iOS 11.0, *)) {
-//            self.view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//    }];
-//}
 @end

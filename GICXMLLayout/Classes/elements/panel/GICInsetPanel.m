@@ -17,9 +17,6 @@
              @"inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICInsetPanel *)target setValue:value forKey:@"inset"];
              }],
-             //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-             //                 [((GICPage *)target)->viewNode setBackgroundColor:value];
-             //             }],
              };
 }
 
@@ -27,19 +24,11 @@
     return true;
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children{
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
     insetBox.insets = self.inset;
-    insetBox.child = [children firstObject];
+    insetBox.child = [self.subnodes firstObject];
     return insetBox;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

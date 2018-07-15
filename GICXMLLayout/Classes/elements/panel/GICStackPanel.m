@@ -33,22 +33,16 @@
 
 -(id)init{
     self = [super init];
-//    stackLayoutSpec = [[ASStackLayoutSpec alloc] init];
-//    stackLayoutSpec.direction = ASStackLayoutDirectionVertical;
     stackPanelPropertyDict = [NSMutableDictionary dictionary];
     return self;
 }
 
--(void)mergeStyle:(ASLayoutSpec *)spec{
-    [super mergeStyle:spec];
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    ASStackLayoutSpec *spec =self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
+    spec.children = self.subnodes;
     if(self->stackPanelPropertyDict.count>0)
         [spec setValuesForKeysWithDictionary:self->stackPanelPropertyDict];
-}
-
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children{
-    ASStackLayoutSpec *temp =self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
-    temp.children = children;
-    return temp;
+    return spec;
 }
 
 @end

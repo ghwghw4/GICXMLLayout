@@ -1,34 +1,24 @@
 <page title="动态列表" data-context='ListSample3ViewModel' background-color="white">
     <templates>
         <template t-name="list-template">
-            <panel>
-                <lable text="{{  }}"></lable>
-            </panel>
+            <lable text="{{  }}"></lable>
         </template>
         
         <template t-name="button">
-            <view>
-                <panel>
-                    <lable text="{{ }}"></lable>
-                </panel>
-            </view>
+            <lable text="{{ }}"></lable>
         </template>
     </templates>
-   <view>
-       <stack-panel>
-           <view height="60" background-color="yellow" space-before="64">
-               <dock-panel>
-                   <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="0"/>
-                   <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
-               </dock-panel>
-           </view>
-           <list  flex-grow="1" background-color="blue" flex-shrink="1">
-               <for data-path="listDatas">
-                   <list-item separator-inset = "0 15 0 15">
-                       <template-ref t-name="list-template"/>
-                   </list-item>
-               </for>
-           </list>
-       </stack-panel>
-   </view>
+    <stack-panel>
+        <dock-panel height="60" background-color="yellow" space-before="64">
+            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="0"/>
+            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
+        </dock-panel>
+        <list  flex-grow="1" background-color="blue" flex-shrink="1">
+            <for data-path="listDatas">
+                <list-item separator-inset = "0 15 0 15">
+                    <template-ref t-name="list-template"/>
+                </list-item>
+            </for>
+        </list>
+    </stack-panel>
 </page>

@@ -157,7 +157,6 @@
     return self.gic_ExtensionProperties.subElements;
 }
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
-    // 由子类自己实现
     [self.gic_ExtensionProperties removeSubElements:subElements];
 }
 

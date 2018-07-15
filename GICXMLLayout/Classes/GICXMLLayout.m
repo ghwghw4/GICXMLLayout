@@ -14,7 +14,6 @@
 #import "GICElementsCache.h"
 
 #import "GICPage.h"
-#import "GICView.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "GICInsetPanel.h"
@@ -43,7 +42,6 @@
     [GICElementsCache registElement:[GICDockPanel class]];
     
     // UI元素
-    [GICElementsCache registElement:[GICView class]];
     [GICElementsCache registElement:[GICGradientView class]];
     
     [GICElementsCache registElement:[GICScrollView class]];

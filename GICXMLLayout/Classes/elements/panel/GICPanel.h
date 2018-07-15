@@ -11,25 +11,25 @@
  Panle的作用其实就是类似于UIView，也类似于Hmtl中的canvas布局。
  所有的元素都是绝对布局。
  */
-@interface GICPanel : NSObject
-@property (nonatomic,strong,readonly)NSMutableArray *childNodes;
+@interface GICPanel : ASDisplayNode
+//@property (nonatomic,strong,readonly)NSMutableArray *childNodes;
 //@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
 
-@property (nonatomic, readonly) ASLayoutElementStyle *style;
+//@property (nonatomic, readonly) ASLayoutElementStyle *style;
 
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
+//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
 
 /**
- 由子类实现
+// 由子类实现
+//
+// @param constrainedSize <#constrainedSize description#>
+// @param children <#children description#>
+// @return <#return value description#>
+// */
+//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children;
 
- @param constrainedSize <#constrainedSize description#>
- @param children <#children description#>
- @return <#return value description#>
- */
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children;
+//-(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
 
--(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
-
--(void)mergeStyle:(ASLayoutSpec *)spec;
+//-(void)mergeStyle:(ASLayoutSpec *)spec;
 @end

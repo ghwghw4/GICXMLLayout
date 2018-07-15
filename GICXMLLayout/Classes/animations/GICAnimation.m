@@ -9,6 +9,7 @@
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
 #import "GICBoolConverter.h"
+#import "NSObject+GICEvent.h"
 
 @implementation GICAnimation
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
@@ -36,6 +37,7 @@
     self  = [super init];
     animation = [self createAnimation];
     _duration = 0.5;//默认0.5秒
+    animationKey = [GICUtils uuidString];
     return self;
 }
 
@@ -47,8 +49,21 @@
     animation.repeatCount = self.repeatCount;
     animation.autoreverses = self.autoreverses;
     if(self.triggerType == GICAnimationTriggerType_attach){
-        [target pop_addAnimation:animation forKey:nil];
+        [self beginAnimantion];
+    }else if(self.triggerType == GICAnimationTriggerType_tap){
+        @weakify(self)
+        [target gic_get_tapSignal:^(RACSignal *signal) {
+            [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
+                @strongify(self)
+                [self beginAnimantion];
+            }];
+        }];
     }
+}
+
+-(void)beginAnimantion{
+    [self pop_removeAnimationForKey:animationKey];
+    [self.target pop_addAnimation:animation forKey:nil];
 }
 
 -(POPPropertyAnimation *)createAnimation{

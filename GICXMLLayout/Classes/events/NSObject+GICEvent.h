@@ -9,4 +9,5 @@
 #import "GICEvent.h"
 @interface NSObject (GICEvent)
 -(GICEvent *)gic_event_addEvent:(GICEvent *)event;
+-(void)gic_get_tapSignal:(void (^)(RACSignal *signal))cb;
 @end

@@ -19,4 +19,27 @@
     [self gic_addBehavior:event];
     return event;
 }
+
+-(void)gic_get_tapSignal:(void (^)(RACSignal *signal))cb{
+    if([self isKindOfClass:[ASDisplayNode class]]){
+        ASDisplayNode *node = (ASDisplayNode *)self;
+        node.userInteractionEnabled = YES;
+        [node gic_safeView:^(UIView *view) {
+            UITapGestureRecognizer *tapges = nil;
+            for(UIGestureRecognizer *ges in view.gestureRecognizers){
+                if([ges isKindOfClass:[UITapGestureRecognizer class]]){
+                    tapges = (UITapGestureRecognizer *)ges;
+                    break;
+                }
+            }
+            if(tapges == nil){
+               tapges = [[UITapGestureRecognizer alloc] init];
+                [view addGestureRecognizer:tapges];
+            }else{
+                NSLog(@"11");
+            }
+            cb([tapges rac_gestureSignal]);
+        }];
+    }
+}
 @end

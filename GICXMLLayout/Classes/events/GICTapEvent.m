@@ -10,20 +10,13 @@
 @implementation GICTapEvent
 -(void)attachTo:(ASDisplayNode *)target{
     [super attachTo:target];
-    if([target isKindOfClass:[ASDisplayNode class]]){
-        target.userInteractionEnabled = YES;
-        tapges = [[UITapGestureRecognizer alloc] init];
-        [target gic_safeView:^(UIView *view) {
-            [view addGestureRecognizer:self->tapges];
-        }];
-        @weakify(self)
-        [[tapges rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+    @weakify(self)
+    [target gic_get_tapSignal:^(RACSignal *signal) {
+        [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
             @strongify(self)
-//            if(x.state == UIGestureRecognizerStateEnded){
-                [self.eventSubject sendNext:x];
-//            }
+            [self.eventSubject sendNext:x];
         }];
-    }
+    }];
 }
 
 -(void)unAttach{

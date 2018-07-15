@@ -13,4 +13,5 @@
  */
 @interface GICEdgeConverter : GICValueConverter
 -(NSValue *)convert:(NSString *)xmlStringValue;
+-(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per;
 @end

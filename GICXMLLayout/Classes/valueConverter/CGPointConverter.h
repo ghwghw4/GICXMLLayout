@@ -9,4 +9,5 @@
 #import "GICValueConverter.h"
 @interface CGPointConverter : GICValueConverter
 -(NSValue *)convert:(NSString *)xmlStringValue;
+-(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per;
 @end

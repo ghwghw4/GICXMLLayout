@@ -76,4 +76,10 @@ static NSDictionary<NSString *,UIColor *> *colorsMap;
 +(void)mainThreadExcu:(os_block_t)block{
     dispatch_async(dispatch_get_main_queue(), block);
 }
+
++(CGFloat)calcuPerValue:(CGFloat)from to:(CGFloat)to per:(CGFloat)per{
+    CGFloat p = MAX(0, per);
+    p = MIN(1, per);
+    return from +(to - from)*p;
+}
 @end

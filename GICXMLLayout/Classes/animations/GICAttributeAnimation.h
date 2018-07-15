@@ -7,6 +7,12 @@
 
 #import "GICAnimation.h"
 
-@interface GICAttributeAnimation : GICAnimation
-@property (nonatomic,strong)NSString *attributeName;
+@interface GICAttributeAnimation : GICAnimation{
+    id fromValue;
+    id toValue;
+    GICValueConverter *valueConverter;
+}
+@property (nonatomic,readonly)NSString *atttibuteName;
+@property (nonatomic,readonly)NSString *fromString;
+@property (nonatomic,readonly)NSString *toString;
 @end

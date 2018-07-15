@@ -14,5 +14,5 @@ typedef void (^GICPropertySetter)(NSObject *target,id value);
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter;
 -(id)convert:(NSString *)xmlStringValue;
 
-//-(void)setProperty:(UIView *)view withXMLStringValue:(NSString *)xmlStringValue;
+-(id)convertAnimationValue:(id)from to:(id)to per:(CGFloat)per;
 @end

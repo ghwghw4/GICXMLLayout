@@ -32,4 +32,13 @@
     }
     return [NSValue valueWithUIEdgeInsets:edg];
 }
+
+-(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per{
+    UIEdgeInsets ede1 = [from UIEdgeInsetsValue];
+    UIEdgeInsets ede2 = [to UIEdgeInsetsValue];
+    
+    UIEdgeInsets edg =  UIEdgeInsetsMake([GICUtils calcuPerValue:ede1.top to:ede2.top per:per], [GICUtils calcuPerValue:ede1.left to:ede2.left per:per], [GICUtils calcuPerValue:ede1.bottom to:ede2.bottom per:per], [GICUtils calcuPerValue:ede1.right to:ede2.right per:per]);
+    
+    return [NSValue valueWithUIEdgeInsets:edg];
+}
 @end

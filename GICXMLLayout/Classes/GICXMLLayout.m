@@ -33,6 +33,10 @@
 #import "GICBehaviors.h"
 #import "GICAnimations.h"
 
+
+
+#import "GICAttributeAnimation.h"
+
 @implementation GICXMLLayout
 +(void)regiterAllElements{
     [GICElementsCache registElement:[GICPage class]];
@@ -66,7 +70,7 @@
     
     //动画
     [GICElementsCache registElement:[GICAnimations class]];
-    
+    [GICElementsCache registElement:[GICAttributeAnimation class]];
     
     
     //        int numberOfClasses = objc_getClassList(NULL, 0);

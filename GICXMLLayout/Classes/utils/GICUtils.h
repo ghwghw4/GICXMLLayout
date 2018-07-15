@@ -18,4 +18,6 @@
 +(BOOL)isNull:(id)obj;
 
 +(void)mainThreadExcu:(os_block_t)block;
+
++(CGFloat)calcuPerValue:(CGFloat)from to:(CGFloat)to per:(CGFloat)per;
 @end

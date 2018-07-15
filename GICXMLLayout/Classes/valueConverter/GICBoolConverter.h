@@ -9,4 +9,5 @@
 
 @interface GICBoolConverter : GICValueConverter
 -(NSNumber *)convert:(NSString *)xmlStringValue;
+-(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;
 @end

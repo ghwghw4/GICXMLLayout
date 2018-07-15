@@ -14,6 +14,10 @@
 //    return self;
 //}
 
+-(id)convertAnimationValue:(id)from to:(id)to per:(CGFloat)per{
+    return nil;
+}
+
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter{
     self = [super init];
     self.propertySetter  = propertySetter;

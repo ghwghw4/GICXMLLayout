@@ -9,4 +9,6 @@
 
 @interface GICColorConverter : GICValueConverter
 -(UIColor *)convert:(NSString *)xmlStringValue;
+
+-(UIColor *)convertAnimationValue:(UIColor *)from to:(UIColor *)to per:(CGFloat)per;
 @end

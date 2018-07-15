@@ -19,4 +19,11 @@
     }
     return [NSValue valueWithCGPoint:point];
 }
+
+-(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per{
+    CGPoint size1 = [from CGPointValue];
+    CGPoint size2 = [to CGPointValue];
+    CGPoint size = CGPointMake([GICUtils calcuPerValue:size1.x to:size2.x per:per], [GICUtils calcuPerValue:size1.y to:size2.y per:per]);
+    return [NSValue valueWithCGPoint:size];
+}
 @end

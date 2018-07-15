@@ -28,18 +28,23 @@
 #import "GICTemplate.h"
 #import "GICTemplateRef.h"
 #import "GICTemplates.h"
-
 #import "GICAnimations.h"
+#import "GICBackgroundPanel.h"
+#import "GICBehaviors.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
     [GICElementsCache registElement:[GICPage class]];
+    
+    // behavior
+    [GICElementsCache registElement:[GICBehaviors class]];
     
     // 布局系统
     [GICElementsCache registElement:[GICPanel class]];
     [GICElementsCache registElement:[GICStackPanel class]];
     [GICElementsCache registElement:[GICInsetPanel class]];
     [GICElementsCache registElement:[GICDockPanel class]];
+    [GICElementsCache registElement:[GICBackgroundPanel class]];
     
     // UI元素
     [GICElementsCache registElement:[GICGradientView class]];

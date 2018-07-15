@@ -24,11 +24,6 @@ typedef enum {
 // 临时的数据源
 @property (nonatomic,strong)id tempDataContext;
 
-/**
- 强制的父级元素。有事后有些元素并不能正确获取父级元素，这时候可以设置一个强制的父级元素来准确获取
- */
-@property (nonatomic,weak)id foreSuperElement;
-
 @property (nonatomic,assign)GICDockPanelHorizalModel dockHorizalModel;
 @property (nonatomic,assign)GICDockPanelVerticalModel dockVerticalModel;
 

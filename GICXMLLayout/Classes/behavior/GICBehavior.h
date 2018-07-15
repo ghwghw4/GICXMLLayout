@@ -6,17 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICLayoutElementProtocol.h"
 
 /**
  提供element各种行为的基类
  */
-@interface GICBehavior : NSObject
+@interface GICBehavior : NSObject<GICLayoutElementProtocol>
 
 /**
  是否一次性的行为,默认false
  如果初始化的时候设为Yes,那么attach完毕后立马会调用unattach移除
  */
-@property (nonatomic,assign)BOOL isOnce;
+@property (nonatomic,assign,readonly)BOOL isOnce;
 
 /**
  将Behavior附加到目标

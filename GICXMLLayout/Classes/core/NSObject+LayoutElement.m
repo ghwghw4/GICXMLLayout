@@ -78,6 +78,7 @@
         [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
+            b.gic_ExtensionProperties.superElement = self;
             [self gic_addBehavior:b];
         }
     }

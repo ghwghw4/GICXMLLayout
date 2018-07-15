@@ -202,6 +202,8 @@
 		35E5C04399A36A901D209423872E1261 /* GICGradientColorsConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15017B400D3E94B7956C0BD11CB8CD2A /* GICGradientColorsConverter.m */; };
 		365A1089585440E4A7D14C160DF8FC68 /* PINImage+DecodedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0985126949A6F3F4661E8D98F6E173C7 /* PINImage+DecodedImage.m */; };
 		36EADC425EDE1CAB152E1F5ABF9CABAF /* IGListAdapter+AsyncDisplayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 36F06A7253F6A4479BC9F1755040464D /* IGListAdapter+AsyncDisplayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37311A6E20FADD02000D0986 /* GICBackgroundPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 37311A6C20FADD02000D0986 /* GICBackgroundPanel.h */; };
+		37311A6F20FADD02000D0986 /* GICBackgroundPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A6D20FADD02000D0986 /* GICBackgroundPanel.m */; };
 		374AFFCA0920179D319F84BC9B87B99B /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77A2337BD6C01E80F715970BF3AB8871 /* POPSpringAnimation.mm */; };
 		3767546820FA0EEE0019A521 /* GICGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3767546620FA0EEE0019A521 /* GICGradientView.h */; };
 		3767546920FA0EEE0019A521 /* GICGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767546720FA0EEE0019A521 /* GICGradientView.m */; };
@@ -1263,6 +1265,8 @@
 		36E38A232AEDAC4A3AF268156DA10386 /* ASSectionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ASSectionController.h; path = Source/ASSectionController.h; sourceTree = "<group>"; };
 		36F06A7253F6A4479BC9F1755040464D /* IGListAdapter+AsyncDisplayKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IGListAdapter+AsyncDisplayKit.h"; path = "Source/IGListAdapter+AsyncDisplayKit.h"; sourceTree = "<group>"; };
 		370DDEEA1E1CEBB0F939AD32FDC5A2CF /* GICPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GICPanel.h; sourceTree = "<group>"; };
+		37311A6C20FADD02000D0986 /* GICBackgroundPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICBackgroundPanel.h; sourceTree = "<group>"; };
+		37311A6D20FADD02000D0986 /* GICBackgroundPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICBackgroundPanel.m; sourceTree = "<group>"; };
 		3767546620FA0EEE0019A521 /* GICGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GICGradientView.h; sourceTree = "<group>"; };
 		3767546720FA0EEE0019A521 /* GICGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GICGradientView.m; sourceTree = "<group>"; };
 		37AE5CAE1BE4715BFC7BDBC57646FD81 /* NSObject+LayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+LayoutElement.h"; sourceTree = "<group>"; };
@@ -2181,6 +2185,8 @@
 				3DB13EE0BD0B800AC86528B928CF857F /* GICPanel.m */,
 				8EEEC9C485132DA8C955F59884B271BD /* GICStackPanel.h */,
 				EF3602CAD43DD75D30DEAF97EF41C57E /* GICStackPanel.m */,
+				37311A6C20FADD02000D0986 /* GICBackgroundPanel.h */,
+				37311A6D20FADD02000D0986 /* GICBackgroundPanel.m */,
 			);
 			path = panel;
 			sourceTree = "<group>";
@@ -3877,6 +3883,7 @@
 				BFBCD834CCD9DA8A5C8D76A2CE91E249 /* GICGradientColorsConverter.h in Headers */,
 				D88ED6D9FFF1B3CCE8C46DC44406A1A0 /* GICImageView.h in Headers */,
 				61A0A32C4FB30002BBBCE83BFA07060A /* GICInpute.h in Headers */,
+				37311A6E20FADD02000D0986 /* GICBackgroundPanel.h in Headers */,
 				479B1C0EEC605A72290F40BDA1A61E07 /* GICInsetPanel.h in Headers */,
 				2EE9B172E2AF9DCA0974747996AB74A1 /* GICLable.h in Headers */,
 				6EDEBF8414835B2516A756CA30967CBC /* GICLayoutElementProtocol.h in Headers */,
@@ -4276,6 +4283,7 @@
 				70A3FC3783DAA83B6C1D4A161ED0612A /* GICListFooter.m in Sources */,
 				C903E5B9D7EC231059E2A621834A26E1 /* GICListHeader.m in Sources */,
 				B42B977EF75A6A3ADA8A536E01017969 /* GICListItem.m in Sources */,
+				37311A6F20FADD02000D0986 /* GICBackgroundPanel.m in Sources */,
 				4C006458E568F5A6550D0D3068069D71 /* GICListItemSelectedEvent.m in Sources */,
 				DD87446ACD9FDB4544C8987F85464A59 /* GICListTableViewCell.m in Sources */,
 				85D461835FB8E4DA3F7AB3F45E2E2650 /* GICListView.m in Sources */,

@@ -15,7 +15,10 @@
     NSAssert(temp.count>0 && temp.count%2 == 0, @"必须是color location成对的数组");
     for(int i=0;i<temp.count;i++){
         if(i%2==1){
-            [locations addObject:@([temp[i] floatValue])];
+            CGFloat v = [temp[i] floatValue];
+            v = MAX(0, v);
+            v = MIN(1, v);
+            [locations addObject:@(v)];
         }else{
             [colors addObject:(id)[GICUtils colorConverter:temp[i]].CGColor];
         }

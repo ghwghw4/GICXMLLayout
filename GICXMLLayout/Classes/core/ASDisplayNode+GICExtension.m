@@ -90,6 +90,25 @@
                  GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
                  [target gic_event_addEvent:e];
              }],
+             @"shadow-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.shadowColor = [value CGColor];
+             }],
+             @"shadow-opacity":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 CGFloat v = [value floatValue];
+                 v = MAX(0, v);
+                 v = MIN(1, v);
+                 node.shadowOpacity = v;
+             }],
+             @"shadow-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.shadowRadius = [value floatValue];
+             }],
+             @"shadow-offset":[[GICSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.shadowOffset = [(NSValue *)value CGSizeValue];
+             }],
              };
 }
 

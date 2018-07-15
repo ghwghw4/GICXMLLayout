@@ -51,7 +51,7 @@
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         NSAssert(_displayNode == nil, @"page 只允许添加一个子元素");
         _displayNode =subElement;
-        [(ASDisplayNode *)subElement gic_ExtensionProperties].foreSuperElement = self;
+        [(ASDisplayNode *)subElement gic_ExtensionProperties].superElement = self;
     }else{
         [super gic_addSubElement:subElement];
     }

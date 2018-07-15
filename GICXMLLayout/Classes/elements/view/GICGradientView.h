@@ -7,7 +7,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface GICGradientView : ASDisplayNode
+@interface GICGradientView : ASImageNode
 @property (nonatomic,strong)NSArray *colors;
 @property (nonatomic,strong)NSArray *locations;
 @property (nonatomic,assign)CGPoint start;

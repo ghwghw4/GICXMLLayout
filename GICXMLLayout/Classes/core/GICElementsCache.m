@@ -8,9 +8,13 @@
 #import "GICElementsCache.h"
 
 @implementation GICElementsCache
+// gloable elements
 static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
+// behavior
+static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
 +(void)initialize{
     registedElementsMap = [NSMutableDictionary dictionary];
+    registedBehaviorElementsMap = [NSMutableDictionary dictionary];
 }
 
 +(void)registElement:(Class)elementClass{
@@ -99,5 +103,21 @@ static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
     return [self.classAttributsCache objectForKey:className];
 }
 
++(void)registBehaviorElement:(Class)elementClass{
+    if(![elementClass isSubclassOfClass:[GICBehavior class]]){
+        return;
+    }
+    if(class_getClassMethod(elementClass, @selector(gic_elementName))){
+        NSString *name = [elementClass performSelector:@selector(gic_elementName)];
+        if(name && [name length]>0){
+            [registedBehaviorElementsMap setValue:elementClass forKey:name];
+            // 同事缓存属性
+            [self registClassAttributs:elementClass];
+        }
+    }
+}
 
++(Class)classForBehaviorElementName:(NSString *)elementName{
+    return [registedBehaviorElementsMap objectForKey:elementName];
+}
 @end

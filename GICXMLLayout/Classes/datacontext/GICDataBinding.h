@@ -22,7 +22,7 @@ typedef void (^GICDataBingdingValueUpdateBlock)(id value);
 @interface GICDataBinding : NSObject
 @property (nonatomic,assign)GICBingdingMode bingdingMode;// 默认GICBingdingMode_Once
 @property (nonatomic,weak,readonly)id dataSource;
-@property (nonatomic,weak)id target;
+@property (nonatomic,weak)id target; // 绑定的目标对象
 @property (nonatomic,weak)GICValueConverter *valueConverter;
 @property (nonatomic,strong)NSString *expression;// 绑定的js 表达式
 @property (nonatomic,strong)NSString *attributeName;//

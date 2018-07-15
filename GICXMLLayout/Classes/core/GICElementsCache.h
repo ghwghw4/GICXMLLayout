@@ -23,4 +23,15 @@
  @return <#return value description#>
  */
 +(NSDictionary<NSString *, GICValueConverter *> *)classAttributs:(Class)klass;
+
+
+#pragma mark behavior
+
+/**
+ 注册behavior
+
+ @param elementClass <#elementClass description#>
+ */
++(void)registBehaviorElement:(Class)elementClass;
++(Class)classForBehaviorElementName:(NSString *)elementName;
 @end

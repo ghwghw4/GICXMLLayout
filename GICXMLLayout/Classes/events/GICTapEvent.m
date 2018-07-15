@@ -11,6 +11,7 @@
 -(void)attachTo:(ASDisplayNode *)target{
     [super attachTo:target];
     if([target isKindOfClass:[ASDisplayNode class]]){
+        target.userInteractionEnabled = YES;
         tapges = [[UITapGestureRecognizer alloc] init];
         [target gic_safeView:^(UIView *view) {
             [view addGestureRecognizer:self->tapges];

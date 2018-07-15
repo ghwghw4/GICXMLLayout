@@ -9,7 +9,8 @@
 #import "GDataXMLNode.h"
 #import "NSObject+GICDataContext.h"
 #import "GICEventInfo.h"
-
+#import "GICBehavior.h"
+#import "GICElementsCache.h"
 
 @interface GICXMLLayout : NSObject
 +(void)regiterAllElements;

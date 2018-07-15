@@ -31,6 +31,7 @@
 #import "GICAnimations.h"
 #import "GICBackgroundPanel.h"
 #import "GICBehaviors.h"
+#import "GICAnimations.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{

@@ -12,6 +12,9 @@
     POPAnimation *animation;
 }
 
+@property (nonatomic,readonly)NSString *fromValue;
+@property (nonatomic,readonly)NSString *toValue;
+
 /**
  由子类实现
 

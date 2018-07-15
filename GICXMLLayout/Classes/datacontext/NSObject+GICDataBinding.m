@@ -86,9 +86,6 @@
             }
         }
     }
-    NSLog(@"******** name=%@",NSStringFromClass(self.class));
-    NSLog(@"******** Bindings=%@",@(self.gic_Bindings.count));
-    NSArray *aa = self.gic_Bindings;
     for(GICDataBinding *b in self.gic_Bindings){
         [b updateDataSource:superDataContenxt];
     }

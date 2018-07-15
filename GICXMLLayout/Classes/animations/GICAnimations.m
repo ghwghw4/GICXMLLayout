@@ -18,6 +18,10 @@
     return self;
 }
 
+-(BOOL)gic_isAutoCacheElement{
+    return NO;
+}
+
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICAnimation class]]){
         [(NSMutableArray *)self.animations addObject:subElement];

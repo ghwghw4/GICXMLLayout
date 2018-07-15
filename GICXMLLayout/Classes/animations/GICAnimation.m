@@ -6,8 +6,20 @@
 //
 
 #import "GICAnimation.h"
+#import "GICStringConverter.h"
 
 @implementation GICAnimation
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
+    return @{
+             @"from":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICAnimation *)target)->_fromValue = value;
+             }],
+             @"to":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICAnimation *)target)->_toValue = value;
+             }],
+             };;
+}
+
 -(id)init{
     self  = [super init];
     animation = [self createAnimation];

@@ -15,4 +15,6 @@
  @param cb <#cb description#>
  */
 -(void)gic_safeView:(void (^)(UIView *view))cb;
+
+-(void)layoutAttributeChanged;
 @end

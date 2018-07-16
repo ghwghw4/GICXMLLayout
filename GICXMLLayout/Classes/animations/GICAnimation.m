@@ -35,7 +35,6 @@
 
 -(id)init{
     self  = [super init];
-    animation = [self createAnimation];
     _duration = 0.5;//默认0.5秒
     animationKey = [GICUtils uuidString];
     return self;
@@ -43,11 +42,7 @@
 
 -(void)attachTo:(id)target{
     _target = target;
-    if([animation respondsToSelector:@selector(setDuration:)]){
-        [animation performSelector:@selector(setDuration:) withObject:@(self.duration)];
-    }
-    animation.repeatCount = self.repeatCount;
-    animation.autoreverses = self.autoreverses;
+  
     if(self.triggerType == GICAnimationTriggerType_attach){
         [self beginAnimantion];
     }else if(self.triggerType == GICAnimationTriggerType_tap){
@@ -63,6 +58,12 @@
 
 -(void)beginAnimantion{
     [self pop_removeAnimationForKey:animationKey];
+    POPAnimation *animation = [self createAnimation];
+    if([animation respondsToSelector:@selector(setDuration:)]){
+        [animation performSelector:@selector(setDuration:) withObject:@(self.duration)];
+    }
+    animation.repeatCount = self.repeatCount;
+    animation.autoreverses = self.autoreverses;
     [self.target pop_addAnimation:animation forKey:nil];
 }
 

@@ -8,12 +8,14 @@
 
 #import "GICAppDelegate.h"
 #import "GICXMLLayout.h"
+#import "SwitchButton.h"
 
 @implementation GICAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GICXMLLayout regiterAllElements];
+    [GICElementsCache registElement:[SwitchButton class]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

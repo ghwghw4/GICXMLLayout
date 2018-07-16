@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface GICEvent : GICBehavior{
     NSString *expressionString;

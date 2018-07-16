@@ -100,10 +100,10 @@
         if(self.bingdingMode == GICBingdingMode_TowWay){
             if([self.target respondsToSelector:@selector(gic_createTowWayBindingWithAttributeName:)]){
                 @weakify(self)
-                [[self.target gic_createTowWayBindingWithAttributeName:self.attributeName] subscribeNext:^(id  _Nullable newValue) {
+                [[[self.target gic_createTowWayBindingWithAttributeName:self.attributeName] takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable newValue) {
                     @strongify(self)
                     // 判断原值和新值是否一致，只有在不一致的时候才会触发更新
-                    if(![newValue isEqual:[self.dataSource objectForKey:self.expression]]){
+                    if(![newValue isEqual:[self.dataSource valueForKey:self.expression]]){
                         // 将新值更新到数据源
                         [self.dataSource setValue:newValue forKey:self.expression];
                     }

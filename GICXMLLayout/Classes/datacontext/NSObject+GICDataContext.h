@@ -9,10 +9,7 @@
 
 @interface NSObject (GICDataContext)
 
-/**
- 绑定的数据模型的key
- */
-@property (nonatomic,strong)NSString *gic_dataPathKey;
+
 
 /**
  数据上下文
@@ -26,7 +23,7 @@
 @property (nonatomic,assign)BOOL gic_isAutoInheritDataModel;
 
 /**
- 更新数据源
+ 强制更新数据源。但不会对gic_DataContenxt赋值
  */
 -(void)gic_updateDataContext:(id)superDataContenxt;
 

@@ -8,14 +8,14 @@
 
 #import "IndexPageViewModel.h"
 #import "GICXMLLayout.h"
- #import "UtilsHelp.h"
+#import "UtilsHelp.h"
 
 @implementation IndexPageViewModel
 -(id)init{
     self=[super init];
     
     _listDatas = @[
-                       @{@"name":@"布局系统",@"pagePath":@"LayoutSample"},
+                       @{@"name":@"布局系统",@"pagePath":@"Layout"},
                        @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
                        @{@"name":@"list",@"pagePath":@"ListSample"},
                        @{@"name":@"数据绑定",@"pagePath":@""},

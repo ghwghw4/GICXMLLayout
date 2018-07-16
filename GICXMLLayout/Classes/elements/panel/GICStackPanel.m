@@ -18,15 +18,31 @@
     return @{
              @"is-horizon":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICStackPanel *)target).isHorizon = [value boolValue];
+                 [((GICStackPanel *)target) updateLayout];
              }],
              @"justify-content":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"justifyContent"];
+                 [((GICStackPanel *)target) updateLayout];
              }],
              @"align-items":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"alignItems"];
+                 [((GICStackPanel *)target) updateLayout];
              }],
              @"space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                    [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"spacing"];
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"spacing"];
+                 [((GICStackPanel *)target) updateLayout];
+             }],
+             @"wrap":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"flexWrap"];
+                 [((GICStackPanel *)target) updateLayout];
+             }],
+             @"align-content":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"alignContent"];
+                 [((GICStackPanel *)target) updateLayout];
+             }],
+             @"line-space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"lineSpacing"];
+                 [((GICStackPanel *)target) updateLayout];
              }],
              };
 }
@@ -35,6 +51,12 @@
     self = [super init];
     stackPanelPropertyDict = [NSMutableDictionary dictionary];
     return self;
+}
+
+-(void)updateLayout{
+    if(self.nodeLoaded){
+        [self setNeedsLayout];
+    }
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{

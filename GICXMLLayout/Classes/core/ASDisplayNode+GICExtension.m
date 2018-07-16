@@ -31,10 +31,12 @@
              @"height":[[GICDimensionConverter alloc] initWithPropertySetter:^(id target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.height = ASDimensionMake((NSString *)value);
+                 [node layoutAttributeChanged];
              }],
              @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.height = ASDimensionMake((NSString *)value);
+                 [node layoutAttributeChanged];
              }],
              @"size":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
@@ -47,53 +49,73 @@
                      node.style.width = h;
                      node.style.height = h;
                  }else if(strs.count==2){
-                     ASDimension w = ASDimensionMake((NSString *)strs[1]);
+                     ASDimension w = ASDimensionMake((NSString *)strs[0]);
                      if(ASDimensionEqualToDimension(w, ASDimensionAuto)){
-                         w = ASDimensionMake([value floatValue]);
+                         w = ASDimensionMake([(NSString *)strs[0] floatValue]);
                      }
                      node.style.width = w;
                      
                      ASDimension h = ASDimensionMake((NSString *)strs[1]);
                      if(ASDimensionEqualToDimension(h, ASDimensionAuto)){
-                         h = ASDimensionMake([value floatValue]);
+                         h = ASDimensionMake([(NSString *)strs[1] floatValue]);
                      }
                      node.style.height = h;
                  }
+                 [node layoutAttributeChanged];
              }],
              @"position":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  CGPoint point = [(NSValue *)value CGPointValue];
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.layoutPosition = point;
+                 [node layoutAttributeChanged];
              }],
-             @"max-width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"max-width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.maxWidth = ASDimensionMake((NSString *)value);
+                 [node layoutAttributeChanged];
              }],
-             @"max-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"max-height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.maxHeight = ASDimensionMake((NSString *)value);
+                 [node layoutAttributeChanged];
              }],
              @"space-before":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.spacingBefore = [value floatValue];
+                 [node layoutAttributeChanged];
              }],
              @"space-after":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.spacingAfter = [value floatValue];
+                 [node layoutAttributeChanged];
              }],
              @"flex-grow":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.flexGrow = [value integerValue];
+                 [node layoutAttributeChanged];
              }],
              @"flex-shrink":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.flexShrink = [value integerValue];
+                 [node layoutAttributeChanged];
+             }],
+             @"flex-basics":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 node.style.flexBasis = ASDimensionMake((NSString *)value);
+                 [node layoutAttributeChanged];
+             }],
+             @"align-self":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 node.style.alignSelf = [value integerValue];
+                 [node layoutAttributeChanged];
              }],
              @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  (target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
+                 [(ASDisplayNode *)target layoutAttributeChanged];
              }],
              @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  (target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
+                 [(ASDisplayNode *)target layoutAttributeChanged];
              }],
              @"hidden":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setHidden:[value boolValue]];
@@ -128,12 +150,19 @@
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.shadowOffset = [(NSValue *)value CGSizeValue];
              }],
+             @"clips-bounds":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.clipsToBounds = [value boolValue];
+             }],
              };
 }
 
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         [self addSubnode:subElement];
+        if(self.nodeLoaded){
+            [self setNeedsLayout];
+        }
     }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
         for(GICAnimation *a in ((GICAnimations *)subElement).animations){
             a.gic_ExtensionProperties.superElement = self;
@@ -146,10 +175,15 @@
 
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
     [super gic_removeSubElements:subElements];
+    BOOL needLayout = NO;
     for(id sub in subElements){
         if([sub isKindOfClass:[ASDisplayNode class]]  && [self.subnodes containsObject:sub]){
             [(ASDisplayNode *)sub removeFromSupernode];
+            needLayout = YES;
         }
+    }
+    if(self.nodeLoaded && needLayout){
+        [self setNeedsLayout];
     }
 }
 
@@ -157,6 +191,12 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         cb(self.view);
     });
+}
+
+-(void)layoutAttributeChanged{
+    if(self.nodeLoaded){
+        [self setNeedsLayout];
+    }
 }
 
 @end

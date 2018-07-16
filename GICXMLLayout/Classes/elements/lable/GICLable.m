@@ -55,10 +55,11 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return propertyConverts;
 }
 
--(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
+-(id)init{
+    self = [super init];
     attributes = [NSMutableDictionary dictionary];
     mutAttString = [[NSMutableAttributedString alloc] init];
-    [super gic_beginParseElement:element withSuperElement:superElment];
+    return self;
 }
 
 //-(id)init{
@@ -95,23 +96,23 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     self.attributedText = self->mutAttString;
 }
 
--(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     attbuteStringArray = [NSMutableArray array];
-    for(GDataXMLElement *child in children){
-        if([supportElementNames containsObject:child.name]){
-            NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:child];
-            [s gic_beginParseElement:child withSuperElement:self];
-            [attbuteStringArray addObject:s];
-            if(s.gic_Bindings.count>0){
-                @weakify(self)
-                for(GICDataBinding *b in s.gic_Bindings){
-                    b.valueUpdate = ^(id value) {
-                        @strongify(self)
-                        [self updateString];
-                    };
-                }
+    if([supportElementNames containsObject:element.name]){
+        NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:element];
+        [s gic_beginParseElement:element withSuperElement:self];
+        [attbuteStringArray addObject:s];
+        if(s.gic_Bindings.count>0){
+            @weakify(self)
+            for(GICDataBinding *b in s.gic_Bindings){
+                b.valueUpdate = ^(id value) {
+                    @strongify(self)
+                    [self updateString];
+                };
             }
         }
+        return nil;
     }
+    return [super gic_parseSubElementNotExist:element];
 }
 @end

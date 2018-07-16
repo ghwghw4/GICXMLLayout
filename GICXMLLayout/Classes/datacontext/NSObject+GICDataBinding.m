@@ -46,6 +46,14 @@
    return objc_getAssociatedObject(self, "gic_Bindings");
 }
 
+-(void)setGic_dataPathKey:(NSString *)gic_dataPathKey{
+    objc_setAssociatedObject(self, "gic_dataPathKey", gic_dataPathKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(NSString *)gic_dataPathKey{
+    return objc_getAssociatedObject(self, "gic_dataPathKey");
+}
+
 -(void)gic_addBinding:(GICDataBinding *)binding{
     if(binding==nil)
         return;

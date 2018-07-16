@@ -1,0 +1,97 @@
+
+
+<page title="stack-panel 动态演示" data-context="StackPanelViewModel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+        <template t-name="p-child">
+            <dock-panel size="70" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+        <template t-name="switch">
+            <stack-panel is-horizon="1" align-items="2" space="10">
+                <switch-button /><lable text="{{ }}" font-color="black" font-size="16"/>
+            </stack-panel>
+        </template>
+        
+        <template t-name="button">
+            <dock-panel size="80 44" background-color="blue">
+                <lable text="{{}}" font-color="white"/>
+            </dock-panel>
+        </template>
+
+        <template t-name="actionsheet">
+            <dock-panel size="100 44" background-color="9f35ff">
+                <lable text="{{ }}" font-color="black">
+                    <behaviors>
+                        <bev-actionsheet />
+                    </behaviors>
+                </lable>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="操作面板"/>
+                
+              
+                <stack-panel is-horizon="1" justify-content="3">
+                    <template-ref t-name="button" data-context="增加" event-tap="addItem"/>
+                    <template-ref t-name="button" data-context="减少" event-tap="deleteItem"/>
+                </stack-panel>
+                
+                
+                <stack-panel is-horizon="1" space-before="10" justify-content="3">
+                    <stack-panel is-horizon="1" align-items="2" space="10">
+                        <switch-button checked="{{ exp=isHorizal,mode=2 }}"/><lable text="水平布局" font-color="black" font-size="16"/>
+                    </stack-panel>
+                    
+                    <stack-panel is-horizon="1" align-items="2" space="10">
+                        <switch-button checked="{{ exp=isWrap,mode=2 }}"/><lable text="换行" font-color="black" font-size="16"/>
+                    </stack-panel>
+                </stack-panel>
+
+                <stack-panel is-horizon="1" space-before="10" justify-content="3">
+                    <dock-panel size="100 44" background-color="9f35ff" event-tap="btnJustifyContentClicked">
+                        <lable text="{{ exp= 'justify-content：'+ selectedJustifyContent.value,mode=1}}" font-color="black" />
+                    </dock-panel>
+
+                    <dock-panel size="100 44" background-color="9f35ff" event-tap="btnAlignItemsClicked">
+                        <lable text="{{ exp='align-items：'+ selectedAlignItems.value,mode=1}}" font-color="black"/>
+                    </dock-panel>
+
+                    <dock-panel size="100 44" background-color="9f35ff" event-tap="btnAlignContentClicked">
+                        <lable text="{{ exp='align-content：'+ selectedAlignContent.value,mode=1}}" font-color="black"/>
+                    </dock-panel>
+                </stack-panel>
+                
+               
+                <!--布局面板-->
+                <template-ref t-name="desc" data-context="布局面板"/>
+                <stack-panel
+                        background-color="black"
+                        line-space="10"
+                        space="10"
+                        height="300"
+                        clips-bounds="1"
+                        is-horizon="{{ exp=isHorizal,mode=1 }}"
+                        justify-content = "{{exp=selectedJustifyContent.value,mode=1}}"
+                        align-items = "{{exp=selectedAlignItems.value,mode=1}}"
+                        align-content = "{{exp=selectedAlignContent.value,mode=1}}"
+                        wrap="{{ exp=isWrap,mode=1 }}">
+                    <for data-path="listDatas">
+                        <template-ref t-name="p-child"/>
+                    </for>
+                </stack-panel>
+                <!--分割线-->
+                <dock-panel height="50" background-color="red">
+                    <lable text="我是分割线，主要是让你在观看上面面板变化的时候比较明显"/>
+                </dock-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

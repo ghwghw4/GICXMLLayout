@@ -15,7 +15,6 @@ typedef enum {
 }GICAnimationTriggerType;
 
 @interface GICAnimation : GICBehavior{
-    POPAnimation *animation;
     NSString *animationKey;
 }
 

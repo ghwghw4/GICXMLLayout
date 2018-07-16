@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
+		37311A8520FC34F9000D0986 /* Layout.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8420FC34F9000D0986 /* Layout.xml */; };
+		37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A8720FC3533000D0986 /* LayoutViewModel.m */; };
+		37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8A20FC364D000D0986 /* StackPanel.xml */; };
+		37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8E20FC3EB8000D0986 /* StackPanel2.xml */; };
+		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
+		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		3767545D20F8E0690019A521 /* ViewSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767545C20F8E0690019A521 /* ViewSample.xml */; };
-		37A2643020E9D3590058589D /* template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2642F20E9D3590058589D /* template.xml */; };
-		37A2646F20EB497A0058589D /* template2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A2646E20EB497A0058589D /* template2.xml */; };
-		37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AF9920EEF8FA006AADC2 /* template3.xml */; };
-		37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFB820EF45F1006AADC2 /* template4.xml */; };
 		37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFD620F31167006AADC2 /* LayoutSample.xml */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
@@ -28,7 +30,6 @@
 		37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806BE20F48372002EEF55 /* ListSample4.xml */; };
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
-		37C806C920F58AFE002EEF55 /* template5.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806C820F58AFD002EEF55 /* template5.xml */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -58,15 +59,20 @@
 
 /* Begin PBXFileReference section */
 		00A1A556B8FDC9DDFCDF2A8F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		37311A8420FC34F9000D0986 /* Layout.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Layout.xml; sourceTree = "<group>"; };
+		37311A8620FC3533000D0986 /* LayoutViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutViewModel.h; sourceTree = "<group>"; };
+		37311A8720FC3533000D0986 /* LayoutViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutViewModel.m; sourceTree = "<group>"; };
+		37311A8A20FC364D000D0986 /* StackPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StackPanel.xml; sourceTree = "<group>"; };
+		37311A8E20FC3EB8000D0986 /* StackPanel2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StackPanel2.xml; sourceTree = "<group>"; };
+		37311A9020FC3F16000D0986 /* StackPanelViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackPanelViewModel.h; sourceTree = "<group>"; };
+		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
+		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
+		37311A9520FC4051000D0986 /* SwitchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchButton.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
 		3767542A20F22B5D0019A521 /* IndexPage.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IndexPage.xml; sourceTree = "<group>"; };
 		3767545C20F8E0690019A521 /* ViewSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ViewSample.xml; sourceTree = "<group>"; };
-		37A2642F20E9D3590058589D /* template.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.xml; sourceTree = "<group>"; };
-		37A2646E20EB497A0058589D /* template2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template2.xml; sourceTree = "<group>"; };
-		37A7AF9920EEF8FA006AADC2 /* template3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template3.xml; sourceTree = "<group>"; };
-		37A7AFB820EF45F1006AADC2 /* template4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = template4.xml; sourceTree = "<group>"; };
 		37A7AFD620F31167006AADC2 /* LayoutSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LayoutSample.xml; sourceTree = "<group>"; };
 		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
 		37A7AFD920F311B2006AADC2 /* UtilsHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsHelp.m; sourceTree = "<group>"; };
@@ -86,7 +92,6 @@
 		37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample3ViewModel.m; sourceTree = "<group>"; };
 		37C806C320F48DAE002EEF55 /* ListSample4ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample4ViewModel.h; sourceTree = "<group>"; };
 		37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample4ViewModel.m; sourceTree = "<group>"; };
-		37C806C820F58AFD002EEF55 /* template5.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template5.xml; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,9 +155,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		37311A8920FC3635000D0986 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				37311A8A20FC364D000D0986 /* StackPanel.xml */,
+				37311A8E20FC3EB8000D0986 /* StackPanel2.xml */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		37311A8D20FC3675000D0986 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				37311A9020FC3F16000D0986 /* StackPanelViewModel.h */,
+				37311A9120FC3F16000D0986 /* StackPanelViewModel.m */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		37311A9320FC402D000D0986 /* customelements */ = {
+			isa = PBXGroup;
+			children = (
+				37311A9420FC4051000D0986 /* SwitchButton.h */,
+				37311A9520FC4051000D0986 /* SwitchButton.m */,
+			);
+			path = customelements;
+			sourceTree = "<group>";
+		};
 		3767542520F22AFF0019A521 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
+				37311A8D20FC3675000D0986 /* layout */,
 				37C806B020F43156002EEF55 /* list */,
 				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
 				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
@@ -160,6 +193,8 @@
 				37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */,
 				37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */,
 				37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */,
+				37311A8620FC3533000D0986 /* LayoutViewModel.h */,
+				37311A8720FC3533000D0986 /* LayoutViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -167,12 +202,14 @@
 		3767542620F22B130019A521 /* templates */ = {
 			isa = PBXGroup;
 			children = (
+				37311A8920FC3635000D0986 /* layout */,
 				3767545B20F8E0530019A521 /* uilist */,
 				37C806AD20F430A5002EEF55 /* list */,
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
 				37A7AFD620F31167006AADC2 /* LayoutSample.xml */,
 				37C8069720F34776002EEF55 /* UIList.xml */,
 				37C806A420F357F4002EEF55 /* ListSample.xml */,
+				37311A8420FC34F9000D0986 /* Layout.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -244,10 +281,9 @@
 		6003F593195388D20070C39A /* Example for GICXMLLayout */ = {
 			isa = PBXGroup;
 			children = (
-				37C806C820F58AFD002EEF55 /* template5.xml */,
+				37311A9320FC402D000D0986 /* customelements */,
 				3767542620F22B130019A521 /* templates */,
 				3767542520F22AFF0019A521 /* viewmodel */,
-				37A2642F20E9D3590058589D /* template.xml */,
 				6003F59C195388D20070C39A /* GICAppDelegate.h */,
 				6003F59D195388D20070C39A /* GICAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -256,11 +292,8 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				37A2646E20EB497A0058589D /* template2.xml */,
 				37BA55F820EDB276003DC99A /* TestClass.h */,
 				37BA55F920EDB276003DC99A /* TestClass.m */,
-				37A7AF9920EEF8FA006AADC2 /* template3.xml */,
-				37A7AFB820EF45F1006AADC2 /* template4.xml */,
 				37A7AFD820F311B2006AADC2 /* UtilsHelp.h */,
 				37A7AFD920F311B2006AADC2 /* UtilsHelp.m */,
 			);
@@ -320,6 +353,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				B1D39B6364F3BB06CA650A5F /* [CP] Embed Pods Frameworks */,
+				8DAB303B36511EF60FAF3EE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -394,20 +428,18 @@
 				37C8069820F34776002EEF55 /* UIList.xml in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				37A7AF9A20EEF8FA006AADC2 /* template3.xml in Resources */,
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
+				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
+				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
 				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
 				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
-				37A7AFB920EF45F1006AADC2 /* template4.xml in Resources */,
 				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
+				37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */,
 				3767545D20F8E0690019A521 /* ViewSample.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				37C806C920F58AFE002EEF55 /* template5.xml in Resources */,
-				37A2646F20EB497A0058589D /* template2.xml in Resources */,
-				37A2643020E9D3590058589D /* template.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +470,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DAB303B36511EF60FAF3EE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B1D39B6364F3BB06CA650A5F /* [CP] Embed Pods Frameworks */ = {
@@ -487,9 +534,12 @@
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
+				37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */,
+				37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +673,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GICXMLLayout/GICXMLLayout-Prefix.pch";
 				INFOPLIST_FILE = "GICXMLLayout/GICXMLLayout-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.youninet.xiuxian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,6 +693,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GICXMLLayout/GICXMLLayout-Prefix.pch";
 				INFOPLIST_FILE = "GICXMLLayout/GICXMLLayout-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.youninet.xiuxian;
 				PRODUCT_NAME = "$(TARGET_NAME)";

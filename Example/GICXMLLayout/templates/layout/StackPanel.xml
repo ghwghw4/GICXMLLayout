@@ -1,0 +1,103 @@
+
+<page title="stack-panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="70" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="垂直从上到下布局"/>
+                <stack-panel background-color="black" space="10">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="垂直从下到上布局"/>
+                <stack-panel background-color="black" height="180" space="10" justify-content="2">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="垂直居中布局"/>
+                <stack-panel background-color="black" height="180" space="10" justify-content="1">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="垂直间隔排列，两端无间距"/>
+                <stack-panel background-color="black" height="180" justify-content="3">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="垂直间隔排列，两端有间隔"/>
+                <stack-panel background-color="black" height="180" justify-content="4">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="垂直换行"/>
+                <stack-panel background-color="black" wrap="1" height="180" space="10" line-space="10">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                    <template-ref t-name="p-child" data-context="4"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平从左到右布局"/>
+                <stack-panel background-color="black" is-horizon="1" space="10">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平从右到左布局"/>
+                <stack-panel background-color="black" is-horizon="1" space="10" justify-content="2">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平居中布局"/>
+                <stack-panel background-color="black" is-horizon="1" space="10" justify-content="1">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平间隔排列，两端无间距"/>
+                <stack-panel background-color="black" is-horizon="1" justify-content="3">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平间隔排列，两端有间距"/>
+                <stack-panel background-color="black" is-horizon="1" justify-content="4">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                </stack-panel>
+                
+                <template-ref t-name="desc" data-context="水平换行"/>
+                <stack-panel background-color="black" is-horizon="1" wrap="1" space="10" line-space="10">
+                    <template-ref t-name="p-child" data-context="1"/>
+                    <template-ref t-name="p-child" data-context="2"/>
+                    <template-ref t-name="p-child" data-context="3"/>
+                    <template-ref t-name="p-child" data-context="4"/>
+                    <template-ref t-name="p-child" data-context="5"/>
+                    <template-ref t-name="p-child" data-context="6"/>
+                </stack-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

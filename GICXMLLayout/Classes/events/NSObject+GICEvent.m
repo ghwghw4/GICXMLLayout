@@ -33,10 +33,8 @@
                 }
             }
             if(tapges == nil){
-               tapges = [[UITapGestureRecognizer alloc] init];
+                tapges = [[UITapGestureRecognizer alloc] init];
                 [view addGestureRecognizer:tapges];
-            }else{
-                NSLog(@"11");
             }
             cb([tapges rac_gestureSignal]);
         }];

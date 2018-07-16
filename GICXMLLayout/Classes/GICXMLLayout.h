@@ -11,6 +11,7 @@
 #import "GICEventInfo.h"
 #import "GICBehavior.h"
 #import "GICElementsCache.h"
+#import "GICLayoutElementProtocol.h"
 
 @interface GICXMLLayout : NSObject
 +(void)regiterAllElements;

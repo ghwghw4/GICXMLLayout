@@ -1,0 +1,13 @@
+
+<page title="布局系统" data-context="LayoutViewModel">
+    <list background-color="white" separator-style="1">
+        <for data-path="listDatas">
+            <list-item selection-style="2" event-item-select="onSelect:">
+                <inset-panel background-color="white" inset="15">
+                    <lable text="{{ name }}" font-size="15"></lable>
+                </inset-panel>
+            </list-item>
+        </for>
+    </list>
+</page>
+

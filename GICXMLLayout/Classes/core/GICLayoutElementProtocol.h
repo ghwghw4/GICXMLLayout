@@ -66,7 +66,7 @@
  
  @param attributeName <#attributeName description#>
  */
--(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName;
+-(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *signal))signalBlock;
 @end
 
 

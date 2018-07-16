@@ -63,4 +63,9 @@
     }
     return [super gic_parseSubElementNotExist:element];
 }
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
 @end

@@ -1,5 +1,3 @@
-
-
 <page title="stack-panel 动态演示" data-context="StackPanelViewModel">
     <templates>
         <template t-name="desc">

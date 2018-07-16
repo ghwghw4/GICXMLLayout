@@ -17,41 +17,41 @@
     return @"input";
 }
 
-static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
-+(void)initialize{
-    propertyConverts = @{
-                         @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             [(GICInpute *)target setPlaceholder:value];
-                         }],
-                         @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             GICInpute *inpute = (GICInpute *)target;
-                             if(![value isEqual:inpute.text]){
-                                 [(GICInpute *)target setText:value];
-                             }
-                         }],
-                         @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                             GICInpute *inpute = (GICInpute *)target;
-                             [inpute setSecureTextEntry:[value boolValue]];
-                         }],
-                         };
-}
-
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
-    return propertyConverts;
+    return @{
+             @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setPlaceholder:value];
+                 }];
+             }],
+             @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setText:value];
+                 }];
+             }],
+             @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setSecureTextEntry:[value boolValue]];
+                 }];
+             }],
+             };
 }
 
--(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName{
+-(id)init{
+    self = [super init];
+    [self setViewBlock:^UIView * _Nonnull{
+        return [UITextField new];
+    }];
+    self.style.height = ASDimensionMake(31);//默认高度31
+    return self;
+}
+
+
+-(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *))signalBlock{
     if([attributeName isEqualToString:@"text"]){
-        return [self rac_textSignal];
+        [self gic_safeView:^(UIView *view) {
+            signalBlock([(UITextField *)view rac_textSignal]);
+        }];
     }
-    return nil;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 @end

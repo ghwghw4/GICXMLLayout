@@ -7,6 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICInpute : UITextField
-
+@interface GICInpute : ASDisplayNode
+@property (readonly) UITextField *view;
 @end

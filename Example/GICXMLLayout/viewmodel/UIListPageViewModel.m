@@ -16,12 +16,8 @@
     
     _listDatas = @[
                    @{@"name":@"view",@"pagePath":@"ViewSample"},
-//                   @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
-//                   @{@"name":@"list",@"pagePath":@"ListSample"},
-//                   @{@"name":@"数据绑定",@"pagePath":@""},
-//                   @{@"name":@"模板",@"pagePath":@""},
-//                   @{@"name":@"事件",@"pagePath":@""},
-//                   @{@"name":@"动画",@"pagePath":@""},
+                   @{@"name":@"lable",@"pagePath":@"Lable"},
+                   @{@"name":@"input",@"pagePath":@"Inpute"},
                    ];
     return self;
 }

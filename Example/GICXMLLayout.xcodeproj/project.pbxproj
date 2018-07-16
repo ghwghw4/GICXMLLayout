@@ -14,6 +14,8 @@
 		37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8E20FC3EB8000D0986 /* StackPanel2.xml */; };
 		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
+		37311A9F20FC9D65000D0986 /* Inpute.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A9E20FC9D65000D0986 /* Inpute.xml */; };
+		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		3767545D20F8E0690019A521 /* ViewSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767545C20F8E0690019A521 /* ViewSample.xml */; };
@@ -68,6 +70,9 @@
 		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
 		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
 		37311A9520FC4051000D0986 /* SwitchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchButton.m; sourceTree = "<group>"; };
+		37311A9E20FC9D65000D0986 /* Inpute.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Inpute.xml; sourceTree = "<group>"; };
+		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
+		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
@@ -182,9 +187,19 @@
 			path = customelements;
 			sourceTree = "<group>";
 		};
+		37311AA020FC9E7C000D0986 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				37311AA120FC9E92000D0986 /* InputViewModel.h */,
+				37311AA220FC9E92000D0986 /* InputViewModel.m */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		3767542520F22AFF0019A521 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
+				37311AA020FC9E7C000D0986 /* ui */,
 				37311A8D20FC3675000D0986 /* layout */,
 				37C806B020F43156002EEF55 /* list */,
 				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
@@ -218,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				3767545C20F8E0690019A521 /* ViewSample.xml */,
+				37311A9E20FC9D65000D0986 /* Inpute.xml */,
 			);
 			path = uilist;
 			sourceTree = "<group>";
@@ -439,6 +455,7 @@
 				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
 				37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */,
 				3767545D20F8E0690019A521 /* ViewSample.xml in Resources */,
+				37311A9F20FC9D65000D0986 /* Inpute.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +558,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
+				37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

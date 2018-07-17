@@ -31,6 +31,10 @@
     return self;
 }
 
+//-(void)layout{
+//    [super layout];
+//}
+
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
     ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];

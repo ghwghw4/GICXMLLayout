@@ -154,6 +154,14 @@
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.clipsToBounds = [value boolValue];
              }],
+             @"border-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.borderColor = [value CGColor];
+             }],
+             @"border-width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.borderWidth = [value floatValue];
+             }],
              };
 }
 

@@ -10,8 +10,10 @@
             <stack-panel>
                 <template-ref t-name="desc" data-context="输入框"/>
                 <!--设置背景色-->
-                <view height="20" background-color="yellow">
-                </view>
+                <input background-color="yellow" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名">
+                </input>
+                <template-ref t-name="desc" data-context="双向绑定的显示"/>
+                <lable text="{{ exp=name,mode=1}}"/>
             </stack-panel>
         </inset-panel>
     </scroll-view>

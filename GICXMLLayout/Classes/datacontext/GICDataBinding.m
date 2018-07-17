@@ -91,6 +91,12 @@
                 @weakify(self)
                 [[self.dataSource rac_valuesAndChangesForKeyPath:key options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
                     @strongify(self)
+                    if(self.bingdingMode == GICBingdingMode_TowWay){
+                        if([x[0] isEqual:[self.dataSource valueForKey:self.expression]]){
+                            // 将新值更新到数据源
+                            return;
+                        }
+                    }
                     [self refreshExpression];
                 }];
             }

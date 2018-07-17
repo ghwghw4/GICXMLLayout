@@ -9,5 +9,9 @@
 #import "InputViewModel.h"
 
 @implementation InputViewModel
-
+-(id)init{
+    self=[super init];
+    _name=@"";
+    return self;
+}
 @end

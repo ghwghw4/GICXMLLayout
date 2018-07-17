@@ -34,7 +34,7 @@
 #import "GICAnimations.h"
 
 
-
+#import "GICInpute.h"
 #import "GICAttributeAnimation.h"
 
 @implementation GICXMLLayout
@@ -59,6 +59,7 @@
     [GICElementsCache registElement:[GICLable class]];
     [GICElementsCache registElement:[GICListView class]];
     [GICElementsCache registElement:[GICListItem class]];
+    [GICElementsCache registElement:[GICInpute class]];
     
     // 指令
     [GICElementsCache registElement:[GICDirectiveFor class]];

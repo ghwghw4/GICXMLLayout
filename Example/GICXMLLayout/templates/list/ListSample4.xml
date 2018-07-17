@@ -16,7 +16,7 @@
                         <template-slot slot-name = "content" />
                         
                         <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
-                            <stack-panel  is-horizon="1" align-items="2" >
+                            <stack-panel  is-horizon="1" align-items="2">
                                 <image local-name="comment" width="20" fill-mode="4"/>
                                 <lable text="评论" font-size="12" width="60" font-color="666666"/>
                                 <image local-name="active" width="20" fill-mode="4"/>
@@ -34,7 +34,7 @@
         <template t-name="template1">
             <template-ref t-name="base-template">
                 <!--<lable text="我是模板1" font-size="14" slot-name = "content" font-color="red"/>-->
-                <panel slot-name = "content">
+                <panel slot-name = "content" shadow-color="black" shadow-opacity="0.5" shadow-radius="5" shadow-offset="0 2">
                     <image url="{{ headurl }}" size="64" corner-radius="16"/>
                 </panel>
             </template-ref>

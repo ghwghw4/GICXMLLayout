@@ -35,7 +35,7 @@
              }],
              @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.height = ASDimensionMake((NSString *)value);
+                 node.style.width = ASDimensionMake((NSString *)value);
                  [node layoutAttributeChanged];
              }],
              @"size":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {

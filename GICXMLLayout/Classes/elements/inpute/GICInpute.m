@@ -1,0 +1,93 @@
+//
+//  GICInpute.m
+//  GICXMLLayout
+//
+//  Created by 龚海伟 on 2018/7/18.
+//
+
+#import "GICInpute.h"
+#import "GICStringConverter.h"
+#import "GICNumberConverter.h"
+#import "GICColorConverter.h"
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "GICBoolConverter.h"
+
+
+@implementation GICInpute
++(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
+    return @{
+             @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICInpute *input = (GICInpute *)target;
+                 [input->placeholdString deleteCharactersInRange:NSMakeRange(0, input->placeholdString.length)];
+                 [input->placeholdString appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+             }],
+             @"placehold-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICInpute *)target)->placeholdAttributs setObject:value forKey:NSForegroundColorAttributeName];
+             }],
+             @"placehold-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICInpute *)target)->placeholdAttributs setObject:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
+             }],
+             @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setTextColor:value];
+                 }];
+             }],
+             @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setFont:[UIFont systemFontOfSize:[value floatValue]]];
+                 }];
+             }],
+             @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setText:value];
+                 }];
+             }],
+             @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setSecureTextEntry:[value boolValue]];
+                 }];
+             }],
+             };
+}
+
+
++(NSString *)gic_elementName{
+    return @"input";
+}
+
+-(id)init{
+    self = [super init];
+    [self setViewBlock:^UIView * _Nonnull{
+        return [UITextField new];
+    }];
+    placeholdString = [[NSMutableAttributedString alloc] init];
+    placeholdAttributs = [NSMutableDictionary dictionary];
+    self.style.height = ASDimensionMake(31);//默认高度31
+    return self;
+}
+
+-(void)updatePlacholdString{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self->placeholdAttributs.count>0){
+            [self->placeholdString setAttributes:self->placeholdAttributs range:NSMakeRange(0, self->placeholdString.length)];
+        }
+        self.view.attributedPlaceholder = self->placeholdString;
+    });
+}
+
+-(void)gic_parseElementCompelete{
+    [self updatePlacholdString];
+}
+
+
+-(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *))signalBlock{
+    if([attributeName isEqualToString:@"text"]){
+        [self gic_safeView:^(UIView *view) {
+            signalBlock([[(UITextField *)view rac_textSignal] doNext:^(NSString * _Nullable x) {
+                NSLog(@"");
+            }]);
+        }];
+    }
+}
+
+@end

@@ -37,15 +37,15 @@
 #pragma mark - Lifecycle Methods
 -(id)initWithXmlElement:(GDataXMLElement *)element{
     [self gic_beginParseElement:element withSuperElement:nil];
-    self =[self init];
-    return self;
-}
-
-- (instancetype)init
-{
     self = [super initWithNode:_displayNode];
     return self;
 }
+
+//- (instancetype)init
+//{
+//    self = [super initWithNode:_displayNode];
+//    return self;
+//}
 
 -(void)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){

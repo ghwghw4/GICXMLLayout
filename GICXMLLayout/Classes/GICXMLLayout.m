@@ -33,8 +33,8 @@
 #import "GICBehaviors.h"
 #import "GICAnimations.h"
 
-
 #import "GICInpute.h"
+#import "GICInputeView.h"
 #import "GICAttributeAnimation.h"
 
 @implementation GICXMLLayout
@@ -59,6 +59,7 @@
     [GICElementsCache registElement:[GICLable class]];
     [GICElementsCache registElement:[GICListView class]];
     [GICElementsCache registElement:[GICListItem class]];
+    [GICElementsCache registElement:[GICInputeView class]];
     [GICElementsCache registElement:[GICInpute class]];
     
     // 指令
@@ -110,20 +111,21 @@
         return;
     }
     // 取根节点
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_queue_create("parse xml view", nil), ^{
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         [GICXMLParserContext resetInstance:xmlDocument];
         UIView *p = (UIView *)[self createElement:rootElement withSuperElement:superView];
         [superView addSubview:p];
-        //        [superView gic_LayoutSubView:p];
         [GICXMLParserContext parseCompelete];
-        compelte(p);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compelte(p);
+        });
     });
 }
 
 +(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte{
     NSError *error = nil;
-//    ASDisplayNode.shouldShowRangeDebugOverlay = YES;
+    //    ASDisplayNode.shouldShowRangeDebugOverlay = YES;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);
@@ -131,18 +133,16 @@
         return;
     }
     // 取根节点
-    //    dispatch_async(dispatch_queue_create("1111", nil), ^{
-    GDataXMLElement *rootElement = [xmlDocument rootElement];
-    if([rootElement.name isEqualToString:@"page"]){
-        [GICXMLParserContext resetInstance:xmlDocument];
-        GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
-        [GICXMLParserContext parseCompelete];
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        compelte(vc);
-        //            });
-    }else{
-        compelte(nil);
-    }
-    //    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GDataXMLElement *rootElement = [xmlDocument rootElement];
+        if([rootElement.name isEqualToString:@"page"]){
+            [GICXMLParserContext resetInstance:xmlDocument];
+            GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
+            [GICXMLParserContext parseCompelete];
+            compelte(vc);
+        }else{
+            compelte(nil);
+        }
+    });
 }
 @end

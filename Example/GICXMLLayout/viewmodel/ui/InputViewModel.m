@@ -11,7 +11,7 @@
 @implementation InputViewModel
 -(id)init{
     self=[super init];
-    _name=@"";
+    _name=@"22";
     return self;
 }
 @end

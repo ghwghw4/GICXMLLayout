@@ -24,10 +24,10 @@ PODS:
     - PINRemoteImage/Core
   - pop (1.0.10)
   - ReactiveObjC (3.1.0)
-  - Texture (2.7):
-    - Texture/PINRemoteImage (= 2.7)
-  - Texture/Core (2.7)
-  - Texture/PINRemoteImage (2.7):
+  - Texture (2.6):
+    - Texture/PINRemoteImage (= 2.6)
+  - Texture/Core (2.6)
+  - Texture/PINRemoteImage (2.6):
     - PINRemoteImage/iOS (= 3.0.0-beta.13)
     - PINRemoteImage/PINCache
     - Texture/Core
@@ -50,7 +50,7 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
-  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
+  Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
 
 PODFILE CHECKSUM: c8cef1ba7cf1ad77d6b7df414c0d94bc485cf12c
 

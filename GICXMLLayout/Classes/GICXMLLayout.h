@@ -24,8 +24,7 @@
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
 
 /**
- 直接解析一个page
-
+ 直接解析一个page。
  @param xmlData <#xmlData description#>
  @param compelte <#compelte description#>
  */

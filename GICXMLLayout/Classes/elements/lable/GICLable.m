@@ -59,6 +59,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     self = [super init];
     attributes = [NSMutableDictionary dictionary];
     mutAttString = [[NSMutableAttributedString alloc] init];
+    attbuteStringArray = [NSMutableArray array];
     return self;
 }
 
@@ -93,11 +94,10 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
             [self->mutAttString setAttributes:self->attributes range:NSMakeRange(0, self->mutAttString.length)];
         }
     }
-    self.attributedText = self->mutAttString;
+    self.attributedText = [self->mutAttString copy];
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
-    attbuteStringArray = [NSMutableArray array];
     if([supportElementNames containsObject:element.name]){
         NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:element];
         [s gic_beginParseElement:element withSuperElement:self];

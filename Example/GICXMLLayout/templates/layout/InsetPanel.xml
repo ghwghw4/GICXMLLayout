@@ -1,0 +1,27 @@
+
+<page title="inset-panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white" inset-behavior="2">
+        <inset-panel inset="64 15 15 15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="inset-panel也称为padding布局"/>
+                <inset-panel inset="10" background-color="black" height="100">
+                    <panel background-color="yellow">
+
+                    </panel>
+                </inset-panel>
+                <template-ref t-name="desc" data-context="inset 的顺序是左、上、右、下"/>
+                <inset-panel inset="10 20 30 40" background-color="black" height="100">
+                    <panel background-color="yellow">
+
+                    </panel>
+                </inset-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

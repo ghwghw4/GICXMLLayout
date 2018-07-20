@@ -1,0 +1,39 @@
+<page title="background-panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="40" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white" inset-behavior="2">
+        <inset-panel inset="64 15 15 15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="背景布局1"/>
+                <background-panel height="42" space-before="20">
+                    <background>
+                        <gradient-view colors="FFA218 0 FF3F0A 1" corner-radius="21">
+                        </gradient-view>
+                    </background>
+                    <dock-panel>
+                        <lable text="背景布局" font-size="16" font-color="white" />
+                    </dock-panel>
+                </background-panel>
+                <template-ref t-name="desc" data-context="背景布局2-以图片作为背景"/>
+                <background-panel space-before="20" height="100">
+                    <background>
+                        <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                    </background>
+                    <dock-panel>
+                        <lable text="背景布局2 - 前景1" font-size="16" font-color="white" />
+                    </dock-panel>
+                </background-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

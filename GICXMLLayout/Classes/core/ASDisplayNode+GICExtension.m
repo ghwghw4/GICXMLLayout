@@ -123,13 +123,13 @@
              @"alpha":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setAlpha:[value floatValue]];
              }],
-             @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ASDisplayNode *node = (ASDisplayNode *)target;
-                 node.cornerRadius = [value floatValue];
-             }],
              @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
                  [target gic_event_addEvent:e];
+             }],
+             @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 node.cornerRadius = [value floatValue];
              }],
              @"shadow-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;

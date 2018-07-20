@@ -48,6 +48,7 @@
 #import "GICDockPanel.h"
 #import "GICInsetPanel.h"
 #import "GICPanel.h"
+#import "GICRatioPanel.h"
 #import "GICStackPanel.h"
 #import "GICGradientColorsConverter.h"
 #import "GICGradientView.h"

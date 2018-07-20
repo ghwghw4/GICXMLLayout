@@ -17,9 +17,10 @@
                    @{@"name":@"panel(绝对布局)",@"pagePath":@"Panel"},
                    @{@"name":@"stack-panel(flex 布局)",@"pagePath":@"StackPanel"},
                    @{@"name":@"stack-panel 动态演示",@"pagePath":@"StackPanel2"},
-                   @{@"name":@"inset-panel(padding 布局)",@"pagePath":@"Layout"},
-                   @{@"name":@"dock-panel(停靠 布局)",@"pagePath":@"Layout"},
-                   @{@"name":@"background-panel(背景 布局)",@"pagePath":@"Layout"},
+                   @{@"name":@"inset-panel(padding 布局)",@"pagePath":@"InsetPanel"},
+                   @{@"name":@"dock-panel(停靠 布局)",@"pagePath":@"DockPanel"},
+                   @{@"name":@"background-panel(背景 布局)",@"pagePath":@"BackgroundPanel"},
+                   @{@"name":@"ratio-panel(比例布局)",@"pagePath":@"RatioPanel"},
                    ];
     return self;
 }

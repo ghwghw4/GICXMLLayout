@@ -1,0 +1,43 @@
+
+<page title="ratio-panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="40" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="比例布局 宽高比4：3"/>
+                <ratio-panel space-before="20" ratio="0.75">
+                   <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                </ratio-panel>
+
+                <template-ref t-name="desc" data-context="比例布局 宽高 16:9"/>
+                <ratio-panel space-before="20" ratio="0.5625">
+                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                </ratio-panel>
+
+                <template-ref t-name="desc" data-context="比例布局 宽高 2:1,并且限定宽度200"/>
+                <ratio-panel space-before="20" ratio="0.5" width="200">
+                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                </ratio-panel>
+
+                <!--由于stack-panel在布局的时候默认会将子元素的宽度撑满，因此比例布局要是限定高度，那么就不能直接在stack-panel中作为直接子元素布局，而是应该再嵌套一个panel来布局-->
+                <template-ref t-name="desc" data-context="比例布局 宽高 2:1,并且限定高度100"/>
+               <panel>
+                   <ratio-panel space-before="20" ratio="0.5" height="100">
+                       <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                   </ratio-panel>
+               </panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

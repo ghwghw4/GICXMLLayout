@@ -32,10 +32,10 @@
 #import "GICBackgroundPanel.h"
 #import "GICBehaviors.h"
 #import "GICAnimations.h"
-
 #import "GICInpute.h"
 #import "GICInputeView.h"
 #import "GICAttributeAnimation.h"
+#import "GICRatioPanel.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -50,6 +50,7 @@
     [GICElementsCache registElement:[GICInsetPanel class]];
     [GICElementsCache registElement:[GICDockPanel class]];
     [GICElementsCache registElement:[GICBackgroundPanel class]];
+    [GICElementsCache registElement:[GICRatioPanel class]];
     
     // UI元素
     [GICElementsCache registElement:[GICGradientView class]];

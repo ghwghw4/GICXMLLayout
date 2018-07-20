@@ -62,9 +62,14 @@
     }else{
         xmlDocString = t.xmlDocString;
     }
-    
+
+    //合并属性
     GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];
     for(GDataXMLNode *node in selfElement.rootElement.attributes){
+        GDataXMLNode *exitNode = [xmlDoc.rootElement attributeForName:node.name];
+        if(exitNode){
+            [xmlDoc.rootElement removeChild:exitNode];
+        }
         [xmlDoc.rootElement addAttribute:node];
     }
     childElement = [GICXMLLayout createElement:[xmlDoc rootElement] withSuperElement:target];

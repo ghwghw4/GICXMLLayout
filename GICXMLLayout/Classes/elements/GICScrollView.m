@@ -8,6 +8,7 @@
 #import "GICScrollView.h"
 #import "GICPanel.h"
 #import "GICBoolConverter.h"
+#import "GICNumberConverter.h"
 
 @implementation GICScrollView
 +(NSString *)gic_elementName{
@@ -17,10 +18,14 @@
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return @{
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [[(GICScrollView *)target view] setShowsVerticalScrollIndicator:[value boolValue]];
+                 [(GICScrollView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
+                 }];
              }],
              @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [[(GICScrollView *)target view] setShowsHorizontalScrollIndicator:[value boolValue]];
+                 [(GICScrollView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
+                 }];
              }],
              };;
 }
@@ -30,10 +35,6 @@
     self.automaticallyManagesContentSize = YES;
     return self;
 }
-
-//-(void)layout{
-//    [super layout];
-//}
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {

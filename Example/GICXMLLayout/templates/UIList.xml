@@ -1,12 +1,46 @@
 <page title="支持的UI元素" data-context="UIListPageViewModel">
-    <list background-color="white" separator-style="1">
-        <for data-path="listDatas">
-            <list-item selection-style="2" event-item-select="onSelect:">
-                <inset-panel background-color="white" inset="15">
-                    <lable text="{{ name }}" font-size="15"></lable>
-                </inset-panel>
-            </list-item>
-        </for>
-    </list>
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="40" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--lable-->
+                <template-ref t-name="desc" data-context="lable"/>
+                <lable text="我是lable,居中显示" font-color="yellow" font-size="20" text-align="1"/>
+                <lable text="我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。"  lines="2" font-color="red" font-size="20" text-align="1" space-before="20"/>
+                <lable font-color="yellow" font-size="20">
+                    <s text="富文本1 "/>
+                    <img img-name="location"/>
+                    <s text=" 富文本2" font-size="10" font-color="gray"/>
+                </lable>
+                <!--input-->
+                <stack-panel data-context="InputViewModel">
+                    <template-ref t-name="desc" data-context="input"/>
+                    <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
+                    </input>
+                    <lable text="{{ exp=name,mode=1}}"/>
+
+
+                    <template-ref t-name="desc" data-context="input-view"/>
+                    <input-view font-color="yellow" font-size="16" border-color="black" border-width="0.5" text="你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，" placehold="请输入用户名" height="100">
+                    </input-view>
+                </stack-panel>
+                <!--image-->
+                <template-ref t-name="desc" data-context="image"/>
+                <image/>
+
+
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
 </page>
 

@@ -9,13 +9,29 @@
 #import "GICAppDelegate.h"
 #import "GICXMLLayout.h"
 #import "SwitchButton.h"
+#import "GICNumberConverter.h"
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 @implementation GICAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // 注册gic类库默认所有元素
     [GICXMLLayout regiterAllElements];
+    // 注册自定义元素
     [GICElementsCache registElement:[SwitchButton class]];
+    
+    //添加扩展属性
+    // 对scroll-view注入扩展属性
+    [GICElementsCache injectAttributes:@{ @"inset-behavior":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+        if (@available(iOS 11.0, *)) {
+            // 考虑到解析的时候有可能是非UI线程解析的，这里使用GCD在主线程上访问view
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [(UIScrollView *)((ASDisplayNode *)target).view setContentInsetAdjustmentBehavior:[value integerValue]];
+            });
+        }
+    }]} forElementName:@"scroll-view"];
+
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -23,7 +39,6 @@
     
     
     // Override point for customization after application launch.
-//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
     [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
         UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];

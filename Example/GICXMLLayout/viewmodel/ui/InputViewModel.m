@@ -11,7 +11,7 @@
 @implementation InputViewModel
 -(id)init{
     self=[super init];
-    _name=@"22";
+    _name=@"双向绑定，试着输入看看";
     return self;
 }
 @end

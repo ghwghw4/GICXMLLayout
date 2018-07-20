@@ -1,0 +1,30 @@
+<page title="panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white" inset-behavior="2">
+        <inset-panel inset="64 15 15 15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="panel 是绝对布局，类似UIView"/>
+
+                <panel background-color="black" height="100">
+                    <panel size="70" position="10" background-color="yellow">
+                        <panel size="30" position="10" background-color="red">
+
+                        </panel>
+                    </panel>
+                </panel>
+
+                <template-ref t-name="desc" data-context="如果子元素没有设置position和size，那么默认撑满父元素（除lable）"/>
+                <panel background-color="black" height="100">
+                    <panel background-color="red">
+
+                    </panel>
+                </panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

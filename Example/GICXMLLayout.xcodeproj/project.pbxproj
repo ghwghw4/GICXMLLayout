@@ -16,9 +16,14 @@
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311A9F20FC9D65000D0986 /* Inpute.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A9E20FC9D65000D0986 /* Inpute.xml */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
+		37311AB821001D79000D0986 /* Panel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311AB721001D79000D0986 /* Panel.xml */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		3767545D20F8E0690019A521 /* ViewSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767545C20F8E0690019A521 /* ViewSample.xml */; };
+		37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F505210024FE00AC1778 /* InsetPanel.xml */; };
+		37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5072100268E00AC1778 /* DockPanel.xml */; };
+		37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F50D2100947400AC1778 /* BackgroundPanel.xml */; };
+		37A1F51E2101770B00AC1778 /* RatioPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F51D2101770B00AC1778 /* RatioPanel.xml */; };
 		37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFD620F31167006AADC2 /* LayoutSample.xml */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
@@ -73,11 +78,16 @@
 		37311A9E20FC9D65000D0986 /* Inpute.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Inpute.xml; sourceTree = "<group>"; };
 		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
 		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
+		37311AB721001D79000D0986 /* Panel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Panel.xml; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
 		3767542A20F22B5D0019A521 /* IndexPage.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IndexPage.xml; sourceTree = "<group>"; };
 		3767545C20F8E0690019A521 /* ViewSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ViewSample.xml; sourceTree = "<group>"; };
+		37A1F505210024FE00AC1778 /* InsetPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = InsetPanel.xml; sourceTree = "<group>"; };
+		37A1F5072100268E00AC1778 /* DockPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DockPanel.xml; sourceTree = "<group>"; };
+		37A1F50D2100947400AC1778 /* BackgroundPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BackgroundPanel.xml; sourceTree = "<group>"; };
+		37A1F51D2101770B00AC1778 /* RatioPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RatioPanel.xml; sourceTree = "<group>"; };
 		37A7AFD620F31167006AADC2 /* LayoutSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LayoutSample.xml; sourceTree = "<group>"; };
 		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
 		37A7AFD920F311B2006AADC2 /* UtilsHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsHelp.m; sourceTree = "<group>"; };
@@ -165,6 +175,11 @@
 			children = (
 				37311A8A20FC364D000D0986 /* StackPanel.xml */,
 				37311A8E20FC3EB8000D0986 /* StackPanel2.xml */,
+				37311AB721001D79000D0986 /* Panel.xml */,
+				37A1F505210024FE00AC1778 /* InsetPanel.xml */,
+				37A1F5072100268E00AC1778 /* DockPanel.xml */,
+				37A1F50D2100947400AC1778 /* BackgroundPanel.xml */,
+				37A1F51D2101770B00AC1778 /* RatioPanel.xml */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -443,15 +458,20 @@
 			files = (
 				37C8069820F34776002EEF55 /* UIList.xml in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				37A1F51E2101770B00AC1778 /* RatioPanel.xml in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */,
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
+				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
 				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
 				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
 				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
+				37311AB821001D79000D0986 /* Panel.xml in Resources */,
+				37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */,
 				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
 				37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */,
 				3767545D20F8E0690019A521 /* ViewSample.xml in Resources */,

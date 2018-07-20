@@ -1,0 +1,31 @@
+<page title="dock-panel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="40" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white" inset-behavior="2">
+        <inset-panel inset="64 15 15 15">
+            <stack-panel>
+                <dock-panel background-color="black" height="200" space-before="20">
+                    <template-ref t-name="p-child" data-context="左上" dock-horizal="0" dock-vertical="0"/>
+                    <template-ref t-name="p-child" data-context="中上" dock-horizal="1" dock-vertical="0"/>
+                    <template-ref t-name="p-child" data-context="右上" dock-horizal="2" dock-vertical="0"/>
+                    <template-ref t-name="p-child" data-context="中左" dock-horizal="0" dock-vertical="1"/>
+                    <template-ref t-name="p-child" data-context="居中"/>
+                    <template-ref t-name="p-child" data-context="中右" dock-horizal="2" dock-vertical="1"/>
+                    <template-ref t-name="p-child" data-context="下左" dock-horizal="0" dock-vertical="2"/>
+                    <template-ref t-name="p-child" data-context="下中" dock-horizal="1" dock-vertical="2"/>
+                    <template-ref t-name="p-child" data-context="下右" dock-horizal="2" dock-vertical="2"/>
+                </dock-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

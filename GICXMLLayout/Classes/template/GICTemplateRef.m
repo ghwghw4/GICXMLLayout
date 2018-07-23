@@ -66,9 +66,12 @@
     //合并属性
     GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];
     for(GDataXMLNode *node in selfElement.rootElement.attributes){
-        GDataXMLNode *exitNode = [xmlDoc.rootElement attributeForName:node.name];
-        if(exitNode){
-            [xmlDoc.rootElement removeChild:exitNode];
+        NSString *nodeName = node.name;
+        if(![nodeName isEqualToString:@"t-name"]){//t-name 属性允许重复
+            GDataXMLNode *exitNode = [xmlDoc.rootElement attributeForName:node.name];
+            if(exitNode){
+                [xmlDoc.rootElement removeChild:exitNode];
+            }
         }
         [xmlDoc.rootElement addAttribute:node];
     }

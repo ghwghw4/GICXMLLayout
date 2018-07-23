@@ -13,7 +13,7 @@
                             <s>200米</s>
                         </lable>
                         <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
-                        <template-slot slot-name = "content" />
+                        <template-slot slot-name = "content" space-before="10"/>
                         
                         <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
                             <stack-panel  is-horizon="1" align-items="2">

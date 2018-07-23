@@ -63,7 +63,7 @@
         xmlDocString = t.xmlDocString;
     }
 
-    //合并属性
+    //合并template-ref的属性，template-ref 中定义的属性优先级高于template中定义的属性
     GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:xmlDocString options:0 error:nil];
     for(GDataXMLNode *node in selfElement.rootElement.attributes){
         NSString *nodeName = node.name;
@@ -85,6 +85,20 @@
             NSString *slotName = [[child attributeForName:@"slot-name"] stringValue];
             if([slotsXmlDocMap.allKeys containsObject:slotName]){
                 [tempConvertSlotMap setValue:child.XMLString forKey:slotName];
+                // 合并template-slot 的属性。template-ref 中定义的属性优先级高于template-slot中定义的属性。
+                NSArray *attributes = child.attributes;
+                if(attributes.count>1){
+                    GDataXMLDocument *xmlDoc = [[GDataXMLDocument alloc] initWithXMLString:[slotsXmlDocMap objectForKey:slotName] options:0 error:nil];
+                    for(GDataXMLNode *att in attributes){
+                        if(![att.name isEqualToString:@"slot-name"]){
+                            GDataXMLNode *exitNode = [xmlDoc.rootElement attributeForName:att.name];
+                            if(!exitNode){
+                                [xmlDoc.rootElement addChild:att];
+                            }
+                        }
+                    }
+                    [slotsXmlDocMap setValue:[xmlDoc.rootElement XMLString] forKey:slotName];
+                }
             }
         }else{
             [self findSlotElement:child];

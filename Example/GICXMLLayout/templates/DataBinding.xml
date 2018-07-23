@@ -1,22 +1,13 @@
-<page title="DataBinding" data-context="DataBindingViewModel">
-    <behaviors>
-        <bev-hidekeybord/>
-    </behaviors>
+<page title="数据绑定" data-context="DataBindingViewModel">
     <templates>
         <template t-name="desc">
             <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
-        </template>
-        
-        <template t-name="p-child">
-            <dock-panel size="40" background-color="yellow">
-                <lable text="{{}}" font-color="black"/>
-            </dock-panel>
         </template>
     </templates>
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="直接字符串作为数据源作为绑定"/>
+                <template-ref t-name="desc" data-context="字符串作为数据源绑定"/>
                 <lable text="{{}}" font-color="black" data-context="我是直接绑定字符串"/>
                 
                 <template-ref t-name="desc" data-context="直接json字符串作为数据源绑定"/>

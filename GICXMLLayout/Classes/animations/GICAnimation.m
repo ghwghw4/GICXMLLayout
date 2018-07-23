@@ -19,10 +19,7 @@
              }],
              @"repeat":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  NSInteger count = [value integerValue];
-                 if(count==-1){
-                     count = HUGE_VALF;
-                 }
-                 ((GICAnimation *)target)->_repeatCount = count;
+                 ((GICAnimation *)target)->_repeatCount = (count==-1?HUGE_VALF:count);
              }],
              @"autoreverses":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_autoreverses = [value boolValue];
@@ -68,6 +65,18 @@
 }
 
 -(POPPropertyAnimation *)createAnimation{
+    POPBasicAnimation *anBasic = [POPBasicAnimation linearAnimation];
+    anBasic.property = [self createAnimatableProperty];    //自定义属性
+    anBasic.fromValue = @(0);
+    anBasic.toValue = @(100);
+    return anBasic;
+}
+
+-(POPAnimatableProperty *)createAnimatableProperty{
     return nil;
+}
+
+-(BOOL)gic_parseOnlyOneSubElement{
+    return YES;
 }
 @end

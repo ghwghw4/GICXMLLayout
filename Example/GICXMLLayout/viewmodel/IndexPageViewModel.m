@@ -19,9 +19,9 @@
                        @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
                        @{@"name":@"list",@"pagePath":@"ListSample"},
                        @{@"name":@"数据绑定",@"pagePath":@"DataBinding"},
-                       @{@"name":@"模板",@"pagePath":@""},
-                       @{@"name":@"事件",@"pagePath":@""},
-                       @{@"name":@"动画",@"pagePath":@""},
+                       @{@"name":@"模板",@"pagePath":@"Template"},
+                       @{@"name":@"事件",@"pagePath":@"Event"},
+                       @{@"name":@"动画",@"pagePath":@"Animation"},
                        ];
     return self;
 }

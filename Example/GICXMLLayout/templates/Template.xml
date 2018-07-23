@@ -1,0 +1,46 @@
+<page title="模板" data-context="DataBindingViewModel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+        
+        <template t-name="t2">
+            <stack-panel space-after="5" space-before="5">
+                <lable text="{{}}" font-size="20" font-color="red"/>
+            </stack-panel>
+        </template>
+
+        <template t-name="t3">
+            <stack-panel space-after="5" space-before="5">
+                <lable text="{{}}" font-size="20" font-color="red"/>
+                <template-slot slot-name = "content" space-before="10"/>
+            </stack-panel>
+        </template>
+
+        <template t-name="t4">
+            <template-ref t-name="t3">
+                <lable text="我是slot2,模板嵌套" font-size="14" slot-name = "content" font-color="red"/>
+            </template-ref>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="我是模板1"/>
+                <template-ref t-name="t2" data-context="我是模板2"/>
+                <template-ref t-name="t3" data-context="我是模板3,具有模板替换功能">
+                    <lable text="我是slot" font-size="14" slot-name = "content" font-color="red"/>
+                </template-ref>
+                <template-ref t-name="t3" data-context="我是模板3,具有模板替换功能">
+                    <stack-panel  slot-name = "content">
+                        <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
+                        <lable text="我是slot" font-size="14" font-color="red"/>
+                    </stack-panel>
+                </template-ref>
+
+                <template-ref t-name="t4" data-context="我是嵌套模板"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

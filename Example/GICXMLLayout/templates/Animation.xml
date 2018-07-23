@@ -1,0 +1,82 @@
+<page title="动画" data-context="DataBindingViewModel">
+    <templates>
+        <template t-name="title">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="title" data-context="属性动画，理论上所有的属性都支持动画"/>
+                <template-ref t-name="desc" data-context="自动开始动画"/>
+                <dock-panel height="50" background-color="black">
+                    <animations>
+                        <anim-attribute attribute-name="alpha" on="1" from="1" to="0.5" autoreverses="1" duration="1" repeat="-1"/>
+                    </animations>
+                </dock-panel>
+                <template-ref t-name="desc" data-context="单击开始动画"/>
+                <dock-panel height="50">
+                    <animations>
+                        <anim-attribute attribute-name="background-color" on="2" from="red" to="yellow" autoreverses="1" duration="1" repeat="-1"/>
+                    </animations>
+                    <lable text="点我启动动画"/>
+                </dock-panel>
+
+                <template-ref t-name="title" data-context="移动动画"/>
+                <dock-panel height="50" background-color="black">
+                    <animations>
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                            <anim-move  from="0" to="40 30" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
+
+                <template-ref t-name="title" data-context="旋转动画" space-before="30"/>
+                <dock-panel size="50" background-color="black" >
+                    <animations>
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                            <anim-rotate from="0" to="180" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
+
+                <template-ref t-name="title" data-context="缩放动画" space-before="30"/>
+                <dock-panel size="50" background-color="black" >
+                    <animations>
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                            <anim-scale from="1" to="1.5" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
+
+                <template-ref t-name="title" data-context="综合形变动画" space-before="30"/>
+                <dock-panel size="50" background-color="black" >
+                    <animations>
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                            <anim-scale from="1" to="1.5" />
+                            <anim-move  from="0" to="100 30" />
+                            <anim-rotate from="0" to="180" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
+
+                <template-ref t-name="title" data-context="综合动画" space-before="30"/>
+                <dock-panel size="50" background-color="black" >
+                    <animations>
+                        <anim-attribute attribute-name="alpha" on="1" from="1" to="0.5" autoreverses="1" duration="1" repeat="-1"/>
+                        <anim-attribute attribute-name="background-color" on="1" from="red" to="yellow" autoreverses="1" duration="1" repeat="-1"/>
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                            <anim-scale from="1" to="1.5" />
+                            <anim-move  from="0" to="100 30" />
+                            <anim-rotate from="0" to="180" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

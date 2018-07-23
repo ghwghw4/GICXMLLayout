@@ -31,5 +31,5 @@ typedef enum {
 
  @return <#return value description#>
  */
--(POPPropertyAnimation *)createAnimation;
+-(POPAnimatableProperty *)createAnimatableProperty;
 @end

@@ -39,6 +39,9 @@
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
 		37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */; };
+		37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB62105B7E2000F0D9A /* Template.xml */; };
+		37ED8BB92105BB60000F0D9A /* Event.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB82105BB60000F0D9A /* Event.xml */; };
+		37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BBA2105BC93000F0D9A /* Animation.xml */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -114,6 +117,9 @@
 		37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample4ViewModel.m; sourceTree = "<group>"; };
 		37ED8BB32105B1DB000F0D9A /* TimestampConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimestampConverter.h; sourceTree = "<group>"; };
 		37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimestampConverter.m; sourceTree = "<group>"; };
+		37ED8BB62105B7E2000F0D9A /* Template.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Template.xml; sourceTree = "<group>"; };
+		37ED8BB82105BB60000F0D9A /* Event.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Event.xml; sourceTree = "<group>"; };
+		37ED8BBA2105BC93000F0D9A /* Animation.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Animation.xml; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -249,6 +255,9 @@
 				37C806A420F357F4002EEF55 /* ListSample.xml */,
 				37311A8420FC34F9000D0986 /* Layout.xml */,
 				37A1F5252105802100AC1778 /* DataBinding.xml */,
+				37ED8BB62105B7E2000F0D9A /* Template.xml */,
+				37ED8BB82105BB60000F0D9A /* Event.xml */,
+				37ED8BBA2105BC93000F0D9A /* Animation.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -482,10 +491,13 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */,
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
+				37ED8BB92105BB60000F0D9A /* Event.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A1F5262105802100AC1778 /* DataBinding.xml in Resources */,
+				37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
 				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
+				37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */,
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
 				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,

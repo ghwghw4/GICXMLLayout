@@ -36,6 +36,7 @@
 #import "GICInputeView.h"
 #import "GICAttributeAnimation.h"
 #import "GICRatioPanel.h"
+#import "GICTransformAnimations.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -74,7 +75,7 @@
     //动画
     [GICElementsCache registElement:[GICAnimations class]];
     [GICElementsCache registElement:[GICAttributeAnimation class]];
-    
+    [GICElementsCache registElement:[GICTransformAnimations class]];
     
     //        int numberOfClasses = objc_getClassList(NULL, 0);
     //        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);

@@ -1,0 +1,15 @@
+<page title="事件" data-context="DataBindingViewModel">
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="目前事件只支持tap事件，其他的事件请自定义"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

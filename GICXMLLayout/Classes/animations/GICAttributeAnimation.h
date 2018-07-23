@@ -8,11 +8,13 @@
 #import "GICAnimation.h"
 
 @interface GICAttributeAnimation : GICAnimation{
-    id fromValue;
-    id toValue;
+    NSString * fromString;
+    NSString * toString;
     GICAttributeValueConverter *valueConverter;
 }
 @property (nonatomic,readonly)NSString *atttibuteName;
-@property (nonatomic,readonly)NSString *fromString;
-@property (nonatomic,readonly)NSString *toString;
+@property (nonatomic,readonly)id fromValue;
+@property (nonatomic,readonly)id toValue;
+
+-(POPAnimatableProperty *)createAnimatableProperty;
 @end

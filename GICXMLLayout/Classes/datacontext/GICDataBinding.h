@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GICAttributeValueConverter.h"
+#import "GICDataBingdingValueConverter.h"
 
 typedef enum {
     GICBingdingMode_Once,//只会绑定一次，数据的改变不会再次更新
@@ -21,11 +22,13 @@ typedef void (^GICDataBingdingValueUpdateBlock)(id value);
  */
 @interface GICDataBinding : NSObject
 @property (nonatomic,assign)GICBingdingMode bingdingMode;// 默认GICBingdingMode_Once
-@property (nonatomic,weak,readonly)id dataSource;
+@property (nonatomic,weak,readonly)id dataSource;//数据源
 @property (nonatomic,weak)id target; // 绑定的目标对象
-@property (nonatomic,weak)GICAttributeValueConverter *valueConverter;
+@property (nonatomic,weak)GICAttributeValueConverter *attributeValueConverter;// 属性转换器
 @property (nonatomic,strong)NSString *expression;// 绑定的js 表达式
-@property (nonatomic,strong)NSString *attributeName;//
+@property (nonatomic,strong)NSString *attributeName;//绑定的属性名称
+
+@property (nonatomic,strong)GICDataBingdingValueConverter *valueConverter;//转换器
 @property (nonatomic,assign,readonly)BOOL isInitBinding;
 
 

@@ -19,6 +19,6 @@
 @interface DataBindingViewModel : NSObject{
     dispatch_source_t timer;
 }
-@property (nonatomic,assign)NSInteger count;
+@property (nonatomic,assign)double timeStamp;
 @property (nonatomic,assign)BOOL isOn;
 @end

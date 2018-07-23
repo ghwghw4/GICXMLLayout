@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICValueConverter.h"
 
 typedef void (^GICPropertySetter)(NSObject *target,id value);
-@interface GICAttributeValueConverter : NSObject
+@interface GICAttributeValueConverter : GICValueConverter
 @property (nonatomic,copy)GICPropertySetter propertySetter;
 //-(id)initWithName:(NSString *)name;
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter;

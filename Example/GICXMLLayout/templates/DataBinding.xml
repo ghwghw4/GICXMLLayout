@@ -40,7 +40,7 @@
 
 
                 <template-ref t-name="desc" data-context="单向绑定"/>
-                <lable text="{{ exp='count：'+count,mode=1,cvt= }}" font-color="black" />
+                <lable text="{{ exp='timeStamp：'+timeStamp,mode=1 }}" font-color="black" />
 
                 <template-ref t-name="desc" data-context="双向绑定"/>
                 <stack-panel is-horizon="1" align-items="2" space="10">
@@ -48,7 +48,7 @@
                 </stack-panel>
 
                 <template-ref t-name="desc" data-context="converter"/>
-
+                <lable text="{{ exp=timeStamp,mode=1,cvt=TimestampConverter }}" font-color="black" />
 
             </stack-panel>
         </inset-panel>

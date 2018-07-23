@@ -41,6 +41,17 @@
                 b.bingdingMode = GICBingdingMode_TowWay;
             }
         }
+        
+        NSString *converterClassString = [self getBindingPartString:regularString key:@"cvt"];
+        if(converterClassString){
+            Class converterClass = NSClassFromString(converterClassString);
+            if(converterClass){
+                id converter = [converterClass new];
+                if([converter isKindOfClass:[GICDataBingdingValueConverter class]]){
+                     b.valueConverter = converter;
+                }
+            }
+        }
     }else{
          b.expression = expString;
     }
@@ -63,7 +74,7 @@
         context[@"$original_data"] = self.dataSource;
         jsCode = @"$original_data";
         JSValue *value = [context evaluateScript:jsCode];
-        self.valueConverter.propertySetter(self.target,[value toString]);
+        self.attributeValueConverter.propertySetter(self.target,[value toString]);
         return;
     }
     // 将数据源解析成纯dictionary
@@ -75,8 +86,14 @@
         }
     }
     JSValue *jsvalue = [context evaluateScript:jsCode];
-    id value = [jsvalue isUndefined]?@"":[self.valueConverter convert:[jsvalue toString]];
-    self.valueConverter.propertySetter(self.target,value);
+    NSString *valueString = [jsvalue isUndefined]?@"":[jsvalue toString];
+    id value = nil;
+    if(self.valueConverter){
+        value = [self.valueConverter convert:valueString];
+    }else{
+        value = [self.attributeValueConverter convert:valueString];
+    }
+    self.attributeValueConverter.propertySetter(self.target,value);
     if(self.valueUpdate){
         self.valueUpdate(value);
     }

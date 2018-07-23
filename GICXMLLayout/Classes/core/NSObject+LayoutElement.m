@@ -125,7 +125,7 @@
             if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
                 NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
                 GICDataBinding *binding = [GICDataBinding createBindingFromExpression:expression];
-                binding.valueConverter = converter;
+                binding.attributeValueConverter = converter;
                 binding.target = self;
                 binding.attributeName = key;
                 [self gic_addBinding:binding];

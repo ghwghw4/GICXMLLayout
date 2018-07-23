@@ -24,10 +24,6 @@
     return self;
 }
 
--(id)convert:(NSString *)stringValue{
-    return nil;
-}
-
 //-(void)setProperty:(UIView *)view withXMLStringValue:(NSString *)xmlStringValue{
 //    
 //}

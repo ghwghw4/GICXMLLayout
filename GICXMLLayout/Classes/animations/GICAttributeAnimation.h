@@ -10,7 +10,7 @@
 @interface GICAttributeAnimation : GICAnimation{
     id fromValue;
     id toValue;
-    GICValueConverter *valueConverter;
+    GICAttributeValueConverter *valueConverter;
 }
 @property (nonatomic,readonly)NSString *atttibuteName;
 @property (nonatomic,readonly)NSString *fromString;

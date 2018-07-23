@@ -31,7 +31,7 @@
     return nil;
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  target.gic_ExtensionProperties.name = value;
@@ -120,7 +120,7 @@
     NSDictionary *ps = [GICElementsCache classAttributs:[self class]];
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];
-        GICValueConverter *converter = [ps objectForKey:key];
+        GICAttributeValueConverter *converter = [ps objectForKey:key];
         if(converter){
             if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
                 NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];
@@ -154,7 +154,7 @@
 }
 
 
--(NSObject *)gic_getSuperElement{
+-(id)gic_getSuperElement{
     return self.gic_ExtensionProperties.superElement;
 }
 
@@ -167,5 +167,21 @@
 
 -(BOOL)gic_isAutoCacheElement{
     return YES;
+}
+
+-(id)gic_findSubElementFromName:(NSString *)name{
+    id findEl = nil;
+    for(NSObject *obj in [self gic_subElements]){
+        if([obj.gic_ExtensionProperties.name isEqualToString:name]){
+            findEl = obj;
+        }
+    }
+    
+    if(findEl==nil){
+        for(NSObject *obj in [self gic_subElements]){
+            findEl = [obj gic_findSubElementFromName:name];
+        }
+    }
+    return findEl;
 }
 @end

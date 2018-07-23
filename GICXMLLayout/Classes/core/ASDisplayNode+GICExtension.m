@@ -23,7 +23,7 @@
 #import "GICDimensionConverter.h"
 
 @implementation ASDisplayNode (GICExtension)
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setBackgroundColor:value];

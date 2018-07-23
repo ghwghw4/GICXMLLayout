@@ -9,8 +9,8 @@
 #import "UIColor+Extension.h"
 
 @implementation GICColorConverter
--(UIColor *)convert:(NSString *)xmlStringValue{
-    return [GICUtils colorConverter:xmlStringValue];
+-(UIColor *)convert:(NSString *)stringValue{
+    return [GICUtils colorConverter:stringValue];
 }
 
 -(UIColor *)convertAnimationValue:(UIColor *)from to:(UIColor *)to per:(CGFloat)per{

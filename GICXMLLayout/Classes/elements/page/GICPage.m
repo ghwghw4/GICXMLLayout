@@ -23,7 +23,7 @@
     return @"page";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];

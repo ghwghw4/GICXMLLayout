@@ -15,7 +15,7 @@
     return @"scroll-view";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICScrollView *)target gic_safeView:^(UIView *view) {

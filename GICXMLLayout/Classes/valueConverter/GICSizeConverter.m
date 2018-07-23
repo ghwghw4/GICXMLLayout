@@ -8,8 +8,8 @@
 #import "GICSizeConverter.h"
 
 @implementation GICSizeConverter
--(NSValue *)convert:(NSString *)xmlStringValue{
-    NSArray *array = [xmlStringValue componentsSeparatedByString:@" "];
+-(NSValue *)convert:(NSString *)stringValue{
+    NSArray *array = [stringValue componentsSeparatedByString:@" "];
     CGSize size = CGSizeZero;
     if (array.count == 2){
         size = CGSizeMake([GICUtils numberConverter:array[0]],[GICUtils numberConverter:array[1]]);

@@ -8,13 +8,13 @@
 #import "GICBoolConverter.h"
 
 @implementation GICBoolConverter
--(NSNumber *)convert:(NSString *)xmlStringValue{
-    if([xmlStringValue isEqualToString:@"true"]){
+-(NSNumber *)convert:(NSString *)stringValue{
+    if([stringValue isEqualToString:@"true"]){
         return @(YES);
-    }else if ([xmlStringValue isEqualToString:@"false"]){
+    }else if ([stringValue isEqualToString:@"false"]){
         return @(NO);
     }
-    return @([GICUtils numberConverter:xmlStringValue]);
+    return @([GICUtils numberConverter:stringValue]);
 }
 
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per{

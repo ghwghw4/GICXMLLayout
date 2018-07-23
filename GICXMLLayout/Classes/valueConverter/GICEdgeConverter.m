@@ -8,8 +8,8 @@
 #import "GICEdgeConverter.h"
 
 @implementation GICEdgeConverter
--(NSValue *)convert:(NSString *)xmlStringValue{
-    NSArray *array = [xmlStringValue componentsSeparatedByString:@" "];
+-(NSValue *)convert:(NSString *)stringValue{
+    NSArray *array = [stringValue componentsSeparatedByString:@" "];
     UIEdgeInsets edg;
     if(array.count == 4){
         edg = UIEdgeInsetsMake([GICUtils numberConverter:array[0]],

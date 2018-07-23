@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GICValueConverter.h"
+#import "GICAttributeValueConverter.h"
 
-@interface GICNumberConverter : GICValueConverter
--(NSNumber *)convert:(NSString *)xmlStringValue;
+@interface GICNumberConverter : GICAttributeValueConverter
+-(NSNumber *)convert:(NSString *)stringValue;
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;
 @end

@@ -14,7 +14,7 @@
 
 
 @implementation GICInpute
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICInpute *input = (GICInpute *)target;

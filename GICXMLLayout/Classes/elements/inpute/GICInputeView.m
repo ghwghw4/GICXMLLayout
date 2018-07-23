@@ -17,7 +17,7 @@
     return @"input-view";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICInputeView *input = (GICInputeView *)target;

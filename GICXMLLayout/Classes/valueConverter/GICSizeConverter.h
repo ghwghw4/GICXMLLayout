@@ -6,8 +6,8 @@
 //
 
 
-#import "GICValueConverter.h"
-@interface GICSizeConverter : GICValueConverter
--(NSValue *)convert:(NSString *)xmlStringValue;
+#import "GICAttributeValueConverter.h"
+@interface GICSizeConverter : GICAttributeValueConverter
+-(NSValue *)convert:(NSString *)stringValue;
 -(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per;
 @end

@@ -14,7 +14,7 @@
     return @"ratio-panel";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"ratio":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  CGFloat v = [value floatValue];

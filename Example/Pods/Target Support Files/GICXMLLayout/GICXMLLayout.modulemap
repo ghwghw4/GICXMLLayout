@@ -1,6 +1,0 @@
-framework module GICXMLLayout {
-  umbrella header "GICXMLLayout-umbrella.h"
-
-  export *
-  module * { export * }
-}

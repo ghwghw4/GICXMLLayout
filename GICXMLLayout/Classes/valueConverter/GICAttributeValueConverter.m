@@ -5,9 +5,9 @@
 //  Created by 龚海伟 on 2018/7/2.
 //
 
-#import "GICValueConverter.h"
+#import "GICAttributeValueConverter.h"
 
-@implementation GICValueConverter
+@implementation GICAttributeValueConverter
 //-(id)initWithName:(NSString *)name{
 //    self = [super init];
 //    _name = name;
@@ -24,7 +24,7 @@
     return self;
 }
 
--(id)convert:(NSString *)xmlStringValue{
+-(id)convert:(NSString *)stringValue{
     return nil;
 }
 

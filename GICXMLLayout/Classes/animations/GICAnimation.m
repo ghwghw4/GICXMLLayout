@@ -12,7 +12,7 @@
 #import "NSObject+GICEvent.h"
 
 @implementation GICAnimation
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"duration":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_duration = [value floatValue];

@@ -9,8 +9,8 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @implementation GICDataContextConverter
--(id)convert:(NSString *)xmlStringValue{
-    id obj = [NSJSONSerialization JSONObjectWithData:[xmlStringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+-(id)convert:(NSString *)stringValue{
+    id obj = [NSJSONSerialization JSONObjectWithData:[stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
     if(obj){
         return obj;
     }
@@ -22,10 +22,10 @@
 //    NSDictionary *dict =  [v toDictionary];
 //    NSLog(@"%@",dict);
     
-    Class class = NSClassFromString(xmlStringValue);
+    Class class = NSClassFromString(stringValue);
     if(class){
         return [class new];
     }
-    return xmlStringValue;
+    return stringValue;
 }
 @end

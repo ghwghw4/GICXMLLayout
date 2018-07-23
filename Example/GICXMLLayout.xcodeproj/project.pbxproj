@@ -14,16 +14,17 @@
 		37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8E20FC3EB8000D0986 /* StackPanel2.xml */; };
 		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
-		37311A9F20FC9D65000D0986 /* Inpute.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A9E20FC9D65000D0986 /* Inpute.xml */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
 		37311AB821001D79000D0986 /* Panel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311AB721001D79000D0986 /* Panel.xml */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
-		3767545D20F8E0690019A521 /* ViewSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767545C20F8E0690019A521 /* ViewSample.xml */; };
 		37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F505210024FE00AC1778 /* InsetPanel.xml */; };
 		37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5072100268E00AC1778 /* DockPanel.xml */; };
 		37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F50D2100947400AC1778 /* BackgroundPanel.xml */; };
 		37A1F51E2101770B00AC1778 /* RatioPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F51D2101770B00AC1778 /* RatioPanel.xml */; };
+		37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */; };
+		37A1F5262105802100AC1778 /* DataBinding.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5252105802100AC1778 /* DataBinding.xml */; };
+		37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F528210581EE00AC1778 /* DataBindingViewModel.m */; };
 		37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFD620F31167006AADC2 /* LayoutSample.xml */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
@@ -75,7 +76,6 @@
 		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
 		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
 		37311A9520FC4051000D0986 /* SwitchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchButton.m; sourceTree = "<group>"; };
-		37311A9E20FC9D65000D0986 /* Inpute.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Inpute.xml; sourceTree = "<group>"; };
 		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
 		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
 		37311AB721001D79000D0986 /* Panel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Panel.xml; sourceTree = "<group>"; };
@@ -83,11 +83,15 @@
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
 		3767542A20F22B5D0019A521 /* IndexPage.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IndexPage.xml; sourceTree = "<group>"; };
-		3767545C20F8E0690019A521 /* ViewSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ViewSample.xml; sourceTree = "<group>"; };
 		37A1F505210024FE00AC1778 /* InsetPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = InsetPanel.xml; sourceTree = "<group>"; };
 		37A1F5072100268E00AC1778 /* DockPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DockPanel.xml; sourceTree = "<group>"; };
 		37A1F50D2100947400AC1778 /* BackgroundPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BackgroundPanel.xml; sourceTree = "<group>"; };
 		37A1F51D2101770B00AC1778 /* RatioPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RatioPanel.xml; sourceTree = "<group>"; };
+		37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoHideKeybordBehavior.h; sourceTree = "<group>"; };
+		37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoHideKeybordBehavior.m; sourceTree = "<group>"; };
+		37A1F5252105802100AC1778 /* DataBinding.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataBinding.xml; sourceTree = "<group>"; };
+		37A1F527210581EE00AC1778 /* DataBindingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBindingViewModel.h; sourceTree = "<group>"; };
+		37A1F528210581EE00AC1778 /* DataBindingViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataBindingViewModel.m; sourceTree = "<group>"; };
 		37A7AFD620F31167006AADC2 /* LayoutSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LayoutSample.xml; sourceTree = "<group>"; };
 		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
 		37A7AFD920F311B2006AADC2 /* UtilsHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsHelp.m; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */,
 				37311A8620FC3533000D0986 /* LayoutViewModel.h */,
 				37311A8720FC3533000D0986 /* LayoutViewModel.m */,
+				37A1F527210581EE00AC1778 /* DataBindingViewModel.h */,
+				37A1F528210581EE00AC1778 /* DataBindingViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -233,24 +239,24 @@
 			isa = PBXGroup;
 			children = (
 				37311A8920FC3635000D0986 /* layout */,
-				3767545B20F8E0530019A521 /* uilist */,
 				37C806AD20F430A5002EEF55 /* list */,
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
 				37A7AFD620F31167006AADC2 /* LayoutSample.xml */,
 				37C8069720F34776002EEF55 /* UIList.xml */,
 				37C806A420F357F4002EEF55 /* ListSample.xml */,
 				37311A8420FC34F9000D0986 /* Layout.xml */,
+				37A1F5252105802100AC1778 /* DataBinding.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
 		};
-		3767545B20F8E0530019A521 /* uilist */ = {
+		37A1F521210576E800AC1778 /* behaviors */ = {
 			isa = PBXGroup;
 			children = (
-				3767545C20F8E0690019A521 /* ViewSample.xml */,
-				37311A9E20FC9D65000D0986 /* Inpute.xml */,
+				37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */,
+				37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */,
 			);
-			path = uilist;
+			path = behaviors;
 			sourceTree = "<group>";
 		};
 		37C806AD20F430A5002EEF55 /* list */ = {
@@ -312,6 +318,7 @@
 		6003F593195388D20070C39A /* Example for GICXMLLayout */ = {
 			isa = PBXGroup;
 			children = (
+				37A1F521210576E800AC1778 /* behaviors */,
 				37311A9320FC402D000D0986 /* customelements */,
 				3767542620F22B130019A521 /* templates */,
 				3767542520F22AFF0019A521 /* viewmodel */,
@@ -463,6 +470,7 @@
 				37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */,
 				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				37A1F5262105802100AC1778 /* DataBinding.xml in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
 				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
@@ -474,8 +482,6 @@
 				37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */,
 				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
 				37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */,
-				3767545D20F8E0690019A521 /* ViewSample.xml in Resources */,
-				37311A9F20FC9D65000D0986 /* Inpute.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +573,7 @@
 			files = (
 				37BA55FA20EDB276003DC99A /* TestClass.m in Sources */,
 				37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */,
+				37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */,
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
@@ -575,6 +582,7 @@
 				37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
+				37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,

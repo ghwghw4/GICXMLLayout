@@ -1,0 +1,57 @@
+<page title="DataBinding" data-context="DataBindingViewModel">
+    <behaviors>
+        <bev-hidekeybord/>
+    </behaviors>
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+        
+        <template t-name="p-child">
+            <dock-panel size="40" background-color="yellow">
+                <lable text="{{}}" font-color="black"/>
+            </dock-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="直接字符串作为数据源作为绑定"/>
+                <lable text="{{}}" font-color="black" data-context="我是直接绑定字符串"/>
+                
+                <template-ref t-name="desc" data-context="直接json字符串作为数据源绑定"/>
+                <stack-panel data-context='{"name":"海伟","age":"20"}'>
+                    <lable text="{{ '姓名：' + name }}" font-color="black" />
+                    <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
+                </stack-panel>
+
+                <template-ref t-name="desc" data-context="采用viewmodel作为数据源绑定"/>
+                <stack-panel data-context='DataBindingUserInfo'>
+                    <lable text="{{ '姓名：' + name }}" font-color="black" />
+                    <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
+                </stack-panel>
+
+                <template-ref t-name="desc" data-context="代码通过gic_datacontext绑定"/>
+                <lable text="点我去绑定" event-tap="clickToBinding:" font-size="20" font-color="red"/>
+                <stack-panel name="testBingding1">
+                    <lable text="{{ '姓名：' + name }}" font-color="black" />
+                    <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
+                </stack-panel>
+
+
+                <template-ref t-name="desc" data-context="单向绑定"/>
+                <lable text="{{ exp='count：'+count,mode=1,cvt= }}" font-color="black" />
+
+                <template-ref t-name="desc" data-context="双向绑定"/>
+                <stack-panel is-horizon="1" align-items="2" space="10">
+                    <switch-button checked="{{ exp=isOn,mode=2 }}"/><lable text="{{ exp=isOn?'开':'关',mode=1 }}" font-color="black" />
+                </stack-panel>
+
+                <template-ref t-name="desc" data-context="converter"/>
+
+
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

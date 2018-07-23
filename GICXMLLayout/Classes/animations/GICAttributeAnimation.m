@@ -10,7 +10,7 @@
 #import "GICElementsCache.h"
 
 @implementation GICAttributeAnimation
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"from":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAttributeAnimation *)target)->_fromString = value;
@@ -30,7 +30,7 @@
 
 -(void)attachTo:(id)target{
     [super attachTo:target];
-    NSDictionary<NSString *, GICValueConverter *> * atts=[GICElementsCache classAttributs:[target class]];
+    NSDictionary<NSString *, GICAttributeValueConverter *> * atts=[GICElementsCache classAttributs:[target class]];
     valueConverter = [atts objectForKey:self.atttibuteName];
     
     fromValue = [valueConverter convert:self.fromString];

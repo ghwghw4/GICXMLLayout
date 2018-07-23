@@ -8,8 +8,8 @@
 #import "GICNumberConverter.h"
 
 @implementation GICNumberConverter
--(NSNumber *)convert:(NSString *)xmlStringValue{
-    return @([GICUtils numberConverter:xmlStringValue]);
+-(NSNumber *)convert:(NSString *)stringValue{
+    return @([GICUtils numberConverter:stringValue]);
 }
 
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;{

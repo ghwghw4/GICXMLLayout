@@ -75,7 +75,7 @@
         }
     }
     JSValue *jsvalue = [context evaluateScript:jsCode];
-    id value = [self.valueConverter convert:[jsvalue toString]];
+    id value = [jsvalue isUndefined]?@"":[self.valueConverter convert:[jsvalue toString]];
     self.valueConverter.propertySetter(self.target,value);
     if(self.valueUpdate){
         self.valueUpdate(value);

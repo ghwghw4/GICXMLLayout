@@ -18,7 +18,7 @@
 @implementation GICLable
 
 static NSArray *supportElementNames;
-static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
+static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts = nil;
 +(void)initialize{
     [super initialize];
     supportElementNames = @[@"s",@"img"];
@@ -51,7 +51,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return @"lable";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return propertyConverts;
 }
 

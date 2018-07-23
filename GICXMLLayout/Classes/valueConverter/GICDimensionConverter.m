@@ -8,10 +8,10 @@
 #import "GICDimensionConverter.h"
 
 @implementation GICDimensionConverter
--(NSString *)convert:(NSString *)xmlStringValue{
-    ASDimension h = ASDimensionMake(xmlStringValue);
+-(NSString *)convert:(NSString *)stringValue{
+    ASDimension h = ASDimensionMake(stringValue);
     if(ASDimensionEqualToDimension(h, ASDimensionAuto)){
-        h = ASDimensionMake([xmlStringValue floatValue]);
+        h = ASDimensionMake([stringValue floatValue]);
     }
     return NSStringFromASDimension(h);
 }

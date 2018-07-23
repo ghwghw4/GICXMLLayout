@@ -12,7 +12,7 @@
 
 @implementation GICGradientView
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return  @{
               @"colors":[[GICGradientColorsConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   NSArray *a= value;

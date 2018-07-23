@@ -5,9 +5,9 @@
 //  Created by 龚海伟 on 2018/7/9.
 //
 
-#import "GICValueConverter.h"
+#import "GICAttributeValueConverter.h"
 
-@interface GICBoolConverter : GICValueConverter
--(NSNumber *)convert:(NSString *)xmlStringValue;
+@interface GICBoolConverter : GICAttributeValueConverter
+-(NSNumber *)convert:(NSString *)stringValue;
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;
 @end

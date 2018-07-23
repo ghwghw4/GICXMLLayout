@@ -15,7 +15,7 @@
     return @"switch-button";
 }
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"checked":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  dispatch_async(dispatch_get_main_queue(), ^{

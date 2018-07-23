@@ -41,7 +41,7 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
  
  @return <#return value description#>
  */
-+ (NSMutableDictionary<NSString *,NSDictionary<NSString *,GICValueConverter *> *> *)classAttributsCache {
++ (NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *)classAttributsCache {
     static NSMutableDictionary *_instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -57,7 +57,7 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
     }
     
     NSString *className = NSStringFromClass(klass);
-    NSDictionary<NSString *,GICValueConverter *> *value = [self.classAttributsCache objectForKey:className];
+    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [self.classAttributsCache objectForKey:className];
     if (value) {//已经注册过了那么就忽略
         return;
     }
@@ -70,7 +70,7 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
     Class superClass = class_getSuperclass(klass);
     [self registClassAttributs:class_getSuperclass(klass)];
     
-    NSMutableDictionary<NSString *, GICValueConverter *> *dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, GICAttributeValueConverter *> *dict = [NSMutableDictionary dictionary];
     // 先添加父类的属性，再添加子类的属性。这样保证子类的属性可以覆盖父类的属性
     if(superClass){
         [dict addEntriesFromDictionary:[self.classAttributsCache objectForKey:NSStringFromClass(superClass)]];
@@ -80,7 +80,7 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
     [self.classAttributsCache setValue:dict forKey:className];
 }
 
-+(BOOL)injectAttributes:(NSDictionary<NSString *,GICValueConverter *> *)attributs forElementName:(NSString *)elementName{
++(BOOL)injectAttributes:(NSDictionary<NSString *,GICAttributeValueConverter *> *)attributs forElementName:(NSString *)elementName{
     Class klass = [self classForElementName:elementName];
     if(!klass)
         return NO;
@@ -92,7 +92,7 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
     return true;
 }
 
-+(NSDictionary<NSString *, GICValueConverter *> *)classAttributs:(Class)klass{
++(NSDictionary<NSString *, GICAttributeValueConverter *> *)classAttributs:(Class)klass{
     if(!klass){
         return nil;
     }

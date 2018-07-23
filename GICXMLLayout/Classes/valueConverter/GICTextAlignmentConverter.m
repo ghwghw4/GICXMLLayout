@@ -8,12 +8,12 @@
 #import "GICTextAlignmentConverter.h"
 
 @implementation GICTextAlignmentConverter
--(NSNumber *)convert:(NSString *)xmlStringValue{
-    if([xmlStringValue isEqualToString:@"0"] || [xmlStringValue isEqualToString:@"left"]){
+-(NSNumber *)convert:(NSString *)stringValue{
+    if([stringValue isEqualToString:@"0"] || [stringValue isEqualToString:@"left"]){
         return @(NSTextAlignmentLeft);
-    }else if ([xmlStringValue isEqualToString:@"1"] || [xmlStringValue isEqualToString:@"center"]){
+    }else if ([stringValue isEqualToString:@"1"] || [stringValue isEqualToString:@"center"]){
         return @(NSTextAlignmentCenter);
-    }else if ([xmlStringValue isEqualToString:@"2"] || [xmlStringValue isEqualToString:@"right"]){
+    }else if ([stringValue isEqualToString:@"2"] || [stringValue isEqualToString:@"right"]){
         return @(NSTextAlignmentRight);
     }else{
         return @(NSTextAlignmentLeft);

@@ -8,7 +8,7 @@
 #import "GICStringConverter.h"
 
 @implementation GICStringConverter
--(NSString *)convert:(NSString *)xmlStringValue{
-    return [xmlStringValue copy];
+-(NSString *)convert:(NSString *)stringValue{
+    return [stringValue copy];
 }
 @end

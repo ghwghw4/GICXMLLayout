@@ -27,7 +27,7 @@
     return [objc_getAssociatedObject(self, "gic_isImg") boolValue];
 }
 
-static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
+static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts = nil;
 +(void)initialize{
     propertyConverts = @{
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -58,7 +58,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 }
 
 
-+(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return propertyConverts;
 }
 

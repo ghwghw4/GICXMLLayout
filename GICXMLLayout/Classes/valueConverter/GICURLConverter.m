@@ -8,7 +8,7 @@
 #import "GICURLConverter.h"
 
 @implementation GICURLConverter
--(NSURL *)convert:(NSString *)xmlStringValue{
-    return [NSURL URLWithString:xmlStringValue];
+-(NSURL *)convert:(NSString *)stringValue{
+    return [NSURL URLWithString:stringValue];
 }
 @end

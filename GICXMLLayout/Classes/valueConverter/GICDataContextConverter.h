@@ -5,8 +5,8 @@
 //  Created by 龚海伟 on 2018/7/9.
 //
 
-#import "GICValueConverter.h"
+#import "GICAttributeValueConverter.h"
 
-@interface GICDataContextConverter : GICValueConverter
+@interface GICDataContextConverter : GICAttributeValueConverter
 
 @end

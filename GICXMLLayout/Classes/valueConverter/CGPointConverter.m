@@ -8,8 +8,8 @@
 #import "CGPointConverter.h"
 
 @implementation CGPointConverter
--(NSValue *)convert:(NSString *)xmlStringValue{
-    NSArray *array = [xmlStringValue componentsSeparatedByString:@" "];
+-(NSValue *)convert:(NSString *)stringValue{
+    NSArray *array = [stringValue componentsSeparatedByString:@" "];
     CGPoint point = CGPointZero;
     if (array.count == 2){
         point = CGPointMake([GICUtils numberConverter:array[0]],[GICUtils numberConverter:array[1]]);

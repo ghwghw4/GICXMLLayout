@@ -1,4 +1,7 @@
 <page title="支持的UI元素" data-context="UIListPageViewModel">
+    <behaviors>
+        <bev-hidekeybord/>
+    </behaviors>
     <templates>
         <template t-name="desc">
             <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
@@ -28,16 +31,27 @@
                     <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
                     </input>
                     <lable text="{{ exp=name,mode=1}}"/>
-
-
+                    
+                    
                     <template-ref t-name="desc" data-context="input-view"/>
                     <input-view font-color="yellow" font-size="16" border-color="black" border-width="0.5" text="你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，" placehold="请输入用户名" height="100">
                     </input-view>
                 </stack-panel>
                 <!--image-->
                 <template-ref t-name="desc" data-context="image"/>
-                <image/>
+                
+                <stack-panel is-horizon="1">
+                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
+                    
+                    <image space-before="10" url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100" fill-mode="0"/>
+                    
+                    <image space-before="10" local-name="active" size="18 16"/>
+                </stack-panel>
 
+                <!--支持渐变色的视图-->
+                <template-ref t-name="desc" data-context="gradient-view"/>
+                <gradient-view height="20" colors="red 0 yellow 0.5 blue 1" />
+                <gradient-view height="100" space-before="10" colors="red 0 yellow 0.5 blue 1" start="0.5 0" end="0.5 1"/>
 
             </stack-panel>
         </inset-panel>

@@ -11,4 +11,5 @@
 @interface NSMutableAttributedString (GICLableSubString)
 -(id)initWithXmlElement:(GDataXMLElement *)xmlElement;
 @property (nonatomic,strong)NSMutableDictionary *gic_attributDict;
+@property (nonatomic,assign,readonly)BOOL gic_isImg;
 @end

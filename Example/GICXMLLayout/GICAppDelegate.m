@@ -11,6 +11,7 @@
 #import "SwitchButton.h"
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "AutoHideKeybordBehavior.h"
 
 @implementation GICAppDelegate
 
@@ -31,6 +32,9 @@
             });
         }
     }]} forElementName:@"scroll-view"];
+    
+    // 添加自定义行为
+    [GICElementsCache registBehaviorElement:[AutoHideKeybordBehavior class]];
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

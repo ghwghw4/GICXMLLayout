@@ -23,6 +23,10 @@
     return objc_getAssociatedObject(self, "gic_attributDict");
 }
 
+-(BOOL)gic_isImg{
+    return [objc_getAssociatedObject(self, "gic_isImg") boolValue];
+}
+
 static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 +(void)initialize{
     propertyConverts = @{
@@ -61,6 +65,7 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
 -(id)initWithXmlElement:(GDataXMLElement *)xmlElement{
     if([xmlElement.name isEqualToString:@"img"]){
         self = [self init];
+        objc_setAssociatedObject(self, "gic_isImg", @(true), OBJC_ASSOCIATION_ASSIGN);
     }else{
         NSString *text = [xmlElement stringValueOrginal];
         self = [self initWithString:text];

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICLable : ASTextNode2{
+@interface GICLable : ASTextNode{
     GDataXMLElement *xmlDoc;
     NSMutableArray<NSMutableAttributedString *> *attbuteStringArray;
     NSMutableDictionary<NSString *,id> *attributes;

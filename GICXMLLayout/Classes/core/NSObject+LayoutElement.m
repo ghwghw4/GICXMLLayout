@@ -143,6 +143,10 @@
         self.gic_ExtensionProperties.tempDataContext = nil;
         self.gic_isAutoInheritDataModel = NO;
     }
+    
+    for(GICBehavior *b in self.gic_Behaviors.behaviors){
+        [b attachTo:self];
+    }
 }
 
 - (BOOL)gic_parseOnlyOneSubElement {

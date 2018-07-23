@@ -27,6 +27,5 @@
         objc_setAssociatedObject(self, "gic_Behaviors", temp, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     [temp.behaviors addObject:behavior];
-    [behavior attachTo:self];
 }
 @end

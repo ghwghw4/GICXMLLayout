@@ -11,25 +11,6 @@
 #import "GICNumberConverter.h"
 
 @implementation GICGradientView
-//+ (void)drawRect:(CGRect)bounds withParameters:(NSDictionary *)parameters isCancelled:(asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing
-//{
-//
-//    NSArray *colors = parameters[@"colors"];
-//    NSArray *locationsArray = parameters[@"locations"];
-//    CGPoint start = CGPointFromString(parameters[@"start"]);
-//    CGPoint end = CGPointFromString(parameters[@"end"]);
-//
-//    CGFloat locations[locationsArray.count];
-//    for(int i=0;i<locationsArray.count;i++){
-//        locations[i] = [locationsArray[i] floatValue];
-//    }
-//    CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colors, locations);
-//    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(bounds.size.width*start.x, bounds.size.height*start.y), CGPointMake(bounds.size.width*end.x, bounds.size.height*end.y), 0);
-//    CGGradientRelease(gradient);
-//    CGColorSpaceRelease(colorSpace);
-//}
 
 +(NSDictionary<NSString *,GICValueConverter *> *)gic_elementAttributs{
     return  @{

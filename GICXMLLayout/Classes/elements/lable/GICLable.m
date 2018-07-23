@@ -63,14 +63,6 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
     return self;
 }
 
-//-(id)init{
-//    self = [super init];
-////    self.userInteractionEnabled = YES;
-//    return self;
-//}
-
-//-(void)gic_par
-
 -(void)gic_parseElementCompelete{
     [super gic_parseElementCompelete];
     [self updateString];
@@ -82,11 +74,13 @@ static NSDictionary<NSString *,GICValueConverter *> *propertyConverts = nil;
         NSInteger offset = 0;
         for(NSMutableAttributedString *att in attbuteStringArray){
             [self->mutAttString appendAttributedString:att];
-            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:attributes];
-            if(att.gic_attributDict.count>0){
-                [dict addEntriesFromDictionary:att.gic_attributDict];
+            if(!att.gic_isImg){
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:attributes];
+                if(att.gic_attributDict.count>0){
+                    [dict addEntriesFromDictionary:att.gic_attributDict];
+                }
+                [self->mutAttString setAttributes:dict range:NSMakeRange(offset, att.length)];
             }
-            [self->mutAttString setAttributes:dict range:NSMakeRange(offset, att.length)];
             offset +=att.length;
         }
     }else{

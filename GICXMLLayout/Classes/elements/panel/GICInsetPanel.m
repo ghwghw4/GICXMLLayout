@@ -25,6 +25,8 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    if(self.subnodes.count==0)
+        return [super layoutSpecThatFits:constrainedSize];
     ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
     insetBox.insets = self.inset;
     insetBox.child = [self.subnodes firstObject];

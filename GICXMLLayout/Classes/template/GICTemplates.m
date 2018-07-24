@@ -18,9 +18,11 @@
     return self;
 }
 
--(void)gic_addSubElement:(GICTemplate *)subElement{
+-(id)gic_addSubElement:(GICTemplate *)subElement{
     if([subElement isKindOfClass:[GICTemplate class]]){
         [self.templats setValue:subElement forKey:subElement.name];
+        return subElement;
     }
+    return nil;
 }
 @end

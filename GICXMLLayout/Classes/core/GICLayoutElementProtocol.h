@@ -35,12 +35,14 @@
  */
 -(NSArray *)gic_subElements;
 
+
 /**
- 添加一个子元素
- 
+  添加一个子元素
+
  @param subElement <#subElement description#>
+ @return 返回实际被添加的子元素。主要是有了模板以后，实际被添加的子元素未必就是传入的子元素。
  */
--(void)gic_addSubElement:(id)subElement;
+-(id)gic_addSubElement:(id)subElement;
 
 
 /**

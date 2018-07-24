@@ -165,19 +165,21 @@
              };
 }
 
--(void)gic_addSubElement:(id)subElement{
+-(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         [self addSubnode:subElement];
         if(self.nodeLoaded){
             [self setNeedsLayout];
         }
+        return subElement;
     }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
         for(GICAnimation *a in ((GICAnimations *)subElement).animations){
             a.gic_ExtensionProperties.superElement = self;
             [self gic_addAnimation:a];
         }
+        return subElement;
     }else{
-        [super gic_addSubElement:subElement];
+       return [super gic_addSubElement:subElement];
     }
 }
 

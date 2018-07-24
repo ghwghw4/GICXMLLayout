@@ -17,10 +17,11 @@
     return self;
 }
 
--(void)gic_addSubElement:(id)subElement{
+-(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICBehavior class]]){
         [self.behaviors addObject:subElement];
     }
+    return nil;
 }
 
 -(BOOL)gic_isAutoCacheElement{

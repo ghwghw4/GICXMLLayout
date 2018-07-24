@@ -15,11 +15,12 @@
     return self;
 }
 
--(void)gic_addSubElement:(id)subElement{
+-(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         [_buttons addObject:subElement];
+        return subElement;
     }else{
-        [super gic_addSubElement:subElement];
+        return [super gic_addSubElement:subElement];
     }
 }
 @end

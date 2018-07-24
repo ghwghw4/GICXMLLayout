@@ -62,7 +62,7 @@
     return nil;
 }
 
--(void)gic_addSubElement:(NSObject *)subElement{
+-(id)gic_addSubElement:(NSObject *)subElement{
     if ([subElement isKindOfClass:[GICBehavior class]]){//如果是指令，那么交给指令自己执行
         [self gic_addBehavior:(GICBehavior *)subElement];
     }else if ([subElement isKindOfClass:[GICTemplates class]]){
@@ -79,12 +79,14 @@
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
         el.gic_DataContenxt = tr.gic_DataContenxt;
         [self gic_addSubElement:el];
+        return el;
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             b.gic_ExtensionProperties.superElement = self;
             [self gic_addBehavior:b];
         }
     }
+    return subElement;
 }
 
 

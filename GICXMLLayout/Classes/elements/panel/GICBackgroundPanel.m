@@ -23,14 +23,14 @@
     return [super gic_parseSubElementNotExist:element];
 }
 
--(void)gic_addSubElement:(id)subElement{
+-(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         if(subElement !=self.backgroundNode){
             NSAssert(self.childNode ==nil, @"background-panel只能有一个非背景的子元素");
             _childNode = subElement;
         }
     }
-    [super gic_addSubElement:subElement];
+    return [super gic_addSubElement:subElement];
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{

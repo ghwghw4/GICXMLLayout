@@ -66,7 +66,7 @@
     return listItems;
 }
 
--(void)gic_addSubElement:(id)subElement{
+-(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
         [(GICListItem *)subElement setDelegate:self];
         if(!self.isNodeLoaded){
@@ -74,9 +74,10 @@
         }else{
             [self->insertItemsSubscriber sendNext:subElement];
         }
+        return subElement;
     }
     else{
-        [super gic_addSubElement:subElement];
+       return [super gic_addSubElement:subElement];
     }
 }
 

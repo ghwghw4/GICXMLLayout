@@ -8,6 +8,8 @@
         <inset-panel inset="15">
             <stack-panel>
                 <template-ref t-name="desc" data-context="目前事件只支持tap事件，其他的事件请自定义"/>
+                <template-ref t-name="desc" data-context="自定义事件，请参考行为中对于下拉刷新中对事件的定义"/>
+                <template-ref t-name="desc" data-context="事件在使用的时候也是属性的一种"/>
             </stack-panel>
         </inset-panel>
     </scroll-view>

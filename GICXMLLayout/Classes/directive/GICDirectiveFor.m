@@ -87,9 +87,6 @@
 
 -(void)addAElement:(id)data{
     NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
-    if([childElement isKindOfClass:[GICTemplateRef class]]){
-        childElement = [(GICTemplateRef *)childElement parseTemplateFromTarget:self.target];
-    }
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContenxt = data;
     [self.target gic_addSubElement:childElement];

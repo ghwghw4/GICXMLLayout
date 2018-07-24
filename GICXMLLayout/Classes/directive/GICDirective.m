@@ -10,4 +10,8 @@
 +(NSString *)gic_elementName{
     return nil;
 }
+
+-(BOOL)gic_parseOnlyOneSubElement{
+    return true;
+}
 @end

@@ -75,7 +75,10 @@
         if(![tr gic_self_dataContext]){
             tr.gic_DataContenxt = self.gic_DataContenxt;
         }
-        [self gic_addSubElement:[tr parseTemplateFromTarget:self]];
+        NSObject *el = [tr parseTemplateFromTarget:self];
+        el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
+        el.gic_DataContenxt = tr.gic_DataContenxt;
+        [self gic_addSubElement:el];
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             b.gic_ExtensionProperties.superElement = self;

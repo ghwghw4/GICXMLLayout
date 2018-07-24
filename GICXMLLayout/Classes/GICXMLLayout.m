@@ -37,6 +37,7 @@
 #import "GICAttributeAnimation.h"
 #import "GICRatioPanel.h"
 #import "GICTransformAnimations.h"
+#import "GICDirectiveIf.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -66,6 +67,7 @@
     
     // 指令
     [GICElementsCache registElement:[GICDirectiveFor class]];
+    [GICElementsCache registElement:[GICDirectiveIf class]];
     
     // 模板
     [GICElementsCache registElement:[GICTemplate class]];

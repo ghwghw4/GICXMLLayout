@@ -183,6 +183,28 @@
     }
 }
 
+-(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order{
+    ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
+    if([subElement isKindOfClass:[ASDisplayNode class]]){
+        ASDisplayNode *findNode = nil;
+        for(ASDisplayNode *node in self.subnodes){
+            if(order >=node.gic_ExtensionProperties.elementOrder){
+                findNode = node;
+            }
+        }
+        if(findNode)
+            [self insertSubnode:subElement aboveSubnode:findNode];
+        else
+            [self addSubnode:subElement];
+        if(self.nodeLoaded){
+            [self setNeedsLayout];
+        }
+        return subElement;
+    }
+    // TODO:对于elmentref 的insert
+    return [self gic_addSubElement:subElement];
+}
+
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
     [super gic_removeSubElements:subElements];
     BOOL needLayout = NO;

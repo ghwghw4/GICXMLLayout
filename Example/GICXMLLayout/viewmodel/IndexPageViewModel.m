@@ -23,6 +23,7 @@
                        @{@"name":@"事件",@"pagePath":@"Event"},
                        @{@"name":@"动画",@"pagePath":@"Animation"},
                        @{@"name":@"行为",@"pagePath":@"Behavior"},
+                       @{@"name":@"指令",@"pagePath":@"Directive"},
                        ];
     return self;
 }

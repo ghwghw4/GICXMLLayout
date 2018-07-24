@@ -1,0 +1,45 @@
+<page title="指令" data-context="DirectiveViewModel">
+    <templates>
+        <template t-name="title">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black"/>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="title" data-context="for指令"/>
+               <stack-panel is-horizon="1" wrap="1" background-color="black" space="10" line-space="10">
+                   <for data-path="listDatas">
+                       <ratio-panel background-color="yellow" width="30%">
+                           <dock-panel>
+                               <lable text="{{}}"/>
+                           </dock-panel>
+                       </ratio-panel>
+                   </for>
+               </stack-panel>
+
+                <template-ref t-name="title" data-context="if指令"/>
+                <stack-panel is-horizon="1" align-items="2" space="10">
+                    <switch-button checked="{{ exp=isShow,mode=2 }}"/><lable text="{{ exp=isShow?'显示':'隐藏',mode=1 }}" font-color="black" />
+                </stack-panel>
+                <if condition="{{ exp=isShow,mode=1 }}">
+                    <panel background-color="black" size="50" space-before="10" space-after="10"/>
+                </if>
+                <template-ref t-name="title" data-context="if-else指令"/>
+                <if condition="{{ exp=isShow,mode=1 }}">
+                    <panel background-color="red" size="50" space-before="10" space-after="10"/>
+                    <else>
+                        <panel background-color="blue" size="50" space-before="10" space-after="10"/>
+                    </else>
+                </if>
+                <dock-panel height="50" background-color="red">
+                    <lable text="我是分割线，主要是让你在观看上面面板变化的时候比较明显"/>
+                </dock-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

@@ -25,6 +25,7 @@
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICAnimation class]]){
         [(NSMutableArray *)self.animations addObject:subElement];
+        return subElement;
     }else{
         NSAssert(NO, @"animations 只允许添加animation元素");
     }

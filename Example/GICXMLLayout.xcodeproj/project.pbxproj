@@ -20,6 +20,8 @@
 		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
+		373DD65F2106BBC500E359BB /* Directive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 373DD65E2106BBC500E359BB /* Directive.xml */; };
+		373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6612106BC2C00E359BB /* DirectiveViewModel.m */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F505210024FE00AC1778 /* InsetPanel.xml */; };
@@ -94,6 +96,9 @@
 		373DD6592105D90400E359BB /* BehaviorViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BehaviorViewModel.m; sourceTree = "<group>"; };
 		373DD65B2106B9B800E359BB /* PullMoreBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullMoreBehavior.h; sourceTree = "<group>"; };
 		373DD65C2106B9B800E359BB /* PullMoreBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullMoreBehavior.m; sourceTree = "<group>"; };
+		373DD65E2106BBC500E359BB /* Directive.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Directive.xml; sourceTree = "<group>"; };
+		373DD6602106BC2C00E359BB /* DirectiveViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DirectiveViewModel.h; sourceTree = "<group>"; };
+		373DD6612106BC2C00E359BB /* DirectiveViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DirectiveViewModel.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
@@ -253,6 +258,8 @@
 				37A1F528210581EE00AC1778 /* DataBindingViewModel.m */,
 				373DD6582105D90400E359BB /* BehaviorViewModel.h */,
 				373DD6592105D90400E359BB /* BehaviorViewModel.m */,
+				373DD6602106BC2C00E359BB /* DirectiveViewModel.h */,
+				373DD6612106BC2C00E359BB /* DirectiveViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -272,6 +279,7 @@
 				37ED8BB82105BB60000F0D9A /* Event.xml */,
 				37ED8BBA2105BC93000F0D9A /* Animation.xml */,
 				373DD6532105D4E300E359BB /* Behavior.xml */,
+				373DD65E2106BBC500E359BB /* Directive.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -517,6 +525,7 @@
 				373DD6542105D4E300E359BB /* Behavior.xml in Resources */,
 				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
 				37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */,
+				373DD65F2106BBC500E359BB /* Directive.xml in Resources */,
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
 				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
@@ -628,6 +637,7 @@
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
 				37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */,
 				373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */,
+				373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */,
 				37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,

@@ -18,7 +18,7 @@
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
-        self->xmlDoc =  [[GDataXMLDocument alloc] initWithRootElement:children[0]];
+        self->xmlDoc =  [[GDataXMLDocument alloc] initWithXMLString:children[0].XMLString options:0 error:nil];
     }
 }
 
@@ -89,6 +89,7 @@
     NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContenxt = data;
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder;
     [self.target gic_addSubElement:childElement];
 }
 @end

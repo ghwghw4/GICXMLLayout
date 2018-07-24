@@ -84,10 +84,6 @@
                         <template-ref t-name="p-child"/>
                     </for>
                 </stack-panel>
-                <!--分割线-->
-                <dock-panel height="50" background-color="red">
-                    <lable text="我是分割线，主要是让你在观看上面面板变化的时候比较明显"/>
-                </dock-panel>
             </stack-panel>
         </inset-panel>
     </scroll-view>

@@ -46,15 +46,18 @@
 }
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
+    NSInteger order = 0;
     for(GDataXMLElement *child in children){
-        id childElement = [GICXMLLayout createElement:child withSuperElement:self];
+        NSObject *childElement = [GICXMLLayout createElement:child withSuperElement:self];
         if(childElement == nil){
             childElement = [self gic_parseSubElementNotExist:child];
             [childElement gic_beginParseElement:child withSuperElement:self];
         }
         if(childElement == nil)
             continue;
+        childElement.gic_ExtensionProperties.elementOrder = order;
         [self gic_addSubElement:childElement];
+        order++;
     }
 }
 
@@ -78,6 +81,7 @@
         NSObject *el = [tr parseTemplateFromTarget:self];
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
         el.gic_DataContenxt = tr.gic_DataContenxt;
+        el.gic_ExtensionProperties.elementOrder = tr.gic_ExtensionProperties.elementOrder;
         [self gic_addSubElement:el];
         return el;
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
@@ -86,6 +90,12 @@
             [self gic_addBehavior:b];
         }
     }
+    return subElement;
+}
+
+-(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order{
+    ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
+    [self gic_addSubElement:subElement];
     return subElement;
 }
 
@@ -189,4 +199,6 @@
     }
     return findEl;
 }
+
+
 @end

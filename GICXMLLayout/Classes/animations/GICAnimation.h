@@ -21,7 +21,6 @@ typedef enum {
 
 @property (nonatomic,readonly)CGFloat duration;//动画持续时间，默认0.5秒
 @property (nonatomic,readonly)NSInteger repeatCount; //重复次数
-@property (nonatomic,readonly,weak)id target;
 @property (nonatomic,readonly)BOOL autoreverses;
 @property (nonatomic,readonly)GICAnimationTriggerType triggerType;
 

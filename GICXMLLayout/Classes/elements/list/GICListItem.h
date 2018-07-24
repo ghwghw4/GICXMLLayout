@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GICListItemSelectedEvent.h"
 
 @class GICListItem;
 
@@ -26,7 +25,7 @@
 
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
-@property (nonatomic,strong)GICListItemSelectedEvent *itemSelectEvent;
+@property (nonatomic,strong)GICEvent *itemSelectEvent;
 
 -(ASCellNode *)getCell;
 @end

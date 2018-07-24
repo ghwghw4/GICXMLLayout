@@ -1,9 +1,9 @@
 <page title="模板列表" data-context='["1", "2", "3", "4"]'>
     <templates>
         <template t-name="list-template">
-            <panel margin="15" background-color="white">
+            <inset-panel inset="15" background-color="white">
                 <lable text="{{  }}"></lable>
-            </panel>
+            </inset-panel>
         </template>
     </templates>
     <list separator-inset = "0 15 0 15">

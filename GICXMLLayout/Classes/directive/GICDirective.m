@@ -10,9 +10,4 @@
 +(NSString *)gic_elementName{
     return nil;
 }
-
--(void)attachTo:(id)target{
-    [super attachTo:target];
-    self.target = target;
-}
 @end

@@ -9,6 +9,7 @@
 
 @implementation GICBehavior
 -(void)attachTo:(id)target{
+    _target = target;
     self.gic_ExtensionProperties.superElement = target;
 }
 
@@ -18,5 +19,9 @@
 
 -(BOOL)gic_isAutoCacheElement{
     return NO;
+}
+
+-(void)dealloc{
+    [self unattach];
 }
 @end

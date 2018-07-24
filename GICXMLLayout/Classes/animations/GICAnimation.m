@@ -38,8 +38,7 @@
 }
 
 -(void)attachTo:(id)target{
-    _target = target;
-  
+    [super attachTo:target];
     if(self.triggerType == GICAnimationTriggerType_attach){
         [self beginAnimantion];
     }else if(self.triggerType == GICAnimationTriggerType_tap){

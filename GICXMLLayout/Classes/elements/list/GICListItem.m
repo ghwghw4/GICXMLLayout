@@ -12,12 +12,6 @@
 #import "GICListTableViewCell.h"
 #import "GICEdgeConverter.h"
 
-//@interface GICListItem (){
-//    
-//}
-//
-//@end
-
 @implementation GICListItem
 +(NSString *)gic_elementName{
     return @"list-item";
@@ -31,13 +25,9 @@
              }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 item.itemSelectEvent = [[GICListItemSelectedEvent alloc] initWithExpresion:value];
+                 item.itemSelectEvent = [[GICEvent alloc] initWithExpresion:value];
                  [item.itemSelectEvent attachTo:target];
              }],
-//             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 GICListItem *item = (GICListItem *)target;
-//                 [item.cellStyle setValue:value forKey:@"separatorInset"];
-//             }],
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  [item.cellStyle setValue:value forKey:@"separatorInset"];
@@ -46,10 +36,6 @@
                  GICListItem *item = (GICListItem *)target;
                  [item.cellStyle setValue:value forKey:@"accessoryType"];
              }],
-//             @"item-height":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 GICListItem *item = (GICListItem *)target;
-//                 item->itemHeight = [value floatValue];
-//             }],
              };
 }
 

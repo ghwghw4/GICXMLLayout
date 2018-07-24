@@ -16,6 +16,10 @@
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
 		37311AB821001D79000D0986 /* Panel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311AB721001D79000D0986 /* Panel.xml */; };
+		373DD6542105D4E300E359BB /* Behavior.xml in Resources */ = {isa = PBXBuildFile; fileRef = 373DD6532105D4E300E359BB /* Behavior.xml */; };
+		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
+		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
+		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
 		37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F505210024FE00AC1778 /* InsetPanel.xml */; };
@@ -83,6 +87,13 @@
 		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
 		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
 		37311AB721001D79000D0986 /* Panel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Panel.xml; sourceTree = "<group>"; };
+		373DD6532105D4E300E359BB /* Behavior.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Behavior.xml; sourceTree = "<group>"; };
+		373DD6552105D52A00E359BB /* PullRefreshBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshBehavior.h; sourceTree = "<group>"; };
+		373DD6562105D52A00E359BB /* PullRefreshBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshBehavior.m; sourceTree = "<group>"; };
+		373DD6582105D90400E359BB /* BehaviorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviorViewModel.h; sourceTree = "<group>"; };
+		373DD6592105D90400E359BB /* BehaviorViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BehaviorViewModel.m; sourceTree = "<group>"; };
+		373DD65B2106B9B800E359BB /* PullMoreBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullMoreBehavior.h; sourceTree = "<group>"; };
+		373DD65C2106B9B800E359BB /* PullMoreBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullMoreBehavior.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
@@ -240,6 +251,8 @@
 				37311A8720FC3533000D0986 /* LayoutViewModel.m */,
 				37A1F527210581EE00AC1778 /* DataBindingViewModel.h */,
 				37A1F528210581EE00AC1778 /* DataBindingViewModel.m */,
+				373DD6582105D90400E359BB /* BehaviorViewModel.h */,
+				373DD6592105D90400E359BB /* BehaviorViewModel.m */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -258,6 +271,7 @@
 				37ED8BB62105B7E2000F0D9A /* Template.xml */,
 				37ED8BB82105BB60000F0D9A /* Event.xml */,
 				37ED8BBA2105BC93000F0D9A /* Animation.xml */,
+				373DD6532105D4E300E359BB /* Behavior.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -267,6 +281,10 @@
 			children = (
 				37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */,
 				37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */,
+				373DD6552105D52A00E359BB /* PullRefreshBehavior.h */,
+				373DD6562105D52A00E359BB /* PullRefreshBehavior.m */,
+				373DD65B2106B9B800E359BB /* PullMoreBehavior.h */,
+				373DD65C2106B9B800E359BB /* PullMoreBehavior.m */,
 			);
 			path = behaviors;
 			sourceTree = "<group>";
@@ -496,6 +514,7 @@
 				37A1F5262105802100AC1778 /* DataBinding.xml in Resources */,
 				37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */,
 				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
+				373DD6542105D4E300E359BB /* Behavior.xml in Resources */,
 				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
 				37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */,
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
@@ -565,6 +584,7 @@
 				"${BUILT_PRODUCTS_DIR}/GDataXMLNode_GIC/GDataXMLNode_GIC.framework",
 				"${BUILT_PRODUCTS_DIR}/GICJsonParser/GICJsonParser.framework",
 				"${BUILT_PRODUCTS_DIR}/GICXMLLayout/GICXMLLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
@@ -577,6 +597,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDataXMLNode_GIC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GICJsonParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GICXMLLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
@@ -597,13 +618,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				37BA55FA20EDB276003DC99A /* TestClass.m in Sources */,
+				373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */,
 				37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */,
 				37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */,
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
+				373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */,
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
 				6003F5A7195388D20070C39A /* GICViewController.m in Sources */,
 				37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */,
+				373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */,
 				37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
 				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,

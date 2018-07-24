@@ -22,6 +22,7 @@
                        @{@"name":@"模板",@"pagePath":@"Template"},
                        @{@"name":@"事件",@"pagePath":@"Event"},
                        @{@"name":@"动画",@"pagePath":@"Animation"},
+                       @{@"name":@"行为",@"pagePath":@"Behavior"},
                        ];
     return self;
 }

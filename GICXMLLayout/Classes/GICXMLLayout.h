@@ -13,6 +13,8 @@
 #import "GICElementsCache.h"
 #import "GICLayoutElementProtocol.h"
 #import "GICDataBingdingValueConverter.h"
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "GICEvent.h"
 
 @interface GICXMLLayout : NSObject
 +(void)regiterAllElements;

@@ -38,12 +38,11 @@
 }
 
 -(void)attachTo:(id)target{
-    [super attachTo:target];
     if(self.target){
         // 先取消绑定
         [self  unAttach];
     }
-    self.target = target;
+    [super attachTo:target];
 //    @weakify(self)
 //    signlDisposable = [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
 //        @strongify(self)
@@ -55,6 +54,10 @@
     if(signlDisposable && ![signlDisposable isDisposed]){
         [signlDisposable dispose];
     }
+}
+
+-(void)fire:(id)value{
+    [self.eventSubject sendNext:value];
 }
 
 //-(RACSignal *)createEventSignal{

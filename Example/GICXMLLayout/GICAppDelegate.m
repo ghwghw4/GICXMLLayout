@@ -12,6 +12,8 @@
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "AutoHideKeybordBehavior.h"
+#import "PullRefreshBehavior.h"
+#import "PullMoreBehavior.h"
 
 @implementation GICAppDelegate
 
@@ -35,7 +37,9 @@
     
     // 添加自定义行为
     [GICElementsCache registBehaviorElement:[AutoHideKeybordBehavior class]];
-
+    [GICElementsCache registBehaviorElement:[PullRefreshBehavior class]];
+    [GICElementsCache registBehaviorElement:[PullMoreBehavior class]];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

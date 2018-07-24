@@ -18,6 +18,7 @@
  如果初始化的时候设为Yes,那么attach完毕后立马会调用unattach移除
  */
 @property (nonatomic,assign,readonly)BOOL isOnce;
+@property (nonatomic,weak,readonly)id target;
 
 /**
  将Behavior附加到目标

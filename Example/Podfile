@@ -2,6 +2,5 @@ use_frameworks!
 
 target 'GICXMLLayout_Example' do
   pod 'GICXMLLayout', :path => '../'
-  pod 'GDataXMLNode_GIC'
-  pod 'Texture'
+  pod 'MJRefresh'
 end

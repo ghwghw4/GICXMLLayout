@@ -1,0 +1,21 @@
+<page title="行为" data-context='BehaviorViewModel'>
+    <templates>
+        <template t-name="list-template">
+            <inset-panel inset="25 15" background-color="white">
+                <lable text="{{  }}" font-size="20"></lable>
+            </inset-panel>
+        </template>
+    </templates>
+    <list separator-inset = "0 15 0 15">
+        <behaviors>
+            <bev-pullrefresh event-refresh="onRefreshData" loading="{{exp=isRefreshing,mode=1}}"/>
+            <bev-pullmore event-refresh="onLoadMore" loading="{{exp=isLoadingMore,mode=1}}"/>
+        </behaviors>
+        <for data-path="listDatas">
+            <list-item>
+                <template-ref t-name="list-template"/>
+            </list-item>
+        </for>
+    </list>
+</page>
+

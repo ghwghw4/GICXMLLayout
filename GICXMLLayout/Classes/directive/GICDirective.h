@@ -11,5 +11,4 @@
  指令功能
  */
 @interface GICDirective : GICBehavior
-@property (nonatomic,weak)id target;
 @end

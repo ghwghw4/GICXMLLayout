@@ -49,7 +49,7 @@
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     if(self.listItem.itemSelectEvent && selected){
-        [self.listItem.itemSelectEvent.eventSubject sendNext:@(selected)];
+        [self.listItem.itemSelectEvent fire:@(selected)];
     }
 }
 

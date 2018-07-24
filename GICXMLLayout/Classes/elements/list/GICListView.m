@@ -45,7 +45,7 @@
     [[[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         self->insertItemsSubscriber = subscriber;
         return nil;
-    }] bufferWithTime:0.2 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
+    }] bufferWithTime:0.1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
             NSMutableArray *mutArray=[NSMutableArray array];
@@ -80,18 +80,18 @@
     }
 }
 
--(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
+-(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{
     [super gic_removeSubElements:subElements];
+    NSMutableArray *mutArray=[NSMutableArray array];
     for(id subElement in subElements){
-        NSMutableArray *mutArray=[NSMutableArray array];
         if([subElement isKindOfClass:[GICListItem class]]){
             [mutArray addObject:[NSIndexPath indexPathForRow:[listItems indexOfObject:subElement] inSection:0]];
-            [listItems removeObject:(GICListItem *)subElement];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self deleteRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationFade];
-        });
     }
+    [listItems removeObjectsInArray:subElements];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self deleteRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationFade];
+    });
 }
 
 #pragma mark - ASTableDelegate, ASTableDataSource

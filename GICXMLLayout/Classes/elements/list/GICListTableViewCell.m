@@ -22,7 +22,7 @@
 }
 
 -(void)createContentView:(GDataXMLDocument *)xmlDoc{
-    GICPanel *childElement = (GICPanel *)[GICXMLLayout createElement:[xmlDoc rootElement] withSuperElement:self];
+    GICPanel *childElement = (GICPanel *)[NSObject gic_createElement:[xmlDoc rootElement] withSuperElement:self];
     [self gic_addSubElement:childElement];
 }
 

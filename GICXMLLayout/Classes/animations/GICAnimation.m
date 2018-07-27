@@ -27,6 +27,9 @@
              @"on":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_triggerType = (GICAnimationTriggerType)[value integerValue];
              }],
+             @"ease-mode":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICAnimation *)target)->_easeMode = (GICAnimationEaseMode)[value integerValue];
+             }],
              };;
 }
 
@@ -68,6 +71,20 @@
     anBasic.property = [self createAnimatableProperty];    //自定义属性
     anBasic.fromValue = @(0);
     anBasic.toValue = @(100);
+    switch (self.easeMode) {
+        case GICAnimationEaseMode_EaseIn:
+            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+            break;
+        case GICAnimationEaseMode_EaseOut:
+            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+            break;
+        case GICAnimationEaseMode_EaseInEaseOut:
+            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            break;
+            
+        default:
+            break;
+    }
     return anBasic;
 }
 

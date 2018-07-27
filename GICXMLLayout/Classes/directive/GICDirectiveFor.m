@@ -86,7 +86,7 @@
 }
 
 -(void)addAElement:(id)data{
-    NSObject *childElement = [GICXMLLayout createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
+    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContenxt = data;
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder;

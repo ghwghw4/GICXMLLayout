@@ -24,11 +24,7 @@
               }],
               @"end":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICGradientView *)target setValue:value forKey:@"end"];
-              }],
-              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  ASDisplayNode *node = (ASDisplayNode *)target;
-                  node.cornerRadius = [value floatValue];
-              }],
+              }]
               };;
 }
 
@@ -40,10 +36,6 @@
     self = [super init];
     _end = CGPointMake(1, 1);
     return self;
-}
-
--(void)gic_parseElementCompelete{
-    [super gic_parseElementCompelete];
 }
 
 - (void)generateIamge

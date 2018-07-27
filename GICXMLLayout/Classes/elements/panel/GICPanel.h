@@ -12,24 +12,4 @@
  所有的元素都是绝对布局。
  */
 @interface GICPanel : ASDisplayNode
-//@property (nonatomic,strong,readonly)NSMutableArray *childNodes;
-//@property (nonatomic,weak)ASDisplayNode *superDisplayNode;
-
-//@property (nonatomic, readonly) ASLayoutElementStyle *style;
-
-
-//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize;
-
-/**
-// 由子类实现
-//
-// @param constrainedSize <#constrainedSize description#>
-// @param children <#children description#>
-// @return <#return value description#>
-// */
-//-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize withChildren:(NSArray *)children;
-
-//-(NSArray<ASDisplayNode *> *)getAllDisplayNodes;
-
-//-(void)mergeStyle:(ASLayoutSpec *)spec;
 @end

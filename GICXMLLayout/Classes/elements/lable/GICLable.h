@@ -13,6 +13,7 @@
     NSMutableDictionary<NSString *,id> *attributes;
     NSMutableAttributedString *mutAttString;
     NSMutableParagraphStyle *paragraphStyle;
+    BOOL parseComplete;
 }
 
 @end

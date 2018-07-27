@@ -48,7 +48,7 @@
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     NSInteger order = 0;
     for(GDataXMLElement *child in children){
-        NSObject *childElement = [GICXMLLayout createElement:child withSuperElement:self];
+        NSObject *childElement = [NSObject gic_createElement:child withSuperElement:self];
         if(childElement == nil){
             childElement = [self gic_parseSubElementNotExist:child];
             [childElement gic_beginParseElement:child withSuperElement:self];
@@ -89,6 +89,8 @@
             b.gic_ExtensionProperties.superElement = self;
             [self gic_addBehavior:b];
         }
+    }else{
+        return nil;
     }
     return subElement;
 }
@@ -200,5 +202,14 @@
     return findEl;
 }
 
-
++(NSObject *)gic_createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{
+    NSString *elementName = element.name;
+    Class c = [GICElementsCache classForElementName:elementName];
+    if(c){
+        NSObject *v = [c new];
+        [v gic_beginParseElement:element withSuperElement:superElement];
+        return v;
+    }
+    return nil;
+}
 @end

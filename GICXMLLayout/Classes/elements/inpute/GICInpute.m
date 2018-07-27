@@ -67,11 +67,11 @@
 }
 
 -(void)updatePlacholdString{
+    if(self->placeholdAttributs.count>0){
+        [self->placeholdString setAttributes:self->placeholdAttributs range:NSMakeRange(0, self->placeholdString.length)];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
-        if(self->placeholdAttributs.count>0){
-            [self->placeholdString setAttributes:self->placeholdAttributs range:NSMakeRange(0, self->placeholdString.length)];
-        }
-        self.view.attributedPlaceholder = self->placeholdString;
+        ((UITextField *)self.view).attributedPlaceholder = self->placeholdString;
     });
 }
 

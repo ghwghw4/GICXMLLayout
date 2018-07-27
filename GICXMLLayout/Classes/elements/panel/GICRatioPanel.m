@@ -36,6 +36,13 @@
     return [super gic_addSubElement:subElement];
 }
 
+-(void)setRatio:(CGFloat)ratio{
+    _ratio = ratio;
+    if(self.nodeLoaded){
+        [self setNeedsLayout];
+    }
+}
+
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     if(self.subnodes.count==0)
         return [super layoutSpecThatFits:constrainedSize];

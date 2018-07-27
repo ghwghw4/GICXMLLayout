@@ -42,8 +42,4 @@
 -(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *))signalBlock{
     signalBlock([self.view rac_newOnChannel]);
 }
-
-//-(RACSignal *)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName{
-//    return [self.view rac_newOnChannel];
-//}
 @end

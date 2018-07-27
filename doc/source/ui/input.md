@@ -1,0 +1,40 @@
+# input
+
+`input`其实就是`UITextField`，也是`gic`库中两个支持双向绑定的元素之一，另外一个就是`input-view`。
+
+input当前支持的属性有限，但是如果需要支持其他的属性，比如：对keyboard的支持，那么大可以对input直接注入新的属性来实现。
+
+## 属性
+
+| 名称              | 数据类型    | 介绍            | 是否支持绑定    | 是否支持动画 |
+| --------------- | ------- | ------------- | --------- | ------ |
+| placehold       | string  | 不解释           | 否         | 否      |
+| placehold-color | UIColor |               | 否         | 否      |
+| placehold-size  | Float   | placehold字体大小 | 否         | 否      |
+| font-color      | UIColor |               | 是         | 是      |
+| font-size       | float   |               | 是         | 是      |
+| text            | string  |               | 是(支持双向绑定) | 是      |
+| secure          | bool    |               | 是         | 是      |
+
+## 例子
+
+```xml
+<input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31"/>
+```
+
+
+
+
+
+# input-view
+
+`input-view`就是`UITextView`，同样支持双向绑定。
+
+`input-view`支持的属性跟`input`一样。
+
+
+
+```Xml
+<input-view font-color="yellow" font-size="16" border-color="black" border-width="0.5" text="你是input-view" placehold="请输入用户名" height="100"/>
+```
+

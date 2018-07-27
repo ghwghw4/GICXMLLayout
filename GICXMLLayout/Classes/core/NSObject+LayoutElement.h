@@ -14,4 +14,6 @@
  其他的NSObject的子类可以覆盖getter方法，自己实现该属性，从而可以取得自定义元素中所需的扩展属性功能
  */
 @property (nonatomic,readonly)GICNSObjectExtensionProperties *gic_ExtensionProperties;
+
++(NSObject *)gic_createElement:(GDataXMLElement *)element withSuperElement:(id)superElement;
 @end

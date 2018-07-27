@@ -1,0 +1,123 @@
+{
+  "logo": {
+    "text": "GICXMLLayout",
+    "type": "link",
+    "path": "index.html"
+  },
+  "main": [{
+      "text": "介绍",
+      "type": "link",
+      "path": "desc.html"
+    },
+    {
+      "text": "属性介绍",
+      "type": "link",
+      "path": "attribute.html"
+    },
+    {
+      "text": "布局系统",
+      "type": "label"
+    },
+    {
+      "text": "panel",
+      "type": "link",
+      "path": "layout/panel.html"
+    },
+    {
+      "text": "stack-panel",
+      "type": "link",
+      "path": "layout/stack-panel.html"
+    },
+    {
+      "text": "inset-panel",
+      "type": "link",
+      "path": "layout/inset-panel.html"
+    },
+    {
+      "text": "dock-panel",
+      "type": "link",
+      "path": "layout/dock-panel.html"
+    },
+    {
+      "text": "background-panel",
+      "type": "link",
+      "path": "layout/background-panel.html"
+    },
+    {
+      "text": "ratio-panel",
+      "type": "link",
+      "path": "layout/ratio-panel.html"
+    },
+    {
+      "text": "UI元素",
+      "type": "label"
+    },
+    {
+      "text": "lable",
+      "type": "link",
+      "path": "ui/lable.html"
+    }, {
+      "text": "input",
+      "type": "link",
+      "path": "ui/input.html"
+    }, {
+      "text": "image",
+      "type": "link",
+      "path": "ui/image.html"
+    },{
+      "text": "gradient-view",
+      "type": "link",
+      "path": "ui/gradient-view.html"
+    },{
+      "text": "list",
+      "type": "link",
+      "path": "ui/list.html"
+    },
+     {
+      "text": "核心模块",
+      "type": "label"
+    }, {
+      "text": "数据绑定",
+      "type": "link",
+      "path": "core/databingding.html"
+    },
+    {
+      "text": "行为",
+      "type": "link",
+      "path": "core/behavior.html"
+    },
+     {
+      "text": "事件",
+      "type": "link",
+      "path": "core/event.html"
+    },
+{
+      "text": "模板",
+      "type": "link",
+      "path": "core/template.html"
+    },{
+      "text": "动画",
+      "type": "link",
+      "path": "core/animation.html"
+    },
+    {
+      "text": "指令",
+      "type": "link",
+      "path": "core/directive.html"
+    },
+     {
+      "text": "自定义",
+      "type": "link",
+      "path": "core/custom.html"
+    },
+    {
+      "text": "其他",
+      "type": "label"
+    },
+    {
+      "text": "后续功能开发计划",
+      "type": "link",
+      "path": "feature-list.html"
+    }
+  ]
+}

@@ -10,18 +10,16 @@
                 <template-ref t-name="desc" data-context="panel 是绝对布局，类似UIView"/>
 
                 <panel background-color="black" height="100">
+                    <!--子元素相对于左上角偏移x:10 y:10-->
                     <panel size="70" position="10" background-color="yellow">
-                        <panel size="30" position="10" background-color="red">
-
-                        </panel>
+                        <!--子元素相对于左上角偏移x:10 y:5-->
+                        <panel size="30" position="10 5" background-color="red"/>
                     </panel>
                 </panel>
 
                 <template-ref t-name="desc" data-context="如果子元素没有设置position和size，那么默认撑满父元素（除lable）"/>
                 <panel background-color="black" height="100">
-                    <panel background-color="red">
-
-                    </panel>
+                    <panel background-color="red"/>
                 </panel>
             </stack-panel>
         </inset-panel>

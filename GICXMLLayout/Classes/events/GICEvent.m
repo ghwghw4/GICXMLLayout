@@ -43,24 +43,15 @@
         [self  unAttach];
     }
     [super attachTo:target];
-//    @weakify(self)
-//    signlDisposable = [[self createEventSignal] subscribeNext:^(id  _Nullable x) {
-//        @strongify(self)
-//        [self.eventSubject sendNext:x];
-//    }];
 }
 
 -(void)unAttach{
-    if(signlDisposable && ![signlDisposable isDisposed]){
-        [signlDisposable dispose];
-    }
+//    if(signlDisposable && ![signlDisposable isDisposed]){
+//        [signlDisposable dispose];
+//    }
 }
 
 -(void)fire:(id)value{
     [self.eventSubject sendNext:value];
 }
-
-//-(RACSignal *)createEventSignal{
-//    return nil;
-//}
 @end

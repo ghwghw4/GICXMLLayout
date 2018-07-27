@@ -49,25 +49,6 @@
     return YES;
 }
 
-//-(CGFloat)cellHeight{
-//    if(self->itemHeight>0)
-//        return self->itemHeight;
-//    return _cellAutoHeight;
-//}
-
-//-(void)setCellHeight:(CGFloat)cellHeight{
-//    if(cellHeight>_cellAutoHeight){
-//        _cellAutoHeight = cellHeight;
-//        if(self.delegate)
-//            [self.delegate listItem:self cellHeightUpdate:cellHeight];
-//
-//    }
-////    if(_cellAutoHeight != cellHeight){
-////        _cellAutoHeight = cellHeight;
-////        if(self.delegate)
-////            [self.delegate listItem:self cellHeightUpdate:cellHeight];
-////    }
-//}
 
 -(NSObject *)gic_getSuperElement{
     return (NSObject *)self.delegate;
@@ -81,11 +62,6 @@
 
 -(ASCellNode *)getCell{
     GICListTableViewCell *cell = [[GICListTableViewCell alloc] initWithListItem:self];
-//    if(cell == nil){
-//         cell = [[GICListTableViewCell alloc] initWithListItem:self];
-//    }else{
-//        cell.listItem = self;
-//    }
     return cell;
 }
 @end

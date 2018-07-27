@@ -31,17 +31,21 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          }],
                          @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [(GICLable *)target setMaximumNumberOfLines:[value integerValue]];
+                              [(GICLable *)target updateString];
                          }],
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [((GICLable *)target)->attributes setValue:value forKey:NSForegroundColorAttributeName];
+                              [(GICLable *)target updateString];
                          }],
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                               [((GICLable *)target)->attributes setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
+                              [(GICLable *)target updateString];
                          }],
                          @"text-align":[[GICTextAlignmentConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableParagraphStyle * p = [[NSMutableParagraphStyle alloc] init];
                              p.alignment = [value integerValue];
                              [((GICLable *)target)->attributes setValue:p forKey:NSParagraphStyleAttributeName];
+                             [(GICLable *)target updateString];
                          }],
                          
                          };
@@ -65,10 +69,13 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
 
 -(void)gic_parseElementCompelete{
     [super gic_parseElementCompelete];
+    parseComplete = YES;
     [self updateString];
 }
 
 -(void)updateString{
+    if(!parseComplete)
+        return;
     if(attbuteStringArray.count>0){
         [self->mutAttString deleteCharactersInRange:NSMakeRange(0, self->mutAttString.length)];
         NSInteger offset = 0;

@@ -24,11 +24,11 @@
                     </dock-panel>
                 </background-panel>
                 <template-ref t-name="desc" data-context="背景布局2-以图片作为背景"/>
-                <background-panel space-before="20" height="100">
+                <background-panel space-before="20">
                     <background>
                         <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
                     </background>
-                    <dock-panel>
+                    <dock-panel  height="100">
                         <lable text="背景布局2 - 前景1" font-size="16" font-color="white" />
                     </dock-panel>
                 </background-panel>

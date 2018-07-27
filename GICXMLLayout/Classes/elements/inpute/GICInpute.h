@@ -11,5 +11,4 @@
     NSMutableAttributedString *placeholdString;
     NSMutableDictionary *placeholdAttributs;
 }
-@property (readonly) UITextField *view;
 @end

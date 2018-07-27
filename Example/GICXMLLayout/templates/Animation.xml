@@ -28,7 +28,7 @@
                 <template-ref t-name="title" data-context="移动动画"/>
                 <dock-panel height="50" background-color="black">
                     <animations>
-                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1" ease-mode="1">
                             <anim-move  from="0" to="40 30" />
                         </anim-transforms>
                     </animations>
@@ -37,7 +37,7 @@
                 <template-ref t-name="title" data-context="旋转动画" space-before="30"/>
                 <dock-panel size="50" background-color="black" >
                     <animations>
-                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1" ease-mode="2">
                             <anim-rotate from="0" to="180" />
                         </anim-transforms>
                     </animations>
@@ -46,7 +46,7 @@
                 <template-ref t-name="title" data-context="缩放动画" space-before="30"/>
                 <dock-panel size="50" background-color="black" >
                     <animations>
-                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1">
+                        <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1" ease-mode="3">
                             <anim-scale from="1" to="1.5" />
                         </anim-transforms>
                     </animations>

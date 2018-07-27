@@ -75,7 +75,7 @@
         }
         [xmlDoc.rootElement addAttribute:node];
     }
-    childElement = [GICXMLLayout createElement:[xmlDoc rootElement] withSuperElement:target];
+    childElement = [NSObject gic_createElement:[xmlDoc rootElement] withSuperElement:target];
     return childElement;
 }
 

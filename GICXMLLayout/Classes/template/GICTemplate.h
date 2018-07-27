@@ -15,11 +15,4 @@
 }
 @property (nonatomic,strong)NSString *name;
 @property (nonatomic,strong,readonly)NSString *xmlDocString;
-
-
-//-(NSObject *)createElement;
-
-//-(NSObject *)createElementWithSlotsMap:(NSMutableDictionary<NSString *, GDataXMLDocument *> *)slotMap;
-
-//NSMutableDictionary<NSString *, GDataXMLDocument *> *
 @end

@@ -51,9 +51,9 @@
              @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICInputeView *)target setSecureTextEntry:[value boolValue]];
              }],
-             @"scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICInputeView *)target setScrollEnabled:[value boolValue]];
-             }],
+//             @"scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 [(GICInputeView *)target setScrollEnabled:[value boolValue]];
+//             }],
              };
 }
 

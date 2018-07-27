@@ -15,7 +15,7 @@
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     if([element.name isEqualToString:@"background"]){
         NSAssert(element.childCount ==1, @"background必须包含一个子元素，且只能包含一个子元素");
-        id temp = [GICXMLLayout createElement:[element children].firstObject withSuperElement:self];
+        id temp = [NSObject gic_createElement:[element children].firstObject withSuperElement:self];
         NSAssert([temp isKindOfClass:[ASDisplayNode class]], @"background 子元素必须是UI元素");
         _backgroundNode = temp;
         [self gic_addSubElement:temp];

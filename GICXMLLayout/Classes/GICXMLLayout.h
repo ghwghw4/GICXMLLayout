@@ -17,17 +17,38 @@
 #import "GICEvent.h"
 
 @interface GICXMLLayout : NSObject
+
+/**
+ 注册所有的元素
+ */
 +(void)regiterAllElements;
+
+/**
+ 注册核心元素
+ */
++(void)regiterCoreElements;
+
+/**
+ 注册UI元素
+ */
++(void)regiterUIElements;
+
 
 //+(Class)classFromElementName:(NSString *)elementName;
 
-+(NSObject *)createElement:(GDataXMLElement *)element withSuperElement:(id)superElement;
 
 
+/**
+ 解析视图。确保xml中的根节点是UI元素。
+
+ @param xmlData <#xmlData description#>
+ @param superView <#superView description#>
+ @param compelte <#compelte description#>
+ */
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
 
 /**
- 直接解析一个page。
+ 直接解析一个page。确保xml中的根节点是page
  @param xmlData <#xmlData description#>
  @param compelte <#compelte description#>
  */

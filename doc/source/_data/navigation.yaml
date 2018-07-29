@@ -114,6 +114,11 @@
       "text": "其他",
       "type": "label"
     },
+     {
+      "text": "开发工具",
+      "type": "link",
+      "path": "other/dev-tools.html"
+    },
     {
       "text": "后续功能开发计划",
       "type": "link",

@@ -34,10 +34,10 @@
 -(void)onSelect:(GICEventInfo *)eventInfo{
     NSDictionary *ds = [eventInfo.target gic_DataContenxt];
 //    if([[ds objectForKey:@"app"] boolValue]){
-        UIViewController *page = [GICXMLLayoutDevTools loadXMLFromUrl:[NSURL URLWithString:@"http://localhost:8080/app/ToutiaoRoot.xml"]];
-        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
-        [UIApplication sharedApplication].delegate.window.rootViewController =nav;
-        return;
+//        UIViewController *page = [GICXMLLayoutDevTools loadXMLFromUrl:[NSURL URLWithString:@"http://localhost:8080/app/ToutiaoRoot.xml"]];
+//        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
+//        [UIApplication sharedApplication].delegate.window.rootViewController =nav;
+//        return;
 //    }
     [UtilsHelp navigateToGICPage:[ds objectForKey:@"pagePath"]];
 }

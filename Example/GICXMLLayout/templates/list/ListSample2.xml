@@ -6,9 +6,9 @@
             </inset-panel>
         </template>
     </templates>
-    <list separator-inset = "0 15 0 15">
+    <list>
         <for>
-            <list-item>
+            <list-item separator-inset = "0 15 0 15">
                 <template-ref t-name="list-template"/>
             </list-item>
         </for>

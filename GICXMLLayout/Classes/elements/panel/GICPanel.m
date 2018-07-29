@@ -16,11 +16,16 @@
 
 -(id)init{
     self = [super init];
+    self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
+
+
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.subnodes];
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.gic_displayNodes];
     return absoluteSpec;
 }
+
+
 @end

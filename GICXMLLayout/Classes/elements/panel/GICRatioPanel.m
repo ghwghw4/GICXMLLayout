@@ -44,9 +44,10 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    if(self.subnodes.count==0)
+    NSArray *nodes = self.gic_displayNodes;
+    if(nodes.count==0)
         return [super layoutSpecThatFits:constrainedSize];
-    ASRatioLayoutSpec *rationSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:self.ratio child:self.subnodes.firstObject];
+    ASRatioLayoutSpec *rationSpec = [ASRatioLayoutSpec ratioLayoutSpecWithRatio:self.ratio child:nodes.firstObject];
     return rationSpec;
 }
 @end

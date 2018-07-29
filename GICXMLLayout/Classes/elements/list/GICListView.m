@@ -10,6 +10,7 @@
 #import "GICListItem.h"
 #import "GICNumberConverter.h"
 #import "GICEdgeConverter.h"
+#import "GICBoolConverter.h"
 //#import "GICListHeader.h"
 //#import "GICListFooter.h"
 
@@ -30,6 +31,16 @@
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target gic_safeView:^(id view) {
                      [view setSeparatorStyle:[value integerValue]];
+                 }];
+             }],
+             @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
+                 }];
+             }],
+             @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
                  }];
              }],
              };
@@ -83,6 +94,8 @@
 
 -(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{
     [super gic_removeSubElements:subElements];
+    if(subElements.count==0)
+        return;
     NSMutableArray *mutArray=[NSMutableArray array];
     for(id subElement in subElements){
         if([subElement isKindOfClass:[GICListItem class]]){

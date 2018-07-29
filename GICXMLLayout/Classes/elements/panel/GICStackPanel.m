@@ -61,7 +61,7 @@
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     ASStackLayoutSpec *spec =self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
-    spec.children = self.subnodes;
+    spec.children = self.gic_displayNodes;
     if(self->stackPanelPropertyDict.count>0)
         [spec setValuesForKeysWithDictionary:self->stackPanelPropertyDict];
     return spec;

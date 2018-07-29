@@ -104,7 +104,7 @@
         }
         // 创建数据绑定
         for(NSString *key in dict.allKeys){
-            if([self.expression containsString:key]){
+            if([self.expression rangeOfString:key].location != NSNotFound){
                 @weakify(self)
                 [[self.dataSource rac_valuesAndChangesForKeyPath:key options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
                     @strongify(self)

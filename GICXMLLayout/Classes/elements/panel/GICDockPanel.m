@@ -16,7 +16,7 @@
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     NSMutableArray *children= [NSMutableArray array];
-    for(id node in self.subnodes){
+    for(id node in self.gic_displayNodes){
         GICNSObjectExtensionProperties *properties = [node gic_ExtensionProperties];
         ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
         switch (properties.dockHorizalModel) {

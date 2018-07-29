@@ -8,12 +8,18 @@
 
 4. for指令对元素插入的支持
 
-5. spring动画的支持
+5. 增加switch指令
 
-6. 对valueForPath的支持，使得在数据绑定的时候可以直接以path的形式访问。
+6. spring动画的支持
 
-7. 增加js跟element互相调用的支持。
+7. 动画触发条件支持任意事件。
 
-8. 增加对直接运行js 脚本的支持，直接将js脚本放入js-script的element中执行。
+8. 对valueForPath的支持，使得在数据绑定的时候可以直接以path的形式访问。
 
-   
+9. 添加对手势的支持。(单击、触摸、双击、长按)。
+
+10. 增加js跟element互相调用的支持。
+
+11. 增加对直接运行js 脚本的支持，直接将js脚本放入js-script的element中执行。
+
+     

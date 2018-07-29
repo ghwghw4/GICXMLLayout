@@ -33,13 +33,14 @@
 -(id)init{
     self =[super init];
     self.automaticallyManagesContentSize = YES;
+    self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
     ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];
-    temp.children = self.subnodes;
+    temp.children = self.gic_displayNodes;
     return temp;
 }
 @end

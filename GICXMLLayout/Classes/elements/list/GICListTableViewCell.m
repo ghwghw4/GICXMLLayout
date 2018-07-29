@@ -55,7 +55,7 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     ASStackLayoutSpec *spec= [ASStackLayoutSpec verticalStackLayoutSpec];
-    spec.children = self.subnodes;
+    spec.children = self.gic_displayNodes;
     return spec;
 }
 @end

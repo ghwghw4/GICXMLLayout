@@ -1,0 +1,153 @@
+<page title="模拟头条feeds">
+    <inset-panel inset="0 15">
+        <list data-context='ToutiaoViewModel' background-color="white">
+            <templates>
+                <template t-name="list-template">
+                    <inset-panel inset="15 15" background-color="white">
+                        <lable text="{{  }}" font-size="24"></lable>
+                    </inset-panel>
+                </template>
+
+                <template t-name="base">
+                    <stack-panel>
+                        <template-slot slot-name = "content" space-before="10"/>
+                        <!--底部信息-->
+                        <stack-panel is-horizon="1" space="10" space-before="10" space-after="10">
+                            <lable text="人民网" font-color="999999"/>
+                            <lable text="15评论" font-color="999999"/>
+                            <lable text="1小时前" font-color="999999"/>
+                        </stack-panel>
+                    </stack-panel>
+                </template>
+
+                <template t-name="base2">
+                    <stack-panel>
+                        <stack-panel is-horizon="1" space-before="10" space="10">
+                            <image size="32" corner-radius="16" url="http://imgtu.5011.net/uploads/content/20170504/5905661493879766.jpg"/>
+                            <stack-panel flex-grow="1" flex-shrink="1">
+                                <lable text="海伟" font-size="14" font-color="191919"/>
+                                <lable text="码农 码农" font-color="999999"/>
+                            </stack-panel>
+                            <dock-panel width="50">
+                                <lable text="关注" font-color="red" font-size="14"/>
+                            </dock-panel>
+                        </stack-panel>
+                        <template-slot slot-name = "content" space-before="10"/>
+                        <!--底部信息-->
+                        <stack-panel is-horizon="1" space-before="10" space-after="10">
+                            <stack-panel width="33%" is-horizon="1" justify-content="1" space="5" align-items="2">
+                                <image local-name="zan"/>
+                                <lable text="21" font-color="191919"/>
+                            </stack-panel>
+
+                            <stack-panel width="33%" is-horizon="1" justify-content="1" space="5" align-items="2">
+                                <image local-name="zan"/>
+                                <lable text="49" font-color="191919"/>
+                            </stack-panel>
+
+                            <stack-panel width="33%" is-horizon="1" justify-content="1" space="5" align-items="2">
+                                <image local-name="zan"/>
+                                <lable text="60" font-color="191919"/>
+                            </stack-panel>
+                        </stack-panel>
+                    </stack-panel>
+                </template>
+
+                <template t-name="t1">
+                    <template-ref t-name="base">
+                        <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" slot-name="content" font-color="191919" font-size="24"/>
+                    </template-ref>
+                </template>
+                <template t-name="t2">
+                    <template-ref t-name="base">
+                        <stack-panel slot-name="content">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话"  font-color="191919" font-size="24"/>
+                            <stack-panel is-horizon="1" justify-content="3" space-before="10"  data-context='[1,2,3]'>
+                                <for>
+                                    <ratio-panel width="32%" ratio="0.5625">
+                                        <inset-panel>
+                                            <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                                        </inset-panel>
+                                    </ratio-panel>
+                                </for>
+                            </stack-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+
+                <template t-name="t3">
+                    <template-ref t-name="base">
+                        <stack-panel slot-name="content" is-horizon="1">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" flex-grow="1" flex-shrink="1" font-color="191919" font-size="24" />
+                            <ratio-panel width="32%" ratio="0.5625" space-before="10">
+                                <inset-panel>
+                                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                                </inset-panel>
+                            </ratio-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+
+                <template t-name="t4">
+                    <template-ref t-name="base">
+                        <stack-panel slot-name="content">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" flex-grow="1" flex-shrink="1" font-color="191919" font-size="24" lines="3"/>
+                            <ratio-panel ratio="0.5625" space-before="10">
+                                <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                            </ratio-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+
+                <template t-name="t5">
+                    <template-ref t-name="base2">
+                        <stack-panel slot-name="content">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" flex-grow="1" flex-shrink="1" font-color="191919" font-size="24" lines="3"/>
+                            <ratio-panel ratio="0.5625" space-before="10" width="200">
+                                <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                            </ratio-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+
+                <template t-name="t6">
+                    <template-ref t-name="base2">
+                        <stack-panel slot-name="content">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" flex-grow="1" flex-shrink="1" font-color="191919" font-size="24" lines="3"/>
+                            <stack-panel is-horizon="1" justify-content="3" space-before="10"  data-context='[1,2,3]'>
+                                <for>
+                                    <ratio-panel width="32%" ratio="0.5625">
+                                        <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                                    </ratio-panel>
+                                </for>
+                            </stack-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+
+                <template t-name="t7">
+                    <template-ref t-name="base2">
+                        <stack-panel slot-name="content">
+                            <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" flex-grow="1" flex-shrink="1" font-color="191919" font-size="24" lines="3"/>
+                            <stack-panel is-horizon="1" space-before="10" space="10" align-items="2" background-color="efefef">
+                                <ratio-panel width="80" ratio="0.75">
+                                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                                </ratio-panel>
+                                <lable text="环球网：中国巴基斯坦加油！会哭会的哈哈但是上帝大大所大多撒多扫地哈哈是的哈哈" flex-grow="1" flex-shrink="1" font-size="14"/>
+                            </stack-panel>
+                        </stack-panel>
+                    </template-ref>
+                </template>
+            </templates>
+            <behaviors>
+                <bev-pullrefresh event-refresh="onRefreshData" loading="{{exp=isRefreshing,mode=1}}"/>
+                <bev-pullmore event-refresh="onLoadMore" loading="{{exp=isLoadingMore,mode=1}}"/>
+            </behaviors>
+            <for data-path="listDatas" show-ver-scroll="0">
+                <list-item separator-inset = "0 0 0 0">
+                    <template-ref t-name="{{}}"/>
+                </list-item>
+            </for>
+        </list>
+    </inset-panel>
+</page>

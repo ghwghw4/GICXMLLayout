@@ -154,15 +154,14 @@
 }
 
 -(void)gic_parseElementCompelete{
+    for(GICBehavior *b in self.gic_Behaviors.behaviors){
+        [b attachTo:self];
+    }
     id temp = self.gic_ExtensionProperties.tempDataContext;
     if(temp){
         self.gic_DataContenxt = temp;
         self.gic_ExtensionProperties.tempDataContext = nil;
         self.gic_isAutoInheritDataModel = NO;
-    }
-    
-    for(GICBehavior *b in self.gic_Behaviors.behaviors){
-        [b attachTo:self];
     }
 }
 

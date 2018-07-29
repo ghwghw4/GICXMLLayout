@@ -20,17 +20,15 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
                        DESC
-
   s.homepage         = 'https://github.com/ghwghw4/GICXMLLayout'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ghwghw4' => 'dagehaoshuang@163.com' }
   s.source           = { :git => 'https://github.com/ghwghw4/GICXMLLayout.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
   s.ios.deployment_target = '7.0'
 
-  s.source_files = 'GICXMLLayout/Classes/**/*'
+
   
   # s.resource_bundles = {
   #   'GICXMLLayout' => ['GICXMLLayout/Assets/*.png']
@@ -38,13 +36,23 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-    s.prefix_header_file = 'GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch'
-    s.dependency 'GDataXMLNode_GIC'
-    s.dependency 'GICJsonParser'
-    s.dependency 'ReactiveObjC'
-    s.dependency 'Texture'
-    s.dependency 'pop'
-    s.frameworks = 'JavaScriptCore'
-    s.libraries = 'xml2'
-    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
+
+    s.subspec 'core' do |gic|
+        gic.source_files = 'GICXMLLayout/Classes/**/*'
+        gic.prefix_header_file = 'GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch'
+        gic.dependency 'GDataXMLNode_GIC'
+        gic.dependency 'GICJsonParser'
+        gic.dependency 'ReactiveObjC'
+        gic.dependency 'Texture'
+        gic.dependency 'pop'
+        gic.frameworks = 'JavaScriptCore'
+        gic.libraries = 'xml2'
+        gic.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
+    end
+
+    s.subspec 'dev' do |d|
+        d.source_files = 'GICXMLLayout/dev/**/*'
+        d.dependency 'GICXMLLayout/core'
+    end
+
 end

@@ -2,5 +2,6 @@ use_frameworks!
 
 target 'GICXMLLayout_Example' do
   pod 'GICXMLLayout', :path => '../'
+  pod 'GICXMLLayout/dev', :path => '../'
   pod 'MJRefresh'
 end

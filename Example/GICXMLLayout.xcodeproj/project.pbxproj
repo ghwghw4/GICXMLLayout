@@ -44,6 +44,8 @@
 		37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806BE20F48372002EEF55 /* ListSample4.xml */; };
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
+		37E7D360210D4E94003C6416 /* ToutiaoRoot.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */; };
+		37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D363210D9844003C6416 /* ToutiaoViewModel.m */; };
 		37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */; };
 		37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB62105B7E2000F0D9A /* Template.xml */; };
 		37ED8BB92105BB60000F0D9A /* Event.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB82105BB60000F0D9A /* Event.xml */; };
@@ -130,6 +132,9 @@
 		37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample3ViewModel.m; sourceTree = "<group>"; };
 		37C806C320F48DAE002EEF55 /* ListSample4ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample4ViewModel.h; sourceTree = "<group>"; };
 		37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample4ViewModel.m; sourceTree = "<group>"; };
+		37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToutiaoRoot.xml; sourceTree = "<group>"; };
+		37E7D362210D9844003C6416 /* ToutiaoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToutiaoViewModel.h; sourceTree = "<group>"; };
+		37E7D363210D9844003C6416 /* ToutiaoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToutiaoViewModel.m; sourceTree = "<group>"; };
 		37ED8BB32105B1DB000F0D9A /* TimestampConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimestampConverter.h; sourceTree = "<group>"; };
 		37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimestampConverter.m; sourceTree = "<group>"; };
 		37ED8BB62105B7E2000F0D9A /* Template.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Template.xml; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 		3767542520F22AFF0019A521 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
+				37E7D361210D982D003C6416 /* app */,
 				37311AA020FC9E7C000D0986 /* ui */,
 				37311A8D20FC3675000D0986 /* layout */,
 				37C806B020F43156002EEF55 /* list */,
@@ -264,6 +270,7 @@
 		3767542620F22B130019A521 /* templates */ = {
 			isa = PBXGroup;
 			children = (
+				37E7D35E210D4E76003C6416 /* app */,
 				37311A8920FC3635000D0986 /* layout */,
 				37C806AD20F430A5002EEF55 /* list */,
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
@@ -313,6 +320,23 @@
 				37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */,
 			);
 			path = list;
+			sourceTree = "<group>";
+		};
+		37E7D35E210D4E76003C6416 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		37E7D361210D982D003C6416 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				37E7D362210D9844003C6416 /* ToutiaoViewModel.h */,
+				37E7D363210D9844003C6416 /* ToutiaoViewModel.m */,
+			);
+			path = app;
 			sourceTree = "<group>";
 		};
 		37ED8BB22105B1AD000F0D9A /* valueconverter */ = {
@@ -525,6 +549,7 @@
 				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
 				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
+				37E7D360210D4E94003C6416 /* ToutiaoRoot.xml in Resources */,
 				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
 				37311AB821001D79000D0986 /* Panel.xml in Resources */,
 				37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */,
@@ -638,6 +663,7 @@
 				37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */,
 				37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
 				37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */,

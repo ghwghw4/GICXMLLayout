@@ -167,7 +167,7 @@
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
-        [self addSubnode:subElement];
+//        [self addSubnode:subElement];
         if(self.nodeLoaded){
             [self setNeedsLayout];
         }
@@ -186,16 +186,16 @@
 -(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order{
     ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
     if([subElement isKindOfClass:[ASDisplayNode class]]){
-        ASDisplayNode *findNode = nil;
-        for(ASDisplayNode *node in self.subnodes){
-            if(order >=node.gic_ExtensionProperties.elementOrder){
-                findNode = node;
-            }
-        }
-        if(findNode)
-            [self insertSubnode:subElement aboveSubnode:findNode];
-        else
-            [self addSubnode:subElement];
+//        ASDisplayNode *findNode = nil;
+//        for(ASDisplayNode *node in self.subnodes){
+//            if(order >=node.gic_ExtensionProperties.elementOrder){
+//                findNode = node;
+//            }
+//        }
+//        if(findNode)
+//            [self insertSubnode:subElement aboveSubnode:findNode];
+//        else
+//            [self addSubnode:subElement];
         if(self.nodeLoaded){
             [self setNeedsLayout];
         }
@@ -209,8 +209,7 @@
     [super gic_removeSubElements:subElements];
     BOOL needLayout = NO;
     for(id sub in subElements){
-        if([sub isKindOfClass:[ASDisplayNode class]]  && [self.subnodes containsObject:sub]){
-            [(ASDisplayNode *)sub removeFromSupernode];
+        if([sub isKindOfClass:[ASDisplayNode class]]){
             needLayout = YES;
         }
     }
@@ -229,6 +228,20 @@
     if(self.nodeLoaded){
         [self setNeedsLayout];
     }
+}
+
+
+-(NSArray<ASDisplayNode*> *)gic_displayNodes{
+    NSMutableArray *mutArray=[NSMutableArray array];
+    for(id node in [self gic_subElements]){
+        if([node isKindOfClass:[ASDisplayNode class]]){
+            [mutArray addObject:node];
+        }
+    }
+    [mutArray sortUsingComparator:^NSComparisonResult(ASDisplayNode * obj1, ASDisplayNode * obj2) {
+        return obj1.gic_ExtensionProperties.elementOrder > obj2.gic_ExtensionProperties.elementOrder? NSOrderedDescending:NSOrderedAscending;
+    }];
+    return mutArray;
 }
 
 @end

@@ -17,4 +17,6 @@
 -(void)gic_safeView:(void (^)(UIView *view))cb;
 
 -(void)layoutAttributeChanged;
+
+-(NSArray<ASDisplayNode*> *)gic_displayNodes;
 @end

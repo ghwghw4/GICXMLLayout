@@ -17,6 +17,8 @@ title: GICXMLLayout
 
 想要查看`gic`提供的sample可以直接将项目pull下来，然后在模拟器中运行查看，或者在真机上运行。模拟器中运行`动画`会自动停止，请以真机为准。
 
+[项目地址](https://github.com/ghwghw4/GICXMLLayout)
+
 ## 安装
 
 1. 在项目的podfile中添加如下代码:

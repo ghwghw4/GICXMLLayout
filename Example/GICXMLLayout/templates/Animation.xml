@@ -1,18 +1,18 @@
 <page title="动画" data-context="DataBindingViewModel">
     <templates>
         <template t-name="title">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666" width="100%"/>
         </template>
         <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black"/>
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black" width="100%"/>
         </template>
     </templates>
     <scroll-view background-color="white">
         <inset-panel inset="15">
-            <stack-panel>
+            <stack-panel align-items="2">
                 <template-ref t-name="title" data-context="属性动画，理论上所有的属性都支持动画"/>
                 <template-ref t-name="desc" data-context="自动开始动画"/>
-                <dock-panel height="50" background-color="black">
+                <dock-panel height="50" background-color="black" width="100%">
                     <animations>
                         <anim-attribute attribute-name="alpha" on="1" from="1" to="0.5" autoreverses="1" duration="1" repeat="-1"/>
                     </animations>
@@ -26,7 +26,7 @@
                 </dock-panel>
 
                 <template-ref t-name="title" data-context="移动动画"/>
-                <dock-panel height="50" background-color="black">
+                <dock-panel height="50" background-color="black" width="100%">
                     <animations>
                         <anim-transforms autoreverses="1" duration="1" repeat="-1" on="1" ease-mode="1">
                             <anim-move  from="0" to="40 30" />

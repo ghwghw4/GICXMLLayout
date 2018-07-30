@@ -19,6 +19,8 @@ title: GICXMLLayout
 
 [项目地址](https://github.com/ghwghw4/GICXMLLayout)
 
+[待开发功能列表](feature-list.html)
+
 ## 安装
 
 1. 在项目的podfile中添加如下代码:

@@ -9,6 +9,24 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+# 介绍
+
+`GICXMLLayout`以下简称`gic`，是一个以XML来描述UI的一个库，同时兼有MVVM的功能。`gic`能够做什么？
+
+1. 以XML来描述UI、动画等。
+2. 纯粹的MVVM
+3. 支持`数据绑定`,类似h5中`Vue`提供的数据绑定能力
+4. 支持`模板功能`类似于h5中的模板功能。
+5. 强大的布局系统，甚至提供flex等复杂高效的布局
+6. 强大的自定义能力，能够使得开发者按照自己的意愿扩展出能够直接使用XML来描述的任意功能。
+7. 具有局部替换能力，可以对现有项目进行局部替换，使得局部功能具备MVVM+XML的能力。
+8. 由于是直接采用XML来描述，因此天生具备实时更新的能力
+9. `gic`的布局系统以及UI系统是基于`Texture`开发的，因此天生具有强大的性能优势
+
+# 在线文档
+
+[在线文档链接](http://gicxmllayout.gonghaiwei.cn/attribute.html)
+
 ## Installation
 
 GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
@@ -18,13 +36,9 @@ it, simply add the following line to your Podfile:
 pod 'GICXMLLayout'
 ```
 
-# Document
-
-[document](http://gicxmllayout.gonghaiwei.cn/attribute.html)
-
 ## Author
 
-ghwghw4, dagehaoshuang@163.com
+海伟, 693963124@qq.com
 
 ## License
 

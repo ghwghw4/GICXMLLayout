@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GDataXMLNode.h"
 #import "NSObject+GICDataContext.h"
 #import "GICEventInfo.h"
 #import "GICBehavior.h"

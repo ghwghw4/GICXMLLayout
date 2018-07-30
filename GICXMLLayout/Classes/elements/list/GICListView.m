@@ -59,14 +59,19 @@
     }] bufferWithTime:0.1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
-            NSMutableArray *mutArray=[NSMutableArray array];
             NSInteger index = self->listItems.count;
+           
             [self->listItems addObjectsFromArray:[x allObjects]];
-            for(int i=0 ;i<x.count;i++){
-                [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-                index ++;
+            if(index==0){
+                [self reloadData];
+            }else{
+                NSMutableArray *mutArray=[NSMutableArray array];
+                for(int i=0 ;i<x.count;i++){
+                    [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+                    index ++;
+                }
+                [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
             }
-            [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
         }
     }];
 
@@ -104,7 +109,11 @@
     }
     [listItems removeObjectsInArray:subElements];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self deleteRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationFade];
+        if(self->listItems.count==0){
+             [self reloadData];
+        }else{
+            [self deleteRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationFade];
+        }
     });
 }
 

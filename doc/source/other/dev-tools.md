@@ -16,13 +16,7 @@
 
    这样本地的一个建议的http服务器就弄好了。
 
-4. 在pod 中添加如下：
-
-   ```bash
-   pod 'GICXMLLayout/dev'
-   ```
-
-   然后执行pod install
+4. 将sample中的dev文件夹下的文件拷贝到您的项目中，并且添加到您的项目中
 
 5. 在项目中创建一个用来远程调试的xml文件
 

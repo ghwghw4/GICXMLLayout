@@ -12,6 +12,7 @@
 		372D87B6210EA8560037E314 /* GICXMLLayoutDevPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */; };
 		372D87C62110134C0037E314 /* StyleSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87C52110134C0037E314 /* StyleSample.xml */; };
 		372D87CF211155560037E314 /* CommonStyle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87CE211155560037E314 /* CommonStyle.xml */; };
+		372D87E1211194410037E314 /* App.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87E0211194410037E314 /* App.xml */; };
 		37311A8520FC34F9000D0986 /* Layout.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8420FC34F9000D0986 /* Layout.xml */; };
 		37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A8720FC3533000D0986 /* LayoutViewModel.m */; };
 		37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8A20FC364D000D0986 /* StackPanel.xml */; };
@@ -87,6 +88,7 @@
 		372D87B4210EA8560037E314 /* GICXMLLayoutDevPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevPage.h; sourceTree = "<group>"; };
 		372D87C52110134C0037E314 /* StyleSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StyleSample.xml; sourceTree = "<group>"; };
 		372D87CE211155560037E314 /* CommonStyle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonStyle.xml; sourceTree = "<group>"; };
+		372D87E0211194410037E314 /* App.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = App.xml; sourceTree = "<group>"; };
 		37311A8420FC34F9000D0986 /* Layout.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Layout.xml; sourceTree = "<group>"; };
 		37311A8620FC3533000D0986 /* LayoutViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutViewModel.h; sourceTree = "<group>"; };
 		37311A8720FC3533000D0986 /* LayoutViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutViewModel.m; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				373DD6532105D4E300E359BB /* Behavior.xml */,
 				373DD65E2106BBC500E359BB /* Directive.xml */,
 				372D87C52110134C0037E314 /* StyleSample.xml */,
+				372D87E0211194410037E314 /* App.xml */,
 			);
 			path = templates;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
 				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
 				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
+				372D87E1211194410037E314 /* App.xml in Resources */,
 				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
 				37E7D360210D4E94003C6416 /* ToutiaoRoot.xml in Resources */,
 				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,

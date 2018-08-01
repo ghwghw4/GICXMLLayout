@@ -37,14 +37,21 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 
-        s.source_files = 'GICXMLLayout/Classes/**/*'
-        s.prefix_header_file = 'GICXMLLayout/Classes/XMLLayoutPrefixHeader.pch'
-        s.dependency 'GDataXMLNode_GIC'
-        s.dependency 'GICJsonParser'
-        s.dependency 'ReactiveObjC'
-        s.dependency 'Texture'
-        s.dependency 'pop'
-        s.frameworks = 'JavaScriptCore'
-        s.libraries = 'xml2'
-        s.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
+        s.subspec 'Core' do |core|
+            core.source_files = 'GICXMLLayout/Classes/Core/**/*'
+            core.prefix_header_file = 'GICXMLLayout/Classes/Core/XMLLayoutPrefixHeader.pch'
+            core.dependency 'GDataXMLNode_GIC'
+            core.dependency 'GICJsonParser'
+            core.dependency 'ReactiveObjC'
+            core.dependency 'Texture'
+            core.dependency 'pop'
+            core.frameworks = 'JavaScriptCore'
+            core.libraries = 'xml2'
+            core.xcconfig = { 'HEADER_SEARCH_PATHS' => '${SDK_DIR}/usr/include/libxml2' }
+        end
+
+        s.subspec 'Router' do |router|
+            router.source_files = 'GICXMLLayout/Classes/Router/**/*'
+            router.dependency 'GICXMLLayout/Core'
+        end
 end

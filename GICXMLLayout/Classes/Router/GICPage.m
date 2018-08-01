@@ -29,7 +29,7 @@
                  [(GICPage *)target setTitle:value];
              }],
 //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 [((GICPage *)target)->viewNode setBackgroundColor:value];
+//                 [((GICPage *)target)->view setBackgroundColor:value];
 //             }],
              };
 }

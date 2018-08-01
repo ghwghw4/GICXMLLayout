@@ -13,8 +13,6 @@
 #import "GICTemplateRef.h"
 #import "NSObject+GICTemplate.h"
 #import "GICElementsCache.h"
-
-#import "GICPage.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "GICInsetPanel.h"
@@ -77,7 +75,7 @@
 }
 
 +(void)regiterUIElements{
-    [GICElementsCache registElement:[GICPage class]];
+//    [GICElementsCache registElement:[GICPage class]];
     // UI元素
     [GICElementsCache registElement:[GICGradientView class]];
     
@@ -122,25 +120,25 @@ static BOOL _enableDefualtStyle;
 }
 
 +(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte{
-    NSError *error = nil;
-    //    ASDisplayNode.shouldShowRangeDebugOverlay = YES;
-    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
-    if (error) {
-        NSLog(@"error : %@", error);
-        compelte(nil);
-        return;
-    }
-    // 取根节点
-    dispatch_async(dispatch_get_main_queue(), ^{
-        GDataXMLElement *rootElement = [xmlDocument rootElement];
-        if([rootElement.name isEqualToString:@"page"]){
-            [GICXMLParserContext resetInstance:xmlDocument];
-            GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
-            [GICXMLParserContext parseCompelete];
-            compelte(vc);
-        }else{
-            compelte(nil);
-        }
-    });
+//    NSError *error = nil;
+//    //    ASDisplayNode.shouldShowRangeDebugOverlay = YES;
+//    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+//    if (error) {
+//        NSLog(@"error : %@", error);
+//        compelte(nil);
+//        return;
+//    }
+//    // 取根节点
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        GDataXMLElement *rootElement = [xmlDocument rootElement];
+//        if([rootElement.name isEqualToString:@"page"]){
+//            [GICXMLParserContext resetInstance:xmlDocument];
+//            GICPage *vc =[[GICPage alloc] initWithXmlElement:rootElement];
+//            [GICXMLParserContext parseCompelete];
+//            compelte(vc);
+//        }else{
+//            compelte(nil);
+//        }
+//    });
 }
 @end

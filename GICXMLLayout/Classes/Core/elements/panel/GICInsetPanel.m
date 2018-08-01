@@ -20,9 +20,9 @@
              };
 }
 
--(BOOL)gic_parseOnlyOneSubElement{
-    return true;
-}
+//-(BOOL)gic_parseOnlyOneSubElement{
+//    return true;
+//}
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     NSArray *nodes = self.gic_displayNodes;

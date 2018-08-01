@@ -16,17 +16,17 @@
     self=[super init];
     
     _listDatas = @[
-                       @{@"name":@"布局系统",@"pagePath":@"Layout"},
-                       @{@"name":@"支持的UI元素",@"pagePath":@"UIList"},
-                       @{@"name":@"list",@"pagePath":@"ListSample"},
-                       @{@"name":@"数据绑定",@"pagePath":@"DataBinding"},
-                       @{@"name":@"模板",@"pagePath":@"Template"},
-                       @{@"name":@"事件",@"pagePath":@"Event"},
-                       @{@"name":@"动画",@"pagePath":@"Animation"},
-                       @{@"name":@"行为",@"pagePath":@"Behavior"},
-                       @{@"name":@"指令",@"pagePath":@"Directive"},
-                       @{@"name":@"样式",@"pagePath":@"StyleSample",@"app":@(YES)},
-                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"ToutiaoRoot",@"app":@(NO)},
+                       @{@"name":@"布局系统",@"pagePath":@"Layout.xml"},
+                       @{@"name":@"支持的UI元素",@"pagePath":@"UIList.xml"},
+                       @{@"name":@"list",@"pagePath":@"ListSample.xml"},
+                       @{@"name":@"数据绑定",@"pagePath":@"DataBinding.xml"},
+                       @{@"name":@"模板",@"pagePath":@"Template.xml"},
+                       @{@"name":@"事件",@"pagePath":@"Event.xml"},
+                       @{@"name":@"动画",@"pagePath":@"Animation.xml"},
+                       @{@"name":@"行为",@"pagePath":@"Behavior.xml"},
+                       @{@"name":@"指令",@"pagePath":@"Directive.xml"},
+                       @{@"name":@"样式",@"pagePath":@"StyleSample.xml",@"app":@(YES)},
+                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"ToutiaoRoot.xml",@"app":@(NO)},
                        ];
     return self;
 }
@@ -40,5 +40,9 @@
         return;
     }
     [UtilsHelp navigateToGICPage:[ds objectForKey:@"pagePath"]];
+}
+
+-(void)onSelect2{
+    
 }
 @end

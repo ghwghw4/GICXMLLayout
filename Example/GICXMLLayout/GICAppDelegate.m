@@ -14,6 +14,7 @@
 #import "AutoHideKeybordBehavior.h"
 #import "PullRefreshBehavior.h"
 #import "PullMoreBehavior.h"
+#import "GICRouter.h"
 
 @implementation GICAppDelegate
 
@@ -23,6 +24,8 @@
 //    [GICXMLLayout enableDefualtStyle:YES];
     // 注册gic类库默认所有元素
     [GICXMLLayout regiterAllElements];
+    [GICRouter regiterAllElements];
+    
     // 注册自定义元素
     [GICElementsCache registElement:[SwitchButton class]];
     
@@ -48,13 +51,15 @@
     self.window.rootViewController =[UIViewController new];
     
     
-    // Override point for customization after application launch.
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
-    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
-        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
-        self.window.rootViewController =nav;
-    }];
-    [self.window makeKeyAndVisible];
+//    // Override point for customization after application launch.
+//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
+//    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
+//        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
+//        self.window.rootViewController =nav;
+//    }];
+//    [self.window makeKeyAndVisible];
+    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/App.xml"]];
+    [GICRouter loadAPP:xmlData];
     return YES;
 }
 

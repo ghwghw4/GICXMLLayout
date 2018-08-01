@@ -1,12 +1,5 @@
 <page title="动画" data-context="DataBindingViewModel">
-    <templates>
-        <template t-name="title">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666" width="100%"/>
-        </template>
-        <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black" width="100%"/>
-        </template>
-    </templates>
+    <style path="CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel align-items="2">

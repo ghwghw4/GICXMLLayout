@@ -1,12 +1,5 @@
 <page title="指令" data-context="DirectiveViewModel">
-    <templates>
-        <template t-name="title">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
-        </template>
-        <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="20" font-color="black"/>
-        </template>
-    </templates>
+    <style path="CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>

@@ -35,7 +35,6 @@
 		37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */; };
 		37A1F5262105802100AC1778 /* DataBinding.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5252105802100AC1778 /* DataBinding.xml */; };
 		37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F528210581EE00AC1778 /* DataBindingViewModel.m */; };
-		37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A7AFD620F31167006AADC2 /* LayoutSample.xml */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		37BA55FA20EDB276003DC99A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BA55F920EDB276003DC99A /* TestClass.m */; };
@@ -123,7 +122,6 @@
 		37A1F5252105802100AC1778 /* DataBinding.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataBinding.xml; sourceTree = "<group>"; };
 		37A1F527210581EE00AC1778 /* DataBindingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBindingViewModel.h; sourceTree = "<group>"; };
 		37A1F528210581EE00AC1778 /* DataBindingViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataBindingViewModel.m; sourceTree = "<group>"; };
-		37A7AFD620F31167006AADC2 /* LayoutSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LayoutSample.xml; sourceTree = "<group>"; };
 		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
 		37A7AFD920F311B2006AADC2 /* UtilsHelp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsHelp.m; sourceTree = "<group>"; };
 		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -304,7 +302,6 @@
 				37311A8920FC3635000D0986 /* layout */,
 				37C806AD20F430A5002EEF55 /* list */,
 				3767542A20F22B5D0019A521 /* IndexPage.xml */,
-				37A7AFD620F31167006AADC2 /* LayoutSample.xml */,
 				37C8069720F34776002EEF55 /* UIList.xml */,
 				37C806A420F357F4002EEF55 /* ListSample.xml */,
 				37311A8420FC34F9000D0986 /* Layout.xml */,
@@ -574,7 +571,6 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				37A1F5262105802100AC1778 /* DataBinding.xml in Resources */,
 				37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */,
-				37A7AFD720F31167006AADC2 /* LayoutSample.xml in Resources */,
 				373DD6542105D4E300E359BB /* Behavior.xml in Resources */,
 				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
 				37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */,

@@ -1,9 +1,5 @@
 <page title="数据绑定" data-context="DataBindingViewModel">
-    <templates>
-        <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
-        </template>
-    </templates>
+    <style path="CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>

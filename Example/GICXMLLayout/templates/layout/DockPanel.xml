@@ -1,9 +1,6 @@
 <page title="dock-panel">
+    <style path="CommonStyle.xml" />
     <templates>
-        <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="565656"/>
-        </template>
-        
         <template t-name="p-child">
             <dock-panel size="40" background-color="yellow">
                 <lable text="{{}}" font-color="black"/>

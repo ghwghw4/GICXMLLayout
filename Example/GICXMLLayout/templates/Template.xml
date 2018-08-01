@@ -1,9 +1,6 @@
 <page title="模板" data-context="DataBindingViewModel">
+    <style path="CommonStyle.xml" />
     <templates>
-        <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
-        </template>
-        
         <template t-name="t2">
             <stack-panel space-after="5" space-before="5">
                 <lable text="{{}}" font-size="20" font-color="red"/>

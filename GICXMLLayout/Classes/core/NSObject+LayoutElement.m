@@ -14,6 +14,7 @@
 #import "GICTemplateRef.h"
 #import "GICDataContextConverter.h"
 #import "GICElementsCache.h"
+#import "NSObject+GICStyle.h"
 
 
 @implementation NSObject (LayoutElement)
@@ -69,9 +70,14 @@
     if ([subElement isKindOfClass:[GICBehavior class]]){//如果是指令，那么交给指令自己执行
         [self gic_addBehavior:(GICBehavior *)subElement];
     }else if ([subElement isKindOfClass:[GICTemplates class]]){
-        self.gic_templates = (GICTemplates *)subElement;
+        GICTemplates *ts = (GICTemplates *)subElement;
+        if(self.gic_templates){
+            [self.gic_templates.templats addEntriesFromDictionary:ts.templats];
+        }else{
+            self.gic_templates = ts;
+        }
         // 将模板加入临时上下文中
-        [[[GICXMLParserContext currentInstance] currentTemplates] addEntriesFromDictionary:self.gic_templates.templats];
+        [[[GICXMLParserContext currentInstance] currentTemplates] addEntriesFromDictionary:ts.templats];
     }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
@@ -89,6 +95,8 @@
             b.gic_ExtensionProperties.superElement = self;
             [self gic_addBehavior:b];
         }
+    }else if ([subElement isKindOfClass:[GICStyle class]]){ //行为
+        self.gic_style = (GICStyle *)subElement;
     }else{
         return nil;
     }
@@ -103,12 +111,11 @@
 
 
 -(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
+    [self gic_ExtensionProperties].superElement = superElment;
     [self gic_parseAttributes:element];
     if([self gic_isAutoCacheElement]){
         [[superElment gic_ExtensionProperties] addSubElement:self];
     }
-    
-    [self gic_ExtensionProperties].superElement = superElment;
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;
@@ -128,12 +135,7 @@
 
 -(void)gic_parseAttributes:(GDataXMLElement *)element{
     // convert attributes
-    NSMutableDictionary<NSString *, NSString *> *attributeDict=[NSMutableDictionary dictionary];
-    [element.attributes enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [attributeDict setValue:[obj stringValueOrginal] forKey:[obj name]];
-    }];
-    
-    
+    NSMutableDictionary<NSString *, NSString *> *attributeDict=[self gic_mergeStyles:element];
     NSDictionary *ps = [GICElementsCache classAttributs:[self class]];
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];

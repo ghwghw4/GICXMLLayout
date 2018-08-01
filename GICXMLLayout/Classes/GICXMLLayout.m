@@ -6,6 +6,7 @@
 //
 
 #import "GICXMLLayout.h"
+#import "GICXMLLayoutPrivate.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "GICXMLParserContext.h"
@@ -38,6 +39,7 @@
 #import "GICRatioPanel.h"
 #import "GICTransformAnimations.h"
 #import "GICDirectiveIf.h"
+#import "GICStyle.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -62,7 +64,6 @@
     [GICElementsCache registElement:[GICDirectiveIf class]];
     
     // 模板
-    [GICElementsCache registElement:[GICTemplate class]];
     [GICElementsCache registElement:[GICTemplateRef class]];
     [GICElementsCache registElement:[GICTemplates class]];
     
@@ -70,6 +71,9 @@
     [GICElementsCache registElement:[GICAnimations class]];
     [GICElementsCache registElement:[GICAttributeAnimation class]];
     [GICElementsCache registElement:[GICTransformAnimations class]];
+    
+    //样式
+    [GICElementsCache registElement:[GICStyle class]];
 }
 
 +(void)regiterUIElements{
@@ -86,7 +90,14 @@
     [GICElementsCache registElement:[GICInpute class]];
 }
 
+static BOOL _enableDefualtStyle;
++(void)enableDefualtStyle:(BOOL)enable{
+    _enableDefualtStyle = enable;
+}
 
++(BOOL)enableDefualtStyle{
+    return _enableDefualtStyle;
+}
 
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
     NSError *error = nil;

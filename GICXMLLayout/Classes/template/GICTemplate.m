@@ -9,6 +9,23 @@
 #import "GICStringConverter.h"
 
 @implementation GICTemplate
+//#pragma mark 全局模板
+//// 全局模板缓存
+//static NSMutableDictionary<NSString *,GICTemplate *> *globalTemplatsCache = nil;
+//+(void)initialize{
+//    globalTemplatsCache = [NSMutableDictionary dictionary];
+//}
+//
+//+(void)cacheTemplate:(GICTemplate *)t{
+//    if(t && t.name){
+//        [globalTemplatsCache setValue:t forKey:t.name];
+//    }
+//}
+//
+//+(GICTemplate *)templateForName:(NSString *)name{
+//    return [globalTemplatsCache objectForKey:name];
+//}
+
 +(NSString *)gic_elementName{
     return @"template";
 }

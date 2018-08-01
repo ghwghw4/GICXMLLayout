@@ -25,4 +25,13 @@
     }
     return nil;
 }
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    if([element.name isEqualToString:[GICTemplate gic_elementName]]){
+        GICTemplate *t =[GICTemplate new];
+        [t gic_beginParseElement:element withSuperElement:self];
+        return t;
+    }
+    return [super gic_parseSubElementNotExist:element];
+}
 @end

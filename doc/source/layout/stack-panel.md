@@ -87,3 +87,8 @@ align-content = "1"
 示例：
 
 ![3](../images/3.jpg)
+
+sample中提供了一个完整的演示flex布局的示例，可以直接运行sample查看：
+
+![15](../images/15.jpg)
+

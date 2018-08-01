@@ -25,8 +25,8 @@
                         <stack-panel is-horizon="1" space-before="10" space="10">
                             <image size="32" corner-radius="16" url="http://imgtu.5011.net/uploads/content/20170504/5905661493879766.jpg"/>
                             <stack-panel flex-grow="1" flex-shrink="1">
-                                <lable text="海伟" font-size="14" font-color="191919"/>
-                                <lable text="码农 码农" font-color="999999"/>
+                                <lable text="海伟22" font-size="14" font-color="191919"/>
+                                <lable text="码农" font-color="999999"/>
                             </stack-panel>
                             <dock-panel width="50">
                                 <lable text="关注" font-color="red" font-size="14"/>

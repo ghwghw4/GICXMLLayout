@@ -33,8 +33,14 @@
 +(void)regiterUIElements;
 
 
-//+(Class)classFromElementName:(NSString *)elementName;
+/**
+ 是否启用默认样式的解析。默认不启用
+ 如果启用的话，那么你可以在style中为元素定义默认的属性。无需指定"style-name"。
+ 定以后会自动应用到该节点下的所有子元素的上面。
 
+ @param enable <#enable description#>
+ */
++(void)enableDefualtStyle:(BOOL)enable;
 
 
 /**

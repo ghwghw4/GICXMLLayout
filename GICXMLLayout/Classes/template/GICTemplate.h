@@ -15,4 +15,9 @@
 }
 @property (nonatomic,strong)NSString *name;
 @property (nonatomic,strong,readonly)NSString *xmlDocString;
+
+
+//#pragma mark 全局模板
+//+(void)cacheTemplate:(GICTemplate *)t;
+//+(GICTemplate *)templateForName:(NSString *)name;
 @end

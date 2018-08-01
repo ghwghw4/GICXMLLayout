@@ -25,20 +25,20 @@
                        @{@"name":@"动画",@"pagePath":@"Animation"},
                        @{@"name":@"行为",@"pagePath":@"Behavior"},
                        @{@"name":@"指令",@"pagePath":@"Directive"},
-                       
-                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"ToutiaoRoot",@"app":@(YES)},
+                       @{@"name":@"样式",@"pagePath":@"StyleSample",@"app":@(YES)},
+                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"ToutiaoRoot",@"app":@(NO)},
                        ];
     return self;
 }
 
 -(void)onSelect:(GICEventInfo *)eventInfo{
     NSDictionary *ds = [eventInfo.target gic_DataContenxt];
-//    if([[ds objectForKey:@"app"] boolValue]){
-//        UIViewController *page = [GICXMLLayoutDevTools loadXMLFromUrl:[NSURL URLWithString:@"http://localhost:8080/app/ToutiaoRoot.xml"]];
-//        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
-//        [UIApplication sharedApplication].delegate.window.rootViewController =nav;
-//        return;
-//    }
+    if([[ds objectForKey:@"app"] boolValue]){
+        UIViewController *page = [GICXMLLayoutDevTools loadXMLFromUrl:[NSURL URLWithString:@"http://192.168.111.171:8080/StyleSample.xml"]];
+        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
+        [UIApplication sharedApplication].delegate.window.rootViewController =nav;
+        return;
+    }
     [UtilsHelp navigateToGICPage:[ds objectForKey:@"pagePath"]];
 }
 @end

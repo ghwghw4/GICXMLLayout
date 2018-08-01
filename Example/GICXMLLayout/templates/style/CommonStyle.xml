@@ -1,0 +1,8 @@
+<style>
+    <lable font-size="14" font-color="999999"/>
+    <templates>
+        <template t-name="desc">
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+        </template>
+    </templates>
+</style>

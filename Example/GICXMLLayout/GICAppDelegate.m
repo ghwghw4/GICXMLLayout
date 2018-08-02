@@ -20,8 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    // 启用默认样式
-//    [GICXMLLayout enableDefualtStyle:YES];
+    // 启用默认样式
+    [GICXMLLayout enableDefualtStyle:YES];
     // 注册gic类库默认所有元素
     [GICXMLLayout regiterAllElements];
     [GICRouter regiterAllElements];

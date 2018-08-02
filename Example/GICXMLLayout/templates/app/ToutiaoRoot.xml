@@ -18,12 +18,7 @@
     <inset-panel inset="0 15">
         <list data-context='ToutiaoViewModel' background-color="white">
             <templates>
-                <template t-name="list-template">
-                    <inset-panel inset="15 15" background-color="white">
-                        <lable text="{{  }}" font-size="24"></lable>
-                    </inset-panel>
-                </template>
-
+                <!--基础模板1-->
                 <template t-name="base">
                     <stack-panel>
                         <template-slot slot-name = "content" space-before="10"/>
@@ -35,7 +30,7 @@
                         </stack-panel>
                     </stack-panel>
                 </template>
-
+                <!--基础模板2-->
                 <template t-name="base2">
                     <stack-panel>
                         <stack-panel is-horizon="1" space-before="10" space="10">
@@ -68,12 +63,13 @@
                         </stack-panel>
                     </stack-panel>
                 </template>
-
+                <!--feed模板1文字模板-->
                 <template t-name="t1">
                     <template-ref t-name="base">
                         <lable text="国际社会积极评价习近平主席在金砖国家工商论坛上的重要讲话" slot-name="content" font-color="191919" font-size="24"/>
                     </template-ref>
                 </template>
+                <!--feed模板2，文字加图片，图片16:9显示-->
                 <template t-name="t2">
                     <template-ref t-name="base">
                         <stack-panel slot-name="content">
@@ -90,7 +86,7 @@
                         </stack-panel>
                     </template-ref>
                 </template>
-
+                <!--feed模板3，文字加图片，图片16:9显示，宽度为50%cell宽度-->
                 <template t-name="t3">
                     <template-ref t-name="base">
                         <stack-panel slot-name="content" is-horizon="1">
@@ -103,7 +99,7 @@
                         </stack-panel>
                     </template-ref>
                 </template>
-
+                <!--feed模板4-->
                 <template t-name="t4">
                     <template-ref t-name="base">
                         <stack-panel slot-name="content">
@@ -114,7 +110,7 @@
                         </stack-panel>
                     </template-ref>
                 </template>
-
+                <!--feed模板5-->
                 <template t-name="t5">
                     <template-ref t-name="base2">
                         <stack-panel slot-name="content">
@@ -125,7 +121,7 @@
                         </stack-panel>
                     </template-ref>
                 </template>
-
+                <!--feed模板6-->
                 <template t-name="t6">
                     <template-ref t-name="base2">
                         <stack-panel slot-name="content">
@@ -140,7 +136,7 @@
                         </stack-panel>
                     </template-ref>
                 </template>
-
+                <!--feed模板7-->
                 <template t-name="t7">
                     <template-ref t-name="base2">
                         <stack-panel slot-name="content">

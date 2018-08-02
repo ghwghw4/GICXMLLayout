@@ -13,7 +13,7 @@
                 <lable text="覆盖默认样式" space-before="10"/>
             </panel>
 
-            <template-ref t-name="desc" data-context="我是模板1"/>
+            <template-ref t-name="desc" data-context="我是样式模板1"/>
         </stack-panel>
     </inset-panel>
 </scroll-view>

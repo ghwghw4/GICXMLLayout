@@ -110,6 +110,11 @@
       "type": "link",
       "path": "core/custom.html"
     },
+      {
+      "text": "样式",
+      "type": "link",
+      "path": "core/style.html"
+    },
     {
       "text": "其他",
       "type": "label"

@@ -17,10 +17,7 @@
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [GICUtils mainThreadExcu:^{
-                     [[((GICNavBar *)target)->navbar topItem] setTitle:value];
-                 }];
-                 
+                 [((GICNavBar *)target)->page setTitle:value];
              }],
              //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
              //                 [((GICPage *)target)->viewNode setBackgroundColor:value];
@@ -36,9 +33,7 @@
 
 -(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(GICPage *)superElment{
     NSAssert([superElment isKindOfClass:[GICPage class]], @"nav-bar 必须是page的子元素");
-    [GICUtils mainThreadExcu:^{
-        self->navbar = superElment.navigationController.navigationBar;
-    }];
+    self->page = superElment;
     [super gic_beginParseElement:element withSuperElement:superElment];
 }
 
@@ -54,29 +49,25 @@
 }
 
 -(void)gic_parseElementCompelete{
-    [GICUtils mainThreadExcu:^{
+    ASSizeRange rang = ASSizeRangeMake(CGSizeMake(0, 44),CGSizeMake(320, 44));
+    if(self.rightButtons.buttons.count>0){
         NSMutableArray *rightItems = [NSMutableArray array];
         for(ASDisplayNode *node in self.rightButtons.buttons){
-            node.frame = CGRectMake(0, 0, node.style.width.value, 44);
+            ASLayout *l = [node layoutThatFits:rang];
+            node.frame = CGRectMake(0, 0, l.size.width, 44);
             [rightItems addObject:[[UIBarButtonItem alloc] initWithCustomView:node.view]];
         }
-        self->navbar.topItem.rightBarButtonItems = rightItems;
-        
-        
-        
+        self->page.navigationItem.rightBarButtonItems = rightItems;
+    }
+    
+    if(self.leftButtons.buttons.count>0){
         NSMutableArray *leftItems = [NSMutableArray array];
         for(ASDisplayNode *node in self.leftButtons.buttons){
-            node.frame = CGRectMake(0, 0, node.style.width.value, 44);
+            ASLayout *l = [node layoutThatFits:rang];
+            node.frame = CGRectMake(0, 0, l.size.width, 44);
             [leftItems addObject:[[UIBarButtonItem alloc] initWithCustomView:node.view]];
         }
-        
-        if(leftItems.count>0){
-            self->navbar.topItem.leftBarButtonItems = leftItems;
-        }
-    }];
-}
-
--(void)dealloc{
-    
+        self->page.navigationItem.leftBarButtonItems = leftItems;
+    }
 }
 @end

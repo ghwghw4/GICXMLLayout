@@ -6,7 +6,7 @@
 //
 #import "GICNavbarButtons.h"
 @interface GICNavBar : NSObject{
-   __weak UINavigationBar *navbar;
+   __weak ASViewController *page;
 }
 @property (nonatomic,strong,readonly)GICNavbarButtons *rightButtons;
 @property (nonatomic,strong,readonly)GICNavbarButtons *leftButtons;

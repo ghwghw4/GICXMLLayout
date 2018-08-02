@@ -12,9 +12,13 @@
 static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
 // behavior
 static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
+// 缓存的属性
+static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *classAttributsCache;
+
 +(void)initialize{
     registedElementsMap = [NSMutableDictionary dictionary];
     registedBehaviorElementsMap = [NSMutableDictionary dictionary];
+    classAttributsCache = [NSMutableDictionary dictionary];
 }
 
 +(void)registElement:(Class)elementClass{
@@ -33,51 +37,32 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
 }
 
 
-
-
-
-/**
- attributs 缓存
- 
- @return <#return value description#>
- */
-+ (NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *)classAttributsCache {
-    static NSMutableDictionary *_instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [NSMutableDictionary dictionary];
-    });
-    return _instance;
-}
-
-
 +(void)registClassAttributs:(Class)klass{
     if(!klass){
         return;
     }
     
     NSString *className = NSStringFromClass(klass);
-    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [self.classAttributsCache objectForKey:className];
+    if(!className){
+        return;
+    }
+    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [classAttributsCache objectForKey:className];
     if (value) {//已经注册过了那么就忽略
         return;
     }
     
-    if([className isEqualToString:@"GICGradientBackgroundInfo"]){
-        
-    }
-    
     // 先给父类注册
     Class superClass = class_getSuperclass(klass);
-    [self registClassAttributs:class_getSuperclass(klass)];
+    [self registClassAttributs:superClass];
     
     NSMutableDictionary<NSString *, GICAttributeValueConverter *> *dict = [NSMutableDictionary dictionary];
     // 先添加父类的属性，再添加子类的属性。这样保证子类的属性可以覆盖父类的属性
     if(superClass){
-        [dict addEntriesFromDictionary:[self.classAttributsCache objectForKey:NSStringFromClass(superClass)]];
+        [dict addEntriesFromDictionary:[classAttributsCache objectForKey:NSStringFromClass(superClass)]];
     }
     [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttributs)]];
     // 保存到缓存中
-    [self.classAttributsCache setValue:dict forKey:className];
+    [classAttributsCache setValue:dict forKey:className];
 }
 
 +(BOOL)injectAttributes:(NSDictionary<NSString *,GICAttributeValueConverter *> *)attributs forElementName:(NSString *)elementName{
@@ -97,10 +82,10 @@ static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
         return nil;
     }
     NSString *className = NSStringFromClass(klass);
-    if(![self.classAttributsCache.allKeys containsObject:className]){
+    if(![classAttributsCache.allKeys containsObject:className]){
         [self registClassAttributs:klass];
     }
-    return [self.classAttributsCache objectForKey:className];
+    return [classAttributsCache objectForKey:className];
 }
 
 +(void)registBehaviorElement:(Class)elementClass{

@@ -1,4 +1,20 @@
-<page title="模拟头条feeds">
+<page>
+    <nav-bar title="模拟头条feeds">
+            <templates>
+                <template t-name="nav-bar-button">
+                    <dock-panel width="40">
+                        <lable text="{{}}" font-size="17" font-color="FF3F0A"/>
+                    </dock-panel>
+                </template>
+            </templates>
+            <right-buttons>
+                <template-ref t-name="nav-bar-button" data-context="全选" event-tap="btnSelectAll"/>
+            </right-buttons>
+
+            <left-buttons>
+                <template-ref t-name="nav-bar-button" data-context="关闭" event-tap="btnClose"/>
+            </left-buttons>
+    </nav-bar>
     <inset-panel inset="0 15">
         <list data-context='ToutiaoViewModel' background-color="white">
             <templates>

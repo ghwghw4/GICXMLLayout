@@ -8,6 +8,8 @@
 #import "GICCanvasLinePoint.h"
 #import "GICDimensionConverter.h"
 
+
+
 @implementation GICCanvasLinePoint
 +(NSString *)gic_elementName{
     return @"point";
@@ -28,13 +30,6 @@
 }
 
 -(CGPoint)convertToPoint:(CGSize)size{
-    return CGPointMake([self valueFromDimension:self.x from:size.width], [self valueFromDimension:self.y from:size.height]);
-}
-
--(CGFloat)valueFromDimension:(ASDimension)dismension from:(CGFloat)from{
-    if(dismension.unit==ASDimensionUnitFraction){
-        return from * dismension.value;
-    }
-    return dismension.value;
+    return CGPointMake(calcuDimensionValue(self.x,size.width), calcuDimensionValue(self.y,size.height));
 }
 @end

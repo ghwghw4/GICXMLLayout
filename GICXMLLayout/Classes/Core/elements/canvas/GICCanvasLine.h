@@ -9,6 +9,6 @@
 #import "GICCanvasPath.h"
 
 @interface GICCanvasLine : GICCanvasPath
-@property (nonatomic,strong)UIColor *lineColor;
-@property (nonatomic,assign)BOOL isCloseLines;
+
+
 @end

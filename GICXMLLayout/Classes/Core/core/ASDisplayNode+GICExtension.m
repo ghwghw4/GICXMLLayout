@@ -40,27 +40,9 @@
              }],
              @"size":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 NSArray *strs = [value componentsSeparatedByString:@" "];
-                 if(strs.count==1){
-                     ASDimension h = ASDimensionMake((NSString *)strs[0]);
-                     if(ASDimensionEqualToDimension(h, ASDimensionAuto)){
-                         h = ASDimensionMake([value floatValue]);
-                     }
-                     node.style.width = h;
-                     node.style.height = h;
-                 }else if(strs.count==2){
-                     ASDimension w = ASDimensionMake((NSString *)strs[0]);
-                     if(ASDimensionEqualToDimension(w, ASDimensionAuto)){
-                         w = ASDimensionMake([(NSString *)strs[0] floatValue]);
-                     }
-                     node.style.width = w;
-                     
-                     ASDimension h = ASDimensionMake((NSString *)strs[1]);
-                     if(ASDimensionEqualToDimension(h, ASDimensionAuto)){
-                         h = ASDimensionMake([(NSString *)strs[1] floatValue]);
-                     }
-                     node.style.height = h;
-                 }
+                 ASLayoutSize size = ASLayoutSizeMakeFromString(value);
+                 node.style.width = size.width;
+                 node.style.height = size.height;
                  [node layoutAttributeChanged];
              }],
              @"position":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {

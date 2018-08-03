@@ -7,6 +7,8 @@
 
 #import "GICCanvas+Beta.h"
 #import "GICCanvasLine.h"
+#import "GICCanvasRectangle.h"
+#import "GICCanvasArc.h"
 
 @interface GICCanvas (){
     NSMutableArray<GICCanvasPath *> *paths;
@@ -36,7 +38,7 @@
 }
 
 -(id)gic_addSubElement:(id)subElement{
-    if([subElement isKindOfClass:[GICCanvasLine class]]){
+    if([subElement isKindOfClass:[GICCanvasPath class]]){
         [paths addObject:subElement];
         return subElement;
     }
@@ -44,8 +46,12 @@
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
-    if([element.name isEqualToString:@"line"]){
+    if([element.name isEqualToString:[GICCanvasLine gic_elementName]]){
         return [GICCanvasLine new];
+    }else if([element.name isEqualToString:[GICCanvasRectangle gic_elementName]]){
+        return [GICCanvasRectangle new];
+    }else if([element.name isEqualToString:[GICCanvasArc gic_elementName]]){
+        return [GICCanvasArc new];
     }
     return [super gic_parseSubElementNotExist:element];
 }

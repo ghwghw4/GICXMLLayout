@@ -8,6 +8,22 @@
 #import "GICUtils.h"
 #import "UIColor+Extension.h"
 
+ASDimension ASDimensionMakeFromString(NSString *str){
+    ASDimension h = ASDimensionMake(str);
+    return  ASDimensionEqualToDimension(h, ASDimensionAuto)?ASDimensionMake([str floatValue]):h;
+}
+
+ASLayoutSize ASLayoutSizeMakeFromString(NSString *str){
+    NSArray *strs = [str componentsSeparatedByString:@" "];
+    ASLayoutSize size;
+    if(strs.count==1){
+        size = ASLayoutSizeMake(ASDimensionMakeFromString(strs[0]), ASDimensionMakeFromString(strs[0]));
+    }else if (strs.count==2){
+        size = ASLayoutSizeMake(ASDimensionMakeFromString(strs[0]), ASDimensionMakeFromString(strs[1]));
+    }
+    return size;
+}
+
 @implementation GICUtils
 static NSDictionary<NSString *,UIColor *> *colorsMap;
 +(void)initialize{

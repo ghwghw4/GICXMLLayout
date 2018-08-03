@@ -47,6 +47,12 @@
                      [view setSecureTextEntry:[value boolValue]];
                  }];
              }],
+             
+             @"keyboard-type":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setKeyboardType:[value integerValue]];
+                 }];
+             }],
              };
 }
 

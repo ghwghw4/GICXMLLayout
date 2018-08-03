@@ -42,6 +42,13 @@
  */
 +(void)enableDefualtStyle:(BOOL)enable;
 
++(void)setRootUrl:(NSString *)rootUrl;
++(NSString *)rootUrl;
+
++(void)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
+
++(void)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
+
 
 /**
  解析视图。确保xml中的根节点是UI元素。

@@ -49,13 +49,10 @@
     }
     
     if(nav){
-        NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:self.path]];
-        if(xmlData){
-            [GICRouter parsePage:xmlData withParseCompelete:^(UIViewController *page) {
-                page.gic_ExtensionProperties.superElement = nav;
-                [nav pushViewController:page animated:YES];
-            }];
-        }
+        [GICRouter parsePageFromPath:self.path withParseCompelete:^(UIViewController *page) {
+            page.gic_ExtensionProperties.superElement = nav;
+            [nav pushViewController:page animated:YES];
+        }];
     }
 }
 @end

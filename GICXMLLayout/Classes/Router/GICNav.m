@@ -25,9 +25,8 @@
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     if([element.name isEqualToString:@"root-page"]){
         NSString *path = [element attributeForName:@"path"].stringValue;
-        NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:path]];
-        if(xmlData){
-            [GICRouter parsePage:xmlData withParseCompelete:^(UIViewController *page) {
+        if(path){
+            [GICRouter parsePageFromPath:path withParseCompelete:^(UIViewController *page) {
                 page.gic_ExtensionProperties.superElement = self;
                 [self pushViewController:page animated:YES];
             }];

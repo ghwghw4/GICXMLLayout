@@ -97,6 +97,39 @@ static BOOL _enableDefualtStyle;
     return _enableDefualtStyle;
 }
 
+static NSString *_roolUrl;
++(void)setRootUrl:(NSString *)rootUrl{
+    _roolUrl = rootUrl;
+}
+
++(NSString *)rootUrl{
+    return _roolUrl;
+}
+
+
++(void)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
+    NSData *xmlData = [NSData dataWithContentsOfURL:url];
+    NSError *error = nil;
+    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    if (error) {
+        NSLog(@"error : %@", error);
+        compelte(nil);
+        return;
+    }
+    dispatch_async(dispatch_queue_create("parse xml element", nil), ^{
+        GDataXMLElement *rootElement = [xmlDocument rootElement];
+        [GICXMLParserContext resetInstance:xmlDocument];
+        id e = [NSObject gic_createElement:rootElement withSuperElement:parentElement];
+        [GICXMLParserContext parseCompelete];
+        compelte(e);
+    });
+}
+
++(void)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
+    NSAssert(_roolUrl, @"请先设置roolUrl");
+    [self parseElementFromUrl:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement withParseCompelete:compelte];
+}
+
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];

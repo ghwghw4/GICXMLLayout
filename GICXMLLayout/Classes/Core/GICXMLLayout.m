@@ -39,6 +39,8 @@
 #import "GICDirectiveIf.h"
 #import "GICStyle.h"
 
+#import "GICCanvas+Beta.h"
+
 @implementation GICXMLLayout
 +(void)regiterAllElements{
     [self regiterUIElements];
@@ -86,6 +88,8 @@
     [GICElementsCache registElement:[GICListItem class]];
     [GICElementsCache registElement:[GICInputeView class]];
     [GICElementsCache registElement:[GICInpute class]];
+    
+    [GICElementsCache registElement:[GICCanvas class]];
 }
 
 static BOOL _enableDefualtStyle;

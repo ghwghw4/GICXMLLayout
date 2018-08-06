@@ -94,6 +94,10 @@
     [GICElementsCache registElement:[GICControl class]];
 }
 
++(void)initialize{
+    _roolUrl = [[NSBundle mainBundle] bundlePath];
+}
+
 static BOOL _enableDefualtStyle;
 +(void)enableDefualtStyle:(BOOL)enable{
     _enableDefualtStyle = enable;
@@ -113,13 +117,24 @@ static NSString *_roolUrl;
 }
 
 +(NSData *)loadXmlDataFromPath:(NSString *)path{
-    NSData *xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]]];
+    NSURL *url = [NSURL URLWithString:[[GICXMLLayout rootUrl] stringByAppendingPathComponent:path]];
+    return [self loadXmlDataFromUrl:url];
+}
+
++(NSData *)loadXmlDataFromUrl:(NSURL *)url{
+    NSData *xmlData = nil;
+    if([[url scheme] hasPrefix:@"http"]){
+        xmlData = [NSData dataWithContentsOfURL:url];
+    }else{
+        xmlData = [NSData dataWithContentsOfFile:url.absoluteString];
+    }
     return xmlData;
 }
 
 
+
 +(void)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
-    NSData *xmlData = [NSData dataWithContentsOfURL:url];
+    NSData *xmlData = [self loadXmlDataFromUrl:url];
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {

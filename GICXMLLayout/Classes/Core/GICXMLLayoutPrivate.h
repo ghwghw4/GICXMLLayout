@@ -11,6 +11,7 @@
 @interface GICXMLLayout (Private)
 +(BOOL)enableDefualtStyle;
 +(NSData *)loadXmlDataFromPath:(NSString *)path;
++(NSData *)loadXmlDataFromUrl:(NSURL *)url;
 @end
 
 #endif /* GICXMLLayoutPrivate_h */

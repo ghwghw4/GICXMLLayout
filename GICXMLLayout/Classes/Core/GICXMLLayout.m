@@ -40,6 +40,7 @@
 #import "GICStyle.h"
 
 #import "GICCanvas+Beta.h"
+#import "GICControl.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -90,6 +91,7 @@
     [GICElementsCache registElement:[GICInpute class]];
     
     [GICElementsCache registElement:[GICCanvas class]];
+    [GICElementsCache registElement:[GICControl class]];
 }
 
 static BOOL _enableDefualtStyle;
@@ -108,6 +110,11 @@ static NSString *_roolUrl;
 
 +(NSString *)rootUrl{
     return _roolUrl;
+}
+
++(NSData *)loadXmlDataFromPath:(NSString *)path{
+    NSData *xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]]];
+    return xmlData;
 }
 
 

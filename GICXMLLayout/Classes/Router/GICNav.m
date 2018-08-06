@@ -26,7 +26,7 @@
     if([element.name isEqualToString:@"root-page"]){
         NSString *path = [element attributeForName:@"path"].stringValue;
         if(path){
-            [GICRouter parsePageFromPath:path withParseCompelete:^(UIViewController *page) {
+            [GICRouter loadPageFromPath:path withParseCompelete:^(UIViewController *page) {
                 page.gic_ExtensionProperties.superElement = self;
                 [self pushViewController:page animated:YES];
             }];

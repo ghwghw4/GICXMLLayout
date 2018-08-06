@@ -58,11 +58,4 @@
  @param compelte <#compelte description#>
  */
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
-
-/**
- 直接解析一个page。确保xml中的根节点是page
- @param xmlData <#xmlData description#>
- @param compelte <#compelte description#>
- */
-+(void)parseLayoutPage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte;
 @end

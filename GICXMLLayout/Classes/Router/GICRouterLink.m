@@ -49,7 +49,7 @@
     }
     
     if(nav){
-        [GICRouter parsePageFromPath:self.path withParseCompelete:^(UIViewController *page) {
+        [GICRouter loadPageFromPath:self.path withParseCompelete:^(UIViewController *page) {
             page.gic_ExtensionProperties.superElement = nav;
             [nav pushViewController:page animated:YES];
         }];

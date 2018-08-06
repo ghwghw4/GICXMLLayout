@@ -13,5 +13,5 @@
 
 +(void)loadAPPFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *rootPage))compelte;
 
-+(void)parsePageFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *page))compelte;
++(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *page))compelte;
 @end

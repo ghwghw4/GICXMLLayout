@@ -25,7 +25,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 # 在线文档
 
-[在线文档链接](http://gicxmllayout.gonghaiwei.cn/attribute.html)
+[在线文档链接](http://gicxmllayout.gonghaiwei.cn/index.html)
 
 ## Installation
 
@@ -35,6 +35,14 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'GICXMLLayout'
 ```
+
+## 更新日志
+
+### 0.1.1
+
+新增样式(style)功能。您现在可以为您的UI元素添加样式了，您也可以将样式定义在单独的XML文件中，这样您可以为你的APP添加类似主题(theme)的功能了
+
+
 
 ## Author
 

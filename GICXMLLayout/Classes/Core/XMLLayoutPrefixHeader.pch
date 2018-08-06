@@ -15,7 +15,7 @@
 #import "GICLayoutElementProtocol.h"
 #import "GICUtils.h"
 #import "NSObject+LayoutElement.h"
-#import "GICXMLLayout.h"
+#import "GICXMLLayoutPrivate.h"
 #import "GDataXMLNode.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICXMLParserContext.h"

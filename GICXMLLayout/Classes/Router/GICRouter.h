@@ -7,14 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "GICXMLLayout.h"
+#import "NSObject+GICRouter.h"
 @interface GICRouter : NSObject
 +(void)regiterAllElements;
 
-//+(void)loadAPP:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *rootPage))compelte;
-
 +(void)loadAPPFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *rootPage))compelte;
-
-//+(void)parsePage:(NSData *)xmlData withParseCompelete:(void (^)(UIViewController *page))compelte;
 
 +(void)parsePageFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *page))compelte;
 @end

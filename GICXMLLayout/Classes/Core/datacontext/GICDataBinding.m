@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "NSObject+GICDataBinding.h"
 #import <GICJsonParser/GICJsonParser.h>
+#import <GICJsonParser/NSObject+Reflector.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface GICDataBinding(){
@@ -103,7 +104,7 @@
             return;
         }
         // 创建数据绑定
-        for(NSString *key in dict.allKeys){
+        for(NSString *key in [[self.dataSource class] gic_reflectProperties].allKeys){
             if([self.expression rangeOfString:key].location != NSNotFound){
                 @weakify(self)
                 [[self.dataSource rac_valuesAndChangesForKeyPath:key options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {

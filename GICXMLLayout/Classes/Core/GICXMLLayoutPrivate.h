@@ -10,6 +10,7 @@
 #import "GICXMLLayout.h"
 @interface GICXMLLayout (Private)
 +(BOOL)enableDefualtStyle;
++(NSData *)loadXmlDataFromPath:(NSString *)path;
 @end
 
 #endif /* GICXMLLayoutPrivate_h */

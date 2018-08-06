@@ -117,4 +117,16 @@
         }
     });
 }
+//
+//+(UINavigationController *)getCurrentNavigationControllerFromViewModel:(id)viewModel{
+//    id superEl=[viewModel gic_ExtensionProperties].superElement;
+//    do {
+//        if([superEl isKindOfClass:[UINavigationController class]]){
+//            return superEl;
+//        }else{
+//            superEl = [superEl gic_getSuperElement];
+//        }
+//    } while (superEl);
+//    return nil;
+//}
 @end

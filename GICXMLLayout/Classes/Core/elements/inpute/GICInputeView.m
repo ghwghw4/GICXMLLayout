@@ -54,6 +54,9 @@
 //             @"scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
 //                 [(GICInputeView *)target setScrollEnabled:[value boolValue]];
 //             }],
+             @"keyboard-type":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInputeView *)target setKeyboardType:[value integerValue]];
+             }],
              };
 }
 

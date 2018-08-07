@@ -6,15 +6,37 @@ input当前支持的属性有限，但是如果需要支持其他的属性，比
 
 ## 属性
 
-| 名称              | 数据类型    | 介绍            | 是否支持绑定    | 是否支持动画 |
-| --------------- | ------- | ------------- | --------- | ------ |
-| placehold       | string  | 不解释           | 否         | 否      |
-| placehold-color | UIColor |               | 否         | 否      |
-| placehold-size  | Float   | placehold字体大小 | 否         | 否      |
-| font-color      | UIColor |               | 是         | 是      |
-| font-size       | float   |               | 是         | 是      |
-| text            | string  |               | 是(支持双向绑定) | 是      |
-| secure          | bool    |               | 是         | 是      |
+| 名称            | 数据类型      | 介绍              | 是否支持绑定     | 是否支持动画 |
+| --------------- | ------------- | ----------------- | ---------------- | ------------ |
+| placehold       | string        | 不解释            | 否               | 否           |
+| placehold-color | UIColor       |                   | 否               | 否           |
+| placehold-size  | Float         | placehold字体大小 | 否               | 否           |
+| font-color      | UIColor       |                   | 是               | 是           |
+| font-size       | float         |                   | 是               | 是           |
+| text            | string        |                   | 是(支持双向绑定) | 是           |
+| secure          | bool          |                   | 是               | 是           |
+| keyboard-type   | integer(枚举) | 键盘类型          | 是               | 否           |
+
+###  keyboard-type 枚举
+
+| 枚举值 | 对应枚举                            | 说明 |
+| ------ | ----------------------------------- | ---- |
+| 0      | UIKeyboardTypeDefault               |      |
+| 1      | UIKeyboardTypeASCIICapable          |      |
+| 2      | UIKeyboardTypeNumbersAndPunctuation |      |
+| 3      | UIKeyboardTypeURL                   |      |
+| 4      | UIKeyboardTypeNumberPad             |      |
+| 5      | UIKeyboardTypePhonePad              |      |
+| 6      | UIKeyboardTypeNamePhonePad          |      |
+| 7      | UIKeyboardTypeEmailAddress          |      |
+| 8      | UIKeyboardTypeDecimalPad            |      |
+| 9      | UIKeyboardTypeTwitter               |      |
+| 10     | UIKeyboardTypeWebSearch             |      |
+| 11     | UIKeyboardTypeASCIICapableNumberPad |      |
+
+
+
+
 
 ## 例子
 

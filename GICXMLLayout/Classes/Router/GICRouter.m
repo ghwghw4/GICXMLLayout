@@ -90,7 +90,7 @@
 //    });
 //}
 
-+(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *page))compelte{
++(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(GICPage *page))compelte{
     NSData *xmlData = [GICXMLLayout loadXmlDataFromPath:path];
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];

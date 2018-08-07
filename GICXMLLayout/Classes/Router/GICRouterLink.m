@@ -30,28 +30,8 @@
         [target gic_get_tapSignal:^(RACSignal *signal) {
             [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
                 @strongify(self)
-                [self go];
+                [[self gic_CurrentPage] go:self.path];
             }];
-        }];
-    }
-}
-
--(void)go{
-    UINavigationController *nav= nil;
-    id superElement=[self gic_getSuperElement];
-    while (superElement) {
-        if([superElement isKindOfClass:[UINavigationController class]]){
-            nav = superElement;
-            break;
-        }else{
-            superElement = [superElement gic_getSuperElement];
-        }
-    }
-    
-    if(nav){
-        [GICRouter loadPageFromPath:self.path withParseCompelete:^(UIViewController *page) {
-            page.gic_ExtensionProperties.superElement = nav;
-            [nav pushViewController:page animated:YES];
         }];
     }
 }

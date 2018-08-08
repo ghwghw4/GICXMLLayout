@@ -26,7 +26,7 @@
 }
 
 -(void)onSelect:(GICEventInfo *)eventInfo{
-    NSDictionary *ds = [eventInfo.target gic_DataContenxt];
+    NSDictionary *ds = [eventInfo.target gic_DataContext];
     [UtilsHelp navigateToGICPage:[ds objectForKey:@"pagePath"]];
 }
 @end

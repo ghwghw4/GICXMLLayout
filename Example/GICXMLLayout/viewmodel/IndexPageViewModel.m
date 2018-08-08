@@ -26,13 +26,13 @@
                        @{@"name":@"行为",@"pagePath":@"Behavior.xml"},
                        @{@"name":@"指令",@"pagePath":@"Directive.xml"},
                        @{@"name":@"样式",@"pagePath":@"StyleSample.xml",@"app":@(YES)},
-                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"ToutiaoRoot.xml",@"app":@(NO)},
+                       @{@"name":@"模拟头条Feeds(重点是模板、布局、性能)",@"pagePath":@"app/ToutiaoRoot.xml",@"app":@(NO)},
                        ];
     return self;
 }
 
 -(void)onSelect:(GICEventInfo *)eventInfo{
-    NSDictionary *ds = [eventInfo.target gic_DataContenxt];
+    NSDictionary *ds = [eventInfo.target gic_DataContext];
     if([[ds objectForKey:@"app"] boolValue]){
         UIViewController *page = [GICXMLLayoutDevTools loadXMLFromUrl:[NSURL URLWithString:@"http://192.168.111.171:8080/StyleSample.xml"]];
         UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];

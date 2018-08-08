@@ -8,6 +8,8 @@
 
 #import "GICAppDelegate.h"
 #import "GICXMLLayout.h"
+#import "GICElementsCache.h"
+
 #import "SwitchButton.h"
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
@@ -15,6 +17,8 @@
 #import "PullRefreshBehavior.h"
 #import "PullMoreBehavior.h"
 #import "GICRouter.h"
+#import "GICXMLLayoutDevTools.h"
+
 
 @implementation GICAppDelegate
 
@@ -45,12 +49,14 @@
     [GICElementsCache registBehaviorElement:[PullRefreshBehavior class]];
     [GICElementsCache registBehaviorElement:[PullMoreBehavior class]];
     
+    // 设置跟目录
+    [GICXMLLayout setRootUrl:@"http://192.168.111.171:8080/sample"];
+//    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController =[UIViewController new];
-    
-    
+//    self.window.rootViewController =[UIViewController new];
 //    // Override point for customization after application launch.
 //    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
 //    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
@@ -58,8 +64,9 @@
 //        self.window.rootViewController =nav;
 //    }];
 //    [self.window makeKeyAndVisible];
-    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/App.xml"]];
-    [GICRouter loadAPP:xmlData];
+//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/App.xml"]];
+//    [GICRouter loadAPPFromPath:@"App.xml" withParseCompelete:nil];
+    [GICXMLLayoutDevTools loadAPPFromPath:@"App.xml"];
     return YES;
 }
 

@@ -10,7 +10,6 @@
 #import "GDataXMLNode.h"
 #import "GICEventInfo.h"
 #import "GICBehavior.h"
-#import "GICElementsCache.h"
 #import "NSObject+LayoutElement.h"
 #import "GICDataBingdingValueConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>

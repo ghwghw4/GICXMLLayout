@@ -10,50 +10,27 @@
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
 		372D87B5210EA8560037E314 /* GICXMLLayoutDevTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B1210EA8560037E314 /* GICXMLLayoutDevTools.m */; };
 		372D87B6210EA8560037E314 /* GICXMLLayoutDevPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */; };
-		372D87C62110134C0037E314 /* StyleSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87C52110134C0037E314 /* StyleSample.xml */; };
-		372D87CF211155560037E314 /* CommonStyle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87CE211155560037E314 /* CommonStyle.xml */; };
-		372D87E1211194410037E314 /* App.xml in Resources */ = {isa = PBXBuildFile; fileRef = 372D87E0211194410037E314 /* App.xml */; };
-		37311A8520FC34F9000D0986 /* Layout.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8420FC34F9000D0986 /* Layout.xml */; };
 		37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A8720FC3533000D0986 /* LayoutViewModel.m */; };
-		37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8A20FC364D000D0986 /* StackPanel.xml */; };
-		37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311A8E20FC3EB8000D0986 /* StackPanel2.xml */; };
 		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
-		37311AB821001D79000D0986 /* Panel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37311AB721001D79000D0986 /* Panel.xml */; };
-		373DD6542105D4E300E359BB /* Behavior.xml in Resources */ = {isa = PBXBuildFile; fileRef = 373DD6532105D4E300E359BB /* Behavior.xml */; };
+		37390B36211ADEEC006B305D /* sample in Resources */ = {isa = PBXBuildFile; fileRef = 37390B35211ADEEC006B305D /* sample */; };
 		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
-		373DD65F2106BBC500E359BB /* Directive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 373DD65E2106BBC500E359BB /* Directive.xml */; };
 		373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6612106BC2C00E359BB /* DirectiveViewModel.m */; };
 		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
-		3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3767542A20F22B5D0019A521 /* IndexPage.xml */; };
-		37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F505210024FE00AC1778 /* InsetPanel.xml */; };
-		37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5072100268E00AC1778 /* DockPanel.xml */; };
-		37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F50D2100947400AC1778 /* BackgroundPanel.xml */; };
-		37A1F51E2101770B00AC1778 /* RatioPanel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F51D2101770B00AC1778 /* RatioPanel.xml */; };
 		37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */; };
-		37A1F5262105802100AC1778 /* DataBinding.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37A1F5252105802100AC1778 /* DataBinding.xml */; };
 		37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F528210581EE00AC1778 /* DataBindingViewModel.m */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		37BA55FA20EDB276003DC99A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BA55F920EDB276003DC99A /* TestClass.m */; };
-		37C8069820F34776002EEF55 /* UIList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C8069720F34776002EEF55 /* UIList.xml */; };
 		37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */; };
-		37C806A520F357F4002EEF55 /* ListSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806A420F357F4002EEF55 /* ListSample.xml */; };
 		37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */; };
-		37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806AE20F430D2002EEF55 /* ListSample2.xml */; };
-		37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806B120F43E63002EEF55 /* ListSample3.xml */; };
-		37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37C806BE20F48372002EEF55 /* ListSample4.xml */; };
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
-		37E7D360210D4E94003C6416 /* ToutiaoRoot.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */; };
 		37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E7D363210D9844003C6416 /* ToutiaoViewModel.m */; };
 		37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */; };
-		37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB62105B7E2000F0D9A /* Template.xml */; };
-		37ED8BB92105BB60000F0D9A /* Event.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BB82105BB60000F0D9A /* Event.xml */; };
-		37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ED8BBA2105BC93000F0D9A /* Animation.xml */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -86,42 +63,28 @@
 		372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GICXMLLayoutDevPage.m; sourceTree = "<group>"; };
 		372D87B3210EA8560037E314 /* GICXMLLayoutDevTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevTools.h; sourceTree = "<group>"; };
 		372D87B4210EA8560037E314 /* GICXMLLayoutDevPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevPage.h; sourceTree = "<group>"; };
-		372D87C52110134C0037E314 /* StyleSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StyleSample.xml; sourceTree = "<group>"; };
-		372D87CE211155560037E314 /* CommonStyle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonStyle.xml; sourceTree = "<group>"; };
-		372D87E0211194410037E314 /* App.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = App.xml; sourceTree = "<group>"; };
-		37311A8420FC34F9000D0986 /* Layout.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Layout.xml; sourceTree = "<group>"; };
 		37311A8620FC3533000D0986 /* LayoutViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutViewModel.h; sourceTree = "<group>"; };
 		37311A8720FC3533000D0986 /* LayoutViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutViewModel.m; sourceTree = "<group>"; };
-		37311A8A20FC364D000D0986 /* StackPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StackPanel.xml; sourceTree = "<group>"; };
-		37311A8E20FC3EB8000D0986 /* StackPanel2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StackPanel2.xml; sourceTree = "<group>"; };
 		37311A9020FC3F16000D0986 /* StackPanelViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackPanelViewModel.h; sourceTree = "<group>"; };
 		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
 		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
 		37311A9520FC4051000D0986 /* SwitchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchButton.m; sourceTree = "<group>"; };
 		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
 		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
-		37311AB721001D79000D0986 /* Panel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Panel.xml; sourceTree = "<group>"; };
-		373DD6532105D4E300E359BB /* Behavior.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Behavior.xml; sourceTree = "<group>"; };
+		37390B35211ADEEC006B305D /* sample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sample; sourceTree = "<group>"; };
 		373DD6552105D52A00E359BB /* PullRefreshBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshBehavior.h; sourceTree = "<group>"; };
 		373DD6562105D52A00E359BB /* PullRefreshBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshBehavior.m; sourceTree = "<group>"; };
 		373DD6582105D90400E359BB /* BehaviorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviorViewModel.h; sourceTree = "<group>"; };
 		373DD6592105D90400E359BB /* BehaviorViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BehaviorViewModel.m; sourceTree = "<group>"; };
 		373DD65B2106B9B800E359BB /* PullMoreBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullMoreBehavior.h; sourceTree = "<group>"; };
 		373DD65C2106B9B800E359BB /* PullMoreBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullMoreBehavior.m; sourceTree = "<group>"; };
-		373DD65E2106BBC500E359BB /* Directive.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Directive.xml; sourceTree = "<group>"; };
 		373DD6602106BC2C00E359BB /* DirectiveViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DirectiveViewModel.h; sourceTree = "<group>"; };
 		373DD6612106BC2C00E359BB /* DirectiveViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DirectiveViewModel.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
 		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
-		3767542A20F22B5D0019A521 /* IndexPage.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IndexPage.xml; sourceTree = "<group>"; };
-		37A1F505210024FE00AC1778 /* InsetPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = InsetPanel.xml; sourceTree = "<group>"; };
-		37A1F5072100268E00AC1778 /* DockPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DockPanel.xml; sourceTree = "<group>"; };
-		37A1F50D2100947400AC1778 /* BackgroundPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BackgroundPanel.xml; sourceTree = "<group>"; };
-		37A1F51D2101770B00AC1778 /* RatioPanel.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RatioPanel.xml; sourceTree = "<group>"; };
 		37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoHideKeybordBehavior.h; sourceTree = "<group>"; };
 		37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoHideKeybordBehavior.m; sourceTree = "<group>"; };
-		37A1F5252105802100AC1778 /* DataBinding.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataBinding.xml; sourceTree = "<group>"; };
 		37A1F527210581EE00AC1778 /* DataBindingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBindingViewModel.h; sourceTree = "<group>"; };
 		37A1F528210581EE00AC1778 /* DataBindingViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataBindingViewModel.m; sourceTree = "<group>"; };
 		37A7AFD820F311B2006AADC2 /* UtilsHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsHelp.h; sourceTree = "<group>"; };
@@ -129,27 +92,18 @@
 		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		37BA55F820EDB276003DC99A /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		37BA55F920EDB276003DC99A /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
-		37C8069720F34776002EEF55 /* UIList.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UIList.xml; sourceTree = "<group>"; };
 		37C8069920F347A5002EEF55 /* UIListPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListPageViewModel.h; sourceTree = "<group>"; };
 		37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIListPageViewModel.m; sourceTree = "<group>"; };
-		37C806A420F357F4002EEF55 /* ListSample.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample.xml; sourceTree = "<group>"; };
 		37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSamplePageViewModel.h; sourceTree = "<group>"; };
 		37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSamplePageViewModel.m; sourceTree = "<group>"; };
-		37C806AE20F430D2002EEF55 /* ListSample2.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample2.xml; sourceTree = "<group>"; };
-		37C806B120F43E63002EEF55 /* ListSample3.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample3.xml; sourceTree = "<group>"; };
-		37C806BE20F48372002EEF55 /* ListSample4.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ListSample4.xml; sourceTree = "<group>"; };
 		37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample3ViewModel.h; sourceTree = "<group>"; };
 		37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample3ViewModel.m; sourceTree = "<group>"; };
 		37C806C320F48DAE002EEF55 /* ListSample4ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample4ViewModel.h; sourceTree = "<group>"; };
 		37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSample4ViewModel.m; sourceTree = "<group>"; };
-		37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToutiaoRoot.xml; sourceTree = "<group>"; };
 		37E7D362210D9844003C6416 /* ToutiaoViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToutiaoViewModel.h; sourceTree = "<group>"; };
 		37E7D363210D9844003C6416 /* ToutiaoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToutiaoViewModel.m; sourceTree = "<group>"; };
 		37ED8BB32105B1DB000F0D9A /* TimestampConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimestampConverter.h; sourceTree = "<group>"; };
 		37ED8BB42105B1DB000F0D9A /* TimestampConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimestampConverter.m; sourceTree = "<group>"; };
-		37ED8BB62105B7E2000F0D9A /* Template.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Template.xml; sourceTree = "<group>"; };
-		37ED8BB82105BB60000F0D9A /* Event.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Event.xml; sourceTree = "<group>"; };
-		37ED8BBA2105BC93000F0D9A /* Animation.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Animation.xml; sourceTree = "<group>"; };
 		5263E980D4E2E66DDAF4F9F3 /* Pods-GICXMLLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GICXMLLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GICXMLLayout_Example/Pods-GICXMLLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* GICXMLLayout_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GICXMLLayout_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -222,28 +176,6 @@
 			path = dev;
 			sourceTree = "<group>";
 		};
-		372D87CD211155560037E314 /* style */ = {
-			isa = PBXGroup;
-			children = (
-				372D87CE211155560037E314 /* CommonStyle.xml */,
-			);
-			path = style;
-			sourceTree = "<group>";
-		};
-		37311A8920FC3635000D0986 /* layout */ = {
-			isa = PBXGroup;
-			children = (
-				37311A8A20FC364D000D0986 /* StackPanel.xml */,
-				37311A8E20FC3EB8000D0986 /* StackPanel2.xml */,
-				37311AB721001D79000D0986 /* Panel.xml */,
-				37A1F505210024FE00AC1778 /* InsetPanel.xml */,
-				37A1F5072100268E00AC1778 /* DockPanel.xml */,
-				37A1F50D2100947400AC1778 /* BackgroundPanel.xml */,
-				37A1F51D2101770B00AC1778 /* RatioPanel.xml */,
-			);
-			path = layout;
-			sourceTree = "<group>";
-		};
 		37311A8D20FC3675000D0986 /* layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,29 +228,6 @@
 			path = viewmodel;
 			sourceTree = "<group>";
 		};
-		3767542620F22B130019A521 /* templates */ = {
-			isa = PBXGroup;
-			children = (
-				372D87CD211155560037E314 /* style */,
-				37E7D35E210D4E76003C6416 /* app */,
-				37311A8920FC3635000D0986 /* layout */,
-				37C806AD20F430A5002EEF55 /* list */,
-				3767542A20F22B5D0019A521 /* IndexPage.xml */,
-				37C8069720F34776002EEF55 /* UIList.xml */,
-				37C806A420F357F4002EEF55 /* ListSample.xml */,
-				37311A8420FC34F9000D0986 /* Layout.xml */,
-				37A1F5252105802100AC1778 /* DataBinding.xml */,
-				37ED8BB62105B7E2000F0D9A /* Template.xml */,
-				37ED8BB82105BB60000F0D9A /* Event.xml */,
-				37ED8BBA2105BC93000F0D9A /* Animation.xml */,
-				373DD6532105D4E300E359BB /* Behavior.xml */,
-				373DD65E2106BBC500E359BB /* Directive.xml */,
-				372D87C52110134C0037E314 /* StyleSample.xml */,
-				372D87E0211194410037E314 /* App.xml */,
-			);
-			path = templates;
-			sourceTree = "<group>";
-		};
 		37A1F521210576E800AC1778 /* behaviors */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,16 +241,6 @@
 			path = behaviors;
 			sourceTree = "<group>";
 		};
-		37C806AD20F430A5002EEF55 /* list */ = {
-			isa = PBXGroup;
-			children = (
-				37C806AE20F430D2002EEF55 /* ListSample2.xml */,
-				37C806B120F43E63002EEF55 /* ListSample3.xml */,
-				37C806BE20F48372002EEF55 /* ListSample4.xml */,
-			);
-			path = list;
-			sourceTree = "<group>";
-		};
 		37C806B020F43156002EEF55 /* list */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,14 +250,6 @@
 				37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */,
 			);
 			path = list;
-			sourceTree = "<group>";
-		};
-		37E7D35E210D4E76003C6416 /* app */ = {
-			isa = PBXGroup;
-			children = (
-				37E7D35F210D4E94003C6416 /* ToutiaoRoot.xml */,
-			);
-			path = app;
 			sourceTree = "<group>";
 		};
 		37E7D361210D982D003C6416 /* app */ = {
@@ -417,11 +308,11 @@
 		6003F593195388D20070C39A /* Example for GICXMLLayout */ = {
 			isa = PBXGroup;
 			children = (
+				37390B35211ADEEC006B305D /* sample */,
 				372D87B0210EA8560037E314 /* dev */,
 				37ED8BB22105B1AD000F0D9A /* valueconverter */,
 				37A1F521210576E800AC1778 /* behaviors */,
 				37311A9320FC402D000D0986 /* customelements */,
-				3767542620F22B130019A521 /* templates */,
 				3767542520F22AFF0019A521 /* viewmodel */,
 				6003F59C195388D20070C39A /* GICAppDelegate.h */,
 				6003F59D195388D20070C39A /* GICAppDelegate.m */,
@@ -562,33 +453,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37C8069820F34776002EEF55 /* UIList.xml in Resources */,
-				372D87C62110134C0037E314 /* StyleSample.xml in Resources */,
+				37390B36211ADEEC006B305D /* sample in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				37A1F51E2101770B00AC1778 /* RatioPanel.xml in Resources */,
-				372D87CF211155560037E314 /* CommonStyle.xml in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				37A1F5082100268E00AC1778 /* DockPanel.xml in Resources */,
-				3767542B20F22B5D0019A521 /* IndexPage.xml in Resources */,
-				37ED8BB92105BB60000F0D9A /* Event.xml in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				37A1F5262105802100AC1778 /* DataBinding.xml in Resources */,
-				37ED8BB72105B7E2000F0D9A /* Template.xml in Resources */,
-				373DD6542105D4E300E359BB /* Behavior.xml in Resources */,
-				37A1F506210024FE00AC1778 /* InsetPanel.xml in Resources */,
-				37ED8BBB2105BC93000F0D9A /* Animation.xml in Resources */,
-				373DD65F2106BBC500E359BB /* Directive.xml in Resources */,
-				37311A8520FC34F9000D0986 /* Layout.xml in Resources */,
-				37311A8B20FC364D000D0986 /* StackPanel.xml in Resources */,
-				37C806BF20F48372002EEF55 /* ListSample4.xml in Resources */,
-				372D87E1211194410037E314 /* App.xml in Resources */,
-				37C806B220F43E63002EEF55 /* ListSample3.xml in Resources */,
-				37E7D360210D4E94003C6416 /* ToutiaoRoot.xml in Resources */,
-				37C806A520F357F4002EEF55 /* ListSample.xml in Resources */,
-				37311AB821001D79000D0986 /* Panel.xml in Resources */,
-				37A1F50E2100947400AC1778 /* BackgroundPanel.xml in Resources */,
-				37C806AF20F430D2002EEF55 /* ListSample2.xml in Resources */,
-				37311A8F20FC3EB8000D0986 /* StackPanel2.xml in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

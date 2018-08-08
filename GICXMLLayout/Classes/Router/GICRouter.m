@@ -19,23 +19,16 @@
     [GICElementsCache registBehaviorElement:[GICRouterLink class]];
 }
 
-+(void)loadAPPFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *rootPage))compelte{
-    [GICXMLLayout parseElementFromPathAsync:path withParentElement:nil withParseCompelete:^(id element) {
-        NSAssert(element, @"parse fail");
-        if(element && [element isKindOfClass:[GICAPP class]]){
-            GICAPP *app = element;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIApplication sharedApplication].delegate.window.rootViewController = app.rootViewController;
-                [[UIApplication sharedApplication].delegate.window makeKeyAndVisible];
-                if(compelte)
-                    compelte(app.rootViewController);
-            });
-        }else{
-             NSAssert(false, @"error : 跟节点不是app");
-            if(compelte)
-                compelte(nil);
-        }
-    }];
++(void)loadAPPFromPath:(NSString *)path{
+    id element = [GICXMLLayout parseElementFromPath:path withParentElement:nil];
+    NSAssert(element, @"parse fail");
+    if(element && [element isKindOfClass:[GICAPP class]]){
+        GICAPP *app = element;
+        [UIApplication sharedApplication].delegate.window.rootViewController = app.rootViewController;
+        [[UIApplication sharedApplication].delegate.window makeKeyAndVisible];
+    }else{
+        NSAssert(false, @"error : 跟节点不是app");
+    }
 }
 
 +(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(GICPage *page))compelte{

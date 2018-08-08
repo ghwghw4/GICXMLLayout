@@ -11,9 +11,9 @@
                 <template-ref t-name="nav-bar-button" data-context="全选" event-tap="btnSelectAll"/>
             </right-buttons>
 
-            <left-buttons>
-                <template-ref t-name="nav-bar-button" data-context="关闭" event-tap="btnClose"/>
-            </left-buttons>
+            <!--<left-buttons>-->
+                <!--<template-ref t-name="nav-bar-button" data-context="关闭" event-tap="btnClose"/>-->
+            <!--</left-buttons>-->
     </nav-bar>
     <inset-panel inset="0 15">
         <list data-context='ToutiaoViewModel' background-color="white">

@@ -41,6 +41,7 @@
 
 #import "GICCanvas+Beta.h"
 #import "GICControl.h"
+#import "GICDataContextElement.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -75,6 +76,10 @@
     
     //样式
     [GICElementsCache registElement:[GICStyle class]];
+    
+    // 其他
+    
+    [GICElementsCache registElement:[GICDataContextElement class]];
 }
 
 +(void)regiterUIElements{

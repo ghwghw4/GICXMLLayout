@@ -12,9 +12,9 @@
 @implementation UtilsHelp
 +(void)navigateToGICPage:(NSString *)pagePath{
     NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"/%@.xml",pagePath]];
-    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
-        UINavigationController *nav = (UINavigationController *)[[UIApplication sharedApplication] delegate].window.rootViewController;
-        [nav pushViewController:page animated:YES];
-    }];
+//    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
+//        UINavigationController *nav = (UINavigationController *)[[UIApplication sharedApplication] delegate].window.rootViewController;
+//        [nav pushViewController:page animated:YES];
+//    }];
 }
 @end

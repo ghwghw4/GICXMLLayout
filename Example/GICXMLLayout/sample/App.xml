@@ -1,0 +1,5 @@
+<app>
+    <nav>
+        <root-page path="IndexPage.xml"/>
+    </nav>
+</app>

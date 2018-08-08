@@ -14,7 +14,7 @@
 @interface GICRouter : NSObject
 +(void)regiterAllElements;
 
-+(void)loadAPPFromPath:(NSString *)path withParseCompelete:(void (^)(UIViewController *rootPage))compelte;
++(void)loadAPPFromPath:(NSString *)path;
 
 +(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(GICPage *page))compelte;
 @end

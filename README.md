@@ -56,7 +56,11 @@ pod 'GICXMLLayout'
 
    > `control`的功能类似`UIControl`，提供`enable`、`highlight`、`selected`等状态管理。
 
-4. 增加`router`模块。
+4. 增加`data-context`元素。
+
+   > 现在可以直接将一大段json 字符串作为数据源添加到`data-context`中了。
+
+5. 增加`router`模块。
 
 
 

@@ -90,6 +90,7 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
 
 +(void)registBehaviorElement:(Class)elementClass{
     if(![elementClass isSubclassOfClass:[GICBehavior class]]){
+        NSAssert(false, @"注册的元素非behavior");
         return;
     }
     if(class_getClassMethod(elementClass, @selector(gic_elementName))){

@@ -29,24 +29,32 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
+             // tips:不要提供background-color属性，提供了以后有可能会引起其他的问题
 //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 [((GICPage *)target)->view setBackgroundColor:value];
+//                 [GICUtils mainThreadExcu:^{
+//                      [((GICPage *)target).view setBackgroundColor:value];
+//                 }];
 //             }],
              };
 }
 
 #pragma mark - Lifecycle Methods
--(id)initWithXmlElement:(GDataXMLElement *)element{
-    [self gic_beginParseElement:element withSuperElement:nil];
-    self = [super initWithNode:_displayNode];
-    return self;
+
+-(void)gic_parseElementCompelete{
+    [super gic_parseElementCompelete];
 }
 
-//- (instancetype)init
-//{
-//    self = [super initWithNode:_displayNode];
-//    return self;
-//}
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    [self.view addSubnode:_displayNode];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    _displayNode.frame = self.view.bounds;
+}
+
+
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){

@@ -11,8 +11,6 @@
 @interface GICPage : ASViewController{
 //    id _viewModel;
 }
--(id)initWithXmlElement:(GDataXMLElement *)element;
-
 #pragma mark router
 
 /**

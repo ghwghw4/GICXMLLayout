@@ -34,6 +34,7 @@
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    NSAssert(self.backgroundNode && self.childNode, @"background-panel子元素不能为空，background元素也不能为空");
     ASBackgroundLayoutSpec *backgroundLayout = [ASBackgroundLayoutSpec backgroundLayoutSpecWithChild:self.childNode background:self.backgroundNode];
     return backgroundLayout;
 }

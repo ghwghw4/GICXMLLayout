@@ -131,29 +131,35 @@ static NSString *_roolUrl;
     return xmlData;
 }
 
-
-
-+(void)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
++(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement{
     NSData *xmlData = [self loadXmlDataFromUrl:url];
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
         NSLog(@"error : %@", error);
-        compelte(nil);
-        return;
+        return nil;
     }
+    GDataXMLElement *rootElement = [xmlDocument rootElement];
+    [GICXMLParserContext resetInstance:xmlDocument];
+    id e = [NSObject gic_createElement:rootElement withSuperElement:parentElement];
+    [GICXMLParserContext parseCompelete];
+    return e;
+}
+
++(void)parseElementFromUrlAsync:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
     dispatch_async(dispatch_queue_create("parse xml element", nil), ^{
-        GDataXMLElement *rootElement = [xmlDocument rootElement];
-        [GICXMLParserContext resetInstance:xmlDocument];
-        id e = [NSObject gic_createElement:rootElement withSuperElement:parentElement];
-        [GICXMLParserContext parseCompelete];
+        id e = [self parseElementFromUrl:url withParentElement:parentElement];
         compelte(e);
     });
 }
 
-+(void)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
++(id)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement{
+    return [self parseElementFromUrl:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement];
+}
+
++(void)parseElementFromPathAsync:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
     NSAssert(_roolUrl, @"请先设置roolUrl");
-    [self parseElementFromUrl:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement withParseCompelete:compelte];
+    [self parseElementFromUrlAsync:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement withParseCompelete:compelte];
 }
 
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{

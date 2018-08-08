@@ -22,6 +22,14 @@
              };
 }
 
+-(id)gic_addSubElement:(id)subElement{
+    if([subElement isKindOfClass:[UIViewController class]]){
+        [self pushViewController:subElement animated:YES];
+        return subElement;
+    }
+    return [super gic_addSubElement:subElement];
+}
+
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     if([element.name isEqualToString:@"root-page"]){
         NSString *path = [element attributeForName:@"path"].stringValue;

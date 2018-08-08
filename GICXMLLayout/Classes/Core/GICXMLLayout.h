@@ -7,13 +7,15 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+GICDataContext.h"
+#import "GDataXMLNode.h"
 #import "GICEventInfo.h"
 #import "GICBehavior.h"
 #import "GICElementsCache.h"
-#import "GICLayoutElementProtocol.h"
+#import "NSObject+LayoutElement.h"
 #import "GICDataBingdingValueConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICEvent.h"
+#import "GICElementsHelper.h"
 
 @interface GICXMLLayout : NSObject
 
@@ -45,9 +47,15 @@
 +(void)setRootUrl:(NSString *)rootUrl;
 +(NSString *)rootUrl;
 
-+(void)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
+#pragma mark 解析
 
-+(void)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
+#pragma mark 同步解析
++(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement;
++(id)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement;
+
+#pragma mark 异步解析
++(void)parseElementFromUrlAsync:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
++(void)parseElementFromPathAsync:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
 
 
 /**

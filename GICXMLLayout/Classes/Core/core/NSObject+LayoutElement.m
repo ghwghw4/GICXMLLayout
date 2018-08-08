@@ -177,7 +177,7 @@
 }
 
 -(NSArray *)gic_subElements{
-    return self.gic_ExtensionProperties.subElements;
+    return [self.gic_ExtensionProperties.subElements copy];
 }
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
     [self.gic_ExtensionProperties removeSubElements:subElements];
@@ -185,22 +185,6 @@
 
 -(BOOL)gic_isAutoCacheElement{
     return YES;
-}
-
--(id)gic_findSubElementFromName:(NSString *)name{
-    id findEl = nil;
-    for(NSObject *obj in [self gic_subElements]){
-        if([obj.gic_ExtensionProperties.name isEqualToString:name]){
-            findEl = obj;
-        }
-    }
-    
-    if(findEl==nil){
-        for(NSObject *obj in [self gic_subElements]){
-            findEl = [obj gic_findSubElementFromName:name];
-        }
-    }
-    return findEl;
 }
 
 +(NSObject *)gic_createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{

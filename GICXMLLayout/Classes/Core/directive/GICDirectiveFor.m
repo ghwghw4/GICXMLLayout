@@ -28,7 +28,7 @@
 
 -(void)gic_updateDataContext:(id)superDataContenxt{
     [super gic_updateDataContext:superDataContenxt];
-    [self updateDataSource:superDataContenxt];
+    [self updateDataSource:[self gic_DataContenxt]];
 }
 
 -(void)updateDataSource:(id)dataSource{

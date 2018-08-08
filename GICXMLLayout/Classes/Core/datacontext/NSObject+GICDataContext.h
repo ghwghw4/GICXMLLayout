@@ -16,6 +16,8 @@
  */
 @property (nonatomic,strong)id gic_DataContenxt;
 
+-(void)setGic_DataContenxt:(id)gic_DataContenxt updateBinding:(BOOL)update;
+
 /**
  是否自动继承父节点的数据源。默认yes
  如果设为 no，那么只有在显示设置DataContenxt的情况下才会触发绑定更新

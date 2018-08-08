@@ -121,15 +121,6 @@
  @return <#return value description#>
  */
 -(BOOL)gic_isAutoCacheElement;
-
-
-/**
- 通过name获取子元素
-
- @param name <#name description#>
- @return <#return value description#>
- */
--(id)gic_findSubElementFromName:(NSString *)name;
 @end
 
 

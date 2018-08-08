@@ -8,10 +8,10 @@
 #import "NSObject+GICRouter.h"
 
 @implementation NSObject (GICRouter)
--(UINavigationController *)gic_Router{
+-(id<GICRouterProtocol>)gic_Router{
     id superEl=[self gic_ExtensionProperties].superElement;
     do {
-        if([superEl isKindOfClass:[UINavigationController class]]){
+        if([superEl conformsToProtocol:@protocol(GICRouterProtocol)]){
             return superEl;
         }else{
             superEl = [superEl gic_getSuperElement];
@@ -20,15 +20,16 @@
     return nil;
 }
 
--(GICPage *)gic_CurrentPage{
-    id superEl=[self gic_ExtensionProperties].superElement;
-    do {
-        if([superEl isKindOfClass:[GICPage class]]){
-            return superEl;
-        }else{
-            superEl = [superEl gic_getSuperElement];
-        }
-    } while (superEl);
-    return nil;
-}
+//-(GICPage *)gic_CurrentPage{
+//    id superEl=[self gic_ExtensionProperties].superElement;
+//    do {
+//        if([superEl isKindOfClass:[GICPage class]]){
+//            return superEl;
+//        }else{
+//            superEl = [superEl gic_getSuperElement];
+//        }
+//    } while (superEl);
+//    return nil;
+//
+//}
 @end

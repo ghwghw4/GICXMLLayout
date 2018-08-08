@@ -13,27 +13,27 @@
 -(void)setGic_DataContext:(id)gic_DataContext{
     [self setGic_DataContext:gic_DataContext updateBinding:YES];
 }
-
+static const char* GICDataContextPropertyKey = "gic_DataContext";
 -(void)setGic_DataContext:(id)gic_DataContext updateBinding:(BOOL)update{
-    objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, GICDataContextPropertyKey, gic_DataContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     //将数据源的owner设为self
     [gic_DataContext gic_ExtensionProperties].superElement = self;
     if(update)
         [self gic_updateDataContext:gic_DataContext];
 }
 
--(id)gic_DataContenxt{
+-(id)gic_DataContext{
     return [self gic_DataContenxtIgnorNotAutoInherit:NO];
 }
 
 -(id)gic_self_dataContext{
-    return objc_getAssociatedObject(self, "gic_DataContenxt");
+    return objc_getAssociatedObject(self, GICDataContextPropertyKey);
 }
 
 -(id)gic_DataContenxtIgnorNotAutoInherit:(BOOL)isIgnorNotAutoInherit{
     id dc = nil;
     if(!isIgnorNotAutoInherit || self.gic_isAutoInheritDataModel){
-        dc = objc_getAssociatedObject(self, "gic_DataContenxt");
+        dc = objc_getAssociatedObject(self, GICDataContextPropertyKey);
     }
     if(dc){
         return dc;

@@ -30,7 +30,7 @@
         [target gic_get_tapSignal:^(RACSignal *signal) {
             [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
                 @strongify(self)
-                [[self gic_CurrentPage] go:self.path];
+                [[self gic_Router] push:self.path];
             }];
         }];
     }

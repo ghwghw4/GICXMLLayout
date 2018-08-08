@@ -18,5 +18,7 @@
  */
 @property(nonatomic,strong,readonly)id data;
 
--(id)initWithData:(id)data;
+@property(nonatomic,weak,readonly)UIViewController *fromPage;
+
+-(id)initWithData:(id)data from:(UIViewController *)fromPage;
 @end

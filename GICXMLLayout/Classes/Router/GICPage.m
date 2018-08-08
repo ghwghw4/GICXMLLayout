@@ -73,22 +73,4 @@
     }
     return [super gic_parseSubElementNotExist:element];
 }
-
-#pragma mark router
--(void)goBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)go:(NSString *)path{
-    [self go:path withParamsData:nil];
-}
-
--(void)go:(NSString *)path withParamsData:(id)paramsData{
-    [GICRouter loadPageFromPath:path withParseCompelete:^(GICPage *page) {
-        page.gic_ExtensionProperties.superElement = self.navigationController;
-        if(paramsData)
-            page.navParams = [[GICRouterParams alloc] initWithData:paramsData];
-        [self.navigationController pushViewController:page animated:YES];
-    }];
-}
 @end

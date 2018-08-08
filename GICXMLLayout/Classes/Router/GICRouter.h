@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "GICXMLLayout.h"
 #import "NSObject+GICRouter.h"
+#import "GICRouterProtocol.h"
+#import "GICPageRouterProtocol.h"
 #import "GICPage.h"
 @interface GICRouter : NSObject
 +(void)regiterAllElements;

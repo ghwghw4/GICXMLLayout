@@ -9,6 +9,12 @@
 #import "GICColorConverter.h"
 #import "GICRouter.h"
 
+@interface GICNav(){
+    NSString *rootPagePath;
+}
+
+@end
+
 @implementation GICNav
 +(NSString *)gic_elementName{
     return @"nav";
@@ -26,7 +32,7 @@
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[UIViewController class]]){
-        [self pushViewController:subElement animated:YES];
+        [self pushViewController:subElement];
         return subElement;
     }
     return [super gic_addSubElement:subElement];
@@ -34,14 +40,56 @@
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     if([element.name isEqualToString:@"root-page"]){
-        NSString *path = [element attributeForName:@"path"].stringValue;
-        if(path){
-            [GICRouter loadPageFromPath:path withParseCompelete:^(UIViewController *page) {
-                page.gic_ExtensionProperties.superElement = self;
-                [self pushViewController:page animated:YES];
-            }];
-        }
+        rootPagePath = [element attributeForName:@"path"].stringValue;
     }
     return [super gic_parseSubElementNotExist:element];
+}
+
+-(void)gic_parseElementCompelete{
+    [super gic_parseElementCompelete];
+    if(rootPagePath){
+        [self push:rootPagePath];
+    }
+}
+
+
+
+#pragma mark router
+-(void)goBack{
+    [self goBackWithParams:nil];
+}
+
+-(void)goBackWithParams:(id)paramsData{
+    UIViewController *from = [self visibleViewController];
+    [self popViewControllerAnimated:YES];
+    UIViewController *page = [self visibleViewController];
+    id viewModel = [page gic_DataContext];
+    if([viewModel conformsToProtocol:@protocol(GICPageRouterProtocol)]){
+        if([viewModel respondsToSelector:@selector(navigationBackWithParams:)]){
+            [viewModel navigationBackWithParams:[[GICRouterParams alloc] initWithData:paramsData from:from]];
+        }
+    }
+}
+
+-(void)push:(NSString *)path{
+    [self push:path withParamsData:nil];
+}
+
+-(void)push:(NSString *)path withParamsData:(id)paramsData{
+    [GICRouter loadPageFromPath:path withParseCompelete:^(GICPage *page) {
+        page.gic_ExtensionProperties.superElement = self;
+        // 传参数
+        id viewModel = [page gic_DataContext];
+        if([viewModel conformsToProtocol:@protocol(GICPageRouterProtocol)]){
+            if([viewModel respondsToSelector:@selector(navigationWithParams:)]){
+                [viewModel navigationWithParams:[[GICRouterParams alloc] initWithData:paramsData from:[self visibleViewController]]];
+            }
+        }
+        [self pushViewController:page animated:YES];
+    }];
+}
+
+-(void)pushViewController:(UIViewController *)viewController{
+    [super pushViewController:viewController animated:YES];
 }
 @end

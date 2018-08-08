@@ -8,9 +8,10 @@
 #import "GICRouterParams.h"
 
 @implementation GICRouterParams
--(id)initWithData:(id)data{
+-(id)initWithData:(id)data from:(UIViewController *)fromPage{
     self = [super init];
     _data = data;
+    _fromPage = fromPage;
     return self;
 }
 @end

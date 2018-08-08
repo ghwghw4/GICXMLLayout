@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface GICNav : ASNavigationController
+#import "GICRouterProtocol.h"
+@interface GICNav : ASNavigationController<GICRouterProtocol>
 
 @end

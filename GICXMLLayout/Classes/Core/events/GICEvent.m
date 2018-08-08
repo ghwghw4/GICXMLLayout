@@ -54,4 +54,8 @@
 -(void)fire:(id)value{
     [self.eventSubject sendNext:value];
 }
+
+-(void)dealloc{
+    [_eventSubject sendCompleted];
+}
 @end

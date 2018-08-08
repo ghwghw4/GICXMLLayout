@@ -8,6 +8,7 @@
 
 #import "ListSamplePageViewModel.h"
 #import "UtilsHelp.h"
+#import "GICRouter.h"
 
 @implementation ListSamplePageViewModel
 -(void)onSelect1{
@@ -16,13 +17,13 @@
 }
 
 -(void)onSelect2{
-    [UtilsHelp navigateToGICPage:@"ListSample2"];
+    [[self gic_Router] push:@"list/ListSample2.xml"];
 }
 
 -(void)onSelect3{
-    [UtilsHelp navigateToGICPage:@"ListSample3"];
+    [[self gic_Router] push:@"list/ListSample3.xml"];
 }
 -(void)onSelect4{
-    [UtilsHelp navigateToGICPage:@"ListSample4"];
+    [[self gic_Router] push:@"list/ListSample4.xml"];
 }
 @end

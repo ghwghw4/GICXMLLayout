@@ -1,6 +1,6 @@
 
 <page title="inset-panel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white" inset-behavior="2">
         <inset-panel inset="64 15 15 15">
             <stack-panel>

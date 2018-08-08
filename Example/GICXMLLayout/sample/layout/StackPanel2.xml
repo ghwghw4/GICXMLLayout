@@ -1,5 +1,5 @@
 <page title="stack-panel 动态演示" data-context="StackPanelViewModel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <templates>
         <template t-name="p-child">
             <dock-panel size="70" background-color="yellow">
@@ -28,8 +28,8 @@
             </dock-panel>
         </template>
     </templates>
-    <scroll-view background-color="white" inset-behavior="2">
-        <inset-panel inset="64 15 15 15">
+    <scroll-view background-color="white">
+        <inset-panel inset="15 15 15 15">
             <stack-panel>
                 <template-ref t-name="desc" data-context="操作面板"/>
                 

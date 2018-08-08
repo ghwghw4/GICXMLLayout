@@ -1,19 +1,21 @@
-<scroll-view background-color="white">
-    <style path="CommonStyle.xml">
-        <lable font-size="25" font-color="red" style-name="red-lable"/>
-    </style>
-    <inset-panel inset="64 15 15 15">
-        <stack-panel>
-           <lable text="style lable" space-before="10" style="red-lable"/>
-            <lable text="默认样式，采用上面定义的默认样式" space-before="10"/>
-            <panel>
-                <style>
-                    <lable font-size="20" font-color="gray"/>
-                </style>
-                <lable text="覆盖默认样式" space-before="10"/>
-            </panel>
+<page title="样式">
+    <scroll-view background-color="white">
+        <style path="style/CommonStyle.xml">
+            <lable font-size="25" font-color="red" style-name="red-lable"/>
+        </style>
+        <inset-panel inset="15 15 15 15">
+            <stack-panel>
+                <lable text="style lable" space-before="10" style="red-lable"/>
+                <lable text="默认样式，采用上面定义的默认样式" space-before="10"/>
+                <panel>
+                    <style>
+                        <lable font-size="20" font-color="gray"/>
+                    </style>
+                    <lable text="覆盖默认样式" space-before="10"/>
+                </panel>
 
-            <template-ref t-name="desc" data-context="我是样式模板1"/>
-        </stack-panel>
-    </inset-panel>
-</scroll-view>
+                <template-ref t-name="desc" data-context="我是样式模板1"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>

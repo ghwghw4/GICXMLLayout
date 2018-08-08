@@ -1,5 +1,5 @@
 <page title="模板" data-context="DataBindingViewModel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <templates>
         <template t-name="t2">
             <stack-panel space-after="5" space-before="5">

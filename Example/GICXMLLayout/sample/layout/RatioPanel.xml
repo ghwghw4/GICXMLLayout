@@ -1,6 +1,6 @@
 
 <page title="ratio-panel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <templates>
         <template t-name="p-child">
             <dock-panel size="40" background-color="yellow">

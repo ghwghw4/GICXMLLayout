@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface UtilsHelp : NSObject
-+(void)navigateToGICPage:(NSString *)pagePath;
+
 @end

@@ -10,7 +10,6 @@
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
 		372D87B5210EA8560037E314 /* GICXMLLayoutDevTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B1210EA8560037E314 /* GICXMLLayoutDevTools.m */; };
 		372D87B6210EA8560037E314 /* GICXMLLayoutDevPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */; };
-		37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A8720FC3533000D0986 /* LayoutViewModel.m */; };
 		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
@@ -19,13 +18,11 @@
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
 		373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6612106BC2C00E359BB /* DirectiveViewModel.m */; };
-		3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767542820F22B2E0019A521 /* IndexPageViewModel.m */; };
 		37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */; };
 		37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F528210581EE00AC1778 /* DataBindingViewModel.m */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
 		37BA55F720EC9C26003DC99A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */; };
 		37BA55FA20EDB276003DC99A /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BA55F920EDB276003DC99A /* TestClass.m */; };
-		37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */; };
 		37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */; };
 		37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C120F483F7002EEF55 /* ListSample3ViewModel.m */; };
 		37C806C520F48DAE002EEF55 /* ListSample4ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C806C420F48DAE002EEF55 /* ListSample4ViewModel.m */; };
@@ -63,8 +60,6 @@
 		372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GICXMLLayoutDevPage.m; sourceTree = "<group>"; };
 		372D87B3210EA8560037E314 /* GICXMLLayoutDevTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevTools.h; sourceTree = "<group>"; };
 		372D87B4210EA8560037E314 /* GICXMLLayoutDevPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevPage.h; sourceTree = "<group>"; };
-		37311A8620FC3533000D0986 /* LayoutViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutViewModel.h; sourceTree = "<group>"; };
-		37311A8720FC3533000D0986 /* LayoutViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutViewModel.m; sourceTree = "<group>"; };
 		37311A9020FC3F16000D0986 /* StackPanelViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackPanelViewModel.h; sourceTree = "<group>"; };
 		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
 		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
@@ -81,8 +76,6 @@
 		373DD6602106BC2C00E359BB /* DirectiveViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DirectiveViewModel.h; sourceTree = "<group>"; };
 		373DD6612106BC2C00E359BB /* DirectiveViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DirectiveViewModel.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		3767542720F22B2E0019A521 /* IndexPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexPageViewModel.h; sourceTree = "<group>"; };
-		3767542820F22B2E0019A521 /* IndexPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexPageViewModel.m; sourceTree = "<group>"; };
 		37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoHideKeybordBehavior.h; sourceTree = "<group>"; };
 		37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoHideKeybordBehavior.m; sourceTree = "<group>"; };
 		37A1F527210581EE00AC1778 /* DataBindingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBindingViewModel.h; sourceTree = "<group>"; };
@@ -92,8 +85,6 @@
 		37BA55F620EC9C26003DC99A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		37BA55F820EDB276003DC99A /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		37BA55F920EDB276003DC99A /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
-		37C8069920F347A5002EEF55 /* UIListPageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIListPageViewModel.h; sourceTree = "<group>"; };
-		37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIListPageViewModel.m; sourceTree = "<group>"; };
 		37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSamplePageViewModel.h; sourceTree = "<group>"; };
 		37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListSamplePageViewModel.m; sourceTree = "<group>"; };
 		37C806C020F483F7002EEF55 /* ListSample3ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSample3ViewModel.h; sourceTree = "<group>"; };
@@ -210,14 +201,8 @@
 				37311AA020FC9E7C000D0986 /* ui */,
 				37311A8D20FC3675000D0986 /* layout */,
 				37C806B020F43156002EEF55 /* list */,
-				3767542720F22B2E0019A521 /* IndexPageViewModel.h */,
-				3767542820F22B2E0019A521 /* IndexPageViewModel.m */,
-				37C8069920F347A5002EEF55 /* UIListPageViewModel.h */,
-				37C8069A20F347A5002EEF55 /* UIListPageViewModel.m */,
 				37C806AA20F36CFA002EEF55 /* ListSamplePageViewModel.h */,
 				37C806AB20F36CFA002EEF55 /* ListSamplePageViewModel.m */,
-				37311A8620FC3533000D0986 /* LayoutViewModel.h */,
-				37311A8720FC3533000D0986 /* LayoutViewModel.m */,
 				37A1F527210581EE00AC1778 /* DataBindingViewModel.h */,
 				37A1F528210581EE00AC1778 /* DataBindingViewModel.m */,
 				373DD6582105D90400E359BB /* BehaviorViewModel.h */,
@@ -561,15 +546,12 @@
 				37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */,
 				373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */,
 				373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */,
-				37311A8820FC3533000D0986 /* LayoutViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
-				37C8069B20F347A5002EEF55 /* UIListPageViewModel.m in Sources */,
 				37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */,
 				37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
-				3767542920F22B2E0019A521 /* IndexPageViewModel.m in Sources */,
 				37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

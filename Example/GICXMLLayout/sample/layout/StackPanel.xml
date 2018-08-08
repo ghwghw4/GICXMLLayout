@@ -1,6 +1,6 @@
 
 <page title="stack-panel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <templates>
         <template t-name="p-child">
             <dock-panel size="70" background-color="yellow">

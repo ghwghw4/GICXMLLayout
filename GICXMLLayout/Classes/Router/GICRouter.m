@@ -32,18 +32,17 @@
 }
 
 +(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(GICPage *page))compelte{
-    [GICXMLLayout parseElementFromPathAsync:path withParentElement:nil withParseCompelete:^(id element) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        id element = [GICXMLLayout parseElementFromPath:path withParentElement:nil];
         NSAssert(element, @"parse fail");
         if(element && [element isKindOfClass:[UIViewController class]]){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if(compelte)
-                    compelte(element);
-            });
+            if(compelte)
+                compelte(element);
         }else{
             NSAssert(false, @"error : 跟节点不是UIViewController的子类");
             if(compelte)
                 compelte(nil);
         }
-    }];
+    });
 }
 @end

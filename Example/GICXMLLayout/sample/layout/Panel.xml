@@ -1,7 +1,7 @@
 <page title="panel">
-    <style path="CommonStyle.xml" />
-    <scroll-view background-color="white" inset-behavior="2">
-        <inset-panel inset="64 15 15 15">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15 15 15 15">
             <stack-panel>
                 <template-ref t-name="desc" data-context="panel 是绝对布局，类似UIView"/>
 

@@ -1,5 +1,5 @@
 <page title="指令" data-context="DirectiveViewModel">
-    <style path="CommonStyle.xml" />
+    <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>

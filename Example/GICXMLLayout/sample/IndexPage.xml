@@ -36,11 +36,11 @@
             "pagePath": "StyleSample.xml"
             }, {
             "name": "模拟头条Feeds(重点是模板、布局、性能)",
-            "pagePath": "pp/ToutiaoRoot.xml"
+            "pagePath": "app/ToutiaoRoot.xml"
             }]
         </data-context>
         <for>
-            <list-item selection-style="2" event-item-select="onSelect:">
+            <list-item selection-style="2">
                 <inset-panel background-color="white" inset="15">
                     <behaviors>
                         <bev-router-link path="{{pagePath}}"/>

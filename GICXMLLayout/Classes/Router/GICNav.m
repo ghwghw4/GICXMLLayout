@@ -17,7 +17,9 @@
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICNav *)target).view.backgroundColor = value;
+                 [GICUtils mainThreadExcu:^{
+                     ((GICNav *)target).view.backgroundColor = value;
+                 }];
              }],
              };
 }

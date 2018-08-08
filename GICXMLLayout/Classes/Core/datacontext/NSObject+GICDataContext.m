@@ -10,16 +10,16 @@
 #import "NSObject+GICDataBinding.h"
 
 @implementation NSObject (GICDataContext)
--(void)setGic_DataContenxt:(id)gic_DataContenxt{
-    [self setGic_DataContenxt:gic_DataContenxt updateBinding:YES];
+-(void)setGic_DataContext:(id)gic_DataContext{
+    [self setGic_DataContext:gic_DataContext updateBinding:YES];
 }
 
--(void)setGic_DataContenxt:(id)gic_DataContenxt updateBinding:(BOOL)update{
-    objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContenxt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void)setGic_DataContext:(id)gic_DataContext updateBinding:(BOOL)update{
+    objc_setAssociatedObject(self, "gic_DataContenxt", gic_DataContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     //将数据源的owner设为self
-    [gic_DataContenxt gic_ExtensionProperties].superElement = self;
+    [gic_DataContext gic_ExtensionProperties].superElement = self;
     if(update)
-        [self gic_updateDataContext:gic_DataContenxt];
+        [self gic_updateDataContext:gic_DataContext];
 }
 
 -(id)gic_DataContenxt{

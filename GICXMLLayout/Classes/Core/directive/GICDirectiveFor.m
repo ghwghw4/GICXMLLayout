@@ -28,7 +28,7 @@
 
 -(void)gic_updateDataContext:(id)superDataContenxt{
     [super gic_updateDataContext:superDataContenxt];
-    [self updateDataSource:[self gic_DataContenxt]];
+    [self updateDataSource:[self gic_DataContext]];
 }
 
 -(void)updateDataSource:(id)dataSource{
@@ -88,7 +88,7 @@
 -(void)addAElement:(id)data{
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
-    childElement.gic_DataContenxt = data;
+    childElement.gic_DataContext = data;
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder;
     [self.target gic_addSubElement:childElement];
 }

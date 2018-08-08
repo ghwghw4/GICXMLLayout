@@ -21,7 +21,7 @@
         SEL se = NSSelectorFromString(self->expressionString);
         id t = self.target;
         do {
-            id vm = [t gic_DataContenxt];
+            id vm = [t gic_DataContext];
             if([vm respondsToSelector:se]){
                 GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
                 [vm performSelector:se withObject:eventInfo];

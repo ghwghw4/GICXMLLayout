@@ -79,8 +79,8 @@
     if(self.gic_dataPathKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
         id v = [superDataContenxt valueForKey:self.gic_dataPathKey];
         if(![GICUtils isNull:v]){
-            if(self.gic_DataContenxt !=v){
-                [self setGic_DataContenxt:v updateBinding:NO];
+            if(self.gic_DataContext !=v){
+                [self setGic_DataContext:v updateBinding:NO];
                 // 创建绑定
                 GICDataModelBinding_ *tmp = self.gic_dataModelBinding;
                 if(tmp==nil){

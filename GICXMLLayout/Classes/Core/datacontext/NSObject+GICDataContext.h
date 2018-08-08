@@ -14,9 +14,9 @@
 /**
  数据上下文
  */
-@property (nonatomic,strong)id gic_DataContenxt;
+@property (nonatomic,strong)id gic_DataContext;
 
--(void)setGic_DataContenxt:(id)gic_DataContenxt updateBinding:(BOOL)update;
+-(void)setGic_DataContext:(id)gic_DataContext updateBinding:(BOOL)update;
 
 /**
  是否自动继承父节点的数据源。默认yes

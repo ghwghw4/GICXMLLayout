@@ -43,7 +43,7 @@
     }
 
     self.gic_isAutoInheritDataModel = NO;
-    [self gic_updateDataContext:listItem.gic_DataContenxt];
+    [self gic_updateDataContext:listItem.gic_DataContext];
 }
 
 -(void)setSelected:(BOOL)selected{

@@ -82,11 +82,11 @@
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
         if(![tr gic_self_dataContext]){
-            tr.gic_DataContenxt = self.gic_DataContenxt;
+            tr.gic_DataContext = self.gic_DataContext;
         }
         NSObject *el = [tr parseTemplateFromTarget:self];
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
-        el.gic_DataContenxt = tr.gic_DataContenxt;
+        el.gic_DataContext = tr.gic_DataContext;
         el.gic_ExtensionProperties.elementOrder = tr.gic_ExtensionProperties.elementOrder;
         [self gic_addSubElement:el];
         return el;
@@ -161,7 +161,7 @@
     }
     id temp = self.gic_ExtensionProperties.tempDataContext;
     if(temp){
-        self.gic_DataContenxt = temp;
+        self.gic_DataContext = temp;
         self.gic_ExtensionProperties.tempDataContext = nil;
         self.gic_isAutoInheritDataModel = NO;
     }

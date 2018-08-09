@@ -9,8 +9,6 @@
 // 根据给定参数计算dismension的实际值
 #define calcuDimensionValue(dismension, from) ( dismension.unit == ASDimensionUnitFraction?(from * dismension.value):dismension.value )
 
-ASDimension ASDimensionMakeFromString(NSString *str);
-ASLayoutSize ASLayoutSizeMakeFromString(NSString *str);
 
 @interface GICUtils : NSObject
 +(CGFloat)numberConverter:(NSString *)stringValue;

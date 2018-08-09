@@ -89,14 +89,28 @@
                         "width": 40,
                         "height": 50,
                         "color": "black"
+                        },
+                        {
+                        "x": 150,
+                        "y": 30,
+                        "width": 40,
+                        "height": 70,
+                        "color": "7EC0EE"
+                        },
+                        {
+                        "x": 200,
+                        "y": 10,
+                        "width": 40,
+                        "height": 90,
+                        "color": "EEC900"
                         }
                         ]
                     </data-context>
                     <for>
                         <path fill-color="{{color}}" line-width="0">
-                            <rectangle x="{{x}}" y="{{y}}" width="{{width}}">
+                            <rectangle x="{{x}}"  width="{{width}}" height="{{height+'%'}}">
                                 <animations>
-                                    <anim-attribute attribute-name="height" on="1" from="0" to="{{height}}" autoreverses="1" duration="3" repeat="-1"/>
+                                    <anim-attribute attribute-name="y" on="1" from="100%" to="{{y+'%'}}" duration=".6"/>
                                 </animations>
                             </rectangle>
                         </path>

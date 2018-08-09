@@ -33,11 +33,11 @@
     NSDictionary<NSString *, GICAttributeValueConverter *> * atts=[GICElementsCache classAttributs:[target class]];
     valueConverter = [atts objectForKey:self.atttibuteName];
     
-    _fromValue = [valueConverter convert:self->fromString];
-    _toValue = [valueConverter convert:self->toString];
 }
 
 -(POPAnimatableProperty *)createAnimatableProperty{
+    _fromValue = [valueConverter convert:self->fromString];
+    _toValue = [valueConverter convert:self->toString];
     @weakify(self)
     POPAnimatableProperty *prop =  [POPAnimatableProperty propertyWithName:@"GICXMLLayout" initializer:^(POPMutableAnimatableProperty *prop) {
         // write value

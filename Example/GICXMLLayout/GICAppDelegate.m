@@ -51,8 +51,8 @@
     
     // 设置跟目录
 //    [GICXMLLayout setRootUrl:@"http://192.168.111.171:8080/sample"];
-    [GICXMLLayout setRootUrl:@"http://localhost:8080/sample"];
-//    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
+//    [GICXMLLayout setRootUrl:@"http://localhost:8080/sample"];
+    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

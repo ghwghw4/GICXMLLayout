@@ -43,7 +43,9 @@
 -(void)attachTo:(id)target{
     [super attachTo:target];
     if(self.triggerType == GICAnimationTriggerType_attach){
-        [self beginAnimantion];
+        dispatch_async(dispatch_get_main_queue(), ^{
+             [self beginAnimantion];
+        });
     }else if(self.triggerType == GICAnimationTriggerType_tap){
         @weakify(self)
         [target gic_get_tapSignal:^(RACSignal *signal) {

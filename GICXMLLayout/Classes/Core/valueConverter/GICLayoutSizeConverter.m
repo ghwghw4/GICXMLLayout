@@ -8,6 +8,17 @@
 #import "GICLayoutSizeConverter.h"
 #import "GICDimensionConverter.h"
 
+ASLayoutSize ASLayoutSizeMakeFromString(NSString *str){
+    NSArray *strs = [str componentsSeparatedByString:@" "];
+    ASLayoutSize size = ASLayoutSizeAuto;
+    if(strs.count==1){
+        size = ASLayoutSizeMake(ASDimensionMakeFromString(strs[0]), ASDimensionMakeFromString(strs[0]));
+    }else if (strs.count==2){
+        size = ASLayoutSizeMake(ASDimensionMakeFromString(strs[0]), ASDimensionMakeFromString(strs[1]));
+    }
+    return size;
+}
+
 @implementation GICLayoutSizeConverter
 -(NSValue *)convert:(NSString *)stringValue{
     return [NSValue valueWithASLayoutSize:ASLayoutSizeMakeFromString(stringValue)];

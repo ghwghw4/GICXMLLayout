@@ -11,6 +11,7 @@
 #import "GICNumberConverter.h"
 #import "GICBoolConverter.h"
 #import "GICLayoutSizeConverter.h"
+#import "GICDimensionPointConverter.h"
 
 @implementation GICCanvasArc
 +(NSString *)gic_elementName{
@@ -18,8 +19,8 @@
 }
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return  @{
-              @"center":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasArc *)target setCenter:[(NSValue *)value ASLayoutSize]];
+              @"center":[[GICDimensionPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                  [(GICCanvasArc *)target setCenter:[(NSValue *)value ASDimensionPoint]];
                   [(id)target gic_setNeedDisplay];
               }],
               @"radius":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -42,6 +43,6 @@
 }
 
 -(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
-    CGContextAddArc(ctx, calcuDimensionValue(self.center.width,bounds.size.width), calcuDimensionValue(self.center.height,bounds.size.height), calcuDimensionValue(self.radius,bounds.size.width), (self.startAngle / 180) * M_PI, (self.endAngle / 180) * M_PI, self.clockwise);
+    CGContextAddArc(ctx, calcuDimensionValue(self.center.x,bounds.size.width), calcuDimensionValue(self.center.y,bounds.size.height), calcuDimensionValue(self.radius,bounds.size.width), (self.startAngle / 180) * M_PI, (self.endAngle / 180) * M_PI, self.clockwise);
 }
 @end

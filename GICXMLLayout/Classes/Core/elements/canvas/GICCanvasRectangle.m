@@ -21,15 +21,19 @@
     return  @{
               @"x":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasRectangle *)target setX:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"y":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasRectangle *)target setY:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasRectangle *)target setWidth:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasRectangle *)target setHeight:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               // 支持绑定，但不支持动画
               @"corner-types":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -66,6 +70,7 @@
               }],
               @"corner-radius":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasRectangle *)target setCornerRadiusSize:[(NSValue *)value ASLayoutSize]];
+                  [(id)target gic_setNeedDisplay];
               }],
               };;
 }

@@ -54,14 +54,8 @@
 }
 
 -(void)draw:(CGContextRef)ctx withBounds:(CGRect)bounds{
-//    UIBezierPath *path = [self createBezierPath:bounds];
     [parts enumerateObjectsUsingBlock:^(GICCanvasPathPart * _Nonnull part, NSUInteger idx, BOOL * _Nonnull stop) {
-//        if(idx==0 && [part isKindOfClass:[GICCanvasLinePoint class]]){
-//            CGPoint p = [(GICCanvasLinePoint *)part convertToPoint:bounds.size];
-//            CGContextMoveToPoint(ctx, p.x, p.y);
-//        }else{
-            [part drawPartPath:ctx bounds:bounds];
-//        }
+        [part drawPartPath:ctx bounds:bounds];
     }];
   
     if(self.isCloseLines){
@@ -86,19 +80,6 @@
         CGContextStrokePath(ctx);
     }
 }
-
-//-(UIBezierPath *)createBezierPath:(CGRect)bounds{
-//    UIBezierPath *path = [[UIBezierPath alloc] init];
-//    [parts enumerateObjectsUsingBlock:^(GICCanvasPathPart * _Nonnull part, NSUInteger idx, BOOL * _Nonnull stop) {
-//        if(idx==0 && [part isKindOfClass:[GICCanvasLinePoint class]]){
-//            CGPoint p = [(GICCanvasLinePoint *)part convertToPoint:bounds.size];
-//            [path moveToPoint:p];
-//        }else{
-//            [part drawPartPath:path bounds:bounds];
-//        }
-//    }];
-//    return path;
-//}
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICCanvasPathPart class]]){

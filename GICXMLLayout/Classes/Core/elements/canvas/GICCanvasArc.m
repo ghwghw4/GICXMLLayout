@@ -41,7 +41,7 @@
               };;
 }
 
--(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
-    [path addArcWithCenter:CGPointMake(calcuDimensionValue(self.center.width,bounds.size.width), calcuDimensionValue(self.center.height,bounds.size.height)) radius:calcuDimensionValue(self.radius,bounds.size.width) startAngle:(self.startAngle / 180) * M_PI endAngle:(self.endAngle / 180) * M_PI clockwise:self.clockwise];
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
+    CGContextAddArc(ctx, calcuDimensionValue(self.center.width,bounds.size.width), calcuDimensionValue(self.center.height,bounds.size.height), calcuDimensionValue(self.radius,bounds.size.width), (self.startAngle / 180) * M_PI, (self.endAngle / 180) * M_PI, self.clockwise);
 }
 @end

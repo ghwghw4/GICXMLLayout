@@ -89,4 +89,9 @@
     }
     return path;
 }
+
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
+    UIBezierPath *path = [self createBezierPath:bounds];
+    CGContextAddPath(ctx, path.CGPath);
+}
 @end

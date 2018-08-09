@@ -50,7 +50,8 @@
     [GICElementsCache registBehaviorElement:[PullMoreBehavior class]];
     
     // 设置跟目录
-    [GICXMLLayout setRootUrl:@"http://192.168.111.171:8080/sample"];
+//    [GICXMLLayout setRootUrl:@"http://192.168.111.171:8080/sample"];
+    [GICXMLLayout setRootUrl:@"http://localhost:8080/sample"];
 //    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
     
     

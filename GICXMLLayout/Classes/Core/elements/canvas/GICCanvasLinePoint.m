@@ -35,8 +35,8 @@
     return CGPointMake(calcuDimensionValue(self.x,size.width), calcuDimensionValue(self.y,size.height));
 }
 
--(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
     CGPoint p = [self convertToPoint:bounds.size];
-    [path moveToPoint:p];
+    CGContextMoveToPoint(ctx, p.x, p.y);
 }
 @end

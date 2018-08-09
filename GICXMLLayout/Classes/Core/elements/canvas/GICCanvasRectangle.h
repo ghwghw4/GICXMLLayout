@@ -6,8 +6,9 @@
 //
 
 #import "GICCanvasPath.h"
+#import "GICCanvasPathPart.h"
 
-@interface GICCanvasRectangle : GICCanvasPath
+@interface GICCanvasRectangle : GICCanvasPathPart
 @property (nonatomic,assign)ASDimension x;
 @property (nonatomic,assign)ASDimension y;
 

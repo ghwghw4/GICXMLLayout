@@ -8,7 +8,7 @@
 #import "GICCanvasPathPart.h"
 
 @implementation GICCanvasPathPart
--(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
     
 }
 

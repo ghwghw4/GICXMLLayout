@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 
 @interface GICCanvasPathPart : NSObject<GICDisplayProtocol>
--(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds;
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds;
 @end

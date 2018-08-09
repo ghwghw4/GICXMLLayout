@@ -46,13 +46,13 @@
     return [super gic_parseSubElementNotExist:element];
 }
 
--(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
+-(void)drawPartPath:(CGContextRef)ctx bounds:(CGRect)bounds{
     [points enumerateObjectsUsingBlock:^(GICCanvasLinePoint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGPoint p = [obj convertToPoint:bounds.size];
         if(idx==0){
-            [path moveToPoint:p];
+            CGContextMoveToPoint(ctx, p.x, p.y);
         }else{
-            [path addLineToPoint:p];
+            CGContextAddLineToPoint(ctx, p.x, p.y);
         }
     }];
 }

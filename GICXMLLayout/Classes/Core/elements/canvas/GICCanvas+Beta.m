@@ -19,8 +19,11 @@
 }
 
 + (void)drawRect:(CGRect)bounds withParameters:(NSMutableArray<GICCanvasPath *> *)parameters isCancelled:(asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing{
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
     for(GICCanvasPath *path in parameters){
-        [path draw:bounds];
+        [path draw:ctx withBounds:bounds];
     }
 }
 

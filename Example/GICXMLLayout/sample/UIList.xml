@@ -14,7 +14,7 @@
         <inset-panel inset="15">
             <stack-panel>
                 <template-ref t-name="desc" data-context="canvas"/>
-                <canvas height="150" background-color="yellow">
+                <canvas height="100" background-color="yellow">
                     <data-context>
                         [{
                         "start": 0,
@@ -36,14 +36,14 @@
                     </data-context>
                     <for>
                         <path fill-color="{{color}}" line-width="0">
-                        <point x="50%" y="50%"/>
-                        <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" clockwise="1" />
+                            <point x="50%" y="50%"/>
+                            <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" />
                         </path>
                     </for>
 
                     <path fill-color="yellow" line-width="0">
                         <point x="50%" y="50%"/>
-                        <arc center="50%" radius="20" end-angle="360" start-angle="0" clockwise="1" >
+                        <arc center="50%" radius="20" end-angle="360" start-angle="0" >
                             <animations>
                                 <anim-attribute attribute-name="end-angle" on="1" from="0" to="360" duration="1" repeat="-1"/>-->
                             </animations>
@@ -58,7 +58,7 @@
                             </animations>
                         </point>
 
-                        <arc center="50%" radius="20" end-angle="360" start-angle="45" clockwise="1" >
+                        <arc center="50%" radius="20" end-angle="360" start-angle="45" >
                             <animations>
                                 <anim-attribute attribute-name="end-angle" on="1" from="315" to="360" autoreverses="1" duration="0.3" repeat="-1"/>
                                 <anim-attribute attribute-name="start-angle" on="1" from="45" to="0" autoreverses="1" duration="0.3" repeat="-1"/>
@@ -67,11 +67,46 @@
                         </arc>
                     </path>
                 </canvas>
+                <canvas height="100" background-color="yellow" space-before="10">
+                    <data-context>
+                        [{
+                        "x": 0,
+                        "y": 0,
+                        "width": 40,
+                        "height": 100,
+                        "color": "blue"
+                        },
+                        {
+                        "x": 50,
+                        "y": 20,
+                        "width": 40,
+                        "height": 80,
+                        "color": "red"
+                        },
+                        {
+                        "x": 100,
+                        "y": 50,
+                        "width": 40,
+                        "height": 50,
+                        "color": "black"
+                        }
+                        ]
+                    </data-context>
+                    <for>
+                        <path fill-color="{{color}}" line-width="0">
+                            <rectangle x="{{x}}" y="{{y}}" width="{{width}}">
+                                <animations>
+                                    <anim-attribute attribute-name="height" on="1" from="0" to="{{height}}" autoreverses="1" duration="3" repeat="-1"/>
+                                </animations>
+                            </rectangle>
+                        </path>
+                    </for>
+                </canvas>
                 <!--lable-->
                 <template-ref t-name="desc" data-context="lable"/>
                 <lable text="我是lable,居中显示" font-color="yellow" font-size="20" text-align="1"/>
                 <lable text="我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。"  lines="2" font-color="red" font-size="20" text-align="1" space-before="20"/>
-                <lable font-color="yellow" font-size="20">
+                <lable font-color="black" font-size="20">
                     <s text="富文本1 "/>
                     <img img-name="location"/>
                     <s text=" 富文本2" font-size="10" font-color="gray"/>
@@ -82,20 +117,20 @@
                     <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
                     </input>
                     <lable text="{{ exp=name,mode=1}}"/>
-                    
-                    
+
+
                     <template-ref t-name="desc" data-context="input-view"/>
                     <input-view font-color="yellow" font-size="16" border-color="black" border-width="0.5" text="你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，" placehold="请输入用户名" height="100">
                     </input-view>
                 </stack-panel>
                 <!--image-->
                 <template-ref t-name="desc" data-context="image"/>
-                
+
                 <stack-panel is-horizon="1">
                     <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
-                    
+
                     <image space-before="10" url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100" fill-mode="0"/>
-                    
+
                     <image space-before="10" local-name="active" size="18 16"/>
                 </stack-panel>
 

@@ -6,7 +6,8 @@
 //
 
 #import "GICCanvasPath.h"
-@interface GICCanvasArc : GICCanvasPath
+#import "GICCanvasPathPart.h"
+@interface GICCanvasArc : GICCanvasPathPart
 @property (nonatomic,assign)ASLayoutSize center;
 @property (nonatomic,assign)ASDimension radius;
 @property (nonatomic,assign)CGFloat startAngle;

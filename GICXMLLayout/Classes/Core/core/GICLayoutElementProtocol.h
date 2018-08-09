@@ -44,7 +44,7 @@
  */
 -(id)gic_addSubElement:(id)subElement;
 
--(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order;
+-(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order;
 
 
 /**

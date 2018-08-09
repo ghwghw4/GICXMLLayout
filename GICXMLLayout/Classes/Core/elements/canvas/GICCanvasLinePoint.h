@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICCanvasPathPart.h"
 
-@interface GICCanvasLinePoint : NSObject
+@interface GICCanvasLinePoint : GICCanvasPathPart
 @property (nonatomic,assign)ASDimension x;
 @property (nonatomic,assign)ASDimension y;
 

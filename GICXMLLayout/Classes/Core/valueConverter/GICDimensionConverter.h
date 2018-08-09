@@ -7,6 +7,7 @@
 
 #import "GICAttributeValueConverter.h"
 @interface GICDimensionConverter : GICAttributeValueConverter
--(NSString *)convert:(NSString *)stringValue;
--(NSString *)convertAnimationValue:(NSString *)from to:(NSString *)to per:(CGFloat)per;
+-(NSValue *)convert:(NSString *)stringValue;
+-(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per;
++(ASDimension)convertAnimationValue:(ASDimension)from to:(ASDimension)to per:(CGFloat)per;
 @end

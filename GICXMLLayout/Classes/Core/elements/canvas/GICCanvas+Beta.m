@@ -6,9 +6,7 @@
 //
 
 #import "GICCanvas+Beta.h"
-#import "GICCanvasLine.h"
-#import "GICCanvasRectangle.h"
-#import "GICCanvasArc.h"
+#import "GICCanvasPath.h"
 
 @interface GICCanvas (){
     NSMutableArray<GICCanvasPath *> *paths;
@@ -20,8 +18,8 @@
     return @"canvas";
 }
 
-+ (void)drawRect:(CGRect)bounds withParameters:(GICCanvas *)parameters isCancelled:(asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing{
-    for(GICCanvasPath *path in parameters->paths){
++ (void)drawRect:(CGRect)bounds withParameters:(NSMutableArray<GICCanvasPath *> *)parameters isCancelled:(asdisplaynode_iscancelled_block_t)isCancelledBlock isRasterizing:(BOOL)isRasterizing{
+    for(GICCanvasPath *path in parameters){
         [path draw:bounds];
     }
 }
@@ -32,9 +30,15 @@
     paths = [NSMutableArray array];
     return self;
 }
-
+-(void)layout{
+    [super layout];
+    [self setNeedsDisplay];
+}
 - (id<NSObject>)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer{
-    return self;
+    [paths sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 gic_ExtensionProperties].elementOrder > [obj2 gic_ExtensionProperties].elementOrder? NSOrderedDescending:NSOrderedAscending;
+    }];
+    return [paths copy];
 }
 
 -(id)gic_addSubElement:(id)subElement{
@@ -46,13 +50,21 @@
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
-    if([element.name isEqualToString:[GICCanvasLine gic_elementName]]){
-        return [GICCanvasLine new];
-    }else if([element.name isEqualToString:[GICCanvasRectangle gic_elementName]]){
-        return [GICCanvasRectangle new];
-    }else if([element.name isEqualToString:[GICCanvasArc gic_elementName]]){
-        return [GICCanvasArc new];
+    if([element.name isEqualToString:[GICCanvasPath gic_elementName]]){
+        return [GICCanvasPath new];
     }
+//    else if([element.name isEqualToString:[GICCanvasRectangle gic_elementName]]){
+//        return [GICCanvasRectangle new];
+//    }else if([element.name isEqualToString:[GICCanvasArc gic_elementName]]){
+//        return [GICCanvasArc new];
+//    }
     return [super gic_parseSubElementNotExist:element];
+}
+
+#pragma mark GICDisplayProtocol
+-(void)gic_setNeedDisplay{
+    if(self.nodeLoaded){
+        [self setNeedsDisplay];
+    }
 }
 @end

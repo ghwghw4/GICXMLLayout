@@ -30,10 +30,18 @@ typedef enum {
 @property (nonatomic,weak)id superElement;
 @property (nonatomic,readonly)NSArray *subElements;
 
+
+///**
+// 获取根据elementOrder从低到高排序的subElements列表
+//
+// @return <#return value description#>
+// */
+//-(NSArray *)sortedSubElements;
+
 /**
  在xml中的节点的顺序。这个直接决定元素的排序。固定的
  */
-@property (nonatomic,assign)NSInteger elementOrder;
+@property (nonatomic,assign)CGFloat elementOrder;
 
 -(void)addSubElement:(id)subElement;
 

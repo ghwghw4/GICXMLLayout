@@ -42,6 +42,7 @@
 #import "GICCanvas+Beta.h"
 #import "GICControl.h"
 #import "GICDataContextElement.h"
+//#import "GICCanvasPath.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -95,7 +96,12 @@
     [GICElementsCache registElement:[GICInputeView class]];
     [GICElementsCache registElement:[GICInpute class]];
     
+    //canvas
     [GICElementsCache registElement:[GICCanvas class]];
+//    [GICElementsCache registElement:[GICCanvasPath class]];
+    
+    
+    
     [GICElementsCache registElement:[GICControl class]];
 }
 

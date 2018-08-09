@@ -9,6 +9,7 @@
 #import "GICDimensionConverter.h"
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
+#import "GICLayoutSizeConverter.h"
 
 @implementation GICCanvasRectangle
 
@@ -19,16 +20,16 @@
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return  @{
               @"x":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasRectangle *)target setX:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasRectangle *)target setX:[(NSValue *)value ASDimension]];
               }],
               @"y":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasRectangle *)target setY:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasRectangle *)target setY:[(NSValue *)value ASDimension]];
               }],
               @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasRectangle *)target setWidth:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasRectangle *)target setWidth:[(NSValue *)value ASDimension]];
               }],
               @"height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasRectangle *)target setHeight:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasRectangle *)target setHeight:[(NSValue *)value ASDimension]];
               }],
               // 支持绑定，但不支持动画
               @"corner-types":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -63,9 +64,8 @@
                   }
                   [(GICCanvasRectangle *)target setCornerTypes:t];
               }],
-              @"corner-radius":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  ASLayoutSize size = ASLayoutSizeMakeFromString(value);
-                  [(GICCanvasRectangle *)target setCornerRadiusSize:size];
+              @"corner-radius":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                  [(GICCanvasRectangle *)target setCornerRadiusSize:[(NSValue *)value ASLayoutSize]];
               }],
               };;
 }

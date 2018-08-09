@@ -10,6 +10,7 @@
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
 #import "GICBoolConverter.h"
+#import "GICLayoutSizeConverter.h"
 
 @implementation GICCanvasArc
 +(NSString *)gic_elementName{
@@ -17,29 +18,30 @@
 }
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return  @{
-              @"center":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  ASLayoutSize size = ASLayoutSizeMakeFromString(value);
-                  [(GICCanvasArc *)target setCenter:size];
+              @"center":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                  [(GICCanvasArc *)target setCenter:[(NSValue *)value ASLayoutSize]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"radius":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasArc *)target setRadius:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasArc *)target setRadius:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"start-angle":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasArc *)target setStartAngle:[value floatValue]];
+                  [(id)target gic_setNeedDisplay];
               }],
-              @"end-angle":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+              @"end-angle":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasArc *)target setEndAngle:[value floatValue]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"clockwise":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICCanvasArc *)target setClockwise:[value boolValue]];
+                  [(id)target gic_setNeedDisplay];
               }],
               };;
 }
 
-
--(UIBezierPath *)createBezierPath:(CGRect)bounds{
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(calcuDimensionValue(self.center.width,bounds.size.width), calcuDimensionValue(self.center.height,bounds.size.height)) radius:calcuDimensionValue(self.radius,bounds.size.width) startAngle:(self.startAngle / 180) * M_PI endAngle:(self.endAngle / 180) * M_PI clockwise:self.clockwise];
-    return path;
+-(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
+    [path addArcWithCenter:CGPointMake(calcuDimensionValue(self.center.width,bounds.size.width), calcuDimensionValue(self.center.height,bounds.size.height)) radius:calcuDimensionValue(self.radius,bounds.size.width) startAngle:(self.startAngle / 180) * M_PI endAngle:(self.endAngle / 180) * M_PI clockwise:self.clockwise];
 }
-
 @end

@@ -7,6 +7,6 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface GICCanvas : ASDisplayNode
+@interface GICCanvas : ASDisplayNode<GICDisplayProtocol>
 
 @end

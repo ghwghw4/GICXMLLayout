@@ -6,9 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GICCanvasPath.h"
+#import "GICCanvasPathPart.h"
 
-@interface GICCanvasLine : GICCanvasPath
+@interface GICCanvasLine : GICCanvasPathPart
 
 
 @end

@@ -17,10 +17,12 @@
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return  @{
               @"x":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasLinePoint *)target setX:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasLinePoint *)target setX:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               @"y":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICCanvasLinePoint *)target setY:ASDimensionMake((NSString *)value)];
+                  [(GICCanvasLinePoint *)target setY:[(NSValue *)value ASDimension]];
+                  [(id)target gic_setNeedDisplay];
               }],
               };;
 }
@@ -31,5 +33,10 @@
 
 -(CGPoint)convertToPoint:(CGSize)size{
     return CGPointMake(calcuDimensionValue(self.x,size.width), calcuDimensionValue(self.y,size.height));
+}
+
+-(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
+    CGPoint p = [self convertToPoint:bounds.size];
+    [path moveToPoint:p];
 }
 @end

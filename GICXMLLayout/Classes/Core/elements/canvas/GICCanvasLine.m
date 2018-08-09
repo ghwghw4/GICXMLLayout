@@ -46,8 +46,7 @@
     return [super gic_parseSubElementNotExist:element];
 }
 
--(UIBezierPath *)createBezierPath:(CGRect)bounds{
-    UIBezierPath *path = [UIBezierPath new];
+-(void)drawPartPath:(UIBezierPath *)path bounds:(CGRect)bounds{
     [points enumerateObjectsUsingBlock:^(GICCanvasLinePoint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGPoint p = [obj convertToPoint:bounds.size];
         if(idx==0){
@@ -56,6 +55,5 @@
             [path addLineToPoint:p];
         }
     }];
-    return path;
 }
 @end

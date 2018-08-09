@@ -16,6 +16,9 @@
 #import "GICElementsCache.h"
 #import "NSObject+GICStyle.h"
 
+#import "GICAnimations.h"
+#import "NSObject+GICAnimation.h"
+
 
 @implementation NSObject (LayoutElement)
 
@@ -97,13 +100,19 @@
         }
     }else if ([subElement isKindOfClass:[GICStyle class]]){ //行为
         self.gic_style = (GICStyle *)subElement;
+    }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
+        for(GICAnimation *a in ((GICAnimations *)subElement).animations){
+            a.gic_ExtensionProperties.superElement = self;
+            [self gic_addAnimation:a];
+        }
+        return subElement;
     }else{
         return nil;
     }
     return subElement;
 }
 
--(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order{
+-(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order{
     ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
     [self gic_addSubElement:subElement];
     return subElement;
@@ -192,6 +201,10 @@
     Class c = [GICElementsCache classForElementName:elementName];
     if(c){
         NSObject *v = [c new];
+        [v gic_beginParseElement:element withSuperElement:superElement];
+        return v;
+    }else{
+        id v = [superElement gic_parseSubElementNotExist:element];
         [v gic_beginParseElement:element withSuperElement:superElement];
         return v;
     }

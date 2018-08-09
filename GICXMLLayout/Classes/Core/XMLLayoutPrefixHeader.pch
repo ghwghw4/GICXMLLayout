@@ -23,6 +23,8 @@
 #import "ASDisplayNode+GICExtension.h"
 #import "NSObject+GICEvent.h"
 #import "GICElementsCache.h"
+#import "GICDisplayProtocol.h"
+#import "NSValue+GICXMLLayout.h"
 //#import "NSObject+GICAnimation.h"
 
 #endif /* XMLLayoutPrefixHeader_pch */

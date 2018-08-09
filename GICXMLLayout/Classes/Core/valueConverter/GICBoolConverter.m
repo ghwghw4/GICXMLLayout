@@ -18,6 +18,6 @@
 }
 
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per{
-    return @(per==1);
+    return @(per>0.5);
 }
 @end

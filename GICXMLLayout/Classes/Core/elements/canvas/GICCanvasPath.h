@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GICCanvasPath : NSObject
+@interface GICCanvasPath : NSObject<GICDisplayProtocol>
 @property (nonatomic,strong)UIColor *lineColor;
 @property (nonatomic,assign)BOOL isCloseLines;
 @property (nonatomic,assign)CGFloat lineWidth;
@@ -16,5 +16,5 @@
 @property (nonatomic,strong)UIColor *fillColor;
 -(void)draw:(CGRect)bounds;
 
--(UIBezierPath *)createBezierPath:(CGRect)bounds;
+//-(UIBezierPath *)createBezierPath:(CGRect)bounds;
 @end

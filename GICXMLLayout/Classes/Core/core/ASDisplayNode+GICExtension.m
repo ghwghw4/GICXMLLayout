@@ -8,9 +8,8 @@
 #import "ASDisplayNode+GICExtension.h"
 #import <objc/runtime.h>
 #import "GICTapEvent.h"
-#import "GICAnimations.h"
-#import "NSObject+GICAnimation.h"
 
+#import "GICLayoutSizeConverter.h"
 #import "GICBoolConverter.h"
 #import "GICStringConverter.h"
 #import "GICColorConverter.h"
@@ -30,17 +29,17 @@
              }],
              @"height":[[GICDimensionConverter alloc] initWithPropertySetter:^(id target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.height = ASDimensionMake((NSString *)value);
+                 node.style.height = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
              }],
              @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.width = ASDimensionMake((NSString *)value);
+                 node.style.width = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
              }],
-             @"size":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"size":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 ASLayoutSize size = ASLayoutSizeMakeFromString(value);
+                 ASLayoutSize size = [(NSValue *)value ASLayoutSize];
                  node.style.width = size.width;
                  node.style.height = size.height;
                  [node layoutAttributeChanged];
@@ -53,12 +52,12 @@
              }],
              @"max-width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.maxWidth = ASDimensionMake((NSString *)value);
+                 node.style.maxWidth = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
              }],
              @"max-height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.maxHeight = ASDimensionMake((NSString *)value);
+                 node.style.maxHeight = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
              }],
              @"space-before":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -83,7 +82,7 @@
              }],
              @"flex-basics":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
-                 node.style.flexBasis = ASDimensionMake((NSString *)value);
+                 node.style.flexBasis = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
              }],
              @"align-self":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -154,18 +153,12 @@
             [self setNeedsLayout];
         }
         return subElement;
-    }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
-        for(GICAnimation *a in ((GICAnimations *)subElement).animations){
-            a.gic_ExtensionProperties.superElement = self;
-            [self gic_addAnimation:a];
-        }
-        return subElement;
     }else{
        return [super gic_addSubElement:subElement];
     }
 }
 
--(id)gic_insertSubElement:(id)subElement elementOrder:(NSInteger)order{
+-(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order{
     ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
     if([subElement isKindOfClass:[ASDisplayNode class]]){
 //        ASDisplayNode *findNode = nil;

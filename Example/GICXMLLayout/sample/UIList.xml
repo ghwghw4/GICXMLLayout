@@ -13,6 +13,60 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
+                <template-ref t-name="desc" data-context="canvas"/>
+                <canvas height="150" background-color="yellow">
+                    <data-context>
+                        [{
+                        "start": 0,
+                        "end": 90,
+                        "color": "red"
+                        }, {
+                        "start": 90,
+                        "end": 180,
+                        "color": "blue"
+                        }, {
+                        "start": 180,
+                        "end": 270,
+                        "color": "gray"
+                        }, {
+                        "start": 270,
+                        "end": 360,
+                        "color": "green"
+                        }]
+                    </data-context>
+                    <for>
+                        <path fill-color="{{color}}" line-width="0">
+                        <point x="50%" y="50%"/>
+                        <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" clockwise="1" />
+                        </path>
+                    </for>
+
+                    <path fill-color="yellow" line-width="0">
+                        <point x="50%" y="50%"/>
+                        <arc center="50%" radius="20" end-angle="360" start-angle="0" clockwise="1" >
+                            <animations>
+                                <anim-attribute attribute-name="end-angle" on="1" from="0" to="360" duration="1" repeat="-1"/>-->
+                            </animations>
+                        </arc>
+                    </path>
+
+                    <!--吃豆人-->
+                    <path fill-color="black" line-width="0">
+                        <point x="50%" y="50%">
+                            <animations>
+                                <anim-attribute attribute-name="x" on="1" from="0%" to="100%" autoreverses="1" duration="3" repeat="-1"/>
+                            </animations>
+                        </point>
+
+                        <arc center="50%" radius="20" end-angle="360" start-angle="45" clockwise="1" >
+                            <animations>
+                                <anim-attribute attribute-name="end-angle" on="1" from="315" to="360" autoreverses="1" duration="0.3" repeat="-1"/>
+                                <anim-attribute attribute-name="start-angle" on="1" from="45" to="0" autoreverses="1" duration="0.3" repeat="-1"/>
+                                <anim-attribute attribute-name="center" on="1" from="0% 50%" to="100% 50%" autoreverses="1" duration="3" repeat="-1"/>
+                            </animations>
+                        </arc>
+                    </path>
+                </canvas>
                 <!--lable-->
                 <template-ref t-name="desc" data-context="lable"/>
                 <lable text="我是lable,居中显示" font-color="yellow" font-size="20" text-align="1"/>
@@ -52,7 +106,9 @@
 
 
                 <template-ref t-name="desc" data-context="自定义元素(switch-button)"/>
-                <switch-button checked="1"/>
+                <switch-button checked="1" height="31"/>
+
+
             </stack-panel>
         </inset-panel>
     </scroll-view>

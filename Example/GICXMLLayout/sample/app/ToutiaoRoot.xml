@@ -143,7 +143,11 @@
             </behaviors>
             <for data-path="listDatas" show-ver-scroll="0">
                 <list-item separator-inset = "0 0 0 0">
-                    <template-ref t-name="{{}}"/>
+                    <template-ref t-name="{{}}">
+                        <behaviors>
+                            <bev-router-link path="app/Detial.xml" params='{"url":"http://www.baidu.com"}'/>
+                        </behaviors>
+                    </template-ref>
                 </list-item>
             </for>
         </list>

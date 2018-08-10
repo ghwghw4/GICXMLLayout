@@ -13,8 +13,32 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
+                <!--canvas-->
                 <template-ref t-name="desc" data-context="canvas"/>
                 <canvas height="100" background-color="yellow">
+                    <path>
+                        <!--线条-->
+                        <line>
+                            <point x="0" y="0"/>
+                            <point x="50%" y="50%"/>
+                            <point x="100%" y="50%"/>
+                        </line>
+                        <!--弧线-->
+                        <arc center="50%" radius="40" start-angle="0" end-angle="180" />
+
+                        <!--贝塞尔曲线-->
+                        <!--1个控制点的贝塞尔曲线-->
+                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
+                        <point x="10" y="50"/>
+                        <bezier control-point="50 100" point="80 100"/>
+
+                        <!--2个控制点的贝塞尔曲线-->
+                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
+                        <point x="5" y="50"/>
+                        <bezier control-point="35 0" control-point2="35 100" point="65 50"/>
+                    </path>
+                </canvas>
+                <canvas height="100" background-color="yellow" space-before="10">
                     <data-context>
                         [{
                         "start": 0,
@@ -116,6 +140,20 @@
                         </path>
                     </for>
                 </canvas>
+
+                <!--control-->
+                <template-ref t-name="desc" data-context="control"/>
+                <control background-color="black" height="44">
+                    <dock-panel>
+                        <lable text="点击我" font-color="white"/>
+                    </dock-panel>
+                    <highlight>
+                        <dock-panel>
+                            <lable text="手放开" font-color="red"/>
+                        </dock-panel>
+                    </highlight>
+                </control>
+
                 <!--lable-->
                 <template-ref t-name="desc" data-context="lable"/>
                 <lable text="我是lable,居中显示" font-color="yellow" font-size="20" text-align="1"/>

@@ -9,6 +9,8 @@
 #import "GICStringConverter.h"
 #import "NSObject+GICTemplate.h"
 #import "NSObject+GICDataContext.h"
+#import "GICBehaviors.h"
+#import "GICAnimations.h"
 
 @implementation GICTemplateRef
 +(NSString *)gic_elementName{
@@ -75,6 +77,15 @@
         }
         [xmlDoc.rootElement addAttribute:node];
     }
+    //NOTE:ref 支持将behaviors和animations 元素添加到模板中。
+    for(GDataXMLElement *child in selfElement.rootElement.children){
+        if([child.name isEqualToString:[GICBehaviors gic_elementName]]){
+            [xmlDoc.rootElement addChild:child];
+        }else if ([child.name isEqualToString:[GICAnimations gic_elementName]]){
+            [xmlDoc.rootElement addChild:child];
+        }
+    }
+    
     childElement = [NSObject gic_createElement:[xmlDoc rootElement] withSuperElement:target];
     return childElement;
 }

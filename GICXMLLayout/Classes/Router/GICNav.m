@@ -41,6 +41,7 @@
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     if([element.name isEqualToString:@"root-page"]){
         rootPagePath = [element attributeForName:@"path"].stringValue;
+        return rootPagePath;
     }
     return [super gic_parseSubElementNotExist:element];
 }

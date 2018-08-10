@@ -11,7 +11,7 @@
 
 @protocol GICPageRouterProtocol <NSObject>
 -(void)navigationWithParams:(GICRouterParams *)params;
-
+@optional
 -(void)navigationBackWithParams:(GICRouterParams *)params;
 @end
 

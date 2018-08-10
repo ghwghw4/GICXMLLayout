@@ -1,6 +1,5 @@
 <app>
     <nav>
-        <!--<root-page path="IndexPage.xml"/>-->
-        <root-page path="UIList.xml"/>
+        <root-page path="IndexPage.xml"/>
     </nav>
 </app>

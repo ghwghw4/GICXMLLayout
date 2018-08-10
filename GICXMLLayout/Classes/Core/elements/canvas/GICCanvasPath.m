@@ -12,6 +12,7 @@
 #import "GICCanvasLine.h"
 #import "GICCanvasRectangle.h"
 #import "GICCanvasArc.h"
+#import "GICCanvasBezier.h"
 #import "GICCanvasLinePoint.h"
 
 @interface GICCanvasPath(){
@@ -20,6 +21,18 @@
 @end
 
 @implementation GICCanvasPath
+static NSDictionary<NSString *,Class> *supportElementParts = nil;
+
++(void)initialize{
+    supportElementParts = @{
+                            [GICCanvasLinePoint gic_elementName]:[GICCanvasLinePoint class],
+                            [GICCanvasRectangle gic_elementName]:[GICCanvasRectangle class],
+                            [GICCanvasArc gic_elementName]:[GICCanvasArc class],
+                            [GICCanvasLine gic_elementName]:[GICCanvasLine class],
+                            [GICCanvasBezier gic_elementName]:[GICCanvasBezier class],
+                            };
+}
+
 +(NSString *)gic_elementName{
     return @"path";
 }
@@ -90,14 +103,9 @@
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
-    if([element.name isEqualToString:[GICCanvasLinePoint gic_elementName]]){
-        return [GICCanvasLinePoint new];
-    }else if([element.name isEqualToString:[GICCanvasRectangle gic_elementName]]){
-        return [GICCanvasRectangle new];
-    }else if([element.name isEqualToString:[GICCanvasArc gic_elementName]]){
-        return [GICCanvasArc new];
-    }else if([element.name isEqualToString:[GICCanvasLine gic_elementName]]){
-        return [GICCanvasLine new];
+    Class klass = [supportElementParts objectForKey:element.name];
+    if(klass){
+        return [klass new];
     }
     return [super gic_parseSubElementNotExist:element];
 }

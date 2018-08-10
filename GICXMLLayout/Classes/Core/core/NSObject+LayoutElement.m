@@ -53,10 +53,10 @@
     NSInteger order = 0;
     for(GDataXMLElement *child in children){
         NSObject *childElement = [NSObject gic_createElement:child withSuperElement:self];
-        if(childElement == nil){
-            childElement = [self gic_parseSubElementNotExist:child];
-            [childElement gic_beginParseElement:child withSuperElement:self];
-        }
+//        if(childElement == nil){
+//            childElement = [self gic_parseSubElementNotExist:child];
+//            [childElement gic_beginParseElement:child withSuperElement:self];
+//        }
         if(childElement == nil)
             continue;
         childElement.gic_ExtensionProperties.elementOrder = order;

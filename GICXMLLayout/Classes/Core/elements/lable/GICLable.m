@@ -98,21 +98,26 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     self.attributedText = [self->mutAttString copy];
 }
 
--(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
-    if([supportElementNames containsObject:element.name]){
-        NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:element];
-        [s gic_beginParseElement:element withSuperElement:self];
-        [attbuteStringArray addObject:s];
-        if(s.gic_Bindings.count>0){
+-(id)gic_addSubElement:(NSMutableAttributedString *)subElement{
+    if([subElement isKindOfClass:[NSMutableAttributedString class]]){
+        [attbuteStringArray addObject:subElement];
+        if(subElement.gic_Bindings.count>0){
             @weakify(self)
-            for(GICDataBinding *b in s.gic_Bindings){
+            for(GICDataBinding *b in subElement.gic_Bindings){
                 b.valueUpdate = ^(id value) {
                     @strongify(self)
                     [self updateString];
                 };
             }
         }
-        return nil;
+    }
+    return [super gic_addSubElement:subElement];
+}
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    if([supportElementNames containsObject:element.name]){
+        NSMutableAttributedString *s =[[NSMutableAttributedString alloc] initWithXmlElement:element];
+        return s;
     }
     return [super gic_parseSubElementNotExist:element];
 }

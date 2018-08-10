@@ -18,6 +18,7 @@
 #import "PullMoreBehavior.h"
 #import "GICRouter.h"
 #import "GICXMLLayoutDevTools.h"
+#import "WebViewElement.h"
 
 
 @implementation GICAppDelegate
@@ -32,6 +33,7 @@
     
     // 注册自定义元素
     [GICElementsCache registElement:[SwitchButton class]];
+    [GICElementsCache registElement:[WebViewElement class]];
     
     //添加扩展属性
     // 对scroll-view注入扩展属性

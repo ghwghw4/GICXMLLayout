@@ -9,6 +9,7 @@
 #import "GICStringConverter.h"
 #import "GICNav.h"
 #import "GICRouter.h"
+#import "GICDataContextConverter.h"
 
 @implementation GICRouterLink
 +(NSString *)gic_elementName{
@@ -20,6 +21,9 @@
              @"path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICRouterLink *)target setPath:value];
              }],
+             @"params":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICRouterLink *)target setParams:value];
+             }],
              };
 }
 
@@ -30,7 +34,7 @@
         [target gic_get_tapSignal:^(RACSignal *signal) {
             [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
                 @strongify(self)
-                [[self gic_Router] push:self.path];
+                [[self gic_Router] push:self.path withParamsData:self.params];
             }];
         }];
     }

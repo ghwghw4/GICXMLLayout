@@ -19,6 +19,7 @@
         NSAssert([temp isKindOfClass:[ASDisplayNode class]], @"background 子元素必须是UI元素");
         _backgroundNode = temp;
         [self gic_addSubElement:temp];
+        return temp;
     }
     return [super gic_parseSubElementNotExist:element];
 }

@@ -37,6 +37,10 @@
                         <point x="5" y="50"/>
                         <bezier control-point="35 0" control-point2="35 100" point="65 50"/>
                     </path>
+                    <path fill-color="red" line-width="0">
+                        <!--画一个有圆角的矩形(左上、右下圆角)-->
+                        <rectangle x="50%" y="0" width="50%" height="20%" corner-radius="50%"  corner-types="0 3"/>
+                    </path>
                 </canvas>
                 <canvas height="100" background-color="yellow" space-before="10">
                     <data-context>
@@ -145,13 +149,26 @@
                 <template-ref t-name="desc" data-context="control"/>
                 <control background-color="black" height="44">
                     <dock-panel>
-                        <lable text="点击我" font-color="white"/>
+                        <lable text="普通状态" font-color="white"/>
                     </dock-panel>
+                    <!--高亮状态-->
                     <highlight>
                         <dock-panel>
-                            <lable text="手放开" font-color="red"/>
+                            <lable text="高亮状态" font-color="red"/>
                         </dock-panel>
                     </highlight>
+                    <!--禁用状态-->
+                    <disable>
+                        <dock-panel>
+                            <lable text="禁用了" font-color="gray"/>
+                        </dock-panel>
+                    </disable>
+                    <!--选中状态-->
+                    <selected>
+                        <dock-panel>
+                            <lable text="选中状态" font-color="gray"/>
+                        </dock-panel>
+                    </selected>
                 </control>
 
                 <!--lable-->

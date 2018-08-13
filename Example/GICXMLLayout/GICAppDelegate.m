@@ -59,17 +59,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-//    self.window.rootViewController =[UIViewController new];
-//    // Override point for customization after application launch.
-//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/IndexPage.xml"]];
-//    [GICXMLLayout parseLayoutPage:xmlData withParseCompelete:^(UIViewController *page) {
-//        UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:page];
-//        self.window.rootViewController =nav;
-//    }];
-//    [self.window makeKeyAndVisible];
-//    NSData *xmlData = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/App.xml"]];
-//    [GICRouter loadAPPFromPath:@"App.xml" withParseCompelete:nil];
-    [GICXMLLayoutDevTools loadAPPFromPath:@"App.xml"];
+
+    
+    [GICRouter loadAPPFromPath:@"App.xml"];
     return YES;
 }
 

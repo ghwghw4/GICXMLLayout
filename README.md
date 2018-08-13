@@ -40,27 +40,27 @@ pod 'GICXMLLayout'
 
 ### 0.1.1
 
-1. 新增样式(style)功能。
+1. 新增样式(style)功能。[文档](http://gicxmllayout.gonghaiwei.cn/core/style.html)
 
    > 您现在可以为您的UI元素添加样式了，您也可以将样式定义在单独的XML文件中，这样您可以为你的APP添加类似主题(theme)的功能了
 
 ### 0.2.0
 
-1. 增加`canvas`元素,当前处于`beta`阶段，但已经可以使用。
+1. 增加`canvas`元素,当前处于`beta`阶段，但已经可以使用。[canvas文档](http://gicxmllayout.gonghaiwei.cn/ui/canvas.html)
 
    > 你现在可以直接使用`xml`来实现类似`Core Graphics`那样的功能了。你甚至可以直接使用`canvas`来实现一个报表，还支持动画哦。
 
-2. 对`inpute`元素增加`keyboard-type `的支持
+2. 对`inpute`元素增加`keyboard-type `的支持。[文档](http://gicxmllayout.gonghaiwei.cn/ui/input.html)
 
-3. 增加`control`元素。
+3. 增加`control`元素。[文档](http://gicxmllayout.gonghaiwei.cn/ui/control.html)
 
    > `control`的功能类似`UIControl`，提供`enable`、`highlight`、`selected`等状态管理。
 
-4. 增加`data-context`元素。
+4. 增加`data-context`元素。[文档](http://gicxmllayout.gonghaiwei.cn/core/databingding.html)
 
    > 现在可以直接将一大段json 字符串作为数据源添加到`data-context`中了。
 
-5. 增加`router`模块。
+5. 增加`router`模块。[文档](http://gicxmllayout.gonghaiwei.cn/router.html)
 
 
 

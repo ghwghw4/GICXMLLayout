@@ -134,7 +134,7 @@ static NSString *_roolUrl;
 
 +(NSData *)loadXmlDataFromUrl:(NSURL *)url{
     NSData *xmlData = nil;
-    if([[url scheme] hasPrefix:@"http"]){
+    if([[url scheme] hasPrefix:@"http"] || url.isFileURL){
         xmlData = [NSData dataWithContentsOfURL:url];
     }else{
         xmlData = [NSData dataWithContentsOfFile:url.absoluteString];
@@ -186,6 +186,7 @@ static NSString *_roolUrl;
         GDataXMLElement *rootElement = [xmlDocument rootElement];
         [GICXMLParserContext resetInstance:xmlDocument];
         ASDisplayNode *p = (ASDisplayNode *)[NSObject gic_createElement:rootElement withSuperElement:superView];
+        NSAssert([p isKindOfClass:[ASDisplayNode class]], @"根节点必须是UI元素");
         [GICXMLParserContext parseCompelete];
         dispatch_async(dispatch_get_main_queue(), ^{
             p.frame = superView.bounds;

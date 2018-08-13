@@ -1,7 +1,5 @@
-<!--<page title="详情页" data-context="ToutiaoDetailViewModel">-->
-    <!--<webview url="http://www.baidu.com"/>-->
-<!--</page>-->
-
 <webview-page url="{{exp=urlString,mode=1}}" data-context="ToutiaoDetailViewModel">
-
 </webview-page>
+
+
+

@@ -43,10 +43,15 @@
  */
 +(void)enableDefualtStyle:(BOOL)enable;
 
+#pragma mark 解析
+
+/**
+ 设置跟路径
+
+ @param rootUrl <#rootUrl description#>
+ */
 +(void)setRootUrl:(NSString *)rootUrl;
 +(NSString *)rootUrl;
-
-#pragma mark 解析
 
 #pragma mark 同步解析
 +(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement;

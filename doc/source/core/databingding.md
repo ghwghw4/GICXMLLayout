@@ -133,3 +133,54 @@ el.gic_DataContenxt = [DataBindingUserInfo new];
 而实现这一点的原理其实很简单，`gic`直接通过`valueForKey:`的方法获取b的实例，然后再将B设置为该元素的data-context。
 
 当然设计`data-path`的目的其实也是为了弥补当前数据绑定不支持按照path获取value的问题。**也就是说你无法通过path那样的方式实现单向、双向数据绑定，但是once绑定是可以支持path的。**
+
+
+
+## data-context元素(0.2.0新增)
+
+0.2.0版本新增了data-context元素，你现在可以直接将json字符串添加到`data-context`元素中,`data-context`会自动将解析出的json数据作为父元素的数据源。比如：
+
+```xml
+<page title="布局系统">
+    <list background-color="white" separator-style="1">
+        <data-context>
+            [{
+            "name": "panel(绝对布局)",
+            "pagePath": "layout/Panel.xml"
+            }, {
+            "name": "stack-panel(flex 布局)",
+            "pagePath": "layout/StackPanel.xml"
+            }, {
+            "name": "stack-panel 动态演示",
+            "pagePath": "layout/StackPanel2.xml"
+            }, {
+            "name": "inset-panel(padding 布局)",
+            "pagePath": "layout/InsetPanel.xml"
+            }, {
+            "name": "dock-panel(停靠 布局)",
+            "pagePath": "layout/DockPanel.xml"
+            }, {
+            "name": "background-panel(背景 布局)",
+            "pagePath": "layout/BackgroundPanel.xml"
+            }, {
+            "name": "ratio-panel(比例布局)",
+            "pagePath": "layout/RatioPanel.xml"
+            }, {
+            "name": "panel(绝对布局)",
+            "pagePath": "layout/Panel.xml"
+            }]
+        </data-context>
+        <for>
+            <list-item selection-style="2">
+                <inset-panel background-color="white" inset="15">
+                    <behaviors>
+                        <bev-router-link path="{{pagePath}}"/>
+                    </behaviors>
+                    <lable text="{{ name }}" font-size="15"></lable>
+                </inset-panel>
+            </list-item>
+        </for>
+    </list>
+</page>
+```
+

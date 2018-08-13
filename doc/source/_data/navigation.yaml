@@ -49,6 +49,15 @@
       "path": "layout/ratio-panel.html"
     },
     {
+      "text": "router",
+      "type": "label"
+    },
+    {
+      "text": "介绍",
+      "type": "link",
+      "path": "router.html"
+    }, 
+    {
       "text": "UI元素",
       "type": "label"
     },
@@ -72,6 +81,14 @@
       "text": "list",
       "type": "link",
       "path": "ui/list.html"
+    },{
+      "text": "canvas",
+      "type": "link",
+      "path": "ui/canvas.html"
+    },{
+      "text": "control",
+      "type": "link",
+      "path": "ui/control.html"
     },
      {
       "text": "核心模块",

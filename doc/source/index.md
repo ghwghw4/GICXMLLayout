@@ -23,7 +23,7 @@ title: GICXMLLayout
 
    ![stack-panel](images/stack-panel.gif)
 
-2. 模式头条Feeds页面
+2. 模拟头条Feeds页面
 
    ![toutiaofeeds](images/toutiaofeeds.gif)
 

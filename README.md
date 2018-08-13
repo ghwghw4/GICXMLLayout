@@ -36,6 +36,49 @@ it, simply add the following line to your Podfile:
 pod 'GICXMLLayout'
 ```
 
+
+
+## Swift支持
+
+从`0.2.1`版本开始，`GICXMLLayout`可以支持swift语言。但是由于`GICXMLLayout`本身是基于OC开发的，因此在Swift中使用的时候需要使用桥接。步骤如下：
+
+1. 创建一个头文件。比如：`Bridging-Header.h`
+
+2. 在头文件中添加如下头文件引用。
+
+   ```objective-c
+   #ifndef Bridging_Header_h
+   #define Bridging_Header_h
+   #import <GICXMLLayout/GICXMLLayout.h>
+   #endif /* Bridging_Header_h */
+   ```
+
+3. 进入项目的`build settings`。然后找到`Objective-C Bridging Header`选项，将头文件的路劲添加上去。比如：
+
+   ![18](doc/source/images/18.jpg)
+
+这样就可以在`Swift`中使用`GICXMLLayout`。
+
+**另外一个需要注意点：**
+
+1. 所有的ViewModel都必须继承自`NSObject`
+
+2. 由于在Swfit4中， 继承自NSObject的Swift class 不再默认 BRIDGE 到 OC了，因此需要在class前面加上`@objcMembers` 这么一个关键字。比如
+
+   ```swift
+   @objcMembers class ViewModel: NSObject {
+       ...
+   }
+   ```
+
+3. 不支持对Int? Float?等值类型的可空解析。因此在定义swift class 的时候避免使用 值类型的可空类型。但是String、Array、Dictionary是可以定义成可空类型的。
+
+   
+
+> 事实上，不只是ViewModel需要遵循以上的规则，所有在ViewModel中使用到的class，都必须遵循上述规则。
+
+
+
 ## 更新日志
 
 ### 0.1.1
@@ -61,6 +104,10 @@ pod 'GICXMLLayout'
    > 现在可以直接将一大段json 字符串作为数据源添加到`data-context`中了。
 
 5. 增加`router`模块。[文档](http://gicxmllayout.gonghaiwei.cn/router.html)
+
+### 0.2.1
+
+增加对Swift的支持
 
 
 

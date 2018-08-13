@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+GICDataContext.h"
-#import "GDataXMLNode.h"
+#import <GDataXMLNode_GIC/GDataXMLNode.h>
 #import "GICEventInfo.h"
 #import "GICBehavior.h"
 #import "NSObject+LayoutElement.h"
@@ -15,6 +15,7 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICEvent.h"
 #import "GICElementsHelper.h"
+#import "NSValue+GICXMLLayout.h"
 
 @interface GICXMLLayout : NSObject
 
@@ -56,6 +57,7 @@
 #pragma mark 同步解析
 +(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement;
 +(id)parseElementFromPath:(NSString *)path withParentElement:(id)parentElement;
++(id)parseElementFromData:(NSData *)xmlData withParentElement:(id)parentElement;
 
 #pragma mark 异步解析
 +(void)parseElementFromUrlAsync:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte;
@@ -70,4 +72,6 @@
  @param compelte <#compelte description#>
  */
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
+
++(void)parseLayoutViewWithPath:(NSString *)path toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte;
 @end

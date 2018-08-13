@@ -142,8 +142,9 @@ static NSString *_roolUrl;
     return xmlData;
 }
 
-+(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement{
-    NSData *xmlData = [self loadXmlDataFromUrl:url];
++(id)parseElementFromData:(NSData *)xmlData withParentElement:(id)parentElement{
+    if(!xmlData)
+        return nil;
     NSError *error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
     if (error) {
@@ -157,6 +158,11 @@ static NSString *_roolUrl;
     return e;
 }
 
++(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement{
+    NSData *xmlData = [self loadXmlDataFromUrl:url];
+    return [self parseElementFromData:xmlData withParentElement:parentElement];
+}
+
 +(void)parseElementFromUrlAsync:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
     dispatch_async(dispatch_queue_create("parse xml element", nil), ^{
         id e = [self parseElementFromUrl:url withParentElement:parentElement];
@@ -168,31 +174,32 @@ static NSString *_roolUrl;
     return [self parseElementFromUrl:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement];
 }
 
+
+
 +(void)parseElementFromPathAsync:(NSString *)path withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
     NSAssert(_roolUrl, @"请先设置roolUrl");
     [self parseElementFromUrlAsync:[NSURL URLWithString:[_roolUrl stringByAppendingPathComponent:path]] withParentElement:parentElement withParseCompelete:compelte];
 }
 
 +(void)parseLayoutView:(NSData *)xmlData toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
-    NSError *error = nil;
-    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
-    if (error) {
-        NSLog(@"error : %@", error);
-        compelte(nil);
-        return;
-    }
-    // 取根节点
-    dispatch_async(dispatch_queue_create("parse xml view", nil), ^{
-        GDataXMLElement *rootElement = [xmlDocument rootElement];
-        [GICXMLParserContext resetInstance:xmlDocument];
-        ASDisplayNode *p = (ASDisplayNode *)[NSObject gic_createElement:rootElement withSuperElement:superView];
-        NSAssert([p isKindOfClass:[ASDisplayNode class]], @"根节点必须是UI元素");
-        [GICXMLParserContext parseCompelete];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            p.frame = superView.bounds;
-            [superView addSubview:p.view];
-            compelte(p.view);
-        });
+    ASDisplayNode *element = [self parseElementFromData:xmlData withParentElement:superView];
+    NSAssert(element && [element isKindOfClass:[ASDisplayNode class]], @"根节点必须是UI元素");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        element.frame = superView.bounds;
+        [superView addSubview:element.view];
+        if(compelte)
+            compelte(element.view);
+    });
+}
+
++(void)parseLayoutViewWithPath:(NSString *)path toView:(UIView *)superView withParseCompelete:(void (^)(UIView *view))compelte{
+    ASDisplayNode *element = [self parseElementFromPath:path withParentElement:superView];
+    NSAssert(element && [element isKindOfClass:[ASDisplayNode class]], @"根节点必须是UI元素");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        element.frame = superView.bounds;
+        [superView addSubview:element.view];
+        if(compelte)
+            compelte(element.view);
     });
 }
 

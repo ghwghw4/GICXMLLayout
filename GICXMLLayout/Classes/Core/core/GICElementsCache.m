@@ -13,12 +13,16 @@ static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
 // behavior
 static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
 // 缓存的属性
-static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *classAttributsCache;
+static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *_classAttributsCache;
+
+static dispatch_queue_t attributsReadWriteQueue;
 
 +(void)initialize{
     registedElementsMap = [NSMutableDictionary dictionary];
     registedBehaviorElementsMap = [NSMutableDictionary dictionary];
-    classAttributsCache = [NSMutableDictionary dictionary];
+    _classAttributsCache = [NSMutableDictionary dictionary];
+    attributsReadWriteQueue = dispatch_queue_create("GICXMLLayoutRegisetElementQueue", DISPATCH_QUEUE_CONCURRENT);
+    
 }
 
 +(void)registElement:(Class)elementClass{
@@ -36,6 +40,13 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
     return [registedElementsMap objectForKey:elementName];
 }
 
++(id)getAtttributesWithClassName:(NSString *)className{
+    __block id value;
+    dispatch_sync(attributsReadWriteQueue, ^{
+        value = [_classAttributsCache objectForKey:className];
+    });
+    return value;
+}
 
 +(void)registClassAttributs:(Class)klass{
     if(!klass){
@@ -46,7 +57,7 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
     if(!className){
         return;
     }
-    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [classAttributsCache objectForKey:className];
+    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [self getAtttributesWithClassName:className];
     if (value) {//已经注册过了那么就忽略
         return;
     }
@@ -58,11 +69,14 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
     NSMutableDictionary<NSString *, GICAttributeValueConverter *> *dict = [NSMutableDictionary dictionary];
     // 先添加父类的属性，再添加子类的属性。这样保证子类的属性可以覆盖父类的属性
     if(superClass){
-        [dict addEntriesFromDictionary:[classAttributsCache objectForKey:NSStringFromClass(superClass)]];
+        [dict addEntriesFromDictionary:[self getAtttributesWithClassName:NSStringFromClass(superClass)]];
     }
     [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttributs)]];
+    
     // 保存到缓存中
-    [classAttributsCache setValue:dict forKey:className];
+    dispatch_barrier_async(attributsReadWriteQueue, ^{
+          [_classAttributsCache setValue:dict forKey:className];
+    });
 }
 
 +(BOOL)injectAttributes:(NSDictionary<NSString *,GICAttributeValueConverter *> *)attributs forElementName:(NSString *)elementName{
@@ -82,10 +96,12 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
         return nil;
     }
     NSString *className = NSStringFromClass(klass);
-    if(![classAttributsCache.allKeys containsObject:className]){
+    NSDictionary<NSString *,GICAttributeValueConverter *> *value = [self getAtttributesWithClassName:className];
+    if(!value){
         [self registClassAttributs:klass];
+        value = [self getAtttributesWithClassName:className];
     }
-    return [classAttributsCache objectForKey:className];
+    return value;
 }
 
 +(void)registBehaviorElement:(Class)elementClass{

@@ -203,5 +203,5 @@
    </canvas>
    ```
 
-   ![canvas1](/Users/gonghaiwei/Documents/GICXMLLayout/doc/source/images/canvas1.gif)
+   ![canvas1](../images/canvas1.gif)
 

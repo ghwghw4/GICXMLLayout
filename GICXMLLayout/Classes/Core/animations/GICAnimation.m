@@ -19,7 +19,7 @@
              }],
              @"repeat":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  NSInteger count = [value integerValue];
-                 ((GICAnimation *)target)->_repeatCount = (count==-1?1000:count);
+                 ((GICAnimation *)target)->_repeatCount = (count==-1?HUGE_VAL:count);
              }],
              @"autoreverses":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_autoreverses = [value boolValue];

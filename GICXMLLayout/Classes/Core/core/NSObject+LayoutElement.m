@@ -197,17 +197,19 @@
 }
 
 +(NSObject *)gic_createElement:(GDataXMLElement *)element withSuperElement:(id)superElement{
-    NSString *elementName = element.name;
-    Class c = [GICElementsCache classForElementName:elementName];
-    if(c){
-        NSObject *v = [c new];
-        [v gic_beginParseElement:element withSuperElement:superElement];
-        return v;
-    }else{
-        id v = [superElement gic_parseSubElementNotExist:element];
-        [v gic_beginParseElement:element withSuperElement:superElement];
-        return v;
+    @autoreleasepool{
+        NSString *elementName = element.name;
+        Class c = [GICElementsCache classForElementName:elementName];
+        if(c){
+            NSObject *v = [c new];
+            [v gic_beginParseElement:element withSuperElement:superElement];
+            return v;
+        }else{
+            id v = [superElement gic_parseSubElementNotExist:element];
+            [v gic_beginParseElement:element withSuperElement:superElement];
+            return v;
+        }
+        return nil;
     }
-    return nil;
 }
 @end

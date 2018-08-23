@@ -14,6 +14,7 @@
 #import "NSObject+LayoutElement.h"
 #import "NSMutableAttributedString+GICLableSubString.h"
 #import "NSObject+GICDataBinding.h"
+#import "GICFontConverter.h"
 
 @implementation GICLable
 
@@ -40,6 +41,10 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                               [((GICLable *)target)->attributes setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
                               [(GICLable *)target updateString];
+                         }],
+                         @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [((GICLable *)target)->attributes setValue:value forKey:NSFontAttributeName];
+                             [(GICLable *)target updateString];
                          }],
                          @"text-align":[[GICTextAlignmentConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableParagraphStyle * p = [[NSMutableParagraphStyle alloc] init];

@@ -9,8 +9,8 @@
 
 #import "GICStringConverter.h"
 #import "GICNumberConverter.h"
-#import "GICListTableViewCell.h"
 #import "GICEdgeConverter.h"
+#import "GICPanel.h"
 
 @implementation GICListItem
 +(NSString *)gic_elementName{
@@ -21,7 +21,7 @@
     return @{
              @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 [item.cellStyle setValue:value forKey:@"selectionStyle"];
+                 [item setValue:value forKey:@"selectionStyle"];
              }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
@@ -30,18 +30,18 @@
              }],
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 [item.cellStyle setValue:value forKey:@"separatorInset"];
+                 [item setValue:value forKey:@"separatorInset"];
              }],
              @"accessory-type":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 [item.cellStyle setValue:value forKey:@"accessoryType"];
+                 [item setValue:value forKey:@"accessoryType"];
              }],
              };
 }
 
 -(id)init{
     self=[super init];
-    _cellStyle = [NSMutableDictionary dictionary];
+    self.automaticallyManagesSubnodes = YES;
     return self;
 }
 
@@ -59,9 +59,29 @@
         self.xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
     }
 }
+-(void)setSelected:(BOOL)selected{
+    [super setSelected:selected];
+    if(self.itemSelectEvent && selected){
+        [self.itemSelectEvent fire:@(selected)];
+    }
+}
 
--(ASCellNode *)getCell{
-    GICListTableViewCell *cell = [[GICListTableViewCell alloc] initWithListItem:self];
-    return cell;
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    ASStackLayoutSpec *spec= [ASStackLayoutSpec verticalStackLayoutSpec];
+    spec.children = self.gic_displayNodes;
+    return spec;
+}
+
+-(void)createContentView:(GDataXMLDocument *)xmlDoc{
+    GICPanel *childElement = (GICPanel *)[NSObject gic_createElement:[xmlDoc rootElement] withSuperElement:self];
+    [self gic_addSubElement:childElement];
+}
+
+-(void)prepareLayout{
+    if(self.subnodes.count == 0){
+        [self createContentView:self.xmlDoc];
+    }
+    self.gic_isAutoInheritDataModel = NO;
+    [self gic_updateDataContext:self.gic_DataContext];
 }
 @end

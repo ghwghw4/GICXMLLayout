@@ -14,6 +14,8 @@
 #import "GICCanvasArc.h"
 #import "GICCanvasBezier.h"
 #import "GICCanvasLinePoint.h"
+#import "GICStringConverter.h"
+//#import "GICCanvasStringPart.h"
 
 @interface GICCanvasPath(){
     NSMutableArray<GICCanvasPathPart *> *parts;
@@ -30,6 +32,7 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
                             [GICCanvasArc gic_elementName]:[GICCanvasArc class],
                             [GICCanvasLine gic_elementName]:[GICCanvasLine class],
                             [GICCanvasBezier gic_elementName]:[GICCanvasBezier class],
+//                            [GICCanvasStringPart gic_elementName]:[GICCanvasStringPart class]
                             };
 }
 
@@ -56,6 +59,16 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
                   [(GICCanvasPath *)target setFillColor:value];
                   [(id)target gic_setNeedDisplay];
               }],
+              
+              @"dash":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                  NSArray *strs = [value componentsSeparatedByString:@" "];
+                  NSMutableArray *dashs = [NSMutableArray array];
+                  [strs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                      [dashs addObject:@([obj integerValue])];
+                  }];
+                  [(GICCanvasPath *)target setDash:dashs];
+                  [(id)target gic_setNeedDisplay];
+              }],
               };;
 }
 
@@ -76,6 +89,16 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
     }
     
     CGContextSetLineWidth(ctx, self.lineWidth);
+    if(self.dash.count>0){
+        NSInteger len = self.dash.count;
+        // 虚线
+        CGFloat* array = calloc(len, sizeof(CGFloat));
+        for(int i = 0; i < len; i++)
+            array[i] = [[self.dash objectAtIndex:i] floatValue];
+        CGContextSetLineDash(ctx, 0, array, len);
+        free(array);
+    }
+    
     if(self.fillColor && self.lineWidth>0){
         CGContextSetFillColorWithColor(ctx, self.fillColor.CGColor);
         CGContextSetStrokeColorWithColor(ctx, self.lineColor.CGColor);
@@ -90,7 +113,7 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
     
     if(self.lineWidth>0){
         CGContextSetStrokeColorWithColor(ctx, self.lineColor.CGColor);
-        CGContextStrokePath(ctx);
+        CGContextDrawPath(ctx, kCGPathStroke);
     }
 }
 

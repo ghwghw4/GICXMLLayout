@@ -127,7 +127,8 @@
 {
     GICListItem *item = [self->listItems objectAtIndex:indexPath.row];
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
-        return [item getCell];;
+         [item prepareLayout];
+         return item;
     };
     return cellNodeBlock;
 }

@@ -14,6 +14,8 @@
 
 
 @property (nonatomic,strong)UIColor *fillColor;
+
+@property (nonatomic,strong)NSArray *dash;
 -(void)draw:(CGContextRef)ctx withBounds:(CGRect)bounds;
 
 //-(UIBezierPath *)createBezierPath:(CGRect)bounds;

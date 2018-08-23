@@ -109,6 +109,11 @@ pod 'GICXMLLayout'
 
 增加对Swift的支持
 
+### 0.2.2
+
+1. `lable`元素增加对`font`属性的支持，现在可以为`lable`指定字体了。
+2. `canvas`元素中的`path`新增`dash`属性，现在可以为线条添加虚线的设置了。
+
 
 
 ## Author

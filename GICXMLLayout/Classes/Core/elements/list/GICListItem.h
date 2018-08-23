@@ -13,19 +13,19 @@
 
 @end
 
-@interface GICListItem : NSObject{
+@interface GICListItem : ASCellNode{
 //    CGFloat itemHeight;//lsit-item的固定高度
     
-    CGFloat _cellAutoHeight;//自动计算的高度
+//    CGFloat _cellAutoHeight;//自动计算的高度
 }
 //@property (nonatomic,assign)CGFloat cellHeight;
-@property (nonatomic,strong,readonly)NSString *identifyString;
+//@property (nonatomic,strong,readonly)NSString *identifyString;
 
-@property (nonatomic,readonly) NSMutableDictionary *cellStyle;
+//@property (nonatomic,readonly) NSMutableDictionary *cellStyle;
 
 @property (nonatomic,weak)id<GICListItemDelegate> delegate;
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong)GICEvent *itemSelectEvent;
 
--(ASCellNode *)getCell;
+-(void)prepareLayout;
 @end

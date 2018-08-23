@@ -11,6 +11,7 @@
 #import "GICNumberConverter.h"
 #import "GICColorConverter.h"
 #import "GICStringConverter.h"
+#import "GICFontConverter.h"
 #import <objc/runtime.h>
 
 @implementation NSMutableAttributedString (GICLableSubString)
@@ -37,6 +38,10 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
+                         }],
+                         @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str.gic_attributDict setValue:value forKey:NSFontAttributeName];
                          }],
                          @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;

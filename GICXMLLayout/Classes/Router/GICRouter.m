@@ -24,8 +24,13 @@
     NSAssert(element, @"parse fail");
     if(element && [element isKindOfClass:[GICAPP class]]){
         GICAPP *app = element;
-        [UIApplication sharedApplication].delegate.window.rootViewController = app.rootViewController;
-        [[UIApplication sharedApplication].delegate.window makeKeyAndVisible];
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        if(window == nil){
+            window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            [UIApplication sharedApplication].delegate.window = window;
+        }
+        window.rootViewController = app.rootViewController;
+        [window makeKeyAndVisible];
     }else{
         NSAssert(false, @"error : 跟节点不是app");
     }

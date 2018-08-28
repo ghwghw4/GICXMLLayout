@@ -79,7 +79,7 @@
 }
 
 -(NSArray *)gic_subElements{
-    return listItems;
+    return [listItems copy];
 }
 
 -(id)gic_addSubElement:(id)subElement{

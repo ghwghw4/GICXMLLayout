@@ -91,6 +91,8 @@
                 [tmp updateDataSource:superDataContenxt];
                 // 以便更新当前object的绑定
                 superDataContenxt = v;
+            }else{
+                return;
             }
         }
     }

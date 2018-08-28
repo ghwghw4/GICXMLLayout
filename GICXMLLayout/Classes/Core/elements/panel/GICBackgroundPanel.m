@@ -16,9 +16,8 @@
     if([element.name isEqualToString:@"background"]){
         NSAssert(element.childCount ==1, @"background必须包含一个子元素，且只能包含一个子元素");
         id temp = [NSObject gic_createElement:[element children].firstObject withSuperElement:self];
-        NSAssert([temp isKindOfClass:[ASDisplayNode class]], @"background 子元素必须是UI元素");
-        _backgroundNode = temp;
-        [self gic_addSubElement:temp];
+        _backgroundNode = [self gic_addSubElement:temp];
+        NSAssert([_backgroundNode isKindOfClass:[ASDisplayNode class]], @"background 子元素必须是UI元素");
         return temp;
     }
     return [super gic_parseSubElementNotExist:element];
@@ -27,7 +26,6 @@
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         if(subElement !=self.backgroundNode){
-            NSAssert(self.childNode ==nil, @"background-panel只能有一个非背景的子元素");
             _childNode = subElement;
         }
     }

@@ -24,6 +24,13 @@
     return self;
 }
 
+-(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter{
+    self = [super init];
+    self.propertySetter  = propertySetter;
+    self.propertyGetter = propertyGetter;
+    return self;
+}
+
 //-(void)setProperty:(UIView *)view withXMLStringValue:(NSString *)xmlStringValue{
 //    
 //}

@@ -26,16 +26,22 @@
     return @{
              @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setBackgroundColor:value];
+             } withGetter:^id(id target) {
+                 return [(ASDisplayNode *)target backgroundColor];
              }],
              @"height":[[GICDimensionConverter alloc] initWithPropertySetter:^(id target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.height = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].height];
              }],
              @"width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.width = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].width];
              }],
              @"size":[[GICLayoutSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
@@ -43,66 +49,97 @@
                  node.style.width = size.width;
                  node.style.height = size.height;
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 ASLayoutSize size = ASLayoutSizeMake(node.style.width, node.style.height);
+                 return [NSValue valueWithASLayoutSize:size];
              }],
              @"position":[[CGPointConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  CGPoint point = [(NSValue *)value CGPointValue];
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.layoutPosition = point;
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 return [NSValue valueWithCGPoint:node.style.layoutPosition];
              }],
              @"max-width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.maxWidth = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].maxWidth];
              }],
              @"max-height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.maxHeight = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].maxHeight];
              }],
              @"space-before":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.spacingBefore = [value floatValue];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode*)target style].spacingBefore);
              }],
              @"space-after":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.spacingAfter = [value floatValue];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode*)target style].spacingAfter);
              }],
              @"flex-grow":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.flexGrow = [value integerValue];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode*)target style].flexGrow);
              }],
              @"flex-shrink":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.flexShrink = [value integerValue];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode*)target style].flexShrink);
              }],
              @"flex-basics":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.flexBasis = [(NSValue *)value ASDimension];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].flexBasis];
              }],
              @"align-self":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.alignSelf = [value integerValue];
                  [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode*)target style].alignSelf);
              }],
              @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  (target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
                  [(ASDisplayNode *)target layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([target gic_ExtensionProperties].dockHorizalModel);
              }],
              @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  (target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
                  [(ASDisplayNode *)target layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return @([target gic_ExtensionProperties].dockVerticalModel);
              }],
              @"hidden":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setHidden:[value boolValue]];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target isHidden]);
              }],
              @"alpha":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setAlpha:[value floatValue]];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target alpha]);
              }],
              @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
@@ -111,10 +148,17 @@
              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.cornerRadius = [value floatValue];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target cornerRadius]);
              }],
              @"shadow-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.shadowColor = [value CGColor];
+             } withGetter:^id(id target) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 if(node.shadowColor)
+                     return [UIColor colorWithCGColor:node.shadowColor];
+                 return nil;
              }],
              @"shadow-opacity":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
@@ -122,26 +166,41 @@
                  v = MAX(0, v);
                  v = MIN(1, v);
                  node.shadowOpacity = v;
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target shadowOpacity]);
              }],
              @"shadow-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.shadowRadius = [value floatValue];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target shadowRadius]);
              }],
              @"shadow-offset":[[GICSizeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.shadowOffset = [(NSValue *)value CGSizeValue];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithCGSize:[(ASDisplayNode *)target shadowOffset]];
              }],
              @"clips-bounds":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.clipsToBounds = [value boolValue];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target clipsToBounds]);
              }],
              @"border-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.borderColor = [value CGColor];
+             } withGetter:^id(id target) {
+                 ASDisplayNode *node = (ASDisplayNode *)target;
+                 if(node.borderColor)
+                     return [UIColor colorWithCGColor:node.borderColor];
+                 return nil;
              }],
              @"border-width":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.borderWidth = [value floatValue];
+             } withGetter:^id(id target) {
+                 return @([(ASDisplayNode *)target borderWidth]);
              }],
              };
 }

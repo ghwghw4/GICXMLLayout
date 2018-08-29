@@ -39,12 +39,18 @@
     return @{
              @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  target.gic_ExtensionProperties.name = value;
+             } withGetter:^id(id target) {
+                 return [target gic_ExtensionProperties].name;
              }],
              @"data-path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [target setGic_dataPathKey:value];
+             } withGetter:^id(id target) {
+                 return [target gic_dataPathKey];
              }],
              @"data-context":[[GICDataContextConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  target.gic_ExtensionProperties.tempDataContext = value;
+             } withGetter:^id(id target) {
+                 return [target gic_self_dataContext];
              }]
              };;
 }

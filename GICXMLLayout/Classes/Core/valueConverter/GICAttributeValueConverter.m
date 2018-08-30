@@ -8,12 +8,6 @@
 #import "GICAttributeValueConverter.h"
 
 @implementation GICAttributeValueConverter
-//-(id)initWithName:(NSString *)name{
-//    self = [super init];
-//    _name = name;
-//    return self;
-//}
-
 -(id)convertAnimationValue:(id)from to:(id)to per:(CGFloat)per{
     return nil;
 }
@@ -31,7 +25,11 @@
     return self;
 }
 
-//-(void)setProperty:(UIView *)view withXMLStringValue:(NSString *)xmlStringValue{
-//    
-//}
+-(NSString *)valueToString:(id)value{
+    return nil;
+}
+
+-(id)convert:(NSString *)stringValue{
+    return nil;
+}
 @end

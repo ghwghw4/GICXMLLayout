@@ -11,4 +11,6 @@
 -(UIColor *)convert:(NSString *)stringValue;
 
 -(UIColor *)convertAnimationValue:(UIColor *)from to:(UIColor *)to per:(CGFloat)per;
+
+-(NSString *)valueToString:(UIColor *)value;
 @end

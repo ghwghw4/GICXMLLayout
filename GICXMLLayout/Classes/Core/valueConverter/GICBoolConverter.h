@@ -10,4 +10,6 @@
 @interface GICBoolConverter : GICAttributeValueConverter
 -(NSNumber *)convert:(NSString *)stringValue;
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;
+
+-(NSString *)valueToString:(NSNumber *)value;
 @end

@@ -30,4 +30,9 @@ ASDimensionPoint ASDimensionPointMakeFromString(NSString *str){
     ASDimensionPoint size = ASDimensionPointMake([GICDimensionConverter convertAnimationValue:d1.x to:d2.x per:per], [GICDimensionConverter convertAnimationValue:d1.y to:d2.y per:per]);
     return [NSValue valueWithASDimensionPoint:size];
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    ASDimensionPoint d = [value ASDimensionPoint];
+    return [NSString stringWithFormat:@"%@ %@",NSStringFromASDimension(d.x),NSStringFromASDimension(d.y)];
+}
 @end

@@ -26,4 +26,9 @@
     CGPoint size = CGPointMake([GICUtils calcuPerValue:size1.x to:size2.x per:per], [GICUtils calcuPerValue:size1.y to:size2.y per:per]);
     return [NSValue valueWithCGPoint:size];
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    CGPoint p = [value CGPointValue];
+    return [NSString stringWithFormat:@"%@ %@",@(p.x),@(p.y)];
+}
 @end

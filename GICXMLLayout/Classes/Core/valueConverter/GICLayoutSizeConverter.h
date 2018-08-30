@@ -13,4 +13,6 @@ ASLayoutSize ASLayoutSizeMakeFromString(NSString *str);
 @interface GICLayoutSizeConverter : GICAttributeValueConverter
 -(NSValue *)convert:(NSString *)stringValue;
 -(NSValue *)convertAnimationValue:(NSValue *)from to:(NSValue *)to per:(CGFloat)per;
+
+-(NSString *)valueToString:(NSValue *)value;
 @end

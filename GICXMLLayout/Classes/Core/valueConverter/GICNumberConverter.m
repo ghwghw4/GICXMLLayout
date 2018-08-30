@@ -15,4 +15,8 @@
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per;{
     return  @([GICUtils calcuPerValue:[from floatValue] to:[to floatValue] per:per]);
 }
+
+-(NSString *)valueToString:(NSNumber *)value{
+    return [value stringValue];
+}
 @end

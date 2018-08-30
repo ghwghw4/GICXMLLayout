@@ -9,4 +9,5 @@
 
 @interface GICURLConverter : GICAttributeValueConverter
 -(NSURL *)convert:(NSString *)stringValue;
+-(NSString *)valueToString:(NSURL *)value;
 @end

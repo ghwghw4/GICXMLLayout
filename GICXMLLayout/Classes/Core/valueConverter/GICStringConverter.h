@@ -9,4 +9,5 @@
 
 @interface GICStringConverter : GICAttributeValueConverter
 -(NSString *)convert:(NSString *)stringValue;
+-(NSString *)valueToString:(NSString *)value;
 @end

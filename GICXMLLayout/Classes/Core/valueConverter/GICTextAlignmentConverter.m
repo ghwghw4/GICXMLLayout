@@ -19,4 +19,8 @@
         return @(NSTextAlignmentLeft);
     }
 }
+
+-(NSString *)valueToString:(NSNumber *)value{
+    return [value stringValue];
+}
 @end

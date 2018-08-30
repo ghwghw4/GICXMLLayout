@@ -9,4 +9,5 @@
 
 @interface GICTextAlignmentConverter : GICAttributeValueConverter
 -(NSNumber *)convert:(NSString *)stringValue;
+-(NSString *)valueToString:(NSNumber *)value;
 @end

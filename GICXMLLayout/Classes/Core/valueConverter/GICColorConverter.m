@@ -26,6 +26,11 @@
     CGFloat alpha2;
     [to getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
     
+//    NSString *aa = []
     return [UIColor colorWithRed:[GICUtils calcuPerValue:red1 to:red2 per:per] green:[GICUtils calcuPerValue:green1 to:green2 per:per] blue:[GICUtils calcuPerValue:blue1 to:blue2 per:per] alpha:[GICUtils calcuPerValue:alpha1 to:alpha2 per:per]];
+}
+
+-(NSString *)valueToString:(UIColor *)value{
+    return [value hexStringFromColorAndAlpha];
 }
 @end

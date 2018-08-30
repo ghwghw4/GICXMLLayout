@@ -11,4 +11,8 @@
 -(NSURL *)convert:(NSString *)stringValue{
     return [NSURL URLWithString:stringValue];
 }
+
+-(NSString *)valueToString:(NSURL *)value{
+    return [value absoluteString];
+}
 @end

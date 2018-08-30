@@ -17,4 +17,8 @@
     }
     return nil;
 }
+
+-(NSString *)valueToString:(UIFont *)value{
+    return [value fontName];
+}
 @end

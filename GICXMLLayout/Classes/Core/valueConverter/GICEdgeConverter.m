@@ -41,4 +41,9 @@
     
     return [NSValue valueWithUIEdgeInsets:edg];
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    UIEdgeInsets edg = [value UIEdgeInsetsValue];
+    return [NSString stringWithFormat:@"%@ %@ %@ %@",@(edg.top),@(edg.left),@(edg.bottom),@(edg.right)];
+}
 @end

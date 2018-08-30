@@ -11,4 +11,8 @@
 -(NSString *)convert:(NSString *)stringValue{
     return [stringValue copy];
 }
+
+-(NSString *)valueToString:(NSString *)value{
+    return [value copy];
+}
 @end

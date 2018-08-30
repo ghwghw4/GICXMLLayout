@@ -29,4 +29,9 @@
     d.value = [GICUtils calcuPerValue:from.value to:to.value per:per];
     return d;
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    ASDimension d = [value ASDimension];
+    return NSStringFromASDimension(d);
+}
 @end

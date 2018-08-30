@@ -43,7 +43,7 @@
 
 @implementation NSObject (GICDataBinding)
 -(NSArray<GICDataBinding *> *)gic_Bindings{
-   return objc_getAssociatedObject(self, "gic_Bindings");
+    return objc_getAssociatedObject(self, "gic_Bindings");
 }
 
 -(void)setGic_dataPathKey:(NSString *)gic_dataPathKey{
@@ -82,18 +82,19 @@
             if(self.gic_DataContext !=v){
                 [self setGic_DataContext:v updateBinding:NO];
                 // 创建绑定
-                GICDataModelBinding_ *tmp = self.gic_dataModelBinding;
-                if(tmp==nil){
-                    tmp = [GICDataModelBinding_ new];
-                    tmp.target = self;
-                    self.gic_dataModelBinding = tmp;
-                }
+                GICDataModelBinding_ *tmp = [GICDataModelBinding_ new];;
+                tmp.target = self;
+                self.gic_dataModelBinding = tmp;
                 [tmp updateDataSource:superDataContenxt];
                 // 以便更新当前object的绑定
                 superDataContenxt = v;
             }else{
                 return;
             }
+        }else{
+            self.gic_dataModelBinding = nil;
+            [self setGic_DataContext:v updateBinding:NO];
+            superDataContenxt = v;
         }
     }
     for(GICDataBinding *b in self.gic_Bindings){
@@ -106,7 +107,7 @@
     if([self respondsToSelector:@selector(gic_subElements)]){
         for(NSObject *sub in [self performSelector:@selector(gic_subElements)]){
             if(sub.gic_isAutoInheritDataModel){
-                 [sub gic_updateDataContext:superDataContenxt];
+                [sub gic_updateDataContext:superDataContenxt];
             }
         }
     }

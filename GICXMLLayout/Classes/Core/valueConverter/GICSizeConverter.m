@@ -26,4 +26,9 @@
     CGSize size = CGSizeMake([GICUtils calcuPerValue:size1.width to:size2.width per:per], [GICUtils calcuPerValue:size1.height to:size2.height per:per]);
     return [NSValue valueWithCGSize:size];
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    CGSize  size = [value CGSizeValue];
+    return [NSString stringWithFormat:@"%@ %@",@(size.width),@(size.height)];
+}
 @end

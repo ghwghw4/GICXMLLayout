@@ -20,4 +20,8 @@
 -(NSNumber *)convertAnimationValue:(NSNumber *)from to:(NSNumber *)to per:(CGFloat)per{
     return @(per>0.5);
 }
+
+-(NSString *)valueToString:(NSNumber *)value{
+    return [value stringValue];
+}
 @end

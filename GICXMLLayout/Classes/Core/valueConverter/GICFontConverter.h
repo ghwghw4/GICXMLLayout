@@ -10,4 +10,6 @@
 
 @interface GICFontConverter : GICAttributeValueConverter
 -(UIFont *)convert:(NSString *)stringValue;
+
+-(NSString *)valueToString:(UIFont *)value;
 @end

@@ -20,6 +20,8 @@
                  CGFloat v = [value floatValue];
                  v = MAX(v, 0);
                  ((GICRatioPanel *)target).ratio = v;
+             } withGetter:^id(id target) {
+                 return @(((GICRatioPanel *)target).ratio);
              }],
              };
 }

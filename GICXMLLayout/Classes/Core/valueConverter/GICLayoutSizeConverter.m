@@ -30,4 +30,9 @@ ASLayoutSize ASLayoutSizeMakeFromString(NSString *str){
     ASLayoutSize size = ASLayoutSizeMake([GICDimensionConverter convertAnimationValue:d1.width to:d2.width per:per], [GICDimensionConverter convertAnimationValue:d1.height to:d2.height per:per]);
     return [NSValue valueWithASLayoutSize:size];
 }
+
+-(NSString *)valueToString:(NSValue *)value{
+    ASLayoutSize d = [value ASLayoutSize];
+    return [NSString stringWithFormat:@"%@ %@",NSStringFromASDimension(d.width),NSStringFromASDimension(d.height)];
+}
 @end

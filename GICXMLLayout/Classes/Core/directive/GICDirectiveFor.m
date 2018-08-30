@@ -34,24 +34,25 @@
 }
 
 -(void)updateDataSource:(id)dataSource{
-    //TODO: 对data-model的支持
+    [self.target gic_removeSubElements:[self.target gic_subElements]];//更新数据源以后需要清空原来是数据，然后重新添加数据
     if([dataSource isKindOfClass:[NSArray class]] && [self.target respondsToSelector:@selector(gic_addSubElement:)]){
-        [self.target gic_removeSubElements:[self.target gic_subElements]];//更新数据源以后需要清空原来是数据，然后重新添加数据
-        for(id data in dataSource){
-            [self addAElement:data];
-        }
+        
+        [dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self addAElement:obj index:idx];
+        }];
+        
         if([dataSource isKindOfClass:[NSMutableArray class]]){
             // 监听添加对象事件
             @weakify(self)
             [[dataSource rac_signalForSelector:@selector(addObject:)] subscribeNext:^(RACTuple * _Nullable x) {
                 @strongify(self)
-                [self addAElement:x[0]];
+                [self addAElement:x[0] index:[dataSource indexOfObject:x[0]]];
             }];
             
             [[dataSource rac_signalForSelector:@selector(addObjectsFromArray:)] subscribeNext:^(RACTuple * _Nullable x) {
                 @strongify(self)
                 for(id data in x[0]){
-                    [self addAElement:data];
+                    [self addAElement:data index:[dataSource indexOfObject:data]];
                 }
             }];
             
@@ -87,11 +88,11 @@
     }
 }
 
--(void)addAElement:(id)data{
+-(void)addAElement:(id)data index:(NSInteger)index{
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = data;
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder;
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     [self.target gic_addSubElement:childElement];
 }
 @end

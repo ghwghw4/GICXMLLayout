@@ -19,30 +19,44 @@
              @"is-horizon":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICStackPanel *)target).isHorizon = [value boolValue];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return @(((GICStackPanel *)target).isHorizon);
              }],
              @"justify-content":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"justifyContent"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"justifyContent"];
              }],
              @"align-items":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"alignItems"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"alignItems"];
              }],
              @"space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"spacing"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"spacing"];
              }],
              @"wrap":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"flexWrap"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"flexWrap"];
              }],
              @"align-content":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"alignContent"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"alignContent"];
              }],
              @"line-space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICStackPanel *)target)->stackPanelPropertyDict setValue:value forKey:@"lineSpacing"];
                  [((GICStackPanel *)target) updateLayout];
+             } withGetter:^id(id target) {
+                 return [((GICStackPanel *)target)->stackPanelPropertyDict valueForKey:@"lineSpacing"];
              }],
              };
 }

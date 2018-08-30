@@ -16,6 +16,9 @@
     return @{
              @"inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICInsetPanel *)target setValue:value forKey:@"inset"];
+             } withGetter:^id(id target) {
+                 UIEdgeInsets inset = [(GICInsetPanel *)target inset];
+                 return [NSValue valueWithUIEdgeInsets:inset];
              }],
              };
 }

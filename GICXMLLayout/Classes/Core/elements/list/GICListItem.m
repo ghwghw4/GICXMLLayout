@@ -22,6 +22,9 @@
              @"selection-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  [item setValue:value forKey:@"selectionStyle"];
+             } withGetter:^id(id target) {
+                 GICListItem *item = (GICListItem *)target;
+                 return @([item selectionStyle]);
              }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
@@ -31,10 +34,16 @@
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  [item setValue:value forKey:@"separatorInset"];
+             } withGetter:^id(id target) {
+                 GICListItem *item = (GICListItem *)target;
+                 return [item valueForKey:@"separatorInset"];
              }],
              @"accessory-type":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  [item setValue:value forKey:@"accessoryType"];
+             } withGetter:^id(id target) {
+                 GICListItem *item = (GICListItem *)target;
+                 return @(item.accessoryType);
              }],
              };
 }

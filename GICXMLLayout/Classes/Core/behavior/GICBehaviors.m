@@ -37,4 +37,22 @@
     }
     return [super gic_parseSubElementNotExist:element];
 }
+
+-(GICBehavior *)findFirstWithBehaviorClass:(Class)behaviorType{
+    for(GICBehavior *b in self.behaviors){
+        if(b.class == behaviorType){
+            return b;
+        }
+    }
+    return nil;
+}
+
+-(GICBehavior *)findWithBehaviorName:(NSString *)behaviorName{
+    for(GICBehavior *b in self.behaviors){
+        if([b.name isEqualToString:behaviorName]){
+            return b;
+        }
+    }
+    return nil;
+}
 @end

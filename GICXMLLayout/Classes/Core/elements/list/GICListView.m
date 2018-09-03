@@ -14,7 +14,7 @@
 //#import "GICListHeader.h"
 //#import "GICListFooter.h"
 
-@interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListItemDelegate>{
+@interface GICListView ()<ASTableDelegate,ASTableDataSource>{
     NSMutableArray<GICListItem *> *listItems;
     BOOL t;
     id<RACSubscriber> insertItemsSubscriber;
@@ -84,7 +84,8 @@
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
-        [(GICListItem *)subElement setDelegate:self];
+        [subElement gic_ExtensionProperties].superElement = self;
+//        [(GICListItem *)subElement setDelegate:self];
         if(!self.isNodeLoaded){
             [listItems addObject:subElement];
         }else{

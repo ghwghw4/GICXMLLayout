@@ -10,6 +10,7 @@
 #import "GICNumberConverter.h"
 #import "GICBoolConverter.h"
 #import "NSObject+GICEvent.h"
+#import "GICTapEvent.h"
 
 @implementation GICAnimation
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
@@ -48,11 +49,10 @@
         });
     }else if(self.triggerType == GICAnimationTriggerType_tap){
         @weakify(self)
-        [target gic_get_tapSignal:^(RACSignal *signal) {
-            [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
-                @strongify(self)
-                [self beginAnimantion];
-            }];
+        GICEvent *event = [target gic_event_findFirstWithEventClassOrCreate:[GICTapEvent class]];
+        [event.eventSubject subscribeNext:^(id  _Nullable x) {
+            @strongify(self)
+            [self beginAnimantion];
         }];
     }
 }

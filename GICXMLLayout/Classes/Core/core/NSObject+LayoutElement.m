@@ -171,7 +171,7 @@
 }
 
 -(void)gic_parseElementCompelete{
-    for(GICBehavior *b in self.gic_Behaviors.behaviors){
+    for(GICBehavior *b in [self.gic_Behaviors.behaviors copy]){
         [b attachTo:self];
     }
     id temp = self.gic_ExtensionProperties.tempDataContext;

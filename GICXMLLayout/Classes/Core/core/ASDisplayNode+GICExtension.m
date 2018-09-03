@@ -142,8 +142,9 @@
                  return @([(ASDisplayNode *)target alpha]);
              }],
              @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 GICTapEvent *e=[[GICTapEvent alloc] initWithExpresion:value];
-                 [target gic_event_addEvent:e];
+                 [GICTapEvent createEventWithExpresion:value withEventName:@"event-tap" toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICTapEvent class]];
              }],
              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;

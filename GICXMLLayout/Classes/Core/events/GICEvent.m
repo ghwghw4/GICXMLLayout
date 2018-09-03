@@ -8,9 +8,18 @@
 #import "GICEvent.h"
 
 @implementation GICEvent
++(void)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target{
+    GICEvent *e = [[[self class] alloc] initWithExpresion:expresion withEventName:eventName];
+    [target gic_event_addEvent:e];
+}
 
--(id)initWithExpresion:(NSString *)expresion{
-    self = [self init];
+-(id)init{
+    NSAssert(false, @"请使用initWithExpresion来初始化");
+    return nil;
+}
+
+-(id)initWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName{
+    self = [super init];
     _eventSubject = [RACSubject subject];
     expressionString = expresion;
     
@@ -19,17 +28,25 @@
     [self.eventSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         SEL se = NSSelectorFromString(self->expressionString);
-        id t = self.target;
-        do {
-            id vm = [t gic_DataContext];
-            if([vm respondsToSelector:se]){
-                GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
-                [vm performSelector:se withObject:eventInfo];
-                break;
-            }
-            t = [t gic_getSuperElement];
-        } while (t);
+        if(se){
+            id t = self.target;
+            do {
+                id vm = [t gic_DataContext];
+                if([vm respondsToSelector:se]){
+                    GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
+                    [vm performSelector:se withObject:eventInfo];
+                    break;
+                }
+                t = [t gic_getSuperElement];
+            } while (t);
+        }
     }];
+    self.name = eventName;
+    return self;
+}
+
+-(id)initWithExpresion:(NSString *)expresion{
+    self = [self initWithExpresion:expresion withEventName:nil];
     return self;
 }
 

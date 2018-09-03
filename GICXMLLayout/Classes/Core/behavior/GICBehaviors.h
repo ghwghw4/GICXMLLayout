@@ -9,4 +9,7 @@
 #import "GICBehavior.h"
 @interface GICBehaviors : NSObject
 @property (nonatomic,readonly)NSMutableArray<GICBehavior *> *behaviors;
+
+-(GICBehavior *)findFirstWithBehaviorClass:(Class)behaviorType;
+-(GICBehavior *)findWithBehaviorName:(NSString *)behaviorName;
 @end

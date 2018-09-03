@@ -28,8 +28,10 @@
              }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 item.itemSelectEvent = [[GICEvent alloc] initWithExpresion:value];
+                 item.itemSelectEvent = [[GICEvent alloc] initWithExpresion:value withEventName:@"event-item-select"];
                  [item.itemSelectEvent attachTo:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findWithEventName:@"event-item-select"];
              }],
              @"separator-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
@@ -59,9 +61,9 @@
 }
 
 
--(NSObject *)gic_getSuperElement{
-    return (NSObject *)self.delegate;
-}
+//-(NSObject *)gic_getSuperElement{
+//    return (NSObject *)self.owningNode;
+//}
 
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
@@ -73,6 +75,11 @@
     if(self.itemSelectEvent && selected){
         [self.itemSelectEvent fire:@(selected)];
     }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesEnded:touches withEvent:event];
+    [super setHighlighted:NO];
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{

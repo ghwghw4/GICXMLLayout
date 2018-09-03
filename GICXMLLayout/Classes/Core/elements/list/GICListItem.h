@@ -8,10 +8,10 @@
 #import <UIKit/UIKit.h>
 
 @class GICListItem;
-
-@protocol GICListItemDelegate
-
-@end
+//
+//@protocol GICListItemDelegate
+//
+//@end
 
 @interface GICListItem : ASCellNode{
 //    CGFloat itemHeight;//lsit-item的固定高度
@@ -23,7 +23,7 @@
 
 //@property (nonatomic,readonly) NSMutableDictionary *cellStyle;
 
-@property (nonatomic,weak)id<GICListItemDelegate> delegate;
+//@property (nonatomic,weak)id<GICListItemDelegate> delegate;
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong)GICEvent *itemSelectEvent;
 

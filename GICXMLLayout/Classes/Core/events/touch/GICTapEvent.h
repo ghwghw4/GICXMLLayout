@@ -6,11 +6,10 @@
 //
 
 #import "GICEvent.h"
-
+#import "_GICTouchEvent.h"
 /**
  点击事件
  */
-@interface GICTapEvent : GICEvent{
-    UITapGestureRecognizer *tapges;
+@interface GICTapEvent : _GICTouchEvent{
 }
 @end

@@ -8,6 +8,9 @@
 #import "GICTouchEndEvent.h"
 
 @implementation GICTouchEndEvent
++(NSString *)eventName{
+    return @"touch-end";
+}
 
 -(GICCustomTouchEventMethodOverride)overrideType{
     return GICCustomTouchEventMethodOverrideTouchesEnded;

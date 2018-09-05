@@ -13,6 +13,10 @@
     [target gic_event_addEvent:e];
 }
 
++(void)createEventWithExpresion:(NSString *)expresion toTarget:(id)target{
+    [self createEventWithExpresion:expresion withEventName:[self eventName] toTarget:target];
+}
+
 -(id)init{
     NSAssert(false, @"请使用initWithExpresion来初始化");
     return nil;
@@ -74,5 +78,9 @@
 
 -(void)dealloc{
     [_eventSubject sendCompleted];
+}
+
++(NSString *)eventName{
+    return nil;
 }
 @end

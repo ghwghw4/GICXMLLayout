@@ -21,6 +21,11 @@
 #import "CGPointConverter.h"
 #import "GICDimensionConverter.h"
 
+#import "GICDoubleTapEvent.h"
+#import "GICTouchBeginEvent.h"
+#import "GICTouchEndEvent.h"
+#import "GICTouchMoveEvent.h"
+
 @implementation ASDisplayNode (GICExtension)
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
@@ -141,11 +146,6 @@
              } withGetter:^id(id target) {
                  return @([(ASDisplayNode *)target alpha]);
              }],
-             @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [GICTapEvent createEventWithExpresion:value withEventName:@"event-tap" toTarget:target];
-             } withGetter:^id(id target) {
-                 return [target gic_event_findFirstWithEventClass:[GICTapEvent class]];
-             }],
              @"corner-radius":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node = (ASDisplayNode *)target;
                  node.cornerRadius = [value floatValue];
@@ -202,6 +202,31 @@
                  node.borderWidth = [value floatValue];
              } withGetter:^id(id target) {
                  return @([(ASDisplayNode *)target borderWidth]);
+             }],
+             @"event-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [GICTapEvent createEventWithExpresion:value toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICTapEvent class]];
+             }],
+             @"event-double-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [GICDoubleTapEvent createEventWithExpresion:value toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICDoubleTapEvent class]];
+             }],
+             @"event-touch-begin":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [GICTouchBeginEvent createEventWithExpresion:value toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICTouchBeginEvent class]];
+             }],
+             @"event-touch-move":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [GICTouchMoveEvent createEventWithExpresion:value toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICTouchMoveEvent class]];
+             }],
+             @"event-touch-end":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [GICTouchEndEvent createEventWithExpresion:value toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findFirstWithEventClass:[GICTouchEndEvent class]];
              }],
              };
 }

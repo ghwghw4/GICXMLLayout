@@ -163,8 +163,17 @@ static NSString *_roolUrl;
     return [self parseElementFromData:xmlData withParentElement:parentElement];
 }
 
++(dispatch_queue_t)parseElementQueue{
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("parse xml element", nil);
+    });
+    return queue;
+}
+
 +(void)parseElementFromUrlAsync:(NSURL *)url withParentElement:(id)parentElement withParseCompelete:(void (^)(id element))compelte{
-    dispatch_async(dispatch_queue_create("parse xml element", nil), ^{
+    dispatch_async([self parseElementQueue], ^{
         id e = [self parseElementFromUrl:url withParentElement:parentElement];
         compelte(e);
     });

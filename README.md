@@ -111,8 +111,15 @@ pod 'GICXMLLayout'
 
 ### 0.2.2
 
-1. `lable`元素增加对`font`属性的支持，现在可以为`lable`指定字体了。
-2. `canvas`元素中的`path`新增`dash`属性，现在可以为线条添加虚线的设置了。
+1. `lable`元素增加对`font`属性的支持，现在可以为`lable`指定字体了。[文档](http://gicxmllayout.gonghaiwei.cn/ui/lable.html)
+
+2. `canvas`元素中的`path`新增`dash`属性，现在可以为线条添加虚线的设置了。[文档](http://gicxmllayout.gonghaiwei.cn/ui/canvas.html)
+
+3. 调整事件分发机制。增加`double-tap`、`touch-begin`、`touch-move`、`touch-end`事件。[文档](http://gicxmllayout.gonghaiwei.cn/attribute.html)
+
+   > 目前已经将touch事件优化成直接使用系统本身提供的的事件分发机制。
+
+
 
 
 

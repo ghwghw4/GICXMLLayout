@@ -36,6 +36,9 @@
                         <!--添加一个单独point点，相当于将当前的point移动到这个点-->
                         <point x="5" y="50"/>
                         <bezier control-point="35 0" control-point2="35 100" point="65 50"/>
+
+                        <!--string-->
+                        <str x="50" y="5" width="100" height="30" text="hello word" font-color="red" font-size="20"/>
                     </path>
                     <path fill-color="red" line-width="0">
                         <!--画一个有圆角的矩形(左上、右下圆角)-->
@@ -141,9 +144,35 @@
                                     <anim-attribute attribute-name="y" on="1" from="100%" to="{{y+'%'}}" duration=".6"/>
                                 </animations>
                             </rectangle>
+
+                            <str x="{{x}}" y="{{ Math.max(y - 20,0) }}" width="40" height="30" text="232" font-color="red" font-size="10" text-align="1"/>
                         </path>
                     </for>
                 </canvas>
+<!--      田字          -->
+                <background-panel size="150" space-before="10">
+                    <background>
+                        <canvas background-color="white">
+                            <path line-width="0.5" line-color="red">
+                                <rectangle width="100%" height="100%"/>
+                            </path>
+                            <path line-width="0.5" line-color="red" dash="5 2">
+                                <line>
+                                    <point x="50%" y="0"/>
+                                    <point x="50%" y="100%"/>
+                                </line>
+                                
+                                <line>
+                                    <point x="0" y="50%"/>
+                                    <point x="100%" y="50%"/>
+                                </line>
+                            </path>
+                        </canvas>
+                    </background>
+                    <dock-panel>
+                        <lable text="我" font="Heiti SC,120"/>
+                    </dock-panel>
+                </background-panel>
 
                 <!--control-->
                 <template-ref t-name="desc" data-context="control"/>

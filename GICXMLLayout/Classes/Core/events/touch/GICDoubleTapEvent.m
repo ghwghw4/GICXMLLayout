@@ -8,6 +8,9 @@
 #import "GICDoubleTapEvent.h"
 
 @implementation GICDoubleTapEvent
++(NSString *)eventName{
+    return @"double-tap";
+}
 -(GICCustomTouchEventMethodOverride)overrideType{
     return GICCustomTouchEventMethodOverrideTouchesEnded;
 }
@@ -17,13 +20,13 @@
     
     @weakify(self)
     [[target rac_signalForSelector:@selector(touchesEnded:withEvent:)] subscribeNext:^(RACTuple * _Nullable x) {
-        if(self->isRejectEnum)
-            [(_ASDisplayView *)target.view __forwardTouchesEnded:x[0] withEvent:x[1]];
         NSSet *touches = x[0];
         UITouch *touch = [touches anyObject];
         @strongify(self)
         if (touch.tapCount == 2) {
-            NSLog(@"#tap");
+            if(self->isRejectEnum){
+                [(_ASDisplayView *)target.view __forwardTouchesEnded:x[0] withEvent:x[1]];
+            }
             [self.eventSubject sendNext:touch];
         }
     }];

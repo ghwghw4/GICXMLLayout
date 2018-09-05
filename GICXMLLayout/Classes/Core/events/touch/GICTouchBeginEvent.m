@@ -8,6 +8,10 @@
 #import "GICTouchBeginEvent.h"
 
 @implementation GICTouchBeginEvent
++(NSString *)eventName{
+    return @"touch-begin";
+}
+
 -(GICCustomTouchEventMethodOverride)overrideType{
     return GICCustomTouchEventMethodOverrideTouchesBegan;
 }
@@ -17,7 +21,7 @@
     @weakify(self)
     [[target rac_signalForSelector:@selector(touchesBegan:withEvent:)] subscribeNext:^(RACTuple * _Nullable x) {
         if(self->isRejectEnum){
-            [(_ASDisplayView *)target.view __forwardTouchesEnded:x[0] withEvent:x[1]];
+            [(_ASDisplayView *)target.view __forwardTouchesBegan:x[0] withEvent:x[1]];
         }
         @strongify(self)
         [self.eventSubject sendNext:x];

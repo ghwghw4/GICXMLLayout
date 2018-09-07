@@ -43,6 +43,7 @@
 #import "GICControl.h"
 #import "GICDataContextElement.h"
 //#import "GICCanvasPath.h"
+#import "GICScript.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -51,6 +52,8 @@
 }
 
 +(void)regiterCoreElements{
+    // 关闭日志
+    ASDisableLogging();
     // behavior
     [GICElementsCache registElement:[GICBehaviors class]];
     
@@ -81,6 +84,11 @@
     // 其他
     
     [GICElementsCache registElement:[GICDataContextElement class]];
+    
+//    [GICElementsCache registElement:[GICScript class]];
+    
+    [GICElementsCache registBehaviorElement:[GICScript class]];
+    
 }
 
 +(void)regiterUIElements{

@@ -29,6 +29,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              [att deleteCharactersInRange:NSMakeRange(0, att.length)];
                              [att appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
                              [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *att= ((GICLable *)target)->mutAttString;
+                             return att.string;
                          }],
                          @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [(GICLable *)target setMaximumNumberOfLines:[value integerValue]];
@@ -37,10 +40,19 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [((GICLable *)target)->attributes setValue:value forKey:NSForegroundColorAttributeName];
                               [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                             return [((GICLable *)target)->attributes objectForKey:NSForegroundColorAttributeName];
                          }],
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                               [((GICLable *)target)->attributes setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
                               [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                             UIFont *font = [((GICLable *)target)->attributes objectForKey:NSFontAttributeName];
+                             if(!font){
+                                 font =[UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+                             }
+                             UIFontDescriptor *ctfFont = font.fontDescriptor;
+                             return [ctfFont objectForKey:@"NSFontSizeAttribute"];
                          }],
                          @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              [((GICLable *)target)->attributes setValue:value forKey:NSFontAttributeName];
@@ -51,6 +63,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              p.alignment = [value integerValue];
                              [((GICLable *)target)->attributes setValue:p forKey:NSParagraphStyleAttributeName];
                              [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                             NSMutableParagraphStyle * p = [((GICLable *)target)->attributes objectForKey:NSParagraphStyleAttributeName];
+                             return @(p.alignment);
                          }],
                          
                          };

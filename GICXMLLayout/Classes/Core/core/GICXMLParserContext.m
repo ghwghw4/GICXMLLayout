@@ -7,7 +7,11 @@
 
 #import "GICXMLParserContext.h"
 
-@implementation GICXMLParserContext
+@implementation GICXMLParserContext{
+    GICXMLParserContext *next;//下一个
+    GICXMLParserContext *prev;//前一个
+}
+
 -(id)initWithXMLDoc:(GDataXMLDocument *)xmlDoc{
     self = [super init];
     self->_xmlDoc = xmlDoc;
@@ -16,15 +20,21 @@
 }
 
 static GICXMLParserContext *current;
+
 +(instancetype)currentInstance{
     return current;
 }
 
 +(void)resetInstance:(GDataXMLDocument *)xmlDoc{
-    current = [[GICXMLParserContext alloc] initWithXMLDoc:xmlDoc];
+    GICXMLParserContext *context = [[GICXMLParserContext alloc] initWithXMLDoc:xmlDoc];
+    if(current !=nil){
+        context->prev = current;
+        current->next = context;
+    }
+    current = context;
 }
 
 +(void)parseCompelete{
-    current = nil;
+    current = current->prev;
 }
 @end

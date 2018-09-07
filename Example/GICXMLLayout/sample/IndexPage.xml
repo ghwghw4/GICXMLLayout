@@ -29,6 +29,9 @@
             "name": "行为",
             "pagePath": "Behavior.xml"
             }, {
+            "name": "js脚本",
+            "pagePath": "JSScript.xml"
+            }, {
             "name": "指令",
             "pagePath": "Directive.xml"
             }, {

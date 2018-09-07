@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GICXMLLayout'
-  s.version          = '0.2.2'
+  s.version          = '0.3.0'
   s.summary          = 'A short description of GICXMLLayout.'
 
 # This description is used to generate tags and improve search results.
@@ -39,6 +39,9 @@ TODO: Add long description of the pod here.
 
         s.subspec 'Core' do |core|
             core.source_files = 'GICXMLLayout/Classes/Core/**/*'
+            core.resource_bundles = {
+            'GICXMLLayout' => ['GICXMLLayout/Assets/**/*']
+            }
             core.prefix_header_file = 'GICXMLLayout/Classes/Core/XMLLayoutPrefixHeader.pch'
             core.dependency 'GDataXMLNode_GIC'
             core.dependency 'GICJsonParser'

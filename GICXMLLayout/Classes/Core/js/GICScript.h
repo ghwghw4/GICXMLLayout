@@ -11,4 +11,8 @@
     NSString *jsScript;
 }
 
+/**
+ 方法名称
+ */
+@property (nonatomic,readonly,strong)NSString *functionName;
 @end

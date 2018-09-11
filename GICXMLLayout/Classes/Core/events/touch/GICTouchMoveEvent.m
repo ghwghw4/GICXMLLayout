@@ -9,7 +9,7 @@
 
 @implementation GICTouchMoveEvent
 +(NSString *)eventName{
-    return @"touch-move";
+    return @"event-touch-move";
 }
 
 -(GICCustomTouchEventMethodOverride)overrideType{

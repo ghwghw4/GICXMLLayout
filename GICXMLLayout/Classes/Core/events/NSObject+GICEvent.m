@@ -48,24 +48,20 @@
     return nil;
 }
 
-//-(void)gic_get_tapSignal:(void (^)(RACSignal *signal))cb{
-//    if([self isKindOfClass:[ASDisplayNode class]]){
-//        ASDisplayNode *node = (ASDisplayNode *)self;
-//        node.userInteractionEnabled = YES;
-//        [node gic_safeView:^(UIView *view) {
-//            UITapGestureRecognizer *tapges = nil;
-//            for(UIGestureRecognizer *ges in view.gestureRecognizers){
-//                if([ges isKindOfClass:[UITapGestureRecognizer class]]){
-//                    tapges = (UITapGestureRecognizer *)ges;
-//                    break;
-//                }
-//            }
-//            if(tapges == nil){
-//                tapges = [[UITapGestureRecognizer alloc] init];
-//                [view addGestureRecognizer:tapges];
-//            }
-//            cb([tapges rac_gestureSignal]);
-//        }];
-//    }
-//}
+-(GICEvent *)gic_event_findFirstWithEventNameOrCreate:(NSString *)eventName{
+    GICEvent *e = [self gic_event_findWithEventName:eventName];
+    if(e==nil){
+        GICAttributeValueConverter *p =  [GICElementsCache classAttributs:[self class]][eventName];
+        if(p){
+            p.propertySetter(self, nil);
+            e = [self gic_event_findWithEventName:eventName];
+            [self gic_event_addEvent:e];
+            if(e.target==nil){
+                [e attachTo:self];
+            }
+        }
+    }
+    
+    return e;
+}
 @end

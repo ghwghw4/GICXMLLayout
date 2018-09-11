@@ -9,7 +9,7 @@
 
 @implementation GICTouchBeginEvent
 +(NSString *)eventName{
-    return @"touch-begin";
+    return @"event-touch-begin";
 }
 
 -(GICCustomTouchEventMethodOverride)overrideType{

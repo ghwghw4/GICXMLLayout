@@ -9,7 +9,7 @@
 
 @implementation GICDoubleTapEvent
 +(NSString *)eventName{
-    return @"double-tap";
+    return @"event-double-tap";
 }
 -(GICCustomTouchEventMethodOverride)overrideType{
     return GICCustomTouchEventMethodOverrideTouchesEnded;

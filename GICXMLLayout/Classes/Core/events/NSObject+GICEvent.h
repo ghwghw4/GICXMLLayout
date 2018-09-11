@@ -13,7 +13,5 @@
 -(GICEvent *)gic_event_findWithEventName:(NSString *)eventName;
 
 -(GICEvent *)gic_event_findFirstWithEventClassOrCreate:(Class)eventType;
-
-
-//-(void)gic_get_tapSignal:(void (^)(RACSignal *signal))cb;
+-(GICEvent *)gic_event_findFirstWithEventNameOrCreate:(NSString *)eventName;
 @end

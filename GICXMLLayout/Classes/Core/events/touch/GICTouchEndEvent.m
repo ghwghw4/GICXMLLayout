@@ -9,7 +9,7 @@
 
 @implementation GICTouchEndEvent
 +(NSString *)eventName{
-    return @"touch-end";
+    return @"event-touch-end";
 }
 
 -(GICCustomTouchEventMethodOverride)overrideType{

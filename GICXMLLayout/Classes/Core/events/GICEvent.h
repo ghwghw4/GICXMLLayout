@@ -21,8 +21,8 @@
 
 -(void)fire:(id)value;
 
-+(void)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target;
-+(void)createEventWithExpresion:(NSString *)expresion toTarget:(id)target;
++(instancetype)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target;
++(instancetype)createEventWithExpresion:(NSString *)expresion toTarget:(id)target;
 
 
 +(NSString *)eventName;

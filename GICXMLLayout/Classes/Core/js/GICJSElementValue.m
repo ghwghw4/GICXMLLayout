@@ -6,11 +6,15 @@
 //
 
 #import "GICJSElementValue.h"
+#import "GICTapEvent.h"
 
-@implementation GICJSElementValue
+@implementation GICJSElementValue{
+    NSMutableDictionary<NSString *,JSManagedValue *> *managedValueDict;
+}
 -(id)initWithElement:(id)element{
     self = [super init];
     _element = element;
+    managedValueDict = [NSMutableDictionary dictionary];
     return self;
 }
 
@@ -29,9 +33,21 @@
     GICJSElementValue *v = [[GICJSElementValue alloc] initWithElement:element];
     jsContext[name] = v;
     
+    
     NSDictionary<NSString *, GICAttributeValueConverter *> *ps = [GICElementsCache classAttributs:[element class]];
     NSString *attStrings = [ps.allKeys componentsJoinedByString:@","];
-    [jsContext evaluateScript:[NSString stringWithFormat:@"GIC._addGetterSetter(%@,\"%@\");",name,attStrings]];
+    [jsContext evaluateScript:[NSString stringWithFormat:@"GIC._elementInit(%@,\"%@\");",name,attStrings]];
+}
+
+- (void)setEvent:(NSString *)eventName eventFunc:(JSValue *)eventFunc{
+    managedValueDict[eventName] = [JSManagedValue managedValueWithValue:eventFunc];
+    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[eventName] withOwner:self];
+    GICEvent *event = [_element gic_event_findFirstWithEventNameOrCreate:eventName];
+    @weakify(self)
+    [event.eventSubject subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        [(self-> managedValueDict[eventName]).value callWithArguments:nil];
+    }];
 }
 
 -(id)getAttValue:(NSString *)attName{

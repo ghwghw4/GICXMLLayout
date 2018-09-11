@@ -11,7 +11,7 @@
 
 @implementation GICTapEvent
 +(NSString *)eventName{
-    return @"tap";
+    return @"event-tap";
 }
 
 -(GICCustomTouchEventMethodOverride)overrideType{

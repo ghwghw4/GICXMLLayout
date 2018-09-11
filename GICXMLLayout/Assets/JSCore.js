@@ -7,32 +7,46 @@
 
 var GIC = {
   /**
-   * 动态添加obj的getter 、setter 方法
+   * 元素初始化
+   * 1. 动态添加obj的getter 、setter 方法
    * @param obj
    * @param ps
    * @private
    */
-  _addGetterSetter:function(obj,ps){
+  _elementInit:function(obj,ps){
+    // 1.属性
     ps.split(",").forEach(key=>{
       var propertyName = this._elAttributeNameToPropertyName(key);
       Object.defineProperty(obj,propertyName,{
         get:function(){
-          // return this['_'+key]();
           return this.getAttValue(key);
         },
         set:function (val) {
-          // this['_'+key](val);
           this.setAttValue(key,val);
         }
       });
     });
-  },
-  _rejectClass:function (obj,className) {
-    if(!this[className]){//不存在这个class
-      this[className] = function () {
-
+    // 2.事件
+    // 点击事件
+    Object.defineProperty(obj,'onclick',{
+      get:function(){
+        return this._onClick;
+      },
+      set:function (val) {
+        this._onClick = val;
+        this.setEvent('event-tap',val);
       }
-    }
+    });
+    // 触摸移动事件
+    Object.defineProperty(obj,'onmove',{
+      get:function(){
+        return this._onmove;
+      },
+      set:function (val) {
+        this._onmove = val;
+        this.setEvent('event-touch-move',val);
+      }
+    });
   },
   /**
    * 首字母转大写

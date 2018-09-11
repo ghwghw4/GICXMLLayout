@@ -28,8 +28,7 @@
              }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
-                 item.itemSelectEvent = [[GICEvent alloc] initWithExpresion:value withEventName:@"event-item-select"];
-                 [item.itemSelectEvent attachTo:target];
+                 item.itemSelectEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-item-select" toTarget:target];
              } withGetter:^id(id target) {
                  return [target gic_event_findWithEventName:@"event-item-select"];
              }],

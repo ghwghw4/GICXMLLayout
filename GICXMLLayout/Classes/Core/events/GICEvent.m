@@ -8,13 +8,14 @@
 #import "GICEvent.h"
 
 @implementation GICEvent
-+(void)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target{
++(instancetype)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target{
     GICEvent *e = [[[self class] alloc] initWithExpresion:expresion withEventName:eventName];
     [target gic_event_addEvent:e];
+    return e;
 }
 
-+(void)createEventWithExpresion:(NSString *)expresion toTarget:(id)target{
-    [self createEventWithExpresion:expresion withEventName:[self eventName] toTarget:target];
++(instancetype)createEventWithExpresion:(NSString *)expresion toTarget:(id)target{
+    return [self createEventWithExpresion:expresion withEventName:[self eventName] toTarget:target];
 }
 
 -(id)init{

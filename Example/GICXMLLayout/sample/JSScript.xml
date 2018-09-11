@@ -15,73 +15,24 @@
                             this.text += "ha11";
                             this.fontColor = "red";
                             this.fontSize = this.fontSize.toInt()+25;
-
                             console.log(this);
-                            <!--print(insetPanel.inset);-->
-
-                            <!--_tempFunc.apply(lblName);-->
-
-
-                            <!--function GICElement() {-->
-                                <!--this.tt = function(){-->
-                                    <!--print("11111");-->
-                                <!--}-->
-                            <!--}-->
-
-                            <!--var a = "GICElement";-->
-                            <!--this[a]= function(){-->
-
-                            <!--}-->
-                            <!--if(!this[a]){-->
-
-                                <!--print('存在');-->
-                            <!--}else{-->
-                             <!--print('不存在');-->
-                            <!--}-->
-                            <!--var aa = new this[a]();-->
-                            <!--aa.tt();-->
-                            <!--aa.a = 1;-->
-                            <!--print(aa.a);-->
-
-                            <!--var bb = new this[a]();-->
-                            <!--bb.a = 2;-->
-                            <!--print(bb.a);-->
-
-                            <!--var Ajax={-->
-                            <!--get: function(url, fn) {-->
-                            <!--// XMLHttpRequest对象用于在后台与服务器交换数据-->
-                            <!--var xhr = new XMLHttpRequest();-->
-                            <!--xhr.open('GET', url, true);-->
-                            <!--xhr.onreadystatechange = function() {-->
-                            <!--// readyState == 4说明请求已完成-->
-                            <!--&lt;!&ndash;if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) {&ndash;&gt;-->
-                            <!--// 从服务器获得数据-->
-                            <!--fn.call(this, xhr.responseText);-->
-                            <!--&lt;!&ndash;}&ndash;&gt;-->
-                            <!--};-->
-                            <!--xhr.send();-->
-                            <!--},-->
-                            <!--&lt;!&ndash;// datat应为'a=a1&b=b1'这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式&ndash;&gt;-->
-                            <!--post: function (url, data, fn) {-->
-                            <!--var xhr = new XMLHttpRequest();-->
-                            <!--xhr.open("POST", url, true);-->
-                            <!--// 添加http头，发送信息至服务器时内容编码类型-->
-                            <!--xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
-                            <!--xhr.onreadystatechange = function() {-->
-                            <!--&lt;!&ndash;if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {&ndash;&gt;-->
-                            <!--fn.call(this, xhr.responseText);-->
-                            <!--&lt;!&ndash;}&ndash;&gt;-->
-                            <!--};-->
-                            <!--xhr.send(data);-->
-                            <!--}-->
-                            <!--}-->
-
-                            <!--Ajax.get("http://www.baidu.com",(a,b)=>{-->
-                            <!--print(a);-->
-                            <!--});-->
+                            this.onclick = ()=>{
+                                this.text = 'aaaaa';
+                            };
                         </script>
                     </behaviors>
                 </lable>
+
+                <stack-panel is-horizon="1" space="10">
+                    <behaviors>
+                        <script>
+                            this.dataContext = '[1,2]';
+                        </script>
+                    </behaviors>
+                    <for>
+                        <lable text="111"/>
+                    </for>
+                </stack-panel>
             </stack-panel>
         </inset-panel>
     </scroll-view>

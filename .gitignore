@@ -38,3 +38,6 @@ Carthage/Build
 Example/Pods
 workspace.xml
 Podfile.lock
+GICXMLLayout/JSSupportSrc/node_modules
+package-lock.json
+GICXMLLayout/JSSupportSrc/.idea

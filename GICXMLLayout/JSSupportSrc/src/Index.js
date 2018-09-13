@@ -1,88 +1,142 @@
 import Watcher from './observe/Watcher';
-import Observer from './observe/Observer';
+import { observe } from './observe/Observer';
+import { isObject } from './util/index';
 
-class GIC {
-  static Test() {
-    const data = { name: { bbb: 10 }, bbb: '10' };
-    Observer.observe(data);
-    const a = new Watcher(data, 'name.bbb', (name) => {
-      console.log(`nnnnn${name}`);
-    });
-    console.log(a);
-    data.name.bbb = 10;
-  }
-  /**
-   * 元素初始化
-   * 1. 动态添加obj的getter 、setter 方法
-   * @param obj
-   * @param ps
-   * @returns {*}
-   * @private
-   */
-  static _elementInit(obj, ps) {
-    // 1.属性
-    ps.split(',').forEach((key) => {
-      const propertyName = this._elAttributeNameToPropertyName(key);
-      Object.defineProperty(obj, propertyName, {
-        get() {
-          return this.getAttValue(key);
-        },
-        set(val) {
-          this.setAttValue(key, val);
-        },
-      });
-    });
-    // 2.事件
-    // 点击事件
-    Object.defineProperty(obj, 'onclick', {
-      get() {
-        return this._onClick;
-      },
-      set(val) {
-        this._onClick = val;
-        this.setEvent('event-tap', val);
-      },
-    });
-    // 触摸移动事件
-    Object.defineProperty(obj, 'onmove', {
-      get() {
-        return this._onmove;
-      },
-      set(val) {
-        this._onmove = val;
-        this.setEvent('event-touch-move', val);
-      },
-    });
-  }
-
-  /**
-   * 首字母转大写
-   * @param strO
-   * @returns {string}
-   * @private
-   */
-  static _capitalizedString(strO) {
-    const str = strO.toLowerCase();
-    const reg = /\b(\w)|\s(\w)/g; //  \b判断边界\s判断空格
-    return str.replace(reg, m => m.toUpperCase());
-  }
-
-  /**
-   * 元素的属性名称转对象的属性名，驼峰命名
-   * @param attName
-   * @returns {*}
-   * @private
-   */
-  static _elAttributeNameToPropertyName(attName) {
-    const strs = attName.split('-');
-    let pName = strs[0];
-    for (let i = 1; i < strs.length; i++) {
-      pName += this._capitalizedString(strs[i]);
-    }
-    return pName;
-  }
+/**
+ * 首字母转大写
+ * @param strO
+ * @returns {string}
+ * @private
+ */
+function capitalizedString(strO) {
+  const str = strO.toLowerCase();
+  const reg = /\b(\w)|\s(\w)/g; //  \b判断边界\s判断空格
+  return str.replace(reg, m => m.toUpperCase());
 }
 
+/**
+ * 元素的属性名称转对象的属性名，驼峰命名
+ * @param attName
+ * @returns {*}
+ * @private
+ */
+function elAttributeNameToPropertyName(attName) {
+  const strs = attName.split('-');
+  let pName = strs[0];
+  for (let i = 1; i < strs.length; i++) {
+    pName += capitalizedString(strs[i]);
+  }
+  return pName;
+}
+
+
+/**
+ * 对任意对象添加$watch 扩展
+ * @param key
+ * @param cb
+ * @returns {Watcher}
+ */
+Object.prototype.$watch = function (key, cb) {
+  return new Watcher(this, key, cb);
+};
+
+/**
+ * 添加元素数据绑定
+ * @param obj
+ * @param bindExp 绑定到某个属性
+ * @param cbName
+ * @returns {Watcher}
+ */
+Object.prototype.addElementBind = function (obj, bindExp, cbName) {
+  observe(this);
+  // 主要是用来判断哪些属性需要做监听
+  Object.keys(this).forEach((key) => {
+    if (bindExp.indexOf(key) >= 0) {
+      new Watcher(this, key, () => {
+        obj[cbName](this);
+      });
+      // check path
+      const value = this[key];
+      if (isObject(value)) {
+        value.addElementBind(obj, bindExp, cbName);
+      }
+    }
+  });
+};
+
+/**
+ * 执行绑定表达式(主要是为了解决在表达式中没有添加this，无法访问属性的问题。这个问题其实也可以通过后期编译的方式来解决，类似vue的做法，但是暂时先这样吧。)
+ * 这样做可能会有性能问题，但是问题不大。
+ * @param expStr 表达式
+ * @param selfElement 方法内部this 指针指向的对象
+ */
+Object.prototype.executeBindExpression = function (expStr, selfElement) {
+  let jsStr = 'var obj = arguments[0];';
+  Object.keys(this).forEach((key) => {
+    jsStr += `var ${key}=obj.${key};`;
+  });
+  jsStr += expStr;
+  if (!selfElement) { selfElement = this; }
+  return (new Function(jsStr)).call(selfElement, this);
+};
+
+/**
+ * 在某个对象上执行动态脚本
+ * @param script
+ * @returns {*}
+ */
+Object.prototype.executeScript = function (script) {
+  return (new Function(script)).call(this);
+};
+
+/**
+ * 初始化元素
+ * @param ps
+ * @returns {*}
+ * @private
+ */
+Object.prototype._elementInit = function (ps) {
+  const obj = this;
+  // 1.属性
+  ps.split(',').forEach((key) => {
+    const propertyName = elAttributeNameToPropertyName(key);
+    Object.defineProperty(obj, propertyName, {
+      get() {
+        return this.getAttValue(key);
+      },
+      set(val) {
+        this.setAttValue(key, val);
+      },
+    });
+  });
+  // 2.事件
+  // 点击事件
+  Object.defineProperty(obj, 'onclick', {
+    get() {
+      return this._onClick;
+    },
+    set(val) {
+      this._onClick = val;
+      this.setEvent('event-tap', val);
+    },
+  });
+  // 触摸移动事件
+  Object.defineProperty(obj, 'onmove', {
+    get() {
+      return this._onmove;
+    },
+    set(val) {
+      this._onmove = val;
+      this.setEvent('event-touch-move', val);
+    },
+  });
+  // 添加其他属性
+  Object.defineProperty(obj, 'super', {
+    get() {
+      return this.getSuperElement();
+    },
+  });
+};
 // 为string 添加扩展函数，主要用来做属性转换
 
 /**
@@ -122,6 +176,4 @@ String.prototype.toColor = function () {
   }
   return sColor;
 };
-
-window.GIC = GIC;
 export default GIC;

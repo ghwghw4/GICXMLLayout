@@ -21,6 +21,13 @@ module.exports = {
     'consistent-return': 0,
     'no-param-reassign': 0,
     'max-len': 0,
-    'no-prototype-builtins': 0
+    'no-prototype-builtins': 0,
+    'import/prefer-default-export':0,
+    'no-unused-expressions': 0,
+    'no-self-compare': 0,
+    'no-use-before-define': 0,
+    'prefer-destructuring': 0,
+    'class-methods-use-this': 0,
+    'prefer-rest-params': 0,
   },
 };

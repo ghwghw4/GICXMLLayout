@@ -9,8 +9,11 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol GICJSElementValue <JSExport>
+@property JSValue* dataSource;
 // 获取元素属性值
 -(id)getAttValue:(NSString *)attName;
+
+-(JSValue *)getSuperElement:(JSValue *)selfValue;
 
 // 设置元素属性值
 JSExportAs(setAttValue, - (void)setAttValue:(NSString *)attName newValue:(NSString *)newValue);
@@ -22,5 +25,5 @@ JSExportAs(setEvent, - (void)setEvent:(NSString *)eventName eventFunc:(JSValue *
 @interface GICJSElementValue : NSObject<GICJSElementValue>
 @property (nonatomic,weak,readonly)id element;
 
-+(void)creatValueFrom:(id)element toContext:(id)jsContext;
++(JSValue *)creatValueFrom:(id)element toContext:(id)jsContext;
 @end

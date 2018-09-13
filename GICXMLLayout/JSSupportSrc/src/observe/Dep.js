@@ -27,7 +27,9 @@ class Dep {
   }
 
   depend() {
-    Dep.target.addDep(this);
+    if (Dep.target) {
+      Dep.target.addDep(this);
+    }
   }
 
   removeSub(sub) {
@@ -38,9 +40,10 @@ class Dep {
   }
 
   notify() {
-    this.subs.forEach((sub) => {
-      sub.update();
-    });
+    const subs = this.subs.slice();
+    for (let i = 0, l = subs.length; i < l; i++) {
+      subs[i].update();
+    }
   }
 }
 

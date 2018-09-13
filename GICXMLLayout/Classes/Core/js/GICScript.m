@@ -65,11 +65,13 @@
     
     [self addChildrenContext:root];
     
-    [GICJSElementValue creatValueFrom:self.target toContext:[GICScript globalJSContentx]];
-    NSString *name=[target gic_ExtensionProperties].name;
-    NSString *funcName = self.functionName?:@"_tempFunc";
-    NSString *js = [NSString stringWithFormat:@"function %@() { %@ } %@.apply(%@);",funcName,self->jsScript,funcName,name];
-    [[GICScript globalJSContentx] evaluateScript:js];
+    JSValue *selfValue = [GICJSElementValue creatValueFrom:self.target toContext:[GICScript globalJSContentx]];
+    NSString *funcName = self.functionName?:@"_Func_Script_";
+    // 往selfValue 注入script 中定义的方法
+    NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,self->jsScript];
+    [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
+    // 调用该方法，直接执行脚本
+    [selfValue invokeMethod:funcName withArguments:nil];
 }
 
 -(void)addChildrenContext:(id)parent{

@@ -1,4 +1,5 @@
 import Dep from './Dep';
+import { isObject } from '../util/index';
 
 /**
  * 属性观察者
@@ -26,7 +27,7 @@ class Watcher {
   run() {
     const value = this.get();
     const oldVal = this.value;
-    if (value !== oldVal) {
+    if (value !== oldVal || isObject(value)) {
       this.value = value;
       this.cb.call(this.vm, value, oldVal);
     }
@@ -54,6 +55,7 @@ class Watcher {
   }
 
   get() {
+    if (!this.getter) { return; }
     Dep.target = this;
     const value = this.getter.call(this.vm, this.vm);
     Dep.target = null;
@@ -61,6 +63,7 @@ class Watcher {
   }
 
   static parseGetter(exp) {
+    if (!exp) { return; }
     if (/[^\w.$]/.test(exp)) return;
 
     const exps = exp.split('.');

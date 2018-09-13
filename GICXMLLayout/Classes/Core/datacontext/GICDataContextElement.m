@@ -26,8 +26,4 @@
         }
     }
 }
-
--(void)dealloc{
-    
-}
 @end

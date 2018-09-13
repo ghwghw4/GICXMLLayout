@@ -25,7 +25,7 @@
 -(void)extend:(JSContext*)context logHandler:(void (^)(NSString*,NSArray*,NSString*))logHandler;
 {
  
-    context[@"window"] = @{};
+//    context[@"window"] = @{};
     // 添加setTimeout方法
     context[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
@@ -43,7 +43,7 @@
     
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [context evaluateScript:jsCoreString];
-    [context evaluateScript:@"var GIC = window.GIC;"];
+//    [context evaluateScript:@"var GIC = window.GIC;"];
     
 //    context[@"createElement"] = ^{
 //        NSArray<JSValue *> *args = [JSContext currentArguments];

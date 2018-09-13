@@ -104,12 +104,11 @@
         [d gic_updateDataContext:superDataContenxt];
     }
     
-    if([self respondsToSelector:@selector(gic_subElements)]){
-        for(NSObject *sub in [self performSelector:@selector(gic_subElements)]){
-            if(sub.gic_isAutoInheritDataModel){
-                [sub gic_updateDataContext:superDataContenxt];
-            }
+    for(NSObject *sub in [self performSelector:@selector(gic_subElements)]){
+        if(sub.gic_isAutoInheritDataModel){
+            [sub gic_updateDataContext:superDataContenxt];
         }
     }
 }
 @end
+

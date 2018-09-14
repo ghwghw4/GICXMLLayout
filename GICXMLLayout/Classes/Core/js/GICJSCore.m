@@ -9,23 +9,44 @@
 #import "GICJSConsole.h"
 #import "GICXMLHttpRequest.h"
 #import "NSBundle+GICXMLLayout.h"
+#import <objc/runtime.h>
 
-@implementation GICJSCore
-+(instancetype)shared
-{
-    static dispatch_once_t pred;
-    static GICJSCore* sharedInstance = nil;
-    dispatch_once(&pred, ^{
-        sharedInstance = [[GICJSCore alloc] init];
-    });
-    return sharedInstance;
+@implementation NSObject (GICScript)
+-(JSContext *)gic_JSContext{
+    return objc_getAssociatedObject(self, "gic_JSContext");
 }
 
--(void)extend:(JSContext *)context { return [self extend:context logHandler:nil]; }
--(void)extend:(JSContext*)context logHandler:(void (^)(NSString*,NSArray*,NSString*))logHandler;
+-(void)setGic_JSContext:(JSContext *)jsContext{
+    objc_setAssociatedObject(self, "gic_JSContext", jsContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+@end
+
+@implementation GICJSCore
++(JSContext *)findJSContextFromElement:(NSObject *)element{
+    JSContext *context = [element gic_JSContext];
+    if(context){
+        return context;
+    }
+    NSObject *superEl = [element gic_getSuperElement];
+    if(superEl == nil){
+        context = [[JSContext alloc] init];
+        context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+            NSLog(@"JSException: %@",exception);
+        };
+        // 注入GICJSCore
+        [self extend:context];
+        
+        [element setGic_JSContext:context];
+        return context;
+    }
+    return [self findJSContextFromElement:superEl];
+}
+
++(void)extend:(JSContext *)context { return [self extend:context logHandler:nil]; }
++(void)extend:(JSContext*)context logHandler:(void (^)(NSString*,NSArray*,NSString*))logHandler;
 {
  
-//    context[@"window"] = @{};
+    context[@"window"] = @{};
     // 添加setTimeout方法
     context[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{

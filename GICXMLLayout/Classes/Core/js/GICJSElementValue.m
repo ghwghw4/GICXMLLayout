@@ -8,67 +8,9 @@
 #import "GICJSElementValue.h"
 #import "GICTapEvent.h"
 
-#import "NSObject+GICDataBinding.h"
-#import "GICDataBinding.h"
+#import "GICDataBinding+JSScriptExtension.h"
 
 
-@implementation GICDataBinding (GICJSScript)
--(void)refreshExpressionFromJSValue:(JSValue *)jsValue needCheckMode:(BOOL)needCheckMode{
-    NSString *jsCode = self.expression;
-    if(jsCode.length == 0){
-        jsCode = @"this";
-    }
-    JSValue *selfValue = [GICJSElementValue creatValueFrom:self.target toContext:[jsValue context]];
-    NSString *js = [NSString stringWithFormat:@"return %@",jsCode];
-    JSValue *result = [jsValue invokeMethod:@"executeBindExpression" withArguments:@[js,selfValue]];
-    NSString *valueString = [result isUndefined]?@"":[result toString];
-    id value = nil;
-    if(self.valueConverter){
-        value = [self.valueConverter convert:valueString];
-    }else{
-        value = [self.attributeValueConverter convert:valueString];
-    }
-    self.attributeValueConverter.propertySetter(self.target,value);
-    if(self.valueUpdate){
-        self.valueUpdate(value);
-    }
-    if(!needCheckMode || self.bingdingMode == GICBingdingMode_Once){
-        return;
-    }
-    
-    __block BOOL isTowwayUpdate = NO;
-    // 实现单向绑定
-    @weakify(self)
-    selfValue[@"_updateBindExp"] = ^(JSValue *value){
-        @strongify(self)
-        if(!isTowwayUpdate)
-            [self refreshExpressionFromJSValue:value needCheckMode:NO];
-    };
-    [jsValue invokeMethod:@"addElementBind" withArguments:@[selfValue,jsCode,@"_updateBindExp"]];
-    
-    // 实现双向绑定
-    if(self.bingdingMode == GICBingdingMode_TowWay){
-        if([self.target respondsToSelector:@selector(gic_createTowWayBindingWithAttributeName:withSignalBlock:)]){
-            JSValue *weakJsValue = jsValue;
-            @weakify(self)
-            [self.target gic_createTowWayBindingWithAttributeName:self.attributeName withSignalBlock:^(RACSignal *signal) {
-                [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable newValue) {
-                    // 判断原值和新值是否一致，只有在不一致的时候才会触发更新
-                    // TODO:这里可能会引起内存异常，因为这里对jsValue捕获了，因此要想办法修改
-                    @strongify(self)
-                    isTowwayUpdate = YES;
-                    weakJsValue[self.expression] = newValue;
-                    isTowwayUpdate = NO;
-                }];
-            }];
-        }
-    }
-}
-
--(void)updateDataSourceFromJsValue:(JSValue *)jsValue{
-    [self refreshExpressionFromJSValue:jsValue needCheckMode:YES];
-}
-@end
 
 @implementation GICJSElementValue{
     NSMutableDictionary<NSString *,JSManagedValue *> *managedValueDict;
@@ -80,34 +22,19 @@
     return self;
 }
 
--(void)updateDataContextFromJsValue:(JSValue *)jsValue element:(id)element{
-    for(GICDataBinding *b in [element gic_Bindings]){
-        [b updateDataSourceFromJsValue:jsValue];
-    }
-    
-    for(id e in [element gic_subElements]){
-        [self updateDataContextFromJsValue:jsValue element:e];
-    }
-}
 
--(void)setDataSource:(JSValue *)dataSource{
-    managedValueDict[@"dataSource"] = [JSManagedValue managedValueWithValue:dataSource];
+-(void)setDataContext:(JSValue *)dataContext{
+    managedValueDict[@"dataSource"] = [JSManagedValue managedValueWithValue:dataContext];
     [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[@"dataSource"] withOwner:self];
     // 更新数据源
-    [self updateDataContextFromJsValue:dataSource element:self.element];
-//    NSString *name = [self.element gic_ExtensionProperties].name;
-//    JSValue *selfValue = [dataSource context][name];
-//    selfValue[@"ok"] = ^{
-//        NSLog(@"");
-//    };
-//    [dataSource invokeMethod:@"addElementBind" withArguments:@[selfValue,@"name",@"ok"]];
+    [GICDataBinding updateDataContextFromJsValue:dataContext element:self.element];
 }
 
--(JSValue *)dataSource{
+-(JSValue *)dataContext{
     return managedValueDict[@"dataSource"].value;
 }
 
-+(JSValue *)creatValueFrom:(id)element toContext:(JSContext *)jsContext{
++(JSValue *)getJSValueFrom:(id)element inContext:(JSContext *)jsContext{
     NSString *name = [element gic_ExtensionProperties].name;
     if(!name){
         // 随机生成一个名称
@@ -125,6 +52,7 @@
     
     NSDictionary<NSString *, GICAttributeValueConverter *> *ps = [GICElementsCache classAttributs:[element class]];
     NSString *attStrings = [ps.allKeys componentsJoinedByString:@","];
+    // 初始化元素
     [selfValue invokeMethod:@"_elementInit" withArguments:@[attStrings]];
     return selfValue;
 }
@@ -152,7 +80,7 @@
 -(JSValue *)getSuperElement:(JSValue *)selfValue{
     id superEl = [self.element gic_getSuperElement];
     if(superEl){
-        return [GICJSElementValue creatValueFrom:superEl toContext:[selfValue context]];
+        return [GICJSElementValue getJSValueFrom:superEl inContext:[selfValue context]];
     }
     return nil;
 }

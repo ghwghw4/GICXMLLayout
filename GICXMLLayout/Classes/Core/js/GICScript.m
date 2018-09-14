@@ -12,6 +12,9 @@
 #import "GICJSCore.h"
 #import "GICStringConverter.h"
 
+
+
+
 @interface GICScript(){
 //    JSContext *context;
 }
@@ -19,24 +22,10 @@
 
 @implementation GICScript
 
-+(JSContext *)globalJSContentx{
-    static JSContext *jsContext;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        jsContext = [JSContext new];
-        jsContext.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-            NSLog(@"JSException: %@",exception);
-        };
-        // 注入GICJSCore
-        [[GICJSCore shared] extend:jsContext];
-
-    });
-    return jsContext;
-}
-
 +(NSString *)gic_elementName{
     return @"script";
 }
+
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
@@ -53,6 +42,8 @@
 
 -(void)attachTo:(id)target{
     [super attachTo:target];
+    JSContext *context = [GICJSCore findJSContextFromElement:target];
+
     
     id root = self.target;
     while (true) {
@@ -63,9 +54,9 @@
         root = superEl;
     }
     
-    [self addChildrenContext:root];
+//    [self addChildrenContext:root];
     
-    JSValue *selfValue = [GICJSElementValue creatValueFrom:self.target toContext:[GICScript globalJSContentx]];
+    JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.target inContext:context];
     NSString *funcName = self.functionName?:@"_Func_Script_";
     // 往selfValue 注入script 中定义的方法
     NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,self->jsScript];
@@ -74,11 +65,11 @@
     [selfValue invokeMethod:funcName withArguments:nil];
 }
 
--(void)addChildrenContext:(id)parent{
-    for(id child in [parent gic_subElements]){
-        [GICJSElementValue creatValueFrom:child toContext:[GICScript globalJSContentx]];
-        [self addChildrenContext:child];
-    }
-}
+//-(void)addChildrenContext:(id)parent{
+//    for(id child in [parent gic_subElements]){
+//        [GICJSElementValue getJSValueFrom:child inContext:context];
+//        [self addChildrenContext:child];
+//    }
+//}
 
 @end

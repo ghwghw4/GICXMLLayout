@@ -30,14 +30,22 @@ function elAttributeNameToPropertyName(attName) {
 }
 
 
+// /**
+//  * 对任意对象添加$watch 扩展
+//  * @param key
+//  * @param cb
+//  * @returns {Watcher}
+//  */
+// Object.prototype.$watch = function (key, cb) {
+//   return new Watcher(this, key, cb);
+// };
+
 /**
- * 对任意对象添加$watch 扩展
- * @param key
- * @param cb
- * @returns {Watcher}
+ * 判断对象是否是数组
+ * @returns {boolean}
  */
-Object.prototype.$watch = function (key, cb) {
-  return new Watcher(this, key, cb);
+Object.prototype.isArray = function () {
+  return this instanceof Array;
 };
 
 /**
@@ -71,10 +79,12 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  let jsStr = 'var obj = arguments[0];';
-  Object.keys(this).forEach((key) => {
-    jsStr += `var ${key}=obj.${key};`;
-  });
+  let jsStr = 'var _obj_ = arguments[0];';
+  if (isObject(this)) {
+    Object.keys(this).forEach((key) => {
+      jsStr += `var ${key}=_obj_.${key};`;
+    });
+  }
   jsStr += expStr;
   if (!selfElement) { selfElement = this; }
   return (new Function(jsStr)).call(selfElement, this);
@@ -100,14 +110,16 @@ Object.prototype._elementInit = function (ps) {
   // 1.属性
   ps.split(',').forEach((key) => {
     const propertyName = elAttributeNameToPropertyName(key);
-    Object.defineProperty(obj, propertyName, {
-      get() {
-        return this.getAttValue(key);
-      },
-      set(val) {
-        this.setAttValue(key, val);
-      },
-    });
+    if (propertyName !== 'dataContext') {
+      Object.defineProperty(obj, propertyName, {
+        get() {
+          return this.getAttValue(key);
+        },
+        set(val) {
+          this.setAttValue(key, val);
+        },
+      });
+    }
   });
   // 2.事件
   // 点击事件

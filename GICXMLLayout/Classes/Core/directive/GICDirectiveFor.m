@@ -11,8 +11,6 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICTemplateRef.h"
 
-#define kGICDirectiveForElmentOrderStart  0.0001
-
 @implementation GICDirectiveFor
 +(NSString *)gic_elementName{
     return @"for";

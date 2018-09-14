@@ -8,6 +8,93 @@
 #import "GICDataBinding+JSScriptExtension.h"
 #import "GICJSElementValue.h"
 #import "NSObject+GICDataBinding.h"
+#import "GICDirectiveFor.h"
+
+@implementation NSObject (JSScriptDataContextExtension)
+-(void)gic_updateDataContextFromJsValue:(JSValue *)jsValue{
+    if([self gic_dataPathKey] && [jsValue isObject]){ //以防array 无法获取value
+        JSValue *pathValue = jsValue[[self gic_dataPathKey]];
+        if(![pathValue isUndefined]){
+            // 用来监听gic_dataPathKey对应的属性改变事件
+            JSValue *selfValue = [GICJSElementValue getJSValueFrom:self inContext:[jsValue context]];
+            @weakify(self)
+            selfValue[@"_updateBindPath"] = ^(JSValue *value){
+                @strongify(self)
+                [self gic_updateDataContextFromJsValue:value];
+            };
+            [jsValue invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
+            jsValue = pathValue;
+        }else{
+            jsValue = pathValue;
+        }
+    }
+    
+    for(GICDataBinding *b in [self gic_Bindings]){
+        [b gic_updateDataContextFromJsValue:jsValue];
+    }
+
+    for(GICBehavior *d in [self gic_Behaviors].behaviors){
+        [d gic_updateDataContextFromJsValue:jsValue];
+    }
+    
+    for(id e in [self gic_subElements]){
+        if([e gic_isAutoInheritDataModel]){
+            [e gic_updateDataContextFromJsValue:jsValue];
+        }
+    }
+}
+@end
+
+
+@protocol GICJSForDirective <JSExport>
+JSExportAs(addItem, - (void)addItem:(JSValue *)item index:(NSInteger)index);
+JSExportAs(insertItem, - (void)insertItem:(JSValue *)item index:(NSInteger)index);
+-(void)deleteItemWithIndex:(NSInteger)index;
+-(void)deleteAllItems;
+@end
+
+@interface GICDirectiveFor (JSScriptExtension)<GICJSForDirective>
+@end
+
+
+@implementation GICDirectiveFor (JSScriptExtension)
+-(void)gic_updateDataContextFromJsValue:(JSValue *)jsValue{
+    [super gic_updateDataContextFromJsValue:jsValue];
+    [self updateDataSourceFromJsValue:jsValue];
+}
+
+-(void)updateDataSourceFromJsValue:(JSValue *)jsValue{
+    [self.target gic_removeSubElements:[self.target gic_subElements]];//更新数据源以后需要清空原来是数据，然后重新添加数据
+    if([[jsValue invokeMethod:@"isArray" withArguments:nil] toBool]){
+        jsValue[@"forDirective"] = self;
+        [jsValue invokeMethod:@"toForDirector" withArguments:@[jsValue[@"forDirective"]]];
+    }
+}
+- (void)addItem:(JSValue *)item index:(NSInteger)index {
+    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
+    childElement.gic_isAutoInheritDataModel = NO;
+    [childElement gic_updateDataContextFromJsValue:item];
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    [self.target gic_addSubElement:childElement];
+}
+
+- (void)insertItem:(JSValue *)item index:(NSInteger)index{
+    
+}
+
+-(void)deleteItemWithIndex:(NSInteger)index{
+    NSArray *items =  [self.target gic_subElements];
+    if(index>0  && index < items.count){
+        [self.target gic_removeSubElements:@[items[index]]];
+    }
+}
+
+-(void)deleteAllItems{
+    [self.target gic_removeSubElements:[[self.target gic_subElements] copy]];
+}
+@end
+
+
 
 /**
  实现js 跟 native 之间的数据绑定
@@ -66,34 +153,11 @@
     }
 }
 
--(void)updateDataSourceFromJsValue:(JSValue *)jsValue{
-    [self refreshExpressionFromJSValue:jsValue needCheckMode:YES];
+-(void)gic_updateDataContextFromJsValue:(JSValue *)jsValue{
+     [self refreshExpressionFromJSValue:jsValue needCheckMode:YES];
 }
-
 
 +(void)updateDataContextFromJsValue:(JSValue *)jsValue element:(id)element{
-    if([element gic_dataPathKey] && [jsValue isObject]){ //以防array 无法获取value
-        JSValue *pathValue = jsValue[[element gic_dataPathKey]];
-        if(![pathValue isUndefined]){
-            // 用来监听gic_dataPathKey对应的属性改变事件
-            JSValue *selfValue = [GICJSElementValue getJSValueFrom:element inContext:[jsValue context]];
-            selfValue[@"_updateBindPath"] = ^(JSValue *value){
-                [self updateDataContextFromJsValue:value element:element];
-            };
-            [jsValue invokeMethod:@"addElementBind" withArguments:@[selfValue,[element gic_dataPathKey],@"_updateBindPath"]];
-            jsValue = pathValue;
-        }else{
-            jsValue = pathValue;
-        }
-    }
-    
-    for(GICDataBinding *b in [element gic_Bindings]){
-        [b updateDataSourceFromJsValue:jsValue];
-    }
-    
-    for(id e in [element gic_subElements]){
-        [self updateDataContextFromJsValue:jsValue element:e];
-    }
+    [element gic_updateDataContextFromJsValue:jsValue];
 }
-
 @end

@@ -26,14 +26,18 @@ methodsToPatch.forEach((method) => {
         inserted = args;
         break;
       case 'splice':
-        inserted = args.slice(2);
+        inserted = args[2];
         break;
       default:
         break;
     }
     if (inserted) ob.observeArray(inserted);
     // notify change
-    ob.dep.notify(method, args);
+    // ob.dep.notify(method, args);
+    const subs = ob.dep.subs.slice();
+    for (let i = 0, l = subs.length; i < l; i++) {
+      subs[i].cb(method, args);
+    }
     return result;
   });
 });

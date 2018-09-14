@@ -9,6 +9,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol GICJSElementValue <JSExport>
+// 数据源。用来做绑定的
 @property JSValue* dataContext;
 // 获取元素属性值
 -(id)getAttValue:(NSString *)attName;

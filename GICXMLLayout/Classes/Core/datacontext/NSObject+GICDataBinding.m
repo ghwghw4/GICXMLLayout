@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "GICDataContext+JavaScriptExtension.h"
 
 
 /**
@@ -76,6 +77,11 @@
 
 
 -(void)gic_updateDataContext:(id)superDataContenxt{
+    if([superDataContenxt isKindOfClass:[JSManagedValue class]]){//js 数据源
+        // 这部分逻辑完全交与扩展方法即可
+        [self gic_updateDataContextFromJsValue:superDataContenxt];
+        return;
+    }
     if(self.gic_dataPathKey && ![superDataContenxt isKindOfClass:[NSArray class]]){ //以防array 无法获取value
         id v = [superDataContenxt valueForKey:self.gic_dataPathKey];
         if(![GICUtils isNull:v]){
@@ -85,7 +91,7 @@
                 GICDataModelBinding_ *tmp = [GICDataModelBinding_ new];;
                 tmp.target = self;
                 self.gic_dataModelBinding = tmp;
-                [tmp updateDataSource:superDataContenxt];
+                [tmp gic_updateDataContext:superDataContenxt];
                 // 以便更新当前object的绑定
                 superDataContenxt = v;
             }else{
@@ -98,7 +104,7 @@
         }
     }
     for(GICDataBinding *b in self.gic_Bindings){
-        [b updateDataSource:superDataContenxt];
+        [b gic_updateDataContext:superDataContenxt];
     }
     for(GICBehavior *d in self.gic_Behaviors.behaviors){
         [d gic_updateDataContext:superDataContenxt];

@@ -34,12 +34,12 @@ typedef void (^GICDataBingdingValueUpdateBlock)(id value);
 
 @property (nonatomic,copy)GICDataBingdingValueUpdateBlock valueUpdate;
 
-/**
- 更新数据源
-
- @param dataSource dataSource description
- */
--(void)updateDataSource:(id)dataSource;
+///**
+// 更新数据源
+//
+// @param dataSource dataSource description
+// */
+//-(void)updateDataSource:(id)dataSource;
 
 /**
  强制刷绑定的表达式的value。也即是重新计算表达式。当数据源或者绑定的数据改变的时候会调用

@@ -10,6 +10,7 @@
 #import "NSObject+GICDataContext.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICTemplateRef.h"
+#import "GICDataContext+JavaScriptExtension.h"
 
 @implementation GICDirectiveFor
 +(NSString *)gic_elementName{
@@ -28,7 +29,11 @@
 
 -(void)gic_updateDataContext:(id)superDataContenxt{
     [super gic_updateDataContext:superDataContenxt];
-    [self updateDataSource:[self gic_DataContext]];
+    if([superDataContenxt isKindOfClass:[JSManagedValue class]]){
+        [self updateDataSourceFromJsValue:superDataContenxt];
+    }else{
+       [self updateDataSource:[self gic_DataContext]];
+    }
 }
 
 -(void)updateDataSource:(id)dataSource{

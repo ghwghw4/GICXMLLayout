@@ -1,37 +1,89 @@
 <page title="JSScript">
     <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
+        <templates>
+            <template t-name="base-template">
+                <inset-panel  inset="16 16 14 16">
+                    <stack-panel is-horizon="1" space="8">
+                        <image url="{{ headurl }}" size="32" corner-radius="16"/>
+                        <stack-panel flex-shrink="1" flex-grow="1">
+                            <lable text="{{ exp= name + id,mode=1 }}" font-size="14" font-color="5A6B92"/>
+                            <lable font-size="12" font-color="999999" space-before="6" lines="1">
+                                <s text="{{ time +' ' }}"></s>
+                                <s text="{{ loc +' '}}" font-color="red"></s>
+                                <s>200米</s>
+                            </lable>
+                            <lable text="{{ text }}" space-before="6" font-size="15" font-color="333333"/>
+                            <lable data-path="obj" text="{{ exp=name ,mode=1 }}" space-before="6" font-size="15" font-color="333333"/>
+                            <stack-panel is-horizon="1" space-before="12" justify-content="3" align-items="2">
+                                <stack-panel  is-horizon="1" align-items="2">
+                                    <image local-name="comment" width="20" fill-mode="4"/>
+                                    <lable text="评论" font-size="12" width="60" font-color="666666"/>
+                                    <image local-name="active" width="20" fill-mode="4"/>
+                                    <lable text="赞" font-size="12" font-color="666666"  width="60"/>
+                                </stack-panel>
+                                <dock-panel background-color="F2F6F9" height="22" corner-radius="11">
+                                    <lable text="{{ '   #'+tag+'   ' }}" font-size="14" font-color="5A6B92"/>
+                                </dock-panel>
+                            </stack-panel>
+                        </stack-panel>
+                    </stack-panel>
+                </inset-panel>
+            </template>
+        </templates>
         <inset-panel inset="15">
-            <behaviors>
-                <script>
-                    this.inset = 30;
-                    this.backgroundColor = "blue";
-                </script>
-            </behaviors>
             <stack-panel>
-                <lable>
-                    <behaviors>
-                        <script>
-                            this.text += "ha11";
-                            this.fontColor = "red";
-                            this.fontSize = this.fontSize.toInt()+25;
-                            console.log(this);
-                            this.onclick = ()=>{
-                                this.text = 'aaaaa';
-                            };
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <stack-panel is-horizon="1" space="10">
-                    <behaviors>
-                        <script>
-                            this.dataContext = '[1,2]';
-                        </script>
-                    </behaviors>
+                <stack-panel>
                     <for>
-                        <lable text="111"/>
+                        <template-ref t-name="base-template"/>
                     </for>
+                    <behaviors>
+                        <script>
+                            const data = [{
+                            name: '海伟',
+                            text: '😆👌那你呢',
+                            time: '昨天',
+                            loc: '德平路',
+                            tag: '小姐姐',
+                            id: 10,
+                            headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
+                            obj: {
+                            name: '吼吼',
+                            age: 10,
+                            },
+                            },{
+                            name: '海伟',
+                            text: '😆👌那你呢',
+                            time: '昨天',
+                            loc: '德平路',
+                            tag: '小姐姐',
+                            id: 10,
+                            headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
+                            obj: {
+                            name: '吼吼',
+                            age: 10,
+                            },
+                            },{
+                            name: '海伟',
+                            text: '😆👌那你呢',
+                            time: '昨天',
+                            loc: '德平路',
+                            tag: '小姐姐',
+                            id: 10,
+                            headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
+                            obj: {
+                            name: '吼吼',
+                            age: 10,
+                            },
+                            }];
+                            this.dataContext = data;
+
+                            setTimeout(() => {
+                            data[0].name = 'name';
+                                data.splice(2,2);
+                            }, 1000);
+                        </script>
+                    </behaviors>
                 </stack-panel>
             </stack-panel>
         </inset-panel>

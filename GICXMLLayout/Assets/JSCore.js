@@ -273,6 +273,80 @@ Object.prototype.$watch = function (key, cb) {
 };
 
 /**
+ * 判断对象是否是数组
+ * @returns {boolean}
+ */
+Object.prototype.isArray = function () {
+  return this instanceof Array;
+};
+
+/**
+ * 将array 转换成for指令
+ * @param forTarget
+ */
+Array.prototype.toForDirector = function (forTarget) {
+  var _this = this;
+
+  for (var i = 0; i < this.length; i++) {
+    forTarget.addItem(this[i], i);
+  }
+  // 监听数据改变事件
+  var ob = (0, _Observer.observe)(this);
+  var a = this.$watch(null, function (methodname, args) {
+    switch (methodname) {
+      case 'push':
+        args.forEach(function (item) {
+          forTarget.addItem(args, _this.indexOf(item));
+        });
+        break;
+      case 'unshift':
+        // 向数组的开头添加一个或更多元素
+        // TODO:暂不支持插入
+        break;
+      case 'shift':
+        // 删除数组的第一个元素
+        forTarget.deleteItemWithIndex(0);
+        break;
+      case 'pop':
+        // 删除数组的最后一个元素
+        forTarget.deleteItemWithIndex(_this.length); // 这里index 直接写length，因为已经将数据删除过了，而native还没有删除
+        break;
+      case 'reverse': // 反转数组
+      case 'sort':
+        // 对数组进行排序
+        forTarget.deleteAllItems(); // 先删除所有的数据，然后再重新创建数据。
+        for (var _i = 0; _i < _this.length; _i++) {
+          forTarget.addItem(_this[_i], _i);
+        }
+        break;
+      case 'splice':
+        {
+          var startIndex = args[0];
+          var count = args[1];
+          // const insertedItems = args[2];
+          if (count > 0) {
+            // 删除items
+            if (startIndex >= 0) {
+              // 从前往后删
+              for (var _i2 = 0; _i2 < count; _i2++) {
+                forTarget.deleteItemWithIndex(startIndex);
+              }
+            } else {// 从后往前删
+              // TODO: 暂不支持.
+            }
+          } else if (count === 0) {// 添加items
+            // TODO:插入不支持
+          }
+          break;
+        }
+      default:
+        break;
+    }
+  });
+  a.addDep(ob.dep);
+};
+
+/**
  * 添加元素数据绑定
  * @param obj
  * @param bindExp 绑定到某个属性
@@ -280,17 +354,17 @@ Object.prototype.$watch = function (key, cb) {
  * @returns {Watcher}
  */
 Object.prototype.addElementBind = function (obj, bindExp, cbName) {
-  var _this = this;
+  var _this2 = this;
 
   (0, _Observer.observe)(this);
   // 主要是用来判断哪些属性需要做监听
   Object.keys(this).forEach(function (key) {
     if (bindExp.indexOf(key) >= 0) {
-      new _Watcher2.default(_this, key, function () {
-        obj[cbName](_this);
+      new _Watcher2.default(_this2, key, function () {
+        obj[cbName](_this2);
       });
       // check path
-      var value = _this[key];
+      var value = _this2[key];
       if ((0, _index.isObject)(value)) {
         value.addElementBind(obj, bindExp, cbName);
       }
@@ -305,10 +379,12 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  var jsStr = 'var obj = arguments[0];';
-  Object.keys(this).forEach(function (key) {
-    jsStr += 'var ' + key + '=obj.' + key + ';';
-  });
+  var jsStr = 'var dataContext = arguments[0];';
+  if ((0, _index.isObject)(this)) {
+    Object.keys(this).forEach(function (key) {
+      jsStr += 'var ' + key + '=dataContext.' + key + ';';
+    });
+  }
   jsStr += expStr;
   if (!selfElement) {
     selfElement = this;
@@ -336,14 +412,16 @@ Object.prototype._elementInit = function (ps) {
   // 1.属性
   ps.split(',').forEach(function (key) {
     var propertyName = elAttributeNameToPropertyName(key);
-    Object.defineProperty(obj, propertyName, {
-      get: function get() {
-        return this.getAttValue(key);
-      },
-      set: function set(val) {
-        this.setAttValue(key, val);
-      }
-    });
+    if (propertyName !== 'dataContext') {
+      Object.defineProperty(obj, propertyName, {
+        get: function get() {
+          return this.getAttValue(key);
+        },
+        set: function set(val) {
+          this.setAttValue(key, val);
+        }
+      });
+    }
   });
   // 2.事件
   // 点击事件
@@ -373,6 +451,7 @@ Object.prototype._elementInit = function (ps) {
     }
   });
 };
+
 // 为string 添加扩展函数，主要用来做属性转换
 
 /**
@@ -404,8 +483,8 @@ String.prototype.toColor = function () {
     }
     // 处理六位的颜色值
     var sColorChange = [];
-    for (var _i = 1; _i < 7; _i += 2) {
-      sColorChange.push(parseInt('0x' + sColor.slice(_i, _i + 2), 0));
+    for (var _i3 = 1; _i3 < 7; _i3 += 2) {
+      sColorChange.push(parseInt('0x' + sColor.slice(_i3, _i3 + 2), 0));
     }
     return 'RGB(' + sColorChange.join(',') + ')';
   }
@@ -764,7 +843,7 @@ methodsToPatch.forEach(function (method) {
         inserted = args;
         break;
       case 'splice':
-        inserted = args.slice(2);
+        inserted = args[2];
         break;
       default:
         break;

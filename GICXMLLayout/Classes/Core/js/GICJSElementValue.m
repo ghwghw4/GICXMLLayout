@@ -8,7 +8,7 @@
 #import "GICJSElementValue.h"
 #import "GICTapEvent.h"
 
-#import "GICDataBinding+JSScriptExtension.h"
+//#import "GICDataBinding+JSScriptExtension.h"
 
 
 
@@ -24,14 +24,19 @@
 
 
 -(void)setDataContext:(JSValue *)dataContext{
-    managedValueDict[@"dataSource"] = [JSManagedValue managedValueWithValue:dataContext];
-    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[@"dataSource"] withOwner:self];
+//    managedValueDict[@"dataSource"] = [JSManagedValue managedValueWithValue:dataContext];
+    JSManagedValue * ds =  [JSManagedValue managedValueWithValue:dataContext];
+//    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[@"dataSource"] withOwner:self];
     // 更新数据源
-    [GICDataBinding updateDataContextFromJsValue:dataContext element:self.element];
+    [self.element setGic_DataContext:ds];
 }
 
 -(JSValue *)dataContext{
-    return managedValueDict[@"dataSource"].value;
+    id ds = [self.element gic_DataContext];
+    if([ds isKindOfClass:[JSManagedValue class]]){
+        return ds;
+    }
+    return nil;
 }
 
 +(JSValue *)getJSValueFrom:(id)element inContext:(JSContext *)jsContext{
@@ -59,7 +64,7 @@
 
 - (void)setEvent:(NSString *)eventName eventFunc:(JSValue *)eventFunc{
     managedValueDict[eventName] = [JSManagedValue managedValueWithValue:eventFunc];
-    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[eventName] withOwner:self];
+//    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[eventName] withOwner:self];
     GICEvent *event = [_element gic_event_findFirstWithEventNameOrCreate:eventName];
     @weakify(self)
     [event.eventSubject subscribeNext:^(id  _Nullable x) {

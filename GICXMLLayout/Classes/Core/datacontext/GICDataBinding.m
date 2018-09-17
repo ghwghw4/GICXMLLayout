@@ -12,11 +12,8 @@
 #import <GICJsonParser/GICJsonParser.h>
 #import <GICJsonParser/NSObject+Reflector.h>
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "GICDataContext+JavaScriptExtension.h"
 
-@interface GICDataBinding(){
-    
-}
-@end
 
 @implementation GICDataBinding
 
@@ -139,12 +136,21 @@
     }
 }
 
--(void)updateDataSource:(id)dataSource{
+-(void)gic_updateDataContext:(id)dataSource{
     if(_dataSource !=dataSource){
         _isInitBinding = NO;
         _dataSource = dataSource;
-        [self refreshExpression];
+        // 支持JS 数据源
+        if([self.dataSource isKindOfClass:[JSManagedValue class]]){
+            // 这部分逻辑完全交与扩展方法即可
+            [self refreshExpressionFromJSValue:self.dataSource needCheckMode:YES];
+        }else{
+            [self refreshExpression];
+        }
         _isInitBinding = YES;
     }
 }
+
 @end
+
+

@@ -25,7 +25,7 @@
         @strongify(self)
         if (touch.tapCount == 2) {
             if(self->isRejectEnum){
-                [(_ASDisplayView *)target.view __forwardTouchesEnded:x[0] withEvent:x[1]];
+                [(_ASDisplayView *)((ASDisplayNode *)self.target).view __forwardTouchesEnded:x[0] withEvent:x[1]];
             }
             [self.eventSubject sendNext:touch];
         }

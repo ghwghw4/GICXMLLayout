@@ -21,7 +21,7 @@
     @weakify(self)
     [[target rac_signalForSelector:@selector(touchesMoved:withEvent:)] subscribeNext:^(RACTuple * _Nullable x) {
         if(self->isRejectEnum){
-            [(_ASDisplayView *)target.view __forwardTouchesMoved:x[0] withEvent:x[1]];
+            [(_ASDisplayView *)((ASDisplayNode *)self.target).view __forwardTouchesMoved:x[0] withEvent:x[1]];
         }
         @strongify(self)
         [self.eventSubject sendNext:x];

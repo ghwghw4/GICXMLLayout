@@ -378,14 +378,14 @@ function elAttributeNameToPropertyName(attName) {
 
 /**
  * 初始化元素
- * @param ps
+ * @param props
  * @returns {*}
  * @private
  */
-Object.prototype._elementInit = function (ps) {
+Object.prototype._elementInit = function (props) {
   var obj = this;
   // 1.属性
-  ps.split(',').forEach(function (key) {
+  props.forEach(function (key) {
     var propertyName = elAttributeNameToPropertyName(key);
     if (propertyName !== 'dataContext') {
       Object.defineProperty(obj, propertyName, {
@@ -471,11 +471,11 @@ Array.prototype.toForDirector = function (forTarget) {
   }
   // 监听数据改变事件
   var ob = (0, _Observer.observe)(this);
-  var a = this.$watch(null, function (methodname, args) {
+  var a = this.$watch('arrarchanged', function (methodname, args) {
     switch (methodname) {
       case 'push':
         args.forEach(function (item) {
-          forTarget.addItem(args, _this.indexOf(item));
+          forTarget.addItem(item, _this.indexOf(item));
         });
         break;
       case 'unshift':
@@ -539,9 +539,26 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
   // 主要是用来判断哪些属性需要做监听
   Object.keys(this).forEach(function (key) {
     if (bindExp.indexOf(key) >= 0) {
-      new _Watcher2.default(_this2, key, function () {
-        obj[cbName](_this2);
+      var watchers = obj.__watchers__;
+      if (!watchers) {
+        watchers = [];
+        obj.__watchers__ = watchers;
+      }
+
+      var hasW = false;
+      watchers.forEach(function (w) {
+        if (w.expOrFn === key) {
+          hasW = true;
+        }
       });
+
+      if (!hasW) {
+        var watcher = new _Watcher2.default(_this2, key, function () {
+          obj[cbName](_this2);
+        });
+        watchers.push(watcher);
+      }
+
       // check path
       var value = _this2[key];
       if ((0, _index.isObject)(value)) {
@@ -818,7 +835,10 @@ methodsToPatch.forEach(function (method) {
     // ob.dep.notify(method, args);
     var subs = ob.dep.subs.slice();
     for (var i = 0, l = subs.length; i < l; i++) {
-      subs[i].cb(method, args);
+      var sub = subs[i];
+      if (sub.expOrFn === 'arrarchanged') {
+        sub.cb(method, args);
+      }
     }
     return result;
   });

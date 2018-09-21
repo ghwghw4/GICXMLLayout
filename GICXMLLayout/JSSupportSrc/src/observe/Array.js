@@ -36,7 +36,10 @@ methodsToPatch.forEach((method) => {
     // ob.dep.notify(method, args);
     const subs = ob.dep.subs.slice();
     for (let i = 0, l = subs.length; i < l; i++) {
-      subs[i].cb(method, args);
+      const sub = subs[i];
+      if (sub.expOrFn === 'arrarchanged') {
+        sub.cb(method, args);
+      }
     }
     return result;
   });

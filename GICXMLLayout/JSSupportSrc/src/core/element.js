@@ -29,14 +29,14 @@ function elAttributeNameToPropertyName(attName) {
 
 /**
  * 初始化元素
- * @param ps
+ * @param props
  * @returns {*}
  * @private
  */
-Object.prototype._elementInit = function (ps) {
+Object.prototype._elementInit = function (props) {
   const obj = this;
   // 1.属性
-  ps.split(',').forEach((key) => {
+  props.forEach((key) => {
     const propertyName = elAttributeNameToPropertyName(key);
     if (propertyName !== 'dataContext') {
       Object.defineProperty(obj, propertyName, {

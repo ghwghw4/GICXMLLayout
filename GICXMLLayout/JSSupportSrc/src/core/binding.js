@@ -22,11 +22,11 @@ Array.prototype.toForDirector = function (forTarget) {
   }
   // 监听数据改变事件
   const ob = observe(this);
-  const a = this.$watch(null, (methodname, args) => {
+  const a = this.$watch('arrarchanged', (methodname, args) => {
     switch (methodname) {
       case 'push':
         args.forEach((item) => {
-          forTarget.addItem(args, this.indexOf(item));
+          forTarget.addItem(item, this.indexOf(item));
         });
         break;
       case 'unshift':// 向数组的开头添加一个或更多元素
@@ -82,9 +82,26 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
   // 主要是用来判断哪些属性需要做监听
   Object.keys(this).forEach((key) => {
     if (bindExp.indexOf(key) >= 0) {
-      new Watcher(this, key, () => {
-        obj[cbName](this);
+      let watchers = obj.__watchers__;
+      if (!watchers) {
+        watchers = [];
+        obj.__watchers__ = watchers;
+      }
+
+      let hasW = false;
+      watchers.forEach((w) => {
+        if (w.expOrFn === key) {
+          hasW = true;
+        }
       });
+
+      if (!hasW) {
+        const watcher = new Watcher(this, key, () => {
+          obj[cbName](this);
+        });
+        watchers.push(watcher);
+      }
+
       // check path
       const value = this[key];
       if (isObject(value)) {

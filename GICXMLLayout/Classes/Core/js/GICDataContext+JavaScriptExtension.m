@@ -74,7 +74,7 @@
 
 -(void)deleteItemWithIndex:(NSInteger)index{
     NSArray *items =  [self.target gic_subElements];
-    if(index>0  && index < items.count){
+    if(index>=0  && index < items.count){
         [self.target gic_removeSubElements:@[items[index]]];
     }
 }

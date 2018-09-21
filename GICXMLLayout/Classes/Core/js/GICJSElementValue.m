@@ -63,9 +63,8 @@
     selfValue = jsContext[name];
     
     NSDictionary<NSString *, GICAttributeValueConverter *> *ps = [GICElementsCache classAttributs:[element class]];
-    NSString *attStrings = [ps.allKeys componentsJoinedByString:@","];
     // 初始化元素
-    [selfValue invokeMethod:@"_elementInit" withArguments:@[attStrings]];
+    [selfValue invokeMethod:@"_elementInit" withArguments:@[ps.allKeys]];
     
     __weak JSContext *weakContext = jsContext;
     [[element rac_willDeallocSignal] subscribeCompleted:^{

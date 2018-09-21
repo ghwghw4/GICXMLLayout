@@ -30,7 +30,12 @@
 -(void)gic_updateDataContext:(id)superDataContenxt{
     [super gic_updateDataContext:superDataContenxt];
     if([superDataContenxt isKindOfClass:[JSManagedValue class]]){
-        [self updateDataSourceFromJsValue:superDataContenxt];
+        JSManagedValue *jsValue = superDataContenxt;
+        if([self gic_dataPathKey] && [jsValue.value isObject]){ //以防array 无法获取value
+            JSValue *pathValue = jsValue.value[[self gic_dataPathKey]];
+            jsValue = [JSManagedValue managedValueWithValue:pathValue];
+        }
+        [self updateDataSourceFromJsValue:jsValue];
     }else{
        [self updateDataSource:[self gic_DataContext]];
     }

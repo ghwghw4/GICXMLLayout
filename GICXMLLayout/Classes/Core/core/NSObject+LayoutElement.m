@@ -191,6 +191,10 @@
     return self.gic_ExtensionProperties.superElement;
 }
 
+-(void)gic_removeFromSuperElement{
+    [[self gic_getSuperElement] gic_removeSubElements:@[self]];
+}
+
 -(NSArray *)gic_subElements{
     return [self.gic_ExtensionProperties.subElements copy];
 }

@@ -9,9 +9,5 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface GICJSCore : NSObject
-//+(GICJSCore*)shared;
-//-(void)extend:(JSContext*)context;
-//-(void)extend:(JSContext*)context logHandler:(void (^)(NSString* logLevel,NSArray* params,NSString* formatedLogEntry))logHandler;
-
 +(JSContext *)findJSContextFromElement:(NSObject *)element;
 @end

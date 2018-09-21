@@ -7,7 +7,8 @@
 
 #import "GICJSElementValue.h"
 #import "GICTapEvent.h"
-
+#import "JSValue+GICXMLLayout.h"
+#import "GICJSCore.h"
 //#import "GICDataBinding+JSScriptExtension.h"
 
 
@@ -24,22 +25,28 @@
 
 
 -(void)setDataContext:(JSValue *)dataContext{
-//    managedValueDict[@"dataSource"] = [JSManagedValue managedValueWithValue:dataContext];
-    JSManagedValue * ds =  [JSManagedValue managedValueWithValue:dataContext];
-//    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[@"dataSource"] withOwner:self];
+    JSManagedValue * ds =  [dataContext gic_ToManagedValue:self.element];
     // 更新数据源
     [self.element setGic_DataContext:ds];
+    
+    // NOTE:下面代码很关键，因为采用了JSManagedValue,因此JSValue会因为JS的垃圾回收机制会自动回收掉。因此将dataContext保存到一个本身的全局变量中就不会被回收，除非本身的value被回收才会一并回收掉
+    JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.element inContext:[dataContext context]];
+    selfValue[@"__dataContext__"] = dataContext;
 }
 
 -(JSValue *)dataContext{
     id ds = [self.element gic_DataContext];
     if([ds isKindOfClass:[JSManagedValue class]]){
-        return ds;
+        JSValue *jsV = [(JSManagedValue *)ds value];
+        return jsV;
     }
     return nil;
 }
 
 +(JSValue *)getJSValueFrom:(id)element inContext:(JSContext *)jsContext{
+    if(jsContext==nil){
+        jsContext  = [GICJSCore findJSContextFromElement:element];
+    }
     NSString *name = [element gic_ExtensionProperties].name;
     if(!name){
         // 随机生成一个名称
@@ -59,12 +66,16 @@
     NSString *attStrings = [ps.allKeys componentsJoinedByString:@","];
     // 初始化元素
     [selfValue invokeMethod:@"_elementInit" withArguments:@[attStrings]];
+    
+    __weak JSContext *weakContext = jsContext;
+    [[element rac_willDeallocSignal] subscribeCompleted:^{
+        [weakContext evaluateScript:[NSString stringWithFormat:@"delete %@",name]];
+    }];
     return selfValue;
 }
 
 - (void)setEvent:(NSString *)eventName eventFunc:(JSValue *)eventFunc{
     managedValueDict[eventName] = [JSManagedValue managedValueWithValue:eventFunc];
-//    [[[JSContext currentContext] virtualMachine] addManagedReference:managedValueDict[eventName] withOwner:self];
     GICEvent *event = [_element gic_event_findFirstWithEventNameOrCreate:eventName];
     @weakify(self)
     [event.eventSubject subscribeNext:^(id  _Nullable x) {
@@ -82,12 +93,16 @@
     return nil;
 }
 
--(JSValue *)getSuperElement:(JSValue *)selfValue{
-    id superEl = [self.element gic_getSuperElement];
++(JSValue *)getSuperElement:(id)selfElement{
+    id superEl = [selfElement gic_getSuperElement];
     if(superEl){
-        return [GICJSElementValue getJSValueFrom:superEl inContext:[selfValue context]];
+        return [GICJSElementValue getJSValueFrom:superEl inContext:[JSContext currentContext]];
     }
     return nil;
+}
+
+-(JSValue *)getSuperElement{
+    return [GICJSElementValue getSuperElement:self.element];
 }
 
 - (void)setAttValue:(NSString *)attName newValue:(NSString *)newValue {
@@ -97,7 +112,23 @@
     }
 }
 
+-(NSArray *)subElements{
+    NSMutableArray *mutArray = [NSMutableArray array];
+    [[self.element gic_subElements] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mutArray addObject:[GICJSElementValue getJSValueFrom:obj inContext:[JSContext currentContext]]];
+    }];
+    return mutArray;
+}
+
 -(NSString *)description{
     return [NSString stringWithFormat:@"<GICJSElementValue>: elementName = %@, name = %@",[[_element class] gic_elementName],  [_element gic_ExtensionProperties].name];
+}
+
+-(void)removeFromSupeElement{
+    [self.element gic_removeFromSuperElement];
+}
+
+-(void)dealloc{
+    NSLog(@"jsvalue dealloc");
 }
 @end

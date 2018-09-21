@@ -223,15 +223,129 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Watcher = __webpack_require__(3);
+var _string = __webpack_require__(3);
 
-var _Watcher2 = _interopRequireDefault(_Watcher);
+Object.keys(_string).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _string[key];
+    }
+  });
+});
 
-var _Observer = __webpack_require__(4);
+var _object = __webpack_require__(4);
 
-var _index = __webpack_require__(0);
+Object.keys(_object).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _object[key];
+    }
+  });
+});
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _element = __webpack_require__(5);
+
+Object.keys(_element).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _element[key];
+    }
+  });
+});
+
+var _binding = __webpack_require__(6);
+
+Object.keys(_binding).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _binding[key];
+    }
+  });
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// 为string 添加扩展函数，主要用来做属性转换
+/**
+ * 转成int
+ * @returns {Number}
+ */
+String.prototype.toInt = function () {
+  return parseInt(this, 0);
+};
+
+/**
+ * 转成float
+ * @returns {Number}
+ */
+String.prototype.toFloat = function () {
+  return parseFloat(this);
+};
+
+String.prototype.toColor = function () {
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  var sColor = this.toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      var sColorNew = '#';
+      for (var i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    // 处理六位的颜色值
+    var sColorChange = [];
+    for (var _i = 1; _i < 7; _i += 2) {
+      sColorChange.push(parseInt('0x' + sColor.slice(_i, _i + 2), 0));
+    }
+    return 'RGB(' + sColorChange.join(',') + ')';
+  }
+  return sColor;
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * 在某个对象上执行动态脚本
+ * @param script
+ * @returns {*}
+ */
+Object.prototype.executeScript = function (script) {
+  return new Function(script).call(this);
+};
+
+/**
+ * 判断对象是否是数组
+ * @returns {boolean}
+ */
+Object.prototype.isArray = function () {
+  return this instanceof Array;
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /**
  * 首字母转大写
@@ -263,6 +377,79 @@ function elAttributeNameToPropertyName(attName) {
 }
 
 /**
+ * 初始化元素
+ * @param ps
+ * @returns {*}
+ * @private
+ */
+Object.prototype._elementInit = function (ps) {
+  var obj = this;
+  // 1.属性
+  ps.split(',').forEach(function (key) {
+    var propertyName = elAttributeNameToPropertyName(key);
+    if (propertyName !== 'dataContext') {
+      Object.defineProperty(obj, propertyName, {
+        get: function get() {
+          return this.getAttValue(key);
+        },
+        set: function set(val) {
+          this.setAttValue(key, val);
+        }
+      });
+    }
+  });
+  // 2.事件
+  // 点击事件
+  Object.defineProperty(obj, 'onclick', {
+    get: function get() {
+      return this._onClick;
+    },
+    set: function set(val) {
+      this._onClick = val;
+      this.setEvent('event-tap', val);
+    }
+  });
+  // 触摸移动事件
+  Object.defineProperty(obj, 'onmove', {
+    get: function get() {
+      return this._onmove;
+    },
+    set: function set(val) {
+      this._onmove = val;
+      this.setEvent('event-touch-move', val);
+    }
+  });
+  // 添加其他属性
+  Object.defineProperty(obj, 'super', {
+    get: function get() {
+      return this.getSuperElement();
+    }
+  });
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Binding = Binding;
+
+var _index = __webpack_require__(0);
+
+var _Observer = __webpack_require__(7);
+
+var _Watcher = __webpack_require__(9);
+
+var _Watcher2 = _interopRequireDefault(_Watcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
  * 对任意对象添加$watch 扩展
  * @param key
  * @param cb
@@ -270,14 +457,6 @@ function elAttributeNameToPropertyName(attName) {
  */
 Object.prototype.$watch = function (key, cb) {
   return new _Watcher2.default(this, key, cb);
-};
-
-/**
- * 判断对象是否是数组
- * @returns {boolean}
- */
-Object.prototype.isArray = function () {
-  return this instanceof Array;
 };
 
 /**
@@ -392,224 +571,10 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
   return new Function(jsStr).call(selfElement, this);
 };
 
-/**
- * 在某个对象上执行动态脚本
- * @param script
- * @returns {*}
- */
-Object.prototype.executeScript = function (script) {
-  return new Function(script).call(this);
-};
-
-/**
- * 初始化元素
- * @param ps
- * @returns {*}
- * @private
- */
-Object.prototype._elementInit = function (ps) {
-  var obj = this;
-  // 1.属性
-  ps.split(',').forEach(function (key) {
-    var propertyName = elAttributeNameToPropertyName(key);
-    if (propertyName !== 'dataContext') {
-      Object.defineProperty(obj, propertyName, {
-        get: function get() {
-          return this.getAttValue(key);
-        },
-        set: function set(val) {
-          this.setAttValue(key, val);
-        }
-      });
-    }
-  });
-  // 2.事件
-  // 点击事件
-  Object.defineProperty(obj, 'onclick', {
-    get: function get() {
-      return this._onClick;
-    },
-    set: function set(val) {
-      this._onClick = val;
-      this.setEvent('event-tap', val);
-    }
-  });
-  // 触摸移动事件
-  Object.defineProperty(obj, 'onmove', {
-    get: function get() {
-      return this._onmove;
-    },
-    set: function set(val) {
-      this._onmove = val;
-      this.setEvent('event-touch-move', val);
-    }
-  });
-  // 添加其他属性
-  Object.defineProperty(obj, 'super', {
-    get: function get() {
-      return this.getSuperElement();
-    }
-  });
-};
-
-// 为string 添加扩展函数，主要用来做属性转换
-
-/**
- * 转成int
- * @returns {Number}
- */
-String.prototype.toInt = function () {
-  return parseInt(this, 0);
-};
-
-/**
- * 转成float
- * @returns {Number}
- */
-String.prototype.toFloat = function () {
-  return parseFloat(this);
-};
-
-String.prototype.toColor = function () {
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  var sColor = this.toLowerCase();
-  if (sColor && reg.test(sColor)) {
-    if (sColor.length === 4) {
-      var sColorNew = '#';
-      for (var i = 1; i < 4; i += 1) {
-        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-      }
-      sColor = sColorNew;
-    }
-    // 处理六位的颜色值
-    var sColorChange = [];
-    for (var _i3 = 1; _i3 < 7; _i3 += 2) {
-      sColorChange.push(parseInt('0x' + sColor.slice(_i3, _i3 + 2), 0));
-    }
-    return 'RGB(' + sColorChange.join(',') + ')';
-  }
-  return sColor;
-};
-exports.default = GIC;
+function Binding() {}
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Dep = __webpack_require__(1);
-
-var _Dep2 = _interopRequireDefault(_Dep);
-
-var _index = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * 属性观察者
- */
-var Watcher = function () {
-  function Watcher(vm, expOrFn, cb) {
-    _classCallCheck(this, Watcher);
-
-    this.cb = cb;
-    this.vm = vm;
-    this.expOrFn = expOrFn;
-    this.depIds = {};
-
-    if (typeof expOrFn === 'function') {
-      this.getter = expOrFn;
-    } else {
-      this.getter = Watcher.parseGetter(expOrFn);
-    }
-
-    this.value = this.get();
-  }
-
-  _createClass(Watcher, [{
-    key: 'update',
-    value: function update() {
-      this.run();
-    }
-  }, {
-    key: 'run',
-    value: function run() {
-      var value = this.get();
-      var oldVal = this.value;
-      if (value !== oldVal || (0, _index.isObject)(value)) {
-        this.value = value;
-        this.cb.call(this.vm, value, oldVal);
-      }
-    }
-  }, {
-    key: 'addDep',
-    value: function addDep(dep) {
-      // 1. 每次调用run()的时候会触发相应属性的getter
-      // getter里面会触发dep.depend()，继而触发这里的addDep
-      // 2. 假如相应属性的dep.id已经在当前watcher的depIds里，说明不是一个新的属性，仅仅是改变了其值而已
-      // 则不需要将当前watcher添加到该属性的dep里
-      // 3. 假如相应属性是新的属性，则将当前watcher添加到新属性的dep里
-      // 如通过 vm.child = {name: 'a'} 改变了 child.name 的值，child.name 就是个新属性
-      // 则需要将当前watcher(child.name)加入到新的 child.name 的dep里
-      // 因为此时 child.name 是个新值，之前的 setter、dep 都已经失效，如果不把 watcher 加入到新的 child.name 的dep中
-      // 通过 child.name = xxx 赋值的时候，对应的 watcher 就收不到通知，等于失效了
-      // 4. 每个子属性的watcher在添加到子属性的dep的同时，也会添加到父属性的dep
-      // 监听子属性的同时监听父属性的变更，这样，父属性改变时，子属性的watcher也能收到通知进行update
-      // 这一步是在 this.get() --> this.getVMVal() 里面完成，forEach时会从父级开始取值，间接调用了它的getter
-      // 触发了addDep(), 在整个forEach过程，当前wacher都会加入到每个父级过程属性的dep
-      // 例如：当前watcher的是'child.child.name', 那么child, child.child, child.child.name这三个属性的dep都会加入当前watcher
-      if (!this.depIds.hasOwnProperty(dep.id)) {
-        dep.addSub(this);
-        this.depIds[dep.id] = dep;
-      }
-    }
-  }, {
-    key: 'get',
-    value: function get() {
-      if (!this.getter) {
-        return;
-      }
-      _Dep2.default.target = this;
-      var value = this.getter.call(this.vm, this.vm);
-      _Dep2.default.target = null;
-      return value;
-    }
-  }], [{
-    key: 'parseGetter',
-    value: function parseGetter(exp) {
-      if (!exp) {
-        return;
-      }
-      if (/[^\w.$]/.test(exp)) return;
-
-      var exps = exp.split('.');
-      return function (obj) {
-        for (var i = 0, len = exps.length; i < len; i++) {
-          if (!obj) return;
-          obj = obj[exps[i]];
-        }
-        return obj;
-      };
-    }
-  }]);
-
-  return Watcher;
-}();
-
-exports.default = Watcher;
-
-/***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -628,7 +593,7 @@ var _Dep = __webpack_require__(1);
 
 var _Dep2 = _interopRequireDefault(_Dep);
 
-var _Array = __webpack_require__(5);
+var _Array = __webpack_require__(8);
 
 var _index = __webpack_require__(0);
 
@@ -808,7 +773,7 @@ function observe(value, asRootData) {
 }
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -858,6 +823,122 @@ methodsToPatch.forEach(function (method) {
     return result;
   });
 });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Dep = __webpack_require__(1);
+
+var _Dep2 = _interopRequireDefault(_Dep);
+
+var _index = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * 属性观察者
+ */
+var Watcher = function () {
+  function Watcher(vm, expOrFn, cb) {
+    _classCallCheck(this, Watcher);
+
+    this.cb = cb;
+    this.vm = vm;
+    this.expOrFn = expOrFn;
+    this.depIds = {};
+
+    if (typeof expOrFn === 'function') {
+      this.getter = expOrFn;
+    } else {
+      this.getter = Watcher.parseGetter(expOrFn);
+    }
+
+    this.value = this.get();
+  }
+
+  _createClass(Watcher, [{
+    key: 'update',
+    value: function update() {
+      this.run();
+    }
+  }, {
+    key: 'run',
+    value: function run() {
+      var value = this.get();
+      var oldVal = this.value;
+      if (value !== oldVal || (0, _index.isObject)(value)) {
+        this.value = value;
+        this.cb.call(this.vm, value, oldVal);
+      }
+    }
+  }, {
+    key: 'addDep',
+    value: function addDep(dep) {
+      // 1. 每次调用run()的时候会触发相应属性的getter
+      // getter里面会触发dep.depend()，继而触发这里的addDep
+      // 2. 假如相应属性的dep.id已经在当前watcher的depIds里，说明不是一个新的属性，仅仅是改变了其值而已
+      // 则不需要将当前watcher添加到该属性的dep里
+      // 3. 假如相应属性是新的属性，则将当前watcher添加到新属性的dep里
+      // 如通过 vm.child = {name: 'a'} 改变了 child.name 的值，child.name 就是个新属性
+      // 则需要将当前watcher(child.name)加入到新的 child.name 的dep里
+      // 因为此时 child.name 是个新值，之前的 setter、dep 都已经失效，如果不把 watcher 加入到新的 child.name 的dep中
+      // 通过 child.name = xxx 赋值的时候，对应的 watcher 就收不到通知，等于失效了
+      // 4. 每个子属性的watcher在添加到子属性的dep的同时，也会添加到父属性的dep
+      // 监听子属性的同时监听父属性的变更，这样，父属性改变时，子属性的watcher也能收到通知进行update
+      // 这一步是在 this.get() --> this.getVMVal() 里面完成，forEach时会从父级开始取值，间接调用了它的getter
+      // 触发了addDep(), 在整个forEach过程，当前wacher都会加入到每个父级过程属性的dep
+      // 例如：当前watcher的是'child.child.name', 那么child, child.child, child.child.name这三个属性的dep都会加入当前watcher
+      if (!this.depIds.hasOwnProperty(dep.id)) {
+        dep.addSub(this);
+        this.depIds[dep.id] = dep;
+      }
+    }
+  }, {
+    key: 'get',
+    value: function get() {
+      if (!this.getter) {
+        return;
+      }
+      _Dep2.default.target = this;
+      var value = this.getter.call(this.vm, this.vm);
+      _Dep2.default.target = null;
+      return value;
+    }
+  }], [{
+    key: 'parseGetter',
+    value: function parseGetter(exp) {
+      if (!exp) {
+        return;
+      }
+      if (/[^\w.$]/.test(exp)) return;
+
+      var exps = exp.split('.');
+      return function (obj) {
+        for (var i = 0, len = exps.length; i < len; i++) {
+          if (!obj) return;
+          obj = obj[exps[i]];
+        }
+        return obj;
+      };
+    }
+  }]);
+
+  return Watcher;
+}();
+
+exports.default = Watcher;
 
 /***/ })
 /******/ ]);

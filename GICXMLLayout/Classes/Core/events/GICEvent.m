@@ -6,6 +6,7 @@
 //
 
 #import "GICEvent.h"
+#import "GICDataContext+JavaScriptExtension.h"
 
 @implementation GICEvent
 +(instancetype)createEventWithExpresion:(NSString *)expresion withEventName:(NSString *)eventName toTarget:(id)target{
@@ -32,18 +33,25 @@
     @weakify(self)
     [self.eventSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-        SEL se = NSSelectorFromString(self->expressionString);
-        if(se){
-            id t = self.target;
-            do {
-                id vm = [t gic_DataContext];
-                if([vm respondsToSelector:se]){
-                    GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
-                    [vm performSelector:se withObject:eventInfo];
-                    break;
-                }
-                t = [t gic_getSuperElement];
-            } while (t);
+        // 先判断是否是js调用
+        if([self->expressionString hasPrefix:@"js:"]){
+            // 兼容js的调用
+            NSString *js = [self->expressionString substringWithRange:NSMakeRange(3, self->expressionString.length-3)];
+            [self excuteJSBindExpress:js];
+        }else{
+            SEL se = NSSelectorFromString(self->expressionString);
+            if(se){
+                id t = self.target;
+                do {
+                    id vm = [t gic_DataContext];
+                    if([vm respondsToSelector:se]){
+                        GICEventInfo *eventInfo =[[GICEventInfo alloc] initWithTarget:self.target withValue:x];
+                        [vm performSelector:se withObject:eventInfo];
+                        break;
+                    }
+                    t = [t gic_getSuperElement];
+                } while (t);
+            }
         }
     }];
     self.name = eventName;

@@ -53,6 +53,11 @@
 -(id)gic_getSuperElement;
 
 /**
+ 从父元素删除
+ */
+-(void)gic_removeFromSuperElement;
+
+/**
  删除子元素
  
  @param subElements <#subElement description#>

@@ -9,7 +9,7 @@
 
 @implementation GICJSConsole
 {
-    NSMutableDictionary* _wrappers;
+    NSMutableDictionary<NSString *,JSManagedValue *>* _wrappers;
     void (^_logHandler)(NSString*,NSArray*,NSString*);
 }
 
@@ -28,10 +28,10 @@
     if (!_wrappers[logLevel])
     {
         NSString* cmd = [NSString stringWithFormat:@"c = function() { console.__write('%@', Array.prototype.slice.call(arguments, 0)) }", logLevel];
-        _wrappers[logLevel] = [[JSContext currentContext] evaluateScript:cmd];
+        _wrappers[logLevel] = [JSManagedValue managedValueWithValue:[[JSContext currentContext] evaluateScript:cmd]] ;
     }
     
-    return _wrappers[logLevel];
+    return [_wrappers[logLevel] value];
 }
 
 -(JSValue*)log   { return [self wrapperForLogLevel:@"log"]; }
@@ -43,7 +43,7 @@
 -(void)__write:(NSString*)logLevel :(NSArray*)params
 {
     NSString* formatedLogEntry = @"";
-    
+
     if (params.count == 1)
         formatedLogEntry = [NSString stringWithFormat:@"%@",params[0]];
     else if (![params[0] isKindOfClass:NSString.class] ||
@@ -55,7 +55,7 @@
         __block NSString* output = @"";
         NSMutableArray* formatParams = [[params subarrayWithRange:NSMakeRange(1, params.count-1)] mutableCopy];
         __block BOOL isOperator = NO;
-        
+
         [format enumerateSubstringsInRange:NSMakeRange(0, format.length)
                                    options:NSStringEnumerationByComposedCharacterSequences
                                 usingBlock:^(NSString *symbol, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
@@ -78,10 +78,10 @@
                                     else
                                         output = [output stringByAppendingString:symbol];
                                 }];
-        
+
         formatedLogEntry  = [NSString stringWithFormat:@"%@%@",output,formatParams.count ? formatParams : @""];
     }
-    
+
     if (_logHandler)
         _logHandler(logLevel,params,formatedLogEntry);
     else

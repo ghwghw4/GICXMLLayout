@@ -33,3 +33,8 @@ JSExportAs(insertItem, - (void)insertItem:(JSValue *)item index:(NSInteger)index
 @interface GICDirectiveFor (JSScriptExtension)<GICJSForDirective>
 -(void)updateDataSourceFromJsValue:(JSManagedValue *)jsValue;
 @end
+
+
+@interface GICEvent(JSScriptExtension)
+-(void)excuteJSBindExpress:(NSString *)js;
+@end

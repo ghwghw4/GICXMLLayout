@@ -18,9 +18,9 @@ typedef NS_ENUM(NSUInteger , ReadyState) {
 };
 @protocol GICXMLHttpRequest <JSExport>
 @property NSString* responseText;
-@property JSValue* onload;
-@property JSValue* onreadystatechange;
-@property JSValue* onerror;
+//@property JSValue* onload;
+//@property JSValue* onreadystatechange;
+//@property JSValue* onerror;
 @property ReadyState readyState;
 @property NSInteger status;
 

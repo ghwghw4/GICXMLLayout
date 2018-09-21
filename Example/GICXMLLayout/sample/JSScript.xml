@@ -19,8 +19,10 @@
                                 <stack-panel  is-horizon="1" align-items="2">
                                     <image local-name="comment" width="20" fill-mode="4"/>
                                     <lable text="评论" font-size="12" width="60" font-color="666666"/>
-                                    <image local-name="active" width="20" fill-mode="4"/>
-                                    <lable text="赞" font-size="12" font-color="666666"  width="60"/>
+                                    <stack-panel is-horizon="1" event-tap="js:this.dataContext.zan ++;">
+                                        <image local-name="active" width="20" fill-mode="4"/>
+                                        <lable text="{{ exp= zan?('赞'+zan):'赞',mode=1}}" font-size="12" font-color="666666"  width="60"/>
+                                    </stack-panel>
                                 </stack-panel>
                                 <dock-panel background-color="F2F6F9" height="22" corner-radius="11">
                                     <lable text="{{ '   #'+tag+'   ' }}" font-size="14" font-color="5A6B92"/>
@@ -33,6 +35,63 @@
         </templates>
         <inset-panel inset="15">
             <stack-panel>
+                <stack-panel is-horizon="1" justify-content="3" space="5">
+                    <templates>
+                        <template t-name="selector">
+                            <control flex-grow="1" height="40" selected="{{ exp=isSelected,mode=1 }}">
+                                <dock-panel  background-color="blue">
+                                    <lable text="{{name}}" font-color="white" font-size="16"/>
+                                </dock-panel>
+                                <highlight  background-color="white">
+                                    <dock-panel>
+                                        <lable text="{{name}}" font-color="blue" font-size="16"/>
+                                    </dock-panel>
+                                </highlight>
+
+                                <selected  background-color="white">
+                                    <dock-panel>
+                                        <lable text="{{name}}" font-color="blue" font-size="16"/>
+                                    </dock-panel>
+                                </selected>
+                            </control>
+                        </template>
+                    </templates>
+                    <for>
+                        <template-ref t-name="selector"/>
+                    </for>
+                    <behaviors>
+                        <script>
+                            var data = [{name:'城市',isSelected:false},{name:'距离',isSelected:false},{name:'价格',isSelected:false}];
+                            this.dataContext= data;
+                            this.subElements().forEach((el)=>{
+                                el.onclick = ()=>{
+                                    var ds = el.dataContext;
+                                    el.dataContext.isSelected = true;
+                                        data.forEach(d=>{
+                                            if(d !== ds) d.isSelected = false;
+                                        });
+                                }
+                            });
+                        </script>
+                    </behaviors>
+                </stack-panel>
+
+                <lable text="正在请求....">
+                    <behaviors>
+                        <script>
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange= ()=>
+                            {
+                            if (xmlhttp.status==200)
+                            {
+                            this.text = xmlhttp.responseText;
+                            }
+                            }
+                            xmlhttp.open("GET","https://suggest.taobao.com/sug?code=utf-8&amp;q=%E6%A2%AD%E5%AD%90%E8%9F%B9",true);
+                            xmlhttp.send();
+                        </script>
+                    </behaviors>
+                </lable>
                 <stack-panel>
                     <for>
                         <template-ref t-name="base-template"/>
@@ -46,6 +105,7 @@
                             loc: '德平路',
                             tag: '小姐姐',
                             id: 10,
+                            zan:21,
                             headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
                             obj: {
                             name: '吼吼',
@@ -58,6 +118,7 @@
                             loc: '德平路',
                             tag: '小姐姐',
                             id: 10,
+                            zan:22,
                             headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
                             obj: {
                             name: '吼吼',
@@ -70,6 +131,7 @@
                             loc: '德平路',
                             tag: '小姐姐',
                             id: 10,
+                            zan:23,
                             headurl: 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg',
                             obj: {
                             name: '吼吼',

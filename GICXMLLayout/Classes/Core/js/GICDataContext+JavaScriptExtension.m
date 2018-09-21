@@ -8,6 +8,7 @@
 #import "GICDataContext+JavaScriptExtension.h"
 #import "GICJSElementValue.h"
 #import "NSObject+GICDataBinding.h"
+#import "JSValue+GICXMLLayout.h"
 
 @implementation NSObject (JSScriptDataBinding)
 -(void)gic_updateDataContextFromJsValue:(JSManagedValue *)jsValue{
@@ -19,12 +20,12 @@
             @weakify(self)
             selfValue[@"_updateBindPath"] = ^(JSValue *value){
                 @strongify(self)
-                [self gic_updateDataContext:[JSManagedValue managedValueWithValue:value]];
+                [self gic_updateDataContext:[value gic_ToManagedValue:self]];
             };
             [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
-            jsValue = [JSManagedValue managedValueWithValue:pathValue];
+            jsValue = [pathValue gic_ToManagedValue:self];
         }else{
-            jsValue = [JSManagedValue managedValueWithValue:pathValue];
+            jsValue = [pathValue gic_ToManagedValue:self];
         }
     }
     
@@ -62,7 +63,7 @@
 - (void)addItem:(JSValue *)item index:(NSInteger)index {
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
-    childElement.gic_DataContext = [JSManagedValue managedValueWithValue:item];
+    childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     [self.target gic_addSubElement:childElement];
 }
@@ -119,27 +120,35 @@
     selfValue[@"_updateBindExp"] = ^(JSValue *value){
         @strongify(self)
         if(!isTowwayUpdate)
-            [self refreshExpressionFromJSValue:[JSManagedValue managedValueWithValue:value] needCheckMode:NO];
+            [self refreshExpressionFromJSValue:[value gic_ToManagedValue:self.target] needCheckMode:NO];
     };
     [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,self.expression,@"_updateBindExp"]];
     
     // 实现双向绑定
     if(self.bingdingMode == GICBingdingMode_TowWay){
         if([self.target respondsToSelector:@selector(gic_createTowWayBindingWithAttributeName:withSignalBlock:)]){
-            JSValue *weakJsValue = jsValue.value;
             @weakify(self)
             [self.target gic_createTowWayBindingWithAttributeName:self.attributeName withSignalBlock:^(RACSignal *signal) {
                 [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable newValue) {
                     // 判断原值和新值是否一致，只有在不一致的时候才会触发更新
-                    // TODO:这里可能会引起内存异常，因为这里对jsValue捕获了，因此要想办法修改
                     @strongify(self)
                     isTowwayUpdate = YES;
-                    weakJsValue[self.expression] = newValue;
+                    jsValue.value[self.expression] = newValue;
                     isTowwayUpdate = NO;
                 }];
             }];
         }
     }
+}
+@end
+
+
+
+
+@implementation GICEvent(JSScriptExtension)
+-(void)excuteJSBindExpress:(NSString *)js{
+    JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.target inContext:nil];
+    [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
 }
 @end
 

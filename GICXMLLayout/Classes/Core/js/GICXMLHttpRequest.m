@@ -12,9 +12,9 @@
     NSString* _url;
     NSMutableDictionary* _headers;
     BOOL _async;
-    JSManagedValue* _onLoad;
-    JSManagedValue* _onReadyStateChange;
-    JSManagedValue* _onError;
+//    JSManagedValue* _onLoad;
+//    JSManagedValue* _onReadyStateChange;
+//    JSManagedValue* _onError;
 }
 
 @synthesize responseText;
@@ -26,7 +26,7 @@
     _method = httpMethod;
     _url = url;
     _async = async;
-    readyState = 1;
+    readyState = XMLHttpRequestOPENED;
 }
 
 -(void)setRequestHeader:(NSString *)key :(NSString *)value
@@ -34,54 +34,71 @@
     _headers[key] = value;
 }
 
--(void)setOnload:(JSValue *)onload
-{
-    _onLoad = [JSManagedValue managedValueWithValue:onload];
-    [[[JSContext currentContext] virtualMachine] addManagedReference:_onLoad withOwner:self];
-}
+//-(void)setOnload:(JSValue *)onload
+//{
+//    _onLoad = [JSManagedValue managedValueWithValue:onload];
+//    [[[JSContext currentContext] virtualMachine] addManagedReference:_onLoad withOwner:self];
+//}
+//
+//-(JSValue*)onload { return _onLoad.value; }
 
--(JSValue*)onload { return _onLoad.value; }
-
--(void)setOnreadystatechange:(JSValue *)onReadyStateChange
-{
-    _onReadyStateChange = [JSManagedValue managedValueWithValue:onReadyStateChange];
-    [[[JSContext currentContext] virtualMachine] addManagedReference:_onReadyStateChange withOwner:self];
-}
-
--(JSValue*)onreadystatechange { return _onReadyStateChange.value; }
+//-(void)setOnreadystatechange:(JSValue *)onReadyStateChange
+//{
+//    _onReadyStateChange = [JSManagedValue managedValueWithValue:onReadyStateChange];
+//    [[[JSContext currentContext] virtualMachine] addManagedReference:_onReadyStateChange withOwner:self];
+//}
+//
+//-(JSValue*)onreadystatechange { return _onReadyStateChange.value; }
 
 
--(void)setOnerror:(JSValue *)onerror
-{
-    _onError = [JSManagedValue managedValueWithValue:onerror];
-    [[[JSContext currentContext] virtualMachine] addManagedReference:_onError withOwner:self];
-}
--(JSValue*)onerror { return _onError.value; }
+//-(void)setOnerror:(JSValue *)onerror
+//{
+//    _onError = [JSManagedValue managedValueWithValue:onerror];
+//    [[[JSContext currentContext] virtualMachine] addManagedReference:_onError withOwner:self];
+//}
+//-(JSValue*)onerror { return _onError.value; }
 
 -(void)send
 {
-    readyState = 2;
+    readyState = XMLHttpRequestHEADERS;
     NSMutableURLRequest* req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:_url]];
     req.HTTPMethod = _method;
     
     for (NSString *items in _headers.allKeys) {
         [req setValue:_headers[items] forHTTPHeaderField:items];
     }
+    readyState = XMLHttpRequestLOADING;
     
-    NSHTTPURLResponse* response;
-    NSError* error;
-    readyState = 3;
-    NSData* data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
-    self.responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    status = [response statusCode];
-    readyState = 4;
-    if (!error) {
-        if (_onLoad) {
-            [[_onLoad.value invokeMethod:@"bind" withArguments:@[self]] callWithArguments:NULL];
-        } else if (_onReadyStateChange) {
-            [[_onReadyStateChange.value invokeMethod:@"bind" withArguments:@[self]] callWithArguments:NULL];
+    JSValue *thisValue = [JSContext currentThis];
+   
+     void (^completionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError) = ^(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable error) {
+        self.responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        self->status = [(NSHTTPURLResponse *)response statusCode];
+        self->readyState = XMLHttpRequestDONE;
+        if (!error) {
+            JSValue* _onLoad = thisValue[@"onload"];
+            if([_onLoad isUndefined]){
+                [thisValue[@"onreadystatechange"] callWithArguments:nil];
+            }else{
+                [_onLoad callWithArguments:nil];
+            }
+        } else if (error){
+            JSValue* _onError = thisValue[@"onerror"];
+            if(![_onError isUndefined]){
+                [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
+            }
         }
-    } else if (error && _onError)
-        [[_onError.value invokeMethod:@"bind" withArguments:@[self]] callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
+    };
+    
+    if(_async){//异步执行
+        [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:completionHandler];
+    }else{//同步执行
+        NSHTTPURLResponse* response;
+        NSError* error;
+        NSData* data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+        completionHandler(response,data,error);
+    }
+}
+
 }
 @end

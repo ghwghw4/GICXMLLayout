@@ -45,15 +45,14 @@
     JSContext *context = [GICJSCore findJSContextFromElement:target];
 
     
-    id root = self.target;
-    while (true) {
-        id superEl = [root gic_getSuperElement];
-        if(superEl==nil){
-            break;
-        }
-        root = superEl;
-    }
-    
+//    id root = self.target;
+//    while (true) {
+//        id superEl = [root gic_getSuperElement];
+//        if(superEl==nil){
+//            break;
+//        }
+//        root = superEl;
+//    }
 //    [self addChildrenContext:root];
     
     JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.target inContext:context];

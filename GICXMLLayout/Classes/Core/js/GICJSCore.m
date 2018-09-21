@@ -10,6 +10,10 @@
 #import "GICXMLHttpRequest.h"
 #import "NSBundle+GICXMLLayout.h"
 #import <objc/runtime.h>
+#import <JavaScriptCore/JSBase.h>
+
+// 立即同步执行JS的垃圾回收机制(既然苹果没有将整个API开放出来，我个人觉得还是慎用为上，因为js本身有独立的垃圾回收机制，我们不应该强制的去干预)
+void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
 
 @implementation NSObject (GICScript)
 -(JSContext *)gic_JSContext{
@@ -61,6 +65,17 @@
     
     context[@"XMLHttpRequest"] = [GICXMLHttpRequest class];
     context[@"console"] = [[GICJSConsole alloc] initWithLogHandler:logHandler];
+    // 垃圾回收。为了能够及时回收内存，GC的调用很有必要。
+    context[@"gc"] = @{};
+    context[@"gc"][@"collect"] = ^(JSValue *sync){
+        if([sync toBool]){
+            // 强制同步调用
+            JSSynchronousGarbageCollectForDebugging([JSContext currentContext].JSGlobalContextRef);
+        }else{
+            // 这种方式并不会立即执行垃圾回收，而是会在下一次的"时机"到了就会去执行，相对于完全不调用来说，这种方式垃圾收集的时机会更加的靠前
+            JSGarbageCollect([JSContext currentContext].JSGlobalContextRef);
+        }
+    };
     
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [context evaluateScript:jsCoreString];

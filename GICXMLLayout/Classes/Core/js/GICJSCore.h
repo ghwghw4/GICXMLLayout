@@ -10,4 +10,6 @@
 
 @interface GICJSCore : NSObject
 +(JSContext *)findJSContextFromElement:(NSObject *)element;
+
++(void)extend:(JSContext *)context;
 @end

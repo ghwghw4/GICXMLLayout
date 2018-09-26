@@ -13,6 +13,7 @@
 #import <GICJsonParser/NSObject+Reflector.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICDataContext+JavaScriptExtension.h"
+#import "GICJSCore.h"
 
 
 @implementation GICDataBinding
@@ -65,9 +66,27 @@
     return nil;
 }
 
++(JSContext *)jsDataBindingContext{
+    static JSContext *context = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        context = [[JSContext alloc] init];
+        [GICJSCore extend:context];
+        // 开启定时器，定时清理JS内存
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(dataBindingJSContextTimerTick) userInfo:nil repeats:YES];
+        });
+    });
+    return context;
+}
+
++(void)dataBindingJSContextTimerTick{
+     [[self jsDataBindingContext] evaluateScript:@"gc.collect(true);"];
+}
+
 -(void)refreshExpression{
-    JSContext *context = [[JSContext alloc] init];
-     NSString *jsCode = self.expression;
+    JSContext *context =[GICDataBinding jsDataBindingContext];
+    NSString *jsCode = self.expression;
     if(self.expression.length==0){
         context[@"$original_data"] = self.dataSource;
         jsCode = @"$original_data";
@@ -75,15 +94,9 @@
         self.attributeValueConverter.propertySetter(self.target,[value toString]);
         return;
     }
-    // 将数据源解析成纯dictionary
-    NSDictionary *dict = [GICJsonParser objectSerializeToJsonDictionary:self.dataSource];
-    if(dict){
-        for(NSString *key in dict.allKeys){
-            id value = [dict objectForKey:key];
-            context[key] = value;
-        }
-    }
-    JSValue *jsvalue = [context evaluateScript:jsCode];
+    
+    JSValue *dsJSValue = [JSValue valueWithObject:self.dataSource inContext:context];
+    JSValue *jsvalue = [dsJSValue invokeMethod:@"executeBindExpression" withArguments:@[[NSString stringWithFormat:@"return %@",self.expression],dsJSValue]];
     NSString *valueString = [jsvalue isUndefined]?@"":[jsvalue toString];
     id value = nil;
     if(self.valueConverter){

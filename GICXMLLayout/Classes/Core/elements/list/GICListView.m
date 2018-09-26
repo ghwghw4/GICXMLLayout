@@ -14,6 +14,8 @@
 //#import "GICListHeader.h"
 //#import "GICListFooter.h"
 
+#define RACWindowCount 10
+
 @interface GICListView ()<ASTableDelegate,ASTableDataSource>{
     NSMutableArray<GICListItem *> *listItems;
     BOOL t;
@@ -59,14 +61,28 @@
     }] bufferWithTime:0.1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
+            NSArray *insertArray = nil;
+            // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
+            if(x.count<=RACWindowCount){
+                insertArray = [x allObjects];
+            }else{
+                insertArray = [NSMutableArray array];
+                [[x allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if(idx<RACWindowCount){
+                        [(NSMutableArray *)insertArray addObject:obj];
+                    }else{
+                        [self->insertItemsSubscriber sendNext:obj];
+                    }
+                }];
+            }
+            
             NSInteger index = self->listItems.count;
-           
-            [self->listItems addObjectsFromArray:[x allObjects]];
+            [self->listItems addObjectsFromArray:insertArray];
             if(index==0){
                 [self reloadData];
             }else{
                 NSMutableArray *mutArray=[NSMutableArray array];
-                for(int i=0 ;i<x.count;i++){
+                for(int i=0 ;i<insertArray.count;i++){
                     [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
                     index ++;
                 }
@@ -86,11 +102,11 @@
     if([subElement isKindOfClass:[GICListItem class]]){
         [subElement gic_ExtensionProperties].superElement = self;
 //        [(GICListItem *)subElement setDelegate:self];
-        if(!self.isNodeLoaded){
-            [listItems addObject:subElement];
-        }else{
+//        if(!self.isNodeLoaded){
+//            [listItems addObject:subElement];
+//        }else{
             [self->insertItemsSubscriber sendNext:subElement];
-        }
+//        }
         return subElement;
     }
     else{

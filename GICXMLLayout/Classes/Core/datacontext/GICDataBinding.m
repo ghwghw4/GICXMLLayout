@@ -85,6 +85,8 @@
 }
 
 -(void)refreshExpression{
+    if(!self.target)
+        return;
     JSContext *context =[GICDataBinding jsDataBindingContext];
     NSString *jsCode = self.expression;
     if(self.expression.length==0){
@@ -96,7 +98,19 @@
     }
     
     JSValue *dsJSValue = [JSValue valueWithObject:self.dataSource inContext:context];
-    JSValue *jsvalue = [dsJSValue invokeMethod:@"executeBindExpression" withArguments:@[[NSString stringWithFormat:@"return %@",self.expression],dsJSValue]];
+    NSArray *allKeys = nil;
+    if([self.dataSource isKindOfClass:[NSDictionary class]]){
+        allKeys = [(NSDictionary *)self.dataSource allKeys];
+        // 为了效率考虑，字典并没有采用注入属性的方法，但是这样一来会有一个bug，那就是如果字典中存储的是某个`class`的实例对象，那么就有可能会出现访问不到属性的情况。后续解决
+    }else{
+        allKeys = [[self.dataSource class] gic_reflectProperties].allKeys;
+        [dsJSValue invokeMethod:@"_elementInit2" withArguments:@[allKeys]];
+        dsJSValue[@"getAttValue"] = ^(JSValue *attName){
+            return [self.dataSource valueForKey:[attName toString]];
+        };
+    }
+   
+    JSValue *jsvalue = [dsJSValue invokeMethod:@"executeBindExpression2" withArguments:@[allKeys,[NSString stringWithFormat:@"return %@",self.expression],dsJSValue]];
     NSString *valueString = [jsvalue isUndefined]?@"":[jsvalue toString];
     id value = nil;
     if(self.valueConverter){
@@ -114,7 +128,7 @@
             return;
         }
         // 创建数据绑定
-        for(NSString *key in [[self.dataSource class] gic_reflectProperties].allKeys){
+        for(NSString *key in allKeys){
             if([self.expression rangeOfString:key].location != NSNotFound){
                 @weakify(self)
                 [[self.dataSource rac_valuesAndChangesForKeyPath:key options:NSKeyValueObservingOptionNew observer:nil] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {

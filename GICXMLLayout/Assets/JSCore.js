@@ -427,6 +427,22 @@ Object.prototype._elementInit = function (props) {
   });
 };
 
+// 提供给普通绑定作为数据源用的，主要是native的数据源转换而来
+Object.prototype._elementInit2 = function (props) {
+  var obj = this;
+  // 1.属性
+  props.forEach(function (key) {
+    Object.defineProperty(obj, key, {
+      get: function get() {
+        return this.getAttValue(key);
+      },
+      set: function set(val) {
+        this.setAttValue(key, val);
+      }
+    });
+  });
+};
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -586,6 +602,21 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
     selfElement = this;
   }
   return new Function(jsStr).call(selfElement, this);
+};
+
+/**
+ * 提供给普通绑定用的，数据源为native数据源
+ * @param props
+ * @param expStr
+ * @returns {*}
+ */
+Object.prototype.executeBindExpression2 = function (props, expStr) {
+  var jsStr = '';
+  props.forEach(function (key) {
+    jsStr += 'var ' + key + '=this.' + key + ';';
+  });
+  jsStr += expStr;
+  return new Function(jsStr).call(this);
 };
 
 function Binding() {}

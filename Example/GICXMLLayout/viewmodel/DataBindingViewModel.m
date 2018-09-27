@@ -34,7 +34,7 @@
 }
 
 -(void)clickToBinding:(GICEventInfo *)eventInfo{
-    NSObject *el = [GICElementsHelper findSubElementFromSuperElement:eventInfo.target withName:@"testBingding1"];
+    NSObject *el = [GICElementsHelper findSubElementFromSuperElement:[eventInfo.target gic_getSuperElement] withName:@"testBingding1"];
     el.gic_DataContext = [DataBindingUserInfo new];
 }
 @end

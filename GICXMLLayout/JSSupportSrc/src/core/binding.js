@@ -129,5 +129,20 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
   return (new Function(jsStr)).call(selfElement, this);
 };
 
+/**
+ * 提供给普通绑定用的，数据源为native数据源
+ * @param props
+ * @param expStr
+ * @returns {*}
+ */
+Object.prototype.executeBindExpression2 = function (props, expStr) {
+  let jsStr = '';
+  props.forEach((key) => {
+    jsStr += `var ${key}=this.${key};`;
+  });
+  jsStr += expStr;
+  return (new Function(jsStr)).call(this);
+};
+
 export function Binding() {
 }

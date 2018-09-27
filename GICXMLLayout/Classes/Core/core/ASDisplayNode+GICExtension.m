@@ -82,6 +82,20 @@
              } withGetter:^id(id target) {
                  return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].maxHeight];
              }],
+             @"min-height":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 node.style.minHeight = [(NSValue *)value ASDimension];
+                 [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].minHeight];
+             }],
+             @"min-width":[[GICDimensionConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ASDisplayNode *node =  (ASDisplayNode*)target;
+                 node.style.minWidth = [(NSValue *)value ASDimension];
+                 [node layoutAttributeChanged];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithASDimension:[(ASDisplayNode*)target style].minWidth];
+             }],
              @"space-before":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ASDisplayNode *node =  (ASDisplayNode*)target;
                  node.style.spacingBefore = [value floatValue];

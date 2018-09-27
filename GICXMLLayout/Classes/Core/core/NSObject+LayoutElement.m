@@ -35,6 +35,10 @@
     return nil;
 }
 
++(instancetype)createElementWithXML:(GDataXMLElement *)xmlElement{
+    return [[self alloc] init];
+}
+
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -211,7 +215,7 @@
         NSString *elementName = element.name;
         Class c = [GICElementsCache classForElementName:elementName];
         if(c){
-            NSObject *v = [c new];
+            NSObject *v = [c createElementWithXML:element];
             [v gic_beginParseElement:element withSuperElement:superElement];
             return v;
         }else{

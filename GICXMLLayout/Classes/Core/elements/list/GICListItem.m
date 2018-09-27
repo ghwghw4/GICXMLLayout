@@ -59,20 +59,9 @@
     return YES;
 }
 
-
-//-(NSObject *)gic_getSuperElement{
-//    return (NSObject *)self.owningNode;
-//}
-
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count==1){
         self.xmlDoc = [[GDataXMLDocument alloc] initWithRootElement:children[0]];
-    }
-}
--(void)setSelected:(BOOL)selected{
-    [super setSelected:selected];
-    if(self.itemSelectEvent && selected){
-        [self.itemSelectEvent fire:@(selected)];
     }
 }
 

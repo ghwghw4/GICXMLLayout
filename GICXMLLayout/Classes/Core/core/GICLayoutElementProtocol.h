@@ -80,6 +80,8 @@
  */
 @protocol GICElementParserProtocol <GICLayoutElementProtocol>
 
++(instancetype)createElementWithXML:(GDataXMLElement *)xmlElement;
+
 /**
  开始解析元素本身
 

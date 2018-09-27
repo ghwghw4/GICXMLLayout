@@ -152,6 +152,9 @@
 
 -(void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableNode deselectRowAtIndexPath:indexPath animated:NO];
+    // 触发选中事件
+    GICListItem *item = [tableNode nodeForRowAtIndexPath:indexPath];
+    [item.itemSelectEvent fire:nil];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

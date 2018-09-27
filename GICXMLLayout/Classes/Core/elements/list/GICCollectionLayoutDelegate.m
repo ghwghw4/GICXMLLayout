@@ -80,7 +80,7 @@
                                                             headerHeight:headerHeight
                                                            columnSpacing:10.0
                                                            sectionInsets:UIEdgeInsetsZero
-                                                        interItemSpacing:UIEdgeInsetsMake(10, 0, 10, 0)];
+                                                        interItemSpacing:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     return self;
 }

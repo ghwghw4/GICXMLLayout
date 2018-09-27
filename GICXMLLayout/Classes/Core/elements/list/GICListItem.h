@@ -26,6 +26,7 @@
 //@property (nonatomic,weak)id<GICListItemDelegate> delegate;
 @property (nonatomic,strong)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong)GICEvent *itemSelectEvent;
+@property (nonatomic,assign)UITableViewCellSeparatorStyle separatorStyle;
 
 -(void)prepareLayout;
 @end

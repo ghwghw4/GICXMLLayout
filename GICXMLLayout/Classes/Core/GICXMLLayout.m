@@ -44,6 +44,7 @@
 #import "GICDataContextElement.h"
 //#import "GICCanvasPath.h"
 #import "GICScript.h"
+#import "GICCollectionView.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -107,10 +108,9 @@
     //canvas
     [GICElementsCache registElement:[GICCanvas class]];
 //    [GICElementsCache registElement:[GICCanvasPath class]];
-    
-    
-    
     [GICElementsCache registElement:[GICControl class]];
+    [GICElementsCache registElement:[GICCollectionView class]];
+    
 }
 
 +(void)initialize{

@@ -11,8 +11,11 @@
 #import "GICNumberConverter.h"
 #import "GICEdgeConverter.h"
 #import "GICPanel.h"
+#import "GICInsetPanel.h"
 
-@implementation GICListItem
+@implementation GICListItem{
+    ASDisplayNode *seperateLine;
+}
 +(NSString *)gic_elementName{
     return @"list-item";
 }
@@ -52,6 +55,12 @@
 -(id)init{
     self=[super init];
     self.automaticallyManagesSubnodes = YES;
+    
+    self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
+    
+  
+    
+    
     return self;
 }
 
@@ -72,7 +81,23 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     ASStackLayoutSpec *spec= [ASStackLayoutSpec verticalStackLayoutSpec];
-    spec.children = self.gic_displayNodes;
+    
+    if(self.separatorStyle == UITableViewCellSeparatorStyleSingleLine){
+        NSMutableArray *temp = (NSMutableArray *)self.gic_displayNodes;
+        // 分割线
+        if(seperateLine==nil){
+            seperateLine = [[ASDisplayNode alloc] init];
+            seperateLine.backgroundColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+            seperateLine.style.height = ASDimensionMake(0.5);
+        }
+        ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];
+        insetBox.insets = self.separatorInset;
+        insetBox.child = seperateLine;
+        [temp addObject:insetBox];
+        spec.children = temp;
+    }else{
+        spec.children = self.gic_displayNodes;
+    }
     return spec;
 }
 

@@ -30,7 +30,7 @@
 
 +(instancetype)createElementWithXML:(GDataXMLElement *)xmlElement{
     GICCollectionLayoutDelegate *layoutDelegate = [[GICCollectionLayoutDelegate alloc] initWithNumberOfColumns:1 headerHeight:44.0];
-    return [[GICCollectionView alloc] initWithLayoutDelegate:layoutDelegate layoutFacilitator:nil];
+    return [[self alloc] initWithLayoutDelegate:layoutDelegate layoutFacilitator:nil];
 }
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
@@ -60,9 +60,6 @@
     self.style.height = ASDimensionMake(0.1);
     self->layoutDelegate = (GICCollectionLayoutDelegate *)layoutDelegate;
     self->layoutDelegate.target = self;
-    
-    
-    
     
     self.dataSource = self;
     self.delegate = self;
@@ -163,6 +160,7 @@
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GICListItem *item = [self->listItems objectAtIndex:indexPath.row];
+    item.separatorStyle = self.separatorStyle;
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
         [item prepareLayout];
         return item;
@@ -183,6 +181,10 @@
     // 触发选中事件
     GICListItem *item = [collectionNode nodeForItemAtIndexPath:indexPath];
     [item.itemSelectEvent fire:nil];
+}
+
+-(void)dealloc{
+    [insertItemsSubscriber sendCompleted];
 }
 @end
 

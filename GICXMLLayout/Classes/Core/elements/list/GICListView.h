@@ -6,6 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GICListView : ASTableNode
+#import "GICCollectionView.h"
+@interface GICListView : GICCollectionView
 @end

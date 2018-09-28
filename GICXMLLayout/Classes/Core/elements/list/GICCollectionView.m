@@ -11,8 +11,10 @@
 #import "GICCollectionLayoutDelegate.h"
 
 #import "GICNumberConverter.h"
-//#import "GICEdgeConverter.h"
+#import "GICEdgeConverter.h"
 #import "GICBoolConverter.h"
+#import "GICListHeader.h"
+#import "GICListFooter.h"
 
 @interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting>{
     NSMutableArray<GICListItem *> *listItems;
@@ -20,34 +22,50 @@
     id<RACSubscriber> insertItemsSubscriber;
     
     GICCollectionLayoutDelegate *layoutDelegate;
+    
+    
+    GICListHeader *header;
+    GICListFooter *footer;
 }
 @end
 
 @implementation GICCollectionView
 +(NSString *)gic_elementName{
-    return @"grid";
+    return @"collection-view";
 }
 
 +(instancetype)createElementWithXML:(GDataXMLElement *)xmlElement{
-    GICCollectionLayoutDelegate *layoutDelegate = [[GICCollectionLayoutDelegate alloc] initWithNumberOfColumns:1 headerHeight:44.0];
+    GICCollectionLayoutDelegate *layoutDelegate = [[GICCollectionLayoutDelegate alloc] initWithNumberOfColumns:1 headerHeight:0.0];
     return [[self alloc] initWithLayoutDelegate:layoutDelegate layoutFacilitator:nil];
 }
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"colums":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns=[value integerValue];
+                 ((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns=MAX(1, [value integerValue]);
              }],
-//             @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 [(GICListView *)target gic_safeView:^(UIView *view) {
-//                     [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
-//                 }];
-//             }],
-//             @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 [(GICListView *)target gic_safeView:^(UIView *view) {
-//                     [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
-//                 }];
-//             }],
+             @"column-spacing":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICCollectionView *)target)->layoutDelegate.layoutInfo.columnSpacing=[value floatValue];
+             }],
+             @"auto-height":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICCollectionView *)target)->layoutDelegate.layoutInfo.autoChangeLayoutHieght=[value boolValue];
+             }],
+             @"inter-item-spacing":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICCollectionView *)target)->layoutDelegate.layoutInfo setValue:value forKey:@"interItemSpacing"];
+             }],
+             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICCollectionView *)target).separatorStyle = [value integerValue];
+             }],
+             @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICCollectionView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
+                 }];
+             }],
+             @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICCollectionView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
+                 }];
+             }],
              };
 }
 
@@ -101,8 +119,6 @@
             }
         }
     }];
-    
-    
     return self;
 }
 
@@ -114,6 +130,18 @@
         }else{
             [self->insertItemsSubscriber sendNext:subElement];
         }
+        return subElement;
+    }else if ([subElement isKindOfClass:[GICListHeader class]]){
+        header = subElement;
+        layoutDelegate.layoutInfo.headerHeight = header.style.height.value;
+        NSAssert(layoutDelegate.layoutInfo.headerHeight>0, @"请显示设置header的height属性");
+        [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
+        return subElement;
+    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+        footer = subElement;
+        layoutDelegate.layoutInfo.footerHeight = footer.style.height.value;
+        NSAssert(layoutDelegate.layoutInfo.footerHeight>0, @"请显示设置footer的height属性");
+        [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
         return subElement;
     }
     else{
@@ -142,7 +170,15 @@
 }
 
 -(NSArray *)gic_subElements{
-    return [listItems copy];
+    NSMutableArray *elments = [listItems mutableCopy];
+    if(header){
+        [elments addObject:header];
+    }
+    
+    if(footer){
+        [elments addObject:footer];
+    }
+    return elments;
 }
 
 
@@ -168,6 +204,17 @@
     return cellNodeBlock;
 }
 
+- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO:等后面支持了section后修改逻辑
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        return header;
+    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        return footer;
+    }
+    return nil;
+}
+
 - (ASScrollDirection)scrollableDirections
 {
     return ASScrollDirectionVerticalDirections;
@@ -177,10 +224,31 @@
     return ASSizeRangeZero;
 }
 
+- (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section
+{
+    // TODO:等后面支持了section后需要修改逻辑
+    if([kind isEqualToString:UICollectionElementKindSectionHeader] && header){
+        return 1;
+    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer){
+        return 1;
+    }
+    return 0;
+}
+
 -(void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     // 触发选中事件
     GICListItem *item = [collectionNode nodeForItemAtIndexPath:indexPath];
     [item.itemSelectEvent fire:nil];
+}
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    NSString *elName = [element name];
+    if([elName isEqualToString:[GICListHeader gic_elementName]]){
+        return  [GICListHeader new];
+    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
+        return  [GICListFooter new];
+    }
+    return [super gic_parseSubElementNotExist:element];
 }
 
 -(void)dealloc{

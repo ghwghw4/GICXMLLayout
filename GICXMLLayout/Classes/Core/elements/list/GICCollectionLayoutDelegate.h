@@ -10,6 +10,7 @@
 @interface GICCollectionLayoutInfo:NSObject
 @property (nonatomic, assign) NSInteger numberOfColumns;
 @property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, assign) CGFloat footerHeight;
 @property (nonatomic, assign) CGFloat columnSpacing;
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 @property (nonatomic, assign) UIEdgeInsets interItemSpacing;

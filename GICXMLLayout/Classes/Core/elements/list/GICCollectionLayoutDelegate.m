@@ -53,6 +53,7 @@
 
 - (NSUInteger)hash
 {
+    // TODO:这里其实有bug的，因为属性目前是可变的，因此hash也是会变的，因此这里可能会有bug。后面想办法继续优化
     struct {
         NSInteger numberOfColumns;
         CGFloat headerHeight;
@@ -164,9 +165,27 @@
         for (NSUInteger idx = 0; idx < [columnHeights[section] count]; idx++) {
             columnHeights[section][idx] = @(top);
         }
+        
+        // 计算footer
+        if (info.footerHeight > 0) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
+            ASCollectionElement *element = [elements supplementaryElementOfKind:UICollectionElementKindSectionFooter
+                                                                    atIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                                                                                     withIndexPath:indexPath];
+            
+            ASSizeRange sizeRange = [self _sizeRangeForHeaderOfSection:section withLayoutWidth:layoutWidth info:info];
+            CGSize size = [element.node layoutThatFits:sizeRange].size;
+            CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
+            
+            attrs.frame = frame;
+            [attrsMap setObject:attrs forKey:element];
+            top = CGRectGetMaxY(frame);
+        }
     }
     
-    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue];
+    
+    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + info.footerHeight;
     CGSize contentSize = CGSizeMake(layoutWidth, contentHeight);
     
     // 判断是否自动更新容器高度

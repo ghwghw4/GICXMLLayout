@@ -15,6 +15,7 @@
 #import "GICBoolConverter.h"
 #import "GICListHeader.h"
 #import "GICListFooter.h"
+#import "GICListSection.h"
 
 @interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting>{
     NSMutableArray<GICListItem *> *listItems;
@@ -26,6 +27,9 @@
     
     GICListHeader *header;
     GICListFooter *footer;
+    
+//    NSMutableArray<GICListSection *> *_sections;
+    NSMutableDictionary<NSNumber *,GICListSection *>*_sectionsMap;
 }
 @end
 
@@ -71,9 +75,8 @@
 
 - (instancetype)initWithLayoutDelegate:(id<ASCollectionLayoutDelegate>)layoutDelegate layoutFacilitator:(id<ASCollectionViewLayoutFacilitatorProtocol>)layoutFacilitator
 {
-    
     self = [super initWithLayoutDelegate:layoutDelegate layoutFacilitator:layoutFacilitator];
-    
+    _sectionsMap = [NSMutableDictionary dictionary];
     listItems = [NSMutableArray array];
     self.style.height = ASDimensionMake(0.1);
     self->layoutDelegate = (GICCollectionLayoutDelegate *)layoutDelegate;
@@ -104,19 +107,29 @@
                     }
                 }];
             }
-            
-            NSInteger index = self->listItems.count;
-            [self->listItems addObjectsFromArray:insertArray];
-            if(index==0){
-                [self reloadData];
-            }else{
-                NSMutableArray *mutArray=[NSMutableArray array];
-                for(int i=0 ;i<insertArray.count;i++){
-                    [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-                    index ++;
-                }
-                [self insertItemsAtIndexPaths:mutArray];
+        
+            NSMutableArray *mutArray=[NSMutableArray array];
+            for(int i=0 ;i<insertArray.count;i++){
+                NSDictionary *itemInfo = insertArray[i];
+                GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
+                [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
+                [section.items addObject:itemInfo[@"item"]];
             }
+            [self insertItemsAtIndexPaths:mutArray];
+
+            
+//            NSInteger index = self->listItems.count;
+//            [self->listItems addObjectsFromArray:insertArray];
+//            if(index==0){
+//                [self reloadData];
+//            }else{
+//                NSMutableArray *mutArray=[NSMutableArray array];
+//                for(int i=0 ;i<insertArray.count;i++){
+//                    [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+//                    index ++;
+//                }
+//                [self insertItemsAtIndexPaths:mutArray];
+//            }
         }
     }];
     return self;
@@ -131,7 +144,11 @@
             [self->insertItemsSubscriber sendNext:subElement];
         }
         return subElement;
-    }else if ([subElement isKindOfClass:[GICListHeader class]]){
+    }else if ([subElement isKindOfClass:[GICListSection class]]){
+        [self->_sectionsMap setObject:subElement forKey:@([subElement sectionIndex])];
+        return subElement;
+    }
+    else if ([subElement isKindOfClass:[GICListHeader class]]){
         header = subElement;
         layoutDelegate.layoutInfo.headerHeight = header.style.height.value;
         NSAssert(layoutDelegate.layoutInfo.headerHeight>0, @"请显示设置header的height属性");
@@ -149,25 +166,25 @@
     }
 }
 
--(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{
-    [super gic_removeSubElements:subElements];
-    if(subElements.count==0)
-        return;
-    NSMutableArray *mutArray=[NSMutableArray array];
-    for(id subElement in subElements){
-        if([subElement isKindOfClass:[GICListItem class]]){
-            [mutArray addObject:[NSIndexPath indexPathForRow:[listItems indexOfObject:subElement] inSection:0]];
-        }
-    }
-    [listItems removeObjectsInArray:subElements];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if(self->listItems.count==0){
-            [self reloadData];
-        }else{
-            [self deleteItemsAtIndexPaths:mutArray];
-        }
-    });
-}
+//-(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{
+//    [super gic_removeSubElements:subElements];
+//    if(subElements.count==0)
+//        return;
+//    NSMutableArray *mutArray=[NSMutableArray array];
+//    for(id subElement in subElements){
+//        if([subElement isKindOfClass:[GICListItem class]]){
+//            [mutArray addObject:[NSIndexPath indexPathForRow:[listItems indexOfObject:subElement] inSection:0]];
+//        }
+//    }
+//    [listItems removeObjectsInArray:subElements];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        if(self->listItems.count==0){
+//            [self reloadData];
+//        }else{
+//            [self deleteItemsAtIndexPaths:mutArray];
+//        }
+//    });
+//}
 
 -(NSArray *)gic_subElements{
     NSMutableArray *elments = [listItems mutableCopy];
@@ -178,24 +195,25 @@
     if(footer){
         [elments addObject:footer];
     }
+    [elments addObjectsFromArray:_sectionsMap.allValues];
     return elments;
 }
 
 
 #pragma mark - ASCollectionNodeDelegate / ASCollectionNodeDataSource
-//- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
-//{
-//    return 1;
-//}
-//
+- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
+{
+    return _sectionsMap.count;
+}
+
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
-    return [listItems count];
+    return [[_sectionsMap.allValues objectAtIndex:section] items].count;
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GICListItem *item = [self->listItems objectAtIndex:indexPath.row];
+    GICListItem *item = [[[_sectionsMap.allValues objectAtIndex:indexPath.section] items] objectAtIndex:indexPath.row];
     item.separatorStyle = self.separatorStyle;
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
         [item prepareLayout];
@@ -227,9 +245,9 @@
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section
 {
     // TODO:等后面支持了section后需要修改逻辑
-    if([kind isEqualToString:UICollectionElementKindSectionHeader] && header){
+    if([kind isEqualToString:UICollectionElementKindSectionHeader] && header && section==0){
         return 1;
-    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer){
+    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer && section==_sectionsMap.count-1){
         return 1;
     }
     return 0;
@@ -247,8 +265,14 @@
         return  [GICListHeader new];
     }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
         return  [GICListFooter new];
+    }else if([elName isEqualToString:[GICListSection gic_elementName]]){
+        return  [[GICListSection alloc] initWithOwner:self withSectionIndex:_sectionsMap.count];
     }
     return [super gic_parseSubElementNotExist:element];
+}
+
+-(void)onItemAddedInSection:(NSDictionary *)itemInfo{
+    [self->insertItemsSubscriber sendNext:itemInfo];
 }
 
 -(void)dealloc{

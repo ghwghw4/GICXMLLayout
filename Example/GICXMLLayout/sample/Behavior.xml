@@ -11,11 +11,13 @@
             <bev-pullrefresh event-refresh="onRefreshData" loading="{{exp=isRefreshing,mode=1}}"/>
             <bev-pullmore event-refresh="onLoadMore" loading="{{exp=isLoadingMore,mode=1}}"/>
         </behaviors>
-        <for data-path="listDatas">
-            <list-item separator-inset = "0 15 0 15">
-                <template-ref t-name="list-template"/>
-            </list-item>
-        </for>
+        <section>
+            <for data-path="listDatas">
+                <list-item separator-inset = "0 15 0 15">
+                    <template-ref t-name="list-template"/>
+                </list-item>
+            </for>
+        </section>
     </list>
 </page>
 

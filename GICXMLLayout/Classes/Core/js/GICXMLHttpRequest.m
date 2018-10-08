@@ -99,6 +99,4 @@
         completionHandler(response,data,error);
     }
 }
-
-}
 @end

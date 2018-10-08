@@ -1,27 +1,29 @@
 <page title="list Sample" data-context="ListSamplePageViewModel">
     <list separator-inset = "0 15 0 15">
-        <list-item selection-style="2" event-item-select="onSelect1">
-            <inset-panel inset="15" background-color="white">
-                <lable text="普通列表"></lable>
-            </inset-panel>
-        </list-item>
-        
-        <list-item selection-style="2" event-item-select="onSelect2">
-            <inset-panel inset="15" background-color="white">
-                <lable text="模板列表"></lable>
-            </inset-panel>
-        </list-item>
-        
-        <list-item selection-style="2" event-item-select="onSelect3">
-            <inset-panel inset="15" background-color="white">
-                <lable text="动态列表"></lable>
-            </inset-panel>
-        </list-item>
-        
-        <list-item selection-style="2" event-item-select="onSelect4">
-            <inset-panel inset="15" background-color="white">
-                <lable text="动态模板(根据数据自动选择模板,很高级的功能)"></lable>
-            </inset-panel>
-        </list-item>
+        <section>
+            <list-item selection-style="2" event-item-select="onSelect1">
+                <inset-panel inset="15" background-color="white">
+                    <lable text="普通列表"></lable>
+                </inset-panel>
+            </list-item>
+
+            <list-item selection-style="2" event-item-select="onSelect2">
+                <inset-panel inset="15" background-color="white">
+                    <lable text="模板列表"></lable>
+                </inset-panel>
+            </list-item>
+
+            <list-item selection-style="2" event-item-select="onSelect3">
+                <inset-panel inset="15" background-color="white">
+                    <lable text="动态列表"></lable>
+                </inset-panel>
+            </list-item>
+
+            <list-item selection-style="2" event-item-select="onSelect4">
+                <inset-panel inset="15" background-color="white">
+                    <lable text="动态模板(根据数据自动选择模板,很高级的功能)"></lable>
+                </inset-panel>
+            </list-item>
+        </section>
     </list>
 </page>

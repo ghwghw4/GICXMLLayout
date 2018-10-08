@@ -28,16 +28,18 @@
             "pagePath": "layout/Panel.xml"
             }]
         </data-context>
-        <for>
-            <list-item selection-style="2">
-                <inset-panel background-color="white" inset="15">
-                    <behaviors>
-                        <bev-router-link path="{{pagePath}}"/>
-                    </behaviors>
-                    <lable text="{{ name }}" font-size="15"></lable>
-                </inset-panel>
-            </list-item>
-        </for>
+       <section>
+           <for>
+               <list-item selection-style="2">
+                   <inset-panel background-color="white" inset="15">
+                       <behaviors>
+                           <bev-router-link path="{{pagePath}}"/>
+                       </behaviors>
+                       <lable text="{{ name }}" font-size="15"></lable>
+                   </inset-panel>
+               </list-item>
+           </for>
+       </section>
     </list>
 </page>
 

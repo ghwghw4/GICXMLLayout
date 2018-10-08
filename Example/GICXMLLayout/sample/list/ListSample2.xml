@@ -7,10 +7,12 @@
         </template>
     </templates>
     <list>
-        <for>
-            <list-item separator-inset = "0 15 0 15">
-                <template-ref t-name="list-template"/>
-            </list-item>
-        </for>
+        <section>
+            <for>
+                <list-item separator-inset = "0 15 0 15">
+                    <template-ref t-name="list-template"/>
+                </list-item>
+            </for>
+        </section>
     </list>
 </page>

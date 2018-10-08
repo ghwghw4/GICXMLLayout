@@ -10,4 +10,6 @@
 @interface GICCollectionView : ASCollectionNode
 @property (nonatomic,assign)UITableViewCellSeparatorStyle separatorStyle;
 - (instancetype)initWithLayoutDelegate:(id<ASCollectionLayoutDelegate>)layoutDelegate layoutFacilitator:(id<ASCollectionViewLayoutFacilitatorProtocol>)layoutFacilitator;
+
+-(void)onItemAddedInSection:(NSDictionary *)itemInfo;
 @end

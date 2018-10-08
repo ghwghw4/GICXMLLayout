@@ -141,15 +141,17 @@
                 <bev-pullrefresh event-refresh="onRefreshData" loading="{{exp=isRefreshing,mode=1}}"/>
                 <bev-pullmore event-refresh="onLoadMore" loading="{{exp=isLoadingMore,mode=1}}"/>
             </behaviors>
-            <for data-path="listDatas" show-ver-scroll="0">
-                <list-item separator-inset = "0 0 0 0">
-                    <template-ref t-name="{{}}">
-                        <behaviors>
-                            <bev-router-link path="app/Detial.xml" params='{"url":"http://www.baidu.com"}'/>
-                        </behaviors>
-                    </template-ref>
-                </list-item>
-            </for>
+            <section>
+                <for data-path="listDatas" show-ver-scroll="0">
+                    <list-item separator-inset = "0 0 0 0">
+                        <template-ref t-name="{{}}">
+                            <behaviors>
+                                <bev-router-link path="app/Detial.xml" params='{"url":"http://www.baidu.com"}'/>
+                            </behaviors>
+                        </template-ref>
+                    </list-item>
+                </for>
+            </section>
         </list>
     </inset-panel>
 </page>

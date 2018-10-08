@@ -14,11 +14,13 @@
             <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
         </dock-panel>
         <list  flex-grow="1" background-color="blue" flex-shrink="1">
-            <for data-path="listDatas">
-                <list-item separator-inset = "0 15 0 15">
-                    <template-ref t-name="list-template"/>
-                </list-item>
-            </for>
+            <section>
+                <for data-path="listDatas">
+                    <list-item separator-inset = "0 15 0 15">
+                        <template-ref t-name="list-template"/>
+                    </list-item>
+                </for>
+            </section>
         </list>
     </stack-panel>
 </page>

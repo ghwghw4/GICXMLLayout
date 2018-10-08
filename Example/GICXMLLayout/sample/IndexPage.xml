@@ -42,21 +42,23 @@
             "pagePath": "app/ToutiaoRoot.xml"
             }]
         </data-context>
-        <for>
-            <list-item selection-style="2">
-                <inset-panel background-color="white" inset="15">
-                    <behaviors>
-                        <bev-router-link path="{{pagePath}}"/>
-                    </behaviors>
-                    <animations>
-                        <anim-transforms on="2" autoreverses="1" duration="0.1">
-                            <anim-scale  from="1" to="0.95"  />
-                        </anim-transforms>
-                    </animations>
-                    <lable text="{{ name }}" font-size="15"></lable>
-                </inset-panel>
-            </list-item>
-        </for>
+        <section>
+            <for>
+                <list-item selection-style="2">
+                    <inset-panel background-color="white" inset="15">
+                        <behaviors>
+                            <bev-router-link path="{{pagePath}}"/>
+                        </behaviors>
+                        <animations>
+                            <anim-transforms on="2" autoreverses="1" duration="0.1">
+                                <anim-scale  from="1" to="0.95"  />
+                            </anim-transforms>
+                        </animations>
+                        <lable text="{{ name }}" font-size="15"></lable>
+                    </inset-panel>
+                </list-item>
+            </for>
+        </section>
     </list>
 </page>
 

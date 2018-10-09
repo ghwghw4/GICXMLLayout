@@ -135,12 +135,12 @@ static NSString *_roolUrl;
     return _roolUrl;
 }
 
-+(NSData *)loadXmlDataFromPath:(NSString *)path{
++(NSData *)loadDataFromPath:(NSString *)path{
     NSURL *url = [NSURL URLWithString:[[GICXMLLayout rootUrl] stringByAppendingPathComponent:path]];
-    return [self loadXmlDataFromUrl:url];
+    return [self loadDataFromUrl:url];
 }
 
-+(NSData *)loadXmlDataFromUrl:(NSURL *)url{
++(NSData *)loadDataFromUrl:(NSURL *)url{
     NSData *xmlData = nil;
     if([[url scheme] hasPrefix:@"http"] || url.isFileURL){
         xmlData = [NSData dataWithContentsOfURL:url];
@@ -167,7 +167,7 @@ static NSString *_roolUrl;
 }
 
 +(id)parseElementFromUrl:(NSURL *)url withParentElement:(id)parentElement{
-    NSData *xmlData = [self loadXmlDataFromUrl:url];
+    NSData *xmlData = [self loadDataFromUrl:url];
     return [self parseElementFromData:xmlData withParentElement:parentElement];
 }
 

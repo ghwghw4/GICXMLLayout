@@ -115,21 +115,12 @@
                 [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
                 [section.items addObject:itemInfo[@"item"]];
             }
-            [self insertItemsAtIndexPaths:mutArray];
-
             
-//            NSInteger index = self->listItems.count;
-//            [self->listItems addObjectsFromArray:insertArray];
-//            if(index==0){
-//                [self reloadData];
-//            }else{
-//                NSMutableArray *mutArray=[NSMutableArray array];
-//                for(int i=0 ;i<insertArray.count;i++){
-//                    [mutArray addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-//                    index ++;
-//                }
-//                [self insertItemsAtIndexPaths:mutArray];
-//            }
+            if(self.visibleNodes.count==0){
+                [self reloadData];
+            }else{
+                [self insertItemsAtIndexPaths:mutArray];
+            }
         }
     }];
     return self;

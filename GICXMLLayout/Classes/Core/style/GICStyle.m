@@ -33,7 +33,7 @@ static NSString * const GICSTyleNameString =  @"style-name";
 
 -(void)setPath:(NSString *)path{
     _path = path;
-    NSData *xmlData= [GICXMLLayout loadXmlDataFromPath:path];
+    NSData *xmlData= [GICXMLLayout loadDataFromPath:path];
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:nil];
     if (xmlDocument) {
         GICStyle *style = (GICStyle *)[NSObject gic_createElement:xmlDocument.rootElement withSuperElement:[self gic_getSuperElement]];

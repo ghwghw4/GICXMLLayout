@@ -3,8 +3,8 @@
  * @param script
  * @returns {*}
  */
-Object.prototype.executeScript = function (script) {
-  return (new Function(script)).call(this);
+Object.prototype.executeScript = function (script, value1, value2) {
+  return (new Function(script)).call(this, value1, value2);
 };
 
 /**

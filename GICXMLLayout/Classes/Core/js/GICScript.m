@@ -11,12 +11,13 @@
 #import "GICJSElementValue.h"
 #import "GICJSCore.h"
 #import "GICStringConverter.h"
-
+#import "GICBoolConverter.h"
 
 
 
 @interface GICScript(){
 //    JSContext *context;
+    NSString *scriptPath;
 }
 @end
 
@@ -29,8 +30,11 @@
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
-             @"func-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICScript *)target)->_functionName = value;
+             @"path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICScript *)target)->scriptPath = value;
+             }],
+             @"private":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICScript *)target)->_isPrivate = [value boolValue];
              }],
              };;
 }
@@ -42,33 +46,41 @@
 
 -(void)attachTo:(id)target{
     [super attachTo:target];
-    JSContext *context = [GICJSCore findJSContextFromElement:target];
-
     
-//    id root = self.target;
-//    while (true) {
-//        id superEl = [root gic_getSuperElement];
-//        if(superEl==nil){
-//            break;
-//        }
-//        root = superEl;
-//    }
-//    [self addChildrenContext:root];
+    if(self->jsScript && self->jsScript.length>0){
+        [self initJSScript:self->jsScript];
+    }
     
-    JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.target inContext:context];
-    NSString *funcName = self.functionName?:@"_Func_Script_";
-    // 往selfValue 注入script 中定义的方法
-    NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,self->jsScript];
-    [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
-    // 调用该方法，直接执行脚本
-    [selfValue invokeMethod:funcName withArguments:nil];
+    if(self->scriptPath){
+        // TODO:暂时先采用同步加载，后面改成异步串行队列加载，需要由一个公共的加载器来实现。
+        [self loadJSScript];
+//        [self performSelectorInBackground:@selector(loadJSScript) withObject:nil];
+    }
 }
 
-//-(void)addChildrenContext:(id)parent{
-//    for(id child in [parent gic_subElements]){
-//        [GICJSElementValue getJSValueFrom:child inContext:context];
-//        [self addChildrenContext:child];
-//    }
-//}
+-(void)loadJSScript{
+    NSData *jsData = [GICXMLLayout loadDataFromPath:self->scriptPath];
+    NSString *jsStr = [[NSString alloc] initWithData:jsData encoding:4];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [self initJSScript:jsStr];
+//    });
+}
 
+-(void)initJSScript:(NSString *)jsStr{
+    if(!self.target){
+        return;
+    }
+    JSContext *context = [GICJSCore findJSContextFromElement:self.target];
+    if(self.isPrivate){
+        JSValue *selfValue = [GICJSElementValue getJSValueFrom:self.target inContext:context];
+        NSString *funcName = @"_Func_Script_";
+        // 往selfValue 注入script 中定义的方法
+        NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,jsStr];
+        [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
+        // 调用该方法，直接执行脚本
+        [selfValue invokeMethod:funcName withArguments:nil];
+    }else{
+        [context evaluateScript:jsStr];
+    }
+}
 @end

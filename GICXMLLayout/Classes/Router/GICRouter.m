@@ -21,7 +21,7 @@
 
 +(void)loadAPPFromPath:(NSString *)path{
     id element = [GICXMLLayout parseElementFromPath:path withParentElement:nil];
-    NSAssert(element, @"parse fail");
+    NSAssert(element, @"parse fail,请检查路径是否正确，XML格式是否正确");
     if(element && [element isKindOfClass:[GICAPP class]]){
         GICAPP *app = element;
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
@@ -39,7 +39,7 @@
 +(void)loadPageFromPath:(NSString *)path withParseCompelete:(void (^)(GICPage *page))compelte{
     dispatch_async(dispatch_get_main_queue(), ^{
         id element = [GICXMLLayout parseElementFromPath:path withParentElement:nil];
-        NSAssert(element, @"parse fail");
+        NSAssert(element, @"parse fail，请检查路径是否正确，XML格式是否正确");
         if(element && [element isKindOfClass:[UIViewController class]]){
             if(compelte)
                 compelte(element);

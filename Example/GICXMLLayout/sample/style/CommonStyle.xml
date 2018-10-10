@@ -4,7 +4,7 @@
             <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
         </template>
         <template t-name="title">
-            <lable text="{{ }}" space-after="10" font-size="25" font-color="blue"/>
+            <lable text="{{ }}" space-after="10" space-before="10" font-size="25" font-color="blue"/>
         </template>
     </templates>
 </style>

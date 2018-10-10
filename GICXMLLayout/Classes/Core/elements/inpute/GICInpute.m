@@ -89,9 +89,7 @@
 -(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *))signalBlock{
     if([attributeName isEqualToString:@"text"]){
         [self gic_safeView:^(UIView *view) {
-            signalBlock([[(UITextField *)view rac_textSignal] doNext:^(NSString * _Nullable x) {
-                NSLog(@"");
-            }]);
+            signalBlock([(UITextField *)view rac_textSignal]);
         }];
     }
 }

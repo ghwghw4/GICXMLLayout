@@ -187,13 +187,6 @@
     
     CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + info.footerHeight;
     CGSize contentSize = CGSizeMake(layoutWidth, contentHeight);
-    
-    // 判断是否自动更新容器高度
-    if(info.autoChangeLayoutHieght && contentHeight >0 && contentHeight !=context.viewportSize.height){
-        delegate.target.style.height = ASDimensionMake(contentHeight);
-        [delegate.target setNeedsLayout];
-    }
-    
     return [[ASCollectionLayoutState alloc] initWithContext:context
                                                 contentSize:contentSize
                              elementToLayoutAttributesTable:attrsMap];

@@ -82,6 +82,10 @@
       "type": "link",
       "path": "ui/list.html"
     },{
+      "text": "collection-view",
+      "type": "link",
+      "path": "ui/collection-view.html"
+    },{
       "text": "canvas",
       "type": "link",
       "path": "ui/canvas.html"
@@ -131,6 +135,15 @@
       "text": "样式",
       "type": "link",
       "path": "core/style.html"
+    },
+       {
+      "text": "JS支持",
+      "type": "label"
+    },
+     {
+      "text": "script元素",
+      "type": "link",
+      "path": "script.html"
     },
     {
       "text": "其他",

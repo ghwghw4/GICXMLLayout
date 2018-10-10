@@ -84,6 +84,20 @@
      [[self jsDataBindingContext] evaluateScript:@"gc.collect(true);"];
 }
 
+-(void)setValueFromJSValue:(JSValue *)jsvalue{
+    NSString *valueString = [jsvalue isUndefined]?@"":[jsvalue toString];
+    id value = nil;
+    if(self.valueConverter){
+        value = [self.valueConverter convert:valueString];
+    }else{
+        value = [self.attributeValueConverter convert:valueString];
+    }
+    self.attributeValueConverter.propertySetter(self.target,value);
+    if(self.valueUpdate){
+        self.valueUpdate(value);
+    }
+}
+
 -(void)refreshExpression{
     if(!self.target)
         return;
@@ -92,8 +106,8 @@
     if(self.expression.length==0){
         context[@"$original_data"] = self.dataSource;
         jsCode = @"$original_data";
-        JSValue *value = [context evaluateScript:jsCode];
-        self.attributeValueConverter.propertySetter(self.target,[value toString]);
+        JSValue *jsvalue = [context evaluateScript:jsCode];
+        [self setValueFromJSValue:jsvalue];
         return;
     }
     
@@ -111,17 +125,7 @@
     }
    
     JSValue *jsvalue = [dsJSValue invokeMethod:@"executeBindExpression2" withArguments:@[allKeys,[NSString stringWithFormat:@"return %@",self.expression],dsJSValue]];
-    NSString *valueString = [jsvalue isUndefined]?@"":[jsvalue toString];
-    id value = nil;
-    if(self.valueConverter){
-        value = [self.valueConverter convert:valueString];
-    }else{
-        value = [self.attributeValueConverter convert:valueString];
-    }
-    self.attributeValueConverter.propertySetter(self.target,value);
-    if(self.valueUpdate){
-        self.valueUpdate(value);
-    }
+   [self setValueFromJSValue:jsvalue];
     
     if(!self.isInitBinding){
         if(self.bingdingMode == GICBingdingMode_Once){

@@ -24,6 +24,24 @@
                     <lable text="动态模板(根据数据自动选择模板,很高级的功能)"></lable>
                 </inset-panel>
             </list-item>
+
+            <list-item selection-style="2">
+                <inset-panel inset="15" background-color="white">
+                    <behaviors>
+                        <bev-router-link path="list/SectionSample.xml"/>
+                    </behaviors>
+                    <lable text="header、footer、section"></lable>
+                </inset-panel>
+            </list-item>
+
+            <list-item selection-style="2">
+                <inset-panel inset="15" background-color="white">
+                    <behaviors>
+                        <bev-router-link path="list/CollectionView.xml"/>
+                    </behaviors>
+                    <lable text="collection-view"></lable>
+                </inset-panel>
+            </list-item>
         </section>
     </list>
 </page>

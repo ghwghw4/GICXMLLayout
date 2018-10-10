@@ -47,18 +47,23 @@
     return @{
              @"colums":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns=MAX(1, [value integerValue]);
+             } withGetter:^id(id target) {
+                 return @(((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns);
              }],
              @"column-spacing":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICCollectionView *)target)->layoutDelegate.layoutInfo.columnSpacing=[value floatValue];
+             } withGetter:^id(id target) {
+                 return @(((GICCollectionView *)target)->layoutDelegate.layoutInfo.columnSpacing);
              }],
-             @"auto-height":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICCollectionView *)target)->layoutDelegate.layoutInfo.autoChangeLayoutHieght=[value boolValue];
-             }],
-             @"inter-item-spacing":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"row-spacing":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICCollectionView *)target)->layoutDelegate.layoutInfo setValue:value forKey:@"interItemSpacing"];
+             } withGetter:^id(id target) {
+                 return [NSValue valueWithUIEdgeInsets:((GICCollectionView *)target)->layoutDelegate.layoutInfo.interItemSpacing];
              }],
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICCollectionView *)target).separatorStyle = [value integerValue];
+             } withGetter:^id(id target) {
+                 return @(((GICCollectionView *)target).separatorStyle);
              }],
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICCollectionView *)target gic_safeView:^(UIView *view) {
@@ -157,26 +162,6 @@
     }
 }
 
-//-(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{
-//    [super gic_removeSubElements:subElements];
-//    if(subElements.count==0)
-//        return;
-//    NSMutableArray *mutArray=[NSMutableArray array];
-//    for(id subElement in subElements){
-//        if([subElement isKindOfClass:[GICListItem class]]){
-//            [mutArray addObject:[NSIndexPath indexPathForRow:[listItems indexOfObject:subElement] inSection:0]];
-//        }
-//    }
-//    [listItems removeObjectsInArray:subElements];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        if(self->listItems.count==0){
-//            [self reloadData];
-//        }else{
-//            [self deleteItemsAtIndexPaths:mutArray];
-//        }
-//    });
-//}
-
 -(NSArray *)gic_subElements{
     NSMutableArray *elments = [listItems mutableCopy];
     if(header){
@@ -215,7 +200,6 @@
 
 - (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO:等后面支持了section后修改逻辑
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         return header;
     }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
@@ -235,7 +219,6 @@
 
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section
 {
-    // TODO:等后面支持了section后需要修改逻辑
     if([kind isEqualToString:UICollectionElementKindSectionHeader] && header && section==0){
         return 1;
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer && section==_sectionsMap.count-1){

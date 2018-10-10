@@ -17,6 +17,17 @@
 
 `list`对于`ASTableNode`的封装也并不全面，有些功能可以说是缺失的，但是也因为`gic`拥有的强大的自定义能力，你可以对现有元素进行任意的扩展，甚至你也可以直接自定义一个。
 
+
+
+**从0.3.0版本开始增加如下功能：**
+
+1. 支持header、footer。
+2. 支持section
+
+
+
+
+
 ## list 属性
 
 | 名称            | 数据类型      | 介绍               | 是否支持绑定 | 是否支持动画 |
@@ -68,6 +79,16 @@
 
 ### 
 
+## header
+
+`header` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示。
+
+## footer
+
+`footer` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示
+
+
+
 ## 例子
 
 在XML中添加list是一件非常简单的事情，只需要两步就能实现。
@@ -76,22 +97,24 @@
 
 ```xml
 <list>
-    <list-item>
-        <inset-panel inset="15" background-color="white">
-            <lable text="cell1"></lable>
-        </inset-panel>
-    </list-item>
-    <list-item>
-        <inset-panel inset="15" background-color="white">
-            <lable text="cell2"></lable>
-        </inset-panel>
-    </list-item>
-    <list-item>
-        <inset-panel inset="15" background-color="white">
-            <lable text="cell3"></lable>
-        </inset-panel>
-    </list-item>
-    ...
+    <section>
+        <list-item>
+            <inset-panel inset="15" background-color="white">
+                <lable text="cell1"></lable>
+            </inset-panel>
+        </list-item>
+        <list-item>
+            <inset-panel inset="15" background-color="white">
+                <lable text="cell2"></lable>
+            </inset-panel>
+        </list-item>
+        <list-item>
+            <inset-panel inset="15" background-color="white">
+                <lable text="cell3"></lable>
+            </inset-panel>
+        </list-item>
+        ...
+    </section>
 </list>
 ```
 
@@ -99,13 +122,15 @@
 
    ```xml
    <list>
-       <for data-context='["1", "2", "3", "4"]'>
-           <list-item>
-               <inset-panel inset="15" background-color="white">
-                   <lable text="{{  }}"></lable>
-               </inset-panel>
-           </list-item>
-       </for>
+       <section>
+           <for data-context='["1", "2", "3", "4"]'>
+               <list-item>
+                   <inset-panel inset="15" background-color="white">
+                       <lable text="{{  }}"></lable>
+                   </inset-panel>
+               </list-item>
+           </for>
+       </section>
    </list> 
    ```
 
@@ -123,13 +148,15 @@
    <page title="GICXMLLayout11" data-context="IndexPageViewModel">
        <!--list 相当于UITableView-->
        <list background-color="white" separator-style="1">
-           <for data-path="listDatas">
-               <list-item selection-style="2" event-item-select="onSelect:">
-                   <inset-panel background-color="white" inset="15">
-                       <lable text="{{ name }}" font-size="15"></lable>
-                   </inset-panel>
-               </list-item>
-           </for>
+           <section>
+               <for data-path="listDatas">
+                   <list-item selection-style="2" event-item-select="onSelect:">
+                       <inset-panel background-color="white" inset="15">
+                           <lable text="{{ name }}" font-size="15"></lable>
+                       </inset-panel>
+                   </list-item>
+               </for>
+           </section>
        </list>
    </page>
    ```
@@ -156,3 +183,93 @@
    ```
 
    在这里你可以看到，在`list-item `绑定了一个`onSelect:`的事件，该事件的实际回调就在`IndexPageViewModel`中的`onSelect:`方法。然后可以通过`eventInfo`提供的信息获取实际该`list-item `的数据源·
+
+4. header、footer
+
+   ```xml
+    <list>
+           <!--显式指定高度-->
+           <header height="44" background-color="yellow">
+               <dock-panel>
+                   <lable text="header" font-size="24"/>
+               </dock-panel>
+           </header>
+   
+           <!--显式指定高度-->
+           <footer height="44" background-color="yellow">
+               <dock-panel>
+                   <lable text="footer" font-size="24"/>
+               </dock-panel>
+           </footer>
+       </list>
+   ```
+
+5. 多个section
+
+   ```xml
+   <list>
+           <data-context>
+               {
+               "section1": ["section1-1", "section1-2", "section1-3", "section1-4", "section1-5", "section1-6", "section1-7"],
+               "section2": ["section2-1", "section2-2", "section2-3", "section2-4", "section2-5", "section2-6", "section2-7"],
+               "section3": ["section3-1", "section3-2", "section3-3", "section3-4", "section3-5", "section3-6", "section3-7"]
+               }
+           </data-context>
+           <section data-path="section1">
+               <for>
+                   <list-item selection-style="2">
+                       <inset-panel background-color="white" inset="15">
+                           <lable text="{{ }}" font-size="15"/>
+                       </inset-panel>
+                   </list-item>
+               </for>
+           </section>
+           <section data-path="section2">
+               <for>
+                   <list-item selection-style="2">
+                       <inset-panel background-color="red" inset="18">
+                           <lable text="{{ }}" font-size="18" font-color="white"/>
+                       </inset-panel>
+                   </list-item>
+               </for>
+           </section>
+           <section data-path="section3">
+               <for>
+                   <list-item selection-style="2">
+                       <inset-panel background-color="blue" inset="15">
+                           <lable text="{{ }}" font-size="15" font-color="white"/>
+                       </inset-panel>
+                   </list-item>
+               </for>
+           </section>
+       </list>
+   ```
+
+   除了上面显式指定多个section以外，您也可以使用一个for指令，将section包进去，比如下面：
+
+   ```xml
+   <list>
+           <data-context>
+               [
+               ["section1-1", "section1-2", "section1-3", "section1-4", "section1-5", "section1-6", "section1-7"],
+               ["section2-1", "section2-2", "section2-3", "section2-4", "section2-5", "section2-6", "section2-7"],
+               ["section3-1", "section3-2", "section3-3", "section3-4", "section3-5", "section3-6", "section3-7"]
+               ]
+           </data-context>
+           <for>
+               <section>
+                   <for>
+                       <list-item selection-style="2">
+                           <inset-panel background-color="white" inset="15">
+                               <lable text="{{ }}" font-size="15"/>
+                           </inset-panel>
+                       </list-item>
+                   </for>
+               </section>
+           </for>
+       </list>
+   ```
+
+   
+
+   

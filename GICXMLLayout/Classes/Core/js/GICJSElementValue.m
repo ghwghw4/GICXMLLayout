@@ -126,8 +126,4 @@
 -(void)removeFromSupeElement{
     [self.element gic_removeFromSuperElement];
 }
-
--(void)dealloc{
-    NSLog(@"jsvalue dealloc");
-}
 @end

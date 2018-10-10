@@ -1,0 +1,34 @@
+<page title="CollectionView">
+    <!--list 相当于UITableView-->
+    <collection-view colums="3" row-spacing="10">
+        <data-context>
+            [
+            20, 30, 40, 50, 60, 70, 80, 90, 100,20,10
+            ]
+        </data-context>
+        <!--显式指定高度-->
+        <header height="44" background-color="yellow">
+            <dock-panel>
+                <lable text="header" font-size="24"/>
+            </dock-panel>
+        </header>
+
+        <!--显式指定高度-->
+        <footer height="44" background-color="yellow">
+            <dock-panel>
+                <lable text="footer" font-size="24"/>
+            </dock-panel>
+        </footer>
+
+        <section data-path="section1">
+            <for>
+                <list-item selection-style="2">
+                    <dock-panel height="{{}}" background-color="gray">
+                        <lable text="{{ }}" font-size="15" font-color="white"/>
+                    </dock-panel>
+                </list-item>
+            </for>
+        </section>
+    </collection-view>
+</page>
+

@@ -15,9 +15,6 @@
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 @property (nonatomic, assign) UIEdgeInsets interItemSpacing;
 
-// 是否自动更新LayoutHieght，如果设置了ture，那么就会将全部内容显示出来。并且改变容器的高度。这种方式主要是在内嵌一个grid的情况下适用
-@property (nonatomic, assign) BOOL autoChangeLayoutHieght;
-
 - (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns
                            headerHeight:(CGFloat)headerHeight
                           columnSpacing:(CGFloat)columnSpacing

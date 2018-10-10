@@ -1,0 +1,81 @@
+<page title="JSScript">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view>
+        <inset-panel inset="10">
+            <stack-panel>
+                <template-ref t-name="title" data-context="直接访问属性、设置属性"/>
+                <lable>
+                    <behaviors>
+                        <script private="1">
+                            this.text = '我是通过js设置的文本';
+                            this.fontColor = '999999';
+                            this.fontSize = 18;
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <template-ref t-name="title" data-context="数据绑定"/>
+                <lable text="{{text}}" font-size="{{fontSize}}" font-color="{{fontColor}}">
+                    <behaviors>
+                        <script private="1">
+                            this.dataContext = {text:'我是通过数据源绑定的',fontSize:20,fontColor:'red'}
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <template-ref t-name="title" data-context="数据绑定-双向绑定"/>
+                <stack-panel>
+                    <behaviors>
+                        <script private="1">
+                            this.dataContext = {name:''}
+                        </script>
+                    </behaviors>
+                    <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
+                    </input>
+                    <lable text="{{exp='您的用户名：'+name,mode=1}}"/>
+                </stack-panel>
+
+
+                <!--在事件中-->
+                <template-ref t-name="title" data-context="绑定事件(1)直接赋值"/>
+                <lable text="点我改变文字" font-size="18" event-tap="js:this.text = '已经点击了';"/>
+
+                <template-ref t-name="title" data-context="绑定事件(2)调用方法"/>
+                <lable text="点我改变颜色" font-size="18" event-tap="js:changeColor(this);">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script>
+                            function changeColor(el){
+                            var r = parseInt(Math.random()*255+1,10);
+                            var g = parseInt(Math.random()*255+1,10);
+                            var b = parseInt(Math.random()*255+1,10);
+                            el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <template-ref t-name="title" data-context="网络请求数据"/>
+                <lable text="正在加载..." font-size="18">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = ()=>
+                            {
+                            if (xmlhttp.status===200)
+                            {
+                            // 将结果在lable中显示出来
+                            this.text = xmlhttp.responseText;
+                            }
+                            }
+                            xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
+                            xmlhttp.send();
+                        </script>
+                    </behaviors>
+                </lable>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

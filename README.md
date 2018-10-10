@@ -33,7 +33,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout'
+pod 'GICXMLLayout', '0.3.0'
 ```
 
 
@@ -119,9 +119,25 @@ pod 'GICXMLLayout'
 
    > 目前已经将touch事件优化成直接使用系统本身提供的的事件分发机制。
 
+### 0.3.0
 
+这个版本因为涉及到对js的支持，在所有的版本中开发时间是最长的也是最艰难的一个版本。
 
+1. list添加对header和footer的支持。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
 
+2. list添加对section的支持。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
+
+   > 支持多个section。当然也支持数据绑定。现在的list的功能已经很接近`UITableView`提供的功能了。
+   >
+   > 注意：在使用方式上跟原来大体上无差别，但是需要把原来的`list-item`放入某个`section`元素中。不再支持裸的`list-item`。
+
+3. 新增`collection-view`。[文档](http://gicxmllayout.gonghaiwei.cn/ui/collection-view.html)
+
+   > 功能上类似`UICollectionView`，list支持的功能`collection-view `同样支持。
+
+4. 新增`script `元素，提供对js的支持。[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
+
+   > 现在您可以直接使用js来操作UI元素的属性，甚至使用JS来实现业务逻辑。
 
 ## Author
 

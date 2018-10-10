@@ -1,0 +1,57 @@
+<!--page 相当于 UIViewController-->
+<page title="Section+Header+Footer">
+    <!--list 相当于UITableView-->
+    <list>
+        <data-context>
+            {
+            "section1": ["section1-1", "section1-2", "section1-3", "section1-4", "section1-5", "section1-6", "section1-7"],
+            "section2": ["section2-1", "section2-2", "section2-3", "section2-4", "section2-5", "section2-6", "section2-7"],
+            "section3": ["section3-1", "section3-2", "section3-3", "section3-4", "section3-5", "section3-6", "section3-7"]
+            }
+        </data-context>
+        <!--显式指定高度-->
+        <header height="44" background-color="yellow">
+            <dock-panel>
+                <lable text="header" font-size="24"/>
+            </dock-panel>
+        </header>
+
+        <!--显式指定高度-->
+        <footer height="44" background-color="yellow">
+            <dock-panel>
+                <lable text="footer" font-size="24"/>
+            </dock-panel>
+        </footer>
+
+        <section data-path="section1">
+            <for>
+                <list-item selection-style="2">
+                    <inset-panel background-color="white" inset="15">
+                        <lable text="{{ }}" font-size="15"/>
+                    </inset-panel>
+                </list-item>
+            </for>
+        </section>
+
+        <section data-path="section2">
+            <for>
+                <list-item selection-style="2">
+                    <inset-panel background-color="red" inset="18">
+                        <lable text="{{ }}" font-size="18" font-color="white"/>
+                    </inset-panel>
+                </list-item>
+            </for>
+        </section>
+
+        <section data-path="section3">
+            <for>
+                <list-item selection-style="2">
+                    <inset-panel background-color="blue" inset="15">
+                        <lable text="{{ }}" font-size="15" font-color="white"/>
+                    </inset-panel>
+                </list-item>
+            </for>
+        </section>
+    </list>
+</page>
+

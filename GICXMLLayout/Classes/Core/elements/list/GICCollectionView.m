@@ -45,7 +45,7 @@
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
-             @"colums":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             @"columns":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns=MAX(1, [value integerValue]);
              } withGetter:^id(id target) {
                  return @(((GICCollectionView *)target)->layoutDelegate.layoutInfo.numberOfColumns);

@@ -11,7 +11,7 @@
 | separator-style | Integer(枚举) | cell分割线的样式。默认0没有分割线 | 是           | 是           |
 | show-ver-scroll | Bool          | 是否显示垂直滚动条                | 是           | 是           |
 | show-hor-scroll | Bool          | 是否显示水平滚动条                | 是           | 是           |
-| colums          | Integer       | 列的数量                          | 否           | 否           |
+| columns         | Integer       | 列的数量                          | 否           | 否           |
 | column-spacing  | float         | 列间距。默认10                    | 否           | 否           |
 | row-spacing     | float         | 行间距。默认0                     | 否           | 否           |
 
@@ -27,7 +27,7 @@
 1. 一个简单的瀑布流例子。数据源是每个cell的高度。然后cell的height绑定到数据源上面。
 
    ```xml
-   <collection-view colums="3" row-spacing="10">
+   <collection-view columns="3" row-spacing="10">
        <data-context>
            [
            20, 30, 40, 50, 60, 70, 80, 90, 100,20,10

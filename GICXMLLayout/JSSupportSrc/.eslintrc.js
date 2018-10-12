@@ -29,5 +29,6 @@ module.exports = {
     'prefer-destructuring': 0,
     'class-methods-use-this': 0,
     'prefer-rest-params': 0,
+    'no-new-func': 0,
   },
 };

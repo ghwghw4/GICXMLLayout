@@ -45,6 +45,7 @@
 //#import "GICCanvasPath.h"
 #import "GICScript.h"
 #import "GICCollectionView.h"
+#import "GICGridPanel.h"
 
 @implementation GICXMLLayout
 +(void)regiterAllElements{
@@ -65,6 +66,7 @@
     [GICElementsCache registElement:[GICDockPanel class]];
     [GICElementsCache registElement:[GICBackgroundPanel class]];
     [GICElementsCache registElement:[GICRatioPanel class]];
+    [GICElementsCache registElement:[GICGridPanel class]];
     
     // 指令
     [GICElementsCache registElement:[GICDirectiveFor class]];
@@ -85,8 +87,6 @@
     // 其他
     
     [GICElementsCache registElement:[GICDataContextElement class]];
-    
-//    [GICElementsCache registElement:[GICScript class]];
     
     [GICElementsCache registBehaviorElement:[GICScript class]];
     
@@ -110,6 +110,8 @@
 //    [GICElementsCache registElement:[GICCanvasPath class]];
     [GICElementsCache registElement:[GICControl class]];
     [GICElementsCache registElement:[GICCollectionView class]];
+    
+    
     
 }
 

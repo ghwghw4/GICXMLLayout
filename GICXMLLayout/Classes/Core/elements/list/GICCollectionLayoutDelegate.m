@@ -174,7 +174,7 @@
             UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                                                                      withIndexPath:indexPath];
             
-            ASSizeRange sizeRange = [self _sizeRangeForHeaderOfSection:section withLayoutWidth:layoutWidth info:info];
+            ASSizeRange sizeRange = [self _sizeRangeForFooterOfSection:section withLayoutWidth:layoutWidth info:info];
             CGSize size = [element.node layoutThatFits:sizeRange].size;
             CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
             
@@ -195,6 +195,11 @@
 + (ASSizeRange)_sizeRangeForHeaderOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
     return ASSizeRangeMake(CGSizeMake(0, info.headerHeight), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], info.headerHeight));
+}
+
++ (ASSizeRange)_sizeRangeForFooterOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
+{
+    return ASSizeRangeMake(CGSizeMake(0, info.footerHeight), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], info.footerHeight));
 }
 
 + (CGFloat)_widthForSection:(NSUInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info

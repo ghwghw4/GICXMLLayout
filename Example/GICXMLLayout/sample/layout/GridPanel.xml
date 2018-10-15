@@ -1,0 +1,41 @@
+<page title="grid-panel">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white" inset-behavior="2">
+        <inset-panel inset="64 15 15 15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="简单的九宫格布局"/>
+                <grid-panel columns="3" column-spacing="10" row-spacing="10">
+                    <data-context>
+                        [1,2,3,4,5,6,7,8,9]
+                    </data-context>
+                    <for>
+                        <!--使用比例布局来实现正方形宫格-->
+                        <ratio-panel background-color="red">
+                            <!--使用dock-panel来实现文字居中布局-->
+                            <dock-panel>
+                                <lable text="{{}}"/>
+                            </dock-panel>
+                        </ratio-panel>
+                    </for>
+                </grid-panel>
+
+                <template-ref t-name="desc" data-context="瀑布流布局"/>
+                <grid-panel columns="3" column-spacing="10" row-spacing="10">
+                    <data-context>
+                        [
+                        20, 30, 40, 50, 60, 70, 80, 90, 100,20,10
+                        ]
+                    </data-context>
+                    <for>
+                        <!--使用dock-panel来实现文字居中布局-->
+                        <!--dock-panel的height绑定到数据源-->
+                        <dock-panel height="{{}}" background-color="red">
+                            <lable text="{{}}"/>
+                        </dock-panel>
+                    </for>
+                </grid-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

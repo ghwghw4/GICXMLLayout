@@ -49,6 +49,11 @@
       "path": "layout/ratio-panel.html"
     },
     {
+      "text": "grid-panel",
+      "type": "link",
+      "path": "layout/grid-panel.html"
+    },
+    {
       "text": "router",
       "type": "label"
     },

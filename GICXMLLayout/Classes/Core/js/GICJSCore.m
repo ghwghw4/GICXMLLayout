@@ -11,6 +11,7 @@
 #import "NSBundle+GICXMLLayout.h"
 #import <objc/runtime.h>
 #import <JavaScriptCore/JSBase.h>
+#import "GICGCDTimer.h"
 
 // 立即同步执行JS的垃圾回收机制(既然苹果没有将整个API开放出来，我个人觉得还是慎用为上，因为js本身有独立的垃圾回收机制，我们不应该强制的去干预)
 void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
@@ -55,6 +56,21 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
             [function callWithArguments:@[]];
         });
     };
+    
+    context[@"setInterval"] =^(JSValue* function, JSValue* timeout) {
+        GICGCDTimer *timer = [GICGCDTimer scheduledTimerWithTimeInterval:(uint64_t)([timeout toInt32] *NSEC_PER_MSEC) block:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [function callWithArguments:@[]];
+            });
+        } queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+        return timer;
+    };
+    
+    context[@"clearInterval"] = ^(JSValue *jsTimer){
+        GICGCDTimer *timer = [jsTimer toObject];
+        [timer invalidate];
+    };
+    
     // 添加alert 方法
     context[@"alert"] = ^(JSValue* message){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[message toString] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

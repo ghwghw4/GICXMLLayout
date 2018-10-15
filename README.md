@@ -33,7 +33,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '0.3.0'
+pod 'GICXMLLayout', '0.3.1'
 ```
 
 
@@ -138,6 +138,14 @@ pod 'GICXMLLayout', '0.3.0'
 4. 新增`script `元素，提供对js的支持。[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
 
    > 现在您可以直接使用js来操作UI元素的属性，甚至使用JS来实现业务逻辑。
+
+### 0.3.1
+
+1. 新增`grid-panel`布局。[文档](http://gicxmllayout.gonghaiwei.cn/layout/grid-panel.html)
+
+   > 布局效果类似collecttion-view，只是`grid-panel`没有滚动条，适合在list、collection-view等列表的list-item中使用。会自动计算内容高度。
+
+2. Script新增对setInterval 、clearInterval 的支持。
 
 ## Author
 

@@ -26,6 +26,9 @@
             }, {
             "name": "panel(绝对布局)",
             "pagePath": "layout/Panel.xml"
+            }, {
+            "name": "grid-panel(宫格布局-也支持瀑布流布局)",
+            "pagePath": "layout/GridPanel.xml"
             }]
         </data-context>
        <section>

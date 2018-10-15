@@ -33,7 +33,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '0.3.1'
+pod 'GICXMLLayout', '0.3.2'
 ```
 
 
@@ -146,6 +146,12 @@ pod 'GICXMLLayout', '0.3.1'
    > 布局效果类似collecttion-view，只是`grid-panel`没有滚动条，适合在list、collection-view等列表的list-item中使用。会自动计算内容高度。
 
 2. Script新增对setInterval 、clearInterval 的支持。
+
+### 0.3.2
+
+1. 为`Script`增加JSAPI注册器。
+
+   > 现在你可以通过`GICJSAPIManager `来为动态添加JSAPI，以便形成你自己的一套独有的JSAPI集合。
 
 ## Author
 

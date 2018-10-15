@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 #import <JavaScriptCore/JSBase.h>
 #import "GICGCDTimer.h"
+#import "GICJSAPIManager.h"
 
 // 立即同步执行JS的垃圾回收机制(既然苹果没有将整个API开放出来，我个人觉得还是慎用为上，因为js本身有独立的垃圾回收机制，我们不应该强制的去干预)
 void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
@@ -26,7 +27,14 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
 }
 @end
 
+@interface GICJSCore()<GICJSAPIRegisterProtocl>
+@end
+
 @implementation GICJSCore
++(void)initialize{
+    // 添加API注册器
+    [GICJSAPIManager addJSAPIRegisterClass:[self class]];
+}
 +(JSContext *)findJSContextFromElement:(NSObject *)element{
     JSContext *context = [element gic_JSContext];
     if(context){
@@ -50,6 +58,18 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
 +(void)extend:(JSContext *)context { return [self extend:context logHandler:nil]; }
 +(void)extend:(JSContext*)context logHandler:(void (^)(NSString*,NSArray*,NSString*))logHandler;
 {
+    context[@"console"] = [[GICJSConsole alloc] initWithLogHandler:logHandler];
+    [GICJSAPIManager initJSContext:context];
+//    context[@"createElement"] = ^{
+//        NSArray<JSValue *> *args = [JSContext currentArguments];
+//        NSString *elementName = [[args firstObject] toString];
+//        Class c = [GICElementsCache classForElementName:elementName];
+//        return [c new];
+//    };
+}
+
+
++(void)registeJSAPIToJSContext:(JSContext*)context{
     // 添加setTimeout方法
     context[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
@@ -78,7 +98,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     };
     
     context[@"XMLHttpRequest"] = [GICXMLHttpRequest class];
-    context[@"console"] = [[GICJSConsole alloc] initWithLogHandler:logHandler];
+    
     // 垃圾回收。为了能够及时回收内存，GC的调用很有必要。
     context[@"gc"] = @{};
     context[@"gc"][@"collect"] = ^(JSValue *sync){
@@ -90,17 +110,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
             JSGarbageCollect([JSContext currentContext].JSGlobalContextRef);
         }
     };
-    
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [context evaluateScript:jsCoreString];
-//    [context evaluateScript:@"var GIC = window.GIC;"];
-    
-//    context[@"createElement"] = ^{
-//        NSArray<JSValue *> *args = [JSContext currentArguments];
-//        NSString *elementName = [[args firstObject] toString];
-//        Class c = [GICElementsCache classForElementName:elementName];
-//        return [c new];
-//    };
 }
-
 @end

@@ -20,6 +20,8 @@
 		373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6612106BC2C00E359BB /* DirectiveViewModel.m */; };
 		37425857211D2C0700E6C7F0 /* WebViewElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 37425856211D2C0700E6C7F0 /* WebViewElement.m */; };
 		3742585A211D371E00E6C7F0 /* ToutiaoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37425859211D371E00E6C7F0 /* ToutiaoDetailViewModel.m */; };
+		378901B121746C8B00365120 /* JSAPIExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 378901B021746C8B00365120 /* JSAPIExtension.m */; };
+		378901B421746E3F00365120 /* JSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 378901B321746E3F00365120 /* JSAlert.m */; };
 		37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */; };
 		37A1F529210581EE00AC1778 /* DataBindingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F528210581EE00AC1778 /* DataBindingViewModel.m */; };
 		37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7AFD920F311B2006AADC2 /* UtilsHelp.m */; };
@@ -82,6 +84,10 @@
 		37425858211D371E00E6C7F0 /* ToutiaoDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToutiaoDetailViewModel.h; sourceTree = "<group>"; };
 		37425859211D371E00E6C7F0 /* ToutiaoDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToutiaoDetailViewModel.m; sourceTree = "<group>"; };
 		374306AE25269A441DBFAF0B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		378901AF21746C8B00365120 /* JSAPIExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAPIExtension.h; sourceTree = "<group>"; };
+		378901B021746C8B00365120 /* JSAPIExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAPIExtension.m; sourceTree = "<group>"; };
+		378901B221746E3F00365120 /* JSAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAlert.h; sourceTree = "<group>"; };
+		378901B321746E3F00365120 /* JSAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAlert.m; sourceTree = "<group>"; };
 		37A1F5222105770A00AC1778 /* AutoHideKeybordBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoHideKeybordBehavior.h; sourceTree = "<group>"; };
 		37A1F5232105770A00AC1778 /* AutoHideKeybordBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoHideKeybordBehavior.m; sourceTree = "<group>"; };
 		37A1F527210581EE00AC1778 /* DataBindingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBindingViewModel.h; sourceTree = "<group>"; };
@@ -221,6 +227,17 @@
 			path = viewmodel;
 			sourceTree = "<group>";
 		};
+		378901AE21746C7300365120 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				378901AF21746C8B00365120 /* JSAPIExtension.h */,
+				378901B021746C8B00365120 /* JSAPIExtension.m */,
+				378901B221746E3F00365120 /* JSAlert.h */,
+				378901B321746E3F00365120 /* JSAlert.m */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
 		37A1F521210576E800AC1778 /* behaviors */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +320,7 @@
 		6003F593195388D20070C39A /* Example for GICXMLLayout */ = {
 			isa = PBXGroup;
 			children = (
+				378901AE21746C7300365120 /* js */,
 				37390B35211ADEEC006B305D /* sample */,
 				372D87B0210EA8560037E314 /* dev */,
 				37ED8BB22105B1AD000F0D9A /* valueconverter */,
@@ -534,6 +552,7 @@
 				6003F59E195388D20070C39A /* GICAppDelegate.m in Sources */,
 				3742585A211D371E00E6C7F0 /* ToutiaoDetailViewModel.m in Sources */,
 				373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */,
+				378901B121746C8B00365120 /* JSAPIExtension.m in Sources */,
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				372D87B5210EA8560037E314 /* GICXMLLayoutDevTools.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
@@ -543,6 +562,7 @@
 				373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */,
 				373DD6622106BC2C00E359BB /* DirectiveViewModel.m in Sources */,
 				37C806C220F483F7002EEF55 /* ListSample3ViewModel.m in Sources */,
+				378901B421746E3F00365120 /* JSAlert.m in Sources */,
 				37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */,
 				37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

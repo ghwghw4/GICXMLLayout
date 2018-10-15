@@ -19,6 +19,8 @@
 #import "GICRouter.h"
 #import "GICXMLLayoutDevTools.h"
 #import "WebViewElement.h"
+#import "GICJSAPIManager.h"
+#import "JSAPIExtension.h"
 
 
 @implementation GICAppDelegate
@@ -50,6 +52,11 @@
     [GICElementsCache registBehaviorElement:[AutoHideKeybordBehavior class]];
     [GICElementsCache registBehaviorElement:[PullRefreshBehavior class]];
     [GICElementsCache registBehaviorElement:[PullMoreBehavior class]];
+    
+    // 启用JS异常提示(release下请关闭)
+    [GICJSAPIManager enableJSExceptionNotify];
+    // 注册JSAPI扩展
+    [GICJSAPIManager addJSAPIRegisterClass:[JSAPIExtension class]];
     
     // 设置跟目录
 //    [GICXMLLayout setRootUrl:@"http://192.168.111.171:8080/sample"];

@@ -151,6 +151,11 @@
       "path": "script.html"
     },
     {
+      "text": "jsAPI 扩展",
+      "type": "link",
+      "path": "js-extension.html"
+    },
+    {
       "text": "其他",
       "type": "label"
     },

@@ -43,9 +43,6 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     NSObject *superEl = [element gic_getSuperElement];
     if(superEl == nil){
         context = [[JSContext alloc] init];
-        context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-            NSLog(@"JSException: %@",exception);
-        };
         // 注入GICJSCore
         [self extend:context];
         

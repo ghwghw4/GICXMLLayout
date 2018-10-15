@@ -55,6 +55,21 @@
                     </behaviors>
                 </lable>
 
+                <template-ref t-name="title" data-context="绑定事件(3)通过js绑定onclick事件"/>
+                <lable text="点我改变颜色(onclick事件绑定的)" font-size="18">
+                    <behaviors>
+                        <!--js直接绑定的事件当前仅支持onclick事件-->
+                        <script private="1">
+                            this.onclick = ()=>{
+                                var r = parseInt(Math.random()*255+1,10);
+                                var g = parseInt(Math.random()*255+1,10);
+                                var b = parseInt(Math.random()*255+1,10);
+                                this.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                            };
+                        </script>
+                    </behaviors>
+                </lable>
+
                 <template-ref t-name="title" data-context="网络请求数据"/>
                 <lable text="正在加载..." font-size="18">
                     <behaviors>
@@ -71,6 +86,23 @@
                             }
                             xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
                             xmlhttp.send();
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <template-ref t-name="title" data-context="jsAPI 扩展"/>
+                <lable text="点我弹出提示框" font-size="18">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            this.onclick = function(){
+                                var alertView = new AlertView();
+                                alertView.title = '标题';
+                                alertView.message = '内容';
+                                alertView.addButton('取消',function(){console.log('点击了取消')});
+                                alertView.addButton('确定',function(){console.log('点击了确定')});
+                                alertView.show();
+                            }
                         </script>
                     </behaviors>
                 </lable>

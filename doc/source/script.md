@@ -149,9 +149,29 @@ gic的对JS的支持的实现是通过`JSContext`来实现的，因此有些JS�
 
    上面的概念说明中提到，由于事件中的js作用域是私有的，因此想要访问某个外部定义的js方法，那么这个方法必须是全局作用域的，因此，这里面定义了一个全局作用域的`changeColor`方法，这样你可以直接在事件中访问该方法了。
 
-   **这里给一个建议，就是你大可以将所有的全局作用域的JS代码写到一个`script`中，甚至你可以写到外部的js文件中，然后通过设置`path`属性来导入。**
+   **这里给一个建议，就是你大可以将所有的全局作用域的JS代码写到一个`script`中，甚至你可以写到外部的js文件中，然后通过设置`path`属性来导入。
 
-6. 使用`XMLHttpRequest`来实现异步请求网络数据。
+6. 绑定事件(3)
+
+   直接通过js来访问元素的onclick事件。当前仅支持`onclick`事件可以直接通过js来绑定触发。onclick事件是在私有作用域中实现的
+
+   ```xml
+   <lable text="点我改变颜色(onclick事件绑定的)" font-size="18">
+       <behaviors>
+           <!--js直接绑定的事件当前仅支持onclick事件-->
+           <script private="1">
+               this.onclick = ()=>{
+               var r = parseInt(Math.random()*255+1,10);
+               var g = parseInt(Math.random()*255+1,10);
+               var b = parseInt(Math.random()*255+1,10);
+               this.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+               };
+           </script>
+       </behaviors>
+   </lable>
+   ```
+
+7. 使用`XMLHttpRequest`来实现异步请求网络数据。
 
    ```xml
    <lable text="正在加载..." font-size="18">
@@ -175,4 +195,19 @@ gic的对JS的支持的实现是通过`JSContext`来实现的，因此有些JS�
    ```
 
    这里的例子是使用`XMLHttpRequest`来请求一个json格式的数据，然后显示出来的例子。这个是原始的一种方式，在实际的项目中你可以进行进一步的封装，将数据请求单独封装起来。
+
+
+
+
+
+## 其他
+
+如果你想在调试的时候在遇到JS执行异常的时候弹出提示，那么你可以在启动的时候添加如下代码即可：
+
+```objective-c
+    // 启用JS异常提示(release下请关闭)
+    [GICJSAPIManager enableJSExceptionNotify];
+```
+
+这样，当js执行过程中遇到异常，那么会在页面顶部弹出一个提示栏，5秒后自动消息。
 

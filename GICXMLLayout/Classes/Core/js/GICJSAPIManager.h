@@ -24,4 +24,10 @@
  @param jsContext <#jsContext description#>
  */
 +(void)initJSContext:(JSContext *)jsContext;
+
+
+/**
+ 是否开启当JS执行异常的时候显示提示。(debug的时候使用)
+ */
++(void)enableJSExceptionNotify;
 @end

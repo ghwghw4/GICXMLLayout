@@ -85,7 +85,6 @@
     listItems = [NSMutableArray array];
     self.style.height = ASDimensionMake(0.1);
     self->layoutDelegate = (GICCollectionLayoutDelegate *)layoutDelegate;
-    self->layoutDelegate.target = self;
     
     self.dataSource = self;
     self.delegate = self;
@@ -128,6 +127,9 @@
             }
         }
     }];
+    
+    [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
+    [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
     return self;
 }
 
@@ -146,15 +148,9 @@
     }
     else if ([subElement isKindOfClass:[GICListHeader class]]){
         header = subElement;
-        layoutDelegate.layoutInfo.hasHeader = YES;
-//        NSAssert(layoutDelegate.layoutInfo.headerHeight>0, @"请显示设置header的height属性");
-        [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
         return subElement;
     }else if ([subElement isKindOfClass:[GICListFooter class]]){
         footer = subElement;
-        layoutDelegate.layoutInfo.hasFooter = YES;
-//        NSAssert(layoutDelegate.layoutInfo.footerHeight>0, @"请显示设置footer的height属性");
-        [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
         return subElement;
     }
     else{
@@ -179,13 +175,13 @@
 #pragma mark - ASCollectionNodeDelegate / ASCollectionNodeDataSource
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode
 {
-    return _sectionsMap.count?:1;// NOTE:为了在没有数据的时候也能显示header和footer
+    return _sectionsMap.count;// NOTE:为了在没有数据的时候也能显示header和footer
 }
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
     // NOTE:为了在没有数据的时候也能显示header和footer
-    return (_sectionsMap.count>0?[[_sectionsMap.allValues objectAtIndex:section] items].count:0);
+    return [[_sectionsMap.allValues objectAtIndex:section] items].count;
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -222,7 +218,7 @@
 {
     if([kind isEqualToString:UICollectionElementKindSectionHeader] && header && section==0){
         return 1;
-    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer && (_sectionsMap.count ==0 || section==_sectionsMap.count-1)){
+    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer && section==_sectionsMap.count-1){
         return 1;
     }
     return 0;

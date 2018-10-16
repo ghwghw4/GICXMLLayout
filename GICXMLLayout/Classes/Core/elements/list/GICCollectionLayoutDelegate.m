@@ -32,7 +32,6 @@
     }
     
     return _numberOfColumns == info.numberOfColumns
-    && _hasHeader == info.hasHeader
     && _columnSpacing == info.columnSpacing
     && UIEdgeInsetsEqualToEdgeInsets(_sectionInsets, info.sectionInsets)
     && UIEdgeInsetsEqualToEdgeInsets(_interItemSpacing, info.interItemSpacing);
@@ -54,13 +53,11 @@
     // TODO:这里其实有bug的，因为属性目前是可变的，因此hash也是会变的，因此这里可能会有bug。后面想办法继续优化
     struct {
         NSInteger numberOfColumns;
-        BOOL hasHeader;
         CGFloat columnSpacing;
         UIEdgeInsets sectionInsets;
         UIEdgeInsets interItemSpacing;
     } data = {
         _numberOfColumns,
-        _hasHeader,
         _columnSpacing,
         _sectionInsets,
         _interItemSpacing,
@@ -116,20 +113,22 @@
         top += info.sectionInsets.top;
         
         // 计算header
-        if (info.hasHeader) {
+        {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ASCollectionElement *element = [elements supplementaryElementOfKind:UICollectionElementKindSectionHeader
                                                                     atIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                                                                     withIndexPath:indexPath];
-            
-            ASSizeRange sizeRange = [self _sizeRangeForHeaderOfSection:section withLayoutWidth:layoutWidth info:info];
-            CGSize size = [element.node layoutThatFits:sizeRange].size;
-            CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
-            
-            attrs.frame = frame;
-            [attrsMap setObject:attrs forKey:element];
-            top = CGRectGetMaxY(frame);
+            if(element){
+                UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                                                         withIndexPath:indexPath];
+                
+                ASSizeRange sizeRange = [self _sizeRangeForHeaderOfSection:section withLayoutWidth:layoutWidth info:info];
+                CGSize size = [element.node layoutThatFits:sizeRange].size;
+                CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
+                
+                attrs.frame = frame;
+                [attrsMap setObject:attrs forKey:element];
+                top = CGRectGetMaxY(frame);
+            }
         }
         
         [columnHeights addObject:[NSMutableArray array]];
@@ -165,20 +164,23 @@
         }
         
         // 计算footer
-        if (info.hasFooter) {
+        {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ASCollectionElement *element = [elements supplementaryElementOfKind:UICollectionElementKindSectionFooter
                                                                     atIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                                                                                                     withIndexPath:indexPath];
-            
-            ASSizeRange sizeRange = [self _sizeRangeForFooterOfSection:section withLayoutWidth:layoutWidth info:info];
-            CGSize size = [element.node layoutThatFits:sizeRange].size;
-            CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
-            attrs.frame = frame;
-            [attrsMap setObject:attrs forKey:element];
-            top = CGRectGetMaxY(frame);
-            footerHeight = size.height;
+            if(element){
+                UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                                                                                         withIndexPath:indexPath];
+                
+                ASSizeRange sizeRange = [self _sizeRangeForFooterOfSection:section withLayoutWidth:layoutWidth info:info];
+                CGSize size = [element.node layoutThatFits:sizeRange].size;
+                CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
+                attrs.frame = frame;
+                [attrsMap setObject:attrs forKey:element];
+                top = CGRectGetMaxY(frame);
+                
+                footerHeight = size.height;
+            }
         }
     }
     

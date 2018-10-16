@@ -117,12 +117,7 @@
                 [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
                 [section.items addObject:itemInfo[@"item"]];
             }
-            
-            if(self.visibleNodes.count==0){
-                [self reloadData];
-            }else{
-                [self insertItemsAtIndexPaths:mutArray];
-            }
+            [self insertItemsAtIndexPaths:mutArray];
         }
     }];
     

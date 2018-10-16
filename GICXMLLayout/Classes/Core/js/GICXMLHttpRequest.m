@@ -75,19 +75,21 @@
         self.responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         self->status = [(NSHTTPURLResponse *)response statusCode];
         self->readyState = XMLHttpRequestDONE;
-        if (!error) {
-            JSValue* _onLoad = thisValue[@"onload"];
-            if([_onLoad isUndefined]){
-                [thisValue[@"onreadystatechange"] callWithArguments:nil];
-            }else{
-                [_onLoad callWithArguments:nil];
-            }
-        } else if (error){
-            JSValue* _onError = thisValue[@"onerror"];
-            if(![_onError isUndefined]){
-                [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
-            }
-        }
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if (!error) {
+                 JSValue* _onLoad = thisValue[@"onload"];
+                 if([_onLoad isUndefined]){
+                     [thisValue[@"onreadystatechange"] callWithArguments:nil];
+                 }else{
+                     [_onLoad callWithArguments:nil];
+                 }
+             } else if (error){
+                 JSValue* _onError = thisValue[@"onerror"];
+                 if(![_onError isUndefined]){
+                     [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
+                 }
+             }
+         });
     };
     
     if(_async){//异步执行

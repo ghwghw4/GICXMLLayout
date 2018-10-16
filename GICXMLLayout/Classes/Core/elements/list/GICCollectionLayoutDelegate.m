@@ -106,7 +106,7 @@
     NSMutableArray *columnHeights = [NSMutableArray array];
     
     NSInteger numberOfSections = [elements numberOfSections];
-    CGFloat footerHeight = 0;
+    CGFloat lastFooterHeight = 0;
     for (NSUInteger section = 0; section < numberOfSections; section++) {
         NSInteger numberOfItems = [elements numberOfItemsInSection:section];
         
@@ -178,14 +178,13 @@
                 attrs.frame = frame;
                 [attrsMap setObject:attrs forKey:element];
                 top = CGRectGetMaxY(frame);
-                
-                footerHeight = size.height;
+                if(section == numberOfSections-1){
+                    lastFooterHeight = size.height;
+                }
             }
         }
     }
-    
-    
-    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + footerHeight;
+    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + lastFooterHeight;
     CGSize contentSize = CGSizeMake(layoutWidth, contentHeight);
     return [[ASCollectionLayoutState alloc] initWithContext:context
                                                 contentSize:contentSize

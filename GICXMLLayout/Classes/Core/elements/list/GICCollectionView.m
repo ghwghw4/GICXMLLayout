@@ -18,15 +18,14 @@
 #import "GICListSection.h"
 
 @interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting>{
-    NSMutableArray<GICListItem *> *listItems;
     BOOL t;
     id<RACSubscriber> insertItemsSubscriber;
     
     GICCollectionLayoutDelegate *layoutDelegate;
     
     
-    GICListHeader *header;
-    GICListFooter *footer;
+//    GICListHeader *header;
+//    GICListFooter *footer;
     
 //    NSMutableArray<GICListSection *> *_sections;
     NSMutableDictionary<NSNumber *,GICListSection *>*_sectionsMap;
@@ -82,7 +81,6 @@
 {
     self = [super initWithLayoutDelegate:layoutDelegate layoutFacilitator:layoutFacilitator];
     _sectionsMap = [NSMutableDictionary dictionary];
-    listItems = [NSMutableArray array];
     self.style.height = ASDimensionMake(0.1);
     self->layoutDelegate = (GICCollectionLayoutDelegate *)layoutDelegate;
     
@@ -134,41 +132,33 @@
 }
 
 -(id)gic_addSubElement:(id)subElement{
-    if([subElement isKindOfClass:[GICListItem class]]){
-        [subElement gic_ExtensionProperties].superElement = self;
-        if(!self.isNodeLoaded){
-            [listItems addObject:subElement];
-        }else{
-            [self->insertItemsSubscriber sendNext:subElement];
-        }
-        return subElement;
-    }else if ([subElement isKindOfClass:[GICListSection class]]){
+//    if([subElement isKindOfClass:[GICListItem class]]){
+//        [subElement gic_ExtensionProperties].superElement = self;
+//        if(!self.isNodeLoaded){
+//            [listItems addObject:subElement];
+//        }else{
+//            [self->insertItemsSubscriber sendNext:subElement];
+//        }
+//        return subElement;
+//    }else
+    if ([subElement isKindOfClass:[GICListSection class]]){
         [self->_sectionsMap setObject:subElement forKey:@([subElement sectionIndex])];
         return subElement;
     }
-    else if ([subElement isKindOfClass:[GICListHeader class]]){
-        header = subElement;
-        return subElement;
-    }else if ([subElement isKindOfClass:[GICListFooter class]]){
-        footer = subElement;
-        return subElement;
-    }
+//    else if ([subElement isKindOfClass:[GICListHeader class]]){
+//        header = subElement;
+//        return subElement;
+//    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+//        footer = subElement;
+//        return subElement;
+//    }
     else{
         return [super gic_addSubElement:subElement];
     }
 }
 
 -(NSArray *)gic_subElements{
-    NSMutableArray *elments = [listItems mutableCopy];
-    if(header){
-        [elments addObject:header];
-    }
-    
-    if(footer){
-        [elments addObject:footer];
-    }
-    [elments addObjectsFromArray:_sectionsMap.allValues];
-    return elments;
+    return [_sectionsMap.allValues mutableCopy];
 }
 
 
@@ -198,9 +188,9 @@
 - (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        return header;
+        return [_sectionsMap.allValues objectAtIndex:indexPath.section].header;
     }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        return footer;
+        return [_sectionsMap.allValues objectAtIndex:indexPath.section].footer;
     }
     return nil;
 }
@@ -216,9 +206,9 @@
 
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section
 {
-    if([kind isEqualToString:UICollectionElementKindSectionHeader] && header && section==0){
+    if([kind isEqualToString:UICollectionElementKindSectionHeader] && [_sectionsMap.allValues objectAtIndex:section].header){
         return 1;
-    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && footer && section==_sectionsMap.count-1){
+    }else if([kind isEqualToString:UICollectionElementKindSectionFooter] && [_sectionsMap.allValues objectAtIndex:section].footer){
         return 1;
     }
     return 0;
@@ -232,14 +222,34 @@
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     NSString *elName = [element name];
-    if([elName isEqualToString:[GICListHeader gic_elementName]]){
-        return  [GICListHeader new];
-    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
-        return  [GICListFooter new];
-    }else if([elName isEqualToString:[GICListSection gic_elementName]]){
+//    if([elName isEqualToString:[GICListHeader gic_elementName]]){
+//        return  [GICListHeader new];
+//    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
+//        return  [GICListFooter new];
+//    }else
+    if([elName isEqualToString:[GICListSection gic_elementName]]){
         return  [[GICListSection alloc] initWithOwner:self withSectionIndex:_sectionsMap.count];
     }
     return [super gic_parseSubElementNotExist:element];
+}
+
+-(void)gic_removeSubElements:(NSArray<GICListSection *> *)subElements{
+    [super gic_removeSubElements:subElements];
+    if(subElements.count==0)
+        return;
+    NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
+    for(id subElement in subElements){
+        if([subElement isKindOfClass:[GICListSection class]]){
+            NSInteger sectionIndex = [(GICListSection *)subElement sectionIndex];
+            [idxSet addIndex:sectionIndex];
+            [_sectionsMap removeObjectForKey:@(sectionIndex)];
+        }
+    }
+    if(_sectionsMap.count==0){
+        [self reloadData];
+    }else if(idxSet.count>0){
+        [self reloadSections:idxSet];
+    }
 }
 
 -(void)onItemAddedInSection:(NSDictionary *)itemInfo{

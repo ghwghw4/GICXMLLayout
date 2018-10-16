@@ -7,6 +7,7 @@
 
 #import "GICListSection.h"
 
+
 @implementation GICListSection{
     __weak GICCollectionView *_owner;
 }
@@ -23,13 +24,27 @@
 }
 
 -(NSArray *)gic_subElements{
-    return [self.items copy];
+    NSMutableArray *elments = [self.items mutableCopy];
+    if(self.header){
+        [elments addObject:self.header];
+    }
+    if(self.footer){
+        [elments addObject:self.footer];
+    }
+    return elments;
 }
 
 -(id)gic_addSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
         [subElement gic_ExtensionProperties].superElement = self;
         [_owner onItemAddedInSection:@{@"item":subElement,@"section":@(self.sectionIndex)}];
+        return subElement;
+    }
+    else if ([subElement isKindOfClass:[GICListHeader class]]){
+        _header = subElement;
+        return subElement;
+    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+        _footer = subElement;
         return subElement;
     }
     else{
@@ -48,16 +63,22 @@
         }
     }
     [_items removeObjectsInArray:subElements];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    if(self.items.count==0){
+        NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
+        [idxSet addIndex:self.sectionIndex];
+        [self->_owner reloadSections:idxSet];
+    }else{
         [self->_owner deleteItemsAtIndexPaths:mutArray];
-    });
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        if(self->listItems.count==0){
-//            [self reloadData];
-//        }else{
-//            [self deleteItemsAtIndexPaths:mutArray];
-//        }
-//    });
+    }
+}
+
+-(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
+    NSString *elName = [element name];
+    if([elName isEqualToString:[GICListHeader gic_elementName]]){
+        return  [GICListHeader new];
+    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
+        return  [GICListFooter new];
+    }
+    return [super gic_parseSubElementNotExist:element];
 }
 @end

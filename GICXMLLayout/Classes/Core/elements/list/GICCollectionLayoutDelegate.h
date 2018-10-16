@@ -9,14 +9,13 @@
 // 如果修改了如下属性的值，那么需要对collectionview reloaddata
 @interface GICCollectionLayoutInfo:NSObject
 @property (nonatomic, assign) NSInteger numberOfColumns;
-@property (nonatomic, assign) CGFloat headerHeight;
-@property (nonatomic, assign) CGFloat footerHeight;
+@property (nonatomic, assign) BOOL hasHeader;
+@property (nonatomic, assign) BOOL hasFooter;
 @property (nonatomic, assign) CGFloat columnSpacing;
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 @property (nonatomic, assign) UIEdgeInsets interItemSpacing;
 
 - (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns
-                           headerHeight:(CGFloat)headerHeight
                           columnSpacing:(CGFloat)columnSpacing
                           sectionInsets:(UIEdgeInsets)sectionInsets
                        interItemSpacing:(UIEdgeInsets)interItemSpacing NS_DESIGNATED_INITIALIZER;
@@ -27,6 +26,6 @@
 
 @interface GICCollectionLayoutDelegate:NSObject <ASCollectionLayoutDelegate>
 @property (nonatomic,strong,readonly)GICCollectionLayoutInfo *layoutInfo;
-- (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns headerHeight:(CGFloat)headerHeight;
+- (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns;
 @property (nonatomic,weak)ASCollectionNode *target;
 @end

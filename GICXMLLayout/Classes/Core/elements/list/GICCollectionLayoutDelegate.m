@@ -11,7 +11,6 @@
 
 @implementation GICCollectionLayoutInfo
 - (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns
-                           headerHeight:(CGFloat)headerHeight
                           columnSpacing:(CGFloat)columnSpacing
                           sectionInsets:(UIEdgeInsets)sectionInsets
                        interItemSpacing:(UIEdgeInsets)interItemSpacing
@@ -19,7 +18,6 @@
     self = [super init];
     if (self) {
         _numberOfColumns = numberOfColumns;
-        _headerHeight = headerHeight;
         _columnSpacing = columnSpacing;
         _sectionInsets = sectionInsets;
         _interItemSpacing = interItemSpacing;
@@ -34,7 +32,7 @@
     }
     
     return _numberOfColumns == info.numberOfColumns
-    && _headerHeight == info.headerHeight
+    && _hasHeader == info.hasHeader
     && _columnSpacing == info.columnSpacing
     && UIEdgeInsetsEqualToEdgeInsets(_sectionInsets, info.sectionInsets)
     && UIEdgeInsetsEqualToEdgeInsets(_interItemSpacing, info.interItemSpacing);
@@ -56,13 +54,13 @@
     // TODO:这里其实有bug的，因为属性目前是可变的，因此hash也是会变的，因此这里可能会有bug。后面想办法继续优化
     struct {
         NSInteger numberOfColumns;
-        CGFloat headerHeight;
+        BOOL hasHeader;
         CGFloat columnSpacing;
         UIEdgeInsets sectionInsets;
         UIEdgeInsets interItemSpacing;
     } data = {
         _numberOfColumns,
-        _headerHeight,
+        _hasHeader,
         _columnSpacing,
         _sectionInsets,
         _interItemSpacing,
@@ -73,12 +71,11 @@
 
 
 @implementation GICCollectionLayoutDelegate
-- (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns headerHeight:(CGFloat)headerHeight
+- (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns
 {
     self = [super init];
     if (self != nil) {
         _layoutInfo = [[GICCollectionLayoutInfo alloc] initWithNumberOfColumns:numberOfColumns
-                                                            headerHeight:headerHeight
                                                            columnSpacing:10.0
                                                            sectionInsets:UIEdgeInsetsZero
                                                         interItemSpacing:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -112,13 +109,14 @@
     NSMutableArray *columnHeights = [NSMutableArray array];
     
     NSInteger numberOfSections = [elements numberOfSections];
+    CGFloat footerHeight = 0;
     for (NSUInteger section = 0; section < numberOfSections; section++) {
         NSInteger numberOfItems = [elements numberOfItemsInSection:section];
         
         top += info.sectionInsets.top;
         
         // 计算header
-        if (info.headerHeight > 0) {
+        if (info.hasHeader) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ASCollectionElement *element = [elements supplementaryElementOfKind:UICollectionElementKindSectionHeader
                                                                     atIndexPath:indexPath];
@@ -167,7 +165,7 @@
         }
         
         // 计算footer
-        if (info.footerHeight > 0) {
+        if (info.hasFooter) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ASCollectionElement *element = [elements supplementaryElementOfKind:UICollectionElementKindSectionFooter
                                                                     atIndexPath:indexPath];
@@ -177,15 +175,15 @@
             ASSizeRange sizeRange = [self _sizeRangeForFooterOfSection:section withLayoutWidth:layoutWidth info:info];
             CGSize size = [element.node layoutThatFits:sizeRange].size;
             CGRect frame = CGRectMake(info.sectionInsets.left, top, size.width, size.height);
-            
             attrs.frame = frame;
             [attrsMap setObject:attrs forKey:element];
             top = CGRectGetMaxY(frame);
+            footerHeight = size.height;
         }
     }
     
     
-    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + info.footerHeight;
+    CGFloat contentHeight = [[[columnHeights lastObject] firstObject] floatValue] + footerHeight;
     CGSize contentSize = CGSizeMake(layoutWidth, contentHeight);
     return [[ASCollectionLayoutState alloc] initWithContext:context
                                                 contentSize:contentSize
@@ -194,12 +192,12 @@
 
 + (ASSizeRange)_sizeRangeForHeaderOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
-    return ASSizeRangeMake(CGSizeMake(0, info.headerHeight), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], info.headerHeight));
+    return ASSizeRangeMake(CGSizeMake(0, 0), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], MAXFLOAT));
 }
 
 + (ASSizeRange)_sizeRangeForFooterOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
-    return ASSizeRangeMake(CGSizeMake(0, info.footerHeight), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], info.footerHeight));
+    return ASSizeRangeMake(CGSizeMake(0, 0), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], MAXFLOAT));
 }
 
 + (CGFloat)_widthForSection:(NSUInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info

@@ -13,4 +13,6 @@
 @interface GICDirectiveFor : GICDirective{
     GDataXMLDocument *xmlDoc;
 }
+
+-(void)removeAllItems;
 @end

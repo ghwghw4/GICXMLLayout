@@ -42,6 +42,8 @@ typedef enum {
  在xml中的节点的顺序。这个直接决定元素的排序。固定的
  */
 @property (nonatomic,assign)CGFloat elementOrder;
+// 是否从for指令中生成的
+@property (nonatomic,assign)BOOL isFromDirectiveFor;
 
 -(void)addSubElement:(id)subElement;
 

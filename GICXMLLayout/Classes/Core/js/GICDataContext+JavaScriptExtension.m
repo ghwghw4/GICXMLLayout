@@ -54,7 +54,7 @@
 //}
 
 -(void)updateDataSourceFromJsValue:(JSManagedValue *)jsValue{
-    [self.target gic_removeSubElements:[self.target gic_subElements]];//更新数据源以后需要清空原来是数据，然后重新添加数据
+    [self removeAllItems];
     if([[jsValue.value invokeMethod:@"isArray" withArguments:nil] toBool]){
         jsValue.value[@"forDirective"] = self;
         [jsValue.value invokeMethod:@"toForDirector" withArguments:@[jsValue.value[@"forDirective"]]];
@@ -65,6 +65,7 @@
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_addSubElement:childElement];
 }
 

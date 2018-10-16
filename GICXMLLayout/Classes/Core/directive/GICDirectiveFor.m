@@ -42,7 +42,7 @@
 }
 
 -(void)updateDataSource:(id)dataSource{
-    [self.target gic_removeSubElements:[self.target gic_subElements]];//更新数据源以后需要清空原来是数据，然后重新添加数据
+    [self removeAllItems];
     if([dataSource isKindOfClass:[NSArray class]] && [self.target respondsToSelector:@selector(gic_addSubElement:)]){
         
         [dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -101,6 +101,17 @@
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = data;
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_addSubElement:childElement];
+}
+
+-(void)removeAllItems{
+    NSMutableArray *temp = [NSMutableArray array];
+    for(id el in [self.target gic_subElements]){
+        if([el gic_ExtensionProperties].isFromDirectiveFor ){
+            [temp addObject:el];
+        }
+    }
+    [self.target gic_removeSubElements:temp];//更新数据源以后需要清空原来是数据，然后重新添加数据
 }
 @end

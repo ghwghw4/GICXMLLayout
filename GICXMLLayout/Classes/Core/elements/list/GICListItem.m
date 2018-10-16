@@ -57,10 +57,8 @@
     self.automaticallyManagesSubnodes = YES;
     
     self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 15);
-    
-  
-    
-    
+    // 设置最小高度
+    self.style.minHeight = ASDimensionMake(0.5);
     return self;
 }
 

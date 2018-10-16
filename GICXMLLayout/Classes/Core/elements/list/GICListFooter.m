@@ -14,7 +14,13 @@
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     self.automaticallyManagesSubnodes = YES;
-    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:self.gic_displayNodes];
+    NSArray<ASDisplayNode *> *chilren = self.gic_displayNodes;
+    [chilren enumerateObjectsUsingBlock:^(ASDisplayNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj.style.width.value == 0){
+            obj.style.width = ASDimensionMake(constrainedSize.min.width);
+        }
+    }];
+    ASAbsoluteLayoutSpec *absoluteSpec = [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:chilren];
     return absoluteSpec;
 }
 @end

@@ -193,12 +193,14 @@
 
 + (ASSizeRange)_sizeRangeForHeaderOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
-    return ASSizeRangeMake(CGSizeMake(0, 0), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], MAXFLOAT));
+    CGFloat width = [self _widthForSection:section withLayoutWidth:layoutWidth info:info];
+    return ASSizeRangeMake(CGSizeMake(width, 0), CGSizeMake(width, MAXFLOAT));
 }
 
 + (ASSizeRange)_sizeRangeForFooterOfSection:(NSInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
-    return ASSizeRangeMake(CGSizeMake(0, 0), CGSizeMake([self _widthForSection:section withLayoutWidth:layoutWidth info:info], MAXFLOAT));
+    CGFloat width = [self _widthForSection:section withLayoutWidth:layoutWidth info:info];
+    return ASSizeRangeMake(CGSizeMake(width, 0), CGSizeMake(width, MAXFLOAT));
 }
 
 + (CGFloat)_widthForSection:(NSUInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info

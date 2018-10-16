@@ -79,17 +79,15 @@
 
 ### 
 
-## header
+## header、footer
 
-~~`header` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示。~~
-
-> 0.3.2 开始无需显式设置height属性
-
-## footer
-
-~~`footer` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示~~
+~~`header`、`footer` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示。~~
 
 > 0.3.2 开始无需显式设置height属性
+
+**从0.3.2版本开始，所有的section都支持单独设置header、footer，并且header、footer都必须包含在`section`元素中。**
+
+
 
 
 
@@ -192,20 +190,21 @@
 
    ```xml
     <list>
-           <!--显式指定高度-->
-           <header height="44" background-color="yellow">
-               <dock-panel>
-                   <lable text="header" font-size="24"/>
-               </dock-panel>
-           </header>
-   
-           <!--显式指定高度-->
-           <footer height="44" background-color="yellow">
-               <dock-panel>
-                   <lable text="footer" font-size="24"/>
-               </dock-panel>
-           </footer>
-       </list>
+          <section>
+               <!--显式指定高度-->
+               <header height="44" background-color="yellow">
+                   <dock-panel>
+                       <lable text="header" font-size="24"/>
+                   </dock-panel>
+               </header>
+               <!--显式指定高度-->
+               <footer height="44" background-color="yellow">
+                   <dock-panel>
+                       <lable text="footer" font-size="24"/>
+                   </dock-panel>
+               </footer>
+           </section>
+   </list>
    ```
 
 5. 多个section

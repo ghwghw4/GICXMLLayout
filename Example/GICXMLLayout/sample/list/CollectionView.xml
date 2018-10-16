@@ -6,21 +6,13 @@
             20, 30, 40, 50, 60, 70, 80, 90, 100,20,10
             ]
         </data-context>
-        <!--显式指定高度-->
-        <header height="44" background-color="yellow">
-            <dock-panel>
-                <lable text="header" font-size="24"/>
-            </dock-panel>
-        </header>
-
-        <!--显式指定高度-->
-        <footer height="44" background-color="yellow">
-            <dock-panel>
-                <lable text="footer" font-size="24"/>
-            </dock-panel>
-        </footer>
-
         <section data-path="section1">
+            <!--显式指定高度-->
+            <header height="44" background-color="yellow">
+                <dock-panel>
+                    <lable text="header" font-size="24"/>
+                </dock-panel>
+            </header>
             <for>
                 <list-item selection-style="2">
                     <dock-panel height="{{}}" background-color="gray">
@@ -28,6 +20,12 @@
                     </dock-panel>
                 </list-item>
             </for>
+            <!--显式指定高度-->
+            <footer height="44" background-color="yellow">
+                <dock-panel>
+                    <lable text="footer" font-size="24"/>
+                </dock-panel>
+            </footer>
         </section>
     </collection-view>
 </page>

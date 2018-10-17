@@ -28,6 +28,9 @@
              @"on":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_triggerType = (GICAnimationTriggerType)[value integerValue];
              }],
+             @"event-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICAnimation *)target)->_eventName = value;
+             }],
              @"ease-mode":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_easeMode = (GICAnimationEaseMode)[value integerValue];
              }],
@@ -47,9 +50,14 @@
         dispatch_async(dispatch_get_main_queue(), ^{
              [self beginAnimantion];
         });
-    }else if(self.triggerType == GICAnimationTriggerType_tap){
+    }else if(self.triggerType == GICAnimationTriggerType_event){
         @weakify(self)
-        GICEvent *event = [target gic_event_findFirstWithEventClassOrCreate:[GICTapEvent class]];
+        GICEvent *event = nil;
+        if(self.eventName){
+            event = [target gic_event_findFirstWithEventNameOrCreate:self.eventName];
+        }else{
+            event = [target gic_event_findFirstWithEventClassOrCreate:[GICTapEvent class]];
+        }
         [event.eventSubject subscribeNext:^(id  _Nullable x) {
             @strongify(self)
             [self beginAnimantion];

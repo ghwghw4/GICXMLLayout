@@ -147,3 +147,12 @@
 ## 自定义指令
 
 自定义指令，你可以参考源码中的`GICDirectiveIf `实现，也很简单，相信你能一看就懂。你也可以试着自定义一个`switch`指令
+
+
+
+## JSAPI的自定义
+
+JSAPI的自定义参考如下文档：
+
+[JSAPI扩展](http://gicxmllayout.gonghaiwei.cn/js-extension.html)
+

@@ -11,7 +11,7 @@
 typedef enum {
     GICAnimationTriggerType_None = 0 ,//不触发
     GICAnimationTriggerType_attach = 1,//附加的时候
-    GICAnimationTriggerType_tap = 2//单击的时候
+    GICAnimationTriggerType_event = 2//事件触发，默认tab事件
 }GICAnimationTriggerType;
 
 typedef enum {
@@ -31,7 +31,7 @@ typedef enum {
 @property (nonatomic,readonly)BOOL autoreverses;
 @property (nonatomic,readonly)GICAnimationEaseMode easeMode;
 @property (nonatomic,readonly)GICAnimationTriggerType triggerType;
-
+@property (nonatomic,readonly)NSString *eventName;
 
 /**
  由子类实现

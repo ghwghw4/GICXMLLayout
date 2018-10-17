@@ -17,11 +17,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 2. 纯粹的MVVM
 3. 支持`数据绑定`,类似h5中`Vue`提供的数据绑定能力
 4. 支持`模板功能`类似于h5中的模板功能。
-5. 强大的布局系统，甚至提供flex等复杂高效的布局
-6. 强大的自定义能力，能够使得开发者按照自己的意愿扩展出能够直接使用XML来描述的任意功能。
-7. 具有局部替换能力，可以对现有项目进行局部替换，使得局部功能具备MVVM+XML的能力。
-8. 由于是直接采用XML来描述，因此天生具备实时更新的能力
-9. `gic`的布局系统以及UI系统是基于`Texture`开发的，因此天生具有强大的性能优势
+5. 支持JS直接操作元素，支持使用JS来写业务逻辑。
+6. 强大的布局系统，甚至提供flex等复杂高效的布局
+7. 强大的自定义能力，能够使得开发者按照自己的意愿扩展出能够直接使用XML来描述的任意功能。
+8. 具有局部替换能力，可以对现有项目进行局部替换，使得局部功能具备MVVM+XML的能力。
+9. 由于是直接采用XML来描述，因此天生具备实时更新的能力
+10. `gic`的布局系统以及UI系统是基于`Texture`开发的，因此天生具有强大的性能优势
 
 # 在线文档
 
@@ -149,9 +150,13 @@ pod 'GICXMLLayout', '0.3.2'
 
 ### 0.3.2
 
-1. 为`Script`增加JSAPI注册器。
+1. 为`Script`增加JSAPI注册器。以便扩展JSAPI[文档](http://gicxmllayout.gonghaiwei.cn/js-extension.html)
 
    > 现在你可以通过`GICJSAPIManager `来为动态添加JSAPI，以便形成你自己的一套独有的JSAPI集合。
+
+2. `list`、`collection-view`所有的section都支持添加header、footer。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
+
+3. 动画触发条件支持任意事件。[文档](http://gicxmllayout.gonghaiwei.cn/core/animation.html)
 
 ## Author
 

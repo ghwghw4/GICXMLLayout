@@ -211,3 +211,9 @@ gic的对JS的支持的实现是通过`JSContext`来实现的，因此有些JS�
 
 这样，当js执行过程中遇到异常，那么会在页面顶部弹出一个提示栏，5秒后自动消息。
 
+
+
+JSAPI的扩展参考如下文档：
+
+[JSAPI的扩展](http://gicxmllayout.gonghaiwei.cn/js-extension.html)
+

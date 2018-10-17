@@ -45,7 +45,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
         context = [[JSContext alloc] init];
         // 注入GICJSCore
         [self extend:context];
-        
+        [GICJSAPIManager initJSContext:context];
         [element setGic_JSContext:context];
         return context;
     }
@@ -56,7 +56,6 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
 +(void)extend:(JSContext*)context logHandler:(void (^)(NSString*,NSArray*,NSString*))logHandler;
 {
     context[@"console"] = [[GICJSConsole alloc] initWithLogHandler:logHandler];
-    [GICJSAPIManager initJSContext:context];
 //    context[@"createElement"] = ^{
 //        NSArray<JSValue *> *args = [JSContext currentArguments];
 //        NSString *elementName = [[args firstObject] toString];

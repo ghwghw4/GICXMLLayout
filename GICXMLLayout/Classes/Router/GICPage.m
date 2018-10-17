@@ -9,10 +9,11 @@
 #import "GICRouter.h"
 #import "GICStringConverter.h"
 #import "GICColorConverter.h"
+#import "GICBoolConverter.h"
 #import "GICPanel.h"
 #import "GICStackPanel.h"
 #import "GICNavBar.h"
-
+#import "GICXMLParserContext.h"
 @interface GICPage (){
 }
 @property (nonatomic, strong) ASDisplayNode *displayNode;
@@ -29,6 +30,10 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
+             
+             @"js-router":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICPage *)target)->_jsRouter = [value boolValue];
+             }],
              // tips:不要提供background-color属性，提供了以后有可能会引起其他的问题
 //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
 //                 [GICUtils mainThreadExcu:^{
@@ -39,7 +44,10 @@
 }
 
 #pragma mark - Lifecycle Methods
-
+-(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
+    [GICXMLParserContext currentInstance].gic_ExtensionProperties.tempDataContext = self;
+    [super gic_beginParseElement:element withSuperElement:superElment];
+}
 -(void)gic_parseElementCompelete{
     [super gic_parseElementCompelete];
 }

@@ -10,8 +10,14 @@
 #import "GICNav.h"
 #import "GICAPP.h"
 #import "GICRouterLink.h"
+#import "GICRouterJSAPIExtension.h"
+#import "GICJSAPIManager.h"
 
 @implementation GICRouter
++(void)initialize{
+    // 注入JSAPI扩展
+    [GICJSAPIManager addJSAPIRegisterClass:[GICRouterJSAPIExtension class]];
+}
 +(void)regiterAllElements{
     [GICElementsCache registElement:[GICAPP class]];
     [GICElementsCache registElement:[GICPage class]];

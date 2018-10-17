@@ -8,6 +8,7 @@
 #import "GICNav.h"
 #import "GICColorConverter.h"
 #import "GICRouter.h"
+#import "GICRouterJSAPIExtension.h"
 
 @interface GICNav(){
     NSString *rootPagePath;
@@ -70,6 +71,11 @@
             [viewModel navigationBackWithParams:[[GICRouterParams alloc] initWithData:paramsData from:from]];
         }
     }
+    
+    // JSRouter
+    if(paramsData && [page isKindOfClass:[GICPage class]] && [(GICPage *)page jsRouter]){
+        [GICRouterJSAPIExtension goBackWithParmas:paramsData fromPage:(GICPage *)page];
+    }
 }
 
 -(void)push:(NSString *)path{
@@ -85,6 +91,11 @@
             if([viewModel respondsToSelector:@selector(navigationWithParams:)]){
                 [viewModel navigationWithParams:[[GICRouterParams alloc] initWithData:paramsData from:[self visibleViewController]]];
             }
+        }
+        // JSRouter
+        if(page.jsRouter && paramsData){
+            //
+            [GICRouterJSAPIExtension setJSParamsData:paramsData withPage:page];
         }
         [self pushViewController:page animated:YES];
     }];

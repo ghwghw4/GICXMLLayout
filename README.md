@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '0.3.2'
+pod 'GICXMLLayout', '0.3.3'
 ```
 
 
@@ -157,6 +157,10 @@ pod 'GICXMLLayout', '0.3.2'
 2. `list`、`collection-view`所有的section都支持添加header、footer。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
 
 3. 动画触发条件支持任意事件。[文档](http://gicxmllayout.gonghaiwei.cn/core/animation.html)
+
+### 0.3.3
+
+1. 增加JSRouter相关API，专门用来支持JS 导航相关。
 
 ## Author
 

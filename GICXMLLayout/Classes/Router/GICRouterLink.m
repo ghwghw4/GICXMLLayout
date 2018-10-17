@@ -31,14 +31,6 @@
 -(void)attachTo:(id)target{
     [super attachTo:target];
     if([target isKindOfClass:[ASDisplayNode class]]){
-//        @weakify(self)
-//        [target gic_get_tapSignal:^(RACSignal *signal) {
-//            [[signal takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id  _Nullable x) {
-//                @strongify(self)
-//                [[self gic_Router] push:self.path withParamsData:self.params];
-//            }];
-//        }];
-        
         @weakify(self)
         GICEvent *event = [target gic_event_findFirstWithEventClassOrCreate:[GICTapEvent class]];
         [event.eventSubject subscribeNext:^(id  _Nullable x) {

@@ -1,0 +1,33 @@
+<page title="document API 演示" js-router="1">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="10">
+            <stack-panel>
+                <template-ref t-name="title" data-context="getElementsByName"/>
+                <lable text="点我" font-size="18">
+                    <behaviors>
+                        <script private="1">
+                            this.onclick = function(){
+                                document.getElementsByName('lblTest')[0].text = '我是通过getElementsByNameAPI设置的哦';
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+                <lable text="" name="lblTest"/>
+
+                <template-ref t-name="title" data-context="rootElement"/>
+                <lable text="点我" font-size="18">
+                    <behaviors>
+                        <!--对于一个页面来说，rootElement 就是page元素-->
+                        <script private="1">
+                            this.onclick = function(){
+                            document.rootElement.title = '通过rootElement设置';
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

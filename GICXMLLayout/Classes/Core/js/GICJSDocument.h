@@ -9,7 +9,9 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 @protocol GICJSDocument <JSExport>
 -(NSArray *)getElementsByName:(NSString *)name;
-@property (nonatomic,readonly)JSValue *rootElement;
+@property (readonly)id rootElement;
+// 私有API，用于GIC库内部的api调用。
+-(id)_getRootElement;
 @end
 
 @interface GICJSDocument : NSObject<GICJSDocument>{

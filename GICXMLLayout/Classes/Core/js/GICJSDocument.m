@@ -16,8 +16,12 @@
     return self;
 }
 
--(JSValue *)rootElement{
+-(id)rootElement{
     return [GICJSElementValue getJSValueFrom:self->rootElement inContext:[JSContext currentContext]];
+}
+
+-(id)_getRootElement{
+    return self->rootElement;
 }
 
 -(NSArray *)getElementsByName:(NSString *)name{

@@ -21,6 +21,16 @@
 
 
 /**
+ 根据name，从父元素上查找name为给定字符串的所有子元素
+
+ @param superElment <#superElment description#>
+ @param name <#name description#>
+ @return <#return value description#>
+ */
++(NSArray *)findSubElementsFromSuperElement:(id)superElment withName:(NSString *)name;
+
+
+/**
  根据name 和 viewModel，查找元素名为name的第一个元素
 
  @param viewModel <#viewModel description#>

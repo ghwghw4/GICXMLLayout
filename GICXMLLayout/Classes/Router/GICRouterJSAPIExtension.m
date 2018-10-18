@@ -27,7 +27,7 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 /**
  导航参数
  */
-@property JSValue* parmas;
+@property JSValue* params;
 
 @property JSValue* onNavgateBackFrom;
 @end
@@ -54,12 +54,12 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
     [[element gic_Router] push:path withParamsData:paramsData];
 }
 
--(void)setParmas:(JSValue *)parmas{
-    managedJSValue = [JSManagedValue managedValueWithValue:parmas];
+-(void)setParams:(JSValue *)params{
+    managedJSValue = [JSManagedValue managedValueWithValue:params];
     [[[JSContext currentContext] virtualMachine] addManagedReference:managedJSValue withOwner:self];
 }
 
--(JSValue *)parmas{
+-(JSValue *)params{
     return managedJSValue.value;
 }
 
@@ -81,7 +81,7 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 
 +(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page{
     JSContext *context = [GICJSCore findJSContextFromElement:page];
-    context[@"Router"][@"parmas"] = paramsData;
+    context[@"Router"][@"params"] = paramsData;
 }
 
 +(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page{

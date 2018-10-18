@@ -13,7 +13,8 @@
 @interface GICXMLParserContext : NSObject
 @property (nonatomic,strong,readonly)GDataXMLDocument *xmlDoc;
 @property (nonatomic,strong,readonly)NSMutableDictionary *currentTemplates;
-
+// 解析完成事件
+@property (nonatomic,readonly,strong)RACSubject *parseCompeteSubject;
 -(id)initWithXMLDoc:(GDataXMLDocument *)xmlDoc;
 
 /**

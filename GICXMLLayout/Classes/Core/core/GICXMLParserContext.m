@@ -16,6 +16,7 @@
     self = [super init];
     self->_xmlDoc = xmlDoc;
     _currentTemplates = [NSMutableDictionary dictionary];
+    _parseCompeteSubject = [RACSubject subject];
     return self;
 }
 
@@ -35,6 +36,11 @@ static GICXMLParserContext *current;
 }
 
 +(void)parseCompelete{
+    [current.parseCompeteSubject sendCompleted];
     current = current->prev;
+}
+
+-(void)dealloc{
+    [self.parseCompeteSubject sendCompleted];
 }
 @end

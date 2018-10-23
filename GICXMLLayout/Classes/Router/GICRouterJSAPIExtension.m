@@ -76,11 +76,12 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 
 @implementation GICRouterJSAPIExtension
 +(void)registeJSAPIToJSContext:(JSContext *)context{
-    JSValue *jsvalue = context[@"document"]; //[context evaluateScript:@"return document._getRootElement();"];
-    if(![jsvalue isUndefined]){
-        jsvalue = [jsvalue invokeMethod:@"_getRootElement" withArguments:nil];
-        context[@"Router"] = [[GICJSRouter alloc] initWithElement:[jsvalue toObject]];
-    }
+//    JSValue *jsvalue = context[@"document"]; //[context evaluateScript:@"return document._getRootElement();"];
+//    if(![jsvalue isUndefined]){
+//        jsvalue = [jsvalue invokeMethod:@"_getRootElement" withArguments:nil];
+//        context[@"Router"] = [[GICJSRouter alloc] initWithElement:[jsvalue toObject]];
+//    }
+    context[@"Router"] = [[GICJSRouter alloc] initWithElement:[GICXMLParserContext currentInstance].gic_ExtensionProperties.tempDataContext];
 }
 
 +(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page{

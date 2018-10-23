@@ -36,4 +36,14 @@
     }
     return @[];
 }
+
+-(id)createElement:(NSString *)elmentName{
+    Class c = [GICElementsCache classForElementName:elmentName];
+    if(c){
+        // TODO:这里面的元素会被立即释放掉，因为没有被添加到父元素中，而JS的引用又不会对元素强引用
+        NSObject *v = [c createElementWithXML:nil];
+        return [GICJSElementValue getJSValueFrom:v inContext:[JSContext currentContext]];
+    }
+    return nil;
+}
 @end

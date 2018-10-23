@@ -65,7 +65,7 @@
     NSDictionary<NSString *, GICAttributeValueConverter *> *ps = [GICElementsCache classAttributs:[element class]];
     // 初始化元素
     [selfValue invokeMethod:@"_elementInit" withArguments:@[ps.allKeys]];
-    
+    // 当元素释放的时候自动删除变量
     __weak JSContext *weakContext = jsContext;
     [[element rac_willDeallocSignal] subscribeCompleted:^{
         [weakContext evaluateScript:[NSString stringWithFormat:@"delete %@",name]];

@@ -12,6 +12,8 @@
 @property (readonly)id rootElement;
 // 私有API，用于GIC库内部的api调用。
 -(id)_getRootElement;
+
+//-(id)createElement:(NSString *)elmentName;
 @end
 
 @interface GICJSDocument : NSObject<GICJSDocument>{

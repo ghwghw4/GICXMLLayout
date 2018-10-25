@@ -73,7 +73,7 @@
     }
     
     // JSRouter
-    if(paramsData && [page isKindOfClass:[GICPage class]] && [(GICPage *)page jsRouter]){
+    if([page isKindOfClass:[GICPage class]] && [(GICPage *)page jsRouter]){
         [GICRouterJSAPIExtension goBackWithParmas:paramsData fromPage:(GICPage *)page];
     }
 }

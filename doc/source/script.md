@@ -223,3 +223,42 @@ JSAPI的扩展参考如下文档：
 
 ## JSRouter（导航相关）
 
+### API介绍
+
+1. Router.push(path,data)
+
+   > 导航到下一页
+
+2. Router.params   : **必须在`page`元素中将`js-router`设为`true`**
+
+   > 获取当前页面的参数，也就是获取从上一页传过来的参数
+
+3. Router.goBack(data)
+
+   > 返回上一页。你也可以在返回的时候同时传参数
+
+4. Router.onNavgateBackFrom  :**必须在`page`元素中将`js-router`设为`true`**
+
+   > 从前一页返回事件。当从前一页返回的时候触发。
+
+   ```xml
+   <lable text="" font-size="18">
+       <behaviors>
+           <script private="1">
+               Router.onNavgateBackFrom = (params)=>{
+               	this.text = params.name;
+               }
+           </script>
+       </behaviors>
+   </lable>
+   ```
+
+
+
+page 元素新增一个属性：js-router
+
+| 名称      | 数据类型 | 介绍                                                         | 是否支持绑定 | 是否支持动画 |
+| --------- | -------- | ------------------------------------------------------------ | ------------ | ------------ |
+| js-router | bool     | 是否启用js导航。只有在启用了的情况下，部分JSRouter的API才能生效。 | 是           | 否           |
+
+具体使用方式参考项目自带的Sample

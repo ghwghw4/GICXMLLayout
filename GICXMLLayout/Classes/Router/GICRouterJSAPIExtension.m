@@ -91,6 +91,6 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 
 +(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page{
     JSContext *context = [GICJSCore findJSContextFromElement:page];
-    [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:@[paramsData]];
+    [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:(paramsData?@[paramsData]:nil)];
 }
 @end

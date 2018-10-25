@@ -7,55 +7,6 @@
 
 #import "GICJSNativeAPI.h"
 
-@interface GICJSTest : NSObject
-@property (nonatomic,strong)NSString *name;
--(void)print;
-
--(void)print2:(NSString *)msg;
-
--(void)print3:(NSString *)title msg:(NSString *)msg;
-
-+(void)print4:(NSString *)msg;
-
--(id)initWithName:(NSString *)name;
-
-@end
-
-@implementation GICJSTest
--(id)init{
-    self = [super init];
-    self.name = @"哈哈";
-    return self;
-}
-
--(id)initWithName:(NSString *)name{
-    self = [super init];
-    self.name = name;
-    return self;
-}
--(void)print{
-    NSLog(@"print");
-}
-
--(void)print2:(NSString *)msg{
-    NSLog(@"print2:%@",msg);
-}
-
--(void)print3:(NSString *)title msg:(NSString *)msg{
-    NSLog(@"print3 title = %@,msg = %@",title, msg);
-}
--(void)dealloc{
-    NSLog(@"dealloc GICJSTest");
-}
-
-+(void)print4:(NSString *)msg{
-    NSLog(@"print4:%@",msg);
-    
-//    [[NSUserDefaults standardUserDefaults] valueForKey:<#(nonnull NSString *)#>]
-}
-@end
-
-
 @implementation GICJSNativeAPI
 static id createNativeObject(NSString *className){
     Class cls = NSClassFromString(className);

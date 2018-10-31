@@ -37,6 +37,9 @@
             }, {
             "name": "样式",
             "pagePath": "StyleSample.xml"
+            },{
+            "name": "Popover",
+            "pagePath": "popover/PopoverSample.xml"
             }, {
             "name": "模拟头条Feeds(重点是模板、布局、性能)",
             "pagePath": "app/ToutiaoRoot.xml"

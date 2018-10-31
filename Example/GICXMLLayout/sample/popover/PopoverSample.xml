@@ -1,0 +1,82 @@
+<page title="Popover" data-context='BehaviorViewModel'>
+    <style path="style/CommonStyle.xml"/>
+    <templates>
+        <template t-name="list-template">
+            <inset-panel inset="25 15" background-color="white">
+                <lable text="{{  }}" font-size="20"></lable>
+            </inset-panel>
+        </template>
+
+        <template t-name="button">
+            <control height="44">
+                <dock-panel>
+                    <lable text="{{}}" font-size="16"/>
+                </dock-panel>
+            </control>
+        </template>
+
+        <template t-name="popover-normal">
+            <inset-panel inset="20 0 0 0" background-color="blue" height="200">
+                <stack-panel>
+                    <control height="44" background-color="yellow" event-tap="closePopover">
+                        <dock-panel>
+                            <lable text="关闭" font-size="16" font-color="black"/>
+                        </dock-panel>
+                    </control>
+                </stack-panel>
+            </inset-panel>
+        </template>
+
+        <template t-name="popover-js">
+            <inset-panel inset="20 10 10 10">
+                <stack-panel>
+                    <control height="44" background-color="yellow" event-tap="js:closePopover()">
+                        <dock-panel>
+                            <lable text="关闭" font-size="16" font-color="black"/>
+                        </dock-panel>
+                    </control>
+                </stack-panel>
+            </inset-panel>
+        </template>
+
+        <template t-name="popover-js-page">
+            <nav>
+                <page title="你好">
+                    <inset-panel inset="64 0 0 0">
+                        <stack-panel>
+                            <control height="44" background-color="yellow" event-tap="js:closePopover()">
+                                <dock-panel>
+                                    <lable text="关闭" font-size="16" font-color="black"/>
+                                </dock-panel>
+                            </control>
+                        </stack-panel>
+                    </inset-panel>
+                </page>
+            </nav>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <behaviors>
+            <script path="popover/PopoverSample.js"/>
+        </behaviors>
+        <inset-panel inset="10">
+            <stack-panel space="10">
+                <template-ref t-name="desc" data-context="普通的弹框"/>
+                <!--<template-ref t-name="button" data-context="点我(普通弹框)"/>-->
+                <!--直接通过native code 来弹出-->
+                <control height="44" data-context="PopoverSampleViewModel" event-tap="showPopover:">
+                    <dock-panel>
+                        <lable text="点我(普通弹框)" font-size="16"/>
+                    </dock-panel>
+                </control>
+
+                <template-ref t-name="button" data-context="点我(JS 弹出)" event-tap="js:showPopover('popover-js',this)">
+                </template-ref>
+
+                <template-ref t-name="button" data-context="点我(JS 弹出 ViewController)" event-tap="js:showPopover('popover-js-page',this)">
+                </template-ref>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

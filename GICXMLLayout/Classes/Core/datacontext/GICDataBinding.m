@@ -72,10 +72,13 @@
     dispatch_once(&onceToken, ^{
         context = [[JSContext alloc] init];
         [GICJSCore extend:context];
+        
+        #if DEBUG
         // 开启定时器，定时清理JS内存
         dispatch_async(dispatch_get_main_queue(), ^{
             [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(dataBindingJSContextTimerTick) userInfo:nil repeats:YES];
         });
+        #endif
     });
     return context;
 }

@@ -15,9 +15,13 @@
 #import "GICJSAPIManager.h"
 #import "GICJSDocument.h"
 #import "GICJSNativeAPI.h"
+#import "GICJSPopover.h"
 
+#if DEBUG
 // 立即同步执行JS的垃圾回收机制(既然苹果没有将整个API开放出来，我个人觉得还是慎用为上，因为js本身有独立的垃圾回收机制，我们不应该强制的去干预)
 void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
+#endif
+
 
 @implementation NSObject (GICScript)
 -(JSContext *)gic_JSContext{
@@ -47,6 +51,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
         context = [[JSContext alloc] init];
         // 注入GICJSCore
         context[@"document"] = [[GICJSDocument alloc] initRootElement:element];
+        
         [self extend:context];
         [element setGic_JSContext:context];
         return context;
@@ -91,7 +96,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     };
     
     context[@"XMLHttpRequest"] = [GICXMLHttpRequest class];
-    
+#if DEBUG
     // 垃圾回收。为了能够及时回收内存，GC的调用很有必要。
     context[@"gc"] = @{};
     context[@"gc"][@"collect"] = ^(JSValue *sync){
@@ -103,10 +108,15 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
             JSGarbageCollect([JSContext currentContext].JSGlobalContextRef);
         }
     };
+#endif
+   
+    
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [context evaluateScript:jsCoreString];
     // 注册nativeAPI
     [context evaluateScript:[NSBundle gic_jsNativeAPIString]];
     context[@"_native_"] = [[GICJSNativeAPI alloc] init];
+    
+    context[@"Popover"] = [GICJSPopover class];
 }
 @end

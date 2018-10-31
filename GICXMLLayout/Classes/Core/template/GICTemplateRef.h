@@ -23,4 +23,5 @@
 //-(NSObject *)parseTemplate:(GICTemplate *)t;
 
 -(NSObject *)parseTemplateFromTarget:(id)target;
+-(id)initWithTemplateName:(NSString *)templateName;
 @end

@@ -20,7 +20,7 @@
              }],
              @"repeat":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  NSInteger count = [value integerValue];
-                 ((GICAnimation *)target)->_repeatCount = (count==-1?HUGE_VAL:count);
+                 ((GICAnimation *)target)->_repeatCount = count;
              }],
              @"autoreverses":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_autoreverses = [value boolValue];
@@ -71,7 +71,7 @@
     if([animation respondsToSelector:@selector(setDuration:)]){
         [animation performSelector:@selector(setDuration:) withObject:@(self.duration)];
     }
-    animation.repeatCount = self.repeatCount;
+    animation.repeatCount = self.repeatCount == -1?HUGE_VAL:self.repeatCount;
     animation.autoreverses = self.autoreverses;
     [self.target pop_addAnimation:animation forKey:nil];
 }

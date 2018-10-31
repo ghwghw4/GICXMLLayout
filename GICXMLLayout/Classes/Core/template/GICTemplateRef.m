@@ -25,6 +25,12 @@
              };;
 }
 
+-(id)initWithTemplateName:(NSString *)templateName{
+    self = [self init];
+    self.templateName = templateName;
+    return self;
+}
+
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     if(children.count>0){
         slotsXmlDocMap = [NSMutableDictionary dictionary];

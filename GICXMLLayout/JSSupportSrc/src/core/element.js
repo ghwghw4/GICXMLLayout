@@ -34,6 +34,8 @@ function elAttributeNameToPropertyName(attName) {
  * @private
  */
 Object.prototype._elementInit = function (props) {
+  if (this.__hasInit__) { console.log('inited'); return false; }
+  this.__hasInit__ = true;
   const obj = this;
   // 1.属性
   props.forEach((key) => {
@@ -76,6 +78,7 @@ Object.prototype._elementInit = function (props) {
       return this.getSuperElement();
     },
   });
+  return true;
 };
 
 // 提供给普通绑定作为数据源用的，主要是native的数据源转换而来

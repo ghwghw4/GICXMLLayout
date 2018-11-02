@@ -7,7 +7,7 @@
 
 #import "GICJSDocument.h"
 #import "GICElementsHelper.h"
-#import "GICJSElementValue.h"
+#import "JSValue+GICJSExtension.h"
 
 @implementation GICJSDocument
 -(id)initRootElement:(id)root{
@@ -17,7 +17,7 @@
 }
 
 -(id)rootElement{
-    return [GICJSElementValue getJSValueFrom:self->rootElement inContext:[JSContext currentContext]];
+    return [JSValue getJSValueFrom:self->rootElement inContext:[JSContext currentContext]];
 }
 
 -(id)_getRootElement{
@@ -30,7 +30,7 @@
         // 获取子元素后，需要将子元素转换成JSValue
         NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:elments.count];
         [elments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [mutArr addObject:[GICJSElementValue getJSValueFrom:obj inContext:[JSContext currentContext]]];
+            [mutArr addObject:[JSValue getJSValueFrom:obj inContext:[JSContext currentContext]]];
         }];
         return mutArr;
     }
@@ -42,7 +42,7 @@
     if(c){
         // TODO:这里面的元素会被立即释放掉，因为没有被添加到父元素中，而JS的引用又不会对元素强引用
         NSObject *v = [c createElementWithXML:nil];
-        return [GICJSElementValue getJSValueFrom:v inContext:[JSContext currentContext]];
+        return [JSValue getJSValueFrom:v inContext:[JSContext currentContext]];
     }
     return nil;
 }

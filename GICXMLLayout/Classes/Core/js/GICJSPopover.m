@@ -7,7 +7,7 @@
 
 #import "GICJSPopover.h"
 #import "GICPopover.h"
-#import "GICJSElementValue.h"
+#import "JSValue+GICJSExtension.h"
 
 @implementation GICJSPopover{
     GICPopover *popover;
@@ -22,10 +22,10 @@
     [popover dismiss:animation];
 }
 
-+(instancetype)create:(NSString *)templateName fromElement:(id)element{
-    if([element isKindOfClass:[GICJSElementValue class]]){
++(instancetype)create:(NSString *)templateName fromElement:(JSValue *)element{
+    if([element isGICElement]){
         GICJSPopover * p = [GICJSPopover new];
-        p->popover = [GICPopover loadPopoverContent:templateName fromElement:[(GICJSElementValue *)element element]];
+        p->popover = [GICPopover loadPopoverContent:templateName fromElement:[element toObject]];
         return p;
     }
     return nil;

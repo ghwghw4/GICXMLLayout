@@ -34,7 +34,7 @@ function elAttributeNameToPropertyName(attName) {
  * @private
  */
 Object.prototype._elementInit = function (props) {
-  if (this.__hasInit__) { console.log('inited'); return false; }
+  if (this.__hasInit__) { return false; }
   this.__hasInit__ = true;
   const obj = this;
   // 1.属性
@@ -43,14 +43,24 @@ Object.prototype._elementInit = function (props) {
     if (propertyName !== 'dataContext') {
       Object.defineProperty(obj, propertyName, {
         get() {
-          return this.getAttValue(key);
+          return this._getAttValue(key);
         },
         set(val) {
-          this.setAttValue(key, val);
+          this._setAttValue(key, val);
         },
       });
     }
   });
+
+  Object.defineProperty(obj, 'dataContext', {
+    get() {
+      return this._dataContext();
+    },
+    set(val) {
+      this._dataContext(val);
+    },
+  });
+
   // 2.事件
   // 点击事件
   Object.defineProperty(obj, 'onclick', {
@@ -59,7 +69,7 @@ Object.prototype._elementInit = function (props) {
     },
     set(val) {
       this._onClick = val;
-      this.setEvent('event-tap', val);
+      this._setEvent('event-tap', val);
     },
   });
   // 触摸移动事件
@@ -69,13 +79,13 @@ Object.prototype._elementInit = function (props) {
     },
     set(val) {
       this._onmove = val;
-      this.setEvent('event-touch-move', val);
+      this._setEvent('event-touch-move', val);
     },
   });
   // 添加其他属性
   Object.defineProperty(obj, 'super', {
     get() {
-      return this.getSuperElement();
+      return this._getSuperElement();
     },
   });
   return true;

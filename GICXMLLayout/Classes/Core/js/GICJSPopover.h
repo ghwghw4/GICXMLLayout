@@ -14,7 +14,7 @@
 // 隐藏弹框
 -(void)dismiss:(BOOL)animation;
 
-JSExportAs(create, +(instancetype)create:(NSString *)templateName fromElement:(id)element);
+JSExportAs(create, +(instancetype)create:(NSString *)templateName fromElement:(JSValue *)element);
 @end
 
 @interface GICJSPopover : NSObject<GICJSPopover>

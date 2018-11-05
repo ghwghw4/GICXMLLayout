@@ -9,7 +9,9 @@
 #import "GICPage.h"
 #import "GICStringConverter.h"
 
-@implementation GICNavBar
+@implementation GICNavBar{
+    ASDisplayNode *titleNode;
+}
 +(NSString *)gic_elementName{
     return @"nav-bar";
 }
@@ -44,6 +46,11 @@
     }else if([element.name isEqualToString:@"left-buttons"]){
         _leftButtons = [GICNavbarButtons new];
         return self.leftButtons;
+    }else if([element.name isEqualToString:@"title"]){
+        if(element.childCount == 1){
+            titleNode = (ASDisplayNode *)[NSObject gic_createElement:element.children.firstObject withSuperElement:self];
+        }
+        return nil;
     }
     return [super gic_parseSubElementNotExist:element];
 }
@@ -68,6 +75,10 @@
             [leftItems addObject:[[UIBarButtonItem alloc] initWithCustomView:node.view]];
         }
         self->page.navigationItem.leftBarButtonItems = leftItems;
+    }
+    
+    if(titleNode){
+        self->page.navigationItem.titleView = titleNode.view;
     }
 }
 @end

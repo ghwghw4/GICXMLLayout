@@ -20,6 +20,9 @@
               @"url":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICImageView *)target setURL:value];
               }],
+              @"path":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                  [(GICImageView *)target setImagePath:value];
+              }],
               @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICImageView *)target setDefaultImage:[UIImage imageNamed:value]];
               }],
@@ -36,6 +39,15 @@
     _localImageName = localImageName;
     self.clipsToBounds =YES;
     self.image =[UIImage as_imageNamed:localImageName];
+}
+
+-(void)setImagePath:(NSString *)imagePath{
+    _imagePath = imagePath;
+    self.clipsToBounds =YES;
+    NSData *imageData= [GICXMLLayout loadDataFromPath:imagePath];
+    if(imageData){
+        self.image = [[UIImage alloc] initWithData:imageData];
+    }
 }
 
 @end

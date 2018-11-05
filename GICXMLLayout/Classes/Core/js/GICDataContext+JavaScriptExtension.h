@@ -36,5 +36,5 @@ JSExportAs(insertItem, - (void)insertItem:(JSValue *)item index:(NSInteger)index
 
 
 @interface GICEvent(JSScriptExtension)
--(void)excuteJSBindExpress:(NSString *)js;
+-(void)excuteJSBindExpress:(NSString *)js withValue:(id)value;
 @end

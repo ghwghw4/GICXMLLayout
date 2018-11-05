@@ -162,6 +162,18 @@ pod 'GICXMLLayout', '0.3.3'
 
 1. 增加JSRouter相关API，专门用来支持JS 导航相关。
 
+2. Router模块中的`nav-bar`元素增加`title`子元素
+
+   > 现在你可以通过`nav-bar`的`title`节点自定义page 的 title-view
+
+3. `image`元素新增`path`属性
+
+   > 现在可以直接加载根目录下的图片
+
+4. JS获取事件参数。
+
+   > 可以通过$eventInfo 获取事件参数
+
 ## Author
 
 海伟, 693963124@qq.com

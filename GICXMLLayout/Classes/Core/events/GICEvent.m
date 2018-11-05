@@ -37,7 +37,7 @@
         if([self->expressionString hasPrefix:@"js:"]){
             // 兼容js的调用
             NSString *js = [self->expressionString substringWithRange:NSMakeRange(3, self->expressionString.length-3)];
-            [self excuteJSBindExpress:js];
+            [self excuteJSBindExpress:js withValue:x];
         }else{
             SEL se = NSSelectorFromString(self->expressionString);
             if(se){

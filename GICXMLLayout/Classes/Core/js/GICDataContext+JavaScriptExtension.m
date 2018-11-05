@@ -146,13 +146,10 @@
 
 
 @implementation GICEvent(JSScriptExtension)
--(void)excuteJSBindExpress:(NSString *)js{
-    [self excuteJSBindExpress:js target:self.target];
-}
-
--(void)excuteJSBindExpress:(NSString *)js target:(id)target{
-    JSValue *selfValue = [JSValue getJSValueFrom:target inContext:nil];
-    [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
+-(void)excuteJSBindExpress:(NSString *)js withValue:(id)value{
+    JSValue *selfValue = [JSValue getJSValueFrom:self.target inContext:nil];
+    NSString *newJs = [NSString stringWithFormat:@"var $eventInfo = arguments[0]; %@",js];
+    [selfValue invokeMethod:@"executeScript" withArguments:@[newJs,value]];
 }
 @end
 

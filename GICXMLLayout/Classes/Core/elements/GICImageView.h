@@ -10,4 +10,5 @@
 @interface GICImageView : ASNetworkImageNode
 //@property (nonatomic,strong)NSURL *imageUrl;
 @property (nonatomic,strong)NSString *localImageName;
+@property (nonatomic,strong)NSString *imagePath;
 @end

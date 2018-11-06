@@ -49,7 +49,7 @@
 
 `list-item`你可以理解为`UITableViewCell`,`list-item`也是`list`唯一能识别的"UI"元素。
 
-##list-item属性
+### list-item属性
 
 | 名称              | 数据类型      | 介绍           | 是否支持绑定 | 是否支持动画 |
 | ----------------- | ------------- | -------------- | ------------ | ------------ |
@@ -77,15 +77,13 @@
 | 3      | UITableViewCellAccessoryCheckmark              |        |
 | 4      | UITableViewCellAccessoryDetailButton           | 不解释 |
 
-### 
-
 ## header、footer
 
 ~~`header`、`footer` 不支持自动计算高度，必须显式设置height属性,并且不能是比例单位，否则不会显示。~~
 
 > 0.3.2 开始无需显式设置height属性
 
-**从0.3.2版本开始，所有的section都支持单独设置header、footer，并且header、footer都必须包含在`section`元素中。**
+**从0.3.2版本开始，所有的section都支持单独设置header、footer，~~并且header、footer都必须包含在`section`元素中。~~**
 
 
 
@@ -272,7 +270,3 @@
            </for>
        </list>
    ```
-
-   
-
-   

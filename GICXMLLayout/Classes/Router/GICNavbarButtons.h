@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICStackPanel.h"
+#import "GICDisplayNodeSizeUpdateProtocol.h"
 
-@interface GICNavbarButtons : NSObject{
-    
-}
-@property (nonatomic,readonly)NSMutableArray<ASDisplayNode *> *buttons;
+@interface GICNavbarButtons : GICStackPanel<GICDisplayNodeSizeUpdateProtocol>
+@property (nonatomic,copy)GICSizeChangedBlock sizeChangedBlock;
 @end

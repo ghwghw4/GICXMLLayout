@@ -48,7 +48,7 @@
         return self.leftButtons;
     }else if([element.name isEqualToString:@"title"]){
         if(element.childCount == 1){
-            titleNode = (ASDisplayNode *)[NSObject gic_createElement:element.children.firstObject withSuperElement:self];
+            titleNode = (ASDisplayNode *)[NSObject gic_createElement:[element childrenIncludeComment:NO].firstObject withSuperElement:self];
         }
         return nil;
     }
@@ -56,25 +56,22 @@
 }
 
 -(void)gic_parseElementCompelete{
-    ASSizeRange rang = ASSizeRangeMake(CGSizeMake(0, 44),CGSizeMake(320, 44));
-    if(self.rightButtons.buttons.count>0){
-        NSMutableArray *rightItems = [NSMutableArray array];
-        for(ASDisplayNode *node in self.rightButtons.buttons){
-            ASLayout *l = [node layoutThatFits:rang];
-            node.frame = CGRectMake(0, 0, l.size.width, 44);
-            [rightItems addObject:[[UIBarButtonItem alloc] initWithCustomView:node.view]];
-        }
-        self->page.navigationItem.rightBarButtonItems = rightItems;
+    if(self.leftButtons){
+        self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftButtons.view];
+        @weakify(self)
+        self.leftButtons.sizeChangedBlock = ^(CGSize size) {
+            @strongify(self)
+            self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftButtons.view];
+        };
     }
     
-    if(self.leftButtons.buttons.count>0){
-        NSMutableArray *leftItems = [NSMutableArray array];
-        for(ASDisplayNode *node in self.leftButtons.buttons){
-            ASLayout *l = [node layoutThatFits:rang];
-            node.frame = CGRectMake(0, 0, l.size.width, 44);
-            [leftItems addObject:[[UIBarButtonItem alloc] initWithCustomView:node.view]];
-        }
-        self->page.navigationItem.leftBarButtonItems = leftItems;
+    if(self.rightButtons){
+        self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
+        @weakify(self)
+        self.leftButtons.sizeChangedBlock = ^(CGSize size) {
+            @strongify(self)
+            self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
+        };
     }
     
     if(titleNode){

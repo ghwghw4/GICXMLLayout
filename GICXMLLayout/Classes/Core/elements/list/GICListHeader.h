@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface GICListHeader : ASCellNode
+#import "GICListPart.h"
+
+@interface GICListHeader : GICListPart
 
 @end

@@ -11,11 +11,18 @@
 #import "GICListHeader.h"
 #import "GICListFooter.h"
 
+@protocol GICListSectionProtocol <NSObject>
+- (void)reloadSections:(NSIndexSet *)sections;
+- (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths;
+-(void)onItemAddedInSection:(NSDictionary *)itemInfo;
+@end
+
+
 @interface GICListSection : NSObject
 @property (nonatomic,readonly)NSInteger sectionIndex;
 @property (nonatomic,readonly)NSMutableArray<GICListItem *> *items;
 
 @property (nonatomic,readonly)GICListHeader *header;
 @property (nonatomic,readonly)GICListFooter *footer;
--(id)initWithOwner:(GICCollectionView *)owner withSectionIndex:(NSInteger)sectionIndex;
+-(id)initWithOwner:(id<GICListSectionProtocol>)owner withSectionIndex:(NSInteger)sectionIndex;
 @end

@@ -17,7 +17,7 @@
 #import "GICListFooter.h"
 #import "GICListSection.h"
 
-@interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting>{
+@interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting,GICListSectionProtocol>{
     BOOL t;
     id<RACSubscriber> insertItemsSubscriber;
     
@@ -165,7 +165,6 @@
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
-    // NOTE:为了在没有数据的时候也能显示header和footer
     return [[_sectionsMap.allValues objectAtIndex:section] items].count;
 }
 
@@ -246,7 +245,7 @@
         [self reloadSections:idxSet];
     }
 }
-
+#pragma mark GICListSectionProtocol
 -(void)onItemAddedInSection:(NSDictionary *)itemInfo{
     [self->insertItemsSubscriber sendNext:itemInfo];
 }

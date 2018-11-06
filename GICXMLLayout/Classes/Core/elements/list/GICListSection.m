@@ -9,13 +9,13 @@
 
 
 @implementation GICListSection{
-    __weak GICCollectionView *_owner;
+    __weak id<GICListSectionProtocol> _owner;
 }
 +(NSString *)gic_elementName{
     return @"section";
 }
 
--(id)initWithOwner:(GICCollectionView *)owner withSectionIndex:(NSInteger)sectionIndex{
+-(id)initWithOwner:(id<GICListSectionProtocol>)owner withSectionIndex:(NSInteger)sectionIndex{
     self = [super init];
     _owner = owner;
     _items = [NSMutableArray array];

@@ -6,6 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GICCollectionView.h"
-@interface GICListView : GICCollectionView
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+@interface GICListView : ASTableNode
 @end

@@ -11,6 +11,8 @@
 
 @implementation NSObject (JSScriptDataBinding)
 -(void)gic_updateDataContextFromJsValue:(JSManagedValue *)jsValue{
+    if([jsValue.value isNull])
+        return;
     if([self gic_dataPathKey] && [jsValue.value isObject]){ //以防array 无法获取value
         JSValue *pathValue = jsValue.value[[self gic_dataPathKey]];
         if(![pathValue isUndefined]){

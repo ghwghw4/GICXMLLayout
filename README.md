@@ -170,9 +170,10 @@ pod 'GICXMLLayout', '0.3.3'
 
    > 现在可以直接加载根目录下的图片
 
-4. JS获取事件参数。
+4. JS API修改.
 
-   > 可以通过$eventInfo 获取事件参数
+   > 1. 获取事件参数。可以通过$eventInfo 获取事件参数
+   > 2. 增加`require`函数。现在可以在任意JS 脚本的任意位置动态加载js 文件
 
 ## Author
 

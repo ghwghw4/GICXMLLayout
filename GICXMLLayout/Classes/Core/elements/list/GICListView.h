@@ -8,4 +8,6 @@
 #import <UIKit/UIKit.h>
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 @interface GICListView : ASTableNode
+// 是否显示索引
+@property (nonatomic,readonly)BOOL showIndexs;
 @end

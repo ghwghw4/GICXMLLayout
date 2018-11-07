@@ -22,10 +22,10 @@
     [popover dismiss:animation];
 }
 
-+(instancetype)create:(NSString *)templateName fromElement:(JSValue *)element{
++(instancetype)createPage:(NSString *)pagePath fromElement:(JSValue *)element{
     if([element isGICElement]){
         GICJSPopover * p = [GICJSPopover new];
-        p->popover = [GICPopover loadPopoverContent:templateName fromElement:[element toObject]];
+        p->popover = [GICPopover loadPopoverPage:pagePath fromElement:[element toObject]];
         return p;
     }
     return nil;

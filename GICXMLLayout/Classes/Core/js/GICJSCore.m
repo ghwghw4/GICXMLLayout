@@ -118,5 +118,12 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     context[@"_native_"] = [[GICJSNativeAPI alloc] init];
     
     context[@"Popover"] = [GICJSPopover class];
+    
+    // 添加require 方法. 以便动态加载JS
+    context[@"require"] = ^(NSString *jsPath){
+        NSData *jsData = [GICXMLLayout loadDataFromPath:jsPath];
+        NSString *js = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
+        [[JSContext currentContext] evaluateScript:js];
+    };
 }
 @end

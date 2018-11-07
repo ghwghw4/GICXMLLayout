@@ -14,6 +14,7 @@
 #import "GICListSection.h"
 #define RACWindowCount 10
 #import "GICListItem.h"
+#import "GICColorConverter.h"
 
 @interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListSectionProtocol>{
     id<RACSubscriber> insertItemsSubscriber;
@@ -29,19 +30,24 @@
 }
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
-             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICCollectionView *)target).separatorStyle = [value integerValue];
-             } withGetter:^id(id target) {
-                 return @(((GICCollectionView *)target).separatorStyle);
-             }],
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICCollectionView *)target gic_safeView:^(UIView *view) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
                      [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
                  }];
              }],
              @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 [(GICCollectionView *)target gic_safeView:^(UIView *view) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
                      [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
+                 }];
+             }],
+             // 是否显示索引
+             @"show-indexs":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICListView *)target)->_showIndexs  =[value boolValue];
+             }],
+             // 索引颜色
+             @"index-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
+                     [(UITableView *)view setSectionIndexColor:value];
                  }];
              }],
              };
@@ -56,9 +62,15 @@
     [[[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         self->insertItemsSubscriber = subscriber;
         return nil;
-    }] bufferWithTime:0.1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
+    }] bufferWithTime:0.15 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
+            if(self.isProcessingUpdates){ // 如果list正在处理其他的更新，那么忽略本次更新，进入下一个循环窗口
+                [[x allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self->insertItemsSubscriber sendNext:obj];
+                }];
+                return;
+            }
             NSArray *insertArray = nil;
             // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
             if(x.count<=RACWindowCount){
@@ -81,7 +93,11 @@
                 [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
                 [section.items addObject:itemInfo[@"item"]];
             }
-            [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
+            if(self.visibleNodes.count==0){
+                [self reloadData];
+            }else{
+                [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
+            }
         }
     }];
     return self;
@@ -95,11 +111,11 @@
 }
 
 -(NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section{
-    return [[_sectionsMap.allValues objectAtIndex:section] items].count;
+    return _sectionsMap[@(section)].items.count;
 }
 
 -(ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GICListItem *item = [[[_sectionsMap.allValues objectAtIndex:indexPath.section] items] objectAtIndex:indexPath.row];
+    GICListItem *item = [_sectionsMap[@(indexPath.section)].items objectAtIndex:indexPath.row];
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
         [item prepareLayout];
         return item;
@@ -110,7 +126,7 @@
 #pragma mark Header & Footer
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    GICListSection *listsection = [_sectionsMap.allValues objectAtIndex:section];
+    GICListSection *listsection = _sectionsMap[@(section)];
     if(listsection.header){
         ASLayout *layout = [listsection.header layoutThatFits:ASSizeRangeMake(CGSizeMake(tableView.bounds.size.width, 0), CGSizeMake(tableView.bounds.size.width, MAXFLOAT))];
         return layout.size.height;
@@ -119,7 +135,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    GICListSection *listsection = [_sectionsMap.allValues objectAtIndex:section];
+    GICListSection *listsection = _sectionsMap[@(section)];
     if(listsection.header){
         return listsection.header.view;
     }
@@ -127,20 +143,41 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    GICListSection *listsection = [_sectionsMap.allValues objectAtIndex:section];
+    GICListSection *listsection = _sectionsMap[@(section)];
     if(listsection.footer){
         ASLayout *layout = [listsection.footer layoutThatFits:ASSizeRangeMake(CGSizeMake(tableView.bounds.size.width, 0), CGSizeMake(tableView.bounds.size.width, MAXFLOAT))];
         return layout.size.height;
     }
-    return 0;
+    return 0.1;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    GICListSection *listsection = [_sectionsMap.allValues objectAtIndex:section];
+    GICListSection *listsection = _sectionsMap[@(section)];
     if(listsection.footer){
         return listsection.footer.view;
     }
+    return [UIView new];
+}
+
+- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    if(self.showIndexs){
+        NSMutableArray *titles = [NSMutableArray array];
+        [[_sectionsMap.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            GICListSection *section = self->_sectionsMap[obj];
+            if(section.title)
+                [titles addObject:section.title];
+            else
+                [titles addObject:@""];
+        }];
+        return titles;
+    }
     return nil;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    return index;
 }
 
 #pragma mark ASTableDelegate
@@ -241,6 +278,8 @@
 }
 
 - (void)reloadSections:(NSIndexSet *)sections {
-    [self reloadSections:sections withRowAnimation:UITableViewRowAnimationNone];
+    // NOTE:如果采用reloadSections 方式，有可能会出现异常情况，比如：crash、数据异常等情况
+//    [self reloadSections:sections withRowAnimation:UITableViewRowAnimationFade];
+    [self reloadData];
 }
 @end

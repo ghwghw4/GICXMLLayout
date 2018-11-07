@@ -19,6 +19,7 @@
 
 
 @interface GICListSection : NSObject
+@property (nonatomic,readonly)NSString *title;
 @property (nonatomic,readonly)NSInteger sectionIndex;
 @property (nonatomic,readonly)NSMutableArray<GICListItem *> *items;
 

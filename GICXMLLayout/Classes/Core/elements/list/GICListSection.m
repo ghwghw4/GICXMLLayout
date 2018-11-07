@@ -6,13 +6,25 @@
 //
 
 #import "GICListSection.h"
-
+#import "GICStringConverter.h"
 
 @implementation GICListSection{
     __weak id<GICListSectionProtocol> _owner;
 }
 +(NSString *)gic_elementName{
     return @"section";
+}
+
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
+    return @{
+             @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICListSection *item = (GICListSection *)target;
+                 item->_title = value;
+             } withGetter:^id(id target) {
+                 GICListSection *item = (GICListSection *)target;
+                 return item.title;
+             }]
+             };
 }
 
 -(id)initWithOwner:(id<GICListSectionProtocol>)owner withSectionIndex:(NSInteger)sectionIndex{

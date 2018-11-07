@@ -95,6 +95,12 @@
     }] bufferWithTime:0.1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
+            if(self.isProcessingUpdates){ // 如果list正在处理其他的更新，那么忽略本次更新，进入下一个循环窗口
+                [[x allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self->insertItemsSubscriber sendNext:obj];
+                }];
+                return;
+            }
             NSArray *insertArray = nil;
             // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
             if(x.count<=RACWindowCount){
@@ -165,12 +171,12 @@
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section
 {
-    return [[_sectionsMap.allValues objectAtIndex:section] items].count;
+    return [_sectionsMap[@(section)] items].count;
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GICListItem *item = [[[_sectionsMap.allValues objectAtIndex:indexPath.section] items] objectAtIndex:indexPath.row];
+    GICListItem *item = [[_sectionsMap[@(indexPath.section)] items] objectAtIndex:indexPath.row];
     item.separatorStyle = self.separatorStyle;
     ASCellNode *(^cellNodeBlock)(void) = ^ASCellNode *() {
         [item prepareLayout];

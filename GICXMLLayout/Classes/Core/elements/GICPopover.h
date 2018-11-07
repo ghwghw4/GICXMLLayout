@@ -26,5 +26,7 @@
  @param element 能够找到该模板的元素。(逐级往上找寻模板)
  @return <#return value description#>
  */
-+(GICPopover *)loadPopoverContent:(NSString *)templateName fromElement:(id)element;
+//+(GICPopover *)loadPopoverContent:(NSString *)templateName fromElement:(id)element;
+
++(GICPopover *)loadPopoverPage:(NSString *)pagePath fromElement:(id)element;
 @end

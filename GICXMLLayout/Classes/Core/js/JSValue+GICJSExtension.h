@@ -8,9 +8,5 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface JSValue (GICJSExtension)
-+(JSValue *)getJSValueFrom:(id)element inContext:(id)jsContext;
-
--(BOOL)isGICElement;
-
 -(JSManagedValue *)gic_ToManagedValue:(id)owner;
 @end

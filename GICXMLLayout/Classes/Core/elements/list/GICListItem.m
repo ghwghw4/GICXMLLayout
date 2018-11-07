@@ -29,6 +29,11 @@
                  GICListItem *item = (GICListItem *)target;
                  return @([item selectionStyle]);
              }],
+             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICListItem *)target).separatorStyle = [value integerValue];
+             } withGetter:^id(id target) {
+                 return @(((GICListItem *)target).separatorStyle);
+             }],
              @"event-item-select":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICListItem *item = (GICListItem *)target;
                  item.itemSelectEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-item-select" toTarget:target];

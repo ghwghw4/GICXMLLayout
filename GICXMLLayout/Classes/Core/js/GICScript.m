@@ -13,6 +13,7 @@
 #import "GICStringConverter.h"
 #import "GICBoolConverter.h"
 #import "GICXMLParserContext.h"
+#import "GICJSElementDelegate.h"
 
 
 @interface GICScript(){
@@ -105,7 +106,7 @@ static NSMutableArray<NSOperation *> *operationArray;
     }
     JSContext *context = [GICJSCore findJSContextFromElement:self.target];
     if(self.isPrivate){
-        JSValue *selfValue = [JSValue getJSValueFrom:self.target inContext:context];
+        JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
         NSString *funcName = @"_Func_Script_";
         // 往selfValue 注入script 中定义的方法
         NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,jsStr];

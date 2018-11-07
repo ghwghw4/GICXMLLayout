@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger , ReadyState) {
 -(instancetype)init;
 
 -(void)open:(NSString*)httpMethod :(NSString*)url :(bool)async;
--(void)send;
+-(void)send:(JSValue *)content;
 -(void)setRequestHeader:(NSString*)key :(NSString*)value;
 
 @end

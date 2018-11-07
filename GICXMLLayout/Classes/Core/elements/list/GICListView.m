@@ -35,6 +35,11 @@
                      [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
                  }];
              }],
+             @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target gic_safeView:^(UIView *view) {
+                     [(UITableView *)view setSeparatorStyle:[value integerValue]];
+                 }];
+             }],
              @"show-hor-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target gic_safeView:^(UIView *view) {
                      [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
@@ -278,6 +283,14 @@
 }
 
 - (void)reloadSections:(NSIndexSet *)sections {
-    [self reloadSections:sections withRowAnimation:UITableViewRowAnimationFade];
+    __block NSInteger count = 0;
+    [_sectionsMap enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, GICListSection * _Nonnull obj, BOOL * _Nonnull stop) {
+        count +=obj.items.count;
+    }];
+    if(count==0){
+        [self reloadData];
+    }else{
+      [self reloadSections:sections withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 @end

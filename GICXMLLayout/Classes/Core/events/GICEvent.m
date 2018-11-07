@@ -33,6 +33,7 @@
     @weakify(self)
     [self.eventSubject subscribeNext:^(id  _Nullable x) {
         @strongify(self)
+        if(!self.target) return;
         // 先判断是否是js调用
         if([self->expressionString hasPrefix:@"js:"]){
             // 兼容js的调用

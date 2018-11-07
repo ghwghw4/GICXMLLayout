@@ -149,7 +149,7 @@
             [(id)self gic_parseSubElements:element.children];
         }
     }
-    [self performSelector:@selector(gic_parseElementCompelete)];
+    [self performSelector:@selector(_gic_parseElementCompelete)];
 }
 
 -(void)gic_parseAttributes:(GDataXMLElement *)element{
@@ -174,7 +174,7 @@
     }
 }
 
--(void)gic_parseElementCompelete{
+-(void)_gic_parseElementCompelete{
     for(GICBehavior *b in [self.gic_Behaviors.behaviors copy]){
         [b attachTo:self];
     }
@@ -184,7 +184,10 @@
         self.gic_ExtensionProperties.tempDataContext = nil;
         self.gic_isAutoInheritDataModel = NO;
     }
+    [self gic_parseElementCompelete];
 }
+
+-(void)gic_parseElementCompelete {}
 
 - (BOOL)gic_parseOnlyOneSubElement {
     return NO;

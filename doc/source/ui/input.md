@@ -16,6 +16,7 @@ input当前支持的属性有限，但是如果需要支持其他的属性，比
 | text            | string        |                   | 是(支持双向绑定) | 是           |
 | secure          | bool          |                   | 是               | 是           |
 | keyboard-type   | integer(枚举) | 键盘类型          | 是               | 否           |
+| event-return    | Event         | 点击回车事件      | 否               | 否           |
 
 ###  keyboard-type 枚举
 

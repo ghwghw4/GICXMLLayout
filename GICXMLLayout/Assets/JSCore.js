@@ -403,15 +403,6 @@ Object.prototype._elementInit = function (props) {
     }
   });
 
-  Object.defineProperty(obj, 'dataContext', {
-    get: function get() {
-      return this._dataContext();
-    },
-    set: function set(val) {
-      this._dataContext(val);
-    }
-  });
-
   // 2.事件
   // 点击事件
   Object.defineProperty(obj, 'onclick', {

@@ -7,7 +7,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface GICInpute : ASDisplayNode{
+@interface GICInpute : ASDisplayNode<UITextFieldDelegate>{
     NSMutableAttributedString *placeholdString;
     NSMutableDictionary *placeholdAttributs;
 }

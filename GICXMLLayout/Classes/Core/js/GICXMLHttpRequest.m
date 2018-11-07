@@ -58,7 +58,7 @@
 //}
 //-(JSValue*)onerror { return _onError.value; }
 
--(void)send
+-(void)send:(JSValue *)content
 {
     readyState = XMLHttpRequestHEADERS;
     NSMutableURLRequest* req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:_url]];
@@ -66,6 +66,9 @@
     
     for (NSString *items in _headers.allKeys) {
         [req setValue:_headers[items] forHTTPHeaderField:items];
+    }
+    if(![content isUndefined]){
+        [req setHTTPBody:[[content toString] dataUsingEncoding:4]];
     }
     readyState = XMLHttpRequestLOADING;
     

@@ -13,7 +13,9 @@
 #import "GICBoolConverter.h"
 
 
-@implementation GICInpute
+@implementation GICInpute{
+    GICEvent *returnEvent;
+}
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -53,6 +55,10 @@
                      [view setKeyboardType:[value integerValue]];
                  }];
              }],
+             @"event-return":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICInpute *input = (GICInpute *)target;
+                 input->returnEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-return" toTarget:target];
+             }],
              };
 }
 
@@ -70,6 +76,11 @@
     placeholdAttributs = [NSMutableDictionary dictionary];
     self.style.height = ASDimensionMake(31);//默认高度31
     return self;
+}
+
+-(void)didLoad{
+    [super didLoad];
+    [(UITextField *)self.view setDelegate:self];
 }
 
 -(void)updatePlacholdString{
@@ -94,4 +105,12 @@
     }
 }
 
+#pragma mark UITextInputDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    if(returnEvent){
+        [returnEvent fire:textField.text];
+    }
+    return YES;
+}
 @end

@@ -8,6 +8,7 @@
 #import "GICDataContext+JavaScriptExtension.h"
 #import "JSValue+GICJSExtension.h"
 #import "NSObject+GICDataBinding.h"
+#import "GICJSElementDelegate.h"
 
 @implementation NSObject (JSScriptDataBinding)
 -(void)gic_updateDataContextFromJsValue:(JSManagedValue *)jsValue{
@@ -17,7 +18,7 @@
         JSValue *pathValue = jsValue.value[[self gic_dataPathKey]];
         if(![pathValue isUndefined]){
             // 用来监听gic_dataPathKey对应的属性改变事件
-            JSValue *selfValue = [JSValue getJSValueFrom:self inContext:[jsValue.value context]];
+            JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self inContext:[jsValue.value context]];
             @weakify(self)
             selfValue[@"_updateBindPath"] = ^(JSValue *value){
                 @strongify(self)
@@ -94,7 +95,7 @@
 @implementation GICDataBinding (JSScriptExtension)
 -(void)refreshExpressionFromJSValue:(JSManagedValue *)jsValue needCheckMode:(BOOL)needCheckMode{
     NSString *resultString = nil;
-    JSValue *selfValue = [JSValue getJSValueFrom:self.target inContext:[jsValue.value context]];
+    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:[jsValue.value context]];
     if(self.expression.length == 0){
         resultString = [jsValue.value toString];
     }else{
@@ -149,7 +150,7 @@
 
 @implementation GICEvent(JSScriptExtension)
 -(void)excuteJSBindExpress:(NSString *)js withValue:(id)value{
-    JSValue *selfValue = [JSValue getJSValueFrom:self.target inContext:nil];
+    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:nil];
     if(value){
         NSString *newJs = [NSString stringWithFormat:@"var $eventInfo = arguments[0]; %@",js];
         [selfValue invokeMethod:@"executeScript" withArguments:@[newJs,value]];

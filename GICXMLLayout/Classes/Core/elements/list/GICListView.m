@@ -278,8 +278,6 @@
 }
 
 - (void)reloadSections:(NSIndexSet *)sections {
-    // NOTE:如果采用reloadSections 方式，有可能会出现异常情况，比如：crash、数据异常等情况
-//    [self reloadSections:sections withRowAnimation:UITableViewRowAnimationFade];
-    [self reloadData];
+    [self reloadSections:sections withRowAnimation:UITableViewRowAnimationFade];
 }
 @end

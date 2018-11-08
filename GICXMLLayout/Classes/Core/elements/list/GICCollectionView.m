@@ -101,35 +101,37 @@
                 }];
                 return;
             }
-            NSArray *insertArray = nil;
-            // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
-            if(x.count<=RACWindowCount){
-                insertArray = [x allObjects];
-            }else{
-                insertArray = [NSMutableArray array];
-                [[x allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if(idx<RACWindowCount){
-                        [(NSMutableArray *)insertArray addObject:obj];
-                    }else{
-                        [self->insertItemsSubscriber sendNext:obj];
-                    }
-                }];
-            }
-        
-            NSMutableArray *mutArray=[NSMutableArray array];
-            for(int i=0 ;i<insertArray.count;i++){
-                NSDictionary *itemInfo = insertArray[i];
-                GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
-                [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
-                [section.items addObject:itemInfo[@"item"]];
-            }
-            [self insertItemsAtIndexPaths:mutArray];
+            [self dealItems:[x allObjects]];
         }
     }];
     
     [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionHeader];
     [self registerSupplementaryNodeOfKind:UICollectionElementKindSectionFooter];
     return self;
+}
+
+-(void)dealItems:(NSArray *)items{
+    // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
+    NSMutableArray *insertArray = [NSMutableArray array];
+    for(NSInteger i = 0;i<items.count;i++){
+        NSDictionary *itemInfo = items[i];
+        GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
+        [insertArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
+        [section.items addObject:itemInfo[@"item"]];
+        if(insertArray.count == RACWindowCount){
+            // 取满了RACWindowCount 个
+            break;
+        }
+    }
+    
+    [self insertItemsAtIndexPaths:insertArray];
+    if(items.count > RACWindowCount){
+        [self onDidFinishProcessingUpdates:^{
+            // 截取剩余的内容
+            [self dealItems:[items subarrayWithRange:NSMakeRange(RACWindowCount, items.count - RACWindowCount)]];
+        }];
+    }
+   
 }
 
 -(id)gic_addSubElement:(id)subElement{

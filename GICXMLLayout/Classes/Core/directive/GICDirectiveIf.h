@@ -16,5 +16,5 @@
     __weak id addedElement;
     __weak id elseElement;
 }
-@property (nonatomic,assign)BOOL condition;
+@property (nonatomic,assign)int8_t condition;
 @end

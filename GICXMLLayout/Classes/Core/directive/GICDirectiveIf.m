@@ -23,11 +23,13 @@
 
 -(id)init{
     self = [super init];
-    _condition = YES;
+    _condition = -1;//默认什么都不显示。可以使用枚举实现。
     return self;
 }
 
 -(void)updateCondition{
+    if(self.condition == -1)
+        return;
     if(self.condition){
         if(elseElement){
             [self.target gic_removeSubElements:@[elseElement]];
@@ -69,7 +71,7 @@
     return NO;
 }
 
--(void)setCondition:(BOOL)condition{
+-(void)setCondition:(int8_t)condition{
     _condition = condition;
     [self updateCondition];
 }

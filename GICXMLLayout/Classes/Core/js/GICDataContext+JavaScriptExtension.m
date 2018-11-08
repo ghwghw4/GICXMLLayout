@@ -28,7 +28,8 @@
             [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
             jsValue = [pathValue gic_ToManagedValue:self];
         }else{
-            jsValue = [pathValue gic_ToManagedValue:self];
+            jsValue = nil;
+            return;
         }
     }
     
@@ -64,14 +65,12 @@
     }
 }
 - (void)addItem:(JSValue *)item index:(NSInteger)index {
-    dispatch_async([GICXMLLayout parseElementQueue], ^{
-        NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
-        childElement.gic_isAutoInheritDataModel = NO;
-        childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
-        childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
-        childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
-        [self.target gic_addSubElement:childElement];
-    });
+    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
+    childElement.gic_isAutoInheritDataModel = NO;
+    childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
+    [self.target gic_addSubElement:childElement];
 }
 
 - (void)insertItem:(JSValue *)item index:(NSInteger)index{
@@ -106,7 +105,7 @@
         JSValue *result = [jsValue.value invokeMethod:@"executeBindExpression" withArguments:@[js,selfValue]];
         resultString = [result isUndefined]?@"":[result toString];
     }
-    id value = nil;
+    id value = @"";
     if(self.valueConverter){
         value = [self.valueConverter convert:resultString];
     }else{

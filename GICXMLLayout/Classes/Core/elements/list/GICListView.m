@@ -12,9 +12,11 @@
 #import "GICListHeader.h"
 #import "GICListFooter.h"
 #import "GICListSection.h"
-#define RACWindowCount 10
 #import "GICListItem.h"
 #import "GICColorConverter.h"
+
+
+#define RACWindowCount 10
 
 @interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListSectionProtocol>{
     id<RACSubscriber> insertItemsSubscriber;
@@ -62,12 +64,12 @@
     _sectionsMap = [NSMutableDictionary dictionary];
     self.dataSource = self;
     self.delegate = self;
-    // 创建一个0.2秒的节流阀
+    // 创建一个0.1秒的节流阀
     @weakify(self)
     [[[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         self->insertItemsSubscriber = subscriber;
         return nil;
-    }] bufferWithTime:0.15 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
+    }] bufferWithTime:0.05 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple * _Nullable x) {
         @strongify(self)
         if(self){
             if(self.isProcessingUpdates){ // 如果list正在处理其他的更新，那么忽略本次更新，进入下一个循环窗口
@@ -76,36 +78,45 @@
                 }];
                 return;
             }
-            NSArray *insertArray = nil;
-            // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
-            if(x.count<=RACWindowCount){
-                insertArray = [x allObjects];
-            }else{
-                insertArray = [NSMutableArray array];
-                [[x allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if(idx<RACWindowCount){
-                        [(NSMutableArray *)insertArray addObject:obj];
-                    }else{
-                        [self->insertItemsSubscriber sendNext:obj];
-                    }
-                }];
-            }
-            
-            NSMutableArray *mutArray=[NSMutableArray array];
-            for(int i=0 ;i<insertArray.count;i++){
-                NSDictionary *itemInfo = insertArray[i];
-                GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
-                [mutArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
-                [section.items addObject:itemInfo[@"item"]];
-            }
-            if(self.visibleNodes.count==0){
-                [self reloadData];
-            }else{
-                [self insertRowsAtIndexPaths:mutArray withRowAnimation:UITableViewRowAnimationNone];
-            }
+            [self dealItems:[x allObjects]];
         }
     }];
     return self;
+}
+
+-(void)dealItems:(NSArray *)items{
+    // 每次只加载最多RACWindowCount 条数据，这样避免一次性加载过多的话会影响显示速度
+    NSMutableArray *insertArray = [NSMutableArray array];
+    for(NSInteger i = 0;i<items.count;i++){
+        NSDictionary *itemInfo = items[i];
+        GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
+        [insertArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
+        [section.items addObject:itemInfo[@"item"]];
+        if(insertArray.count == RACWindowCount){
+            // 取满了RACWindowCount 个
+            break;
+        }
+    }
+    
+    // 截取剩余的内容
+    NSArray *subArray = nil;
+    if(items.count > RACWindowCount){
+        subArray =[items subarrayWithRange:NSMakeRange(RACWindowCount, items.count - RACWindowCount)];
+    }
+    
+    if(self.visibleNodes.count==0){
+        // NOTE:这里之所以没有采用跟 insertRowsAtIndexPaths 一样的处理方式，那是因为，本身ASD的“bug"。因为如果在reloadDataWithCompletion的回调中后立马获取visibleNodes，这时候获取到的还是0。
+        [self reloadDataWithCompletion:^{
+            [subArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+               [self->insertItemsSubscriber sendNext:obj];
+            }];
+        }];
+    }else{
+        [self insertRowsAtIndexPaths:insertArray withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self onDidFinishProcessingUpdates:^{
+            if(subArray) [self dealItems:subArray];
+        }];
+    }
 }
 
 

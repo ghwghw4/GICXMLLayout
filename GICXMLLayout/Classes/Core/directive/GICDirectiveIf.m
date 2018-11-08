@@ -21,9 +21,14 @@
               };;
 }
 
+-(id)init{
+    self = [super init];
+    _condition = YES;
+    return self;
+}
+
 -(void)updateCondition{
     if(self.condition){
-        
         if(elseElement){
             [self.target gic_removeSubElements:@[elseElement]];
         }

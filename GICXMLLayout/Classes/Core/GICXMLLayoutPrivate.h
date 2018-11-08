@@ -12,6 +12,7 @@
 +(BOOL)enableDefualtStyle;
 +(NSData *)loadDataFromPath:(NSString *)path;
 +(NSData *)loadDataFromUrl:(NSURL *)url;
++(dispatch_queue_t)parseElementQueue;
 @end
 
 #endif /* GICXMLLayoutPrivate_h */

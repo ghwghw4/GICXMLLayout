@@ -9,6 +9,7 @@
 #import "JSValue+GICJSExtension.h"
 #import "NSObject+GICDataBinding.h"
 #import "GICJSElementDelegate.h"
+#import "GICXMLLayoutPrivate.h"
 
 @implementation NSObject (JSScriptDataBinding)
 -(void)gic_updateDataContextFromJsValue:(JSManagedValue *)jsValue{
@@ -63,12 +64,14 @@
     }
 }
 - (void)addItem:(JSValue *)item index:(NSInteger)index {
-    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
-    childElement.gic_isAutoInheritDataModel = NO;
-    childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
-    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
-    [self.target gic_addSubElement:childElement];
+    dispatch_async([GICXMLLayout parseElementQueue], ^{
+        NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
+        childElement.gic_isAutoInheritDataModel = NO;
+        childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
+        childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+        childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
+        [self.target gic_addSubElement:childElement];
+    });
 }
 
 - (void)insertItem:(JSValue *)item index:(NSInteger)index{

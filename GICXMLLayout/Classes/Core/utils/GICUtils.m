@@ -79,7 +79,7 @@ static NSDictionary<NSString *,UIColor *> *colorsMap;
 
 +(CGFloat)calcuPerValue:(CGFloat)from to:(CGFloat)to per:(CGFloat)per{
     CGFloat p = MAX(0, per);
-    p = MIN(1, per);
+    p = MIN(1, p);
     return from +(to - from)*p;
 }
 @end

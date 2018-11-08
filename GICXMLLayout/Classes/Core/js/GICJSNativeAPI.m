@@ -34,12 +34,14 @@ static id gic_resolveInvocationReturnValue(NSInvocation *invocation){
         [invocation getReturnValue: &returnValue];
         if(returnValue)
             obj = (__bridge id)returnValue;
-        // 将返回的对象转换成js 对象，并且添加预先定义的属性方法
-        NSString *className = NSStringFromClass([obj class]);
-        if(![[JSContext currentContext][className] isUndefined]){
-            obj = [JSValue valueWithObject:obj inContext:[JSContext currentContext]];
-            JSValue *f = [JSContext currentContext][@"_ApplyClassMetaInfoToNativeObject"];
-            [f callWithArguments:@[obj,className]];
+        if(obj){
+            // 将返回的对象转换成js 对象，并且添加预先定义的属性方法
+            NSString *className = NSStringFromClass([obj class]);
+            if(![[JSContext currentContext][className] isUndefined]){
+                obj = [JSValue valueWithObject:obj inContext:[JSContext currentContext]];
+                JSValue *f = [JSContext currentContext][@"_ApplyClassMetaInfoToNativeObject"];
+                [f callWithArguments:@[obj,className]];
+            }
         }
         return obj;
     }

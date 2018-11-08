@@ -8,7 +8,6 @@
 #import "GICXMLParserContext.h"
 
 @implementation GICXMLParserContext{
-    GICXMLParserContext *next;//下一个
     GICXMLParserContext *prev;//前一个
 }
 
@@ -30,7 +29,6 @@ static GICXMLParserContext *current;
     GICXMLParserContext *context = [[GICXMLParserContext alloc] initWithXMLDoc:xmlDoc];
     if(current !=nil){
         context->prev = current;
-        current->next = context;
     }
     current = context;
 }

@@ -8,6 +8,16 @@
 #import "GICListPart.h"
 
 @implementation GICListPart
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
+    NSArray<ASDisplayNode *> *chilren = self.gic_displayNodes;
+    [chilren enumerateObjectsUsingBlock:^(ASDisplayNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj.style.width.value == 0){
+            obj.style.width = ASDimensionMake(constrainedSize.min.width);
+        }
+    }];
+    return [super layoutSpecThatFits:constrainedSize];
+}
+
 -(void)layout{
     [super layout];
     if(self.sizeChangedBlock){

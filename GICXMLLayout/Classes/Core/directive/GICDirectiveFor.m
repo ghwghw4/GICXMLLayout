@@ -11,6 +11,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICTemplateRef.h"
 #import "GICDataContext+JavaScriptExtension.h"
+#import "JSValue+GICJSExtension.h"
 
 @implementation GICDirectiveFor
 +(NSString *)gic_elementName{
@@ -33,7 +34,7 @@
         JSManagedValue *jsValue = superDataContenxt;
         if([self gic_dataPathKey] && [jsValue.value isObject]){ //以防array 无法获取value
             JSValue *pathValue = jsValue.value[[self gic_dataPathKey]];
-            jsValue = [JSManagedValue managedValueWithValue:pathValue];
+            jsValue = [pathValue gic_ToManagedValue:self];
         }
         [self updateDataSourceFromJsValue:jsValue];
     }else{

@@ -57,6 +57,12 @@
                      [(UITableView *)view setSectionIndexColor:value];
                  }];
              }],
+             @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICListView *)target setValue:value forKey:@"contentInset"];
+             } withGetter:^id(id target) {
+                 UIEdgeInsets inset = [(GICListView *)target contentInset];
+                 return [NSValue valueWithUIEdgeInsets:inset];
+             }],
              };
 }
 -(id)init{

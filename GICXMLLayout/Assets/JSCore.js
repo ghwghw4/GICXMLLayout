@@ -597,7 +597,7 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  var jsStr = 'var dataContext = arguments[0];';
+  var jsStr = 'var dataContext = arguments[0];var $item = dataContext; var $index =$item.__index__;';
   if ((0, _index.isObject)(this)) {
     Object.keys(this).forEach(function (key) {
       jsStr += 'var ' + key + '=dataContext.' + key + ';';

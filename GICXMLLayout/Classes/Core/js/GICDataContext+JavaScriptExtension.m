@@ -65,6 +65,7 @@
     }
 }
 - (void)addItem:(JSValue *)item index:(NSInteger)index {
+    item[@"__index__"] = @(index);
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = [item gic_ToManagedValue:self.target];

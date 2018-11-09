@@ -7,7 +7,8 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "GICDisplayNodeSizeUpdateProtocol.h"
+#import "GICStackPanel.h"
 
-@interface GICListPart : ASCellNode<GICDisplayNodeSizeUpdateProtocol>
+@interface GICListPart : GICStackPanel<GICDisplayNodeSizeUpdateProtocol>
 @property (nonatomic,copy)GICSizeChangedBlock sizeChangedBlock;
 @end

@@ -12,9 +12,9 @@
     NSString* _url;
     NSMutableDictionary* _headers;
     BOOL _async;
-//    JSManagedValue* _onLoad;
-//    JSManagedValue* _onReadyStateChange;
-//    JSManagedValue* _onError;
+    //    JSManagedValue* _onLoad;
+    //    JSManagedValue* _onReadyStateChange;
+    //    JSManagedValue* _onError;
 }
 
 @synthesize responseText;
@@ -31,6 +31,9 @@
 
 -(void)setRequestHeader:(NSString *)key :(NSString *)value
 {
+    if(_headers == nil){
+        _headers = [NSMutableDictionary dictionary];
+    }
     _headers[key] = value;
 }
 
@@ -73,26 +76,26 @@
     readyState = XMLHttpRequestLOADING;
     
     JSValue *thisValue = [JSContext currentThis];
-   
-     void (^completionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError) = ^(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable error) {
+    
+    void (^completionHandler)(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable connectionError) = ^(NSURLResponse* _Nullable response, NSData* _Nullable data, NSError* _Nullable error) {
         self.responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         self->status = [(NSHTTPURLResponse *)response statusCode];
         self->readyState = XMLHttpRequestDONE;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             if (!error) {
-                 JSValue* _onLoad = thisValue[@"onload"];
-                 if([_onLoad isUndefined]){
-                     [thisValue[@"onreadystatechange"] callWithArguments:nil];
-                 }else{
-                     [_onLoad callWithArguments:nil];
-                 }
-             } else if (error){
-                 JSValue* _onError = thisValue[@"onerror"];
-                 if(![_onError isUndefined]){
-                     [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
-                 }
-             }
-         });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                JSValue* _onLoad = thisValue[@"onload"];
+                if([_onLoad isUndefined]){
+                    [thisValue[@"onreadystatechange"] callWithArguments:nil];
+                }else{
+                    [_onLoad callWithArguments:nil];
+                }
+            } else if (error){
+                JSValue* _onError = thisValue[@"onerror"];
+                if(![_onError isUndefined]){
+                    [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
+                }
+            }
+        });
     };
     
     if(_async){//异步执行

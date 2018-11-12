@@ -97,3 +97,11 @@ Object.prototype._elementInit2 = function (props) {
     });
   });
 };
+
+// 触发JS事件
+Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
+  if (eventInfo) {
+    eventJS = `var $element = arguments[1];var $eventInfo = arguments[0];var $item=$element.dataContext; if($item) var $index = $item.__index__; ${eventJS}`;
+  }
+  __rootDataContext__.executeScript(eventJS, eventInfo, this);
+};

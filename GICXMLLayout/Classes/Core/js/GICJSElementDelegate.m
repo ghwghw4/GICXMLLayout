@@ -8,6 +8,7 @@
 #import "GICJSElementDelegate.h"
 #import "JSValue+GICJSExtension.h"
 #import "GICJSCore.h"
+#import "JSContext+GICJSContext.h"
 
 @implementation GICJSElementDelegate{
     NSMutableDictionary<NSString *,JSManagedValue *> *managedValueDict;
@@ -21,6 +22,10 @@
 
 
 -(void)setDataContext:(JSValue *)dataContext{
+    if(![[dataContext context] isSetRootDataContext]){
+        [[dataContext context] setRootDataContext:dataContext];
+    }
+    
     JSManagedValue * ds =  [dataContext gic_ToManagedValue:self.element];
     // 更新数据源
     [self.element setGic_DataContext:ds];

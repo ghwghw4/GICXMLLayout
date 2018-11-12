@@ -30,5 +30,6 @@ module.exports = {
     'class-methods-use-this': 0,
     'prefer-rest-params': 0,
     'no-new-func': 0,
+    'no-undef':0,
   },
 };

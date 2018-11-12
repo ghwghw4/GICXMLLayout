@@ -155,10 +155,9 @@
 -(void)excuteJSBindExpress:(NSString *)js withValue:(id)value{
     JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:nil];
     if(value){
-        NSString *newJs = [NSString stringWithFormat:@"var $eventInfo = arguments[0]; %@",js];
-        [selfValue invokeMethod:@"executeScript" withArguments:@[newJs,value]];
+        [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,value]];
     }else{
-        [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
+        [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js]];
     }
 }
 @end

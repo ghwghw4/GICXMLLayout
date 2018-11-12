@@ -9,6 +9,6 @@
 #import "GICDisplayNodeSizeUpdateProtocol.h"
 #import "GICStackPanel.h"
 
-@interface GICListPart : GICStackPanel<GICDisplayNodeSizeUpdateProtocol>
+@interface GICListPart : ASCellNode<GICDisplayNodeSizeUpdateProtocol>
 @property (nonatomic,copy)GICSizeChangedBlock sizeChangedBlock;
 @end

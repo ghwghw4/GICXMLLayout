@@ -449,6 +449,14 @@ Object.prototype._elementInit2 = function (props) {
   });
 };
 
+// 触发JS事件
+Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
+  if (eventInfo) {
+    eventJS = 'var $element = arguments[1];var $eventInfo = arguments[0];var $item=$element.dataContext; if($item) var $index = $item.__index__; ' + eventJS;
+  }
+  __rootDataContext__.executeScript(eventJS, eventInfo, this);
+};
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -597,17 +605,17 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  var jsStr = 'var dataContext = arguments[0];var $item = dataContext; var $index =$item.__index__;';
+  var jsStr = 'var $item = arguments[0]; var $index =$item.__index__;var $element = arguments[1];';
   if ((0, _index.isObject)(this)) {
     Object.keys(this).forEach(function (key) {
-      jsStr += 'var ' + key + '=dataContext.' + key + ';';
+      jsStr += 'var ' + key + '=$item.' + key + ';';
     });
   }
   jsStr += expStr;
   if (!selfElement) {
     selfElement = this;
   }
-  return new Function(jsStr).call(selfElement, this);
+  return new Function(jsStr).call(__rootDataContext__, this, selfElement);
 };
 
 /**

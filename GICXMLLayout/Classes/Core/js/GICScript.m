@@ -14,10 +14,10 @@
 #import "GICBoolConverter.h"
 #import "GICXMLParserContext.h"
 #import "GICJSElementDelegate.h"
-
+#import "JSContext+GICJSContext.h"
 
 @interface GICScript(){
-//    JSContext *context;
+    //    JSContext *context;
     NSString *scriptPath;
 }
 @end
@@ -95,9 +95,9 @@ static NSMutableArray<NSOperation *> *operationArray;
 -(void)loadJSScript{
     NSData *jsData = [GICXMLLayout loadDataFromPath:self->scriptPath];
     NSString *jsStr = [[NSString alloc] initWithData:jsData encoding:4];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [self initJSScript:jsStr];
-//    });
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    [self initJSScript:jsStr];
+    //    });
 }
 
 -(void)initJSScript:(NSString *)jsStr{
@@ -105,16 +105,13 @@ static NSMutableArray<NSOperation *> *operationArray;
         return;
     }
     JSContext *context = [GICJSCore findJSContextFromElement:self.target];
-    if(self.isPrivate){
-        JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
-        NSString *funcName = @"_Func_Script_";
-        // 往selfValue 注入script 中定义的方法
-        NSString *js = [NSString stringWithFormat:@"this.%@ = function () { %@ }",funcName,jsStr];
-        [selfValue invokeMethod:@"executeScript" withArguments:@[js]];
-        // 调用该方法，直接执行脚本
-        [selfValue invokeMethod:funcName withArguments:nil];
+    
+    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
+    NSString *js = [NSString stringWithFormat:@"var $element = arguments[0]; %@;",jsStr];
+    if([context isSetRootDataContext]){
+        [[context rootDataContext] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
     }else{
-        [context evaluateScript:jsStr];
+        [[context globalObject] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
     }
 }
 @end

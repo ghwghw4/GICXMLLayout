@@ -1,15 +1,15 @@
 <page title="JSScript" js-router="1">
     <style path="style/CommonStyle.xml" />
     <scroll-view>
-        <inset-panel inset="10">
+        <inset-panel inset="10" background-color="white">
             <stack-panel>
                 <template-ref t-name="title" data-context="直接访问属性、设置属性"/>
                 <lable>
                     <behaviors>
                         <script private="1">
-                            this.text = '我是通过js设置的文本';
-                            this.fontColor = '999999';
-                            this.fontSize = 18;
+                            $element.text = '我是通过js设置的文本';
+                            $element.fontColor = '999999';
+                            $element.fontSize = 18;
                         </script>
                     </behaviors>
                 </lable>
@@ -18,7 +18,7 @@
                 <lable text="{{text}}" font-size="{{fontSize}}" font-color="{{fontColor}}">
                     <behaviors>
                         <script private="1">
-                            this.dataContext = {text:'我是通过数据源绑定的',fontSize:20,fontColor:'red'}
+                            $element.dataContext = {text:'我是通过数据源绑定的',fontSize:20,fontColor:'red'}
                         </script>
                     </behaviors>
                 </lable>
@@ -27,7 +27,7 @@
                 <stack-panel>
                     <behaviors>
                         <script private="1">
-                            this.dataContext = {name:''}
+                            $element.dataContext = {name:''}
                         </script>
                     </behaviors>
                     <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
@@ -38,18 +38,18 @@
 
                 <!--在事件中-->
                 <template-ref t-name="title" data-context="绑定事件(1)直接赋值"/>
-                <lable text="点我改变文字" font-size="18" event-tap="js:this.text = '已经点击了';"/>
+                <lable text="点我改变文字" font-size="18" event-tap="js:$element.text = '已经点击了';"/>
 
                 <template-ref t-name="title" data-context="绑定事件(2)调用方法"/>
-                <lable text="点我改变颜色" font-size="18" event-tap="js:changeColor(this);">
+                <lable text="点我改变颜色" font-size="18" event-tap="js:$element.changeColor();">
                     <behaviors>
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script>
-                            function changeColor(el){
+                            $element.changeColor = function(){
                             var r = parseInt(Math.random()*255+1,10);
                             var g = parseInt(Math.random()*255+1,10);
                             var b = parseInt(Math.random()*255+1,10);
-                            el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                            this.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
                             }
                         </script>
                     </behaviors>
@@ -60,11 +60,11 @@
                     <behaviors>
                         <!--js直接绑定的事件当前仅支持onclick事件-->
                         <script private="1">
-                            this.onclick = ()=>{
+                            $element.onclick = ()=>{
                                 var r = parseInt(Math.random()*255+1,10);
                                 var g = parseInt(Math.random()*255+1,10);
                                 var b = parseInt(Math.random()*255+1,10);
-                                this.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                                $element.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
                             };
                         </script>
                     </behaviors>
@@ -81,7 +81,7 @@
                             if (xmlhttp.status===200)
                             {
                             // 将结果在lable中显示出来
-                            this.text = xmlhttp.responseText;
+                            $element.text = xmlhttp.responseText;
                             }
                             }
                             xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
@@ -95,7 +95,7 @@
                     <behaviors>
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script private="1">
-                            this.onclick = function(){
+                            $element.onclick = function(){
                                 var alertView = new AlertView();
                                 alertView.title = '标题';
                                 alertView.message = '内容';
@@ -111,7 +111,7 @@
                 <lable text="点我push到下一页" font-size="18">
                     <behaviors>
                         <script private="1">
-                            this.onclick = function(){
+                            $element.onclick = function(){
                                 Router.push('js/NextPage.xml',{id:1,name:'我是从上一页传过来的参数'});
                             }
                         </script>
@@ -123,7 +123,7 @@
                     <behaviors>
                         <script private="1">
                             Router.onNavgateBackFrom = (params)=>{
-                                this.text = params.name;
+                                $element.text = params.name;
                             }
                         </script>
                     </behaviors>

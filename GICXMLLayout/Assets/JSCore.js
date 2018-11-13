@@ -454,7 +454,11 @@ Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
   if (eventInfo) {
     eventJS = 'var $element = arguments[1];var $eventInfo = arguments[0];var $item=$element.dataContext; if($item) var $index = $item.__index__; ' + eventJS;
   }
-  __rootDataContext__.executeScript(eventJS, eventInfo, this);
+  if (__rootDataContext__) {
+    __rootDataContext__.executeScript(eventJS, eventInfo, this);
+  } else {
+    executeScript(eventJS, eventInfo, this);
+  }
 };
 
 /***/ }),

@@ -36,6 +36,7 @@ JSExportAs(_setEvent, - (void)_setEvent:(NSString *)eventName eventFunc:(JSValue
  */
 @interface GICJSElementDelegate : NSObject<GICJSElementDelegate>
 @property (nonatomic,weak,readonly)id element;
+@property (nonatomic,readonly)NSString *variableName;// 变量名称
 
 +(JSValue *)getJSValueFrom:(id)element inContext:(id)jsContext;
 @end

@@ -1,0 +1,43 @@
+<nav>
+    <page title="登录">
+        <nav-bar>
+            <left-buttons>
+                <control with="50" event-tap="js:closePopover()">
+                    <dock-panel>
+                        <lable text="关闭" font-size="16"/>
+                    </dock-panel>
+                </control>
+            </left-buttons>
+        </nav-bar>
+        <behaviors>
+            <script private="1">
+                $element.dataContext = {userName:'userName1234',password:'123456'};
+            </script>
+        </behaviors>
+        <scroll-view background-color="white">
+            <stack-panel>
+                <inset-panel inset="15">
+                    <stack-panel>
+                        <lable text="用户名：" font-size="16" font-color="333333"/>
+                        <input height="44" placehold="请输入用户名" text="{{exp=userName,mode=2}}"/>
+                    </stack-panel>
+                </inset-panel>
+
+                <inset-panel inset="15">
+                    <stack-panel>
+                        <lable text="密码：" font-size="16" font-color="333333"/>
+                        <input height="44" placehold="请输入密码" secure="1" text="{{exp=password,mode=2}}"/>
+                    </stack-panel>
+                </inset-panel>
+
+                <inset-panel inset="15">
+                    <control height="44" border-color="gray" border-width="1" event-tap="js:closePopover($element.dataContext);">
+                        <dock-panel>
+                            <lable text="登录" font-size="16"/>
+                        </dock-panel>
+                    </control>
+                </inset-panel>
+            </stack-panel>
+        </scroll-view>
+    </page>
+</nav>

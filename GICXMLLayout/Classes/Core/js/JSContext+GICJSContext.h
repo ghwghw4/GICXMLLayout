@@ -6,13 +6,18 @@
 //
 
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "GICJSElementDelegate.h"
 
 @interface JSContext (GICJSContext)
+
+-(void)registCoreAPI;
 
 /**
  根数据源。一个页面只能有一个根数据源。根数据源的作用就是提供类似全局的数据源以及方法访问。类似VUE中的data 提供的功能
  */
 @property JSValue *rootDataContext;
+
+@property GICJSElementDelegate *rootElement;
 
 
 /**

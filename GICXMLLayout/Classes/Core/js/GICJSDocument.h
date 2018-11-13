@@ -6,18 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GICJSElementDelegate.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 @protocol GICJSDocument <JSExport>
 -(NSArray *)getElementsByName:(NSString *)name;
 @property (readonly)id rootElement;
-// 私有API，用于GIC库内部的api调用。
--(id)_getRootElement;
+
 
 //-(id)createElement:(NSString *)elmentName;
 @end
 
 @interface GICJSDocument : NSObject<GICJSDocument>{
-    __weak id rootElement;
 }
--(id)initRootElement:(id)root;
+// 提供给native 调用的
++(GICJSElementDelegate *)rootElement;
 @end

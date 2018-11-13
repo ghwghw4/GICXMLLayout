@@ -74,6 +74,10 @@
     return selfValue;
 }
 
+-(NSString *)variableName{
+    return [self.element gic_ExtensionProperties].name;
+}
+
 - (void)_setEvent:(NSString *)eventName eventFunc:(JSValue *)eventFunc{
     managedValueDict[eventName] = [JSManagedValue managedValueWithValue:eventFunc];
     GICEvent *event = [_element gic_event_findFirstWithEventNameOrCreate:eventName];

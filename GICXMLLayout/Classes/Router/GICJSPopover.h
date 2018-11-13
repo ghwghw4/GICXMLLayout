@@ -7,19 +7,20 @@
 
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "GICPopover.h"
 #import "GICJSElementDelegate.h"
 
 //JSPopover 的JSContext跟宿主共享同一个JSContext。但是不共享数据源
 @protocol GICJSPopover <JSExport>
+@property JSValue *ondismiss;
 -(void)present:(BOOL)animation;
 
 // 隐藏弹框
--(void)dismiss:(BOOL)animation;
+JSExportAs(dismiss, -(void)dismiss:(BOOL)animation params:(JSValue *)params);
 
-JSExportAs(createPage, +(instancetype)createPage:(NSString *)pagePath fromElement:(GICJSElementDelegate *)element);
+//JSExportAs(createPage, +(instancetype)createPage:(NSString *)pagePath fromElement:(GICJSElementDelegate *)element);
++(instancetype)create:(NSString *)pagePath;
 @end
 
-@interface GICJSPopover : NSObject<GICJSPopover>
+@interface GICJSPopover : UIViewController<GICJSPopover>
 
 @end

@@ -9,24 +9,26 @@
 #import "GICElementsHelper.h"
 #import "JSValue+GICJSExtension.h"
 #import "GICJSElementDelegate.h"
+#import "JSContext+GICJSContext.h"
 
 @implementation GICJSDocument
--(id)initRootElement:(id)root{
-    self = [self init];
-    self->rootElement = root;
-    return self;
-}
+//-(id)initRootElement:(id)root{
+//    self = [self init];
+//    self->rootElement = root;
+//    return self;
+//}
 
 -(id)rootElement{
-    return [GICJSElementDelegate getJSValueFrom:self->rootElement inContext:[JSContext currentContext]];
+    return [[JSContext currentContext] rootElement];
 }
 
--(id)_getRootElement{
-    return self->rootElement;
++(GICJSElementDelegate *)rootElement{
+    return [[JSContext currentContext] rootElement].element;
 }
+
 
 -(NSArray *)getElementsByName:(NSString *)name{
-    NSArray *elments = [GICElementsHelper findSubElementsFromSuperElement:self->rootElement withName:name];
+    NSArray *elments = [GICElementsHelper findSubElementsFromSuperElement:[GICJSDocument rootElement] withName:name];
     if(elments.count>0){
         // 获取子元素后，需要将子元素转换成JSValue
         NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:elments.count];

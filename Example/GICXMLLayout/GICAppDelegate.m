@@ -60,8 +60,8 @@
     
     // 设置根目录
     // NOTE:在开发的时候可以将地址修改成实际的IP地址
-    [GICXMLLayout setRootUrl:@"http://192.168.111.101:8080/sample"];
-//    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
+//    [GICXMLLayout setRootUrl:@"http://192.168.111.101:8080/sample"];
+    [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

@@ -451,7 +451,7 @@ Object.prototype._elementInit2 = function (props) {
 
 // 触发JS事件
 Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
-  eventJS = 'var $element = arguments[1];var $eventInfo = arguments[0];var $item=$element.dataContext; if($item) var $index = $item.__index__; ' + eventJS;
+  eventJS = 'var $el = arguments[1];var $eventInfo = arguments[0];var $item=$el.dataContext; if($item) var $index = $item.__index__; ' + eventJS;
   if (__rootDataContext__) {
     __rootDataContext__.executeScript(eventJS, eventInfo, this);
   } else {
@@ -607,7 +607,7 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  var jsStr = 'var $item = arguments[0]; var $index =$item.__index__;var $element = arguments[1];';
+  var jsStr = 'var $item = arguments[0]; var $index =$item.__index__;var $el = arguments[1];';
   if ((0, _index.isObject)(this)) {
     Object.keys(this).forEach(function (key) {
       jsStr += 'var ' + key + '=$item.' + key + ';';

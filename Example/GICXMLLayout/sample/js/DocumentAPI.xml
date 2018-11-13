@@ -7,7 +7,7 @@
                 <lable text="点我" font-size="18">
                     <behaviors>
                         <script private="1">
-                            $element.onclick = function(){
+                            $el.onclick = function(){
                                 document.getElementsByName('lblTest')[0].text = '我是通过getElementsByNameAPI设置的哦';
                             }
                         </script>
@@ -20,24 +20,12 @@
                     <behaviors>
                         <!--对于一个页面来说，rootElement 就是page元素-->
                         <script private="1">
-                            $element.onclick = function(){
+                            $el.onclick = function(){
                             document.rootElement.title = '通过rootElement设置';
                             }
                         </script>
                     </behaviors>
                 </lable>
-
-                <!--<template-ref t-name="title" data-context="createElement"/>-->
-                <!--<lable text="点我" font-size="18">-->
-                    <!--<behaviors>-->
-                        <!--<script private="1">-->
-                            <!--$element.onclick = function(){-->
-                                <!--var lbl = document.createElement('lable');-->
-                                <!--lbl.text = '我是createElement创建的';-->
-                            <!--}-->
-                        <!--</script>-->
-                    <!--</behaviors>-->
-                <!--</lable>-->
             </stack-panel>
         </inset-panel>
     </scroll-view>

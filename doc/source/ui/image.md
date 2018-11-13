@@ -10,6 +10,7 @@
 | placehold  | string        | 在加载网络图片的时候显示的默认图片，必须是本地图片。 | 是           | 否           |
 | local-name | string        | 显示本地图片                                         | 是           | 否           |
 | fill-mode  | Integer(枚举) | 就是uiview 的contentmode 属性。默认2                 | 是           | 是           |
+| path       | string        | 加载根目录下的图片。                                 | 是           | 否           |
 
 ### fill-mode
 

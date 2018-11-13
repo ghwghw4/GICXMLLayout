@@ -7,7 +7,7 @@
                 <lable text="" font-size="18">
                     <behaviors>
                         <script private="1">
-                            $element.text = Router.params.name;
+                            $el.text = Router.params.name;
                         </script>
                     </behaviors>
                 </lable>
@@ -16,7 +16,7 @@
                 <lable text="点我回传参数" font-size="18">
                     <behaviors>
                         <script private="1">
-                            $element.onclick = function (){
+                            $el.onclick = function (){
                                 Router.goBack({name:'我是前一页回传回来的参数'});
                             };
                         </script>

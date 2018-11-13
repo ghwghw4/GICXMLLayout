@@ -3,9 +3,9 @@
     <!--<scroll-view background-color="white">-->
         <inset-panel inset="64 15 15 15">
             <stack-panel>
-                <template-ref t-name="title" data-context="单击事件。点我" event-tap="js:$element.text='好疼';"/>
-                <template-ref t-name="title" data-context="双击事件。双击我" event-double-tap="js:$element.text='double kill';"/>
-                <template-ref t-name="title" data-context="触摸事件。摸我" event-touch-begin="js:$element.text='你摸我了';" event-touch-move="js:$element.text='你摸我了...';" event-touch-end="js:$element.text='摸完了';"/>
+                <template-ref t-name="title" data-context="单击事件。点我" event-tap="js:$el.text='好疼';"/>
+                <template-ref t-name="title" data-context="双击事件。双击我" event-double-tap="js:$el.text='double kill';"/>
+                <template-ref t-name="title" data-context="触摸事件。摸我" event-touch-begin="js:$el.text='你摸我了';" event-touch-move="js:$el.text='你摸我了...';" event-touch-end="js:$el.text='摸完了';"/>
 
                 <template-ref t-name="desc" data-context="自定义事件，请参考行为中对于下拉刷新中对事件的定义"/>
                 <template-ref t-name="desc" data-context="事件在使用的时候也是属性的一种"/>

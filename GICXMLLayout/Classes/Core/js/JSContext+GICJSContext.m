@@ -10,7 +10,6 @@
 #import "NSBundle+GICXMLLayout.h"
 #import "GICGCDTimer.h"
 #import "GICXMLHttpRequest.h"
-#import "GICJSNativeAPI.h"
 #import "GICJSConsole.h"
 
 #if DEBUG

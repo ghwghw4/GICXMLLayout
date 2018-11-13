@@ -11,7 +11,7 @@
         </nav-bar>
         <behaviors>
             <script private="1">
-                $element.dataContext = {userName:'userName1234',password:'123456'};
+                $el.dataContext = {userName:'userName1234',password:'123456'};
             </script>
         </behaviors>
         <scroll-view background-color="white">
@@ -31,7 +31,7 @@
                 </inset-panel>
 
                 <inset-panel inset="15">
-                    <control height="44" border-color="gray" border-width="1" event-tap="js:closePopover($element.dataContext);">
+                    <control height="44" border-color="gray" border-width="1" event-tap="js:closePopover($item);">
                         <dock-panel>
                             <lable text="登录" font-size="16"/>
                         </dock-panel>

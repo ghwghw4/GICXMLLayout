@@ -160,22 +160,22 @@ pod 'GICXMLLayout', '0.4.0'
 
 ### 0.4.0
 
-1. 增加JSRouter相关API，专门用来支持JS 导航相关。
+1. 增加JSRouter相关API，专门用来支持JS 导航相关。[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
 
 2. Router模块中的`nav-bar`元素增加`title`子元素
 
    > 现在你可以通过`nav-bar`的`title`节点自定义page 的 title-view
 
-3. `image`元素新增`path`属性
+3. `image`元素新增`path`属性。[文档](http://gicxmllayout.gonghaiwei.cn/ui/image.html)
 
    > 现在可以直接加载根目录下的图片
 
-4. JS API修改.
+4. JS API修改.[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
 
    > 1. 获取事件参数。可以通过$eventInfo 获取事件参数
    > 2. 增加`require`函数。现在可以在任意JS 脚本的任意位置动态加载js 文件
 
-5. list 元素增加显示索引功能。并且进一步的优化了显示性能
+5. list 元素增加显示索引功能。并且进一步的优化了显示性能。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
 
 ## Author
 

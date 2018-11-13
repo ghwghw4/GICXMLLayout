@@ -91,7 +91,7 @@ JSExportAs(addButton, - (void)addButton:(NSString *)buttonName clicked:(JSValue 
 <lable text="点我弹出提示框" font-size="18">
     <behaviors>
         <script private="1">
-            this.onclick = function(){
+            $el.onclick = function(){
             var alertView = new AlertView();
             alertView.title = '标题';
             alertView.message = '内容';

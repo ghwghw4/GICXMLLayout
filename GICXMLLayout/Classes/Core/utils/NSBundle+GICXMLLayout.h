@@ -11,6 +11,4 @@
 + (instancetype)GICXMLLayoutBundle;
 
 +(NSString *)gic_jsCoreString;
-
-+(NSString *)gic_jsNativeAPIString;
 @end

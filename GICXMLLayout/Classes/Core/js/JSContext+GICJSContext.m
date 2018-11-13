@@ -11,7 +11,6 @@
 #import "GICGCDTimer.h"
 #import "GICXMLHttpRequest.h"
 #import "GICJSNativeAPI.h"
-#import "GICJSPopover.h"
 #import "GICJSConsole.h"
 
 #if DEBUG
@@ -85,11 +84,9 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [self evaluateScript:jsCoreString];
-    // 注册nativeAPI
-    [self evaluateScript:[NSBundle gic_jsNativeAPIString]];
-    self[@"_native_"] = [[GICJSNativeAPI alloc] init];
-    
-    self[@"Popover"] = [GICJSPopover class];
+//    // 注册nativeAPI
+//    [self evaluateScript:[NSBundle gic_jsNativeAPIString]];
+//    self[@"_native_"] = [[GICJSNativeAPI alloc] init];
     
     // 添加require 方法. 以便动态加载JS
     self[@"require"] = ^(NSString *jsPath){

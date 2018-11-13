@@ -11,8 +11,8 @@
         </data-context>
         <section data-path="section1">
             <!--显式指定高度-->
-            <header height="44" background-color="yellow">
-                <dock-panel>
+            <header background-color="yellow">
+                <dock-panel height="44">
                     <lable text="header" font-size="24"/>
                 </dock-panel>
             </header>
@@ -44,8 +44,8 @@
                 </list-item>
             </for>
             <!--显式指定高度-->
-            <footer height="44" background-color="yellow">
-                <dock-panel>
+            <footer background-color="yellow">
+                <dock-panel height="44">
                     <lable text="footer" font-size="24"/>
                 </dock-panel>
             </footer>

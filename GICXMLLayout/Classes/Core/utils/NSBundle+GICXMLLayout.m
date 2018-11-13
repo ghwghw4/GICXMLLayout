@@ -22,9 +22,4 @@
     NSData *data = [NSData dataWithContentsOfFile:[[self GICXMLLayoutBundle] pathForResource:@"JSCore" ofType:@"js"]];
     return [[NSString alloc] initWithData:data encoding:4];
 }
-
-+(NSString *)gic_jsNativeAPIString{
-    NSData *data = [NSData dataWithContentsOfFile:[[self GICXMLLayoutBundle] pathForResource:@"NativeAPI" ofType:@"js"]];
-    return [[NSString alloc] initWithData:data encoding:4];
-}
 @end

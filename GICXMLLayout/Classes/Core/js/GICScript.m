@@ -105,15 +105,18 @@ static NSMutableArray<NSOperation *> *operationArray;
         return;
     }
     JSContext *context = [GICJSCore findJSContextFromElement:self.target];
-    
-    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
-    if([context isSetRootDataContext]){
-        NSString *js = [NSString stringWithFormat:@"var $element = arguments[0]; %@;",jsStr];
-        [[context rootDataContext] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
+    if(self.isPrivate){
+        JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
+        if([context isSetRootDataContext]){
+            NSString *js = [NSString stringWithFormat:@"var $element = arguments[0]; %@;",jsStr];
+            [[context rootDataContext] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
+        }else{
+            NSString *js = [NSString stringWithFormat:@"var $element = %@; %@; delete $element;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
+            [context evaluateScript:js];
+            //        [[context globalObject] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
+        }
     }else{
-        NSString *js = [NSString stringWithFormat:@"var $element = %@; %@; delete $element;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
-        [context evaluateScript:js];
-//        [[context globalObject] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
+        [context evaluateScript:jsStr];
     }
 }
 @end

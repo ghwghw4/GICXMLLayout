@@ -16,7 +16,9 @@
             obj.style.width = ASDimensionMake(constrainedSize.min.width);
         }
     }];
-    return  [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:chilren];
+    ASStackLayoutSpec *spec = [ASStackLayoutSpec verticalStackLayoutSpec];
+    spec.children = chilren;
+    return spec;
 }
 
 -(void)layout{

@@ -12,4 +12,7 @@
 +(JSContext *)findJSContextFromElement:(NSObject *)element;
 
 +(void)extend:(JSContext *)context;
+
+//两个元素共享JSContext
++(void)shareJSContext:(id)fromElement to:(id)toElement;
 @end

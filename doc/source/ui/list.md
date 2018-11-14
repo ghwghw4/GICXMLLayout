@@ -30,14 +30,15 @@
 
 ## list 属性
 
-| 名称            | 数据类型      | 介绍               | 是否支持绑定 | 是否支持动画 |
-| --------------- | ------------- | ------------------ | ------------ | ------------ |
-| separator-style | Integer(枚举) | cell分割线的样式   | 是           | 是           |
-| show-ver-scroll | Bool          | 是否显示垂直滚动条 | 是           | 是           |
-| show-hor-scroll | Bool          | 是否显示水平滚动条 | 是           | 是           |
-| content-inset   | UIEdgeInsets  | 内容边距           | 是           | 是           |
-| show-indexs     | Bool          | 是否显示索引       | 是           | 否           |
-| index-color     | UIColor       | 索引文字的颜色     | 是           | 否           |
+| 名称                   | 数据类型      | 介绍                          | 是否支持绑定 | 是否支持动画 |
+| ---------------------- | ------------- | ----------------------------- | ------------ | ------------ |
+| separator-style        | Integer(枚举) | cell分割线的样式              | 是           | 是           |
+| show-ver-scroll        | Bool          | 是否显示垂直滚动条            | 是           | 是           |
+| show-hor-scroll        | Bool          | 是否显示水平滚动条            | 是           | 是           |
+| content-inset          | UIEdgeInsets  | 内容边距                      | 是           | 是           |
+| show-indexs            | Bool          | 是否显示索引                  | 是           | 否           |
+| index-color            | UIColor       | 索引文字的颜色                | 是           | 否           |
+| content-inset-behavior | Integer(枚举) | 内容边距行为。iOS11.0以上生效 | 是           | 否           |
 
 ### separator-style 枚举
 
@@ -46,7 +47,16 @@
 | 0      | UITableViewCellSeparatorStyleNone       | 没有分割线 |
 | 1      | UITableViewCellSeparatorStyleSingleLine | 有分割线   |
 
+### content-inset-behavior 枚举
 
+| 枚举值 | 对应枚举                                         | 说明 |
+| ------ | ------------------------------------------------ | ---- |
+| 0      | UIScrollViewContentInsetAdjustmentAutomatic      |      |
+| 1      | UIScrollViewContentInsetAdjustmentScrollableAxes |      |
+| 2      | UIScrollViewContentInsetAdjustmentNever          |      |
+| 3      | UIScrollViewContentInsetAdjustmentAlways         |      |
+
+### 
 
 ## section
 

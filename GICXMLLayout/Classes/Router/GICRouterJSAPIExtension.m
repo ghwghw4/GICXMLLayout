@@ -9,6 +9,7 @@
 #import "NSObject+GICRouter.h"
 #import "GICJSCore.h"
 #import "GICJSPopover.h"
+#import "GICJSDocument.h"
 
 @protocol GICJSRouter <JSExport>
 @required
@@ -77,7 +78,7 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 
 @implementation GICRouterJSAPIExtension
 +(void)registeJSAPIToJSContext:(JSContext *)context{
-    context[@"Router"] = [[GICJSRouter alloc] initWithElement:[GICXMLParserContext currentInstance].gic_ExtensionProperties.tempDataContext];
+    context[@"Router"] = [[GICJSRouter alloc] initWithElement:[GICJSDocument rootElementFromJsContext:context]];
     context[@"Popover"] = [GICJSPopover class];
 }
 

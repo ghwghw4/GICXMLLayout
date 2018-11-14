@@ -30,20 +30,29 @@
     if(context){
         return context;
     }
-    NSObject *superEl = [element gic_getSuperElement];
-    if(superEl == nil){
+    if([element isKindOfClass:[UIViewController class]] || [element gic_getSuperElement] == nil){
         context = [[JSContext alloc] init];
         // 注入GICJSCore
-        [self extend:context];
-         [context setRootElement:[[GICJSElementDelegate getJSValueFrom:element inContext:context] toObject]];
+        [self extend:context rootElement:element];
         [element setGic_JSContext:context];
         return context;
     }
-    return [self findJSContextFromElement:superEl];
+    return [self findJSContextFromElement:[element gic_getSuperElement]];
 }
 
 +(void)extend:(JSContext *)context {
+    [self extend:context rootElement:nil];
+}
+
++(void)extend:(JSContext *)context rootElement:(id)rootElement{
     [context registCoreAPI];
+    if(rootElement)
+    [context setRootElement:[[GICJSElementDelegate getJSValueFrom:rootElement inContext:context] toObject]];
     [GICJSAPIManager initJSContext:context];
+}
+
++(void)shareJSContext:(id)fromElement to:(id)toElement{
+    JSContext *context = [GICJSCore findJSContextFromElement:fromElement];
+    [toElement setGic_JSContext:context];
 }
 @end

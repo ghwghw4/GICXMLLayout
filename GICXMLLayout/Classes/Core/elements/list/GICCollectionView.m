@@ -74,6 +74,13 @@
                      [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
                  }];
              }],
+             @"content-inset-behavior":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 if (@available(iOS 11.0, *)) {
+                     [(GICCollectionView *)target gic_safeView:^(UIView *view) {
+                         [(UIScrollView *)view setContentInsetAdjustmentBehavior:[value integerValue]];
+                     }];
+                 }
+             }],
              };
 }
 

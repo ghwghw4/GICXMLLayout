@@ -9,6 +9,7 @@
 #import "JSValue+GICJSExtension.h"
 #import "GICJSElementDelegate.h"
 #import "GICJSDocument.h"
+#import "GICJSCore.h"
 
 @implementation GICJSPopover{
     UIViewController *contentViewControler;
@@ -48,8 +49,15 @@
 
 +(instancetype)create:(NSString *)pagePath{
     GICJSPopover *popover = [[GICJSPopover alloc] init];
-    popover.gic_ExtensionProperties.superElement = [GICJSDocument rootElement];
+//    popover.gic_ExtensionProperties.superElement = [GICJSDocument rootElement];
     id obj = [GICXMLLayout parseElementFromPath:pagePath withParentElement:popover];
+    // 共享JSContext
+    if([obj isKindOfClass:[UINavigationController class]]){
+        [GICJSCore shareJSContext:[GICJSDocument rootElementFromJsContext:nil] to:[(UINavigationController *)obj visibleViewController]];
+    }else{
+        [GICJSCore shareJSContext:[GICJSDocument rootElementFromJsContext:nil] to:obj];
+    }
+  
     NSAssert(obj, @"parse fail，请检查路径是否正确，XML格式是否正确");
     if(obj && [obj isKindOfClass:[UIViewController class]]){
         popover->contentViewControler = (UIViewController *)obj;

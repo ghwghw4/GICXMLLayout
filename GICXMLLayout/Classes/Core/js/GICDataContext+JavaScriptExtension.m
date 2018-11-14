@@ -154,7 +154,7 @@
 @implementation GICEvent(JSScriptExtension)
 -(void)excuteJSBindExpress:(NSString *)js withValue:(id)value{
     JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:nil];
-    if(value){
+    if(value && ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])){
         [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,value]];
     }else{
         [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js]];

@@ -63,6 +63,14 @@
                  UIEdgeInsets inset = [(GICListView *)target contentInset];
                  return [NSValue valueWithUIEdgeInsets:inset];
              }],
+             
+             @"content-inset-behavior":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 if (@available(iOS 11.0, *)) {
+                     [(GICListView *)target gic_safeView:^(UIView *view) {
+                         [(UIScrollView *)view setContentInsetAdjustmentBehavior:[value integerValue]];
+                     }];
+                 }
+             }],
              };
 }
 -(id)init{
@@ -118,7 +126,7 @@
             }];
         }];
     }else{
-        [self insertRowsAtIndexPaths:insertArray withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self insertRowsAtIndexPaths:insertArray withRowAnimation:UITableViewRowAnimationNone];
         [self onDidFinishProcessingUpdates:^{
             if(subArray) [self dealItems:subArray];
         }];

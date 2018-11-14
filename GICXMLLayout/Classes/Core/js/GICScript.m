@@ -75,9 +75,7 @@ static NSMutableArray<NSOperation *> *operationArray;
 -(void)attachTo:(id)target{
     [super attachTo:target];
     // 确保JSContext 正确初始化
-    if([GICXMLParserContext currentInstance]){
-        [GICJSCore findJSContextFromElement:self.target];
-    }else{
+    if(![GICXMLParserContext currentInstance]){
         [self invokeJSScript];
     }
 }

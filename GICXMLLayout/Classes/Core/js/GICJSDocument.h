@@ -19,5 +19,6 @@
 @interface GICJSDocument : NSObject<GICJSDocument>{
 }
 // 提供给native 调用的
-+(GICJSElementDelegate *)rootElement;
+//+(id)rootElement;
++(id)rootElementFromJsContext:(JSContext *)jscontext;
 @end

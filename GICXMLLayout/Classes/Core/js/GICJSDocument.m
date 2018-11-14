@@ -22,13 +22,20 @@
     return [[JSContext currentContext] rootElement];
 }
 
-+(GICJSElementDelegate *)rootElement{
-    return [[JSContext currentContext] rootElement].element;
+//+(id)rootElement{
+//    return [[JSContext currentContext] rootElement].element;
+//}
+
++(id)rootElementFromJsContext:(JSContext *)jscontext{
+    if(jscontext)
+        return [jscontext rootElement].element;
+    else
+        return [[JSContext currentContext] rootElement].element;
 }
 
 
 -(NSArray *)getElementsByName:(NSString *)name{
-    NSArray *elments = [GICElementsHelper findSubElementsFromSuperElement:[GICJSDocument rootElement] withName:name];
+    NSArray *elments = [GICElementsHelper findSubElementsFromSuperElement:[GICJSDocument rootElementFromJsContext:nil] withName:name];
     if(elments.count>0){
         // 获取子元素后，需要将子元素转换成JSValue
         NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:elments.count];
@@ -50,3 +57,4 @@
     return nil;
 }
 @end
+

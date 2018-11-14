@@ -44,11 +44,6 @@
 }
 
 #pragma mark - Lifecycle Methods
--(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
-    // TODO:后面改成扩展方法来实现
-    [GICXMLParserContext currentInstance].gic_ExtensionProperties.tempDataContext = self;
-    [super gic_beginParseElement:element withSuperElement:superElment];
-}
 -(void)gic_parseElementCompelete{
     [super gic_parseElementCompelete];
 }

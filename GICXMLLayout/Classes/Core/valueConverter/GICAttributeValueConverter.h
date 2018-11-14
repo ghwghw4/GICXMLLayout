@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GICValueConverter.h"
+#import <UIKit/UIKit.h>
 
 typedef void (^GICPropertySetter)(NSObject *target,id value);
 

@@ -100,7 +100,7 @@ Object.prototype._elementInit2 = function (props) {
 
 // 触发JS事件
 Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
-  eventJS = `var $el = arguments[1];var $eventInfo = arguments[0];var $item=$el.dataContext; if($item) var $index = $item.__index__; ${eventJS}`;
+  eventJS = `var $el = arguments[1];var $eventInfo = arguments[0];var $item=$el.dataContext; if($item && $item.__index__) var $index = $item.__index__(); ${eventJS}`;
   if (__rootDataContext__) {
     __rootDataContext__.executeScript(eventJS, eventInfo, this);
   } else {

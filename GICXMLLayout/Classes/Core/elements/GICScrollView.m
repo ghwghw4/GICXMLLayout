@@ -9,6 +9,7 @@
 #import "GICPanel.h"
 #import "GICBoolConverter.h"
 #import "GICNumberConverter.h"
+#import "GICEdgeConverter.h"
 
 @implementation GICScrollView
 +(NSString *)gic_elementName{
@@ -26,6 +27,19 @@
                  [(GICScrollView *)target gic_safeView:^(UIView *view) {
                      [(UIScrollView *)view setShowsHorizontalScrollIndicator:[value boolValue]];
                  }];
+             }],
+             @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICScrollView *)target gic_safeView:^(UIView *view) {
+                     [(UIScrollView *)view setValue:value forKey:@"contentInset"];
+                 }];
+             }],
+             
+             @"content-inset-behavior":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 if (@available(iOS 11.0, *)) {
+                     [(GICScrollView *)target gic_safeView:^(UIView *view) {
+                         [(UIScrollView *)view setContentInsetAdjustmentBehavior:[value integerValue]];
+                     }];
+                 }
              }],
              };;
 }

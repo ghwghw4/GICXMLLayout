@@ -227,6 +227,7 @@
     // 触发选中事件
     GICListItem *item = [collectionNode nodeForItemAtIndexPath:indexPath];
     [item.itemSelectEvent fire:nil];
+    [collectionNode deselectItemAtIndexPath:indexPath animated:YES];
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{

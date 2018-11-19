@@ -6,17 +6,18 @@ input当前支持的属性有限，但是如果需要支持其他的属性，比
 
 ## 属性
 
-| 名称            | 数据类型      | 介绍              | 是否支持绑定     | 是否支持动画 |
-| --------------- | ------------- | ----------------- | ---------------- | ------------ |
-| placehold       | string        | 不解释            | 否               | 否           |
-| placehold-color | UIColor       |                   | 否               | 否           |
-| placehold-size  | Float         | placehold字体大小 | 否               | 否           |
-| font-color      | UIColor       |                   | 是               | 是           |
-| font-size       | float         |                   | 是               | 是           |
-| text            | string        |                   | 是(支持双向绑定) | 是           |
-| secure          | bool          |                   | 是               | 是           |
-| keyboard-type   | integer(枚举) | 键盘类型          | 是               | 否           |
-| event-return    | Event         | 点击回车事件      | 否               | 否           |
+| 名称            | 数据类型      | 介绍                         | 是否支持绑定     | 是否支持动画 |
+| --------------- | ------------- | ---------------------------- | ---------------- | ------------ |
+| placehold       | string        | 不解释                       | 否               | 否           |
+| placehold-color | UIColor       |                              | 否               | 否           |
+| placehold-size  | Float         | placehold字体大小            | 否               | 否           |
+| font-color      | UIColor       |                              | 是               | 是           |
+| font-size       | float         |                              | 是               | 是           |
+| text            | string        |                              | 是(支持双向绑定) | 是           |
+| secure          | bool          |                              | 是               | 是           |
+| keyboard-type   | integer(枚举) | 键盘类型                     | 是               | 否           |
+| event-return    | Event         | 点击回车事件                 | 否               | 否           |
+| content-inset   | UIEdgeInsets  | 内容边距(只适用`input-view`) | 是               | 是           |
 
 ###  keyboard-type 枚举
 

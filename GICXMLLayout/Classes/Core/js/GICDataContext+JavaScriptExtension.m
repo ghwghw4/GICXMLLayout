@@ -27,8 +27,12 @@
             };
             [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
             jsValue = [pathValue gic_ToManagedValue:self];
+            // 关键代码
+            [self setGic_DataContext:jsValue updateBinding:NO];
         }else{
             jsValue = nil;
+             // 关键代码
+            [self setGic_DataContext:jsValue updateBinding:NO];
             return;
         }
     }
@@ -59,17 +63,23 @@
 
 -(void)updateDataSourceFromJsValue:(JSManagedValue *)jsValue{
     [self removeAllItems];
-    if([[jsValue.value invokeMethod:@"isArray" withArguments:nil] toBool]){
+    if([jsValue.value gic_isArray]){
         jsValue.value[@"forDirective"] = self;
         [jsValue.value invokeMethod:@"toForDirector" withArguments:@[jsValue.value[@"forDirective"]]];
     }
 }
 - (void)addItem:(JSValue *)item index:(NSInteger)index {
-    item[@"__index__"] = @(index);
+//    item[@"__index__"] = @(index);
+    @weakify(self)
+    item[@"__index__"] = ^(){
+        @strongify(self)
+        JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
+        return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
+    };
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + ([[item invokeMethod:@"__index__" withArguments:nil] toInt32])*kGICDirectiveForElmentOrderStart;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_addSubElement:childElement];
 }
@@ -80,7 +90,7 @@
 
 -(void)deleteItemWithIndex:(NSInteger)index{
     NSArray *items =  [self.target gic_subElements];
-    if(index>=0  && index < items.count){
+    if(index>=0 && index < items.count){
         [self.target gic_removeSubElements:@[items[index]]];
     }
 }
@@ -106,13 +116,13 @@
         JSValue *result = [jsValue.value invokeMethod:@"executeBindExpression" withArguments:@[js,selfValue]];
         resultString = [result isUndefined]?@"":[result toString];
     }
-    id value = @"";
+    id value = nil;
     if(self.valueConverter){
         value = [self.valueConverter convert:resultString];
     }else{
         value = [self.attributeValueConverter convert:resultString];
     }
-    self.attributeValueConverter.propertySetter(self.target,value);
+    self.attributeValueConverter.propertySetter(self.target,value?:@"");
     if(self.valueUpdate){
         self.valueUpdate(value);
     }

@@ -66,11 +66,11 @@
     }
     
     if(self.rightButtons){
-        self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
+        self->page.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
         @weakify(self)
-        self.leftButtons.sizeChangedBlock = ^(CGSize size) {
+        self.rightButtons.sizeChangedBlock = ^(CGSize size) {
             @strongify(self)
-            self->page.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
+            self->page.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightButtons.view];
         };
     }
     

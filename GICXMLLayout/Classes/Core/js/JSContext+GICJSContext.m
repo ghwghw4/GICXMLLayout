@@ -11,6 +11,7 @@
 #import "GICGCDTimer.h"
 #import "GICXMLHttpRequest.h"
 #import "GICJSConsole.h"
+#import "JSValue+GICJSExtension.h"
 
 #if DEBUG
 // 立即同步执行JS的垃圾回收机制(既然苹果没有将整个API开放出来，我个人觉得还是慎用为上，因为js本身有独立的垃圾回收机制，我们不应该强制的去干预)
@@ -101,5 +102,9 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
 
 -(GICJSElementDelegate *)rootElement{
     return [self[@"__rootElement__"] toObject];
+}
+
+-(JSValue *)excuteJSString:(NSString *)jsString withArguments:(NSArray *)arguments{
+    return [self.globalObject excuteJSString:jsString withArguments:arguments];
 }
 @end

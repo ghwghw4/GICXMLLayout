@@ -11,6 +11,7 @@
 #import "GICColorConverter.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICBoolConverter.h"
+#import "GICEdgeConverter.h"
 
 @implementation GICInputeView
 +(NSString *)gic_elementName{
@@ -43,6 +44,12 @@
              @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICInputeView *)target)->textAttributs setObject:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
                  [(GICInputeView *)target updateTextString];
+             }],
+             @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInputeView *)target setValue:value forKey:@"textContainerInset"];
+             } withGetter:^id(id target) {
+                 UIEdgeInsets inset = [(GICInputeView *)target textContainerInset];
+                 return [NSValue valueWithUIEdgeInsets:inset];
              }],
             
 //             @"lines":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {

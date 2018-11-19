@@ -107,7 +107,7 @@ static NSMutableArray<NSOperation *> *operationArray;
         JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
         if([context isSetRootDataContext]){
             NSString *js = [NSString stringWithFormat:@"var $el = arguments[0]; %@;",jsStr];
-            [[context rootDataContext] invokeMethod:@"executeScript" withArguments:@[js,selfValue]];
+            [[context rootDataContext] excuteJSString:js withArguments:@[selfValue]];
         }else{
             NSString *js = [NSString stringWithFormat:@"var $el = %@; %@; delete $el;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
             [context evaluateScript:js];

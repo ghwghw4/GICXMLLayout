@@ -24,4 +24,6 @@
  是否设置了跟数据源
  */
 @property (nonatomic,readonly)BOOL isSetRootDataContext;
+
+-(JSValue *)excuteJSString:(NSString *)jsString withArguments:(NSArray *)arguments;
 @end

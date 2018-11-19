@@ -215,6 +215,7 @@
     // 触发选中事件
     GICListItem *item = [tableNode nodeForRowAtIndexPath:indexPath];
     [item.itemSelectEvent fire:nil];
+    [tableNode deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark GIC Parse
@@ -273,7 +274,7 @@
     if(_sectionsMap.count==0){
         [self reloadData];
     }else if(idxSet.count>0){
-        [self reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
+        [self reloadSections:idxSet withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -304,7 +305,7 @@
 }
 
 - (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths {
-    [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)reloadSections:(NSIndexSet *)sections {

@@ -9,6 +9,9 @@
 #import "GICJSCore.h"
 
 @implementation JSValue (GICJSExtension)
+-(BOOL)gic_isArray{
+    return [[self invokeMethod:@"isArray" withArguments:nil] toBool];
+}
 -(JSManagedValue *)gic_ToManagedValue:(id)owner{
     //    if(owner){
     //        return [JSManagedValue managedValueWithValue:self andOwner:owner];
@@ -21,5 +24,16 @@
     //         [[[JSContext currentContext] virtualMachine] addManagedReference:mv withOwner:owner];
     //    }
     //    return mv;
+}
+
+-(JSValue *)excuteJSString:(NSString *)jsString withArguments:(NSArray *)arguments{
+    if(jsString){
+        NSMutableArray *mutArray = [NSMutableArray array];
+        [mutArray addObject:jsString];
+        if(arguments && arguments.count>0)
+            [mutArray addObjectsFromArray:arguments];
+        return [self invokeMethod:@"executeScript" withArguments:mutArray];
+    }
+    return nil;
 }
 @end

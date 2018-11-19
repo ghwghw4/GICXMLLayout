@@ -118,7 +118,11 @@ Object.prototype.addElementBind = function (obj, bindExp, cbName) {
  * @param selfElement 方法内部this 指针指向的对象
  */
 Object.prototype.executeBindExpression = function (expStr, selfElement) {
-  let jsStr = 'var $item = arguments[0]; var $index =$item.__index__;var $el = arguments[1];';
+  /**
+   * if($item.__index__) var $index = $item.__index__(); 这行代码其实是有问题的。应该说是利用了var 变量的一个小漏洞。
+   * 实际的开发过程中不应该这么使用
+   */
+  let jsStr = 'var $item = arguments[0]; if($item.__index__) var $index = $item.__index__();var $el = arguments[1];';
   if (isObject(this)) {
     Object.keys(this).forEach((key) => {
       jsStr += `var ${key}=$item.${key};`;

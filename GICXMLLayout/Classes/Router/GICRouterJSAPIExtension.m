@@ -10,13 +10,41 @@
 #import "GICJSCore.h"
 #import "GICJSPopover.h"
 #import "GICJSDocument.h"
+#import "JSValue+GICJSExtension.h"
+
+// 由于两个JScontext 无法共享JSvalue ，因此需要将JSValue 序列化成JSON string，然后再反序列化回来
+id __convertPramsDataToJsonData(id paramsData,JSContext *context){
+    if(paramsData == nil)
+        return nil;
+    id params = paramsData;
+    if([paramsData isKindOfClass:[NSString class]]){
+        JSValue *result = [context.globalObject excuteJSString:@"try {return JSON.parse(arguments[0]) }catch (e){} " withArguments:@[paramsData]];
+        if(![result isUndefined]){
+            params = result;
+        }
+    }
+    return params;
+}
+
+id __convertJSValueToJsonString(JSValue *paramsData,JSContext *context){
+    if(paramsData==nil)
+        return nil;
+    id params = [paramsData toObject];
+    if(paramsData.isObject || paramsData.gic_isArray){
+        JSValue *result = [context.globalObject excuteJSString:@" try { return JSON.stringify(arguments[0]) }catch (e){}" withArguments:@[paramsData]];
+        if(![result isUndefined]){
+            params = [result toString];
+        }
+    }
+    return params;
+}
 
 @protocol GICJSRouter <JSExport>
 @required
 /**
  返回上一页
  */
--(void)goBack:(id)paramsData;
+-(void)goBack:(JSValue *)paramsData;
 
 /**
  根据path导航到下一页,并且带有参数。需要事先设置GICXMLLayout 的 RootUrl
@@ -24,7 +52,7 @@
  @param path <#path description#>
  @param paramsData <#paramsData description#>
  */
-JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
+JSExportAs(push, -(void)push:(NSString *)path withParamsData:(JSValue *)paramsData);
 
 /**
  导航参数
@@ -48,12 +76,12 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
     return self;
 }
 
--(void)goBack:(id)paramsData{
-    [[element gic_Router] goBackWithParams:paramsData];
+-(void)goBack:(JSValue *)paramsData{
+    [[element gic_Router] goBackWithParams:__convertJSValueToJsonString(paramsData,[JSContext currentContext])];
 }
 
-- (void)push:(NSString *)path withParamsData:(id)paramsData {
-    [[element gic_Router] push:path withParamsData:paramsData];
+- (void)push:(NSString *)path withParamsData:(JSValue *)paramsData {
+    [[element gic_Router] push:path withParamsData:__convertJSValueToJsonString(paramsData,[JSContext currentContext])];
 }
 
 -(void)setParams:(JSValue *)params{
@@ -84,11 +112,11 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(id)paramsData);
 
 +(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page{
     JSContext *context = [GICJSCore findJSContextFromElement:page];
-    context[@"Router"][@"params"] = paramsData;
+    context[@"Router"][@"params"] = __convertPramsDataToJsonData(paramsData,context);
 }
 
 +(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page{
     JSContext *context = [GICJSCore findJSContextFromElement:page];
-    [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:(paramsData?@[paramsData]:nil)];
+    [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:(paramsData?@[__convertPramsDataToJsonData(paramsData,context)]:nil)];
 }
 @end

@@ -35,6 +35,7 @@
  */
 -(NSArray *)gic_subElements;
 
+-(id)gic_willAddSubElement:(id)subElement;
 
 /**
   添加一个子元素
@@ -44,9 +45,9 @@
  */
 -(id)gic_addSubElement:(id)subElement;
 
--(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order;
-
 -(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index;
+
+-(NSInteger)gic_indexOfSubElement:(id)subElement;
 
 
 /**

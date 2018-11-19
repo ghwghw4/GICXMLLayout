@@ -17,7 +17,20 @@
 }
 
 -(void)addSubElement:(id)subElement{
-    [(NSMutableArray *)self.subElements addObject:subElement];
+    if(![(NSMutableArray *)self.subElements containsObject:subElement]){
+        [(NSMutableArray *)self.subElements addObject:subElement];
+    }
+}
+
+-(void)insertSubElement:(id)subElement atIndex:(NSInteger)index{
+    [(NSMutableArray *)self.subElements insertObject:subElement atIndex:index];
+}
+
+-(NSInteger)indexOfSubElement:(id)subElement{
+    if([self.subElements containsObject:subElement]){
+        return  [self.subElements indexOfObject:subElement];
+    }
+    return -1;
 }
 
 -(void)removeSubElements:(NSArray *)subElments{
@@ -28,10 +41,4 @@
 -(void)removeAllSubElements{
      [(NSMutableArray *)self.subElements removeAllObjects];
 }
-
-//-(NSArray *)sortedSubElements{
-//  return [self.subElements sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-//        return [obj1 gic_ExtensionProperties].elementOrder > [obj2 gic_ExtensionProperties].elementOrder? NSOrderedDescending:NSOrderedAscending;
-//    }];
-//}
 @end

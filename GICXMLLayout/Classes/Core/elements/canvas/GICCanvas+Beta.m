@@ -44,12 +44,12 @@
     return [paths copy];
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICCanvasPath class]]){
         [paths addObject:subElement];
         return subElement;
     }
-    return [super gic_addSubElement:subElement];
+    return [super gic_willAddSubElement:subElement];
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{

@@ -52,7 +52,7 @@
     return elments;
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICListItem class]]){
         [subElement gic_ExtensionProperties].superElement = self;
         [_owner onItemAddedInSection:@{@"item":subElement,@"section":@(self.sectionIndex)}];
@@ -66,7 +66,7 @@
         return subElement;
     }
     else{
-        return [super gic_addSubElement:subElement];
+        return [super gic_willAddSubElement:subElement];
     }
 }
 

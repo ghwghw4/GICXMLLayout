@@ -63,10 +63,6 @@
     NSInteger order = 0;
     for(GDataXMLElement *child in children){
         NSObject *childElement = [NSObject gic_createElement:child withSuperElement:self];
-//        if(childElement == nil){
-//            childElement = [self gic_parseSubElementNotExist:child];
-//            [childElement gic_beginParseElement:child withSuperElement:self];
-//        }
         if(childElement == nil)
             continue;
         childElement.gic_ExtensionProperties.elementOrder = order;
@@ -79,7 +75,7 @@
     return nil;
 }
 
--(id)gic_addSubElement:(NSObject *)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if ([subElement isKindOfClass:[GICBehavior class]]){//如果是指令，那么交给指令自己执行
         [self gic_addBehavior:(GICBehavior *)subElement];
     }else if ([subElement isKindOfClass:[GICTemplates class]]){
@@ -101,14 +97,14 @@
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
         el.gic_DataContext = tr.gic_DataContext;
         el.gic_ExtensionProperties.elementOrder = tr.gic_ExtensionProperties.elementOrder;
-        [self gic_addSubElement:el];
+        [self gic_willAddSubElement:el];
         return el;
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             b.gic_ExtensionProperties.superElement = self;
             [self gic_addBehavior:b];
         }
-    }else if ([subElement isKindOfClass:[GICStyle class]]){ //行为
+    }else if ([subElement isKindOfClass:[GICStyle class]]){ // 样式
         self.gic_style = (GICStyle *)subElement;
     }else if ([subElement isKindOfClass:[GICAnimations class]]){ //添加动画
         for(GICAnimation *a in ((GICAnimations *)subElement).animations){
@@ -122,23 +118,29 @@
     return subElement;
 }
 
--(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order{
-    ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
-    [self gic_addSubElement:subElement];
-    return subElement;
+-(id)gic_addSubElement:(id)subElement{
+    id obj = [self gic_willAddSubElement:subElement];
+    if(obj && [obj gic_isAutoCacheElement]){
+        [[self gic_ExtensionProperties] addSubElement:obj];
+    }
+    return obj;
 }
 
 -(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index{
-    return nil;
+    id obj = [self gic_willAddSubElement:subElement];
+    ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = index;
+    [[self gic_ExtensionProperties] insertSubElement:obj atIndex:index];
+    return obj;
+}
+
+-(NSInteger)gic_indexOfSubElement:(id)subElement{
+    return [[self gic_ExtensionProperties] indexOfSubElement:subElement];
 }
 
 
 -(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     [self gic_ExtensionProperties].superElement = superElment;
     [self gic_parseAttributes:element];
-    if([self gic_isAutoCacheElement]){
-        [[superElment gic_ExtensionProperties] addSubElement:self];
-    }
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;

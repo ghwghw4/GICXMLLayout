@@ -11,12 +11,12 @@
 +(NSString *)gic_elementName{
     return @"app";
 }
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[UIViewController class]]){
         self.rootViewController = subElement;
         return subElement;
     }
-    return [super gic_addSubElement:subElement];
+    return [super gic_willAddSubElement:subElement];
 }
 @end
 

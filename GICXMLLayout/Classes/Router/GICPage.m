@@ -60,14 +60,14 @@
 
 
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         NSAssert(_displayNode == nil, @"page 只允许添加一个子元素");
         _displayNode =subElement;
         [(ASDisplayNode *)subElement gic_ExtensionProperties].superElement = self;
         return subElement;
     }else{
-       return [super gic_addSubElement:subElement];
+       return [super gic_willAddSubElement:subElement];
     }
 }
 

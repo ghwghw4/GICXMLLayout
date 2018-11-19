@@ -37,7 +37,7 @@
         
         if(!addedElement){
             NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
-            addedElement = [self.target gic_insertSubElement:childElement elementOrder:self.gic_ExtensionProperties.elementOrder];
+            addedElement = [self.target gic_insertSubElement:childElement atIndex:[self.gic_ExtensionProperties elementOrder]];
             [addedElement gic_updateDataContext:self.gic_DataContext];
         }
     }else{
@@ -47,7 +47,7 @@
         
         if(self->elseXmlDoc && !self->elseElement){
             NSObject *childElement = [NSObject gic_createElement:[self->elseXmlDoc rootElement] withSuperElement:self.target];
-            elseElement = [self.target gic_insertSubElement:childElement elementOrder:self.gic_ExtensionProperties.elementOrder];
+            elseElement = [self.target gic_insertSubElement:childElement atIndex:[self.gic_ExtensionProperties elementOrder]];
             [elseElement gic_updateDataContext:self.gic_DataContext];
         }
     }

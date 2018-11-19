@@ -220,7 +220,7 @@
 
 #pragma mark GIC Parse
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if ([subElement isKindOfClass:[GICListSection class]]){
         [self->_sectionsMap setObject:subElement forKey:@([subElement sectionIndex])];
         return subElement;
@@ -232,7 +232,7 @@
         return subElement;
     }
     else{
-        return [super gic_addSubElement:subElement];
+        return [super gic_willAddSubElement:subElement];
     }
 }
 

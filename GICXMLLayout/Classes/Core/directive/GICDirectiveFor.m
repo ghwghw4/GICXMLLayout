@@ -119,7 +119,6 @@
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = data;
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_addSubElement:childElement];
 }
@@ -128,7 +127,6 @@
     NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = data;
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_insertSubElement:childElement atIndex:index];
 }

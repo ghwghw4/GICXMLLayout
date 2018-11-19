@@ -48,7 +48,7 @@ static NSString * const GICSTyleNameString =  @"style-name";
     return NO;
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if ([subElement isKindOfClass:[GICTemplates class]]){
          [[self gic_getSuperElement] gic_addSubElement:subElement];
         return nil;

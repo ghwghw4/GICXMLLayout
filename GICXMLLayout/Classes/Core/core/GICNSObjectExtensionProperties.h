@@ -47,6 +47,8 @@ typedef enum {
 
 -(void)addSubElement:(id)subElement;
 
+-(NSInteger)indexOfSubElement:(id)subElement;
+
 -(void)insertSubElement:(id)subElement atIndex:(NSInteger)index;
 
 -(void)removeSubElements:(NSArray *)subElments;

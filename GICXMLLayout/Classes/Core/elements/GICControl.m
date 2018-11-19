@@ -36,11 +36,11 @@
     return self;
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         _normalNode = subElement;
     }
-    return [super gic_addSubElement:subElement];
+    return [super gic_willAddSubElement:subElement];
 }
 
 -(void)setHighlighted:(BOOL)highlighted{

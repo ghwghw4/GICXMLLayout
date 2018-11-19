@@ -245,38 +245,15 @@
              };
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
-//        [self addSubnode:subElement];
         if(self.nodeLoaded){
             [self setNeedsLayout];
         }
         return subElement;
     }else{
-       return [super gic_addSubElement:subElement];
+       return [super gic_willAddSubElement:subElement];
     }
-}
-
--(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order{
-    ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = order;
-    if([subElement isKindOfClass:[ASDisplayNode class]]){
-//        ASDisplayNode *findNode = nil;
-//        for(ASDisplayNode *node in self.subnodes){
-//            if(order >=node.gic_ExtensionProperties.elementOrder){
-//                findNode = node;
-//            }
-//        }
-//        if(findNode)
-//            [self insertSubnode:subElement aboveSubnode:findNode];
-//        else
-//            [self addSubnode:subElement];
-        if(self.nodeLoaded){
-            [self setNeedsLayout];
-        }
-        return subElement;
-    }
-    // TODO:对于elmentref 的insert
-    return [self gic_addSubElement:subElement];
 }
 
 -(void)gic_removeSubElements:(NSArray<NSObject *> *)subElements{
@@ -312,6 +289,7 @@
             [mutArray addObject:node];
         }
     }
+    // 插入后排序
     [mutArray sortUsingComparator:^NSComparisonResult(ASDisplayNode * obj1, ASDisplayNode * obj2) {
         return obj1.gic_ExtensionProperties.elementOrder > obj2.gic_ExtensionProperties.elementOrder? NSOrderedDescending:NSOrderedAscending;
     }];

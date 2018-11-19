@@ -22,7 +22,7 @@
     return NO;
 }
 
--(id)gic_addSubElement:(id)subElement{
+-(id)gic_willAddSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICAnimation class]]){
         [(NSMutableArray *)self.animations addObject:subElement];
         return subElement;

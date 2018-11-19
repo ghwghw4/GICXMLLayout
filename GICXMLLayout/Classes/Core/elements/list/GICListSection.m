@@ -10,6 +10,9 @@
 
 @implementation GICListSection{
     __weak id<GICListSectionProtocol> _owner;
+//    NSOperationQueue *insertItemsQueue;
+    NSMutableArray *insertedItems;
+    
 }
 +(NSString *)gic_elementName{
     return @"section";
@@ -32,6 +35,9 @@
     _owner = owner;
     _items = [NSMutableArray array];
     _sectionIndex = sectionIndex;
+    insertedItems = [NSMutableArray array];
+//    insertItemsQueue = [NSOperationQueue mainQueue];
+    
     return self;
 }
 
@@ -62,6 +68,36 @@
     else{
         return [super gic_addSubElement:subElement];
     }
+}
+
+
+// 插入item 需要做特殊处理
+-(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index{
+    if([subElement isKindOfClass:[GICListItem class]]){
+        [subElement gic_ExtensionProperties].superElement = self;
+        [insertedItems addObject:@{@"item":subElement,@"index":@(index)}];
+        // TODO:这里可能会出现线程问题。
+        if(insertedItems.count ==1){
+            [self dealInsert];
+        }
+    }
+    return nil;
+}
+
+
+-(void)dealInsert{
+    if(insertedItems.count>0){
+        NSDictionary *item = [insertedItems firstObject];
+        NSInteger index = [item[@"index"] integerValue];
+        [self.items insertObject:item[@"item"] atIndex:index];
+        [_owner insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:self.sectionIndex]]];
+        [_owner onDidFinishProcessingUpdates:^{
+            [self->insertedItems removeObject:item];
+            // 这个方法的的递归调用是在主线程中调用的，因此也不存在 insertedItems 的线程安全问题
+            [self dealInsert];
+        }];
+    }
+    
 }
 
 -(void)gic_removeSubElements:(NSArray<GICListItem *> *)subElements{

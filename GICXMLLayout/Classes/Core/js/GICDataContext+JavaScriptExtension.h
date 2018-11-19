@@ -24,9 +24,9 @@
 @end
 
 @protocol GICJSForDirective <JSExport>
-JSExportAs(addItem, - (void)addItem:(JSValue *)item index:(NSInteger)index);
-JSExportAs(insertItem, - (void)insertItem:(JSValue *)item index:(NSInteger)index);
--(void)deleteItemWithIndex:(NSInteger)index;
+JSExportAs(addItem, - (void)addItem:(JSValue *)item);
+JSExportAs(insertItem, - (void)insertItem:(JSValue *)item);
+JSExportAs(deleteItem, -(void)deleteItemWithStartIndex:(NSInteger)index withCount:(NSInteger)count);
 -(void)deleteAllItems;
 @end
 

@@ -128,6 +128,10 @@
     return subElement;
 }
 
+-(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index{
+    return nil;
+}
+
 
 -(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     [self gic_ExtensionProperties].superElement = superElment;

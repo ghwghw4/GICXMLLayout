@@ -16,6 +16,8 @@
 - (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths;
 -(void)onItemAddedInSection:(NSDictionary *)itemInfo;
 - (void)onDidFinishProcessingUpdates:(nullable void (^)())completion;
+- (void)insertItemsAtIndexPaths:(NSArray *)indexPaths;
+
 @end
 
 

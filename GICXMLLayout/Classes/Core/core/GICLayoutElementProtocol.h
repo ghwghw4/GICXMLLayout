@@ -46,6 +46,8 @@
 
 -(id)gic_insertSubElement:(id)subElement elementOrder:(CGFloat)order;
 
+-(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index;
+
 
 /**
  获取父级元素

@@ -65,6 +65,12 @@
                 }
             }];
             
+            // 插入
+            [[dataSource rac_signalForSelector:@selector(insertObject:atIndex:)] subscribeNext:^(RACTuple * _Nullable x) {
+                @strongify(self)
+                [self insertAElement:x[0] index:[dataSource indexOfObject:x[0]]];
+            }];
+            
             // 监听删除对象事件
             [[dataSource rac_signalForSelector:@selector(removeObject:)] subscribeNext:^(RACTuple * _Nullable x) {
                 @strongify(self)
@@ -78,7 +84,7 @@
             
             [[dataSource rac_signalForSelector:@selector(removeAllObjects)] subscribeNext:^(RACTuple * _Nullable x) {
                 @strongify(self)
-                [self.target gic_removeSubElements:[[self.target gic_subElements] copy]];
+                [self.target gic_removeSubElements:[self targetSubElements]];
             }];
             
             [[dataSource rac_signalForSelector:@selector(removeObjectsInArray:)] subscribeNext:^(RACTuple * _Nullable x) {
@@ -93,8 +99,20 @@
                     [self.target gic_removeSubElements:temp];
                 }
             }];
+            
+            
         }
     }
+}
+
+-(NSArray *)targetSubElements{
+    NSMutableArray *array = [NSMutableArray array];
+    [[self.target gic_subElements] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj gic_ExtensionProperties].isFromDirectiveFor){
+            [array addObject:obj];
+        }
+    }];
+    return array;
 }
 
 -(void)addAElement:(id)data index:(NSInteger)index{
@@ -104,6 +122,15 @@
     childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_addSubElement:childElement];
+}
+
+-(void)insertAElement:(id)data index:(NSInteger)index{
+    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
+    childElement.gic_isAutoInheritDataModel = NO;
+    childElement.gic_DataContext = data;
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
+    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
+    [self.target gic_insertSubElement:childElement atIndex:index];
 }
 
 -(void)removeAllItems{

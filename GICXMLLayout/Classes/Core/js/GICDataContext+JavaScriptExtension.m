@@ -68,30 +68,42 @@
         [jsValue.value invokeMethod:@"toForDirector" withArguments:@[jsValue.value[@"forDirective"]]];
     }
 }
-- (void)addItem:(JSValue *)item index:(NSInteger)index {
-//    item[@"__index__"] = @(index);
+- (void)addItem:(JSValue *)item {
     @weakify(self)
     item[@"__index__"] = ^(){
         @strongify(self)
         JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
         return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
     };
-    NSObject *childElement = [NSObject gic_createElement:[self->xmlDoc rootElement] withSuperElement:self.target];
-    childElement.gic_isAutoInheritDataModel = NO;
-    childElement.gic_DataContext = [item gic_ToManagedValue:self.target];
-    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + ([[item invokeMethod:@"__index__" withArguments:nil] toInt32])*kGICDirectiveForElmentOrderStart;
-    childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
-    [self.target gic_addSubElement:childElement];
+    NSInteger index = [[item invokeMethod:@"__index__" withArguments:nil] toInt32];
+    [self addAElement:[item gic_ToManagedValue:self.target] index:index];
 }
 
-- (void)insertItem:(JSValue *)item index:(NSInteger)index{
-    // TODO:inset
+- (void)insertItem:(JSValue *)item{
+    @weakify(self)
+    item[@"__index__"] = ^(){
+        @strongify(self)
+        JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
+        return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
+    };
+    NSInteger index = [[item invokeMethod:@"__index__" withArguments:nil] toInt32];
+    [self insertAElement:[item gic_ToManagedValue:self.target] index:index];
 }
 
--(void)deleteItemWithIndex:(NSInteger)index{
-    NSArray *items =  [self.target gic_subElements];
-    if(index>=0 && index < items.count){
-        [self.target gic_removeSubElements:@[items[index]]];
+-(void)deleteItemWithStartIndex:(NSInteger)index withCount:(NSInteger)count{
+    NSArray *items =  [self targetSubElements];
+    NSMutableArray *deleteArray = [NSMutableArray array];
+    if(index >=0){
+        for(NSInteger start = index;start < (index+count) && start < items.count;start++){
+            [deleteArray addObject:items[start]];
+        }
+    }else if(index <0){
+        for(NSInteger start = items.count + index;start < (items.count + index + count) && start <items.count;start ++){
+            [deleteArray addObject:items[start]];
+        }
+    }
+    if(deleteArray.count>0){
+       [self.target gic_removeSubElements:deleteArray];
     }
 }
 

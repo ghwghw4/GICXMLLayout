@@ -507,46 +507,45 @@ Array.prototype.toForDirector = function (forTarget) {
     switch (methodname) {
       case 'push':
         args.forEach(function (item) {
-          forTarget.addItem(item, _this.indexOf(item));
+          forTarget.addItem(item);
         });
         break;
       case 'unshift':
         // 向数组的开头添加一个或更多元素
-        // TODO:暂不支持插入
+        args.forEach(function (item) {
+          forTarget.insertItem(item);
+        });
         break;
       case 'shift':
         // 删除数组的第一个元素
-        forTarget.deleteItemWithIndex(0);
+        forTarget.deleteItem(0, 1);
         break;
       case 'pop':
         // 删除数组的最后一个元素
-        forTarget.deleteItemWithIndex(_this.length); // 这里index 直接写length，因为已经将数据删除过了，而native还没有删除
+        forTarget.deleteItem(_this.length, 1); // 这里index 直接写length，因为已经将数据删除过了，而native还没有删除
         break;
       case 'reverse': // 反转数组
       case 'sort':
         // 对数组进行排序
         forTarget.deleteAllItems(); // 先删除所有的数据，然后再重新创建数据。
         for (var _i = 0; _i < _this.length; _i++) {
-          forTarget.addItem(_this[_i], _i);
+          forTarget.addItem(_this[_i]);
         }
         break;
       case 'splice':
         {
           var startIndex = args[0];
           var count = args[1];
-          // const insertedItems = args[2];
+          // step 1 先处理删除
           if (count > 0) {
             // 删除items
-            if (startIndex >= 0) {
-              // 从前往后删
-              for (var _i2 = 0; _i2 < count; _i2++) {
-                forTarget.deleteItemWithIndex(startIndex);
-              }
-            } else {// 从后往前删
-              // TODO: 暂不支持.
+            forTarget.deleteItem(startIndex, count);
+          }
+          // step2 处理插入
+          if (args.length > 2) {
+            for (var _i2 = 2; _i2 < args.length; _i2++) {
+              forTarget.insertItem(args[_i2]);
             }
-          } else if (count === 0) {// 添加items
-            // TODO:插入不支持
           }
           break;
         }

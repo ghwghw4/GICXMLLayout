@@ -15,4 +15,7 @@
 }
 
 -(void)removeAllItems;
+-(void)addAElement:(id)data index:(NSInteger)index;
+-(void)insertAElement:(id)data index:(NSInteger)index;
+-(NSArray *)targetSubElements;
 @end

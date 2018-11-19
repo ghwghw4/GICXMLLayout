@@ -319,4 +319,8 @@
       [self reloadSections:sections withRowAnimation:UITableViewRowAnimationNone];
     }
 }
+
+- (void)insertItemsAtIndexPaths:(NSArray *)indexPaths{
+    [self insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+}
 @end

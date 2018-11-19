@@ -90,6 +90,7 @@
     }else if ([subElement isKindOfClass:[GICTemplateRef class]]){
         // 模板引用
         GICTemplateRef *tr = (GICTemplateRef *)subElement;
+        // 这里先设置模板的数据源的目的就是为了在解析模板之前，让模板中绑定的属性生效
         if(![tr gic_self_dataContext]){
             tr.gic_DataContext = self.gic_DataContext;
         }
@@ -97,8 +98,7 @@
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
         el.gic_DataContext = tr.gic_DataContext;
         el.gic_ExtensionProperties.elementOrder = tr.gic_ExtensionProperties.elementOrder;
-        [self gic_willAddSubElement:el];
-        return el;
+        return [self gic_willAddSubElement:el];
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             b.gic_ExtensionProperties.superElement = self;
@@ -141,6 +141,9 @@
 -(void)gic_beginParseElement:(GDataXMLElement *)element withSuperElement:(id)superElment{
     [self gic_ExtensionProperties].superElement = superElment;
     [self gic_parseAttributes:element];
+    if([self gic_isAutoCacheElement]){
+        [[superElment gic_ExtensionProperties] addSubElement:self];
+    }
     // 解析子元素
     if([self respondsToSelector:@selector(gic_parseSubElements:)]){
         NSArray *children = element.children;

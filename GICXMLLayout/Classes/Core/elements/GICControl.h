@@ -10,10 +10,10 @@
 @interface GICControl : ASControlNode{
     __weak ASDisplayNode *currentDisplayNode;
 }
-@property (nonatomic, readonly,weak) ASDisplayNode  * normalNode;
-@property (nonatomic, readonly,weak) ASDisplayNode  * highlightNode;
-@property (nonatomic, readonly,weak) ASDisplayNode  * disableNode;
-@property (nonatomic, readonly,weak) ASDisplayNode  * selectedNode;
+@property (nonatomic, readonly) ASDisplayNode  * normalNode;
+@property (nonatomic, readonly) ASDisplayNode  * highlightNode;
+@property (nonatomic, readonly) ASDisplayNode  * disableNode;
+@property (nonatomic, readonly) ASDisplayNode  * selectedNode;
 
 
 //@property (nonatomic, readonly) GICEvent  * highlightEvent;

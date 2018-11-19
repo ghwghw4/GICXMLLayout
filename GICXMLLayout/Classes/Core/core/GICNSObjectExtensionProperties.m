@@ -23,6 +23,9 @@
 }
 
 -(void)insertSubElement:(id)subElement atIndex:(NSInteger)index{
+    if([self.subElements containsObject:subElement]){
+        [(NSMutableArray *)self.subElements removeObject:subElement];
+    }
     [(NSMutableArray *)self.subElements insertObject:subElement atIndex:index];
 }
 

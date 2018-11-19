@@ -65,11 +65,11 @@
                 }
             }];
             
-            // 插入
-            [[dataSource rac_signalForSelector:@selector(insertObject:atIndex:)] subscribeNext:^(RACTuple * _Nullable x) {
-                @strongify(self)
-                [self insertAElement:x[0] index:[dataSource indexOfObject:x[0]]];
-            }];
+//            // 插入
+//            [[dataSource rac_signalForSelector:@selector(insertObject:atIndex:)] subscribeNext:^(RACTuple * _Nullable x) {
+//                @strongify(self)
+//                [self insertAElement:x[0] index:[dataSource indexOfObject:x[0]]];
+//            }];
             
             // 监听删除对象事件
             [[dataSource rac_signalForSelector:@selector(removeObject:)] subscribeNext:^(RACTuple * _Nullable x) {

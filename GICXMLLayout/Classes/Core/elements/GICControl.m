@@ -92,7 +92,16 @@
 }
 
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
-    NSArray *children = self.gic_displayNodes;
+    NSMutableArray *children = [NSMutableArray arrayWithObject:self.normalNode];
+    if(self.highlightNode){
+        [children addObject:self.highlightNode];
+    }
+    if(self.disableNode){
+        [children addObject:self.disableNode];
+    }
+    if(self.selectedNode){
+        [children addObject:self.selectedNode];
+    }
     for(ASDisplayNode *node in children){
         [node setHidden:node!=currentDisplayNode];
     }

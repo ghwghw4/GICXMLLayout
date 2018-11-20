@@ -173,11 +173,15 @@ static NSString *_roolUrl;
     return [self parseElementFromData:xmlData withParentElement:parentElement];
 }
 
+static int GICParseElementQueueSpecific;
 +(dispatch_queue_t)parseElementQueue{
     static dispatch_queue_t queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         queue = dispatch_queue_create("parse xml element", nil);
+        // 标记队列
+        CFStringRef queueSpecificValue = CFSTR("parse xml element Specific");
+        dispatch_queue_set_specific(queue, &GICParseElementQueueSpecific, (void *)queueSpecificValue, (dispatch_function_t)CFRelease);
     });
     return queue;
 }
@@ -223,3 +227,17 @@ static NSString *_roolUrl;
 }
 
 @end
+
+
+void GICPerformBlockOnElementQueue(void (^block)(void))
+{
+    if (block == nil){
+        return;
+    }
+    CFStringRef retrievedValue = dispatch_get_specific(&GICParseElementQueueSpecific);
+    if (retrievedValue) {
+        block();
+    } else {
+        dispatch_sync([GICXMLLayout parseElementQueue], block);
+    }
+}

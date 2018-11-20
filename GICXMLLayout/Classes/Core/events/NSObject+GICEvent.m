@@ -34,7 +34,9 @@
         e = [[eventType alloc] initWithExpresion:nil withEventName:nil];
         [self gic_event_addEvent:e];
         if(e.target==nil){
-            [e attachTo:self];
+            GICPerformBlockOnElementQueue(^{
+                [e attachTo:self];
+            });
         }
     }
     return e;
@@ -57,7 +59,9 @@
             e = [self gic_event_findWithEventName:eventName];
             [self gic_event_addEvent:e];
             if(e.target==nil){
-                [e attachTo:self];
+                GICPerformBlockOnElementQueue(^{
+                    [e attachTo:self];
+                });
             }
         }
     }

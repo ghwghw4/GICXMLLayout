@@ -15,4 +15,7 @@
 +(dispatch_queue_t)parseElementQueue;
 @end
 
+// 调度到ElementQueue 同步执行
+void GICPerformBlockOnElementQueue(void (^block)(void));
+
 #endif /* GICXMLLayoutPrivate_h */

@@ -93,7 +93,7 @@
             }
         }
         // JSRouter
-        if(page.jsRouter && paramsData){
+        if([page isKindOfClass:[GICPage class]] && page.jsRouter && paramsData){
             //
             [GICRouterJSAPIExtension setJSParamsData:paramsData withPage:page];
         }

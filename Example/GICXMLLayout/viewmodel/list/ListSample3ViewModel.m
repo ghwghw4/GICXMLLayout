@@ -25,4 +25,10 @@
 -(void)deleteItem{
     [self.listDatas removeObject:self.listDatas.lastObject];
 }
+
+-(void)insertItem{
+    // 对于插入操作，GIC 只支持NSMutableArray 的 insertObjects:atIndexes:  方法
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:2];
+    [self.listDatas insertObjects:@[@(3)] atIndexes:indexSet];
+}
 @end

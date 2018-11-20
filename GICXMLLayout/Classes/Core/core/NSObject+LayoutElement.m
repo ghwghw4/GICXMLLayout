@@ -128,6 +128,8 @@
 
 -(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index{
     id obj = [self gic_willAddAndPrepareSubElement:subElement];
+    // TODO:这里面暂时先直接以addSubElement 来添加，因为目前的架构在解析的时候并不会将子元素严格按照XML文件中的顺序添加
+    // 后面一并修改架构，并且移除  gic_isAutoCacheElement，然后改为 insertElement添加，确保gic_ExtensionProperties中的元素跟XML中的一致
     ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = index;
     [[self gic_ExtensionProperties] addSubElement:subElement];
     return obj;

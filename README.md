@@ -179,10 +179,12 @@ pod 'GICXMLLayout', '~> 0.4.2'
 
 ### 0.4.2
 
-1. 增加对数组的insert 支持。
+1. for指令增加对数组的insert 支持。
 
-   > 1. NSMutableArray 增加对方法`insertObject:atIndex:`的支持。
-   > 2. JS数组增加对splice 方法的完整支持。
+   > 1. NSMutableArray 增加对方法`insertObjects:atIndexes:`的支持。
+   > 2. JS数组目前对splice 方法的已经得到完整支持。
+
+2. bug 修复。
 
 ## Author
 

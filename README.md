@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.1'
+pod 'GICXMLLayout', '~> 0.4.2'
 ```
 
 
@@ -176,6 +176,13 @@ pod 'GICXMLLayout', '~> 0.4.1'
    > 2. 增加`require`函数。现在可以在任意JS 脚本的任意位置动态加载js 文件
 
 5. list 元素增加显示索引功能。并且进一步的优化了显示性能。[文档](http://gicxmllayout.gonghaiwei.cn/ui/list.html)
+
+### 0.4.2
+
+1. 增加对数组的insert 支持。
+
+   > 1. NSMutableArray 增加对方法`insertObject:atIndex:`的支持。
+   > 2. JS数组增加对splice 方法的完整支持。
 
 ## Author
 

@@ -118,7 +118,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     self.attributedText = [self->mutAttString copy];
 }
 
--(id)gic_willAddSubElement:(NSMutableAttributedString *)subElement{
+-(id)gic_willAddAndPrepareSubElement:(NSMutableAttributedString *)subElement{
     if([subElement isKindOfClass:[NSMutableAttributedString class]]){
         [attbuteStringArray addObject:subElement];
         if(subElement.gic_Bindings.count>0){
@@ -131,7 +131,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
             }
         }
     }
-    return [super gic_willAddSubElement:subElement];
+    return [super gic_willAddAndPrepareSubElement:subElement];
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{

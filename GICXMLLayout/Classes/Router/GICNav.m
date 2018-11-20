@@ -31,12 +31,12 @@
              };
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[UIViewController class]]){
         [self pushViewController:subElement];
         return subElement;
     }
-    return [super gic_willAddSubElement:subElement];
+    return [super gic_willAddAndPrepareSubElement:subElement];
 }
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{

@@ -31,11 +31,11 @@
     self.ratio = 1;
     return self;
 }
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         NSAssert(self.subnodes.count == 0, @"ratio-panel只能有一个子元素");
     }
-    return [super gic_willAddSubElement:subElement];
+    return [super gic_willAddAndPrepareSubElement:subElement];
 }
 
 -(void)setRatio:(CGFloat)ratio{

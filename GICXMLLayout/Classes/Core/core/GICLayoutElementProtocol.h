@@ -35,7 +35,7 @@
  */
 -(NSArray *)gic_subElements;
 
--(id)gic_willAddSubElement:(id)subElement;
+-(id)gic_willAddAndPrepareSubElement:(id)subElement;
 
 /**
   添加一个子元素

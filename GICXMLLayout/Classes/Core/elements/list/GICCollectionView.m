@@ -141,7 +141,7 @@
    
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
 //    if([subElement isKindOfClass:[GICListItem class]]){
 //        [subElement gic_ExtensionProperties].superElement = self;
 //        if(!self.isNodeLoaded){
@@ -163,7 +163,7 @@
 //        return subElement;
 //    }
     else{
-        return [super gic_willAddSubElement:subElement];
+        return [super gic_willAddAndPrepareSubElement:subElement];
     }
 }
 

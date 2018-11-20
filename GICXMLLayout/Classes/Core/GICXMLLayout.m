@@ -238,6 +238,6 @@ void GICPerformBlockOnElementQueue(void (^block)(void))
     if (retrievedValue) {
         block();
     } else {
-        dispatch_sync([GICXMLLayout parseElementQueue], block);
+        dispatch_async([GICXMLLayout parseElementQueue], block);
     }
 }

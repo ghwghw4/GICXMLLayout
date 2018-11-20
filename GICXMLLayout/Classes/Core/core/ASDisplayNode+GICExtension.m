@@ -245,14 +245,14 @@
              };
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         if(self.nodeLoaded){
             [self setNeedsLayout];
         }
         return subElement;
     }else{
-       return [super gic_willAddSubElement:subElement];
+       return [super gic_willAddAndPrepareSubElement:subElement];
     }
 }
 

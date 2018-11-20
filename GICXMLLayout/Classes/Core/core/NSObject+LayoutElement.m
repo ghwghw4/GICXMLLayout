@@ -75,7 +75,7 @@
     return nil;
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if ([subElement isKindOfClass:[GICBehavior class]]){//如果是指令，那么交给指令自己执行
         [self gic_addBehavior:(GICBehavior *)subElement];
     }else if ([subElement isKindOfClass:[GICTemplates class]]){
@@ -98,7 +98,7 @@
         el.gic_isAutoInheritDataModel = tr.gic_isAutoInheritDataModel;
         el.gic_DataContext = tr.gic_DataContext;
         el.gic_ExtensionProperties.elementOrder = tr.gic_ExtensionProperties.elementOrder;
-        return [self gic_willAddSubElement:el];
+        return [self gic_willAddAndPrepareSubElement:el];
     }else if ([subElement isKindOfClass:[GICBehaviors class]]){ //行为
         for(GICBehavior *b in ((GICBehaviors *)subElement).behaviors){
             b.gic_ExtensionProperties.superElement = self;
@@ -119,7 +119,7 @@
 }
 
 -(id)gic_addSubElement:(id)subElement{
-    id obj = [self gic_willAddSubElement:subElement];
+    id obj = [self gic_willAddAndPrepareSubElement:subElement];
     if(obj && [obj gic_isAutoCacheElement]){
         [[self gic_ExtensionProperties] addSubElement:obj];
     }
@@ -127,9 +127,9 @@
 }
 
 -(id)gic_insertSubElement:(id)subElement atIndex:(NSInteger)index{
-    id obj = [self gic_willAddSubElement:subElement];
+    id obj = [self gic_willAddAndPrepareSubElement:subElement];
     ((NSObject *)subElement).gic_ExtensionProperties.elementOrder = index;
-    [[self gic_ExtensionProperties] insertSubElement:obj atIndex:index];
+    [[self gic_ExtensionProperties] addSubElement:subElement];
     return obj;
 }
 

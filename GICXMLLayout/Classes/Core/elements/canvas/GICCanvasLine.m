@@ -27,12 +27,12 @@
 }
 
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICCanvasLinePoint class]]){
         [points addObject:subElement];
         return subElement;
     }
-    return [super gic_willAddSubElement:subElement];
+    return [super gic_willAddAndPrepareSubElement:subElement];
 }
 
 -(BOOL)gic_isAutoCacheElement{

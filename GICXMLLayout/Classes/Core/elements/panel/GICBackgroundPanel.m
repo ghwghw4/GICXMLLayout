@@ -23,13 +23,13 @@
     return [super gic_parseSubElementNotExist:element];
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
         if(subElement !=self.backgroundNode){
             _childNode = subElement;
         }
     }
-    return [super gic_willAddSubElement:subElement];
+    return [super gic_willAddAndPrepareSubElement:subElement];
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{

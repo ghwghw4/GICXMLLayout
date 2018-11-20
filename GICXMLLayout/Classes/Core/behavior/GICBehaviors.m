@@ -17,7 +17,7 @@
     return self;
 }
 
--(id)gic_willAddSubElement:(id)subElement{
+-(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[GICBehavior class]]){
         [self.behaviors addObject:subElement];
         return subElement;

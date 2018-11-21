@@ -3,6 +3,7 @@
     <scroll-view>
         <inset-panel inset="10" background-color="white">
             <stack-panel>
+                <template-ref t-name="desc" data-context="iOS9.0及以上系统支持es6规范"/>
                 <template-ref t-name="title" data-context="直接访问属性、设置属性"/>
                 <lable>
                     <behaviors>
@@ -60,7 +61,7 @@
                     <behaviors>
                         <!--js直接绑定的事件当前仅支持onclick事件-->
                         <script private="1">
-                            $el.onclick = ()=>{
+                            $el.onclick = function(){
                                 var r = parseInt(Math.random()*255+1,10);
                                 var g = parseInt(Math.random()*255+1,10);
                                 var b = parseInt(Math.random()*255+1,10);
@@ -76,13 +77,13 @@
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script private="1">
                             var xmlhttp = new XMLHttpRequest();
-                            xmlhttp.onreadystatechange = ()=>
+                            xmlhttp.onreadystatechange = function()
                             {
-                            if (xmlhttp.status===200)
-                            {
-                            // 将结果在lable中显示出来
-                            $el.text = xmlhttp.responseText;
-                            }
+                                if (xmlhttp.status===200)
+                                {
+                                    // 将结果在lable中显示出来
+                                    $el.text = xmlhttp.responseText;
+                                }
                             }
                             xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
                             xmlhttp.send();
@@ -122,7 +123,7 @@
                 <lable text="回传参数显示" font-size="18">
                     <behaviors>
                         <script private="1">
-                            Router.onNavgateBackFrom = (params)=>{
+                            Router.onNavgateBackFrom = function(params){
                                 $el.text = params.name;
                             }
                         </script>

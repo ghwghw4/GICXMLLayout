@@ -9,13 +9,13 @@
             "section3": ["section3-1", "section3-2", "section3-3", "section3-4", "section3-5", "section3-6", "section3-7"]
             }
         </data-context>
+        <header background-color="yellow">
+            <dock-panel height="44">
+                <lable text="header" font-size="24"/>
+            </dock-panel>
+        </header>
         <section data-path="section1">
             <!--显式指定高度-->
-            <header background-color="yellow">
-                <dock-panel height="44">
-                    <lable text="header" font-size="24"/>
-                </dock-panel>
-            </header>
             <for>
                 <list-item selection-style="2">
                     <inset-panel background-color="white" inset="15">
@@ -43,13 +43,13 @@
                     </inset-panel>
                 </list-item>
             </for>
-            <!--显式指定高度-->
-            <footer background-color="yellow">
-                <dock-panel height="44">
-                    <lable text="footer" font-size="24"/>
-                </dock-panel>
-            </footer>
         </section>
+        <!--显式指定高度-->
+        <footer background-color="yellow">
+            <dock-panel height="44">
+                <lable text="footer" font-size="24"/>
+            </dock-panel>
+        </footer>
     </list>
 </page>
 

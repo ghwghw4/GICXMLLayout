@@ -1,7 +1,7 @@
 <page>
     <nav-bar title="模拟头条feeds">
     </nav-bar>
-    <inset-panel inset="0 15" background-color="white">
+    <!--<inset-panel inset="0 15" background-color="white">-->
         <list data-context='ToutiaoViewModel'>
             <templates>
                 <!--基础模板1-->
@@ -144,14 +144,16 @@
             <section>
                 <for data-path="listDatas" show-ver-scroll="0">
                     <list-item separator-inset = "0 0 0 0">
-                        <template-ref t-name="{{}}">
-                            <behaviors>
-                                <bev-router-link path="app/Detial.xml" params='{"url":"http://www.baidu.com"}'/>
-                            </behaviors>
-                        </template-ref>
+                        <inset-panel inset="0 12">
+                            <template-ref t-name="{{}}">
+                                <behaviors>
+                                    <bev-router-link path="app/Detial.xml" params='{"url":"http://www.baidu.com"}'/>
+                                </behaviors>
+                            </template-ref>
+                        </inset-panel>
                     </list-item>
                 </for>
             </section>
         </list>
-    </inset-panel>
+    <!--</inset-panel>-->
 </page>

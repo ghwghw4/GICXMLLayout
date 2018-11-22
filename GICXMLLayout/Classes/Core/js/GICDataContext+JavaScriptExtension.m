@@ -30,10 +30,9 @@
             // 关键代码
             [self setGic_DataContext:jsValue updateBinding:NO];
         }else{
-            jsValue = nil;
+            jsValue = [pathValue gic_ToManagedValue:self];
              // 关键代码
             [self setGic_DataContext:jsValue updateBinding:NO];
-            return;
         }
     }
     
@@ -69,24 +68,25 @@
     }
 }
 - (void)addItem:(JSValue *)item {
-    @weakify(self)
-    item[@"__index__"] = ^(){
-        @strongify(self)
-        JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
-        return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
-    };
-    NSInteger index = [[item invokeMethod:@"__index__" withArguments:nil] toInt32];
+    NSInteger index = [self initIndexMethodAndReturnIndex:item];
     [self addAElement:[item gic_ToManagedValue:self.target] index:index];
 }
 
+-(NSInteger)initIndexMethodAndReturnIndex:(JSValue *)item{
+    if([item isObject]){
+        @weakify(self)
+        item[@"__index__"] = ^(){
+            @strongify(self)
+            JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
+            return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
+        };
+        return [[item invokeMethod:@"__index__" withArguments:nil] toInt32];
+    }
+    return [[[(JSManagedValue *)[self gic_DataContext] value] invokeMethod:@"indexOf" withArguments:@[item]] toInt32];
+}
+
 - (void)insertItem:(JSValue *)item{
-    @weakify(self)
-    item[@"__index__"] = ^(){
-        @strongify(self)
-        JSValue *array = [(JSManagedValue *)[self gic_DataContext] value];
-        return [array invokeMethod:@"indexOf" withArguments:@[[JSContext currentThis]]];
-    };
-    NSInteger index = [[item invokeMethod:@"__index__" withArguments:nil] toInt32];
+    NSInteger index = [self initIndexMethodAndReturnIndex:item];
     [self insertAElement:[item gic_ToManagedValue:self.target] index:index];
 }
 
@@ -121,20 +121,23 @@
 -(void)refreshExpressionFromJSValue:(JSManagedValue *)jsValue needCheckMode:(BOOL)needCheckMode{
     NSString *resultString = nil;
     JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:[jsValue.value context]];
-    if(self.expression.length == 0){
-        resultString = [jsValue.value toString];
-    }else{
-        NSString *js = [NSString stringWithFormat:@"return %@",self.expression];
-        JSValue *result = [jsValue.value invokeMethod:@"executeBindExpression" withArguments:@[js,selfValue]];
-        resultString = [result isUndefined]?@"":[result toString];
+    if(jsValue.value && ![jsValue.value isNull] && ![jsValue.value isUndefined]){
+        if(self.expression.length == 0){
+            resultString = [jsValue.value toString];
+        }else{
+            NSString *js = [NSString stringWithFormat:@"return %@",self.expression];
+            JSValue *result = [jsValue.value invokeMethod:@"executeBindExpression" withArguments:@[js,selfValue]];
+            resultString = [result isUndefined]?@"":[result toString];
+        }
     }
+  
     id value = nil;
     if(self.valueConverter){
-        value = [self.valueConverter convert:resultString];
+        value = [self.valueConverter convert:resultString?:@""];
     }else{
-        value = [self.attributeValueConverter convert:resultString];
+        value = [self.attributeValueConverter convert:resultString?:@""];
     }
-    self.attributeValueConverter.propertySetter(self.target,value?:@"");
+    self.attributeValueConverter.propertySetter(self.target,value);
     if(self.valueUpdate){
         self.valueUpdate(value);
     }

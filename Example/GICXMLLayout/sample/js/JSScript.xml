@@ -1,5 +1,17 @@
 <page title="JSScript" js-router="1">
     <style path="style/CommonStyle.xml" />
+    <!--<toast>-->
+        <!--<inset-panel inset="12">-->
+            <!--<lable text="toast" font-color="white"/>-->
+        <!--</inset-panel>-->
+    <!--</toast>-->
+    <templates>
+        <template t-name="toast1">
+            <inset-panel inset="15" background-color="black">
+                <lable text="{{text}}" font-color="white" font-size="16"/>
+            </inset-panel>
+        </template>
+    </templates>
     <scroll-view>
         <inset-panel inset="10" background-color="white">
             <stack-panel>
@@ -14,6 +26,50 @@
                         </script>
                     </behaviors>
                 </lable>
+
+
+                <template-ref t-name="title" data-context="Toast"/>
+                <!--Toast-->
+                <lable text="点我toast(top)" font-size="18">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            $el.onclick = function(){
+                                var t =  Toast.create('toast1');
+                                t.show({params:{text:'hello world'},position:0,duration:5000});
+                                // 隐藏回调
+                                t.ondismiss = function(){
+                                    console.log('dismis');
+                                }
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <lable text="点我toast(center)" font-size="18" space-before="20">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            $el.onclick = function(){
+                            var t =  Toast.create('toast1');
+                            t.show({params:{text:'center'},position:1});
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <lable text="点我toast(bottom)" font-size="18" space-before="20">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            $el.onclick = function(){
+                            var t =  Toast.create('toast1');
+                            t.show({params:{text:'bottom'},position:2});
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+
 
                 <template-ref t-name="title" data-context="数据绑定"/>
                 <lable text="{{text}}" font-size="{{fontSize}}" font-color="{{fontColor}}">

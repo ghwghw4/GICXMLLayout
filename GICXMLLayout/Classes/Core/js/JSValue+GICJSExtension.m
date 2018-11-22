@@ -36,4 +36,8 @@
     }
     return nil;
 }
+
+-(void)print{
+    [self excuteJSString:@"console.log(JSON.stringify(this))" withArguments:nil];
+}
 @end

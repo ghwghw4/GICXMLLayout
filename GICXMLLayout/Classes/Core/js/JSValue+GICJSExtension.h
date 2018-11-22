@@ -12,4 +12,6 @@
 -(JSManagedValue *)gic_ToManagedValue:(id)owner;
 
 -(JSValue *)excuteJSString:(NSString *)jsString withArguments:(NSArray *)arguments;
+
+-(void)print;
 @end

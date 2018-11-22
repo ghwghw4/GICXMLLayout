@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.2'
+pod 'GICXMLLayout', '~> 0.4.3'
 ```
 
 
@@ -185,6 +185,13 @@ pod 'GICXMLLayout', '~> 0.4.2'
    > 2. JS数组目前对splice 方法的已经得到完整支持。
 
 2. bug 修复。
+
+### 0.4.3
+
+1. 新增JS API
+
+   > 1. Toast. 可以实现弹出Toast提示的功能。
+   > 2. 
 
 ## Author
 

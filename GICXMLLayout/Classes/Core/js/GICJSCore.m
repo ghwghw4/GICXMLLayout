@@ -10,6 +10,7 @@
 #import <JavaScriptCore/JSBase.h>
 #import "GICJSAPIManager.h"
 #import "JSContext+GICJSContext.h"
+#import "GICJSToast.h"
 
 @implementation NSObject (GICScript)
 -(JSContext *)gic_JSContext{
@@ -48,6 +49,7 @@
     [context registCoreAPI];
     if(rootElement)
     [context setRootElement:[[GICJSElementDelegate getJSValueFrom:rootElement inContext:context] toObject]];
+    context[@"Toast"] = [GICJSToast class];
     [GICJSAPIManager initJSContext:context];
 }
 
@@ -56,3 +58,4 @@
     [toElement setGic_JSContext:context];
 }
 @end
+

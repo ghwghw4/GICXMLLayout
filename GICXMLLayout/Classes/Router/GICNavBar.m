@@ -75,6 +75,11 @@
     }
     
     if(titleNode){
+        if (@available(iOS 10.0, *)) {
+            
+        }else{
+            titleNode.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
+        }
         self->page.navigationItem.titleView = titleNode.view;
     }
 }

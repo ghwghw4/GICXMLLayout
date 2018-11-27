@@ -34,6 +34,18 @@
              @"ease-mode":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_easeMode = (GICAnimationEaseMode)[value integerValue];
              }],
+//             @"spring-velocity":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+//                 // spring动画初始速率
+//                 ((GICAnimation *)target)->_springVelocity = [value floatValue];
+//             }],
+             @"spring-bounciness":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 // spring动画
+                 ((GICAnimation *)target)->_springBounciness = [value floatValue];
+             }],
+             @"spring-speed":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 // spring动画速度
+                 ((GICAnimation *)target)->_springSpeed = [value floatValue];
+             }],
              };;
 }
 
@@ -41,6 +53,8 @@
     self  = [super init];
     _duration = 0.5;//默认0.5秒
     animationKey = [GICUtils uuidString];
+    _springBounciness = -1.0f;
+    _springSpeed = -1.0f;
     return self;
 }
 
@@ -48,7 +62,7 @@
     [super attachTo:target];
     if(self.triggerType == GICAnimationTriggerType_attach){
         dispatch_async(dispatch_get_main_queue(), ^{
-             [self beginAnimantion];
+            [self beginAnimantion];
         });
     }else if(self.triggerType == GICAnimationTriggerType_event){
         @weakify(self)
@@ -68,34 +82,47 @@
 -(void)beginAnimantion{
     [self pop_removeAnimationForKey:animationKey];
     POPAnimation *animation = [self createAnimation];
-    if([animation respondsToSelector:@selector(setDuration:)]){
-        [animation performSelector:@selector(setDuration:) withObject:@(self.duration)];
-    }
     animation.repeatCount = self.repeatCount == -1?HUGE_VAL:self.repeatCount;
     animation.autoreverses = self.autoreverses;
     [self.target pop_addAnimation:animation forKey:nil];
 }
 
 -(POPPropertyAnimation *)createAnimation{
-    POPBasicAnimation *anBasic = [POPBasicAnimation linearAnimation];
-    anBasic.property = [self createAnimatableProperty];    //自定义属性
-    anBasic.fromValue = @(0);
-    anBasic.toValue = @(100);
-    switch (self.easeMode) {
-        case GICAnimationEaseMode_EaseIn:
-            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-            break;
-        case GICAnimationEaseMode_EaseOut:
-            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-            break;
-        case GICAnimationEaseMode_EaseInEaseOut:
-            anBasic.timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            break;
-            
-        default:
-            break;
+    POPPropertyAnimation *propAnim = nil;
+    if(self.springBounciness >= 0 || self.springSpeed >= 0){
+        propAnim = [POPSpringAnimation animation];
+        if(self.springSpeed >= 0){
+            [(POPSpringAnimation *)propAnim setSpringSpeed:self.springSpeed];
+        }
+        
+//        if(self.springVelocity>0){
+//            [(POPSpringAnimation *)propAnim setVelocity:@(self.springVelocity)];
+//        }
+       
+        if(self.springBounciness >= 0){
+            [(POPSpringAnimation *)propAnim setSpringBounciness:self.springBounciness];
+        }
+    }else{
+        propAnim = [POPBasicAnimation linearAnimation];
+        [(POPBasicAnimation *)propAnim setDuration:self.duration];
+        switch (self.easeMode) {
+            case GICAnimationEaseMode_EaseIn:
+                ((POPBasicAnimation *)propAnim).timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+                break;
+            case GICAnimationEaseMode_EaseOut:
+                ((POPBasicAnimation *)propAnim).timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+                break;
+            case GICAnimationEaseMode_EaseInEaseOut:
+                ((POPBasicAnimation *)propAnim).timingFunction =  [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                break;
+            default:
+                break;
+        }
     }
-    return anBasic;
+    propAnim.property = [self createAnimatableProperty];    //自定义属性
+    propAnim.fromValue = @(0);
+    propAnim.toValue = @(100);
+    return propAnim;
 }
 
 -(POPAnimatableProperty *)createAnimatableProperty{
@@ -106,3 +133,4 @@
     return YES;
 }
 @end
+

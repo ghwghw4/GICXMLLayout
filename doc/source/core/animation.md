@@ -11,14 +11,16 @@
 
 通用属性指的是所有动画都支持的属性，这个你可以理解为基类的属性。
 
-| 名称         | 数据类型      | 介绍                                                         | 是否支持绑定 | 是否支持动画 |
-| :----------- | ------------- | ------------------------------------------------------------ | ------------ | ------------ |
-| duration     | Float         | 动画时长。单位是秒                                           | 是           | 否           |
-| repeat       | Integer       | 动画重复次数。-1表示永远                                     | 是           | 否           |
-| autoreverses | Bool          | 是否反向动画。如果设为yes，那么整个动画的时长*2              | 是           | 否           |
-| on           | integer(枚举) | 动画触发条件。下面细说                                       | 是           | 否           |
-| event-name   | string        | 触发动画的事件名称。如果没有设置，那么默认为`event-tab`。**0.3.2新增** | 是           | 否           |
-| ease-mode    | Integer(枚举) | 动画时间计算方式。                                           | 是           | 否           |
+| 名称              | 数据类型      | 介绍                                                         | 是否支持绑定 | 是否支持动画 |
+| :---------------- | ------------- | ------------------------------------------------------------ | ------------ | ------------ |
+| duration          | Float         | 动画时长。单位是秒                                           | 是           | 否           |
+| repeat            | Integer       | 动画重复次数。-1表示永远                                     | 是           | 否           |
+| autoreverses      | Bool          | 是否反向动画。如果设为yes，那么整个动画的时长*2              | 是           | 否           |
+| on                | integer(枚举) | 动画触发条件。下面细说                                       | 是           | 否           |
+| event-name        | string        | 触发动画的事件名称。如果没有设置，那么默认为`event-tab`。**0.3.2新增** | 是           | 否           |
+| ease-mode         | Integer(枚举) | 动画时间计算方式。                                           | 是           | 否           |
+| spring-bounciness | Float         | 弹力,越大则震动幅度越大,0~20之间                             | 是           | 否           |
+| spring-speed      | Float         | 速度 越大则动画结束越快，0~20之间                            | 是           | 否           |
 
 ### on 枚举
 
@@ -137,7 +139,6 @@
    </dock-panel>
    ```
 
-   
 
 目前`gic`中的动画暂时只提供了这些，但是应该已经可以应付大多数的动画了，后续会添加更多的动画支持，当然，你也可以自定义一个自己的动画。只需要继承自基类`GICAnimation `就可以了。
 
@@ -150,5 +151,18 @@
 <anim-transforms on="2" duration="0.05" event-name="event-touch-begin">
     <anim-scale  from="1" to="0.95"/>
 </anim-transforms>
+```
+
+
+
+0.4.3新增spring 动画
+
+```xml
+<!--spring 动画，只要设置了spring-speed 或者 spring-bounciness 任意属性就能启用spring动画-->
+<animations>
+    <anim-transforms duration="1" repeat="-1" on="1" ease-mode="1" spring-speed="4" spring-bounciness="12">
+        <anim-move  from="0" to="20 20" />
+    </anim-transforms>
+</animations>
 ```
 

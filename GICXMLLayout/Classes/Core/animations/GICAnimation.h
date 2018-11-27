@@ -21,17 +21,28 @@ typedef enum {
     GICAnimationEaseMode_EaseInEaseOut = 3//
 }GICAnimationEaseMode;
 
+
+/**
+ 动画基类，
+ 当springBounciness>=0 || springSpeed>=0 时，为spring动画，否则为常规动画
+ */
 @interface GICAnimation : GICBehavior{
     NSString *animationKey;
 }
 
-
-@property (nonatomic,readonly)CGFloat duration;//动画持续时间，默认0.5秒
 @property (nonatomic,readonly)NSInteger repeatCount; //重复次数
 @property (nonatomic,readonly)BOOL autoreverses;
-@property (nonatomic,readonly)GICAnimationEaseMode easeMode;
 @property (nonatomic,readonly)GICAnimationTriggerType triggerType;
 @property (nonatomic,readonly)NSString *eventName;
+
+#pragma mark 常规动画
+@property (nonatomic,readonly)CGFloat duration;//动画持续时间，默认0.5秒
+@property (nonatomic,readonly)GICAnimationEaseMode easeMode;
+
+#pragma mark spring 动画属性
+//@property (nonatomic,readonly)CGFloat springVelocity;//spring动画初始速率
+@property (nonatomic,readonly)CGFloat springBounciness;//spring动画 弹力 越大则震动幅度越大,0~20之间
+@property (nonatomic,readonly)CGFloat springSpeed;//spring动画 速度 越大则动画结束越快，0~20之间
 
 /**
  由子类实现

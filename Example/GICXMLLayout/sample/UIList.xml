@@ -65,13 +65,14 @@
                         "color": "green"
                         }]
                     </data-context>
+                    <!--画饼图-->
                     <for>
                         <path fill-color="{{color}}" line-width="0">
                             <point x="50%" y="50%"/>
                             <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" />
                         </path>
                     </for>
-
+                    <!--中间旋转的饼图-->
                     <path fill-color="yellow" line-width="0">
                         <point x="50%" y="50%"/>
                         <arc center="50%" radius="20" end-angle="360" start-angle="0" >
@@ -83,12 +84,13 @@
 
                     <!--吃豆人-->
                     <path fill-color="black" line-width="0">
+                        <!--位移动画-->
                         <point x="50%" y="50%">
                             <animations>
                                 <anim-attribute attribute-name="x" on="1" from="0%" to="100%" autoreverses="1" duration="3" repeat="-1"/>
                             </animations>
                         </point>
-
+                        <!--嘴巴张合动画-->
                         <arc center="50%" radius="20" end-angle="360" start-angle="45" >
                             <animations>
                                 <anim-attribute attribute-name="end-angle" on="1" from="315" to="360" autoreverses="1" duration="0.3" repeat="-1"/>

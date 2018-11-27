@@ -68,6 +68,16 @@
                         </anim-transforms>
                     </animations>
                 </dock-panel>
+
+                <!--spring 动画，只要设置了spring-speed 或者 spring-bounciness 任意属性就能启用spring动画-->
+                <template-ref t-name="title" data-context="移动动画(Spring 动画)"/>
+                <dock-panel height="50" background-color="black" width="100%">
+                    <animations>
+                        <anim-transforms duration="1" repeat="-1" on="1" ease-mode="1" spring-speed="4" spring-bounciness="12">
+                            <anim-move  from="0" to="20 20" />
+                        </anim-transforms>
+                    </animations>
+                </dock-panel>
             </stack-panel>
         </inset-panel>
     </scroll-view>

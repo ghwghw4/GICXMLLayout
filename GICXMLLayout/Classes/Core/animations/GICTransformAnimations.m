@@ -56,7 +56,7 @@ static NSDictionary<NSString *,Class> *transformAnimationsMap = nil;
         prop.writeBlock = ^(id obj, const CGFloat values[]) {
             @strongify(self)
             CATransform3D t = CATransform3DIdentity;
-            CGFloat p = values[0] / 100.0;
+            CGFloat p = values[0] / 100.0f;
             for(GICTransformAnimation *ani in self->transforms){
                 t = CATransform3DConcat(t, [ani makeTransformWithPercent:p]);
             }

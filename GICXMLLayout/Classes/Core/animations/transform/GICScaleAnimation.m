@@ -29,8 +29,9 @@
     return self;
 }
 
--(CGAffineTransform)makeTransformWithPercent:(CGFloat)per{
+-(CATransform3D)makeTransformWithPercent:(CGFloat)per{
     CGSize value = [[self->sizeConverter convertAnimationValue:self.fromValue to:self.toValue per:per] CGSizeValue];
-    return CGAffineTransformMakeScale(MAX(value.width, 0), MAX(value.height, 0));
+//    return CGAffineTransformMakeScale(MAX(value.width, 0), MAX(value.height, 0));
+    return CATransform3DMakeScale(MAX(value.width, 0), MAX(value.height, 0), 1);
 }
 @end

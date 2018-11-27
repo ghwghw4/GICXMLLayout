@@ -29,8 +29,9 @@
     return self;
 }
 
--(CGAffineTransform)makeTransformWithPercent:(CGFloat)per{
+-(CATransform3D)makeTransformWithPercent:(CGFloat)per{
     CGFloat value = [[self->numberConverter convertAnimationValue:self.fromValue to:self.toValue per:per] floatValue];
-    return CGAffineTransformMakeRotation((value / 180) * M_PI);
+//    return CGAffineTransformMakeRotation((value / 180) * M_PI);
+    return CATransform3DMakeRotation((value / 180) * M_PI, 0, 0, 1);
 }
 @end

@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 
 @interface GICTransformAnimation : NSObject
--(CGAffineTransform)makeTransformWithPercent:(CGFloat)per;
+-(CATransform3D)makeTransformWithPercent:(CGFloat)per;
 @end

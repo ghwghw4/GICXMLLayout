@@ -49,18 +49,18 @@ static NSDictionary<NSString *,Class> *transformAnimationsMap = nil;
     if(![self.target isKindOfClass:[ASDisplayNode class]]){
         return nil;
     }
-    UIView *v = [(ASDisplayNode *)self.target view];
+    ASDisplayNode *node = (ASDisplayNode *)self.target;
     @weakify(self)
     POPAnimatableProperty *prop =  [POPAnimatableProperty propertyWithName:@"GICXMLLayout_moveAni" initializer:^(POPMutableAnimatableProperty *prop) {
         // write value
         prop.writeBlock = ^(id obj, const CGFloat values[]) {
             @strongify(self)
-            CGAffineTransform t = CGAffineTransformIdentity;
+            CATransform3D t = CATransform3DIdentity;
             CGFloat p = values[0] / 100.0;
             for(GICTransformAnimation *ani in self->transforms){
-                t =CGAffineTransformConcat(t, [ani makeTransformWithPercent:p]);
+                t = CATransform3DConcat(t, [ani makeTransformWithPercent:p]);
             }
-            v.transform = t;
+            node.transform = t;
         };
         // dynamics threshold
         prop.threshold = 0.01;

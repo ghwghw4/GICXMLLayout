@@ -30,8 +30,8 @@
     return self;
 }
 
--(CGAffineTransform)makeTransformWithPercent:(CGFloat)per{
+-(CATransform3D)makeTransformWithPercent:(CGFloat)per{
     CGPoint value = [[self->pointConverter convertAnimationValue:self.fromValue to:self.toValue per:per] CGPointValue];
-    return CGAffineTransformMakeTranslation(value.x, value.y);
+    return CATransform3DMakeTranslation(value.x, value.y, 0);
 }
 @end

@@ -8,7 +8,7 @@
 #import "GICTransformAnimation.h"
 
 @implementation GICTransformAnimation
--(CGAffineTransform)makeTransformWithPercent:(CGFloat)per{
-    return CGAffineTransformIdentity;
+-(CATransform3D)makeTransformWithPercent:(CGFloat)per{
+    return CATransform3DIdentity;
 }
 @end

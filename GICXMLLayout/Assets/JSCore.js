@@ -611,7 +611,7 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
    * 实际的开发过程中不应该这么使用
    */
   var jsStr = 'var $item = arguments[0]; if($item.__index__) var $index = $item.__index__();var $el = arguments[1];';
-  if ((0, _index.isObject)(this)) {
+  if ((0, _index.isObject)(this) && !this.isArray()) {
     Object.keys(this).forEach(function (key) {
       jsStr += 'var ' + key + '=$item.' + key + ';';
     });

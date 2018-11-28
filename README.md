@@ -188,10 +188,7 @@ pod 'GICXMLLayout', '~> 0.4.3'
 
 ### 0.4.3
 
-1. 新增JS API
-
-   > 1. Toast. 可以实现弹出Toast提示的功能。
-
+1. 新增JS 调用Toast 提示的API
 2. 增加了对Spring动画的支持。
 
 ## Author

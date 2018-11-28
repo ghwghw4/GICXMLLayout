@@ -58,9 +58,13 @@
     // 注册JSAPI扩展
     [GICJSAPIManager addJSAPIRegisterClass:[JSAPIExtension class]];
     
-    // 设置根目录
+    // 设置根目录.
+    /**
+     如果想要 hotReload的能力，请先使用命令行cd的项目的tools目录，然后输入 bash dev-tools.sh启动一个迷你http 服务器。
+     启动完成后会输出三个连接地址，第一个地址用于本机访问，第二个地址用于局域网内部访问，第三个地址用于外网访问。
+     */
     // NOTE:在开发的时候可以将地址修改成实际的IP地址
-//    [GICXMLLayout setRootUrl:@"http://192.168.111.101:8080/sample"];
+//    [GICXMLLayout setRootUrl:@"http://localhost:8080/sample"];
     [GICXMLLayout setRootUrl:[[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"sample"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

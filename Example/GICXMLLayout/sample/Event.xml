@@ -1,7 +1,7 @@
 <page title="事件" data-context="DataBindingViewModel">
     <style path="style/CommonStyle.xml" />
-    <!--<scroll-view background-color="white">-->
-        <inset-panel inset="64 15 15 15">
+    <scroll-view background-color="white">
+        <inset-panel inset="0 15 15 15">
             <stack-panel>
                 <template-ref t-name="title" data-context="单击事件。点我" event-tap="js:$el.text='好疼';"/>
                 <template-ref t-name="title" data-context="双击事件。双击我" event-double-tap="js:$el.text='double kill';"/>
@@ -11,6 +11,6 @@
                 <template-ref t-name="desc" data-context="事件在使用的时候也是属性的一种"/>
             </stack-panel>
         </inset-panel>
-    <!--</scroll-view>-->
+    </scroll-view>
 </page>
 

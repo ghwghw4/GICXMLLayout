@@ -435,18 +435,17 @@ Object.prototype._elementInit = function (props) {
 
 // 提供给普通绑定作为数据源用的，主要是native的数据源转换而来
 Object.prototype._elementInit2 = function (props) {
-  var obj = this;
-  // 1.属性
-  props.forEach(function (key) {
-    Object.defineProperty(obj, key, {
-      get: function get() {
-        return this.getAttValue(key);
-      },
-      set: function set(val) {
-        this.setAttValue(key, val);
-      }
+  try {
+    var obj = this;
+    // 1.属性
+    props.forEach(function (key) {
+      Object.defineProperty(obj, key, {
+        get: function get() {
+          return this.getAttValue(key);
+        }
+      });
     });
-  });
+  } catch (e) {}
 };
 
 // 触发JS事件

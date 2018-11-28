@@ -82,7 +82,11 @@
 -(void)beginAnimantion{
     [self pop_removeAnimationForKey:animationKey];
     POPAnimation *animation = [self createAnimation];
+#if TARGET_IPHONE_SIMULATOR
+    animation.repeatCount = self.repeatCount == -1?100000:self.repeatCount;
+#else
     animation.repeatCount = self.repeatCount == -1?HUGE_VAL:self.repeatCount;
+#endif
     animation.autoreverses = self.autoreverses;
     [self.target pop_addAnimation:animation forKey:nil];
 }

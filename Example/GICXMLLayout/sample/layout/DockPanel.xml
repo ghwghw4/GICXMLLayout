@@ -7,8 +7,8 @@
             </dock-panel>
         </template>
     </templates>
-    <scroll-view background-color="white" inset-behavior="2">
-        <inset-panel inset="64 15 15 15">
+    <scroll-view background-color="white">
+        <inset-panel inset="0 15 15 15">
             <stack-panel>
                 <dock-panel background-color="black" height="200" space-before="20">
                     <template-ref t-name="p-child" data-context="左上" dock-horizal="0" dock-vertical="0"/>

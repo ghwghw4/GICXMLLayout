@@ -64,7 +64,7 @@
     
     switch (type) {
             case GICJSToastShowFromBottom:{
-                contentNode.frame = CGRectMake(Margin, [UIScreen mainScreen].bounds.size.height - Margin - layout.size.height, layout.size.width, layout.size.height);
+                contentNode.frame = CGRectMake(Margin, [UIScreen mainScreen].bounds.size.height - 20 - layout.size.height, layout.size.width, layout.size.height);
                 contentNode.transform = CATransform3DMakeTranslation(0, layout.size.height + Margin, 0);
                 [UIView animateWithDuration:AnimationDuration animations:^{
                     self->contentNode.transform = CATransform3DIdentity;
@@ -86,7 +86,7 @@
             }
             break;
         default:{
-            contentNode.frame = CGRectMake(Margin, Margin, layout.size.width, layout.size.height);
+            contentNode.frame = CGRectMake(Margin, ([[UIApplication sharedApplication] isStatusBarHidden]? Margin:[[UIApplication sharedApplication] statusBarFrame].size.height), layout.size.width, layout.size.height);
             contentNode.transform = CATransform3DMakeTranslation(0, -CGRectGetMaxY(contentNode.frame), 0);
             [UIView animateWithDuration:AnimationDuration animations:^{
                 self->contentNode.transform = CATransform3DIdentity;

@@ -12,7 +12,7 @@
                     </behaviors>
                 </lable>
 
-                <template-ref t-name="title" data-context="将参数回传给上一页"/>
+                <template-ref t-name="title" data-context="返回，并且将参数回传给上一页"/>
                 <lable text="点我回传参数" font-size="18">
                     <behaviors>
                         <script private="1">
@@ -22,6 +22,12 @@
                         </script>
                     </behaviors>
                 </lable>
+
+                <template-ref t-name="title" data-context="回到根页面"/>
+                <lable text="返回" font-size="18" event-tap="js:Router.goBackWithCount(-1)"/>
+
+                <template-ref t-name="title" data-context="返回两级页面"/>
+                <lable text="返回" font-size="18" event-tap="js:Router.goBackWithCount(2)"/>
             </stack-panel>
         </inset-panel>
     </scroll-view>

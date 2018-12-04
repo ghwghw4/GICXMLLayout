@@ -46,6 +46,11 @@ id __convertJSValueToJsonString(JSValue *paramsData,JSContext *context){
  */
 -(void)goBack:(JSValue *)paramsData;
 
+// 返回跟目录
+-(void)goBackRoot;
+
+-(void)goBackWithCount:(NSInteger)count;
+
 /**
  根据path导航到下一页,并且带有参数。需要事先设置GICXMLLayout 的 RootUrl
  
@@ -78,6 +83,14 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(JSValue *)paramsDa
 
 -(void)goBack:(JSValue *)paramsData{
     [[element gic_Router] goBackWithParams:__convertJSValueToJsonString(paramsData,[JSContext currentContext])];
+}
+
+-(void)goBackRoot{
+    [[element gic_Router] goBack:-1];
+}
+
+-(void)goBackWithCount:(NSInteger)count{
+    [[element gic_Router] goBack:count];
 }
 
 - (void)push:(NSString *)path withParamsData:(JSValue *)paramsData {

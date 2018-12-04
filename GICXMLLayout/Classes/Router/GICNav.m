@@ -57,8 +57,18 @@
 
 
 #pragma mark router
--(void)goBack{
-    [self goBackWithParams:nil];
+-(void)goBack:(NSInteger)count{
+    if(count == 1){
+        [self goBackWithParams:nil];
+    }else if (count == -1){
+        [self popToRootViewControllerAnimated:YES];
+    }else if (count > 1){
+        NSInteger index = self.viewControllers.count - count -1;
+        if(index>=0){
+            UIViewController *vc = self.viewControllers[index];
+            [self popToViewController:vc animated:YES];
+        }
+    }
 }
 
 -(void)goBackWithParams:(id)paramsData{

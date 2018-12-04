@@ -12,8 +12,9 @@
 @required
 /**
  返回上一页
+ @param count 返回的层级数，-1表示返回根页面  1:表示返回上一页
  */
--(void)goBack;
+-(void)goBack:(NSInteger)count;
 -(void)goBackWithParams:(id)paramsData;
 
 /**

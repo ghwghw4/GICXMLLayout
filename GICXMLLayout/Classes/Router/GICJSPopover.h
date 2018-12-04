@@ -21,6 +21,6 @@ JSExportAs(dismiss, -(void)dismiss:(BOOL)animation params:(JSValue *)params);
 +(instancetype)create:(NSString *)pagePath;
 @end
 
-@interface GICJSPopover : UIViewController<GICJSPopover>
+@interface GICJSPopover : NSObject<GICJSPopover>
 
 @end

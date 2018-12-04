@@ -14,8 +14,15 @@ title: GICXMLLayout
 7. 具有局部替换能力，可以对现有项目进行局部替换，使得局部功能具备MVVM+XML的能力。
 8. 由于是直接采用XML来描述，因此天生具备实时更新的能力
 9. `gic`的布局系统以及UI系统是基于`Texture`开发的，因此天生具有强大的性能优势
+10. 最新版本已经支持直接使用JavaScript，具体请查看[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
 
-想要查看`gic`提供的sample可以直接将项目pull下来，然后在模拟器中运行查看，或者在真机上运行。模拟器中运行`动画`会自动停止，请以真机为准。
+想要查看`gic`提供的sample可以直接将项目pull下来，然后在模拟器中运行查看，或者在真机上运行。
+
+
+
+**最新版本已经支持JavaScript，因此您现在完全可以将整个APP做成一个具备`HotPatch`能力的应用**
+
+
 
 下面先给各位看两个例子。
 

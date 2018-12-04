@@ -6,6 +6,7 @@
 //
 
 #import "GICDirective.h"
+#define kGICDirectiveForElmentOrderStart  0.0001
 /**
  for 指令.
  */

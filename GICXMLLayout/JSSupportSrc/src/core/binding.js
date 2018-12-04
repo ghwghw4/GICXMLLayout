@@ -73,7 +73,7 @@ Array.prototype.toForDirector = function (forTarget) {
 /**
  * 添加元素数据绑定
  * @param obj
- * @param bindExp 绑定到某个属性
+ * @param bindExp 绑定表达式
  * @param cbName
  * @returns {Watcher}
  */
@@ -134,9 +134,8 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
 };
 
 /**
- * 提供给普通绑定用的，数据源为native数据源
- * @param props
- * @param expStr
+ * @param props 数据源的属性keys
+ * @param expStr 绑定表达式
  * @returns {*}
  */
 Object.prototype.executeBindExpression2 = function (props, expStr) {

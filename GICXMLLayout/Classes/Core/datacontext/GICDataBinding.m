@@ -123,6 +123,7 @@
         allKeys = [[self.dataSource class] gic_reflectProperties].allKeys;
         [dsJSValue invokeMethod:@"_elementInit2" withArguments:@[allKeys]];
         dsJSValue[@"getAttValue"] = ^(JSValue *attName){
+            // TODO:这一步其实也是要做_elementInit2处理的
             return [self.dataSource valueForKey:[attName toString]];
         };
     }

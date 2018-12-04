@@ -122,6 +122,7 @@
     childElement.gic_isAutoInheritDataModel = NO;
     childElement.gic_DataContext = data;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
     [self.target gic_addSubElement:childElement];
 }
 
@@ -131,6 +132,7 @@
     childElement.gic_DataContext = data;
     childElement.gic_ExtensionProperties.isFromDirectiveFor = YES;
     [self.target gic_insertSubElement:childElement atIndex:index];
+    childElement.gic_ExtensionProperties.elementOrder = self.gic_ExtensionProperties.elementOrder + index*kGICDirectiveForElmentOrderStart;
 }
 
 -(void)removeAllItems{

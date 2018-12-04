@@ -29,6 +29,9 @@ static dispatch_queue_t attributsReadWriteQueue;
     if(class_getClassMethod(elementClass, @selector(gic_elementName))){
         NSString *name = [elementClass performSelector:@selector(gic_elementName)];
         if(name && [name length]>0){
+            if([registedElementsMap.allKeys containsObject:name]){
+                NSAssert(NO, @"存在相同名称的元素");
+            }
             [registedElementsMap setValue:elementClass forKey:name];
             // 同事缓存属性
             [self registClassAttributs:elementClass];

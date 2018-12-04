@@ -31,5 +31,6 @@ module.exports = {
     'prefer-rest-params': 0,
     'no-new-func': 0,
     'no-undef':0,
+    'no-empty':0
   },
 };

@@ -47,6 +47,8 @@
 #import "GICCollectionView.h"
 #import "GICGridPanel.h"
 
+#import "GICTransforms.h"
+
 @implementation GICXMLLayout
 +(void)regiterAllElements{
     [self regiterUIElements];
@@ -89,6 +91,7 @@
     [GICElementsCache registElement:[GICDataContextElement class]];
     
     [GICElementsCache registBehaviorElement:[GICScript class]];
+
     
 }
 
@@ -107,12 +110,11 @@
     
     //canvas
     [GICElementsCache registElement:[GICCanvas class]];
-//    [GICElementsCache registElement:[GICCanvasPath class]];
     [GICElementsCache registElement:[GICControl class]];
     [GICElementsCache registElement:[GICCollectionView class]];
     
-    
-    
+    // 形变
+    [GICElementsCache registElement:[GICTransforms class]];
 }
 
 +(void)initialize{

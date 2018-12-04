@@ -61,7 +61,7 @@
       "text": "介绍",
       "type": "link",
       "path": "router.html"
-    }, 
+    },
     {
       "text": "UI元素",
       "type": "label"
@@ -78,32 +78,32 @@
       "text": "image",
       "type": "link",
       "path": "ui/image.html"
-    },{
+    }, {
       "text": "gradient-view",
       "type": "link",
       "path": "ui/gradient-view.html"
-    },{
+    }, {
       "text": "list",
       "type": "link",
       "path": "ui/list.html"
-    },{
+    }, {
       "text": "collection-view",
       "type": "link",
       "path": "ui/collection-view.html"
-    },{
+    }, {
       "text": "canvas",
       "type": "link",
       "path": "ui/canvas.html"
-    },{
+    }, {
       "text": "control",
       "type": "link",
       "path": "ui/control.html"
-    },{
+    }, {
       "text": "transforms(形变)",
       "type": "link",
       "path": "ui/transforms.html"
     },
-     {
+    {
       "text": "核心模块",
       "type": "label"
     }, {
@@ -116,16 +116,16 @@
       "type": "link",
       "path": "core/behavior.html"
     },
-     {
+    {
       "text": "事件",
       "type": "link",
       "path": "core/event.html"
     },
-{
+    {
       "text": "模板",
       "type": "link",
       "path": "core/template.html"
-    },{
+    }, {
       "text": "动画",
       "type": "link",
       "path": "core/animation.html"
@@ -135,21 +135,21 @@
       "type": "link",
       "path": "core/directive.html"
     },
-     {
+    {
       "text": "自定义",
       "type": "link",
       "path": "core/custom.html"
     },
-      {
+    {
       "text": "样式",
       "type": "link",
       "path": "core/style.html"
     },
-       {
+    {
       "text": "JS支持",
       "type": "label"
     },
-     {
+    {
       "text": "script元素",
       "type": "link",
       "path": "script.html"
@@ -163,7 +163,7 @@
       "text": "其他",
       "type": "label"
     },
-     {
+    {
       "text": "开发工具",
       "type": "link",
       "path": "other/dev-tools.html"

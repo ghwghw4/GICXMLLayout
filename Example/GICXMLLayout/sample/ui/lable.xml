@@ -1,0 +1,27 @@
+<page title="lable" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--lable-->
+                <template-ref t-name="title" data-context="最简单的lable(居中显示)"/>
+                <lable text="我是lable,居中显示" font-color="blue" font-size="20" text-align="1"/>
+
+                <template-ref t-name="title" data-context="限定行数"/>
+                <lable text="我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。"  lines="2" font-color="red" font-size="20" text-align="1"/>
+
+                <template-ref t-name="title" data-context="设置font(黑体，字体大小为120)"/>
+                <lable text="我" font="Heiti SC,120"/>
+
+
+                <template-ref t-name="title" data-context="富文本(文字+icon)"/>
+                <lable font-color="black" font-size="20">
+                    <s text="富文本1 " font-color="red"/>
+                    <img img-name="location"/>
+                    <s text="  富文本2" font-size="10" font-color="gray"/>
+                </lable>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

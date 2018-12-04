@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.3'
+pod 'GICXMLLayout', '~> 0.4.4'
 ```
 
 
@@ -190,6 +190,12 @@ pod 'GICXMLLayout', '~> 0.4.3'
 
 1. 新增JS 调用Toast 提示的API
 2. 增加了对Spring动画的支持。
+
+
+
+### 0.4.4
+
+1. 新增`transforms`形变元素。[文档](http://gicxmllayout.gonghaiwei.cn/ui/transforms.html)
 
 ## Author
 

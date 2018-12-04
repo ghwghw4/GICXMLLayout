@@ -3,7 +3,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="15 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="panel 是绝对布局，类似UIView"/>
+                <template-ref t-name="title" data-context="panel 是绝对布局，类似UIView"/>
 
                 <panel background-color="black" height="100">
                     <!--子元素相对于左上角偏移x:10 y:10-->
@@ -13,7 +13,7 @@
                     </panel>
                 </panel>
 
-                <template-ref t-name="desc" data-context="如果子元素没有设置position和size，那么默认撑满父元素（除lable）"/>
+                <template-ref t-name="title" data-context="如果子元素没有设置position和size，那么默认撑满父元素（除lable）"/>
                 <panel background-color="black" height="100">
                     <panel background-color="red"/>
                 </panel>

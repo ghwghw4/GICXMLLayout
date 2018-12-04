@@ -1,0 +1,66 @@
+<page title="transform" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <templates>
+        <template t-name="cube">
+            <panel size="60" background-color="black">
+                <template-slot slot-name = "transforms"/>
+            </panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="title" data-context="参考"/>
+                <template-ref t-name="cube"/>
+
+                <template-ref t-name="title" data-context="translate"/>
+                <template-ref t-name="cube">
+                    <transforms slot-name = "transforms">
+                        <translate x="20"/>
+                    </transforms>
+                </template-ref>
+
+                <template-ref t-name="title" data-context="scale"/>
+                <template-ref t-name="cube">
+                    <transforms slot-name = "transforms">
+                        <scale x="0.5" y="0.5"/>
+                    </transforms>
+                </template-ref>
+
+                <template-ref t-name="title" data-context="rotate"/>
+                <template-ref t-name="cube">
+                    <transforms slot-name = "transforms">
+                        <rotate z="45"/>
+                    </transforms>
+                </template-ref>
+
+                <template-ref t-name="title" data-context="动画"/>
+                <template-ref t-name="cube">
+                    <transforms slot-name = "transforms">
+                        <!--旋转动画-->
+                        <rotate>
+                            <animations>
+                                <anim-attribute attribute-name="z" on="1" from="0" to="360" duration="2" repeat="-1"/>
+                            </animations>
+                        </rotate>
+
+                        <!--缩放动画-->
+                        <scale>
+                            <animations>
+                                <anim-attribute attribute-name="x" on="1" from="1" to="0.5" duration="2" repeat="-1" autoreverses="1"/>
+                                <anim-attribute attribute-name="y" on="1" from="1" to="0.5" duration="2" repeat="-1" autoreverses="1"/>
+                            </animations>
+                        </scale>
+                        <!--位移动画-->
+                        <translate>
+                            <animations>
+                                <anim-attribute attribute-name="x" on="1" from="0" to="50" duration="2" repeat="-1" autoreverses="1"/>
+                            </animations>
+                        </translate>
+                    </transforms>
+                </template-ref>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

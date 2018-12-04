@@ -10,7 +10,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="0 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="背景布局1"/>
+                <template-ref t-name="title" data-context="背景布局1"/>
                 <background-panel height="42" space-before="20">
                     <background>
                         <gradient-view colors="FFA218 0 FF3F0A 1" corner-radius="21">
@@ -20,7 +20,7 @@
                         <lable text="背景布局" font-size="16" font-color="white" />
                     </dock-panel>
                 </background-panel>
-                <template-ref t-name="desc" data-context="背景布局2-以图片作为背景"/>
+                <template-ref t-name="title" data-context="背景布局2-以图片作为背景"/>
                 <background-panel space-before="20">
                     <background>
                         <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>

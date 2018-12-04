@@ -31,7 +31,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="15 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="操作面板"/>
+                <template-ref t-name="title" data-context="操作面板"/>
                 
               
                 <stack-panel is-horizon="1" justify-content="3">
@@ -66,7 +66,7 @@
                 
                
                 <!--布局面板-->
-                <template-ref t-name="desc" data-context="布局面板"/>
+                <template-ref t-name="title" data-context="布局面板"/>
                 <stack-panel
                         background-color="black"
                         line-space="10"

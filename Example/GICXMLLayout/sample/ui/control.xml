@@ -1,0 +1,46 @@
+<page title="control" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <templates>
+        <template t-name="control">
+            <control background-color="black" height="44">
+                <dock-panel>
+                    <lable text="普通状态" font-color="white"/>
+                </dock-panel>
+                <!--高亮状态-->
+                <highlight>
+                    <dock-panel>
+                        <lable text="高亮状态" font-color="red"/>
+                    </dock-panel>
+                </highlight>
+                <!--禁用状态-->
+                <disable>
+                    <dock-panel>
+                        <lable text="禁用了" font-color="gray"/>
+                    </dock-panel>
+                </disable>
+                <!--选中状态-->
+                <selected>
+                    <dock-panel>
+                        <lable text="选中状态" font-color="gray"/>
+                    </dock-panel>
+                </selected>
+            </control>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--control-->
+                <template-ref t-name="title" data-context="control(触摸可进入高亮状态)"/>
+                <template-ref t-name="control"/>
+
+                <template-ref t-name="title" data-context="control(禁用状态)"/>
+                <template-ref t-name="control" enable="false"/>
+
+                <template-ref t-name="title" data-context="control(选中状态)"/>
+                <template-ref t-name="control" selected="true"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

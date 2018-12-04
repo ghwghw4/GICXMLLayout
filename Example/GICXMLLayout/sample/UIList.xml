@@ -1,255 +1,51 @@
-<page title="支持的UI元素" data-context="UIListPageViewModel">
-    <behaviors>
-        <bev-hidekeybord/>
-    </behaviors>
-    <style path="style/CommonStyle.xml" />
-    <templates>
-        <template t-name="p-child">
-            <dock-panel size="40" background-color="yellow">
-                <lable text="{{}}" font-color="black"/>
-            </dock-panel>
-        </template>
-    </templates>
-    <scroll-view background-color="white">
-        <inset-panel inset="15">
-            <stack-panel>
-                <!--canvas-->
-                <template-ref t-name="desc" data-context="canvas"/>
-                <canvas height="100" background-color="yellow">
-                    <path>
-                        <!--线条-->
-                        <line>
-                            <point x="0" y="0"/>
-                            <point x="50%" y="50%"/>
-                            <point x="100%" y="50%"/>
-                        </line>
-                        <!--弧线-->
-                        <arc center="50%" radius="40" start-angle="0" end-angle="180" />
-
-                        <!--贝塞尔曲线-->
-                        <!--1个控制点的贝塞尔曲线-->
-                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
-                        <point x="10" y="50"/>
-                        <bezier control-point="50 100" point="80 100"/>
-
-                        <!--2个控制点的贝塞尔曲线-->
-                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
-                        <point x="5" y="50"/>
-                        <bezier control-point="35 0" control-point2="35 100" point="65 50"/>
-
-                        <!--string-->
-                        <str x="50" y="5" width="100" height="30" text="hello word" font-color="red" font-size="20"/>
-                    </path>
-                    <path fill-color="red" line-width="0">
-                        <!--画一个有圆角的矩形(左上、右下圆角)-->
-                        <rectangle x="50%" y="0" width="50%" height="20%" corner-radius="50%"  corner-types="0 3"/>
-                    </path>
-                </canvas>
-                <canvas height="100" background-color="yellow" space-before="10">
-                    <data-context>
-                        [{
-                        "start": 0,
-                        "end": 90,
-                        "color": "red"
-                        }, {
-                        "start": 90,
-                        "end": 180,
-                        "color": "blue"
-                        }, {
-                        "start": 180,
-                        "end": 270,
-                        "color": "gray"
-                        }, {
-                        "start": 270,
-                        "end": 360,
-                        "color": "green"
-                        }]
-                    </data-context>
-                    <!--画饼图-->
-                    <for>
-                        <path fill-color="{{color}}" line-width="0">
-                            <point x="50%" y="50%"/>
-                            <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" />
-                        </path>
-                    </for>
-                    <!--中间旋转的饼图-->
-                    <path fill-color="yellow" line-width="0">
-                        <point x="50%" y="50%"/>
-                        <arc center="50%" radius="20" end-angle="360" start-angle="0" >
-                            <animations>
-                                <anim-attribute attribute-name="end-angle" on="1" from="0" to="360" duration="1" repeat="-1"/>-->
-                            </animations>
-                        </arc>
-                    </path>
-
-                    <!--吃豆人-->
-                    <path fill-color="black" line-width="0">
-                        <!--位移动画-->
-                        <point x="50%" y="50%">
-                            <animations>
-                                <anim-attribute attribute-name="x" on="1" from="0%" to="100%" autoreverses="1" duration="3" repeat="-1"/>
-                            </animations>
-                        </point>
-                        <!--嘴巴张合动画-->
-                        <arc center="50%" radius="20" end-angle="360" start-angle="45" >
-                            <animations>
-                                <anim-attribute attribute-name="end-angle" on="1" from="315" to="360" autoreverses="1" duration="0.3" repeat="-1"/>
-                                <anim-attribute attribute-name="start-angle" on="1" from="45" to="0" autoreverses="1" duration="0.3" repeat="-1"/>
-                                <anim-attribute attribute-name="center" on="1" from="0% 50%" to="100% 50%" autoreverses="1" duration="3" repeat="-1"/>
-                            </animations>
-                        </arc>
-                    </path>
-                </canvas>
-                <panel space-before="10">
-                    <data-context>
-                        [{
-                        "x": 0,
-                        "y": 0,
-                        "width": 40,
-                        "height": 100,
-                        "color": "blue"
-                        },
-                        {
-                        "x": 50,
-                        "y": 20,
-                        "width": 40,
-                        "height": 80,
-                        "color": "red"
-                        },
-                        {
-                        "x": 100,
-                        "y": 50,
-                        "width": 40,
-                        "height": 50,
-                        "color": "black"
-                        },
-                        {
-                        "x": 150,
-                        "y": 30,
-                        "width": 40,
-                        "height": 70,
-                        "color": "7EC0EE"
-                        },
-                        {
-                        "x": 200,
-                        "y": 10,
-                        "width": 40,
-                        "height": 90,
-                        "color": "EEC900"
-                        }
-                        ]
-                    </data-context>
-                    <canvas height="100" background-color="yellow">
-                        <for>
-                            <path fill-color="{{color}}" line-width="0">
-                                <rectangle x="{{x}}"  width="{{width}}" height="{{height+'%'}}">
-                                    <animations>
-                                        <anim-attribute attribute-name="y" on="1" from="100%" to="{{y+'%'}}" duration=".6"/>
-                                    </animations>
-                                </rectangle>
-                            </path>
-                        </for>
-                    </canvas>
-                    <for>
-                        <lable text="{{ height }}" font-size="10" font-color="white" position="{{ x+' '+y }}" width="{{width}}" text-align="1"/>
-                    </for>
-                </panel>
-
-                <!--      田字          -->
-                <background-panel size="150" space-before="10">
-                    <background>
-                        <canvas background-color="white">
-                            <path line-width="0.5" line-color="red">
-                                <rectangle width="100%" height="100%"/>
-                            </path>
-                            <path line-width="0.5" line-color="red" dash="5 2">
-                                <line>
-                                    <point x="50%" y="0"/>
-                                    <point x="50%" y="100%"/>
-                                </line>
-                                
-                                <line>
-                                    <point x="0" y="50%"/>
-                                    <point x="100%" y="50%"/>
-                                </line>
-                            </path>
-                        </canvas>
-                    </background>
-                    <dock-panel>
-                        <lable text="我" font="Heiti SC,120"/>
-                    </dock-panel>
-                </background-panel>
-
-                <!--control-->
-                <template-ref t-name="desc" data-context="control"/>
-                <control background-color="black" height="44">
-                    <dock-panel>
-                        <lable text="普通状态" font-color="white"/>
-                    </dock-panel>
-                    <!--高亮状态-->
-                    <highlight>
-                        <dock-panel>
-                            <lable text="高亮状态" font-color="red"/>
-                        </dock-panel>
-                    </highlight>
-                    <!--禁用状态-->
-                    <disable>
-                        <dock-panel>
-                            <lable text="禁用了" font-color="gray"/>
-                        </dock-panel>
-                    </disable>
-                    <!--选中状态-->
-                    <selected>
-                        <dock-panel>
-                            <lable text="选中状态" font-color="gray"/>
-                        </dock-panel>
-                    </selected>
-                </control>
-
-                <!--lable-->
-                <template-ref t-name="desc" data-context="lable"/>
-                <lable text="我是lable,居中显示" font-color="yellow" font-size="20" text-align="1"/>
-                <lable text="我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。我是lable2，并且限定行数。"  lines="2" font-color="red" font-size="20" text-align="1" space-before="20"/>
-                <lable font-color="black" font-size="20">
-                    <s text="富文本1 "/>
-                    <img img-name="location"/>
-                    <s text=" 富文本2" font-size="10" font-color="gray"/>
-                </lable>
-                <!--input-->
-                <stack-panel data-context="InputViewModel">
-                    <template-ref t-name="desc" data-context="input"/>
-                    <input font-color="blue" font-size="16" border-color="black" border-width="0.5" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31">
-                    </input>
-                    <lable text="{{ exp=name,mode=1}}"/>
-
-
-                    <template-ref t-name="desc" data-context="input-view"/>
-                    <input-view font-color="yellow" font-size="16" border-color="black" border-width="0.5" text="你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，" placehold="请输入用户名" height="100">
-                    </input-view>
-                </stack-panel>
-                <!--image-->
-                <template-ref t-name="desc" data-context="image"/>
-
-                <stack-panel is-horizon="1">
-                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
-
-                    <image space-before="10" url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100" fill-mode="0"/>
-
-                    <image space-before="10" local-name="active" size="18 16"/>
-                </stack-panel>
-
-                <!--支持渐变色的视图-->
-                <template-ref t-name="desc" data-context="gradient-view"/>
-                <gradient-view height="20" colors="red 0 yellow 0.5 blue 1" />
-                <gradient-view height="100" space-before="10" colors="red 0 yellow 0.5 blue 1" start="0.5 0" end="0.5 1"/>
-
-
-                <template-ref t-name="desc" data-context="自定义元素(switch-button)"/>
-                <switch-button checked="1" height="31"/>
-
-
-            </stack-panel>
-        </inset-panel>
-    </scroll-view>
+<!--page 相当于 UIViewController-->
+<page title="支持的UI元素">
+    <!--list 相当于UITableView-->
+    <list background-color="white" separator-style="1">
+        <data-context>
+            [{
+            "name": "lable(UILable)",
+            "pagePath": "ui/lable.xml"
+            }, {
+            "name": "image(UIImageView)",
+            "pagePath": "ui/image.xml"
+            }, {
+            "name": "input(UITextFiled)",
+            "pagePath": "ui/input.xml"
+            }, {
+            "name": "control(UIControl)",
+            "pagePath": "ui/control.xml"
+            }, {
+            "name": "canvas(CGContext)",
+            "pagePath": "ui/canvas.xml"
+            }, {
+            "name": "gradient-view(渐变色)",
+            "pagePath": "ui/gradient-view.xml"
+            }, {
+            "name": "transform(CATransform3D)",
+            "pagePath": "ui/transform.xml"
+            }, {
+            "name": "自定义元素",
+            "pagePath": "ui/customui.xml"
+            }]
+        </data-context>
+        <section>
+            <for>
+                <list-item selection-style="2">
+                    <inset-panel background-color="white" inset="15">
+                        <behaviors>
+                            <bev-router-link path="{{pagePath}}"/>
+                        </behaviors>
+                        <animations>
+                            <anim-transforms on="2" autoreverses="1" duration="0.1">
+                                <anim-scale  from="1" to="0.95"  />
+                            </anim-transforms>
+                        </animations>
+                        <lable text="{{ name }}" font-size="15"></lable>
+                    </inset-panel>
+                </list-item>
+            </for>
+        </section>
+    </list>
 </page>
 

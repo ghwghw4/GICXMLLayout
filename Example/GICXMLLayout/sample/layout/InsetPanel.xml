@@ -4,13 +4,13 @@
     <scroll-view background-color="white">
         <inset-panel inset="0 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="inset-panel也称为padding布局"/>
+                <template-ref t-name="title" data-context="inset-panel也称为padding布局"/>
                 <inset-panel inset="10" background-color="black" height="100">
                     <panel background-color="yellow">
 
                     </panel>
                 </inset-panel>
-                <template-ref t-name="desc" data-context="inset 的顺序是左、上、右、下"/>
+                <template-ref t-name="title" data-context="inset 的顺序是左、上、右、下"/>
                 <inset-panel inset="10 20 30 40" background-color="black" height="100">
                     <panel background-color="yellow">
 

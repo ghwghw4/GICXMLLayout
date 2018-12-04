@@ -23,7 +23,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="我是模板1"/>
+                <template-ref t-name="title" data-context="我是模板1"/>
                 <template-ref t-name="t2" data-context="我是模板2"/>
                 <template-ref t-name="t3" data-context="我是模板3,具有模板替换功能">
                     <lable text="我是slot" font-size="14" slot-name = "content" font-color="red"/>

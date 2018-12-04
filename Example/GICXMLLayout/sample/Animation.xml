@@ -3,14 +3,13 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel align-items="2">
-                <template-ref t-name="title" data-context="属性动画，理论上所有的属性都支持动画"/>
-                <template-ref t-name="desc" data-context="自动开始动画"/>
+                <template-ref t-name="title" data-context="自动开始动画"/>
                 <dock-panel height="50" background-color="black" width="100%">
                     <animations>
                         <anim-attribute attribute-name="alpha" on="1" from="1" to="0.5" autoreverses="1" duration="1" repeat="-1"/>
                     </animations>
                 </dock-panel>
-                <template-ref t-name="desc" data-context="单击开始动画"/>
+                <template-ref t-name="title" data-context="单击开始动画"/>
                 <dock-panel height="50">
                     <animations>
                         <anim-attribute attribute-name="background-color" on="2" from="red" to="yellow" autoreverses="1" duration="1" repeat="-1"/>

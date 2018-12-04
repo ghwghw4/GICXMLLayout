@@ -1,0 +1,15 @@
+<page title="自定义元素" data-context="UIListPageViewModel">
+    <behaviors>
+        <bev-hidekeybord/>
+    </behaviors>
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="switch-button"/>
+                <switch-button checked="1" height="31"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

@@ -4,7 +4,10 @@
             <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
         </template>
         <template t-name="title">
-            <lable text="{{ }}" space-after="10" space-before="10" font-size="25" font-color="blue"/>
+            <stack-panel is-horizon="1" align-items="2" space-after="10" space-before="10">
+                <panel size="10" background-color="666666" corner-radius="5" />
+                <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="666666" flex-shrink="1"/>
+            </stack-panel>
         </template>
     </templates>
 </style>

@@ -1,0 +1,181 @@
+<page title="canvas" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--canvas-->
+                <template-ref t-name="title" data-context="各种基础图形"/>
+                <canvas height="100" background-color="yellow">
+                    <path>
+                        <!--线条-->
+                        <line>
+                            <point x="0" y="0"/>
+                            <point x="50%" y="50%"/>
+                            <point x="100%" y="50%"/>
+                        </line>
+                        <!--弧线-->
+                        <arc center="50%" radius="40" start-angle="0" end-angle="180" />
+
+                        <!--贝塞尔曲线-->
+                        <!--1个控制点的贝塞尔曲线-->
+                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
+                        <point x="10" y="50"/>
+                        <bezier control-point="50 100" point="80 100"/>
+
+                        <!--2个控制点的贝塞尔曲线-->
+                        <!--添加一个单独point点，相当于将当前的point移动到这个点-->
+                        <point x="5" y="50"/>
+                        <bezier control-point="35 0" control-point2="35 100" point="65 50"/>
+
+                        <!--string-->
+                        <str x="50" y="5" width="100" height="30" text="hello word" font-color="red" font-size="20"/>
+                    </path>
+                    <path fill-color="red" line-width="0">
+                        <!--画一个有圆角的矩形(左上、右下圆角)-->
+                        <rectangle x="50%" y="0" width="50%" height="20%" corner-radius="50%"  corner-types="0 3"/>
+                    </path>
+                </canvas>
+
+                <template-ref t-name="title" data-context="canvas配合动画"/>
+                <canvas height="100" background-color="yellow" space-before="10">
+                    <data-context>
+                        [{
+                        "start": 0,
+                        "end": 90,
+                        "color": "red"
+                        }, {
+                        "start": 90,
+                        "end": 180,
+                        "color": "blue"
+                        }, {
+                        "start": 180,
+                        "end": 270,
+                        "color": "gray"
+                        }, {
+                        "start": 270,
+                        "end": 360,
+                        "color": "green"
+                        }]
+                    </data-context>
+                    <!--画饼图-->
+                    <for>
+                        <path fill-color="{{color}}" line-width="0">
+                            <point x="50%" y="50%"/>
+                            <arc center="50%" radius="40" start-angle="{{start}}" end-angle="{{end}}" />
+                        </path>
+                    </for>
+                    <!--中间旋转的饼图-->
+                    <path fill-color="yellow" line-width="0">
+                        <point x="50%" y="50%"/>
+                        <arc center="50%" radius="20" end-angle="360" start-angle="0" >
+                            <animations>
+                                <anim-attribute attribute-name="end-angle" on="1" from="0" to="360" duration="1" repeat="-1"/>-->
+                            </animations>
+                        </arc>
+                    </path>
+
+                    <!--吃豆人-->
+                    <path fill-color="black" line-width="0">
+                        <!--位移动画-->
+                        <point x="50%" y="50%">
+                            <animations>
+                                <anim-attribute attribute-name="x" on="1" from="0%" to="100%" autoreverses="1" duration="3" repeat="-1"/>
+                            </animations>
+                        </point>
+                        <!--嘴巴张合动画-->
+                        <arc center="50%" radius="20" end-angle="360" start-angle="45" >
+                            <animations>
+                                <anim-attribute attribute-name="end-angle" on="1" from="315" to="360" autoreverses="1" duration="0.3" repeat="-1"/>
+                                <anim-attribute attribute-name="start-angle" on="1" from="45" to="0" autoreverses="1" duration="0.3" repeat="-1"/>
+                                <anim-attribute attribute-name="center" on="1" from="0% 50%" to="100% 50%" autoreverses="1" duration="3" repeat="-1"/>
+                            </animations>
+                        </arc>
+                    </path>
+                </canvas>
+
+                <template-ref t-name="title" data-context="柱状图(配合动画)"/>
+                <panel space-before="10">
+                    <data-context>
+                        [{
+                        "x": 0,
+                        "y": 0,
+                        "width": 40,
+                        "height": 100,
+                        "color": "blue"
+                        },
+                        {
+                        "x": 50,
+                        "y": 20,
+                        "width": 40,
+                        "height": 80,
+                        "color": "red"
+                        },
+                        {
+                        "x": 100,
+                        "y": 50,
+                        "width": 40,
+                        "height": 50,
+                        "color": "black"
+                        },
+                        {
+                        "x": 150,
+                        "y": 30,
+                        "width": 40,
+                        "height": 70,
+                        "color": "7EC0EE"
+                        },
+                        {
+                        "x": 200,
+                        "y": 10,
+                        "width": 40,
+                        "height": 90,
+                        "color": "EEC900"
+                        }
+                        ]
+                    </data-context>
+                    <canvas height="100" background-color="yellow">
+                        <for>
+                            <path fill-color="{{color}}" line-width="0">
+                                <rectangle x="{{x}}"  width="{{width}}" height="{{height+'%'}}">
+                                    <animations>
+                                        <anim-attribute attribute-name="y" on="1" from="100%" to="{{y+'%'}}" duration=".6"/>
+                                    </animations>
+                                </rectangle>
+                            </path>
+                        </for>
+                    </canvas>
+                    <for>
+                        <lable text="{{ height }}" font-size="10" font-color="white" position="{{ x+' '+y }}" width="{{width}}" text-align="1"/>
+                    </for>
+                </panel>
+
+                <template-ref t-name="title" data-context="画一个米字图形"/>
+                <!--      田字          -->
+                <background-panel size="150" space-before="10">
+                    <background>
+                        <canvas background-color="white">
+                            <path line-width="0.5" line-color="red">
+                                <rectangle width="100%" height="100%"/>
+                            </path>
+                            <path line-width="0.5" line-color="red" dash="5 2">
+                                <line>
+                                    <point x="50%" y="0"/>
+                                    <point x="50%" y="100%"/>
+                                </line>
+
+                                <line>
+                                    <point x="0" y="50%"/>
+                                    <point x="100%" y="50%"/>
+                                </line>
+                            </path>
+                        </canvas>
+                    </background>
+                    <dock-panel>
+                        <lable text="我" font="Heiti SC,120"/>
+                    </dock-panel>
+                </background-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

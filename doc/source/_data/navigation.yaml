@@ -98,6 +98,10 @@
       "text": "control",
       "type": "link",
       "path": "ui/control.html"
+    },{
+      "text": "transforms(形变)",
+      "type": "link",
+      "path": "ui/transforms.html"
     },
      {
       "text": "核心模块",

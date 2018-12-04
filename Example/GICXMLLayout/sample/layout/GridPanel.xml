@@ -3,7 +3,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="0 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="简单的九宫格布局"/>
+                <template-ref t-name="title" data-context="简单的九宫格布局"/>
                 <grid-panel columns="3" column-spacing="10" row-spacing="10">
                     <data-context>
                         [1,2,3,4,5,6,7,8,9]
@@ -19,7 +19,7 @@
                     </for>
                 </grid-panel>
 
-                <template-ref t-name="desc" data-context="瀑布流布局"/>
+                <template-ref t-name="title" data-context="瀑布流布局"/>
                 <grid-panel columns="3" column-spacing="10" row-spacing="10">
                     <data-context>
                         [

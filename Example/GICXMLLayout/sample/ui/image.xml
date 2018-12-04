@@ -1,0 +1,24 @@
+<page title="image" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--image-->
+                <template-ref t-name="title" data-context="加载网络图片"/>
+                <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
+
+                <template-ref t-name="title" data-context="加载本地图片(imageWithName:)"/>
+                <image space-before="10" local-name="active" size="18 16"/>
+
+                <template-ref t-name="title" data-context="加载相对路径图片(这里的图片可以直接被打包进zip中，方便热更新)"/>
+                <image path="images/headicon.jpg" size="100"/>
+
+                <template-ref t-name="title" data-context="比例显示图片(16:9)，横竖屏切换试试看"/>
+                <ratio-panel ratio="0.5625">
+                    <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg"/>
+                </ratio-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

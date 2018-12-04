@@ -1,0 +1,31 @@
+<page title="input" data-context="UIListPageViewModel">
+    <behaviors>
+        <!--添加一个点击屏幕隐藏键盘的自定义行为-->
+        <bev-hidekeybord/>
+    </behaviors>
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <!--input-->
+                <stack-panel data-context="InputViewModel">
+                    <template-ref t-name="title" data-context="input"/>
+                    <inset-panel inset="0 10" border-color="black" border-width="0.5">
+                        <input font-color="blue" font-size="16" text="{{ exp=name,mode=2}}" placehold="请输入用户名" placehold-color="red" placehold-size="16" height="31"/>
+                    </inset-panel>
+                    <lable text="{{ exp=name,mode=1}}"/>
+
+                    <template-ref t-name="title" data-context="input(输入手机号)"/>
+                    <inset-panel inset="0 10" border-color="black" border-width="0.5">
+                        <input font-color="blue" font-size="16" text="" placehold="请输入手机号" placehold-color="red" placehold-size="16" height="31" keyboard-type="5"/>
+                    </inset-panel>
+
+                    <template-ref t-name="title" data-context="input-view"/>
+                    <input-view content-inset="10" font-color="blue" font-size="16" border-color="black" border-width="0.5" placehold="请输入用户名" height="100"
+                                text="你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，你是input-view，"/>
+                </stack-panel>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

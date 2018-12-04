@@ -1,0 +1,33 @@
+<page title="Toast" js-router="1">
+    <style path="style/CommonStyle.xml"/>
+    <behaviors>
+        <!--加载全局脚本-->
+        <script path="js/JSExtension.js"/>
+        <script private="1">
+            $el.dataContext = JSEXtension;
+        </script>
+    </behaviors>
+    <templates>
+        <template t-name="toast">
+            <inset-panel inset="15" background-color="black">
+                <lable text="{{text}}" font-color="white" font-size="16"/>
+            </inset-panel>
+        </template>
+    </templates>
+    <scroll-view background-color="white">
+        <inset-panel inset="10">
+            <stack-panel>
+                <template-ref t-name="title" data-context="AlertView"/>
+                <lable text="点我弹出提示框" font-size="18" event-tap="js:this.showAlert($el);"/>
+
+                <template-ref t-name="title" data-context="localStorage"/>
+                <lable text="点击去保存" font-size="18" event-tap="js:this.setItem();"/>
+
+                <lable text="点击读取value" font-size="18" space-before="20" event-tap="js:this.getItem($el)"/>
+
+                <lable text="点击删除key" font-size="18" space-before="20" event-tap="js:this.removeItem()"/>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

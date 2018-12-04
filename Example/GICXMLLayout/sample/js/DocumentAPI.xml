@@ -21,7 +21,7 @@
                         <!--对于一个页面来说，rootElement 就是page元素-->
                         <script private="1">
                             $el.onclick = function(){
-                            document.rootElement.title = '通过rootElement设置';
+                                document.rootElement.title = '通过rootElement设置';
                             }
                         </script>
                     </behaviors>

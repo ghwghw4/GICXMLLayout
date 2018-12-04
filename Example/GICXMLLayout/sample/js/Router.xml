@@ -1,0 +1,32 @@
+<page title="JSRouter示例" js-router="1">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="10">
+            <stack-panel>
+                <template-ref t-name="title" data-context="JSRouter"/>
+                <lable text="点我push到下一页" font-size="18">
+                    <behaviors>
+                        <script private="1">
+                            $el.onclick = function(){
+                            Router.push('js/NextPage.xml',{id:1,name:'我是从上一页传过来的参数'});
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+
+                <template-ref t-name="title" data-context="参数回传(从前面一页返回的会后回传参数)"/>
+                <lable text="回传参数显示" font-size="18">
+                    <behaviors>
+                        <script private="1">
+                            var el = $el;
+                            Router.onNavgateBackFrom = function(params){
+                                el.text = params.name;
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

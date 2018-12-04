@@ -106,10 +106,10 @@ static NSMutableArray<NSOperation *> *operationArray;
     if(self.isPrivate){
         JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
         if([context isSetRootDataContext]){
-            NSString *js = [NSString stringWithFormat:@"var $el = arguments[0]; %@;",jsStr];
+            NSString *js = [NSString stringWithFormat:@"var $el = arguments[0]; %@; $el = null;",jsStr];
             [[context rootDataContext] excuteJSString:js withArguments:@[selfValue]];
         }else{
-            NSString *js = [NSString stringWithFormat:@"var $el = %@; %@; delete $el;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
+            NSString *js = [NSString stringWithFormat:@"var $el = %@; %@; $el = null;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
             [context evaluateScript:js];
         }
     }else{

@@ -14,6 +14,7 @@
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
 		37390B36211ADEEC006B305D /* sample in Resources */ = {isa = PBXBuildFile; fileRef = 37390B35211ADEEC006B305D /* sample */; };
+		37391A6821B653A40084EC7F /* JSLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A6621B653A40084EC7F /* JSLocalStorage.m */; };
 		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
@@ -71,6 +72,8 @@
 		37311AA120FC9E92000D0986 /* InputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputViewModel.h; sourceTree = "<group>"; };
 		37311AA220FC9E92000D0986 /* InputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputViewModel.m; sourceTree = "<group>"; };
 		37390B35211ADEEC006B305D /* sample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sample; sourceTree = "<group>"; };
+		37391A6621B653A40084EC7F /* JSLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLocalStorage.m; sourceTree = "<group>"; };
+		37391A6721B653A40084EC7F /* JSLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLocalStorage.h; sourceTree = "<group>"; };
 		373DD6552105D52A00E359BB /* PullRefreshBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshBehavior.h; sourceTree = "<group>"; };
 		373DD6562105D52A00E359BB /* PullRefreshBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshBehavior.m; sourceTree = "<group>"; };
 		373DD6582105D90400E359BB /* BehaviorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviorViewModel.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 		378901AE21746C7300365120 /* js */ = {
 			isa = PBXGroup;
 			children = (
+				37391A6721B653A40084EC7F /* JSLocalStorage.h */,
+				37391A6621B653A40084EC7F /* JSLocalStorage.m */,
 				378901AF21746C8B00365120 /* JSAPIExtension.h */,
 				378901B021746C8B00365120 /* JSAPIExtension.m */,
 				378901B221746E3F00365120 /* JSAlert.h */,
@@ -569,6 +574,7 @@
 				37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */,
+				37391A6821B653A40084EC7F /* JSLocalStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

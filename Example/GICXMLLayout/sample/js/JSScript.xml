@@ -1,21 +1,9 @@
 <page title="JSScript" js-router="1">
     <style path="style/CommonStyle.xml" />
-    <!--<toast>-->
-        <!--<inset-panel inset="12">-->
-            <!--<lable text="toast" font-color="white"/>-->
-        <!--</inset-panel>-->
-    <!--</toast>-->
-    <templates>
-        <template t-name="toast1">
-            <inset-panel inset="15" background-color="black">
-                <lable text="{{text}}" font-color="white" font-size="16"/>
-            </inset-panel>
-        </template>
-    </templates>
-    <scroll-view>
-        <inset-panel inset="10" background-color="white">
+    <scroll-view background-color="white">
+        <inset-panel inset="10">
             <stack-panel>
-                <template-ref t-name="desc" data-context="iOS9.0及以上系统支持es6规范"/>
+                <template-ref t-name="desc" data-context="iOS9.0及以上系统才支持es6规范,考虑到有些设备还是8.0及以下，示例中的JS代码不会使用es6规范"/>
                 <template-ref t-name="title" data-context="直接访问属性、设置属性"/>
                 <lable>
                     <behaviors>
@@ -23,49 +11,6 @@
                             $el.text = '我是通过js设置的文本';
                             $el.fontColor = '999999';
                             $el.fontSize = 18;
-                        </script>
-                    </behaviors>
-                </lable>
-
-
-                <template-ref t-name="title" data-context="Toast"/>
-                <!--Toast-->
-                <lable text="点我toast(top)" font-size="18">
-                    <behaviors>
-                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
-                        <script private="1">
-                            $el.onclick = function(){
-                                var t =  Toast.create('toast1');
-                                t.show({params:{text:'hello world'},position:0,duration:5000});
-                                // 隐藏回调
-                                t.ondismiss = function(){
-                                    console.log('dismis');
-                                }
-                            }
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <lable text="点我toast(center)" font-size="18" space-before="20">
-                    <behaviors>
-                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
-                        <script private="1">
-                            $el.onclick = function(){
-                            var t =  Toast.create('toast1');
-                            t.show({params:{text:'center'},position:1});
-                            }
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <lable text="点我toast(bottom)" font-size="18" space-before="20">
-                    <behaviors>
-                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
-                        <script private="1">
-                            $el.onclick = function(){
-                            var t =  Toast.create('toast1');
-                            t.show({params:{text:'bottom'},position:2});
-                            }
                         </script>
                     </behaviors>
                 </lable>
@@ -117,11 +62,12 @@
                     <behaviors>
                         <!--js直接绑定的事件当前仅支持onclick事件-->
                         <script private="1">
+                            var el = $el;
                             $el.onclick = function(){
                                 var r = parseInt(Math.random()*255+1,10);
                                 var g = parseInt(Math.random()*255+1,10);
                                 var b = parseInt(Math.random()*255+1,10);
-                                $el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                                el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
                             };
                         </script>
                     </behaviors>
@@ -132,56 +78,18 @@
                     <behaviors>
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script private="1">
+                            var el = $el;
                             var xmlhttp = new XMLHttpRequest();
                             xmlhttp.onreadystatechange = function()
                             {
                                 if (xmlhttp.status===200)
                                 {
                                     // 将结果在lable中显示出来
-                                    $el.text = xmlhttp.responseText;
+                                    el.text = xmlhttp.responseText;
                                 }
                             }
                             xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
                             xmlhttp.send();
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <template-ref t-name="title" data-context="jsAPI 扩展"/>
-                <lable text="点我弹出提示框" font-size="18">
-                    <behaviors>
-                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
-                        <script private="1">
-                            $el.onclick = function(){
-                                var alertView = new AlertView();
-                                alertView.title = '标题';
-                                alertView.message = '内容';
-                                alertView.addButton('取消',function(){console.log('点击了取消')});
-                                alertView.addButton('确定',function(){console.log('点击了确定')});
-                                alertView.show();
-                            }
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <template-ref t-name="title" data-context="JSRouter"/>
-                <lable text="点我push到下一页" font-size="18">
-                    <behaviors>
-                        <script private="1">
-                            $el.onclick = function(){
-                                Router.push('js/NextPage.xml',{id:1,name:'我是从上一页传过来的参数'});
-                            }
-                        </script>
-                    </behaviors>
-                </lable>
-
-                <template-ref t-name="title" data-context="参数回传(从前面一页返回的会后回传参数)"/>
-                <lable text="回传参数显示" font-size="18">
-                    <behaviors>
-                        <script private="1">
-                            Router.onNavgateBackFrom = function(params){
-                                $el.text = params.name;
-                            }
                         </script>
                     </behaviors>
                 </lable>

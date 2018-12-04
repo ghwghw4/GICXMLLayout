@@ -1,48 +1,23 @@
 <!--page 相当于 UIViewController-->
-<page title="GICXMLLayout">
-
+<page title="JS相关功能">
     <!--list 相当于UITableView-->
     <list background-color="white" separator-style="1">
         <data-context>
             [{
-            "name": "布局系统",
-            "pagePath": "Layout.xml"
+            "name": "JS基本功能",
+            "pagePath": "js/JSScript.xml"
             }, {
-            "name": "支持的UI元素",
-            "pagePath": "UIList.xml"
+            "name": "Router(导航相关)",
+            "pagePath": "js/Router.xml"
             }, {
-            "name": "list",
-            "pagePath": "ListSample.xml"
+            "name": "JS扩展",
+            "pagePath": "js/JSExtension.xml"
             }, {
-            "name": "数据绑定",
-            "pagePath": "DataBinding.xml"
-            }, {
-            "name": "模板",
-            "pagePath": "Template.xml"
-            }, {
-            "name": "事件",
-            "pagePath": "Event.xml"
-            }, {
-            "name": "动画",
-            "pagePath": "Animation.xml"
-            }, {
-            "name": "行为",
-            "pagePath": "Behavior.xml"
-            }, {
-            "name": "JavaScript",
-            "pagePath": "JSList.xml"
-            }, {
-            "name": "指令",
-            "pagePath": "Directive.xml"
-            }, {
-            "name": "样式",
-            "pagePath": "StyleSample.xml"
-            },{
             "name": "Popover",
             "pagePath": "popover/PopoverSample.xml"
             }, {
-            "name": "模拟头条Feeds(重点是模板、布局、性能)",
-            "pagePath": "app/ToutiaoRoot.xml"
+            "name": "Toast",
+            "pagePath": "js/Toast.xml"
             }]
         </data-context>
         <section>

@@ -8,9 +8,11 @@
 
 #import "JSAPIExtension.h"
 #import "JSAlert.h"
+#import "JSLocalStorage.h"
 
 @implementation JSAPIExtension
 +(void)registeJSAPIToJSContext:(JSContext*)context{
     context[@"AlertView"] = [JSAlert class];
+    context[@"localStorage"] = [JSLocalStorage class];
 }
 @end

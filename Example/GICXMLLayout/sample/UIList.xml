@@ -19,6 +19,9 @@
             "name": "canvas(CGContext)",
             "pagePath": "ui/canvas.xml"
             }, {
+            "name": "scroll-view(UIScrollView)",
+            "pagePath": "ui/scrollview.xml"
+            }, {
             "name": "gradient-view(渐变色)",
             "pagePath": "ui/gradient-view.xml"
             }, {

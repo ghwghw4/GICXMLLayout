@@ -51,6 +51,12 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self.view addSubnode:_displayNode];
+    
+    // NOTE:默认去掉返回按钮的文字
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                                   style:UIBarButtonItemStylePlain
+                                                                                  target:self
+                                                                                  action:nil];
 }
 
 -(void)viewDidLayoutSubviews{

@@ -18,6 +18,11 @@
 
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
+             @"is-horizon":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICScrollView *)target).isHorizon = [value boolValue];
+             } withGetter:^id(id target) {
+                 return @(((GICScrollView *)target).isHorizon);
+             }],
              @"show-ver-scroll":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICScrollView *)target gic_safeView:^(UIView *view) {
                      [(UIScrollView *)view setShowsVerticalScrollIndicator:[value boolValue]];
@@ -50,9 +55,16 @@
     return self;
 }
 
+-(void)setIsHorizon:(BOOL)isHorizon{
+    _isHorizon = isHorizon;
+    if(self.nodeLoaded){
+        [self setNeedsLayout];
+    }
+}
+
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
-    ASStackLayoutSpec *temp = [ASStackLayoutSpec verticalStackLayoutSpec];
+    ASStackLayoutSpec *temp = self.isHorizon?[ASStackLayoutSpec horizontalStackLayoutSpec]:[ASStackLayoutSpec verticalStackLayoutSpec];
     temp.children = self.gic_displayNodes;
     return temp;
 }
@@ -62,7 +74,11 @@
     // NOTE: Texture在计算布局的时候，默认将内容的最小高度设置为scrollnode  frame的高度，因此如果scrollview是VC中的第一个view的时候，iOS会自动添加一个内边距，self.view.adjustedContentInset ,这时候如果内容的高度没有超过scriollview 的高度的时候，总是会有一个滚动条出现，很恶心。下面的代码就是自己计算scrollview的contentSize来达到避免这个问题的出现
     ASDisplayNode *lastnode = self.subnodes.lastObject;
     if(lastnode){
-        self.view.contentSize = CGSizeMake(self.frame.size.width, CGRectGetMaxY(lastnode.frame));
+        if(self.isHorizon){
+            self.view.contentSize = CGSizeMake(CGRectGetMaxX(lastnode.frame), self.frame.size.height);
+        }else{
+            self.view.contentSize = CGSizeMake(self.frame.size.width, CGRectGetMaxY(lastnode.frame));
+        }
     }
 }
 @end

@@ -24,7 +24,7 @@
                   [(GICImageView *)target setImagePath:value];
               }],
               @"placehold":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                  [(GICImageView *)target setDefaultImage:[UIImage imageNamed:value]];
+                  [(GICImageView *)target setDefaultImage:[UIImage as_imageNamed:value]];
               }],
               @"local-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                   [(GICImageView *)target setLocalImageName:value];

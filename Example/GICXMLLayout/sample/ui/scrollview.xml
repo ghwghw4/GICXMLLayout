@@ -1,0 +1,25 @@
+<page title="scroll-view" data-context="UIListPageViewModel">
+    <style path="style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="15">
+            <stack-panel>
+                <template-ref t-name="title" data-context="垂直滚动"/>
+                <scroll-view height="100">
+                    <stack-panel height="200" background-color="blue">
+                        <dock-panel height="30">
+                            <lable text="垂直滚动" font-size="18" font-color="white"/>
+                        </dock-panel>
+                    </stack-panel>
+                </scroll-view>
+
+                <template-ref t-name="title" data-context="水平滚动"/>
+                <scroll-view height="50" is-horizon="1">
+                    <dock-panel width="500" background-color="blue">
+                        <lable text="水平滚动" font-size="18" font-color="white"/>
+                    </dock-panel>
+                </scroll-view>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>
+

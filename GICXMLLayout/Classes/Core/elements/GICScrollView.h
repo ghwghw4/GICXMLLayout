@@ -11,5 +11,5 @@
 @interface GICScrollView : ASScrollNode{
 //    GICPanel *panel;
 }
-
+@property (nonatomic,assign)BOOL isHorizon;
 @end

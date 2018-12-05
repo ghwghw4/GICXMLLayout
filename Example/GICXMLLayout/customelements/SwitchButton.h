@@ -7,7 +7,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "GICXMLLayout.h"
+#import <GICXMLLayout/GICXMLLayout.h>
 
 @interface SwitchButton : ASDisplayNode<GICLayoutElementProtocol>
 @property (readonly) UISwitch *view;

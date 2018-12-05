@@ -284,7 +284,11 @@ JSAPI的扩展参考如下文档：
 
    > 返回上一页。你也可以在返回的时候同时传参数
 
-4. Router.onNavgateBackFrom  :**必须在`page`元素中将`js-router`设为`true`**
+4. Router.goBackWithCount(count)
+
+   > 返回到指定层级数的页面。-1：表示返回到根页面。
+
+5. Router.onNavgateBackFrom  :**必须在`page`元素中将`js-router`设为`true`**
 
    > 从前一页返回事件。当从前一页返回的时候触发。
 
@@ -299,7 +303,6 @@ JSAPI的扩展参考如下文档：
        </behaviors>
    </lable>
    ```
-
 
 
 page 元素新增一个属性：js-router

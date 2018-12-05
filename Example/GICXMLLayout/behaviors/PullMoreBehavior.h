@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GICXMLLayout.h"
+#import <GICXMLLayout/GICXMLLayout.h>
 
 /**
  下拉更多

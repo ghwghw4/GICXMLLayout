@@ -6,7 +6,7 @@
 //  Copyright © 2018年 ghwghw4. All rights reserved.
 //
 
-#import "GICXMLLayout.h"
+#import <GICXMLLayout/GICXMLLayout.h>
 // 自动隐藏键盘的行为
 @interface AutoHideKeybordBehavior : GICBehavior{
     __weak UIViewController *target;

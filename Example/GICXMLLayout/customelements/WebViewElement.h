@@ -7,7 +7,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "GICXMLLayout.h"
+#import <GICXMLLayout/GICXMLLayout.h>
 @interface WebViewElement : UIViewController
 @property (nonatomic,strong)NSURL *url;
 @end

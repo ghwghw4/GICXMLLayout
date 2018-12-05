@@ -7,22 +7,25 @@
 //
 
 #import "GICAppDelegate.h"
-#import "GICXMLLayout.h"
-#import "GICElementsCache.h"
+#import <GICXMLLayout/GICXMLLayout.h>
+#import <GICXMLLayout/GICElementsCache.h>
+#import <GICXMLLayout/GICRouter.h>
+
+#import <GICXMLLayout/GICNumberConverter.h>
 
 #import "SwitchButton.h"
-#import "GICNumberConverter.h"
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "WebViewElement.h"
+#import "VideoPlayer.h"
+
+#import "GICJSAPIManager.h"
+#import "JSAPIExtension.h"
+
 #import "AutoHideKeybordBehavior.h"
 #import "PullRefreshBehavior.h"
 #import "PullMoreBehavior.h"
-#import "GICRouter.h"
-#import "GICXMLLayoutDevTools.h"
-#import "WebViewElement.h"
-#import "GICJSAPIManager.h"
-#import "JSAPIExtension.h"
-#import "VideoPlayer.h"
+#import "ClipImageBehavior.h"
 
+#import "GICXMLLayoutDevTools.h"
 
 @implementation GICAppDelegate
 
@@ -54,6 +57,7 @@
     [GICElementsCache registBehaviorElement:[AutoHideKeybordBehavior class]];
     [GICElementsCache registBehaviorElement:[PullRefreshBehavior class]];
     [GICElementsCache registBehaviorElement:[PullMoreBehavior class]];
+    [GICElementsCache registBehaviorElement:[ClipImageBehavior class]];
     
     // 启用JS异常提示(release下请关闭)
 //    [GICJSAPIManager enableJSExceptionNotify];

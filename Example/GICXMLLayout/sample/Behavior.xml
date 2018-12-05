@@ -11,6 +11,15 @@
             <bev-pullrefresh event-refresh="onRefreshData" loading="{{exp=isRefreshing,mode=1}}"/>
             <bev-pullmore event-refresh="onLoadMore" loading="{{exp=isLoadingMore,mode=1}}"/>
         </behaviors>
+        <header>
+            <dock-panel height="50" background-color="blue">
+                <lable text="点我截图并保存" font-size="16" font-color="white"/>
+                <behaviors>
+                    <!--添加一个点击截图保存的行为-->
+                    <bev-clipimage/>
+                </behaviors>
+            </dock-panel>
+        </header>
         <section>
             <for data-path="listDatas">
                 <list-item separator-inset = "0 15 0 15">

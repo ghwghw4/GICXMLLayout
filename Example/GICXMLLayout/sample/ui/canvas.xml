@@ -37,7 +37,7 @@
                 </canvas>
 
                 <template-ref t-name="title" data-context="canvas配合动画"/>
-                <canvas height="100" background-color="yellow" space-before="10">
+                <canvas height="100" background-color="yellow">
                     <data-context>
                         [{
                         "start": 0,
@@ -94,7 +94,7 @@
                 </canvas>
 
                 <template-ref t-name="title" data-context="柱状图(配合动画)"/>
-                <panel space-before="10">
+                <panel>
                     <data-context>
                         [{
                         "x": 0,
@@ -151,7 +151,7 @@
 
                 <template-ref t-name="title" data-context="画一个米字图形"/>
                 <!--      田字          -->
-                <background-panel size="150" space-before="10">
+                <background-panel size="150">
                     <background>
                         <canvas background-color="white">
                             <path line-width="0.5" line-color="red">

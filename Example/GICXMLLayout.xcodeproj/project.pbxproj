@@ -16,6 +16,7 @@
 		37390B36211ADEEC006B305D /* sample in Resources */ = {isa = PBXBuildFile; fileRef = 37390B35211ADEEC006B305D /* sample */; };
 		37391A6821B653A40084EC7F /* JSLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A6621B653A40084EC7F /* JSLocalStorage.m */; };
 		37391A6F21B758540084EC7F /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A6E21B758540084EC7F /* VideoPlayer.m */; };
+		37391A7221B763F00084EC7F /* ClipImageBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A7121B763F00084EC7F /* ClipImageBehavior.m */; };
 		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
@@ -77,6 +78,8 @@
 		37391A6721B653A40084EC7F /* JSLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLocalStorage.h; sourceTree = "<group>"; };
 		37391A6D21B758540084EC7F /* VideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		37391A6E21B758540084EC7F /* VideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
+		37391A7021B763F00084EC7F /* ClipImageBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClipImageBehavior.h; sourceTree = "<group>"; };
+		37391A7121B763F00084EC7F /* ClipImageBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClipImageBehavior.m; sourceTree = "<group>"; };
 		373DD6552105D52A00E359BB /* PullRefreshBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshBehavior.h; sourceTree = "<group>"; };
 		373DD6562105D52A00E359BB /* PullRefreshBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshBehavior.m; sourceTree = "<group>"; };
 		373DD6582105D90400E359BB /* BehaviorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviorViewModel.h; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				373DD6562105D52A00E359BB /* PullRefreshBehavior.m */,
 				373DD65B2106B9B800E359BB /* PullMoreBehavior.h */,
 				373DD65C2106B9B800E359BB /* PullMoreBehavior.m */,
+				37391A7021B763F00084EC7F /* ClipImageBehavior.h */,
+				37391A7121B763F00084EC7F /* ClipImageBehavior.m */,
 			);
 			path = behaviors;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				378901B421746E3F00365120 /* JSAlert.m in Sources */,
 				37A1F5242105770A00AC1778 /* AutoHideKeybordBehavior.m in Sources */,
 				37ED8BB52105B1DB000F0D9A /* TimestampConverter.m in Sources */,
+				37391A7221B763F00084EC7F /* ClipImageBehavior.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,

@@ -13,7 +13,7 @@
 #import "NSObject+LayoutElement.h"
 #import "GICDataBingdingValueConverter.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "GICEvent.h"
+#import "NSObject+GICEvent.h"
 #import "GICElementsHelper.h"
 #import "NSValue+GICXMLLayout.h"
 

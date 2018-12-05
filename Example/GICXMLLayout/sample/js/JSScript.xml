@@ -62,12 +62,11 @@
                     <behaviors>
                         <!--js直接绑定的事件当前仅支持onclick事件-->
                         <script private="1">
-                            var el = $el;
                             $el.onclick = function(){
                                 var r = parseInt(Math.random()*255+1,10);
                                 var g = parseInt(Math.random()*255+1,10);
                                 var b = parseInt(Math.random()*255+1,10);
-                                el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
+                                $el.fontColor = r.toString(16) + g.toString(16) + b.toString(16);
                             };
                         </script>
                     </behaviors>
@@ -78,14 +77,13 @@
                     <behaviors>
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script private="1">
-                            var el = $el;
                             var xmlhttp = new XMLHttpRequest();
                             xmlhttp.onreadystatechange = function()
                             {
                                 if (xmlhttp.status===200)
                                 {
                                     // 将结果在lable中显示出来
-                                    el.text = xmlhttp.responseText;
+                                    $el.text = xmlhttp.responseText;
                                 }
                             }
                             xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);

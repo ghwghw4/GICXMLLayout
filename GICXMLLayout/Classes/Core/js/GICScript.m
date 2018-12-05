@@ -105,13 +105,9 @@ static NSMutableArray<NSOperation *> *operationArray;
     JSContext *context = [GICJSCore findJSContextFromElement:self.target];
     if(self.isPrivate){
         JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:context];
-        if([context isSetRootDataContext]){
-            NSString *js = [NSString stringWithFormat:@"var $el = arguments[0]; %@; $el = null;",jsStr];
-            [[context rootDataContext] excuteJSString:js withArguments:@[selfValue]];
-        }else{
-            NSString *js = [NSString stringWithFormat:@"var $el = %@; %@; $el = null;", [(GICJSElementDelegate *)selfValue.toObject variableName],jsStr];
-            [context evaluateScript:js];
-        }
+        NSString *funcjs = [NSString stringWithFormat:@"this.__tempFunc__ = function($el){ %@ },this.__tempFunc__(arguments[0]);this.__tempFunc__==null;",jsStr];
+        JSValue *targetJsValue = [context isSetRootDataContext]?[context rootDataContext]:context.globalObject;
+        [targetJsValue excuteJSString:funcjs withArguments:@[selfValue]];
     }else{
         [context evaluateScript:jsStr];
     }

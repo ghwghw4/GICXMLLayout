@@ -15,6 +15,7 @@
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
 		37390B36211ADEEC006B305D /* sample in Resources */ = {isa = PBXBuildFile; fileRef = 37390B35211ADEEC006B305D /* sample */; };
 		37391A6821B653A40084EC7F /* JSLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A6621B653A40084EC7F /* JSLocalStorage.m */; };
+		37391A6F21B758540084EC7F /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37391A6E21B758540084EC7F /* VideoPlayer.m */; };
 		373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6562105D52A00E359BB /* PullRefreshBehavior.m */; };
 		373DD65A2105D90400E359BB /* BehaviorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD6592105D90400E359BB /* BehaviorViewModel.m */; };
 		373DD65D2106B9B800E359BB /* PullMoreBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 373DD65C2106B9B800E359BB /* PullMoreBehavior.m */; };
@@ -74,6 +75,8 @@
 		37390B35211ADEEC006B305D /* sample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sample; sourceTree = "<group>"; };
 		37391A6621B653A40084EC7F /* JSLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLocalStorage.m; sourceTree = "<group>"; };
 		37391A6721B653A40084EC7F /* JSLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLocalStorage.h; sourceTree = "<group>"; };
+		37391A6D21B758540084EC7F /* VideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		37391A6E21B758540084EC7F /* VideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		373DD6552105D52A00E359BB /* PullRefreshBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshBehavior.h; sourceTree = "<group>"; };
 		373DD6562105D52A00E359BB /* PullRefreshBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshBehavior.m; sourceTree = "<group>"; };
 		373DD6582105D90400E359BB /* BehaviorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviorViewModel.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				37311A9520FC4051000D0986 /* SwitchButton.m */,
 				37425855211D2C0700E6C7F0 /* WebViewElement.h */,
 				37425856211D2C0700E6C7F0 /* WebViewElement.m */,
+				37391A6D21B758540084EC7F /* VideoPlayer.h */,
+				37391A6E21B758540084EC7F /* VideoPlayer.m */,
 			);
 			path = customelements;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				37E7D364210D9844003C6416 /* ToutiaoViewModel.m in Sources */,
 				37311A9620FC4051000D0986 /* SwitchButton.m in Sources */,
 				37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */,
+				37391A6F21B758540084EC7F /* VideoPlayer.m in Sources */,
 				37391A6821B653A40084EC7F /* JSLocalStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

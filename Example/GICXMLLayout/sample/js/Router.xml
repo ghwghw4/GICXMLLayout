@@ -8,7 +8,7 @@
                     <behaviors>
                         <script private="1">
                             $el.onclick = function(){
-                            Router.push('js/NextPage.xml',{id:1,name:'我是从上一页传过来的参数'});
+                                Router.push('js/NextPage.xml',{id:1,name:'我是从上一页传过来的参数'});
                             }
                         </script>
                     </behaviors>
@@ -18,9 +18,8 @@
                 <lable text="回传参数显示" font-size="18">
                     <behaviors>
                         <script private="1">
-                            var el = $el;
                             Router.onNavgateBackFrom = function(params){
-                                el.text = params.name;
+                                $el.text = params.name;
                             }
                         </script>
                     </behaviors>

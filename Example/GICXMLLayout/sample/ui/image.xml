@@ -7,6 +7,9 @@
                 <template-ref t-name="title" data-context="加载网络图片"/>
                 <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
 
+                <template-ref t-name="title" data-context="加载网络图片(gif)"/>
+                <image url="http://i3.hexunimg.cn/2016-06-06/184264782.jpg" size="120 90" background-color="gray"/>
+
                 <template-ref t-name="title" data-context="加载本地图片(imageWithName:)"/>
                 <image space-before="10" local-name="active" size="18 16"/>
 

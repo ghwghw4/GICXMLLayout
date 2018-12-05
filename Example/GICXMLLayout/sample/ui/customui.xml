@@ -6,8 +6,14 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="switch-button"/>
+                <template-ref t-name="title" data-context="switch-button"/>
                 <switch-button checked="1" height="31"/>
+
+                <template-ref t-name="title" data-context="video(比例布局，横屏试试)"/>
+                <ratio-panel ratio="0.5625">
+                    <video url="http://pic.qiantucdn.com/58pic/video/27/90/94/27909418_18.mp4" size="300 200" background-color="black"/>
+                </ratio-panel>
+
             </stack-panel>
         </inset-panel>
     </scroll-view>

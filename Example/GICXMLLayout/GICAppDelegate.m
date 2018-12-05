@@ -21,6 +21,7 @@
 #import "WebViewElement.h"
 #import "GICJSAPIManager.h"
 #import "JSAPIExtension.h"
+#import "VideoPlayer.h"
 
 
 @implementation GICAppDelegate
@@ -36,6 +37,7 @@
     // 注册自定义元素
     [GICElementsCache registElement:[SwitchButton class]];
     [GICElementsCache registElement:[WebViewElement class]];
+    [GICElementsCache registElement:[VideoPlayer class]];
     
     //添加扩展属性
     // 对scroll-view注入扩展属性

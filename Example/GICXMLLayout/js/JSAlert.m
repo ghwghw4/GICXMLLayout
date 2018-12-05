@@ -37,20 +37,16 @@
 }
 
 - (void)addButton:(NSString *)buttonName clicked:(JSValue *)callback {
-    // NOTE:采用这样的方式来处理callback，是为了避免循环引用的问题。
-    JSValue *thisValue = [JSContext currentThis];
-    thisValue[buttonName] = callback;
-    JSManagedValue *managedThis = [JSManagedValue managedValueWithValue:thisValue];
     [alertVC addAction:[UIAlertAction actionWithTitle:buttonName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        JSValue *cb = managedThis.value[buttonName];
-        if(![cb isUndefined]){
-            [cb callWithArguments:nil];
+        if(![callback isUndefined]){
+            [callback callWithArguments:nil];
         }
+        // NOTE:关键代码，如果没有这行代码会引起JSValue的循环引用。
+        self->alertVC = nil;
     }]];
 }
 
 - (void)show {
     [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:alertVC animated:YES completion:nil];
 }
-
 @end

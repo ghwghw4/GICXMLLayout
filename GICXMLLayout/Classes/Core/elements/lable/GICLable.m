@@ -16,7 +16,9 @@
 #import "NSObject+GICDataBinding.h"
 #import "GICFontConverter.h"
 
-@implementation GICLable
+@implementation GICLable{
+    GICEvent *linkTapEvent;
+}
 
 static NSArray *supportElementNames;
 static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts = nil;
@@ -67,7 +69,24 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              NSMutableParagraphStyle * p = [((GICLable *)target)->attributes objectForKey:NSParagraphStyleAttributeName];
                              return @(p.alignment);
                          }],
-                         
+                         @"event-link-tap":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             GICLable *item = (GICLable *)target;
+                             item->linkTapEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-link-tap" toTarget:target];
+                         } withGetter:^id(id target) {
+                             return [target gic_event_findWithEventName:@"event-link-tap"];
+                         }],
+                         @"underline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [((GICLable *)target)->attributes setValue:value forKey:NSUnderlineStyleAttributeName];
+                             [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                            return [((GICLable *)target)->attributes objectForKey:NSUnderlineStyleAttributeName];
+                         }],
+                         @"throughline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             [((GICLable *)target)->attributes setValue:value forKey:NSStrikethroughStyleAttributeName];
+                             [(GICLable *)target updateString];
+                         } withGetter:^id(id target) {
+                             return [((GICLable *)target)->attributes objectForKey:NSStrikethroughStyleAttributeName];
+                         }],
                          };
 }
 
@@ -84,6 +103,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     attributes = [NSMutableDictionary dictionary];
     mutAttString = [[NSMutableAttributedString alloc] init];
     attbuteStringArray = [NSMutableArray array];
+    self.delegate = self;
     return self;
 }
 
@@ -99,6 +119,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     if(attbuteStringArray.count>0){
         [self->mutAttString deleteCharactersInRange:NSMakeRange(0, self->mutAttString.length)];
         NSInteger offset = 0;
+        NSMutableArray *linkArray = [NSMutableArray array];
         for(NSMutableAttributedString *att in attbuteStringArray){
             [self->mutAttString appendAttributedString:att];
             if(!att.gic_isImg){
@@ -109,6 +130,17 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                 [self->mutAttString setAttributes:dict range:NSMakeRange(offset, att.length)];
             }
             offset +=att.length;
+            NSURL *url = [att gic_linkUrl];
+            if(url){
+                [linkArray addObject:[url absoluteString]];
+            }
+        }
+        
+        if(linkArray.count>0){
+            [self setUserInteractionEnabled:YES];
+            self.linkAttributeNames = linkArray;
+        }else{
+            [self setUserInteractionEnabled:NO];
         }
     }else{
         if(attributes){
@@ -140,5 +172,13 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
         return s;
     }
     return [super gic_parseSubElementNotExist:element];
+}
+
+#pragma mark ASTextNodeDelegate
+- (void)textNode:(ASTextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange
+{
+    if(linkTapEvent){
+        [linkTapEvent fire:URL.absoluteString];
+    }
 }
 @end

@@ -12,7 +12,10 @@
 #import "GICColorConverter.h"
 #import "GICStringConverter.h"
 #import "GICFontConverter.h"
+#import "GICURLConverter.h"
 #import <objc/runtime.h>
+
+#define kLinkAttributeName @"GIClink"
 
 @implementation NSMutableAttributedString (GICLableSubString)
 
@@ -34,6 +37,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSForegroundColorAttributeName];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str.gic_attributDict objectForKey:NSForegroundColorAttributeName];
                          }],
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
@@ -46,6 +52,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSBackgroundColorAttributeName];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str.gic_attributDict objectForKey:NSBackgroundColorAttributeName];
                          }],
                          @"img-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
@@ -58,6 +67,31 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str deleteCharactersInRange:NSMakeRange(0, str.length)];
                              [str appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str string];
+                         }],
+                         @"link":[[GICURLConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str.gic_attributDict setValue:value forKey:kLinkAttributeName];
+                             [str.gic_attributDict setValue:value forKey:[(NSURL *)value absoluteString]];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str.gic_attributDict objectForKey:NSLinkAttributeName];
+                         }],
+                         @"underline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str.gic_attributDict setValue:value forKey:NSUnderlineStyleAttributeName];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str.gic_attributDict objectForKey:NSUnderlineStyleAttributeName];
+                         }],
+                         @"throughline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str.gic_attributDict setValue:value forKey:NSStrikethroughStyleAttributeName];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return [str.gic_attributDict objectForKey:NSStrikethroughStyleAttributeName];
                          }],
                          };
 }
@@ -77,5 +111,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     }
     self.gic_attributDict = [NSMutableDictionary dictionary];
     return self;
+}
+
+-(NSURL *)gic_linkUrl{
+    return [self.gic_attributDict objectForKey:kLinkAttributeName];
 }
 @end

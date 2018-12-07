@@ -9,6 +9,7 @@
 #import "GICTransformTranslate.h"
 #import "GICTransformScale.h"
 #import "GICTransformRotate.h"
+#import "GICBoolConverter.h"
 
 @implementation GICTransforms
 static NSDictionary<NSString *,Class> *supportElementParts = nil;
@@ -19,6 +20,14 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
                             [GICTransformScale gic_elementName]:[GICTransformScale class],
                             [GICTransformRotate gic_elementName]:[GICTransformRotate class],
                             };
+}
+
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
+    return @{
+             @"sub":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICTransforms *)target).sub = [value boolValue];
+             }]
+             };;
 }
 
 +(NSString *)gic_elementName{
@@ -47,7 +56,11 @@ static NSDictionary<NSString *,Class> *supportElementParts = nil;
                 t = CATransform3DConcat(t, [(GICTransform *)tmp makeTransform]);
             }
         }
-        [(ASDisplayNode *)self.target setTransform:t];
+        if(self.sub){
+            [(ASDisplayNode *)self.target setSubnodeTransform:t];
+        }else{
+            [(ASDisplayNode *)self.target setTransform:t];
+        }
     }
 }
 @end

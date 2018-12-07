@@ -20,6 +20,24 @@
                     <img img-name="location"/>
                     <s text="  富文本2" font-size="10" font-color="gray"/>
                 </lable>
+
+                <template-ref t-name="title" data-context="富文本(文字+link)"/>
+                <lable font-color="black" font-size="20" event-link-tap="js:alert($eventInfo)">
+                    <s text="链接1(点我)" font-color="gray" link="http://www.baidu.com" underline-style="{{(0x01 | 0x0100)}}"/>
+                    <s text="      "/>
+                    <s text="链接2(点我)" font-size="10" font-color="gray" link="http://ifeng.com" underline-style="{{(0x01)}}"/>
+                    <s text="      "/>
+                    <s text="删除线" font-size="10" font-color="gray" throughline-style="{{(0x01 | 0x0100)}}"/>
+                </lable>
+
+                <template-ref t-name="title" data-context="下划线"/>
+                <!--由于gic 支持绑定的时候执行JS脚本，因此可以直接让JS计算 | -->
+                <lable font-color="black" font-size="20" text="下划线1" underline-style="{{(0x01)}}"/>
+                <lable font-color="black" font-size="20" text="下划线2" underline-style="{{(0x01 | 0x0100)}}"/>
+
+                <template-ref t-name="title" data-context="删除线"/>
+                <lable font-color="black" font-size="20" text="删除线1" throughline-style="1"/>
+                <lable font-color="black" font-size="20" text="删除线2" throughline-style="{{(0x01 | 0x0100)}}"/>
             </stack-panel>
         </inset-panel>
     </scroll-view>

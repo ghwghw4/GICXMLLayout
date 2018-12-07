@@ -8,5 +8,5 @@
 #import <GICXMLLayout/GICXMLLayout.h>
 
 @interface GICTransforms : GICBehavior<GICDisplayProtocol>
-
+@property (nonatomic,assign)BOOL sub;
 @end

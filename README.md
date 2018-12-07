@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.5'
+pod 'GICXMLLayout', '~> 0.4.6'
 ```
 
 
@@ -202,6 +202,17 @@ pod 'GICXMLLayout', '~> 0.4.5'
 1. `JSRouter`增加返回层级的参数。[文档](http://gicxmllayout.gonghaiwei.cn/script.html)
 
    > 你现在可以选择返回的页面层级了。
+
+### 0.4.6
+
+1. 将`Router`中的`页面返回按钮`隐藏文字。
+
+2. `scroll-view`元素增加水平滚动功能。
+
+3. `lable`元素增加如下功能。[文档](http://gicxmllayout.gonghaiwei.cn/ui/lable.html)
+
+   > 1. 提供对`link`的支持。
+   > 2. 提供下划线、删除线的支持。
 
 ## Author
 

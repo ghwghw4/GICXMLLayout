@@ -35,7 +35,7 @@ UI元素的属性较多，设计到布局属性以及显示属性。具体如下
 | shadow-color      | UIColor       | 阴影颜色。**(慎用，会引起离屏渲染)**                         | 是           | 是           |
 | shadow-opacity    | Float         | 阴影透明度。**(慎用，会引起离屏渲染)**                       | 是           | 是           |
 | shadow-radius     | Float         | 阴影半径。**(慎用，会引起离屏渲染)**                         | 是           | 是           |
-| shadow-offset     | Float         | 阴影偏移。**(慎用，会引起离屏渲染)**                         | 是           | 是           |
+| shadow-offset     | CGSize        | 阴影偏移。**(慎用，会引起离屏渲染)**                         | 是           | 是           |
 | border-color      | UIColor       | 边框颜色                                                     | 是           | 是           |
 | border-width      | Float         | 边框宽度                                                     | 是           | 是           |
 | clips-bounds      | Bool          | 类似UIVIew的 clips-bounds                                    | 是           | 是           |

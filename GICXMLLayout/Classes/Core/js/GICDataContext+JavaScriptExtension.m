@@ -17,23 +17,17 @@
         return;
     if([self gic_dataPathKey] && [jsValue.value isObject]){ //以防array 无法获取value
         JSValue *pathValue = jsValue.value[[self gic_dataPathKey]];
-        if(![pathValue isUndefined]){
-            // 用来监听gic_dataPathKey对应的属性改变事件
-            JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self inContext:[jsValue.value context]];
-            @weakify(self)
-            selfValue[@"_updateBindPath"] = ^(JSValue *value){
-                @strongify(self)
-                [self gic_updateDataContext:[value gic_ToManagedValue:self]];
-            };
-            [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
-            jsValue = [pathValue gic_ToManagedValue:self];
-            // 关键代码
-            [self setGic_DataContext:jsValue updateBinding:NO];
-        }else{
-            jsValue = [pathValue gic_ToManagedValue:self];
-             // 关键代码
-            [self setGic_DataContext:jsValue updateBinding:NO];
-        }
+        // 用来监听gic_dataPathKey对应的属性改变事件
+        JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self inContext:[jsValue.value context]];
+        @weakify(self)
+        selfValue[@"_updateBindPath"] = ^(JSValue *value){
+            @strongify(self)
+            [self gic_updateDataContext:[value gic_ToManagedValue:self]];
+        };
+        [jsValue.value invokeMethod:@"addElementBind" withArguments:@[selfValue,[self gic_dataPathKey],@"_updateBindPath"]];
+        jsValue = [pathValue gic_ToManagedValue:self];
+        // 关键代码
+        [self setGic_DataContext:jsValue updateBinding:NO];
     }
     
     for(GICDataBinding *b in [self gic_Bindings]){

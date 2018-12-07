@@ -44,6 +44,11 @@
  */
 +(void)enableDefualtStyle:(BOOL)enable;
 
+
+#pragma mark 加载数据
++(NSData *)loadDataFromPath:(NSString *)path;
++(NSData *)loadDataFromUrl:(NSURL *)url;
+
 #pragma mark 解析
 
 /**

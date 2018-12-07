@@ -7,6 +7,18 @@
                 <template-ref t-name="title" data-context="加载网络图片"/>
                 <image url="http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg" size="100"/>
 
+                <template-ref t-name="title" data-context="placeholder"/>
+                <image size="100" placehold="placeholder" fill-mode="1">
+                    <behaviors>
+                        <script private="1">
+                            // 模拟网络长时间加载，便于显示占位图
+                            setTimeout(function(){
+                                $el.url = 'http://img5.duitang.com/uploads/item/201204/01/20120401222440_eEjyC.thumb.700_0.jpeg';
+                            },1000);
+                        </script>
+                    </behaviors>
+                </image>
+
                 <template-ref t-name="title" data-context="加载网络图片(gif)"/>
                 <image url="http://i3.hexunimg.cn/2016-06-06/184264782.jpg" size="120 90" background-color="gray"/>
 
@@ -15,6 +27,7 @@
 
                 <template-ref t-name="title" data-context="加载相对路径图片(这里的图片可以直接被打包进zip中，方便热更新)"/>
                 <image path="images/headicon.jpg" size="100"/>
+
 
                 <template-ref t-name="title" data-context="比例显示图片(16:9)，横竖屏切换试试看"/>
                 <ratio-panel ratio="0.5625">

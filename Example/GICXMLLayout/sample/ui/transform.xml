@@ -34,31 +34,68 @@
                     </transforms>
                 </template-ref>
 
-                <template-ref t-name="title" data-context="动画"/>
-                <template-ref t-name="cube">
-                    <transforms slot-name = "transforms">
-                        <!--旋转动画-->
-                        <rotate>
-                            <animations>
-                                <anim-attribute attribute-name="z" on="1" from="0" to="360" duration="2" repeat="-1"/>
-                            </animations>
-                        </rotate>
+                <template-ref t-name="title" data-context="立方体"/>
+                <dock-panel height="200">
+                    <panel size="100">
+                        <!--底部背对着我们的视图-->
+                        <dock-panel size="100" background-color="purple">
+                            <lable text="后" font-color="white" font-size="16"/>
+                        </dock-panel>
 
-                        <!--缩放动画-->
-                        <scale>
-                            <animations>
-                                <anim-attribute attribute-name="x" on="1" from="1" to="0.5" duration="2" repeat="-1" autoreverses="1"/>
-                                <anim-attribute attribute-name="y" on="1" from="1" to="0.5" duration="2" repeat="-1" autoreverses="1"/>
-                            </animations>
-                        </scale>
-                        <!--位移动画-->
-                        <translate>
-                            <animations>
-                                <anim-attribute attribute-name="x" on="1" from="0" to="50" duration="2" repeat="-1" autoreverses="1"/>
-                            </animations>
-                        </translate>
-                    </transforms>
-                </template-ref>
+                        <!--右侧的视图-->
+                        <dock-panel size="100" background-color="yellow" event-tap="js:alert('右')">
+                            <transforms>
+                                <translate x="50" z="50"/>
+                                <rotate y="-90"/>
+                            </transforms>
+                            <lable text="右" font-color="black" font-size="16"/>
+                        </dock-panel>
+
+                        <!--左侧的视图-->
+                        <dock-panel size="100" background-color="blue" event-tap="js:alert('左')">
+                            <transforms>
+                                <translate x="-50" z="50"/>
+                                <rotate y="90"/>
+                            </transforms>
+                            <lable text="左" font-color="white" font-size="16"/>
+                        </dock-panel>
+
+                        <dock-panel size="100" background-color="gray" event-tap="js:alert('下')">
+                            <transforms>
+                                <translate y="-50" z="50"/>
+                                <rotate x="-90"/>
+                            </transforms>
+                            <lable text="下" font-color="white" font-size="16"/>
+                        </dock-panel>
+
+                        <dock-panel size="100" background-color="black" event-tap="js:alert('上')">
+                            <transforms>
+                                <translate y="50" z="50"/>
+                                <rotate x="90"/>
+                            </transforms>
+                            <lable text="上" font-color="white" font-size="16"/>
+                        </dock-panel>
+
+                        <dock-panel size="100" background-color="green" event-tap="js:alert('前')">
+                            <transforms>
+                                <translate z="100"/>
+                            </transforms>
+                            <lable text="前" font-color="white" font-size="16"/>
+                        </dock-panel>
+
+                        <!--旋转动画-->
+                        <!--sub 是关键，也就是说，将形变应用于所有的子元素-->
+                        <transforms sub="1">
+                            <rotate>
+                                <animations>
+                                    <anim-attribute attribute-name="y" on="1" from="0" to="360" duration="10" repeat="-1"/>
+                                    <anim-attribute attribute-name="x" on="1" from="0" to="360" duration="5" repeat="-1"/>
+                                    <anim-attribute attribute-name="z" on="1" from="0" to="360" duration="8" repeat="-1"/>
+                                </animations>
+                            </rotate>
+                        </transforms>
+                    </panel>
+                </dock-panel>
             </stack-panel>
         </inset-panel>
     </scroll-view>

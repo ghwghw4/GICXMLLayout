@@ -10,9 +10,14 @@
 
 @implementation JSValue (GICJSExtension)
 -(BOOL)gic_isArray{
+    if([self isUndefined])
+        return false;
     return [[self invokeMethod:@"isArray" withArguments:nil] toBool];
 }
 -(JSManagedValue *)gic_ToManagedValue:(id)owner{
+    if([self isNull] || [self isUndefined]){
+        return nil;
+    }
     //    if(owner){
     //        return [JSManagedValue managedValueWithValue:self andOwner:owner];
     //    }

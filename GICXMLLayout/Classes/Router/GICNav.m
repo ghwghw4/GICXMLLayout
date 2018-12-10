@@ -83,8 +83,8 @@
     }
     
     // JSRouter
-    if([page isKindOfClass:[GICPage class]] && [(GICPage *)page jsRouter]){
-        [GICRouterJSAPIExtension goBackWithParmas:paramsData fromPage:(GICPage *)page];
+    if([page isKindOfClass:[GICPage class]]){
+        [GICRouterJSAPIExtension goBackFromPage:(GICPage *)page];
     }
 }
 
@@ -102,11 +102,11 @@
                 [viewModel navigationWithParams:[[GICRouterParams alloc] initWithData:paramsData from:[self visibleViewController]]];
             }
         }
-        // JSRouter
-        if([page isKindOfClass:[GICPage class]] && page.jsRouter && paramsData){
-            //
-            [GICRouterJSAPIExtension setJSParamsData:paramsData withPage:page];
-        }
+//        // JSRouter
+//        if([page isKindOfClass:[GICPage class]] && page.jsRouter && paramsData){
+//            //
+//            [GICRouterJSAPIExtension setJSParamsData:paramsData withPage:page];
+//        }
         [self pushViewController:page animated:YES];
     }];
 }

@@ -15,5 +15,7 @@
 
 // 调度到ElementQueue 同步执行
 void GICPerformBlockOnElementQueue(void (^block)(void));
+// 在主线程同步调用
+void GICPerformBlockOnMainQueueSync(void (^block)(void));
 
 #endif /* GICXMLLayoutPrivate_h */

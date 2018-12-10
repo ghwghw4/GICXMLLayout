@@ -1,4 +1,4 @@
-<page title="JSScript" js-router="1">
+<page title="JSScript">
     <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="10">

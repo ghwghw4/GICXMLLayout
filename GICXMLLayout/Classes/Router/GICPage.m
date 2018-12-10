@@ -15,6 +15,8 @@
 #import "GICNavBar.h"
 #import "GICXMLParserContext.h"
 @interface GICPage (){
+    GICEvent *eventAppear;
+    GICEvent *eventDisappear;
 }
 @property (nonatomic, strong) ASDisplayNode *displayNode;
 @end
@@ -30,9 +32,17 @@
              @"title":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICPage *)target setTitle:value];
              }],
-             
-             @"js-router":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 ((GICPage *)target)->_jsRouter = [value boolValue];
+             @"event-appear":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICPage *page = (GICPage *)target;
+                 page->eventAppear =  [GICEvent createEventWithExpresion:value withEventName:@"event-appear" toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findWithEventName:@"event-appear"];
+             }],
+             @"event-disappear":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICPage *page = (GICPage *)target;
+                 page->eventAppear =  [GICEvent createEventWithExpresion:value withEventName:@"event-disappear" toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findWithEventName:@"event-disappear"];
              }],
              // tips:不要提供background-color属性，提供了以后有可能会引起其他的问题
 //             @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -59,6 +69,19 @@
                                                                                   action:nil];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(eventAppear){
+        [eventAppear fire:nil];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    if(eventDisappear){
+        [eventDisappear fire:nil];
+    }
+}
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     _displayNode.frame = self.view.bounds;

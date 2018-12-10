@@ -11,6 +11,7 @@
 #import "GICXMLParserContext.h"
 
 @interface GICRouterJSAPIExtension : NSObject<GICJSAPIRegisterProtocl>
-+(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page;
-+(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page;
+//+(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page;
+//+(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page;
++(void)goBackFromPage:(GICPage *)page;
 @end

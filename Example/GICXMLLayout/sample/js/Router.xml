@@ -1,4 +1,4 @@
-<page title="JSRouter示例" js-router="1">
+<page title="JSRouter示例">
     <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="10">

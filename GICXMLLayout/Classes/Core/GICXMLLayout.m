@@ -243,3 +243,14 @@ void GICPerformBlockOnElementQueue(void (^block)(void))
         dispatch_async([GICXMLLayout parseElementQueue], block);
     }
 }
+
+void GICPerformBlockOnMainQueueSync(void (^block)(void)){
+    if (block == nil){
+        return;
+    }
+    if(ASDisplayNodeThreadIsMain()){
+        block();
+    }else{
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}

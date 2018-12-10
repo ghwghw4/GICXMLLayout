@@ -9,5 +9,4 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 @interface GICPage : ASViewController{
 }
-@property (nonatomic,readonly)BOOL jsRouter;
 @end

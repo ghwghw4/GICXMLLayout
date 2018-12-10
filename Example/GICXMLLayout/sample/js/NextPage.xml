@@ -1,4 +1,4 @@
-<page title="下一页" js-router="1">
+<page title="下一页">
     <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="10">

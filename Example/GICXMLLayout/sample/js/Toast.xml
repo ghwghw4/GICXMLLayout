@@ -1,4 +1,4 @@
-<page title="Toast" js-router="1">
+<page title="Toast">
     <style path="style/CommonStyle.xml" />
     <templates>
         <template t-name="toast">

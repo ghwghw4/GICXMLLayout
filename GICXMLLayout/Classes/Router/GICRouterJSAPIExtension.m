@@ -39,6 +39,8 @@ id __convertJSValueToJsonString(JSValue *paramsData,JSContext *context){
     return params;
 }
 
+static id gic_tempparamsValue = nil;
+
 @protocol GICJSRouter <JSExport>
 @required
 /**
@@ -82,7 +84,8 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(JSValue *)paramsDa
 }
 
 -(void)goBack:(JSValue *)paramsData{
-    [[element gic_Router] goBackWithParams:__convertJSValueToJsonString(paramsData,[JSContext currentContext])];
+    gic_tempparamsValue = __convertJSValueToJsonString(paramsData,[JSContext currentContext]);
+    [[element gic_Router] goBackWithParams:nil];
 }
 
 -(void)goBackRoot{
@@ -94,7 +97,8 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(JSValue *)paramsDa
 }
 
 - (void)push:(NSString *)path withParamsData:(JSValue *)paramsData {
-    [[element gic_Router] push:path withParamsData:__convertJSValueToJsonString(paramsData,[JSContext currentContext])];
+    gic_tempparamsValue = __convertJSValueToJsonString(paramsData,[JSContext currentContext]);
+    [[element gic_Router] push:path withParamsData:nil];
 }
 
 -(void)setParams:(JSValue *)params{
@@ -118,18 +122,25 @@ JSExportAs(push, -(void)push:(NSString *)path withParamsData:(JSValue *)paramsDa
 
 
 @implementation GICRouterJSAPIExtension
+
 +(void)registeJSAPIToJSContext:(JSContext *)context{
     context[@"Router"] = [[GICJSRouter alloc] initWithElement:[GICJSDocument rootElementFromJsContext:context]];
     context[@"Popover"] = [GICJSPopover class];
+    if(gic_tempparamsValue){
+        context[@"Router"][@"params"] = __convertPramsDataToJsonData(gic_tempparamsValue,context);
+        gic_tempparamsValue = nil;
+    }
 }
 
-+(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page{
-    JSContext *context = [GICJSCore findJSContextFromElement:page];
-    context[@"Router"][@"params"] = __convertPramsDataToJsonData(paramsData,context);
-}
+//+(void)setJSParamsData:(id)paramsData withPage:(GICPage *)page{
+//    JSContext *context = [GICJSCore findJSContextFromElement:page];
+//    context[@"Router"][@"params"] = __convertPramsDataToJsonData(paramsData,context);
+//}
 
-+(void)goBackWithParmas:(id)paramsData fromPage:(GICPage *)page{
-    JSContext *context = [GICJSCore findJSContextFromElement:page];
-    [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:(paramsData?@[__convertPramsDataToJsonData(paramsData,context)]:nil)];
++(void)goBackFromPage:(GICPage *)page{
+    if(gic_tempparamsValue){
+        JSContext *context = [GICJSCore findJSContextFromElement:page];
+        [context[@"Router"][@"onNavgateBackFrom"] callWithArguments:(@[__convertPramsDataToJsonData(gic_tempparamsValue,context)])];
+    }
 }
 @end

@@ -1,4 +1,4 @@
-<page title="document API 演示" js-router="1">
+<page title="document API 演示">
     <style path="style/CommonStyle.xml" />
     <scroll-view background-color="white">
         <inset-panel inset="10">

@@ -9,7 +9,5 @@
 
 
 @interface GICXMLLayoutDevTools : NSObject
-+(UIViewController *)loadXMLFromUrl:(NSURL *)url;
-
 +(void)loadAPPFromPath:(NSString *)path;
 @end

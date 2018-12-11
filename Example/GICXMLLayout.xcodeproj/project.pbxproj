@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		05E79EB4CBD70376DF5DF5DB /* Pods_GICXMLLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BBB6F434260D8B432E48CF /* Pods_GICXMLLayout_Example.framework */; };
 		372D87B5210EA8560037E314 /* GICXMLLayoutDevTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B1210EA8560037E314 /* GICXMLLayoutDevTools.m */; };
-		372D87B6210EA8560037E314 /* GICXMLLayoutDevPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */; };
 		37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9120FC3F16000D0986 /* StackPanelViewModel.m */; };
 		37311A9620FC4051000D0986 /* SwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311A9520FC4051000D0986 /* SwitchButton.m */; };
 		37311AA320FC9E92000D0986 /* InputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37311AA220FC9E92000D0986 /* InputViewModel.m */; };
@@ -64,9 +63,7 @@
 /* Begin PBXFileReference section */
 		00A1A556B8FDC9DDFCDF2A8F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		372D87B1210EA8560037E314 /* GICXMLLayoutDevTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GICXMLLayoutDevTools.m; sourceTree = "<group>"; };
-		372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GICXMLLayoutDevPage.m; sourceTree = "<group>"; };
 		372D87B3210EA8560037E314 /* GICXMLLayoutDevTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevTools.h; sourceTree = "<group>"; };
-		372D87B4210EA8560037E314 /* GICXMLLayoutDevPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GICXMLLayoutDevPage.h; sourceTree = "<group>"; };
 		37311A9020FC3F16000D0986 /* StackPanelViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackPanelViewModel.h; sourceTree = "<group>"; };
 		37311A9120FC3F16000D0986 /* StackPanelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackPanelViewModel.m; sourceTree = "<group>"; };
 		37311A9420FC4051000D0986 /* SwitchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchButton.h; sourceTree = "<group>"; };
@@ -181,9 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				372D87B1210EA8560037E314 /* GICXMLLayoutDevTools.m */,
-				372D87B2210EA8560037E314 /* GICXMLLayoutDevPage.m */,
 				372D87B3210EA8560037E314 /* GICXMLLayoutDevTools.h */,
-				372D87B4210EA8560037E314 /* GICXMLLayoutDevPage.h */,
 			);
 			path = dev;
 			sourceTree = "<group>";
@@ -571,7 +566,6 @@
 				37A7AFDA20F311B2006AADC2 /* UtilsHelp.m in Sources */,
 				372D87B5210EA8560037E314 /* GICXMLLayoutDevTools.m in Sources */,
 				37C806AC20F36CFA002EEF55 /* ListSamplePageViewModel.m in Sources */,
-				372D87B6210EA8560037E314 /* GICXMLLayoutDevPage.m in Sources */,
 				37311A9220FC3F16000D0986 /* StackPanelViewModel.m in Sources */,
 				37425857211D2C0700E6C7F0 /* WebViewElement.m in Sources */,
 				373DD6572105D52A00E359BB /* PullRefreshBehavior.m in Sources */,

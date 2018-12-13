@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const XMLNode = require('../XMLDoc');
 
-const configJson = require(`${vscode.extensions.getExtension("龚海伟.gicvscodeextension").extensionPath}/src/completion/Config.json`);
+const configJson = require(`${vscode.extensions.getExtension("gonghaiwei.gicvscodeextension").extensionPath}/src/completion/Config.json`);
 
 String.prototype.ltrim = function () {
     return this.replace(/(^\s*)/g, "");
@@ -24,19 +24,21 @@ function findTempElement(node, cb) {
             findTempElement(n, cb);
         }
     });
-    // if(node.name ==)
-    // node.subNodes
-    // Object.keys(element).forEach(k=>{
-    //     if((element[k] instanceof Array)){
-    //         element[k].forEach((el)=>{
-    //             if(el['temp-element']){
-    //                 cb(k);
-    //             }else{
-    //                 findTempElement(el,cb);
-    //             }
-    //         });
-    //     }
-    // });
+}
+
+function readTempDoc(document, position){
+    // let doc = document.getText(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(position.line-1, 100000)));
+    // doc += '<temp-element></temp-element>';
+    // doc += document.getText(new vscode.Range(new vscode.Position(position.line+1, 0), new vscode.Position(document.lineCount, 100000)));
+    let doc = '';
+    for(let i=0;i<document.lineCount;i++){
+        if(i===position.line){
+            doc += '<temp-element></temp-element>';
+        }else{
+            doc += document.lineAt(new vscode.Position(i,100000)).text;
+        }
+    }
+    return doc;
 }
 
 /**
@@ -48,9 +50,15 @@ function findTempElement(node, cb) {
  */
 function provideCompletionItems(document, position, token, context) {
     const line = document.lineAt(position);
+
+    if(configJson === null){
+        vscode.window.showErrorMessage('JSON配置文件读取失败！');
+        return;
+    }
     // 只截取到光标位置为止，防止一些特殊情况
     const lineText = line.text.substring(0, position.character).ltrim();
-    if(lineText[lineText.length - 1] === '$'){ //
+    const lastChar = lineText[lineText.length - 1];
+    if(lastChar === '$'){ //
         let completionItems = []; 
         configJson.JSKeywords.forEach(item => {
             let completionItem = new vscode.CompletionItem(item.name);
@@ -65,10 +73,8 @@ function provideCompletionItems(document, position, token, context) {
     if (strs.length === 1) {
         let elements = [].concat(configJson.elements);
         { // 判断是否支持子元素
-            let doc = document.getText(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(document.lineCount, 10000)));
-            // 删除当前行的文本
-            doc = doc.replace(line.text, '<temp-element></temp-element>');
-            let parentElementName = null;
+            let doc = readTempDoc(document,position);
+            let parentElementName =null;
             let xmldoc = XMLNode.parse(doc);
             if (xmldoc) {
                 findTempElement(xmldoc, (node) => {

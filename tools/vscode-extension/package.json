@@ -2,8 +2,8 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.0.1",
-    "publisher": "龚海伟",
+    "version": "1.0.4",
+    "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"
     },
@@ -29,11 +29,14 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.11.0",
-        "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "eslint": "^4.11.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
         "xml2js": "^0.4.19"
-    }
+    },
+    "extensionDependencies":["redhat.vscode-xml"]
 }

@@ -12,7 +12,10 @@
 #import "NSObject+GICEvent.h"
 #import "GICTapEvent.h"
 
-@implementation GICAnimation
+@implementation GICAnimation{
+    GICEvent *eventEnd;
+    GICEvent *eventBegin;
+}
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
              @"duration":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
@@ -31,13 +34,25 @@
              @"event-name":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_eventName = value;
              }],
+             @"event-animation-start":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICAnimation *page = (GICAnimation *)target;
+                 page->eventBegin =  [GICEvent createEventWithExpresion:value withEventName:@"event-animation-start" toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findWithEventName:@"event-animation-start"];
+             }],
+             @"event-animation-end":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICAnimation *page = (GICAnimation *)target;
+                 page->eventEnd =  [GICEvent createEventWithExpresion:value withEventName:@"event-animation-end" toTarget:target];
+             } withGetter:^id(id target) {
+                 return [target gic_event_findWithEventName:@"event-animation-end"];
+             }],
              @"ease-mode":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICAnimation *)target)->_easeMode = (GICAnimationEaseMode)[value integerValue];
              }],
-//             @"spring-velocity":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-//                 // spring动画初始速率
-//                 ((GICAnimation *)target)->_springVelocity = [value floatValue];
-//             }],
+             //             @"spring-velocity":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+             //                 // spring动画初始速率
+             //                 ((GICAnimation *)target)->_springVelocity = [value floatValue];
+             //             }],
              @"spring-bounciness":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  // spring动画
                  ((GICAnimation *)target)->_springBounciness = [value floatValue];
@@ -89,6 +104,20 @@
 #endif
     animation.autoreverses = self.autoreverses;
     [self.target pop_addAnimation:animation forKey:nil];
+    // 动画开始事件
+    if(self->eventBegin){
+        [self->eventBegin fire:nil];
+    }
+    
+    // 动画结束事件
+    if(self->eventEnd){
+        @weakify(self)
+        animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            @strongify(self)
+            [self->eventEnd fire:nil];
+        };
+    }
+    
 }
 
 -(POPPropertyAnimation *)createAnimation{
@@ -99,10 +128,10 @@
             [(POPSpringAnimation *)propAnim setSpringSpeed:self.springSpeed];
         }
         
-//        if(self.springVelocity>0){
-//            [(POPSpringAnimation *)propAnim setVelocity:@(self.springVelocity)];
-//        }
-       
+        //        if(self.springVelocity>0){
+        //            [(POPSpringAnimation *)propAnim setVelocity:@(self.springVelocity)];
+        //        }
+        
         if(self.springBounciness >= 0){
             [(POPSpringAnimation *)propAnim setSpringBounciness:self.springBounciness];
         }
@@ -137,4 +166,5 @@
     return YES;
 }
 @end
+
 

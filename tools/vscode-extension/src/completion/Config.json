@@ -330,6 +330,16 @@
         {
             "name": "spring-speed",
             "desc": "速度 越大则动画结束越快，0~20之间"
+        },
+        {
+            "name": "event-animation-start",
+            "desc": "动画开始事件",
+            "type":"event"
+        },
+        {
+            "name": "event-animation-end",
+            "desc": "动画结束事件",
+            "type":"event"
         }
     ],
     "elements": [
@@ -562,6 +572,16 @@
                         {
                             "name": "title",
                             "desc": "标题"
+                        },
+                        {
+                            "name": "event-appear",
+                            "desc": "viewDidAppear",
+                            "type":"event"
+                        },
+                        {
+                            "name": "event-disappear",
+                            "desc": "viewDidDisappear",
+                            "type":"event"
                         }
                     ],
                     "desc": "导航栏(UINavigationBar)",
@@ -1684,6 +1704,7 @@
                     ]
                 }
             ],
+            "special":true,
             "isui": true
         },
         {

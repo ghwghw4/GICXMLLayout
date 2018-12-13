@@ -1,0 +1,39 @@
+{
+    "name": "gicvscodeextension",
+    "displayName": "GICVSCodeExtension",
+    "description": "GICXMLLayout VSCode Extension",
+    "version": "1.0.1",
+    "publisher": "龚海伟",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "keywords": [
+        "gic",
+        "gicxmllayout"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./src/extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "GICXMLLayout 插件"
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42",
+        "xml2js": "^0.4.19"
+    }
+}

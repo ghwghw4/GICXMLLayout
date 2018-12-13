@@ -12,6 +12,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICBoolConverter.h"
 #import "GICEdgeConverter.h"
+#import "GICFontConverter.h"
 
 @implementation GICInputeView
 +(NSString *)gic_elementName{
@@ -43,6 +44,10 @@
              }],
              @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICInputeView *)target)->textAttributs setObject:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
+                 [(GICInputeView *)target updateTextString];
+             }],
+             @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [((GICInputeView *)target)->textAttributs setObject:value forKey:NSFontAttributeName];
                  [(GICInputeView *)target updateTextString];
              }],
              @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {

@@ -11,6 +11,7 @@
 #import "GICColorConverter.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "GICBoolConverter.h"
+#import "GICFontConverter.h"
 
 
 @implementation GICInpute{
@@ -42,6 +43,11 @@
              @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICInpute *)target gic_safeView:^(id view) {
                      [view setText:value];
+                 }];
+             }],
+             @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICInpute *)target gic_safeView:^(id view) {
+                     [view setFont:value];
                  }];
              }],
              @"secure":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {

@@ -1,0 +1,1970 @@
+{
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "blue",
+        "dark-gray",
+        "light-gray",
+        "gray",
+        "green",
+        "cyan",
+        "yellow",
+        "magenta",
+        "orange",
+        "purple",
+        "brown",
+        "clear"
+    ],
+    "JSKeywords": [
+        {
+            "name": "$el",
+            "desc": "引用当前元素本身"
+        },
+        {
+            "name": "$item",
+            "desc": "当前元素在for指令的处理中获得的数据源,只有在for指令中有效"
+        },
+        {
+            "name": "$index",
+            "desc": "当前$item在数组中的索引，只有在for指令中有效"
+        }
+    ],
+    "ignorElementsName": [
+        "for",
+        "if"
+    ],
+    "commonAttributes": [
+        {
+            "name": "name",
+            "desc": "name类似于h5中的id，可以通过类库提供的方法根据name获取某个元素"
+        },
+        {
+            "name": "data-context",
+            "desc": "数据源"
+        },
+        {
+            "name": "data-path",
+            "desc": "指定元素应该以父级数据源的哪个属性作为数据源。"
+        },
+        {
+            "name": "slot-name",
+            "desc": "占位模板的名称(需要在template-ref的子元素中使用)"
+        },
+        {
+            "name": "style-name",
+            "desc": "该元素作为样式用的名字(只能在Style元素内才能起作用)"
+        },
+        {
+            "name": "style",
+            "desc": "元素引用样式的名字"
+        }
+    ],
+    "commonUIAttributes": [
+        {
+            "name": "background-color",
+            "desc": "背景色",
+            "type": "color"
+        },
+        {
+            "name": "hidden",
+            "desc": "是否隐藏元素(隐藏后依然会占据空间)",
+            "type": "bool"
+        },
+        {
+            "name": "alpha",
+            "desc": "元素的透明度(0~1之间)。(慎用，会引起离屏渲染)"
+        },
+        {
+            "name": "corner-radius",
+            "desc": "圆角"
+        },
+        {
+            "name": "shadow-color",
+            "desc": "阴影颜色。(慎用，会引起离屏渲染)",
+            "type": "color"
+        },
+        {
+            "name": "shadow-opacity",
+            "desc": "阴影透明度。(慎用，会引起离屏渲染)"
+        },
+        {
+            "name": "shadow-radius",
+            "desc": "阴影半径。(慎用，会引起离屏渲染)"
+        },
+        {
+            "name": "shadow-offset",
+            "desc": "阴影偏移。(慎用，会引起离屏渲染)"
+        },
+        {
+            "name": "border-color",
+            "desc": "边框颜色",
+            "type": "color"
+        },
+        {
+            "name": "border-width",
+            "desc": "边框宽度"
+        },
+        {
+            "name": "clips-bounds",
+            "desc": "类似UIVIew的 clips-bounds",
+            "type": "bool"
+        },
+        {
+            "name": "height",
+            "desc": "元素高度(支持百分比)"
+        },
+        {
+            "name": "width",
+            "desc": "元素宽度(支持百分比)"
+        },
+        {
+            "name": "size",
+            "desc": "同时设置宽度和高度，以空格分隔(支持百分比)"
+        },
+        {
+            "name": "position",
+            "desc": "位置，相当于UIView中frame的origin，以空格区分x、y 。该属性只有在绝对布局(panel)中才会生效。"
+        },
+        {
+            "name": "max-width",
+            "desc": "元素最大宽度(支持百分比)"
+        },
+        {
+            "name": "max-height",
+            "desc": "元素最大高度(支持百分比)"
+        },
+        {
+            "name": "space-before",
+            "desc": "前-间隔。用来设置距离前面一个元素的间距，只在stack-panel中生效"
+        },
+        {
+            "name": "space-after",
+            "desc": "后-间隔。用来设置距离后一个元素的间距，只在stack-panel中生效"
+        },
+        {
+            "name": "flex-grow",
+            "desc": "felx布局的扩展比率，默认为0不扩展。只在stack-panel中生效"
+        },
+        {
+            "name": "flex-shrink",
+            "desc": "flex布局中，元素的收缩规则，默认为0不收缩，只在stack-panel中生效"
+        },
+        {
+            "name": "flex-basics",
+            "desc": "用于设置该元素在flex布局中，伸缩基准值。只在stack-panel中生效。(支持百分比)"
+        },
+        {
+            "name": "align-self",
+            "desc": "允许覆盖单个的 flex item（flex项）默认对齐方式。只在stack-panel中生效。",
+            "type": "enum",
+            "enums": [
+                {
+                    "name": "ASStackLayoutAlignSelfAuto",
+                    "value": 0,
+                    "desc": "自动，也就是stack-panel设置什么就是什么"
+                },
+                {
+                    "name": "ASStackLayoutAlignSelfStart",
+                    "value": 1,
+                    "desc": "从主轴的开始位置开始排列"
+                },
+                {
+                    "name": "ASStackLayoutAlignSelfEnd",
+                    "value": 2,
+                    "desc": "从主轴的结束位置开始排列"
+                },
+                {
+                    "name": "ASStackLayoutAlignSelfCenter",
+                    "value": 3,
+                    "desc": "从主轴的中间位置开始排列"
+                },
+                {
+                    "name": "ASStackLayoutAlignSelfStretch",
+                    "value": 4,
+                    "desc": "均匀分布在主轴上"
+                }
+            ]
+        },
+        {
+            "name": "dock-horizal",
+            "desc": "水平停靠位置。只有在dock-panel中生效",
+            "type": "enum",
+            "enums": [
+                {
+                    "name": "GICDockPanelHorizalModel_Left",
+                    "value": 0,
+                    "desc": "停靠在水平方向的左边"
+                },
+                {
+                    "name": "GICDockPanelHorizalModel_Center",
+                    "value": 1,
+                    "desc": "停靠在水平方向的中间"
+                },
+                {
+                    "name": "GICDockPanelHorizalModel_Right",
+                    "value": 2,
+                    "desc": "停靠在水平方向的右边"
+                }
+            ]
+        },
+        {
+            "name": "dock-vertical",
+            "desc": "垂直停靠位置。只有在dock-panel中生效",
+            "type": "enum",
+            "enums": [
+                {
+                    "name": "GICDockPanelVerticalModel_Top",
+                    "value": 0,
+                    "desc": "停靠在垂直方向的左边"
+                },
+                {
+                    "name": "GICDockPanelVerticalModel_Center",
+                    "value": 1,
+                    "desc": "停靠在垂直方向的中间"
+                },
+                {
+                    "name": "GICDockPanelVerticalModel_Bottom",
+                    "value": 2,
+                    "desc": "停靠在垂直方向的右边"
+                }
+            ]
+        },
+        {
+            "name": "event-tap",
+            "desc": "单击事件",
+            "type": "event"
+        },
+        {
+            "name": "event-double-tap",
+            "desc": "双击事件",
+            "type": "event"
+        },
+        {
+            "name": "event-touch-begin",
+            "desc": "触摸开始事件",
+            "type": "event"
+        },
+        {
+            "name": "event-touch-move",
+            "desc": "触摸移动事件",
+            "type": "event"
+        },
+        {
+            "name": "event-touch-end",
+            "desc": "触摸结束事件",
+            "type": "event"
+        }
+    ],
+    "commonAnimationAttributs": [
+        {
+            "name": "duration",
+            "desc": "动画时长。单位是秒"
+        },
+        {
+            "name": "repeat",
+            "desc": "动画重复次数。-1表示永远"
+        },
+        {
+            "name": "autoreverses",
+            "desc": "是否反向动画。如果设为yes，那么整个动画的时长*2",
+            "type": "bool"
+        },
+        {
+            "name": "on",
+            "desc": "动画触发条件。",
+            "type": "enum",
+            "enums": [
+                {
+                    "name": "GICAnimationTriggerType_None",
+                    "value": 0,
+                    "desc": "不会触发动画"
+                },
+                {
+                    "name": "GICAnimationTriggerType_attach",
+                    "value": 1,
+                    "desc": "当附加到元素上的时候立马触发动画"
+                },
+                {
+                    "name": "GICAnimationTriggerType_event",
+                    "value": 2,
+                    "desc": "事件触发。如果没有设置event-name属性，那么默认单击事件"
+                }
+            ]
+        },
+        {
+            "name": "event-name",
+            "desc": "触发动画的事件名称。如果没有设置，那么默认为event-tab"
+        },
+        {
+            "name": "ease-mode",
+            "desc": "动画时间计算方式。",
+            "type": "enum",
+            "enums": [
+                {
+                    "name": "GICAnimationEaseMode_Linear",
+                    "value": 0,
+                    "desc": "线性动画"
+                },
+                {
+                    "name": "GICAnimationEaseMode_EaseIn",
+                    "value": 1,
+                    "desc": "加速动画"
+                },
+                {
+                    "name": "GICAnimationEaseMode_EaseOut",
+                    "value": 2,
+                    "desc": "减速动画"
+                },
+                {
+                    "name": "GICAnimationEaseMode_EaseInEaseOut",
+                    "value": 3,
+                    "desc": "先加速后减速"
+                }
+            ]
+        },
+        {
+            "name": "spring-bounciness",
+            "desc": "弹力,越大则震动幅度越大,0~20之间"
+        },
+        {
+            "name": "spring-speed",
+            "desc": "速度 越大则动画结束越快，0~20之间"
+        }
+    ],
+    "elements": [
+        {
+            "elementName": "panel",
+            "attributes": [],
+            "desc": "提供绝对布局的面板",
+            "isui": true
+        },
+        {
+            "elementName": "stack-panel",
+            "attributes": [
+                {
+                    "name": "is-horizon",
+                    "desc": "是否水平布局",
+                    "type": "bool"
+                },
+                {
+                    "name": "justify-content",
+                    "desc": "主轴上的排列方式",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "ASStackLayoutJustifyContentStart",
+                            "value": 0,
+                            "desc": "从前往后排列"
+                        },
+                        {
+                            "name": "ASStackLayoutJustifyContentCenter",
+                            "value": 1,
+                            "desc": "居中排列"
+                        },
+                        {
+                            "name": "ASStackLayoutJustifyContentEnd",
+                            "value": 2,
+                            "desc": "从后往前排列"
+                        },
+                        {
+                            "name": "ASStackLayoutJustifyContentSpaceBetween",
+                            "value": 3,
+                            "desc": "间隔排列，两端无间隔"
+                        },
+                        {
+                            "name": "ASStackLayoutJustifyContentSpaceAround",
+                            "value": 4,
+                            "desc": "间隔排列，两端有间隔"
+                        }
+                    ]
+                },
+                {
+                    "name": "align-items",
+                    "desc": "交叉轴上的排列方式。这个属性只有在单行的情况的下才会生效。",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "ASStackLayoutAlignItemsStart",
+                            "value": 0,
+                            "desc": "从前往后排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignItemsEnd",
+                            "value": 1,
+                            "desc": "从后往前排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignItemsCenter",
+                            "value": 2,
+                            "desc": "居中排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignItemsStretch",
+                            "value": 3,
+                            "desc": "拉伸排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignItemsBaselineFirst",
+                            "value": 4,
+                            "desc": "以第一个文字元素基线排列（主轴是横向才可用）"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignItemsBaselineLast",
+                            "value": 5,
+                            "desc": "以最后一个文字元素基线排列（主轴是横向才可用）"
+                        }
+                    ]
+                },
+                {
+                    "name": "align-content",
+                    "desc": "panel内的各个子元素没有占用交叉轴上所有可用的空间时对齐panel内的各个子元素。这个属性也只有在 wrap为true，并且有多行的情况下才会生效。",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "ASStackLayoutAlignContentStart",
+                            "value": 0,
+                            "desc": "从前往后排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignContentCenter",
+                            "value": 1,
+                            "desc": "居中排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignContentEnd",
+                            "value": 2,
+                            "desc": "从后往前排列"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignContentSpaceBetween",
+                            "value": 3,
+                            "desc": "间隔排列，两端无间隔"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignContentSpaceAround",
+                            "value": 4,
+                            "desc": "间隔排列，两端有间隔"
+                        },
+                        {
+                            "name": "ASStackLayoutAlignContentStretch",
+                            "value": 5,
+                            "desc": "拉伸排列"
+                        }
+                    ]
+                },
+                {
+                    "name": "wrap",
+                    "desc": "是否换行",
+                    "type": "bool"
+                },
+                {
+                    "name": "space",
+                    "desc": "子元素之间在主轴上的前后间距。默认0"
+                },
+                {
+                    "name": "line-space",
+                    "desc": "子元素的行间距。默认0，只有在换行的情况下才生效。"
+                }
+            ],
+            "desc": "stack-panel",
+            "isui": true
+        },
+        {
+            "elementName": "inset-panel",
+            "attributes": [
+                {
+                    "name": "inset",
+                    "desc": "内边距。按照 上 左 下 右的顺序设置。"
+                }
+            ],
+            "desc": "提供内边距布局的面板",
+            "isui": true
+        },
+        {
+            "elementName": "dock-panel",
+            "attributes": [],
+            "desc": "提供停靠布局的面板",
+            "isui": true
+        },
+        {
+            "elementName": "background-panel",
+            "attributes": [],
+            "desc": "提供背景布局的面板。有子元素 background 提供背景",
+            "isui": true,
+            "subElements": [
+                {
+                    "elementName": "background",
+                    "attributes": [],
+                    "desc": "为background-panel提供背景显示"
+                }
+            ]
+        },
+        {
+            "elementName": "ratio-panel",
+            "attributes": [
+                {
+                    "name": "ratio",
+                    "desc": "高宽比例。注意是高宽比例，而非宽高比例"
+                }
+            ],
+            "desc": "提供比例布局的面板。",
+            "isui": true
+        },
+        {
+            "elementName": "grid-panel",
+            "attributes": [
+                {
+                    "name": "columns",
+                    "desc": "列数"
+                },
+                {
+                    "name": "column-spacing",
+                    "desc": "列间距"
+                },
+                {
+                    "name": "row-spacing",
+                    "desc": "行间距"
+                }
+            ],
+            "desc": "提供宫格(瀑布流)布局的面板。",
+            "isui": true
+        },
+        {
+            "elementName": "app",
+            "attributes": [],
+            "desc": "可以理解为UIWindow"
+        },
+        {
+            "elementName": "nav",
+            "attributes": [
+                {
+                    "name": "background-color",
+                    "desc": "背景色",
+                    "type": "color"
+                }
+            ],
+            "desc": "UINavigationController"
+        },
+        {
+            "elementName": "page",
+            "attributes": [
+                {
+                    "name": "title",
+                    "desc": "标题"
+                }
+            ],
+            "desc": "UIViewController",
+            "subElements": [
+                {
+                    "elementName": "nav-bar",
+                    "attributes": [
+                        {
+                            "name": "title",
+                            "desc": "标题"
+                        }
+                    ],
+                    "desc": "导航栏(UINavigationBar)",
+                    "special": true,
+                    "subElements": [
+                        {
+                            "elementName": "right-buttons",
+                            "attributes": [],
+                            "desc": "导航栏右侧按钮"
+                        },
+                        {
+                            "elementName": "left-buttons",
+                            "attributes": [],
+                            "desc": "导航栏左侧按钮"
+                        },
+                        {
+                            "elementName": "title",
+                            "attributes": [],
+                            "desc": "自定义title视图"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "elementName": "lable",
+            "attributes": [
+                {
+                    "name": "text",
+                    "desc": "文本内容"
+                },
+                {
+                    "name": "lines",
+                    "desc": "文本行数。默认0，不限。"
+                },
+                {
+                    "name": "font-size",
+                    "desc": "字体大小"
+                },
+                {
+                    "name": "font-color",
+                    "desc": "字体颜色",
+                    "type": "color"
+                },
+                {
+                    "name": "font",
+                    "desc": "字体名称。比如：Heiti SC。或者：Heiti SC,14  (以逗号来区分字体和字体大小)"
+                },
+                {
+                    "name": "text-align",
+                    "desc": "文本显示位置。",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "NSTextAlignmentLeft",
+                            "value": 0
+                        },
+                        {
+                            "name": "NSTextAlignmentCenter",
+                            "value": 1
+                        },
+                        {
+                            "name": "NSTextAlignmentRight",
+                            "value": 2
+                        },
+                        {
+                            "name": "NSTextAlignmentJustified",
+                            "value": 3
+                        },
+                        {
+                            "name": "NSTextAlignmentNatural",
+                            "value": 4
+                        }
+                    ]
+                },
+                {
+                    "name": "event-link-tap",
+                    "desc": "点击链接(link)事件",
+                    "type": "event"
+                },
+                {
+                    "name": "underline-style",
+                    "desc": "下划线样式",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "NSUnderlineStyleNone",
+                            "value": "0x00"
+                        },
+                        {
+                            "name": "NSUnderlineStyleSingle",
+                            "value": "0x01"
+                        },
+                        {
+                            "name": "NSUnderlineStyleThick",
+                            "value": "0x02"
+                        },
+                        {
+                            "name": "NSUnderlineStyleDouble",
+                            "value": "0x09"
+                        },
+                        {
+                            "name": "NSUnderlinePatternSolid",
+                            "value": "0x0000"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDot",
+                            "value": "0x0100"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDash",
+                            "value": "0x0200"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDashDot",
+                            "value": "0x0300"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDashDotDot",
+                            "value": "0x0400"
+                        },
+                        {
+                            "name": "NSUnderlineByWord",
+                            "value": "0x8000"
+                        }
+                    ]
+                },
+                {
+                    "name": "throughline-style",
+                    "desc": "删除线样式",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "NSUnderlineStyleNone",
+                            "value": "0x00"
+                        },
+                        {
+                            "name": "NSUnderlineStyleSingle",
+                            "value": "0x01"
+                        },
+                        {
+                            "name": "NSUnderlineStyleThick",
+                            "value": "0x02"
+                        },
+                        {
+                            "name": "NSUnderlineStyleDouble",
+                            "value": "0x09"
+                        },
+                        {
+                            "name": "NSUnderlinePatternSolid",
+                            "value": "0x0000"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDot",
+                            "value": "0x0100"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDash",
+                            "value": "0x0200"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDashDot",
+                            "value": "0x0300"
+                        },
+                        {
+                            "name": "NSUnderlinePatternDashDotDot",
+                            "value": "0x0400"
+                        },
+                        {
+                            "name": "NSUnderlineByWord",
+                            "value": "0x8000"
+                        }
+                    ]
+                }
+            ],
+            "desc": "UILable",
+            "isui": true,
+            "subElements": [
+                {
+                    "elementName": "s",
+                    "attributes": [
+                        {
+                            "name": "text",
+                            "desc": "文本内容"
+                        },
+                        {
+                            "name": "font-size",
+                            "desc": "字体大小"
+                        },
+                        {
+                            "name": "font-color",
+                            "desc": "字体颜色",
+                            "type": "color"
+                        },
+                        {
+                            "name": "background-color",
+                            "desc": "独立背景色",
+                            "type": "color"
+                        },
+                        {
+                            "name": "font",
+                            "desc": "字体名称。比如：Heiti SC。或者：Heiti SC,14  (以逗号来区分字体和字体大小)"
+                        },
+                        {
+                            "name": "link",
+                            "desc": "链接字符串。只有设置了link属性才能触发lable元素的event-link-tap事件。"
+                        },
+                        {
+                            "name": "underline-style",
+                            "desc": "下划线样式",
+                            "type": "enum",
+                            "enums": [
+                                {
+                                    "name": "NSUnderlineStyleNone",
+                                    "value": "0x00"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleSingle",
+                                    "value": "0x01"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleThick",
+                                    "value": "0x02"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleDouble",
+                                    "value": "0x09"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternSolid",
+                                    "value": "0x0000"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDot",
+                                    "value": "0x0100"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDash",
+                                    "value": "0x0200"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDashDot",
+                                    "value": "0x0300"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDashDotDot",
+                                    "value": "0x0400"
+                                },
+                                {
+                                    "name": "NSUnderlineByWord",
+                                    "value": "0x8000"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "throughline-style",
+                            "desc": "删除线样式",
+                            "type": "enum",
+                            "enums": [
+                                {
+                                    "name": "NSUnderlineStyleNone",
+                                    "value": "0x00"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleSingle",
+                                    "value": "0x01"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleThick",
+                                    "value": "0x02"
+                                },
+                                {
+                                    "name": "NSUnderlineStyleDouble",
+                                    "value": "0x09"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternSolid",
+                                    "value": "0x0000"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDot",
+                                    "value": "0x0100"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDash",
+                                    "value": "0x0200"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDashDot",
+                                    "value": "0x0300"
+                                },
+                                {
+                                    "name": "NSUnderlinePatternDashDotDot",
+                                    "value": "0x0400"
+                                },
+                                {
+                                    "name": "NSUnderlineByWord",
+                                    "value": "0x8000"
+                                }
+                            ]
+                        }
+                    ],
+                    "desc": "文本片段"
+                },
+                {
+                    "elementName": "img",
+                    "attributes": [
+                        {
+                            "name": "background-color",
+                            "desc": "独立背景色",
+                            "type": "color"
+                        },
+                        {
+                            "name": "img-name",
+                            "desc": "图片名称(bundle中的图片名称)"
+                        }
+                    ],
+                    "desc": "图片"
+                }
+            ]
+        },
+        {
+            "elementName": "input",
+            "attributes": [
+                {
+                    "name": "placehold",
+                    "desc": "占位字符"
+                },
+                {
+                    "name": "placehold-color",
+                    "type": "color"
+                },
+                {
+                    "name": "placehold-size"
+                },
+                {
+                    "name": "text",
+                    "desc": "文本内容"
+                },
+                {
+                    "name": "font-size",
+                    "desc": "字体大小"
+                },
+                {
+                    "name": "font-color",
+                    "desc": "字体颜色",
+                    "type": "color"
+                },
+                {
+                    "name": "secure",
+                    "type": "bool"
+                },
+                {
+                    "name": "keyboard-type",
+                    "desc": "键盘类型",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIKeyboardTypeDefault",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIKeyboardTypeASCIICapable",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIKeyboardTypeNumbersAndPunctuation",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIKeyboardTypeURL",
+                            "value": 3
+                        },
+                        {
+                            "name": "UIKeyboardTypeNumberPad",
+                            "value": 4
+                        },
+                        {
+                            "name": "UIKeyboardTypePhonePad",
+                            "value": 5
+                        },
+                        {
+                            "name": "UIKeyboardTypeNamePhonePad",
+                            "value": 6
+                        },
+                        {
+                            "name": "UIKeyboardTypeEmailAddress",
+                            "value": 7
+                        },
+                        {
+                            "name": "UIKeyboardTypeDecimalPad",
+                            "value": 8
+                        },
+                        {
+                            "name": "UIKeyboardTypeTwitter",
+                            "value": 9
+                        },
+                        {
+                            "name": "UIKeyboardTypeWebSearch",
+                            "value": 10
+                        },
+                        {
+                            "name": "UIKeyboardTypeASCIICapableNumberPad",
+                            "value": 11
+                        }
+                    ]
+                },
+                {
+                    "name": "event-return",
+                    "desc": "点击回车事件",
+                    "type": "event"
+                },
+                {
+                    "name": "font",
+                    "desc": "字体名称。比如：Heiti SC。或者：Heiti SC,14  (以逗号来区分字体和字体大小)"
+                }
+            ],
+            "desc": "输入框(UITextField)",
+            "isui": true
+        },
+        {
+            "elementName": "input-view",
+            "attributes": [
+                {
+                    "name": "placehold",
+                    "desc": "占位字符"
+                },
+                {
+                    "name": "placehold-color",
+                    "type": "color"
+                },
+                {
+                    "name": "placehold-size"
+                },
+                {
+                    "name": "text",
+                    "desc": "文本内容"
+                },
+                {
+                    "name": "font-size",
+                    "desc": "字体大小"
+                },
+                {
+                    "name": "font-color",
+                    "desc": "字体颜色",
+                    "type": "color"
+                },
+                {
+                    "name": "secure",
+                    "type": "bool"
+                },
+                {
+                    "name": "keyboard-type",
+                    "desc": "键盘类型",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIKeyboardTypeDefault",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIKeyboardTypeASCIICapable",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIKeyboardTypeNumbersAndPunctuation",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIKeyboardTypeURL",
+                            "value": 3
+                        },
+                        {
+                            "name": "UIKeyboardTypeNumberPad",
+                            "value": 4
+                        },
+                        {
+                            "name": "UIKeyboardTypePhonePad",
+                            "value": 5
+                        },
+                        {
+                            "name": "UIKeyboardTypeNamePhonePad",
+                            "value": 6
+                        },
+                        {
+                            "name": "UIKeyboardTypeEmailAddress",
+                            "value": 7
+                        },
+                        {
+                            "name": "UIKeyboardTypeDecimalPad",
+                            "value": 8
+                        },
+                        {
+                            "name": "UIKeyboardTypeTwitter",
+                            "value": 9
+                        },
+                        {
+                            "name": "UIKeyboardTypeWebSearch",
+                            "value": 10
+                        },
+                        {
+                            "name": "UIKeyboardTypeASCIICapableNumberPad",
+                            "value": 11
+                        }
+                    ]
+                },
+                {
+                    "name": "event-return",
+                    "desc": "点击回车事件",
+                    "type": "event"
+                },
+                {
+                    "name": "font",
+                    "desc": "字体名称。比如：Heiti SC。或者：Heiti SC,14  (以逗号来区分字体和字体大小)"
+                },
+                {
+                    "name": "content-inset",
+                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
+                }
+            ],
+            "desc": "输入框(UITextView)",
+            "isui": true
+        },
+        {
+            "elementName": "image",
+            "attributes": [
+                {
+                    "name": "url",
+                    "desc": "网络图片url。支持gif图片"
+                },
+                {
+                    "name": "placehold",
+                    "desc": "在加载网络图片的时候显示的默认图片，必须是本地图片"
+                },
+                {
+                    "name": "local-name",
+                    "desc": "显示本地图片"
+                },
+                {
+                    "name": "path",
+                    "desc": "加载项目根目录下的图片。(相对根目录的path)"
+                },
+                {
+                    "name": "fill-mode",
+                    "desc": "就是uiview 的contentmode 属性。",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIViewContentModeScaleToFill",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIViewContentModeScaleAspectFit",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIViewContentModeScaleAspectFill",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIViewContentModeRedraw",
+                            "value": 3
+                        },
+                        {
+                            "name": "UIViewContentModeCenter",
+                            "value": 4
+                        },
+                        {
+                            "name": "UIViewContentModeTop",
+                            "value": 5
+                        },
+                        {
+                            "name": "UIViewContentModeBottom",
+                            "value": 6
+                        },
+                        {
+                            "name": "UIViewContentModeLeft",
+                            "value": 7
+                        },
+                        {
+                            "name": "UIViewContentModeRight",
+                            "value": 8
+                        },
+                        {
+                            "name": "UIViewContentModeTopLeft",
+                            "value": 9
+                        },
+                        {
+                            "name": "UIViewContentModeTopRight",
+                            "value": 10
+                        },
+                        {
+                            "name": "UIViewContentModeBottomLeft",
+                            "value": 11
+                        },
+                        {
+                            "name": "UIViewContentModeBottomRight",
+                            "value": 12
+                        }
+                    ]
+                }
+            ],
+            "desc": "UIImageView",
+            "isui": true
+        },
+        {
+            "elementName": "gradient-view",
+            "attributes": [
+                {
+                    "name": "start",
+                    "desc": "渐变色起始点.以空格分隔"
+                },
+                {
+                    "name": "end",
+                    "desc": "渐变色结束点。以空格分隔"
+                },
+                {
+                    "name": "colors",
+                    "desc": "颜色和位置成对的一个组合，以空格分隔。比如：red 0 yellow 0.5 blue 1"
+                }
+            ],
+            "desc": "支持渐变色背景的UI",
+            "isui": true
+        },
+        {
+            "elementName": "collection-view",
+            "attributes": [
+                {
+                    "name": "separator-style",
+                    "desc": "cell分割线的样式",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UITableViewCellSeparatorStyleNone",
+                            "value": 0
+                        },
+                        {
+                            "name": "UITableViewCellSeparatorStyleSingleLine",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "name": "show-ver-scroll",
+                    "desc": "是否显示垂直滚动条",
+                    "type": "bool"
+                },
+                {
+                    "name": "show-hor-scroll",
+                    "desc": "是否显示水平滚动条",
+                    "type": "bool"
+                },
+                {
+                    "name": "content-inset",
+                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
+                },
+                {
+                    "name": "columns",
+                    "desc": "列的数量"
+                },
+                {
+                    "name": "column-spacing",
+                    "desc": "列间距。默认10"
+                },
+                {
+                    "name": "row-spacing",
+                    "desc": "行间距。默认0"
+                },
+                {
+                    "name": "content-inset-behavior",
+                    "desc": "内容边距行为。iOS11.0以上生效",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAutomatic",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentScrollableAxes",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentNever",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAlways",
+                            "value": 3
+                        }
+                    ]
+                }
+            ],
+            "desc": "列表(UICollectionView)",
+            "subElements": [
+                {
+                    "elementName": "section",
+                    "subElements": [
+                        {
+                            "elementName": "list-item",
+                            "desc": "UITableViewCell",
+                            "attributes": [
+                                {
+                                    "name": "selection-style",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "UITableViewCellSelectionStyleNone",
+                                            "value": 0
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleBlue",
+                                            "value": 1
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleGray",
+                                            "value": 2
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleDefault",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "separator-inset",
+                                    "desc": "分割线边距。按照 上 左 下 右的顺序设置"
+                                },
+                                {
+                                    "name": "accessory-type",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "UITableViewCellAccessoryNone",
+                                            "value": 0
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDisclosureIndicator",
+                                            "value": 1
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDetailDisclosureButton",
+                                            "value": 2
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryCheckmark",
+                                            "value": 3
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDetailButton",
+                                            "value": 4
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "event-item-select",
+                                    "desc": "cell选中事件",
+                                    "type": "event"
+                                }
+                            ]
+                        },
+                        {
+                            "elementName": "header",
+                            "desc": "列表的header",
+                            "isui": true
+                        },
+                        {
+                            "elementName": "footer",
+                            "desc": "列表的footer",
+                            "isui": true
+                        }
+                    ],
+                    "special": true
+                },
+                {
+                    "elementName": "header",
+                    "desc": "列表的header",
+                    "isui": true
+                },
+                {
+                    "elementName": "footer",
+                    "desc": "列表的footer",
+                    "isui": true
+                }
+            ],
+            "isui": true
+        },
+        {
+            "elementName": "list",
+            "attributes": [
+                {
+                    "name": "separator-style",
+                    "desc": "cell分割线的样式",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UITableViewCellSeparatorStyleNone",
+                            "value": 0
+                        },
+                        {
+                            "name": "UITableViewCellSeparatorStyleSingleLine",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "name": "show-ver-scroll",
+                    "desc": "是否显示垂直滚动条",
+                    "type": "bool"
+                },
+                {
+                    "name": "show-hor-scroll",
+                    "desc": "是否显示水平滚动条",
+                    "type": "bool"
+                },
+                {
+                    "name": "content-inset",
+                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
+                },
+                {
+                    "name": "show-indexs",
+                    "desc": "是否显示索引",
+                    "type": "bool"
+                },
+                {
+                    "name": "index-color",
+                    "desc": "索引文字的颜色",
+                    "type": "color"
+                },
+                {
+                    "name": "content-inset-behavior",
+                    "desc": "内容边距行为。iOS11.0以上生效",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAutomatic",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentScrollableAxes",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentNever",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAlways",
+                            "value": 3
+                        }
+                    ]
+                }
+            ],
+            "desc": "列表(UITableView)",
+            "subElements": [
+                {
+                    "elementName": "section",
+                    "attributes": [
+                        {
+                            "name": "title",
+                            "desc": "用来显示索引的标题"
+                        }
+                    ],
+                    "special": true,
+                    "subElements": [
+                        {
+                            "elementName": "list-item",
+                            "desc": "UITableViewCell",
+                            "attributes": [
+                                {
+                                    "name": "selection-style",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "UITableViewCellSelectionStyleNone",
+                                            "value": 0
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleBlue",
+                                            "value": 1
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleGray",
+                                            "value": 2
+                                        },
+                                        {
+                                            "name": "UITableViewCellSelectionStyleDefault",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "separator-inset",
+                                    "desc": "分割线边距。按照 上 左 下 右的顺序设置"
+                                },
+                                {
+                                    "name": "accessory-type",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "UITableViewCellAccessoryNone",
+                                            "value": 0
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDisclosureIndicator",
+                                            "value": 1
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDetailDisclosureButton",
+                                            "value": 2
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryCheckmark",
+                                            "value": 3
+                                        },
+                                        {
+                                            "name": "UITableViewCellAccessoryDetailButton",
+                                            "value": 4
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "event-item-select",
+                                    "desc": "cell选中事件",
+                                    "type": "event"
+                                }
+                            ]
+                        },
+                        {
+                            "elementName": "header",
+                            "desc": "列表的header",
+                            "isui": true
+                        },
+                        {
+                            "elementName": "footer",
+                            "desc": "列表的footer",
+                            "isui": true
+                        }
+                    ]
+                },
+                {
+                    "elementName": "header",
+                    "desc": "列表的header",
+                    "isui": true
+                },
+                {
+                    "elementName": "footer",
+                    "desc": "列表的footer",
+                    "isui": true
+                }
+            ],
+            "isui": true
+        },
+        {
+            "elementName": "canvas",
+            "desc": "画板(对CoreGraphics的封装)",
+            "subElements": [
+                {
+                    "elementName": "path",
+                    "special": true,
+                    "attributes": [
+                        {
+                            "name": "line-color",
+                            "desc": "线条颜色",
+                            "type": "color"
+                        },
+                        {
+                            "name": "line-width",
+                            "desc": "线条宽度，默认0.5"
+                        },
+                        {
+                            "name": "close-lines",
+                            "desc": "是否闭合线条。",
+                            "type": "bool"
+                        },
+                        {
+                            "name": "fill-color",
+                            "desc": "填充色。如果不设置，那么不填充",
+                            "type": "color"
+                        },
+                        {
+                            "name": "dash",
+                            "desc": "虚线宽度和间距，以空格分隔。比如：4 1。那么表示虚线宽度为4，间隔为1"
+                        }
+                    ],
+                    "subElements": [
+                        {
+                            "elementName": "point",
+                            "desc": "单独的点(CGContextMoveToPoint)",
+                            "attributes": [
+                                {
+                                    "name": "x",
+                                    "desc": "支持百分比，比如：20%"
+                                },
+                                {
+                                    "name": "y",
+                                    "desc": "支持百分比，比如：20%"
+                                }
+                            ],
+                            "special": true
+                        },
+                        {
+                            "elementName": "line",
+                            "desc": "线条",
+                            "special": true,
+                            "subElements": [
+                                {
+                                    "elementName": "point",
+                                    "desc": "单独的点",
+                                    "special": true,
+                                    "attributes": [
+                                        {
+                                            "name": "x",
+                                            "desc": "支持百分比，比如：20%"
+                                        },
+                                        {
+                                            "name": "y",
+                                            "desc": "支持百分比，比如：20%"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "elementName": "arc",
+                            "desc": "弧线",
+                            "attributes": [
+                                {
+                                    "name": "center",
+                                    "desc": "中心点。支持百分比,比如：50%"
+                                },
+                                {
+                                    "name": "radius",
+                                    "desc": "半径。支持百分比,比如50%，在设置百分的时候，gic是按照宽度的百分比计算的。"
+                                },
+                                {
+                                    "name": "start-angle",
+                                    "desc": "起始的度数。比如：360、180"
+                                },
+                                {
+                                    "name": "end-angle",
+                                    "desc": "结束的度数。比如：360、180"
+                                },
+                                {
+                                    "name": "clockwise",
+                                    "desc": "是否顺时针方向。默认false",
+                                    "type": "bool"
+                                }
+                            ],
+                            "special": true
+                        },
+                        {
+                            "elementName": "rectangle",
+                            "desc": "矩形。支持单独设置圆角",
+                            "attributes": [
+                                {
+                                    "name": "x",
+                                    "desc": "起始的x点。支持百分比"
+                                },
+                                {
+                                    "name": "y",
+                                    "desc": "起始的y点。支持百分比"
+                                },
+                                {
+                                    "name": "width",
+                                    "desc": "宽度。支持百分比"
+                                },
+                                {
+                                    "name": "height",
+                                    "desc": "高度。支持百分比"
+                                },
+                                {
+                                    "name": "corner-types",
+                                    "desc": "圆角的枚举。默认支持四个圆角。你可以使用空格分隔的方式添加对多个圆角的支持",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "UIRectCornerTopLeft",
+                                            "value": 0
+                                        },
+                                        {
+                                            "name": "UIRectCornerTopRight",
+                                            "value": 1
+                                        },
+                                        {
+                                            "name": "UIRectCornerBottomLeft",
+                                            "value": 2
+                                        },
+                                        {
+                                            "name": "UIRectCornerBottomRight",
+                                            "value": 3
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "corner-radius",
+                                    "desc": "圆角大小。支持百分比"
+                                }
+                            ],
+                            "special": true
+                        },
+                        {
+                            "elementName": "bezier",
+                            "desc": "贝塞尔曲线",
+                            "special": true,
+                            "attributes": [
+                                {
+                                    "name": "control-point",
+                                    "desc": "控制点1。支持百分比"
+                                },
+                                {
+                                    "name": "control-point2",
+                                    "desc": "控制点2。支持百分比"
+                                },
+                                {
+                                    "name": "point",
+                                    "desc": "点。支持百分比"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "isui": true
+        },
+        {
+            "elementName": "control",
+            "attributes": [
+                {
+                    "name": "enable",
+                    "desc": "是否启用。默认true，如果false，那么control进入禁用状态",
+                    "type": "bool"
+                },
+                {
+                    "name": "selected",
+                    "desc": "是否选中状态。默认false",
+                    "type": "bool"
+                }
+            ],
+            "desc": "UIControl 提供状态管理",
+            "isui": true,
+            "subElements": [
+                {
+                    "elementName": "highlight",
+                    "desc": "高亮状态视图"
+                },
+                {
+                    "elementName": "disable",
+                    "desc": "禁用状态视图"
+                },
+                {
+                    "elementName": "selected",
+                    "desc": "选中状态视图"
+                }
+            ]
+        },
+        {
+            "elementName": "transforms",
+            "desc": "提供对UI元素进行3D变换的功能(CATransform3D)",
+            "attributes": [
+                {
+                    "name": "sub",
+                    "desc": "是否提供给subView的变换，如果设为true，那么将会应用于所有子元素",
+                    "type": "bool"
+                }
+            ],
+            "special": true,
+            "subElements": [
+                {
+                    "elementName": "rotate",
+                    "attributes": [
+                        {
+                            "name": "x",
+                            "desc": "x轴旋转的角度"
+                        },
+                        {
+                            "name": "y",
+                            "desc": "y轴旋转的角度"
+                        },
+                        {
+                            "name": "z",
+                            "desc": "z轴旋转的角度"
+                        }
+                    ],
+                    "special": true,
+                    "desc": "旋转变换"
+                },
+                {
+                    "elementName": "scale",
+                    "attributes": [
+                        {
+                            "name": "x",
+                            "desc": "x轴缩放的倍数。默认1"
+                        },
+                        {
+                            "name": "y",
+                            "desc": "y轴缩放的倍数。默认1"
+                        },
+                        {
+                            "name": "z",
+                            "desc": "z轴缩放的倍数。默认1"
+                        }
+                    ],
+                    "special": true,
+                    "desc": "缩放"
+                },
+                {
+                    "elementName": "translate",
+                    "attributes": [
+                        {
+                            "name": "x",
+                            "desc": "x轴移动的距离。"
+                        },
+                        {
+                            "name": "y",
+                            "desc": "y轴移动的距离。"
+                        },
+                        {
+                            "name": "z",
+                            "desc": "z轴移动的距离。"
+                        }
+                    ],
+                    "special": true,
+                    "desc": "位移"
+                }
+            ]
+        },
+        {
+            "elementName": "behaviors",
+            "desc": "行为集合，所有的behavior都应该在behaviors节点中",
+            "special": true,
+            "subElements": [
+                {
+                    "elementName": "bev-router-link",
+                    "desc": "点击导航的行为",
+                    "attributes": [
+                        {
+                            "name": "path",
+                            "desc": "跳转路径(相对于根目录的路径)"
+                        },
+                        {
+                            "name": "params",
+                            "desc": "跳转所需的参数。支持json字符串，ViewModel、字符串三种方式"
+                        }
+                    ]
+                },
+                {
+                    "elementName": "script",
+                    "desc": "为该元素及其所有子孙元素提供执行脚本的能力",
+                    "attributes": [
+                        {
+                            "name": "path",
+                            "desc": "脚本路径。同步加载该路径下的脚本。也方便将脚本跟xml文件分离"
+                        },
+                        {
+                            "name": "private",
+                            "desc": "是否私有作用域，默认false。",
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "elementName": "templates",
+            "desc": "模板集合",
+            "special": true,
+            "subElements": [
+                {
+                    "elementName": "template",
+                    "desc": "定义模板内容",
+                    "attributes": [
+                        {
+                            "name": "t-name",
+                            "desc": "模板名称"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "elementName": "template-ref",
+            "desc": "模板引用",
+            "special": true,
+            "attributes": [
+                {
+                    "name": "t-name",
+                    "desc": "模板名称"
+                }
+            ]
+        },
+        {
+            "elementName": "template-slot",
+            "desc": "占位模板，需要在(template 中使用)",
+            "special": true
+        },
+        {
+            "elementName": "animations",
+            "desc": "动画集合",
+            "special": true,
+            "subElements": [
+                {
+                    "elementName": "anim-attribute",
+                    "desc": "提供最基础的属性动画",
+                    "isAnimation": true,
+                    "special": true,
+                    "attributes": [
+                        {
+                            "name": "attribute-name",
+                            "desc": "动画对应的属性名称。"
+                        },
+                        {
+                            "name": "from",
+                            "desc": "动画开始的时候属性value"
+                        },
+                        {
+                            "name": "to",
+                            "desc": "动画结束的时候属性value"
+                        }
+                    ]
+                },
+                {
+                    "elementName": "anim-transforms",
+                    "desc": "提供形变动画",
+                    "isAnimation": true,
+                    "special": true,
+                    "subElements": [
+                        {
+                            "elementName": "anim-move",
+                            "desc": "位移动画",
+                            "attributes": [
+                                {
+                                    "name": "from",
+                                    "desc": "动画开始的时候的位置(CGPoint)"
+                                },
+                                {
+                                    "name": "to",
+                                    "desc": "动画结束的时候的位置(CGPoint)"
+                                }
+                            ]
+                        },
+                        {
+                            "elementName": "anim-rotate",
+                            "desc": "旋转动画",
+                            "attributes": [
+                                {
+                                    "name": "from",
+                                    "desc": "动画开始的时候的弧度。比如:180、360、90"
+                                },
+                                {
+                                    "name": "to",
+                                    "desc": "动画结束的时候的弧度"
+                                }
+                            ]
+                        },
+                        {
+                            "elementName": "anim-scale",
+                            "desc": "缩放动画",
+                            "attributes": [
+                                {
+                                    "name": "from",
+                                    "desc": "动画开始的时候对应高宽方向的缩放比例(CGSize)"
+                                },
+                                {
+                                    "name": "to",
+                                    "desc": "动画结束的时候对应高宽方向的缩放比例(CGSize)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "elementName": "for",
+            "desc": "for 指令",
+            "idDirective": true
+        },
+        {
+            "elementName": "if",
+            "desc": "if 指令",
+            "idDirective": true,
+            "attributes": [
+                {
+                    "name": "condition",
+                    "desc": "条件"
+                }
+            ],
+            "subElements": [
+                {
+                    "elementName": "else",
+                    "desc": "else内容"
+                }
+            ]
+        },
+        {
+            "elementName": "style",
+            "desc": "样式",
+            "attributes": [
+                {
+                    "name": "path",
+                    "desc": "引入单独style文件的path"
+                }
+            ]
+        }
+    ]
+}

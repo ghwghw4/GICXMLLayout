@@ -6,14 +6,16 @@
 
 ## collection-view属性
 
-| 名称            | 数据类型      | 介绍                              | 是否支持绑定 | 是否支持动画 |
-| --------------- | ------------- | --------------------------------- | ------------ | ------------ |
-| separator-style | Integer(枚举) | cell分割线的样式。默认0没有分割线 | 是           | 是           |
-| show-ver-scroll | Bool          | 是否显示垂直滚动条                | 是           | 是           |
-| show-hor-scroll | Bool          | 是否显示水平滚动条                | 是           | 是           |
-| columns         | Integer       | 列的数量                          | 否           | 否           |
-| column-spacing  | float         | 列间距。默认10                    | 否           | 否           |
-| row-spacing     | float         | 行间距。默认0                     | 否           | 否           |
+| 名称                   | 数据类型      | 介绍                              | 是否支持绑定 | 是否支持动画 |
+| ---------------------- | ------------- | --------------------------------- | ------------ | ------------ |
+| separator-style        | Integer(枚举) | cell分割线的样式。默认0没有分割线 | 是           | 是           |
+| show-ver-scroll        | Bool          | 是否显示垂直滚动条                | 是           | 是           |
+| show-hor-scroll        | Bool          | 是否显示水平滚动条                | 是           | 是           |
+| columns                | Integer       | 列的数量                          | 否           | 否           |
+| column-spacing         | float         | 列间距。默认10                    | 否           | 否           |
+| row-spacing            | float         | 行间距。默认0                     | 否           | 否           |
+| content-inset          | UIEdgeInsets  | 内容边距                          | 是           | 是           |
+| content-inset-behavior | Integer(枚举) | 内容边距行为。iOS11.0以上生效     | 是           | 否           |
 
 ### separator-style 枚举
 

@@ -81,6 +81,12 @@
                      }];
                  }
              }],
+             @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [(GICCollectionView *)target setValue:value forKey:@"contentInset"];
+             } withGetter:^id(id target) {
+                 UIEdgeInsets inset = [(GICCollectionView *)target contentInset];
+                 return [NSValue valueWithUIEdgeInsets:inset];
+             }],
              };
 }
 

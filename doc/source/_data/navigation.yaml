@@ -90,6 +90,10 @@
       "text": "collection-view",
       "type": "link",
       "path": "ui/collection-view.html"
+    },{
+      "text": "scroll-view",
+      "type": "link",
+      "path": "ui/scroll-view.html"
     }, {
       "text": "canvas",
       "type": "link",

@@ -607,6 +607,55 @@
             ]
         },
         {
+            "elementName": "scroll-view",
+            "attributes": [
+                {
+                    "name": "is-horizon",
+                    "desc": "是否水平显示内容",
+                    "type":"bool"
+                },
+                {
+                    "name": "show-ver-scroll",
+                    "desc": "是否显示垂直滚动条",
+                    "type":"bool"
+                },
+                {
+                    "name": "show-hor-scroll",
+                    "desc": "是否显示水平滚动条",
+                    "type":"bool"
+                },
+                {
+                    "name": "content-inset",
+                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
+                },
+                {
+                    "name": "content-inset-behavior",
+                    "desc": "内容边距行为。iOS11.0以上生效",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAutomatic",
+                            "value": 0
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentScrollableAxes",
+                            "value": 1
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentNever",
+                            "value": 2
+                        },
+                        {
+                            "name": "UIScrollViewContentInsetAdjustmentAlways",
+                            "value": 3
+                        }
+                    ]
+                }
+            ],
+            "desc": "提供宫格(瀑布流)布局的面板。",
+            "isui": true
+        },
+        {
             "elementName": "lable",
             "attributes": [
                 {
@@ -1397,10 +1446,6 @@
                     "type": "bool"
                 },
                 {
-                    "name": "content-inset",
-                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
-                },
-                {
                     "name": "show-indexs",
                     "desc": "是否显示索引",
                     "type": "bool"
@@ -1409,6 +1454,10 @@
                     "name": "index-color",
                     "desc": "索引文字的颜色",
                     "type": "color"
+                },
+                {
+                    "name": "content-inset",
+                    "desc": "内容边距。按照 上 左 下 右的顺序设置"
                 },
                 {
                     "name": "content-inset-behavior",

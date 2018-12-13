@@ -207,7 +207,7 @@ pod 'GICXMLLayout', '~> 0.4.6'
 
 1. 将`Router`中的`页面返回按钮`隐藏文字。
 
-2. `scroll-view`元素增加水平滚动功能。
+2. `scroll-view`元素增加水平滚动功能。[文档](http://gicxmllayout.gonghaiwei.cn/ui/scroll-view.html)
 
 3. `lable`元素增加如下功能。[文档](http://gicxmllayout.gonghaiwei.cn/ui/lable.html)
 

@@ -40,7 +40,7 @@
              }],
              @"event-disappear":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  GICPage *page = (GICPage *)target;
-                 page->eventAppear =  [GICEvent createEventWithExpresion:value withEventName:@"event-disappear" toTarget:target];
+                 page->eventDisappear =  [GICEvent createEventWithExpresion:value withEventName:@"event-disappear" toTarget:target];
              } withGetter:^id(id target) {
                  return [target gic_event_findWithEventName:@"event-disappear"];
              }],

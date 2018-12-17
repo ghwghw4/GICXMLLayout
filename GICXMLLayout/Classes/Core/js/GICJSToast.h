@@ -17,12 +17,14 @@ typedef NS_ENUM(NSUInteger , GICJSToastShowPosition) {
 @protocol GICJSToast <JSExport>
 +(instancetype)create:(NSString *)templateName;
 @property JSValue* ondismiss;
+@property BOOL addToWindow;//是否添加到window，默认yes
 -(void)show:(JSValue *)data;
 -(void)dismiss;
 @end
 
 @interface GICJSToast : NSObject<GICJSToast>{
     CGFloat duration;//默认两秒后消失
+    BOOL _addToWindow;
 }
 -(instancetype)initWithTemplateName:(NSString *)templateName;
 @end

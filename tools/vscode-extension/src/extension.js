@@ -6,6 +6,7 @@
 exports.activate = function(context) {
     console.log('恭喜，您的扩展“vscode-plugin-demo”已被激活！');
     require('./completion/completion')(context); // 自动补全
+    require('./menu')(context); // 菜单when命令
 };
 
 /**

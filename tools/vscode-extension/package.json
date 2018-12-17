@@ -2,7 +2,7 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"
@@ -22,6 +22,49 @@
         "configuration": {
             "type": "object",
             "title": "GICXMLLayout 插件"
+        },
+        "commands": [
+            {
+                "command": "extension.gic.buildjs",
+                "title": "build"
+            },
+            {
+                "command": "extension.gic.buildAndZip",
+                "title": "build And Zip"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.gic.buildjs",
+                "key": "ctrl+b",
+                "mac": "cmd+b"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildjs",
+                    "group": "z_commands"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildAndZip",
+                    "group": "z_commands"
+                }
+            ],
+            "editor/title": [
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildjs",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildAndZip",
+                    "group": "navigation"
+                }
+            ]
         }
     },
     "scripts": {
@@ -36,7 +79,24 @@
         "vscode": "^1.1.6"
     },
     "dependencies": {
-        "xml2js": "^0.4.19"
+        "@babel/core": "^7.2.0",
+        "@babel/plugin-transform-arrow-functions": "^7.2.0",
+        "@babel/plugin-transform-block-scoping": "^7.2.0",
+        "@babel/plugin-transform-classes": "^7.2.0",
+        "@babel/plugin-transform-computed-properties": "^7.2.0",
+        "@babel/plugin-transform-destructuring": "^7.2.0",
+        "@babel/plugin-transform-for-of": "^7.2.0",
+        "@babel/plugin-transform-instanceof": "^7.2.0",
+        "@babel/plugin-transform-parameters": "^7.2.0",
+        "@babel/plugin-transform-shorthand-properties": "^7.2.0",
+        "@babel/plugin-transform-sticky-regex": "^7.2.0",
+        "@babel/plugin-transform-template-literals": "^7.2.0",
+        "@babel/plugin-transform-typeof-symbol": "^7.2.0",
+        "xml-parser": "^1.2.1",
+        "xml-writer": "^1.7.0",
+        "zip-local": "^0.3.4"
     },
-    "extensionDependencies":["redhat.vscode-xml"]
+    "extensionDependencies": [
+        "redhat.vscode-xml"
+    ]
 }

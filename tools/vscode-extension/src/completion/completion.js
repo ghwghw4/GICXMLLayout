@@ -1,8 +1,4 @@
 const vscode = require('vscode');
-const xml2js = require('xml2js');
-const util = require('../util');
-const fs = require('fs');
-const path = require('path');
 const XMLNode = require('../XMLDoc');
 
 const configJson = require(`${vscode.extensions.getExtension("gonghaiwei.gicvscodeextension").extensionPath}/src/completion/Config.json`);

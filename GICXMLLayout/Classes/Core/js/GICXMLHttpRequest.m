@@ -92,7 +92,7 @@
             } else if (error){
                 JSValue* _onError = thisValue[@"onerror"];
                 if(![_onError isUndefined]){
-                    [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[JSContext currentContext]]]];
+                    [_onError callWithArguments:@[[JSValue valueWithNewErrorFromMessage:error.localizedDescription inContext:[_onError context]]]];
                 }
             }
         });

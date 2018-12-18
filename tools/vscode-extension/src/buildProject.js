@@ -92,6 +92,12 @@ function buildFromXMLNode(xmlNode) {
 }
 
 module.exports = function(cb){
+    // 先将当前的文档保存
+    if(vscode.window.activeTextEditor){
+        vscode.window.activeTextEditor.document.save();
+    }
+
+
     let projectPath = utils.getProjectPath();
 
     // 执行拷贝文件的指令

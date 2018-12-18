@@ -60,7 +60,7 @@ function provideCompletionItems(document, position, token, context) {
             let completionItem = new vscode.CompletionItem(item.name);
             completionItem.kind = vscode.CompletionItemKind.Keyword;
             completionItem.detail = item.desc;
-            completionItem.insertText = item.name;
+            completionItem.insertText = item.value;
             completionItems.push(completionItem);
         });
         return completionItems;

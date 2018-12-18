@@ -19,14 +19,17 @@
     "JSKeywords": [
         {
             "name": "$el",
+            "value":"el",
             "desc": "引用当前元素本身"
         },
         {
             "name": "$item",
+            "value":"item",
             "desc": "当前元素在for指令的处理中获得的数据源,只有在for指令中有效"
         },
         {
             "name": "$index",
+            "value":"index",
             "desc": "当前$item在数组中的索引，只有在for指令中有效"
         }
     ],

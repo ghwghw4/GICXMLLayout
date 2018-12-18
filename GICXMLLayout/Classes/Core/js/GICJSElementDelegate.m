@@ -9,6 +9,8 @@
 #import "JSValue+GICJSExtension.h"
 #import "GICJSCore.h"
 #import "JSContext+GICJSContext.h"
+#import "GICTemplateRef.h"
+#import "GICJSDocument.h"
 
 @implementation GICJSElementDelegate{
     NSMutableDictionary<NSString *,JSManagedValue *> *managedValueDict;
@@ -132,4 +134,43 @@
     [self.element gic_removeFromSuperElement];
 }
 
+
+
+-(JSValue *)frame{
+    if(ISAsdisplayNode(self.element)){
+        CGRect f =[(ASDisplayNode*)_element frame];
+        return [JSValue valueWithRect:f inContext:[JSContext currentContext]];
+    }
+    return nil;
+}
+
+-(void)setFrame:(JSValue *)frame{
+    if(ISAsdisplayNode(self.element)){
+        CGRect f = [frame toRect];
+        [(ASDisplayNode*)_element setFrame:f];
+    }
+}
+
+- (JSValue *)convertPoint:(JSValue *)point toElement:(JSValue *)elementValue{
+    id element = [elementValue toObject];
+    if([element isKindOfClass:[GICJSElementDelegate class]]){
+        if(ISAsdisplayNode(self.element) && ISAsdisplayNode(element)){
+            CGPoint p= [(ASDisplayNode *)self.element convertPoint:[point toPoint] toNode:element];
+            return [JSValue valueWithPoint:p inContext:[JSContext currentContext]];
+        }
+    }
+    return nil;
+}
+
+- (JSValue *)convertRect:(JSValue *)rect toNode:(JSValue *)elementValue{
+    id element = [elementValue toObject];
+    if([element isKindOfClass:[GICJSElementDelegate class]]){
+        if(ISAsdisplayNode(self.element) && ISAsdisplayNode(element)){
+            CGRect r= [(ASDisplayNode *)self.element convertRect:[rect toRect] toNode:element];
+            return [JSValue valueWithRect:r inContext:[JSContext currentContext]];
+        }
+    }
+    return nil;
+}
 @end
+

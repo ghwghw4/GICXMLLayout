@@ -10,6 +10,7 @@
 #import "JSValue+GICJSExtension.h"
 #import "GICJSElementDelegate.h"
 #import "JSContext+GICJSContext.h"
+#import "GICTemplateRef.h"
 
 @implementation GICJSDocument
 //-(id)initRootElement:(id)root{
@@ -21,10 +22,6 @@
 -(id)rootElement{
     return [[JSContext currentContext] rootElement];
 }
-
-//+(id)rootElement{
-//    return [[JSContext currentContext] rootElement].element;
-//}
 
 +(id)rootElementFromJsContext:(JSContext *)jscontext{
     if(jscontext)
@@ -47,6 +44,13 @@
     return @[];
 }
 
+//-(JSValue *)createElementFromTemplate:(NSString *)templateName{
+//    id root = [GICJSDocument rootElementFromJsContext:[JSContext currentContext]];
+//    GICTemplateRef *ref = [[GICTemplateRef alloc] initWithTemplateName:templateName];
+//    id node =[ref parseTemplateFromTarget:root];
+//    return [GICJSElementDelegate getJSValueFrom:node inContext:[JSContext currentContext]];
+//}
+
 -(id)createElement:(NSString *)elmentName{
     Class c = [GICElementsCache classForElementName:elmentName];
     if(c){
@@ -55,6 +59,19 @@
         return [GICJSElementDelegate getJSValueFrom:v inContext:[JSContext currentContext]];
     }
     return nil;
+}
+
++(UIView *)rootViewFromJSContenxt:(JSContext *)jscontext{
+    __block UIView *rootView = nil;
+    GICPerformBlockOnMainQueueSync(^{
+       id root = [GICJSDocument rootElementFromJsContext:jscontext];
+        if([root isKindOfClass:[UIViewController class]]){
+            rootView = [(UIViewController *)root view];
+        }else if ([root isKindOfClass:[ASDisplayNode class]]){
+            rootView = [(ASDisplayNode *)root view];
+        }
+    });
+    return rootView;
 }
 @end
 

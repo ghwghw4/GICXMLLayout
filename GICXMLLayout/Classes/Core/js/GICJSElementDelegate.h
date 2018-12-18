@@ -9,9 +9,13 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
+#define ISAsdisplayNode(obj) \
+[obj isKindOfClass:[ASDisplayNode class]]
+
 @protocol GICJSElementDelegate <JSExport>
 // 数据源。用来做绑定的
 @property JSValue* dataContext;
+@property JSValue *frame;
 // 获取元素属性值
 -(id)_getAttValue:(NSString *)attName;
 
@@ -28,6 +32,11 @@ JSExportAs(_setEvent, - (void)_setEvent:(NSString *)eventName eventFunc:(JSValue
 -(void)removeFromSupeElement;
 
 -(instancetype)init;
+
+
+#pragma mark convert
+- (JSValue *)convertPoint:(JSValue *)point toElement:(JSValue *)elementValue;
+- (JSValue *)convertRect:(JSValue *)rect toNode:(JSValue *)elementValue;
 @end
 
 

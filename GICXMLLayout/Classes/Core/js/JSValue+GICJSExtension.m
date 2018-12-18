@@ -18,9 +18,9 @@
     if([self isNull] || [self isUndefined]){
         return nil;
     }
-    //    if(owner){
-    //        return [JSManagedValue managedValueWithValue:self andOwner:owner];
-    //    }
+    if(owner){
+        return [JSManagedValue managedValueWithValue:self andOwner:owner];
+    }
     return [JSManagedValue managedValueWithValue:self];
     //
     

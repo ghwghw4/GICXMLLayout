@@ -10,6 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 @protocol GICJSDocument <JSExport>
 -(NSArray *)getElementsByName:(NSString *)name;
+//-(JSValue *)createElementFromTemplate:(NSString *)templateName;
 @property (readonly)id rootElement;
 
 
@@ -21,4 +22,7 @@
 // 提供给native 调用的
 //+(id)rootElement;
 +(id)rootElementFromJsContext:(JSContext *)jscontext;
+
+// 根据rootElement 获取rootView
++(UIView *)rootViewFromJSContenxt:(JSContext *)jscontext;
 @end

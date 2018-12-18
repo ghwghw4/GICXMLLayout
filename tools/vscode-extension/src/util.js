@@ -12,42 +12,59 @@ const util = {
      * getProjectPath() 会自动从 activeTextEditor 拿document对象，如果没有拿到则报错
      * @param {*} document 
      */
-    getProjectPath(document) {
-        if (!document) {
-            document = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.document : null;
+    getProjectPath() {
+        let projectPath = path.dirname(vscode.window.activeTextEditor.document.uri.path);
+        // 获取项目的根目录
+        while (projectPath !== '/' && (path.basename(projectPath) !== 'project')) {
+            projectPath = path.resolve(projectPath, '..');
         }
-        if (!document) {
-            this.showError('当前激活的编辑器不是文件或者没有文件被打开！');
-            return '';
-        }
-        const currentFile = (document.uri ? document.uri : document).fsPath;
-        let projectPath = null;
 
-        let workspaceFolders = vscode.workspace.workspaceFolders.map(item => item.uri.path);
-        // 由于存在Multi-root工作区，暂时没有特别好的判断方法，先这样粗暴判断
-        // 如果发现只有一个根文件夹，读取其子文件夹作为 workspaceFolders
-        if (workspaceFolders.length == 1 && workspaceFolders[0] === vscode.workspace.rootPath) {
-            const rootPath = workspaceFolders[0];
-            var files = fs.readdirSync(rootPath);
-            workspaceFolders = files.filter(name => !/^\./g.test(name)).map(name => path.resolve(rootPath, name));
-            // vscode.workspace.rootPath会不准确，且已过时
-            // return vscode.workspace.rootPath + '/' + this._getProjectName(vscode, document);
-        }
-        workspaceFolders.forEach(folder => {
-            if (currentFile.indexOf(folder) === 0) {
-                projectPath = folder;
-            }
-        })
-        if (!projectPath) {
-            this.showError('获取工程根路径异常！');
-            return '';
+        if (projectPath === '/') {
+            vscode.window.showErrorMessage('请确保您的项目文件保存在 project 目录,并且打开的文件是属于project目录下的文件');
+            return;
         }
         return projectPath;
+        // if (!document) {
+        //     document = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.document : null;
+        // }
+        // if (!document) {
+        //     this.showError('当前激活的编辑器不是文件或者没有文件被打开！');
+        //     return '';
+        // }
+        // const currentFile = (document.uri ? document.uri : document).fsPath;
+        // let projectPath = null;
+
+        // let workspaceFolders = vscode.workspace.workspaceFolders.map(item => item.uri.path);
+        // // 由于存在Multi-root工作区，暂时没有特别好的判断方法，先这样粗暴判断
+        // // 如果发现只有一个根文件夹，读取其子文件夹作为 workspaceFolders
+        // if (workspaceFolders.length == 1 && workspaceFolders[0] === vscode.workspace.rootPath) {
+        //     const rootPath = workspaceFolders[0];
+        //     var files = fs.readdirSync(rootPath);
+        //     workspaceFolders = files.filter(name => !/^\./g.test(name)).map(name => path.resolve(rootPath, name));
+        //     // vscode.workspace.rootPath会不准确，且已过时
+        //     // return vscode.workspace.rootPath + '/' + this._getProjectName(vscode, document);
+        // }
+        // workspaceFolders.forEach(folder => {
+        //     if (currentFile.indexOf(folder) === 0) {
+        //         projectPath = folder;
+        //     }
+        // })
+        // if (!projectPath) {
+        //     this.showError('获取工程根路径异常！');
+        //     return '';
+        // }
+        // return projectPath;
+    },
+
+    // 获取build目录的地址
+    getBuildPath(){
+        const buildPath = path.resolve(this.getProjectPath(), '../build');
+        return buildPath;
     },
     /**
      * 获取当前工程名
      */
-    getProjectName: function(projectPath) {
+    getProjectName: function (projectPath) {
         return path.basename(projectPath);
     },
     getPluginPath() {
@@ -57,41 +74,41 @@ const util = {
      * 将一个单词首字母大写并返回
      * @param {*} word 某个字符串
      */
-    upperFirstLetter: function(word) {
+    upperFirstLetter: function (word) {
         return (word || '').replace(/^\w/, m => m.toUpperCase());
     },
     /**
      * 将一个单词首字母转小写并返回
      * @param {*} word 某个字符串
      */
-    lowerFirstLeter: function(word) {
+    lowerFirstLeter: function (word) {
         return (word || '').replace(/^\w/, m => m.toLowerCase());
     },
     /**
      * 全局日志开关，发布时可以注释掉日志输出
      */
-    log: function(...args) {
+    log: function (...args) {
         console.log(...args);
     },
     /**
      * 全局日志开关，发布时可以注释掉日志输出
      */
-    error: function(...args) {
+    error: function (...args) {
         console.error(...args);
     },
     /**
      * 弹出错误信息
      */
-    showError: function(info) {
+    showError: function (info) {
         vscode.window.showErrorMessage(info);
     },
     /**
      * 弹出提示信息
      */
-    showInfo: function(info) {
+    showInfo: function (info) {
         vscode.window.showInformationMessage(info);
     },
-    findStrInFolder: function(folderPath, str) {
+    findStrInFolder: function (folderPath, str) {
 
     },
     /**
@@ -99,32 +116,32 @@ const util = {
      * @param filePath 要查找的文件
      * @param reg 正则对象，最好不要带g，也可以是字符串
      */
-    findStrInFile: function(filePath, reg) {
+    findStrInFile: function (filePath, reg) {
         const content = fs.readFileSync(filePath, 'utf-8');
         reg = typeof reg === 'string' ? new RegExp(reg, 'm') : reg;
         // 没找到直接返回
-        if (content.search(reg) < 0) return {row: 0, col: 0};
+        if (content.search(reg) < 0) return { row: 0, col: 0 };
         const rows = content.split(os.EOL);
         // 分行查找只为了拿到行
-        for(let i = 0; i < rows.length; i++) {
+        for (let i = 0; i < rows.length; i++) {
             let col = rows[i].search(reg);
-            if(col >= 0) {
-                return {row: i, col};
+            if (col >= 0) {
+                return { row: i, col };
             }
         }
-        return {row: 0, col: 0};
+        return { row: 0, col: 0 };
     },
     /**
      * 获取某个字符串在文件里第一次出现位置的范围，
      */
-    getStrRangeInFile: function(filePath, str) {
+    getStrRangeInFile: function (filePath, str) {
         var pos = this.findStrInFile(filePath, str);
         return new vscode.Range(new vscode.Position(pos.row, pos.col), new vscode.Position(pos.row, pos.col + str.length));
     },
     /**
      * 简单的检测版本大小
      */
-    checkVersion: function(version1, version2) {
+    checkVersion: function (version1, version2) {
         version1 = parseInt(version1.replace(/\./g, ''));
         version2 = parseInt(version2.replace(/\./g, ''));
         return version1 > version2;
@@ -134,7 +151,7 @@ const util = {
      * @param context 上下文
      * @param relativePath 扩展中某个文件相对于根目录的路径，如 images/test.jpg
      */
-    getExtensionFileAbsolutePath: function(context, relativePath) {
+    getExtensionFileAbsolutePath: function (context, relativePath) {
         return path.join(context.extensionPath, relativePath);
     },
     /**
@@ -143,14 +160,14 @@ const util = {
      * @param context 上下文
      * @param relativePath 扩展中某个文件相对于根目录的路径，如 images/test.jpg
      */
-    getExtensionFileVscodeResource: function(context, relativePath) {
+    getExtensionFileVscodeResource: function (context, relativePath) {
         const diskPath = vscode.Uri.file(path.join(context.extensionPath, relativePath));
         return diskPath.with({ scheme: 'vscode-resource' }).toString();
     },
     /**
      * 在Finder中打开某个文件或者路径
      */
-    openFileInFinder: function(filePath) {
+    openFileInFinder: function (filePath) {
         if (!fs.existsSync(filePath)) {
             this.showError('文件不存在：' + filePath);
         }
@@ -170,7 +187,7 @@ const util = {
      * @param {*} path 文件绝对路径
      * @param {*} text 可选，如果不为空，则选中第一处匹配的对应文字
      */
-    openFileInVscode: function(path, text) {
+    openFileInVscode: function (path, text) {
         let options = undefined;
         if (text) {
             const selection = this.getStrRangeInFile(path, text);
@@ -181,7 +198,7 @@ const util = {
     /**
      * 用JD-GUI打开jar包
      */
-    openJarByJdGui: function(jarPath) {
+    openJarByJdGui: function (jarPath) {
         // 如何选中文件有待完善
         const jdGuiPath = vscode.workspace.getConfiguration().get('eggHelper.jdGuiPath');
         if (!jdGuiPath) {
@@ -201,7 +218,7 @@ const util = {
     /**
      * 使用默认浏览器中打开某个URL
      */
-    openUrlInBrowser: function(url) {
+    openUrlInBrowser: function (url) {
         exec(`open '${url}'`);
     },
     /**
@@ -232,7 +249,7 @@ const util = {
      * @param {*} filePath 
      */
     readProperties(filePath) {
-        const content =  fs.readFileSync(filePath, 'utf-8');
+        const content = fs.readFileSync(filePath, 'utf-8');
         let rows = content.split(os.EOL);
         rows = rows.filter(row => row && row.trim() && !/^#/.test(row));
         const result = {};

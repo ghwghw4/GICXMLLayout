@@ -26,11 +26,19 @@
         "commands": [
             {
                 "command": "extension.gic.buildjs",
-                "title": "build"
+                "title": "Build"
             },
             {
                 "command": "extension.gic.buildAndZip",
-                "title": "build And Zip"
+                "title": "Build And Zip"
+            },
+            {
+                "command": "extension.gic.init",
+                "title": "初始化"
+            },
+            {
+                "command": "extension.gic.buildAndRun",
+                "title": "Build And Run"
             }
         ],
         "keybindings": [
@@ -38,6 +46,11 @@
                 "command": "extension.gic.buildjs",
                 "key": "ctrl+b",
                 "mac": "cmd+b"
+            },
+            {
+                "command": "extension.gic.buildAndRun",
+                "key": "ctrl+r",
+                "mac": "cmd+r"
             }
         ],
         "menus": {
@@ -45,24 +58,44 @@
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildjs",
-                    "group": "z_commands"
+                    "group": "gic"
                 },
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildAndZip",
-                    "group": "z_commands"
+                    "group": "gic"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.init",
+                    "group": "gic"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildAndRun",
+                    "group": "gic"
                 }
             ],
             "editor/title": [
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildjs",
-                    "group": "navigation"
+                    "group": "gic"
                 },
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildAndZip",
-                    "group": "navigation"
+                    "group": "gic"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.init",
+                    "group": "gic"
+                },
+                {
+                    "when": "editorFocus",
+                    "command": "extension.gic.buildAndRun",
+                    "group": "gic"
                 }
             ]
         }
@@ -92,6 +125,8 @@
         "@babel/plugin-transform-sticky-regex": "^7.2.0",
         "@babel/plugin-transform-template-literals": "^7.2.0",
         "@babel/plugin-transform-typeof-symbol": "^7.2.0",
+        "watch": "^1.0.2",
+        "websocket": "^1.0.28",
         "xml-parser": "^1.2.1",
         "xml-writer": "^1.7.0",
         "zip-local": "^0.3.4"

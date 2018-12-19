@@ -1,20 +1,20 @@
 const vscode = require('vscode');
 // const StaticServer = require('static-server');
-const utils = require('./util');
+const pathUtils = require('./utils/pathutils');
 const fs = require('fs');
 const WebSocketServer = require('websocket').server;
 const http = require('http');
 const watch = require('watch');
 const build = require('./buildProject');
-
+const Config = require('./utils/Config');
 
 
 function init() {
     try {
-        const projectPath = utils.getProjectPath();
-        // 获取配置文件
-        const packageJson = JSON.parse(fs.readFileSync(`${projectPath}/package.json`, 'utf8'));
-        startHttpServer(packageJson);
+        // const projectPath = utils.getProjectPath();
+        // // 获取配置文件
+        // const packageJson = JSON.parse(fs.readFileSync(`${projectPath}/package.json`, 'utf8'));
+        startHttpServer(Config.getConfig());
         // watchFiles();
     } catch (error) {
         vscode.window.showErrorMessage('初始化失败，请打开任意文件窗口后，右键从菜单中执行 初始化 指令');
@@ -25,14 +25,18 @@ let httpServer = null;
 let wsServer = null;
 
 // 启动http server
-function startHttpServer(packageJson) {
+/**
+ * 
+ * @param {Config} config 
+ */
+function startHttpServer(config) {
     // 启动http server
-    const buildPath = utils.getBuildPath() + '/project';
+    // const buildPath = utils.getBuildPath() + '/project';
     if (httpServer && httpServer.listening) {
         httpServer.close();
     }
 
-    const rootPath = utils.getBuildPath() + '/project';
+    const rootPath = pathUtils.getBuildPath(config) + '/project';
     httpServer = http.createServer(function (request, response) {
         try {
             var bb = fs.readFileSync(rootPath + request.url);
@@ -46,7 +50,7 @@ function startHttpServer(packageJson) {
         }
         response.end();
     });
-    const port = parseInt(packageJson['http-server-port']);
+    const port = parseInt(config.httpServerPort);
     httpServer.listen(port, function () {
         vscode.window.showInformationMessage(`http-server 已经启动,端口号:${port},根目录:${rootPath}`);
     });
@@ -82,27 +86,27 @@ let monit = null;
 /**
  * 监控文件的改变
  */
-function watchFiles() {
-    const root = utils.getProjectPath();
-    if(monit){
-        monit.stop();
-    }
-    watch.createMonitor(root, function (monitor) {
-        monit = monitor
-        monitor.on("created", function (f, stat) {
-            // Handle new files
-            sendFileChangedNotify(f);
-        })
-        monitor.on("changed", function (f, curr, prev) {
-            // Handle file changes
-            sendFileChangedNotify(f);
-        })
-        monitor.on("removed", function (f, stat) {
-            // Handle removed files
-            sendFileChangedNotify(f);
-        })
-    });
-}
+// function watchFiles() {
+//     const root = pathUtils.getProjectPath();
+//     if(monit){
+//         monit.stop();
+//     }
+//     watch.createMonitor(root, function (monitor) {
+//         monit = monitor
+//         monitor.on("created", function (f, stat) {
+//             // Handle new files
+//             sendFileChangedNotify(f);
+//         })
+//         monitor.on("changed", function (f, curr, prev) {
+//             // Handle file changes
+//             sendFileChangedNotify(f);
+//         })
+//         monitor.on("removed", function (f, stat) {
+//             // Handle removed files
+//             sendFileChangedNotify(f);
+//         })
+//     });
+// }
 
 function sendFileChangedNotify(fileName){
     build(function(){

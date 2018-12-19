@@ -2,7 +2,7 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"
@@ -21,7 +21,64 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "GICXMLLayout 插件"
+            "title": "GICXMLLayout",
+            "properties": {
+                "GICXMLLayout.httpServerPort": {
+                    "type": "integer",
+                    "default": 8080,
+                    "description": "http服务器端口，同时也是websocket使用的端口"
+                },
+                "GICXMLLayout.projectFolderName": {
+                    "type": "string",
+                    "default": "project",
+                    "description": "存放项目文件的目录名称"
+                },
+                "GICXMLLayout.elements": {
+                    "type": "array",
+                    "default": [
+                        {
+                            "elementName": "elementName",
+                            "desc": "desc",
+                            "isui": false,
+                            "attributes": [
+                                {
+                                    "name": "name",
+                                    "desc": "desc",
+                                    "type": "enum",
+                                    "enums": [
+                                        {
+                                            "name": "name",
+                                            "value": 0,
+                                            "desc": "desc"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "subElements": [
+                                {}
+                            ]
+                        }
+                    ],
+                    "description": "自定义元素配置"
+                },
+                "GICXMLLayout.behaviors": {
+                    "type": "array",
+                    "default": [
+                        {
+                            "elementName": "elementName",
+                            "desc": "desc",
+                            "attributes": [
+                                {
+                                    "name": "name",
+                                    "desc": "desc",
+                                    "type": "bool"
+                                }
+                            ]
+                        }
+                    ],
+                    "description": "自定义行为配置"
+                }
+            }
         },
         "commands": [
             {

@@ -5,8 +5,10 @@ const fs = require('fs');
 const WebSocketServer = require('websocket').server;
 const http = require('http');
 const watch = require('watch');
-const build = require('./buildProject');
+const BuildProject = require('./buildProject');
 const Config = require('./utils/Config');
+const url = require('url');
+const HotUpdate = require('./hotupdate');
 
 
 function init() {
@@ -37,13 +39,20 @@ function startHttpServer(config) {
     }
 
     const rootPath = pathUtils.getBuildPath(config) + '/project';
-    httpServer = http.createServer(function (request, response) {
+    httpServer = http.createServer( async (request, response) =>{
         try {
-            var bb = fs.readFileSync(rootPath + request.url);
-            if (bb && bb != undefined) {
-                response.write(bb);
-            } else {
-                response.writeHead(404);
+            if(request.url.indexOf('/hotupdate.php')===0){
+                // 热更新接口
+                var URL =  url.parse(`http://${request.headers['host'] + request.url }`);
+                const content = await HotUpdate(URL);
+                response.write(content);
+            }else{
+                var bb = fs.readFileSync(rootPath + request.url);
+                if (bb && bb != undefined) {
+                    response.write(bb);
+                } else {
+                    response.writeHead(404);
+                }
             }
         } catch (error) {
             response.writeHead(404);
@@ -82,7 +91,7 @@ function startHttpServer(config) {
     });
 }
 
-let monit = null;
+// let monit = null;
 /**
  * 监控文件的改变
  */
@@ -108,22 +117,20 @@ let monit = null;
 //     });
 // }
 
-function sendFileChangedNotify(fileName){
-    build(function(){
-        wsServer.connections.forEach(con=>{
-            con.sendUTF(JSON.stringify({fileName:fileName}));
-        });
-    });
-}
+// async function sendFileChangedNotify(fileName){
+//     await BuildProject.build();
+//     wsServer.connections.forEach(con=>{
+//         con.sendUTF(JSON.stringify({fileName:fileName}));
+//     });
+// }
 
 /**
  * 编译并且通过Websocket发送reload页面的指令
  */
-function buildAndRun(){
-    build(function(){
-        wsServer.connections.forEach(con=>{
-            con.sendUTF('reload');
-        });
+async function buildAndRun(){
+    await BuildProject.build();
+    wsServer.connections.forEach(con=>{
+        con.sendUTF('reload');
     });
 }
 

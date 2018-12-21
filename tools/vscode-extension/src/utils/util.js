@@ -75,11 +75,21 @@ const util = {
     },
     /**
      * 简单的检测版本大小
+     * @param {string} version1 
+     * @param {string} version2 
      */
     checkVersion: function (version1, version2) {
-        version1 = parseInt(version1.replace(/\./g, ''));
-        version2 = parseInt(version2.replace(/\./g, ''));
-        return version1 > version2;
+        if(version1 === version2){
+            return false;
+        }
+        const v1 = version1.split('.');
+        const v2 = version2.split('.');
+        for(let i=0;i<v1.length;i++){
+            if(parseInt(v1[i])<parseInt(v2[i])){
+                return false;
+            }
+        }
+        return true
     },
     /**
      * 获取某个扩展文件绝对路径

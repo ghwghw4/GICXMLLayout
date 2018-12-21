@@ -557,7 +557,17 @@
                     "type": "color"
                 }
             ],
-            "desc": "UINavigationController"
+            "desc": "UINavigationController",
+            "subElements":[{
+                "elementName":"root-page",
+                "desc":"根页面",
+                "attributes":[
+                    {
+                        "name": "path",
+                        "desc": "根页面路径"
+                    }
+                ]
+            }]
         },
         {
             "elementName": "page",
@@ -811,6 +821,7 @@
             ],
             "desc": "UILable",
             "isui": true,
+            "special":true,
             "subElements": [
                 {
                     "elementName": "s",

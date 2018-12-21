@@ -7,23 +7,25 @@ const XMLNode = require('./XMLDoc');
 const babel = require('@babel/core');
 const fs = require('fs');
 const Config = require('./utils/Config');
+// 文件压缩
+var zipper = require("zip-local");
 
 // 编译的时候被忽略的文件名称
 const ignorFilesName = ['.vscode'];
 
-function resolveFilePath(fileName,relativePath){
-    if(relativePath[0]==='.'){
-        const rootPath = pathutils.getBuildProjectPath(Config.getConfig()) +'/';
-        const fullPath =path.resolve(path.dirname(fileName),relativePath);
-        relativePath  = fullPath.replace(rootPath,'');
+function resolveFilePath(fileName, relativePath) {
+    if (relativePath[0] === '.') {
+        const rootPath = pathutils.getBuildProjectPath(Config.getConfig()) + '/';
+        const fullPath = path.resolve(path.dirname(fileName), relativePath);
+        relativePath = fullPath.replace(rootPath, '');
     }
 
     // if(relativePath[0]==='/'){
     //     relativePath = relativePath.substring(1,relativePath.length);
     // }
 
-    if(path.extname(relativePath).length ===0){
-        relativePath +='.js';
+    if (path.extname(relativePath).length === 0) {
+        relativePath += '.js';
     }
     return relativePath;
 }
@@ -44,7 +46,7 @@ const visitor = {
                 if (args.length === 1) {
                     const argumentNode = args[0];
                     if (argumentNode.type === 'StringLiteral') {
-                        argumentNode.value = resolveFilePath(state.filename,argumentNode.value);
+                        argumentNode.value = resolveFilePath(state.filename, argumentNode.value);
                     }
                 }
             }
@@ -66,7 +68,7 @@ const plugins = [
     require('@babel/plugin-transform-shorthand-properties'),
     require('@babel/plugin-transform-sticky-regex'),
     require('@babel/plugin-transform-typeof-symbol'),
-    {visitor}
+    { visitor }
 ];
 
 // 压缩并且移除注释
@@ -84,16 +86,16 @@ function buildFromDirect(dirName) {
         const fileName = `${dirName}/${item}`;
         const stat = fs.lstatSync(fileName)
         if (stat.isDirectory() === true) {
-            if(ignorFilesName.indexOf(path.basename(fileName)) >=0){
+            if (ignorFilesName.indexOf(path.basename(fileName)) >= 0) {
                 fs.rmdirSync(fileName);
-            }else{
+            } else {
                 buildFromDirect(fileName);
             }
         } else if (stat.isFile) {
-            if(ignorFilesName.indexOf(path.basename(fileName)) >=0){
+            if (ignorFilesName.indexOf(path.basename(fileName)) >= 0) {
                 // 删除该文件
                 fs.unlinkSync(fileName);
-            }else{
+            } else {
                 if (path.extname(fileName) === '.js') {
                     buildFromJSFile(fileName);
                 } else if (path.extname(fileName) === '.xml') {
@@ -146,33 +148,80 @@ function buildFromXMLNode(xmlNode) {
     }
 }
 
-module.exports = function(cb){
-    // 先将当前的文档保存
-    if(vscode.window.activeTextEditor){
-        vscode.window.activeTextEditor.document.save();
-    }
 
-    const config = Config.getConfig();
-    let projectPath = pathutils.getProjectPath(config);
+const BuildProject = {
+    build() {
+        // 先将当前的文档保存
+        if (vscode.window.activeTextEditor) {
+            vscode.window.activeTextEditor.document.save();
+        }
 
-    // 执行拷贝文件的指令
-    /**
-     * cd projectPath
-     * 删除build文件夹
-     * 将project 文件夹的所有内容拷贝到build文件夹中
-     */
-    exec(`cd ${projectPath} \n rm -rf ../build \n mkdir ../build \n cp -R ../${config.projectFolderName}/ ../build/${config.projectFolderName}`, () => {
+        const config = Config.getConfig();
+        let projectPath = pathutils.getProjectPath(config);
+
+
+        // 执行拷贝文件的指令
+        /**
+         * cd projectPath
+         * 删除build文件夹
+         * 将project 文件夹的所有内容拷贝到build文件夹中
+         */
+        const promise = new Promise(function (resolve, reject) {
+            exec(`cd ${projectPath} \n rm -rf ../build \n mkdir ../build \n cp -R ../${config.projectFolderName}/ ../build/${config.projectFolderName}`, () => {
+                const buildPath = path.resolve(projectPath, '../build');
+                try {
+                    // 遍历获取所有的JS的文件，并且进行es6翻译
+                    buildFromDirect(buildPath);
+                } catch (error) {
+                    console.error(error);
+                    vscode.window.showErrorMessage('编译失败:' + error);
+                }
+                vscode.window.showInformationMessage(`编译完成`);
+                resolve();
+            });
+        });
+        
+        return promise;
+    },
+    async buildAndZip(){
+        await this.build();
+        const config = Config.getConfig();
+        const projectPath = pathutils.getProjectPath(config);
         const buildPath = path.resolve(projectPath, '../build');
-        try {
-            // 遍历获取所有的JS的文件，并且进行es6翻译
-            buildFromDirect(buildPath);
-        } catch (error) {
-            console.error(error);
-            vscode.window.showErrorMessage('编译失败:' + error);
-        }
-        vscode.window.showInformationMessage(`编译完成`);
-        if(cb){
-            cb();
-        }
-    });
+        zipper.sync.zip(`${buildPath}/${config.projectFolderName}`).compress().save(buildPath + '/project.zip');
+    }
 };
+
+module.exports = BuildProject;
+
+
+// module.exports = function (cb) {
+//     // 先将当前的文档保存
+//     if (vscode.window.activeTextEditor) {
+//         vscode.window.activeTextEditor.document.save();
+//     }
+
+//     const config = Config.getConfig();
+//     let projectPath = pathutils.getProjectPath(config);
+
+//     // 执行拷贝文件的指令
+//     /**
+//      * cd projectPath
+//      * 删除build文件夹
+//      * 将project 文件夹的所有内容拷贝到build文件夹中
+//      */
+//     exec(`cd ${projectPath} \n rm -rf ../build \n mkdir ../build \n cp -R ../${config.projectFolderName}/ ../build/${config.projectFolderName}`, () => {
+//         const buildPath = path.resolve(projectPath, '../build');
+//         try {
+//             // 遍历获取所有的JS的文件，并且进行es6翻译
+//             buildFromDirect(buildPath);
+//         } catch (error) {
+//             console.error(error);
+//             vscode.window.showErrorMessage('编译失败:' + error);
+//         }
+//         vscode.window.showInformationMessage(`编译完成`);
+//         if (cb) {
+//             cb();
+//         }
+//     });
+// };

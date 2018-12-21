@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const program = require('commander');
 const download = require('download-git-repo');
 const fs = require('fs');
@@ -18,6 +19,11 @@ const autoCreateFolder = [
     'project/js',
     'project/pages',
     'project/style'
+];
+
+// 忽略不做replace的文件类型
+const ignorFileTypes = [
+    '.png','.jpg'
 ];
 
 // 项目配置
@@ -57,7 +63,7 @@ function choiceTemplateType() {
                 '2.HotReload',
                 '3.HotReload & VSCode',
                 '4.HotReload & VSCode & HotUpdate(推荐)',
-                // '5.Tabs & HotReload'
+                '5.Tabs'
             ]
         }
     ]).then((answers) => {
@@ -105,6 +111,18 @@ function choiceTemplateType() {
                 };
                 break;
             }
+            case 5: {
+                autoCreateFolder.push('build');
+                autoCreateFolder.push('build/project');
+                Config.giturl = 'github:ghwghw4/gic-project-template#tabs';
+                Config.completeCallback = function(){
+                    redColorLog(`1.使用VSCode打开工程文件夹`);
+                    redColorLog(`2.在VSCode中搜索'GICVSCodeExtension'插件并且安装`);
+                    redColorLog(`3.使用'cmd+b'快捷键编译project文件夹，VSCode会在build目录中生成编译后的文件`);
+                    redColorLog(`4.使用Xcode编译并且运行工程`);
+                };
+                break;
+            }
             default:
                 break;
         }
@@ -148,9 +166,11 @@ function replaceTemplate(folderName) {
             const dirName = path.dirname(fileName);
             fs.renameSync(fileName, `${dirName}/${baseName}`);
         } else if (stat.isFile) {
-            let content = fs.readFileSync(fileName, 'utf8');
-            content = replaceString(content);
-            fs.writeFileSync(fileName, content);
+            if(ignorFileTypes.indexOf(path.extname(fileName))==-1){
+                let content = fs.readFileSync(fileName, 'utf8');
+                content = replaceString(content);
+                fs.writeFileSync(fileName, content);
+            }
         }
     });
 }
@@ -173,7 +193,12 @@ function createFolder() {
 function podUpdate() {
     console.log('pod install ...');
     // \n open ${Config.projectName}.xcworkspace
-    exec(`cd ${Config.projectName} \n pod install`, () => {
+    exec(`cd ${Config.projectName} \n pod install`, (err, sto) => {
+        console.log(sto);
+        if(err){
+            console.error('pod 安装失败');
+            return;
+        }
         console.log('process complete');
         console.log(chalk.blue(`请继续下面的步骤`));
         if(Config.completeCallback){

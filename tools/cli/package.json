@@ -1,6 +1,6 @@
 {
   "name": "gicxmllayout-cli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "GICXMLLayout 脚手架",
   "main": "index.js",
   "bin": {

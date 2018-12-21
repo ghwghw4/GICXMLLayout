@@ -34,7 +34,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.6'
+pod 'GICXMLLayout', '~> 0.4.7'
 ```
 
 

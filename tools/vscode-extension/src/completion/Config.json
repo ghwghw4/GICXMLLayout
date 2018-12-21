@@ -817,6 +817,10 @@
                             "value": "0x8000"
                         }
                     ]
+                },
+                {
+                    "name":"line-space",
+                    "desc":"行间距"
                 }
             ],
             "desc": "UILable",
@@ -945,6 +949,10 @@
                                     "value": "0x8000"
                                 }
                             ]
+                        },
+                        {
+                            "name":"line-space",
+                            "desc":"行间距"
                         }
                     ],
                     "desc": "文本片段"

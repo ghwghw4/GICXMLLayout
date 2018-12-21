@@ -2,7 +2,7 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"

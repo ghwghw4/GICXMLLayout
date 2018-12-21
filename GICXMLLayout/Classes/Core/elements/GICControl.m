@@ -62,6 +62,12 @@
 
 
 -(void)updateContent{
+    
+    if(self.normalNode == nil){
+        // 这行代码是为了避免在没有normalNode的情况下crash的问题
+        _normalNode = [ASDisplayNode new];
+    }
+
     self.alpha = 1;
     if(self.highlighted){
         if(self.highlightNode){

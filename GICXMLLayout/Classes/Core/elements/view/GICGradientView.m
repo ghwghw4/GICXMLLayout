@@ -47,13 +47,15 @@
         locations[i] = [self.locations[i] floatValue];
     }
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)self.colors, locations);
-    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(size.width*_start.x, size.height*_start.y), CGPointMake(size.width*_end.x, size.height*_end.y), 0);
-    CGGradientRelease(gradient);
-    CGColorSpaceRelease(colorSpace);
-    self.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    if(ctx){
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)self.colors, locations);
+        CGContextDrawLinearGradient(ctx, gradient, CGPointMake(size.width*_start.x, size.height*_start.y), CGPointMake(size.width*_end.x, size.height*_end.y), 0);
+        CGGradientRelease(gradient);
+        CGColorSpaceRelease(colorSpace);
+        self.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
 }
 
 -(void)layout{

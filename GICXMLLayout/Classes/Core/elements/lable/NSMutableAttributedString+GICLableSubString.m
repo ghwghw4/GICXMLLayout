@@ -93,6 +93,15 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSStrikethroughStyleAttributeName];
                          }],
+                         @"line-space":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                             NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                             [paragraphStyle setLineSpacing:[value integerValue]];//行间距
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             [str.gic_attributDict setValue:paragraphStyle forKey:NSParagraphStyleAttributeName];
+                         } withGetter:^id(id target) {
+                             NSMutableAttributedString *str = (NSMutableAttributedString *)target;
+                             return @([(NSMutableParagraphStyle *)[str.gic_attributDict objectForKey:NSParagraphStyleAttributeName] lineSpacing]);
+                         }],
                          };
 }
 

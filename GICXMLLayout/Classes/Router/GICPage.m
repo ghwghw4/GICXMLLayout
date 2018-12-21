@@ -67,6 +67,15 @@
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self
                                                                                   action:nil];
+    
+    [self.gic_subElements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj!=self->_displayNode && ![obj isKindOfClass:[GICNavBar class]]){
+            if([obj isKindOfClass:[ASDisplayNode class]]){
+                [self.view addSubnode:obj];
+                [(ASDisplayNode *)obj setFrame:self.view.bounds];
+            }
+        }
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -91,8 +100,9 @@
 
 -(id)gic_willAddAndPrepareSubElement:(id)subElement{
     if([subElement isKindOfClass:[ASDisplayNode class]]){
-        NSAssert(_displayNode == nil, @"page 只允许添加一个子元素");
-        _displayNode =subElement;
+        if(_displayNode == nil){
+             _displayNode =subElement;
+        }
         [(ASDisplayNode *)subElement gic_ExtensionProperties].superElement = self;
         return subElement;
     }else{

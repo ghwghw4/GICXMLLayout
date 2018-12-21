@@ -1,0 +1,30 @@
+{
+  "name": "gicxmllayout-cli",
+  "version": "1.0.0",
+  "description": "GICXMLLayout 脚手架",
+  "main": "index.js",
+  "bin": {
+    "gic": "index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "download-git-repo": "^1.1.0",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "handlebars": "^4.0.12",
+    "inquirer": "^6.2.1",
+    "log-symbols": "^2.2.0",
+    "ora": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GICXMLLayout",
+    "gic"
+  ],
+  "author": "gonghaiwei",
+  "license": "ISC"
+}

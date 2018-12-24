@@ -5,10 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/GICXMLLayout.svg?style=flat)](https://cocoapods.org/pods/GICXMLLayout)
 [![Platform](https://img.shields.io/cocoapods/p/GICXMLLayout.svg?style=flat)](https://cocoapods.org/pods/GICXMLLayout)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 # 介绍
 
 `GICXMLLayout`以下简称`gic`，是一个以XML来描述UI的一个库，同时兼有MVVM的功能。`gic`能够做什么？
@@ -37,7 +33,31 @@ it, simply add the following line to your Podfile:
 pod 'GICXMLLayout', '~> 0.4.7'
 ```
 
+## IDE & 脚手架支持
 
+`GICXMLLayout`已经有了配套的IDE开发工具以及`脚手架`的支持，以便你更快的创建项目以及进行开发。
+
+### IDE
+
+目前`GICXMLLayout`在`VSCode`中开发了一款插件,名字叫`GICVSCodeExtension`，你可以直接在VSCode的插件市场中搜索安装，支持XML的智能提示、`JavaScript`编译、`HotReloading`、`HotUpdate测试`等功能。
+
+### 脚手架
+
+1. 执行如下命令安装脚手架。(请确保已经安装了nodejs和npm)
+
+   ```bash
+   sudo npm install gicxmllayout-cli -g
+   ```
+
+2. 执行如下命令，创建`GIC`工程。
+
+   ```bash
+   gic init YourProject
+   ```
+
+3. 根据提示进行模板选择以及安装。
+
+安装完成后搭配`VSCode`进行开发将会极大的提升开发效率。
 
 ## Swift支持
 

@@ -59,6 +59,9 @@
     if([jsValue.value gic_isArray]){
         jsValue.value[@"forDirective"] = self;
         [jsValue.value invokeMethod:@"toForDirector" withArguments:@[jsValue.value[@"forDirective"]]];
+    }else if ([jsValue.value isObject]){
+        JSManagedValue *mv = [[jsValue.value.context.globalObject invokeMethod:@"ObjectToArray" withArguments:@[jsValue.value]] gic_ToManagedValue:self];
+        [self setGic_DataContext:mv];
     }
 }
 - (void)addItem:(JSValue *)item {

@@ -1,0 +1,46 @@
+<page title="GIC支持的API">
+    <behaviors>
+        <script path="/js/JSAPI.js" />
+        <script private="true">
+            $el.dataContext = JSAPI;
+        </script>
+    </behaviors>
+    <style path="/style/CommonStyle.xml" />
+    <scroll-view background-color="white">
+        <inset-panel inset="10">
+            <stack-panel>
+                <template-ref t-name="desc" data-context="下面列出的API都是GIC当前支持的,其余的API需要自行扩展" />
+                <template-ref t-name="title" data-context="setTimeout" />
+                <lable text="点击1秒后弹框" font-size="18" event-tap="js:this.showToast(1000)" />
+                <template-ref t-name="title" data-context="alert" />
+                <lable text="点击弹框" font-size="18" event-tap="js:alert('hello word');" />
+                <template-ref t-name="title" data-context="console" />
+                <lable text="点击输出日志(Xcode output 查看)" font-size="18" event-tap="js:console.log('hello word')" />
+                <template-ref t-name="title" data-context="setInterval 、clearInterval" />
+                <lable text="点击开始倒计时" font-size="18" event-tap="js:this.beginTick($el)" />
+                <template-ref t-name="title" data-context="require" />
+                <lable text="点击导入其他JS文件(使用方式类似node.js)" font-size="18" event-tap="js:this.requireJS()" />
+                <lable text="点击导入JSON文件" font-size="18" event-tap="js:this.requireJson($el)" space-before="10" />
+                <template-ref t-name="title" data-context="XMLHttpRequest" />
+                <lable text="正在加载..." font-size="18">
+                    <behaviors>
+                        <!--注意这里没有设置private属性,意味着方法可以全局访问-->
+                        <script private="1">
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function()
+                            {
+                                if (xmlhttp.status===200)
+                                {
+                                    // 将结果在lable中显示出来
+                                    $el.text = xmlhttp.responseText;
+                                }
+                            }
+                            xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
+                            xmlhttp.send();
+                        </script>
+                    </behaviors>
+                </lable>
+            </stack-panel>
+        </inset-panel>
+    </scroll-view>
+</page>

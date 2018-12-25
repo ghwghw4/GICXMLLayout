@@ -41,7 +41,7 @@ static bool jsExceptionNotify = false;
                 });
             });
         }
-        NSLog(@"JSException: %@",exception);
+        NSLog(@"JSException: %@ \n stacktrace:\n%@",exception,exception[@"stack"]);
     };
 }
 

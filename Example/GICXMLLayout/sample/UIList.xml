@@ -1,4 +1,3 @@
-<!--page 相当于 UIViewController-->
 <page title="支持的UI元素">
     <!--list 相当于UITableView-->
     <list background-color="white" separator-style="1">

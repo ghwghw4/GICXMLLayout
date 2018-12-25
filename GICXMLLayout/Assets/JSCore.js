@@ -1,3 +1,90 @@
+'use strict';
+
+/**
+ * 将对象转换成数组
+ * @param obj
+ * @returns {Array}
+ * @constructor
+ */
+function ObjectToArray(obj) {
+  var arr = [];
+  Object.keys(obj).forEach(function (key) {
+    arr.push({ $k: key, $v: obj[key] });
+  });
+  return arr;
+}
+
+/**
+ * 在某个对象上执行动态脚本
+ * @param script
+ * @returns {*}
+ */
+Object.prototype.executeScript = function (script, value1, value2) {
+  return new Function(script).call(this, value1, value2);
+};
+
+/**
+ * 判断对象是否是数组
+ * @returns {boolean}
+ */
+Object.prototype.isArray = function () {
+  return this instanceof Array;
+};
+
+// 为string 添加扩展函数，主要用来做属性转换
+/**
+ * 转成int
+ * @returns {Number}
+ */
+String.prototype.toInt = function () {
+  return parseInt(this, 0);
+};
+
+/**
+ * 转成float
+ * @returns {Number}
+ */
+String.prototype.toFloat = function () {
+  return parseFloat(this);
+};
+
+String.prototype.toColor = function () {
+  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+  var sColor = this.toLowerCase();
+  if (sColor && reg.test(sColor)) {
+    if (sColor.length === 4) {
+      var sColorNew = '#';
+      for (var i = 1; i < 4; i += 1) {
+        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+      }
+      sColor = sColorNew;
+    }
+    // 处理六位的颜色值
+    var sColorChange = [];
+    for (var _i = 1; _i < 7; _i += 2) {
+      sColorChange.push(parseInt('0x' + sColor.slice(_i, _i + 2), 0));
+    }
+    return 'RGB(' + sColorChange.join(',') + ')';
+  }
+  return sColor;
+};
+
+// Module 模块
+var Module = function Module() {
+  this.exports = null;
+};
+
+Module.requireJS = function (jsStr) {
+  var module = new Module();
+  this.executeScript('var module = arguments[0];' + jsStr, module);
+  return module;
+};
+
+Module.requireJson = function (jsonStr) {
+  var module = new Module();
+  module.exports = JSON.parse(jsonStr);
+  return module;
+};
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -223,31 +310,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _string = __webpack_require__(3);
-
-Object.keys(_string).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _string[key];
-    }
-  });
-});
-
-var _object = __webpack_require__(4);
-
-Object.keys(_object).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _object[key];
-    }
-  });
-});
-
-var _element = __webpack_require__(5);
+var _element = __webpack_require__(3);
 
 Object.keys(_element).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -259,7 +322,7 @@ Object.keys(_element).forEach(function (key) {
   });
 });
 
-var _binding = __webpack_require__(6);
+var _binding = __webpack_require__(4);
 
 Object.keys(_binding).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -273,75 +336,6 @@ Object.keys(_binding).forEach(function (key) {
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// 为string 添加扩展函数，主要用来做属性转换
-/**
- * 转成int
- * @returns {Number}
- */
-String.prototype.toInt = function () {
-  return parseInt(this, 0);
-};
-
-/**
- * 转成float
- * @returns {Number}
- */
-String.prototype.toFloat = function () {
-  return parseFloat(this);
-};
-
-String.prototype.toColor = function () {
-  var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
-  var sColor = this.toLowerCase();
-  if (sColor && reg.test(sColor)) {
-    if (sColor.length === 4) {
-      var sColorNew = '#';
-      for (var i = 1; i < 4; i += 1) {
-        sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
-      }
-      sColor = sColorNew;
-    }
-    // 处理六位的颜色值
-    var sColorChange = [];
-    for (var _i = 1; _i < 7; _i += 2) {
-      sColorChange.push(parseInt('0x' + sColor.slice(_i, _i + 2), 0));
-    }
-    return 'RGB(' + sColorChange.join(',') + ')';
-  }
-  return sColor;
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * 在某个对象上执行动态脚本
- * @param script
- * @returns {*}
- */
-Object.prototype.executeScript = function (script, value1, value2) {
-  return new Function(script).call(this, value1, value2);
-};
-
-/**
- * 判断对象是否是数组
- * @returns {boolean}
- */
-Object.prototype.isArray = function () {
-  return this instanceof Array;
-};
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -459,7 +453,7 @@ Object.prototype._fireEvent_ = function (eventJS, eventInfo) {
 };
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -472,9 +466,9 @@ exports.Binding = Binding;
 
 var _index = __webpack_require__(0);
 
-var _Observer = __webpack_require__(7);
+var _Observer = __webpack_require__(5);
 
-var _Watcher = __webpack_require__(9);
+var _Watcher = __webpack_require__(7);
 
 var _Watcher2 = _interopRequireDefault(_Watcher);
 
@@ -558,7 +552,7 @@ Array.prototype.toForDirector = function (forTarget) {
 /**
  * 添加元素数据绑定
  * @param obj
- * @param bindExp 绑定到某个属性
+ * @param bindExp 绑定表达式
  * @param cbName
  * @returns {Watcher}
  */
@@ -623,9 +617,8 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
 };
 
 /**
- * 提供给普通绑定用的，数据源为native数据源
- * @param props
- * @param expStr
+ * @param props 数据源的属性keys
+ * @param expStr 绑定表达式
  * @returns {*}
  */
 Object.prototype.executeBindExpression2 = function (props, expStr) {
@@ -640,7 +633,7 @@ Object.prototype.executeBindExpression2 = function (props, expStr) {
 function Binding() {}
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -659,7 +652,7 @@ var _Dep = __webpack_require__(1);
 
 var _Dep2 = _interopRequireDefault(_Dep);
 
-var _Array = __webpack_require__(8);
+var _Array = __webpack_require__(6);
 
 var _index = __webpack_require__(0);
 
@@ -839,7 +832,7 @@ function observe(value, asRootData) {
 }
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -894,7 +887,7 @@ methodsToPatch.forEach(function (method) {
 });
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

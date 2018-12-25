@@ -1,6 +1,4 @@
-<!--page 相当于 UIViewController-->
 <page title="GICXMLLayout">
-
     <!--list 相当于UITableView-->
     <list background-color="white" separator-style="1">
         <data-context>

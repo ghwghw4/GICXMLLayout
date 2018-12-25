@@ -30,7 +30,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.7'
+pod 'GICXMLLayout', '~> 0.4.8'
 ```
 
 ## IDE & 脚手架支持
@@ -233,6 +233,11 @@ pod 'GICXMLLayout', '~> 0.4.7'
 
    > 1. 提供对`link`的支持。
    > 2. 提供下划线、删除线的支持。
+
+### 0.4.7
+
+1. for指令支持遍历JS对象。
+2. 完善`require`函数。用法相当于node.js中的用法
 
 ## Author
 

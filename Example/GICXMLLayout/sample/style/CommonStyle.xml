@@ -1,13 +1,18 @@
 <style>
     <templates>
         <template t-name="desc">
-            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>
+            <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666" />
         </template>
         <template t-name="title">
             <stack-panel is-horizon="1" align-items="2" space-after="10" space-before="10">
                 <panel size="10" background-color="666666" corner-radius="5" />
-                <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="666666" flex-shrink="1"/>
+                <lable text="{{ }}" space-after="5" space-before="5" font-size="16" font-color="666666" flex-shrink="1" />
             </stack-panel>
+        </template>
+        <template t-name="toast">
+            <inset-panel inset="15" background-color="black">
+                <lable text="{{text}}" font-color="white" font-size="16" />
+            </inset-panel>
         </template>
     </templates>
 </style>

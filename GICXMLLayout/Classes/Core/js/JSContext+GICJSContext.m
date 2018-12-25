@@ -92,7 +92,14 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     self[@"require"] = ^(NSString *jsPath){
         NSData *jsData = [GICXMLLayout loadDataFromPath:jsPath];
         NSString *js = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
-        [[JSContext currentContext] evaluateScript:js];
+        NSString *pathExtension =[jsPath pathExtension];
+        JSValue *module = nil;
+        if([pathExtension isEqualToString:@"js"]){
+            module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJS" withArguments:@[js]];
+        }else if ([pathExtension isEqualToString:@"json"]){
+            module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJson" withArguments:@[js]];
+        }
+        return module[@"exports"];
     };
 }
 

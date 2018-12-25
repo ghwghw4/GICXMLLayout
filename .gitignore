@@ -43,3 +43,4 @@ package-lock.json
 GICXMLLayout/JSSupportSrc/.idea
 vscode-extension/node_modules
 tools/cli/node_modules
+Example/GICXMLLayout/.vscode

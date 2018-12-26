@@ -24,7 +24,7 @@ class XMLTagCompletionProvider extends XMLCompletionProvider {
                         }
                     });
                     if (ignor) {
-                        forceElements = this.findElementConfigFromElementName(node.name,config).subElements;
+                        forceElements = this.findElementConfigFromElementName(node.name, config).subElements;
                         node = node.parentNode;
                     }
                     if (node) {
@@ -35,21 +35,21 @@ class XMLTagCompletionProvider extends XMLCompletionProvider {
 
             if (parentElementName) {
                 // 检查父元素是否有子元素的额外配置
-                let findEl = this.findElementConfigFromElementName(parentElementName,config);
+                let findEl = this.findElementConfigFromElementName(parentElementName, config);
+                if (findEl.special) {
+                    elements = [];
+                }
                 if (findEl && findEl.subElements) {
-                    if (findEl.special) {// 如果是特殊元素，那么子元素只能出现自己定义的子元素
-                        elements = [];
-                        config.elements.forEach(item => {
-                            if (item.idDirective) {// 指令可以无条件出现在任何元素中
-                                elements.push(item);
-                            }
-                        });
-                    }
+                    config.elements.forEach(item => {
+                        if (item.idDirective) {// 指令可以无条件出现在任何元素中
+                            elements.push(item);
+                        }
+                    });
                     elements = elements.concat(findEl.subElements);
                 }
             }
 
-            if(forceElements){
+            if (forceElements) {
                 elements = elements.concat(forceElements);
             }
         }

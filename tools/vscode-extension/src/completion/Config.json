@@ -43,6 +43,38 @@
             "desc": "遍历object对象时指代object的value，只有在for指令中有效"
         }
     ],
+    "xmlSpeceilKeywords":[
+        {
+            "name": "&#x000A;",
+            "value":"#x000A;",
+            "desc": "换行符"
+        },
+        {
+            "name": "&lt;",
+            "value":"lt;",
+            "desc": "< 小于号"
+        },
+        {
+            "name": "&gt;",
+            "value":"gt;",
+            "desc": "> 大于号"
+        },
+        {
+            "name": "&amp;",
+            "value":"amp;",
+            "desc": "& 和"
+        },
+        {
+            "name": "&apos;",
+            "value":"apos;",
+            "desc": "' 单引号"
+        },
+        {
+            "name": "&quot;",
+            "value":"quot;",
+            "desc": "\" 双引号"
+        }
+    ],
     "ignorElementsName": [
         "for",
         "if"
@@ -2067,6 +2099,11 @@
                     "desc": "引入单独style文件的path"
                 }
             ]
+        },
+        {
+            "elementName": "data-context",
+            "desc": "native数据源，GIC会自动将内容转换成Native数据源",
+            "special":true
         }
     ]
 }

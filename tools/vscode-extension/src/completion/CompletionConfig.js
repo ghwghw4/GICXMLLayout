@@ -13,6 +13,7 @@ class CompletionConfig{
         this.commonAttributes = configJson.commonAttributes;
         this.commonUIAttributes = configJson.commonUIAttributes;
         this.commonAnimationAttributs = configJson.commonAnimationAttributs;
+        this.xmlSpeceilKeywords = configJson.xmlSpeceilKeywords;
 
         this.elements = configJson.elements;
         if(!(localConfig.elements.length===1 && localConfig.elements[0].elementName==='elementName')){

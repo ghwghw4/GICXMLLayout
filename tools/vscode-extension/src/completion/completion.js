@@ -5,6 +5,7 @@ const KeywordComplationProvider = require('./KeywordComplationProvider');
 const XMLTagCompletionProvider = require('./XMLTagCompletionProvider');
 const XMLAttributeCompletionProvider = require('./XMLAttributeCompletionProvider');
 const XMLAttributeValueCompletionProvider = require('./XMLAttributeValueCompletionProvider');
+const XMLSpecilKeywordsCompletionProvider = require('./XMLSpecilKeywordsCompletionProvider');
 
 
 const configJson = require(`${vscode.extensions.getExtension("gonghaiwei.gicvscodeextension").extensionPath}/src/completion/Config.json`);
@@ -15,4 +16,5 @@ module.exports = function (context) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('xml', new XMLTagCompletionProvider(), '<'));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('xml', new XMLAttributeCompletionProvider(), ' '));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('xml', new XMLAttributeValueCompletionProvider(), '"'));
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('xml', new XMLSpecilKeywordsCompletionProvider(), '&'));
 };

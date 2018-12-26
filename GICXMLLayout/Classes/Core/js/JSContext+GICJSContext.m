@@ -66,7 +66,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     
     self[@"XMLHttpRequest"] = [GICXMLHttpRequest class];
 #if DEBUG
-    self[@"console"] = [[GICJSConsole alloc] initWithLogHandler:nil];
+    self[@"console"] = [[GICJSConsole alloc] init];
     
     // 垃圾回收。为了能够及时回收内存，GC的调用很有必要。
     self[@"gc"] = @{};

@@ -3,42 +3,37 @@
     <scroll-view background-color="white">
         <inset-panel inset="15">
             <stack-panel>
-                <template-ref t-name="title" data-context="字符串作为数据源绑定"/>
-                <lable text="{{}}" font-color="black" data-context="我是直接绑定字符串"/>
-                
-                <template-ref t-name="title" data-context="直接json字符串作为数据源绑定"/>
-                <stack-panel data-context='{"name":"海伟","age":"20"}'>
+                <template-ref t-name="title" data-context="字符串作为数据源绑定" />
+                <lable text="{{}}" font-color="black" data-context="我是直接绑定字符串" />
+                <template-ref t-name="title" data-context="直接json字符串作为数据源绑定" />
+                <stack-panel>
+                    <data-context>
+                        {"name":"海伟","age":"20"}
+                    </data-context>
                     <lable text="{{ '姓名：' + name }}" font-color="black" />
                     <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
                 </stack-panel>
-
-                <template-ref t-name="title" data-context="采用viewmodel作为数据源绑定"/>
-                <stack-panel data-context='DataBindingUserInfo'>
+                <template-ref t-name="title" data-context="采用viewmodel作为数据源绑定" />
+                <stack-panel data-context="DataBindingUserInfo">
                     <lable text="{{ '姓名：' + name }}" font-color="black" />
                     <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
                 </stack-panel>
-
-                <template-ref t-name="title" data-context="代码通过gic_datacontext绑定"/>
-                <lable text="点我去绑定" event-tap="clickToBinding:" font-size="20" font-color="red"/>
+                <template-ref t-name="title" data-context="代码通过gic_datacontext绑定" />
+                <lable text="点我去绑定" event-tap="clickToBinding:" font-size="20" font-color="red" />
                 <stack-panel name="testBingding1">
                     <lable text="{{ '姓名：' + name }}" font-color="black" />
                     <lable text="{{ '年龄：'+age+'岁' }}" font-color="black" />
                 </stack-panel>
-
-
-                <template-ref t-name="title" data-context="单向绑定"/>
+                <template-ref t-name="title" data-context="单向绑定" />
                 <lable text="{{ exp='timeStamp：'+timeStamp,mode=1 }}" font-color="black" />
-
-                <template-ref t-name="title" data-context="双向绑定"/>
+                <template-ref t-name="title" data-context="双向绑定" />
                 <stack-panel is-horizon="1" align-items="2" space="10">
-                    <switch-button checked="{{ exp=isOn,mode=2 }}"/><lable text="{{ exp=isOn?'开':'关',mode=1 }}" font-color="black" />
+                    <switch-button checked="{{ exp=isOn,mode=2 }}" />
+                    <lable text="{{ exp=isOn?'开':'关',mode=1 }}" font-color="black" />
                 </stack-panel>
-
-                <template-ref t-name="title" data-context="converter"/>
+                <template-ref t-name="title" data-context="converter" />
                 <lable text="{{ exp=timeStamp,mode=1,cvt=TimestampConverter }}" font-color="black" />
-
             </stack-panel>
         </inset-panel>
     </scroll-view>
 </page>
-

@@ -38,6 +38,9 @@
                 <template-ref t-name="title" data-context="删除线"/>
                 <lable font-color="black" font-size="20" text="删除线1" throughline-style="1"/>
                 <lable font-color="black" font-size="20" text="删除线2" throughline-style="{{(0x01 | 0x0100)}}"/>
+
+                  <template-ref t-name="title" data-context="行间距(20)"/>
+                <lable font-color="green" text="第一行&#x000A;第二行&#x000A;第三行" line-space="20"/>
             </stack-panel>
         </inset-panel>
     </scroll-view>

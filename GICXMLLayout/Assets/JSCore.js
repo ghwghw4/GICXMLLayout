@@ -23,6 +23,17 @@ Object.prototype.executeScript = function (script, value1, value2) {
   return new Function(script).call(this, value1, value2);
 };
 
+// 将对象转换成JSON字符串
+Object.prototype.toJsonString = function () {
+  var jsonString = null;
+  try {
+    jsonString = JSON.stringify(this);
+  } catch (e) {
+    jsonString = 'convert to json error!';
+  }
+  return jsonString;
+};
+
 /**
  * 判断对象是否是数组
  * @returns {boolean}

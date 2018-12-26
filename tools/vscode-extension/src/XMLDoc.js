@@ -1,6 +1,7 @@
 // const xml2js = require('xml2js');
 const xmlParser = require('xml-parser');
 var XMLWriter = require('xml-writer');
+const pathutils = require('./utils/pathutils');
 
 /**
  * 替换XMLWriter中的text方法，主要是为了避免被替换特殊字符
@@ -45,8 +46,9 @@ class XMLNode {
      * 
      * @param {XMLNode} xmlnode 
      */
-    static write(xmlnode) {
+    static write(xmlnode,fileName) {
         const xw = new XMLWriter();
+        xw.fileName = fileName;
         xw.text = NewTextFunc;
         xw.startDocument();
         xmlnode.write(xw);
@@ -83,7 +85,7 @@ class XMLNode {
     write(xw) {
         xw.startElement(this.name);
         Object.keys(this.attributes).forEach(k => {
-            xw.writeAttribute(k, this.attributes[k]);
+            xw.writeAttribute(k, pathutils.resolveFilePath(xw.fileName,this.attributes[k]));
         });
 
         if (this.content && this.content.length > 0) {

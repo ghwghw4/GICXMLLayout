@@ -13,41 +13,28 @@ var zipper = require("zip-local");
 // 编译的时候被忽略的文件名称
 const ignorFilesName = ['.vscode'];
 
-function resolveFilePath(fileName, relativePath) {
-    if (relativePath[0] === '.') {
-        const rootPath = pathutils.getBuildProjectPath(Config.getConfig()) + '/';
-        const fullPath = path.resolve(path.dirname(fileName), relativePath);
-        relativePath = fullPath.replace(rootPath, '');
-    }
-
-    // if(relativePath[0]==='/'){
-    //     relativePath = relativePath.substring(1,relativePath.length);
-    // }
-
-    if (path.extname(relativePath).length === 0) {
-        relativePath += '.js';
-    }
-    return relativePath;
-}
+// function resolveFilePath(fileName, relativePath) {
+//     if (relativePath[0] === '.') {
+//         const rootPath = pathutils.getBuildProjectPath(Config.getConfig()) + '/';
+//         const fullPath = path.resolve(path.dirname(fileName), relativePath);
+//         relativePath = fullPath.replace(rootPath, '');
+//     }
+//     return relativePath;
+// }
 
 const visitor = {
     //需要访问的节点名
     //访问器默认会被注入两个参数 path（类比成dom），state
-    ExpressionStatement(jspath, state) {
+    CallExpression(jspath, state) {
         const node = jspath.node;
-        //延当前节点向内部访问，判断是否符合console解析出的ast的特征
-        const expressionNode = node['expression'];
-        const isCallExpression = expressionNode.type === 'CallExpression';
-        if (isCallExpression) {
-            const calleeNode = expressionNode['callee'];//keyPathVisitor(expressionNode, ['callee', 'object', 'name']);
-            const prototypeName = calleeNode.name;//keyPathVisitor(expressionNode, ['callee', 'property', 'name']);
-            if (prototypeName === 'require') {
-                const args = expressionNode.arguments;
-                if (args.length === 1) {
-                    const argumentNode = args[0];
-                    if (argumentNode.type === 'StringLiteral') {
-                        argumentNode.value = resolveFilePath(state.filename, argumentNode.value);
-                    }
+        const calleeNode = node['callee'];
+        const prototypeName = calleeNode.name;
+        if (prototypeName === 'require') {
+            const args = node.arguments;
+            if (args.length === 1) {
+                const argumentNode = args[0];
+                if (argumentNode.type === 'StringLiteral') {
+                    argumentNode.value = pathutils.resolveFilePath(state.filename, argumentNode.value);
                 }
             }
         }
@@ -123,7 +110,7 @@ function buildFromXMLFile(fileName) {
         let xmldoc = XMLNode.parse(doc);
         if (xmldoc) {
             buildFromXMLNode(xmldoc);
-            fs.writeFileSync(fileName, XMLNode.write(xmldoc), 'utf8');
+            fs.writeFileSync(fileName, XMLNode.write(xmldoc,fileName), 'utf8');
         } else {
             vscode.window.showErrorMessage('XML文件打开失败，失败文件 ：' + fileName);
         }
@@ -180,10 +167,10 @@ const BuildProject = {
                 resolve();
             });
         });
-        
+
         return promise;
     },
-    async buildAndZip(){
+    async buildAndZip() {
         await this.build();
         const config = Config.getConfig();
         const projectPath = pathutils.getProjectPath(config);

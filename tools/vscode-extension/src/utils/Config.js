@@ -10,6 +10,7 @@ class Config{
         this.elements = configuration.get('elements');
         this.behaviors = configuration.get('behaviors');
         this.projectFolderName = configuration.get('projectFolderName');
+        this.resolvePath = configuration.get('resolvePath');
     }
 
     static getConfig(){

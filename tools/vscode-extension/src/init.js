@@ -38,7 +38,7 @@ function startHttpServer(config) {
         httpServer.close();
     }
 
-    const rootPath = pathUtils.getBuildPath(config) + '/project';
+    const rootPath = pathUtils.getBuildPath(config) + '/'+config.projectFolderName;
     httpServer = http.createServer( async (request, response) =>{
         try {
             if(request.url.indexOf('/hotupdate.php')===0){

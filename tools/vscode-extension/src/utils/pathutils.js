@@ -82,6 +82,22 @@ const pathutil = {
             rootFolder = rootPath || '';
         }
         return path.join(rootFolder, pathEntered);
+    },
+    /**
+     * 解析文件路径，将相对路劲解析成绝对路径
+     * @param {*} fileName 
+     * @param {*} relativePath 
+     */
+    resolveFilePath(fileName, relativePath) {
+        if (relativePath[0] === '.') {
+            const config = Config.getConfig();
+            if(config.resolvePath){
+                const rootPath = this.getBuildProjectPath(config) + '/';
+                const fullPath = path.resolve(path.dirname(fileName), relativePath);
+                relativePath = fullPath.replace(rootPath, '');
+            }
+        }
+        return relativePath;
     }
 };
 

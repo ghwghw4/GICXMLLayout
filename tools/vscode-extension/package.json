@@ -2,7 +2,7 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.0.10",
+    "version": "1.1.0",
     "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"
@@ -27,6 +27,11 @@
                     "type": "integer",
                     "default": 8080,
                     "description": "http服务器端口，同时也是websocket使用的端口"
+                },
+                "GICXMLLayout.resolvePath": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "编译的时候是否解析路径(将相对路径解析成绝对路径)"
                 },
                 "GICXMLLayout.projectFolderName": {
                     "type": "string",

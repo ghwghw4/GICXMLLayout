@@ -13,6 +13,7 @@ class XMLTagCompletionProvider extends XMLCompletionProvider {
             let doc = this.readTempDoc(document, position);
             let parentElementName = null;
             let xmldoc = XMLNode.parse(doc);
+            let forceElements = null;
             if (xmldoc) {
                 this.findTempElement(xmldoc, (node) => {
                     let ignor = false;
@@ -23,6 +24,7 @@ class XMLTagCompletionProvider extends XMLCompletionProvider {
                         }
                     });
                     if (ignor) {
+                        forceElements = this.findElementConfigFromElementName(node.name,config).subElements;
                         node = node.parentNode;
                     }
                     if (node) {
@@ -45,6 +47,10 @@ class XMLTagCompletionProvider extends XMLCompletionProvider {
                     }
                     elements = elements.concat(findEl.subElements);
                 }
+            }
+
+            if(forceElements){
+                elements = elements.concat(forceElements);
             }
         }
 

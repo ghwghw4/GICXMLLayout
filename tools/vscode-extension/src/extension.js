@@ -8,6 +8,7 @@ exports.activate = function (context) {
     require('./init')(context); // 初始化插件
     require('./completion/completion')(context); // 自动补全
     require('./menu')(context); // 菜单when命令
+    require('./createPageExtenion')(context); // 创建页面扩展
 };
 
 /**

@@ -2,7 +2,7 @@
     "name": "gicvscodeextension",
     "displayName": "GICVSCodeExtension",
     "description": "GICXMLLayout VSCode Extension",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "publisher": "gonghaiwei",
     "engines": {
         "vscode": "^1.27.0"
@@ -101,6 +101,16 @@
             {
                 "command": "extension.gic.buildAndRun",
                 "title": "Build And Run"
+            },
+            {
+                "command": "extension.gic.createPage",
+                "title": "Create GIC Page",
+                "category": "Files and Folder"
+            },
+            {
+                "command": "extension.gic.createJS",
+                "title": "Create GIC JavaScript File",
+                "category": "Files and Folder"
             }
         ],
         "keybindings": [
@@ -113,9 +123,23 @@
                 "command": "extension.gic.buildAndRun",
                 "key": "ctrl+r",
                 "mac": "cmd+r"
+            },
+            {
+                "command": "extension.gic.createPage",
+                "key": "ctrl+cmd+n"
             }
         ],
         "menus": {
+            "explorer/context":[
+                {
+                    "command": "extension.gic.createPage",
+                    "group": "navigation@-createFileFolder"
+                },
+                {
+                    "command": "extension.gic.createJS",
+                    "group": "navigation@-createFileFolder"
+                }
+            ],
             "editor/context": [
                 {
                     "when": "editorFocus",
@@ -142,22 +166,22 @@
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildjs",
-                    "group": "gic"
+                    "group": "navigation"
                 },
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildAndZip",
-                    "group": "gic"
+                    "group": "navigation"
                 },
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.init",
-                    "group": "gic"
+                    "group": "navigation"
                 },
                 {
                     "when": "editorFocus",
                     "command": "extension.gic.buildAndRun",
-                    "group": "gic"
+                    "group": "navigation"
                 }
             ]
         }

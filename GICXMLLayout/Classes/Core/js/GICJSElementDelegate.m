@@ -32,9 +32,9 @@
     // 更新数据源
     [self.element setGic_DataContext:ds];
     
-    // NOTE:下面代码很关键，因为采用了JSManagedValue,因此JSValue会因为JS的垃圾回收机制会自动回收掉。因此将dataContext保存到一个本身的全局变量中就不会被回收，除非本身的value被回收才会一并回收掉
-    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.element inContext:[dataContext context]];
-    selfValue[@"__dataContext__"] = dataContext;
+//    // NOTE:下面代码很关键，因为采用了JSManagedValue,因此JSValue会因为JS的垃圾回收机制会自动回收掉。因此将dataContext保存到一个本身的全局变量中就不会被回收，除非本身的value被回收才会一并回收掉
+//    JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.element inContext:[dataContext context]];
+//    selfValue[@"__dataContext__"] = dataContext;
 }
 
 -(JSValue *)dataContext{

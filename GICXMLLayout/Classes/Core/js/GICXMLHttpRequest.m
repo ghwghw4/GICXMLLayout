@@ -70,7 +70,7 @@
     for (NSString *items in _headers.allKeys) {
         [req setValue:_headers[items] forHTTPHeaderField:items];
     }
-    if(![content isUndefined]){
+    if(![content isNull] && ![content isUndefined]){
         [req setHTTPBody:[[content toString] dataUsingEncoding:4]];
     }
     readyState = XMLHttpRequestLOADING;

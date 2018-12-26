@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger , ReadyState) {
     XMLHttpRequestDONE          // The operation is complete.
 };
 @protocol GICXMLHttpRequest <JSExport>
+-(instancetype)init;
 @property NSString* responseText;
 //@property JSValue* onload;
 //@property JSValue* onreadystatechange;
@@ -24,12 +25,9 @@ typedef NS_ENUM(NSUInteger , ReadyState) {
 @property ReadyState readyState;
 @property NSInteger status;
 
--(instancetype)init;
-
 -(void)open:(NSString*)httpMethod :(NSString*)url :(bool)async;
 -(void)send:(JSValue *)content;
 -(void)setRequestHeader:(NSString*)key :(NSString*)value;
-
 @end
 
 

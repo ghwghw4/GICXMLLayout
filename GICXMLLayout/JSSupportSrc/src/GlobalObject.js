@@ -79,7 +79,7 @@ String.prototype.toColor = function () {
   return sColor;
 };
 
-// Module 模块
+// Module 模块  参考：http://www.ruanyifeng.com/blog/2015/05/require.html
 const Module = function (fileName = null) {
   this.exports = null;
   this.filename = fileName;

@@ -8,7 +8,6 @@ const babel = require('@babel/core');
 const fs = require('fs');
 const Config = require('./utils/Config');
 // 文件压缩
-var Promise = require('promise');
 var zipper = require("zip-local");
 
 // 编译的时候被忽略的文件名称

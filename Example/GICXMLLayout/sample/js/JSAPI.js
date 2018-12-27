@@ -24,7 +24,7 @@ var JSAPI = {
         const data = require('/js/RequireJsonTest.json');
         el.text = 'app名称：' + data.appName + '\n版本号：' + data.version;
     },
-    aysncOp(el){
+    promiseOp(el) {
         var p = new Promise(function(resolve, reject){
             //模拟异步操作
             setTimeout(function(){
@@ -37,5 +37,3 @@ var JSAPI = {
         });
     }
 };
-
-

@@ -21,10 +21,6 @@
                 <template-ref t-name="title" data-context="require" />
                 <lable text="点击导入其他JS文件(使用方式类似node.js)" font-size="18" event-tap="js:this.requireJS()" />
                 <lable text="点击导入JSON文件" font-size="18" event-tap="js:this.requireJson($el)" space-before="10" />
-                <!-- promise示例 -->
-                <template-ref t-name="title" data-context="Promise" />
-                <!--  -->
-                <lable text="点击异步进行操作" font-size="18" event-tap="js:this.aysncOp($el)" />
                 <template-ref t-name="title" data-context="XMLHttpRequest" />
                 <lable text="点击加载数据" font-size="18">
                     <behaviors>
@@ -46,6 +42,34 @@
                             }
                         </script>
                     </behaviors>
+                </lable>
+                <!-- promise示例 -->
+                <template-ref t-name="title" data-context="Promise" />
+                <lable text="点击异步进行操作" font-size="18" event-tap="js:this.promiseOp($el)" />
+                <!-- yield -->
+                <template-ref t-name="title" data-context="yield" />
+                <lable font-size="16" font-color="red" text="注意yield 属于ES6规范的代码，因此需要经过插件编译后才能正确运行" />
+                <lable text="点击执行" font-size="18">
+                    <behaviors>
+                        <script private="true">
+                            var a = 0;
+                            function *foo() {
+                                a += 1;
+                                yield 'abc';
+                                return;
+                            }
+                            $el.onclick = function(){
+                                var f = foo();
+                                $el.text = JSON.stringify(f.next());
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
+                <!-- async & await -->
+                <template-ref t-name="title" data-context="async &amp; await" />
+                <lable font-size="16" font-color="red" text="注意async &amp; await 属于ES6规范的代码，因此需要经过插件编译后才能正确运行" />
+                
+                <lable text="点击请求数据" font-size="18" event-tap="js:require('/js/TestAsyncAwait.js')($el)">
                 </lable>
             </stack-panel>
         </inset-panel>

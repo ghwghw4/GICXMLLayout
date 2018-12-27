@@ -56,6 +56,8 @@ const plugins = [
     require('@babel/plugin-transform-shorthand-properties'),
     require('@babel/plugin-transform-sticky-regex'),
     require('@babel/plugin-transform-typeof-symbol'),
+    require('@babel/plugin-transform-regenerator'),// 支持yiled 关键字
+    require('@babel/plugin-transform-async-to-generator'),// 支持async awite 关键字
     { visitor }
 ];
 

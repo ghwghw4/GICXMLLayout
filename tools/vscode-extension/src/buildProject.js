@@ -8,10 +8,12 @@ const babel = require('@babel/core');
 const fs = require('fs');
 const Config = require('./utils/Config');
 // 文件压缩
+var Promise = require('promise');
 var zipper = require("zip-local");
 
 // 编译的时候被忽略的文件名称
 const ignorFilesName = ['.vscode'];
+const UglifyJS = require("uglify-js");
 
 // function resolveFilePath(fileName, relativePath) {
 //     if (relativePath[0] === '.') {
@@ -66,8 +68,9 @@ const babelConfig = { plugins: plugins, generatorOpts: { minified: true, comment
 /**
  * 
  * @param {*} dirName 
+ * @param {Config} config 
  */
-function buildFromDirect(dirName) {
+function buildFromDirect(dirName,config) {
     const files = fs.readdirSync(dirName);
     files.forEach(function (item, index) {
         const fileName = `${dirName}/${item}`;
@@ -76,7 +79,7 @@ function buildFromDirect(dirName) {
             if (ignorFilesName.indexOf(path.basename(fileName)) >= 0) {
                 fs.rmdirSync(fileName);
             } else {
-                buildFromDirect(fileName);
+                buildFromDirect(fileName,config);
             }
         } else if (stat.isFile) {
             if (ignorFilesName.indexOf(path.basename(fileName)) >= 0) {
@@ -84,32 +87,47 @@ function buildFromDirect(dirName) {
                 fs.unlinkSync(fileName);
             } else {
                 if (path.extname(fileName) === '.js') {
-                    buildFromJSFile(fileName);
+                    buildFromJSFile(fileName,config);
                 } else if (path.extname(fileName) === '.xml') {
-                    buildFromXMLFile(fileName);
+                    buildFromXMLFile(fileName,config);
                 }
             }
         }
     })
 }
 
+// 压缩代码
+function miniJSCode(babelResult,config){
+    if(config.miniJSCode){
+        const miniResult =  UglifyJS.minify(babelResult.code);
+        if(miniResult.error){
+            return babelResult.code;
+        }else{
+            return miniResult.code;
+        }
+    }else{
+        return babelResult.code;
+    }
+}
+
 // 直接编译JS文件
-function buildFromJSFile(fileName) {
+function buildFromJSFile(fileName,config) {
+    babelConfig.generatorOpts.minified = config.miniJSCode;
     const result = babel.transformFileSync(fileName, babelConfig);
     if (result) {
-        fs.writeFileSync(fileName, result.code, 'utf8');
+        fs.writeFileSync(fileName, miniJSCode(result,config), 'utf8');
     } else {
         vscode.window.showErrorMessage('编译失败，失败文件 ：' + fileName);
     }
 }
 
 // 编译XML文件中的JS内容
-function buildFromXMLFile(fileName) {
+function buildFromXMLFile(fileName,config) {
     const doc = fs.readFileSync(fileName, 'utf8');
     try {
         let xmldoc = XMLNode.parse(doc);
         if (xmldoc) {
-            buildFromXMLNode(xmldoc);
+            buildFromXMLNode(xmldoc,config);
             fs.writeFileSync(fileName, XMLNode.write(xmldoc,fileName), 'utf8');
         } else {
             vscode.window.showErrorMessage('XML文件打开失败，失败文件 ：' + fileName);
@@ -124,13 +142,14 @@ function buildFromXMLFile(fileName) {
  * 
  * @param {XMLNode} xmlNode 
  */
-function buildFromXMLNode(xmlNode) {
+function buildFromXMLNode(xmlNode,config) {
     if (xmlNode.name === 'script' && xmlNode.content && xmlNode.content.length > 0) {
+        babelConfig.generatorOpts.minified = config.miniJSCode;
         const result = babel.transformSync(xmlNode.content, babelConfig);
-        xmlNode.content = result.code;
+        xmlNode.content = miniJSCode(result,config);
     } else {
         xmlNode.subNodes.forEach(sub => {
-            buildFromXMLNode(sub);
+            buildFromXMLNode(sub,config);
         });
     }
 }
@@ -158,7 +177,7 @@ const BuildProject = {
                 const buildPath = path.resolve(projectPath, '../build');
                 try {
                     // 遍历获取所有的JS的文件，并且进行es6翻译
-                    buildFromDirect(buildPath);
+                    buildFromDirect(buildPath,config);
                 } catch (error) {
                     console.error(error);
                     vscode.window.showErrorMessage('编译失败:' + error);

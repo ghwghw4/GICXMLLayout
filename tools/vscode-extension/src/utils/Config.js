@@ -11,6 +11,7 @@ class Config{
         this.behaviors = configuration.get('behaviors');
         this.projectFolderName = configuration.get('projectFolderName');
         this.resolvePath = configuration.get('resolvePath');
+        this.miniJSCode = configuration.get('miniJSCode');
     }
 
     static getConfig(){

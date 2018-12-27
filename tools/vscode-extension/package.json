@@ -33,6 +33,11 @@
                     "default": true,
                     "description": "编译的时候是否解析路径(将相对路径解析成绝对路径)"
                 },
+                "GICXMLLayout.miniJSCode": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "是否压缩JS代码"
+                },
                 "GICXMLLayout.projectFolderName": {
                     "type": "string",
                     "default": "project",
@@ -130,7 +135,7 @@
             }
         ],
         "menus": {
-            "explorer/context":[
+            "explorer/context": [
                 {
                     "command": "extension.gic.createPage",
                     "group": "navigation@-createFileFolder"
@@ -211,6 +216,7 @@
         "@babel/plugin-transform-sticky-regex": "^7.2.0",
         "@babel/plugin-transform-template-literals": "^7.2.0",
         "@babel/plugin-transform-typeof-symbol": "^7.2.0",
+        "uglify-js": "^3.4.9",
         "watch": "^1.0.2",
         "websocket": "^1.0.28",
         "xml-parser": "^1.2.1",

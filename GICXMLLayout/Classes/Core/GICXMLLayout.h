@@ -49,6 +49,11 @@
 +(NSData *)loadDataFromPath:(NSString *)path;
 +(NSData *)loadDataFromUrl:(NSURL *)url;
 
+/**
+ 清空文件缓存
+ */
++(void)clearAllCache;
+
 #pragma mark 解析
 
 /**

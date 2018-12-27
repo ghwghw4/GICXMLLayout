@@ -49,6 +49,9 @@
 
 #import "GICTransforms.h"
 
+// 是否启用缓存。暂时先关闭，考虑到缓存有可能会影响热更新，因此暂时先不开启。如果启用了缓存，那么在热更新以后需要清空缓存，否则可能无效
+//#define GICUseCache 1
+
 @implementation GICXMLLayout
 +(void)regiterAllElements{
     [self regiterUIElements];
@@ -117,9 +120,27 @@
     [GICElementsCache registElement:[GICTransforms class]];
 }
 
+#if GICUseCache
+static NSCache *dataCache = nil;
++(void)initialize{
+    //    dataCache
+    dataCache = [[NSCache alloc] init];
+    dataCache.totalCostLimit = 10*1024*1024; //最大缓存大小 10MB  基本够用了
+    _roolUrl = [[NSBundle mainBundle] bundlePath];
+}
++(void)clearAllCache{
+    [dataCache removeAllObjects];
+}
+#else
 +(void)initialize{
     _roolUrl = [[NSBundle mainBundle] bundlePath];
 }
++(void)clearAllCache{
+    
+}
+#endif
+
+
 
 static BOOL _enableDefualtStyle;
 +(void)enableDefualtStyle:(BOOL)enable{
@@ -145,12 +166,27 @@ static NSString *_roolUrl;
 }
 
 +(NSData *)loadDataFromUrl:(NSURL *)url{
+#if GICUseCache
+    NSData *xmlData = [dataCache objectForKey:url.absoluteString];
+    if(xmlData == nil){
+        if([[url scheme] hasPrefix:@"http"] || url.isFileURL){
+            xmlData = [NSData dataWithContentsOfURL:url];
+        }else{
+            xmlData = [NSData dataWithContentsOfFile:url.absoluteString];
+        }
+        // 缓存数据
+        if(xmlData){
+            [dataCache setObject:xmlData forKey:url.absoluteString cost:xmlData.length];
+        }
+    }
+#else
     NSData *xmlData = nil;
     if([[url scheme] hasPrefix:@"http"] || url.isFileURL){
         xmlData = [NSData dataWithContentsOfURL:url];
     }else{
         xmlData = [NSData dataWithContentsOfFile:url.absoluteString];
     }
+#endif
     return xmlData;
 }
 

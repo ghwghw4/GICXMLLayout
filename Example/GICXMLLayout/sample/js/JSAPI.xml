@@ -21,22 +21,29 @@
                 <template-ref t-name="title" data-context="require" />
                 <lable text="点击导入其他JS文件(使用方式类似node.js)" font-size="18" event-tap="js:this.requireJS()" />
                 <lable text="点击导入JSON文件" font-size="18" event-tap="js:this.requireJson($el)" space-before="10" />
+                <!-- promise示例 -->
+                <template-ref t-name="title" data-context="Promise" />
+                <!--  -->
+                <lable text="点击异步进行操作" font-size="18" event-tap="js:this.aysncOp($el)" />
                 <template-ref t-name="title" data-context="XMLHttpRequest" />
-                <lable text="正在加载..." font-size="18">
+                <lable text="点击加载数据" font-size="18">
                     <behaviors>
                         <!--注意这里没有设置private属性,意味着方法可以全局访问-->
                         <script private="1">
-                            var xmlhttp = new XMLHttpRequest();
-                            xmlhttp.onreadystatechange = function()
-                            {
-                                if (xmlhttp.status===200)
+                            $el.onclick = function(){
+                                $el.text = '正在加载...';
+                                var xmlhttp = new XMLHttpRequest();
+                                xmlhttp.onreadystatechange = function()
                                 {
-                                    // 将结果在lable中显示出来
-                                    $el.text = xmlhttp.responseText;
+                                    if (xmlhttp.status===200)
+                                    {
+                                        // 将结果在lable中显示出来
+                                        $el.text = xmlhttp.responseText;
+                                    }
                                 }
+                                xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
+                                xmlhttp.send();
                             }
-                            xmlhttp.open("GET","https://www.sojson.com/open/api/lunar/json.shtml",true);
-                            xmlhttp.send();
                         </script>
                     </behaviors>
                 </lable>

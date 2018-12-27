@@ -23,5 +23,19 @@ var JSAPI = {
     requireJson(el) {
         const data = require('/js/RequireJsonTest.json');
         el.text = 'app名称：' + data.appName + '\n版本号：' + data.version;
+    },
+    aysncOp(el){
+        var p = new Promise(function(resolve, reject){
+            //模拟异步操作
+            setTimeout(function(){
+                resolve('操作完成啦');
+            }, 2000);
+        });
+        el.text = '正在模拟异步操作，2秒后返回数据';
+        p.then(function(data){
+            el.text = data;
+        });
     }
 };
+
+

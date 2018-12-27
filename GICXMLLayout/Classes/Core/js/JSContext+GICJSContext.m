@@ -38,8 +38,16 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     // 添加setTimeout方法
     self[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-            [function callWithArguments:@[]];
+            if(![function[@"isCancelled"] toBool]){
+               [function callWithArguments:@[]];
+            }
         });
+        function[@"isCancelled"] = @(NO);
+        return function;
+    };
+    
+    self[@"clearTimeout"] = ^(JSValue *t){
+        t[@"isCancelled"] = @(YES);
     };
     
     self[@"document"] = [[GICJSDocument alloc] init];
@@ -65,9 +73,8 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     };
     
     self[@"XMLHttpRequest"] = [GICXMLHttpRequest class];
-#if DEBUG
     self[@"console"] = [[GICJSConsole alloc] init];
-    
+#if DEBUG
     // 垃圾回收。为了能够及时回收内存，GC的调用很有必要。
     self[@"gc"] = @{};
     self[@"gc"][@"collect"] = ^(JSValue *sync){
@@ -84,9 +91,11 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     
     NSString *jsCoreString = [NSBundle gic_jsCoreString];
     [self evaluateScript:jsCoreString];
-//    // 注册nativeAPI
-//    [self evaluateScript:[NSBundle gic_jsNativeAPIString]];
-//    self[@"_native_"] = [[GICJSNativeAPI alloc] init];
+    
+    // 增加Promise API
+    NSString *promiseString = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:[[NSBundle GICXMLLayoutBundle] pathForResource:@"Promise" ofType:@"js"]] encoding:4];
+    [self evaluateScript:promiseString];
+    
     
     // 添加require 方法. 以便动态加载JS
     self[@"require"] = ^(NSString *jsPath){

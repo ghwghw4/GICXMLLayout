@@ -80,18 +80,27 @@ String.prototype.toColor = function () {
 };
 
 // Module 模块
-const Module = function () {
+const Module = function (fileName = null) {
   this.exports = null;
+  this.filename = fileName;
 };
 
-Module.requireJS = function (jsStr) {
-  const module = new Module();
+Module.requireJS = function (fileName, jsStr) {
+  const module = new Module(fileName);
   this.executeScript(`var module = arguments[0];${jsStr}`, module);
+  Module._cache[fileName] = module;// 缓存
   return module;
 };
 
-Module.requireJson = function (jsonStr) {
-  const module = new Module();
+Module.requireJson = function (fileName, jsonStr) {
+  const module = new Module(fileName);
   module.exports = JSON.parse(jsonStr);
+  Module._cache[fileName] = module;// 缓存
   return module;
+};
+Module._cache = {};
+// 从缓存中获取获取
+Module._fromCache = function (fileName) {
+  const cachedModule = Module._cache[fileName];
+  return cachedModule;
 };

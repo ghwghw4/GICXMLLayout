@@ -98,15 +98,18 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     
     
     // 添加require 方法. 以便动态加载JS
-    self[@"require"] = ^(NSString *jsPath){
-        NSData *jsData = [GICXMLLayout loadDataFromPath:jsPath];
-        NSString *js = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
-        NSString *pathExtension =[jsPath pathExtension];
-        JSValue *module = nil;
-        if([pathExtension isEqualToString:@"js"]){
-            module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJS" withArguments:@[js]];
-        }else if ([pathExtension isEqualToString:@"json"]){
-            module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJson" withArguments:@[js]];
+    self[@"require"] = ^(NSString *path){
+        // 先从缓存中获取
+        JSValue *module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"_fromCache" withArguments:@[path]];
+        if([module isNull] || [module isUndefined]){
+            NSData *jsData = [GICXMLLayout loadDataFromPath:path];
+            NSString *js = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
+            NSString *pathExtension =[path pathExtension];
+            if([pathExtension isEqualToString:@"js"]){
+                module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJS" withArguments:@[path,js]];
+            }else if ([pathExtension isEqualToString:@"json"]){
+                module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJson" withArguments:@[path,js]];
+            }
         }
         return module[@"exports"];
     };

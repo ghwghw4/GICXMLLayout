@@ -99,11 +99,13 @@
         }];
         [dataTask resume];
     }else{
-        NSHTTPURLResponse* response;
-        NSError* error;
-        self->responseData = [NSURLConnection sendSynchronousRequest:self->request returningResponse:&response error:&error];
-        self->status = [(NSHTTPURLResponse *)response statusCode];
-        [self requestCompletionWithError:error];
+        ASPerformBlockOnMainThread(^{
+            NSHTTPURLResponse* response;
+            NSError* error;
+            self->responseData = [NSURLConnection sendSynchronousRequest:self->request returningResponse:&response error:&error];
+            self->status = [(NSHTTPURLResponse *)response statusCode];
+            [self requestCompletionWithError:error];
+        });
     }
 }
 

@@ -18,6 +18,8 @@
     
     NSURLSessionDataTask *dataTask;
     NSData *responseData;
+    
+    JSValue *thisValue;// 防止被提前释放，关键代码。相当于由 GICXMLHttpRequest 代持有，防止被JS垃圾收集
 }
 
 @synthesize readyState;
@@ -86,6 +88,7 @@
         [request setHTTPBody:[[content toString] dataUsingEncoding:4]];
     }
     readyState = XMLHttpRequestLOADING;
+    thisValue = [JSContext currentThis];
     if(_async){
         dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             self->responseData = data;
@@ -117,13 +120,10 @@
             [self.onreadystatechange callWithArguments:nil];
         }
     }
+    thisValue = nil;
 }
 
 -(void)abort{
     [dataTask cancel];
-}
-
--(void)dealloc{
-    NSLog(@"GICXMLHttpRequest dealoc");
 }
 @end

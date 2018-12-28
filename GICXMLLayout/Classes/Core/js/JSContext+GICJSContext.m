@@ -40,7 +40,7 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     self[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
             if(![function[@"isCancelled"] toBool]){
-               [function callWithArguments:@[]];
+                [function callWithArguments:@[]];
             }
         });
         function[@"isCancelled"] = @(NO);
@@ -99,17 +99,22 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     
     
     // 添加require 方法. 以便动态加载JS
-    self[@"require"] = ^(NSString *path){
+    self[@"require"] = ^id(NSString *path,JSValue *isModule){
         // 先从缓存中获取
         JSValue *module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"_fromCache" withArguments:@[path]];
         if([module isNull] || [module isUndefined]){
             NSData *jsData = [GICXMLLayout loadDataFromPath:path];
             NSString *js = [[NSString alloc] initWithData:jsData encoding:NSUTF8StringEncoding];
             NSString *pathExtension =[path pathExtension];
+            
             if([pathExtension isEqualToString:@"js"]){
-                module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJS" withArguments:@[path,js]];
+                module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJS" withArguments:@[path,js,isModule]];
             }else if ([pathExtension isEqualToString:@"json"]){
                 module = [[JSContext currentContext].globalObject[@"Module"] invokeMethod:@"requireJson" withArguments:@[path,js]];
+            }
+            
+            if(!([isModule isNull] || [isModule isUndefined] || [isModule toBool])){
+                [[JSContext currentContext] evaluateScript:js];
             }
         }
         return module[@"exports"];
@@ -130,3 +135,4 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     return [self.globalObject excuteJSString:jsString withArguments:arguments];
 }
 @end
+

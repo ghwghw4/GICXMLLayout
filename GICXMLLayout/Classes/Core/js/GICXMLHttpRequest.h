@@ -18,16 +18,19 @@ typedef NS_ENUM(NSUInteger , ReadyState) {
 };
 @protocol GICXMLHttpRequest <JSExport>
 -(instancetype)init;
-@property NSString* responseText;
-//@property JSValue* onload;
-//@property JSValue* onreadystatechange;
-//@property JSValue* onerror;
-@property ReadyState readyState;
-@property NSInteger status;
+@property (nonatomic,readonly)NSString* responseText;
+@property JSValue* onload;
+@property JSValue* onreadystatechange;
+@property JSValue* onerror;
+@property (nonatomic,readonly)ReadyState readyState;
+@property (nonatomic,readonly)NSInteger status;
+@property NSInteger timeout;
 
 -(void)open:(NSString*)httpMethod :(NSString*)url :(bool)async;
 -(void)send:(JSValue *)content;
 -(void)setRequestHeader:(NSString*)key :(NSString*)value;
+
+-(void)abort;
 @end
 
 

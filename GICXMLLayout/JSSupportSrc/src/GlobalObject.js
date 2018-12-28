@@ -80,14 +80,17 @@ String.prototype.toColor = function () {
 };
 
 // Module 模块  参考：http://www.ruanyifeng.com/blog/2015/05/require.html
-const Module = function (fileName = null) {
+const Module = function (fileName = null, moduleMode = true) {
   this.exports = null;
   this.filename = fileName;
+  this.moduleMode = moduleMode;
 };
 
-Module.requireJS = function (fileName, jsStr) {
-  const module = new Module(fileName);
-  this.executeScript(`var module = arguments[0];${jsStr}`, module);
+Module.requireJS = function (fileName, jsStr, moduleMode = true) {
+  const module = new Module(fileName, moduleMode);
+  if (moduleMode) {
+    this.executeScript(`var module = arguments[0];${jsStr}`, module);
+  }
   Module._cache[fileName] = module;// 缓存
   return module;
 };

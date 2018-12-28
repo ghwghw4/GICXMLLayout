@@ -10,7 +10,9 @@
 @implementation GICJSConsole
 -(void)log:(JSValue *)value{
 #if DEBUG
-    NSString *content =[[value invokeMethod:@"toJsonString" withArguments:nil] toString];
+    if([value isNull] || [value isUndefined])
+        return;
+    NSString *content =[[value invokeMethod:@"toString" withArguments:nil] toString];
     NSLog(@"JSConsole:  %@",content);
 #endif
 }

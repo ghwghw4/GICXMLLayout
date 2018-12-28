@@ -32,10 +32,17 @@ const visitor = {
         const prototypeName = calleeNode.name;
         if (prototypeName === 'require') {
             const args = node.arguments;
-            if (args.length === 1) {
+            if (args.length >= 1) {
                 const argumentNode = args[0];
                 if (argumentNode.type === 'StringLiteral') {
                     argumentNode.value = pathutils.resolveFilePath(state.filename, argumentNode.value);
+                    if(path.extname(argumentNode.value).length === 0){
+                        if(fs.existsSync(pathutils.getBuildProjectPath(Config.getConfig())+'/'+argumentNode.value+'.js')){
+                            argumentNode.value +='.js';
+                        }else{
+                            argumentNode.value +='.json';
+                        }
+                    }
                 }
             }
         }

@@ -98,9 +98,13 @@ gic的对JS的支持的实现是通过`JSContext`来实现的，因此有些JS�
 
    > 0.3.1新增
 
-6. require()   **用法类似nodejs**
+6. require(path,useModule)   **用法类似nodejs**
 
    > 0.4.0新增，用来引用其他js文件。
+   >
+   > `path`:表示引入的JS文件路径。
+   >
+   > `useModule`:表示是否使用module 模式引入JS，默认是true。如果`useModule`为false的话，相当于全局引入JS文件，这样的方式方便引入第三方库。
 
 7. document.rootElement 、document.getElementsByName()
 

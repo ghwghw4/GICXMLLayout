@@ -244,7 +244,7 @@ pod 'GICXMLLayout', '~> 0.4.8'
 
 4. 支持`yield`以及`generator`。
 
-   > 现在GIC已经可以支持ES7中的`async`、`await`了。
+   > 现在GIC已经可以支持ES8中的`async`、`await`了。
 
 
 

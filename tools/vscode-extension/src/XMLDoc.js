@@ -1,5 +1,5 @@
 // const xml2js = require('xml2js');
-const xmlParser = require('xml-parser');
+const xmlParser = require('./utils/xmlParser');
 var XMLWriter = require('xml-writer');
 const pathutils = require('./utils/pathutils');
 

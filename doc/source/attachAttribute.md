@@ -37,8 +37,6 @@
 +(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
     return @[[[GICNumberConverter alloc] initWithName:GridPanelAttachColumnSpanKey withSetter:^(NSObject *target, id value) {
                  [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GridPanelAttachColumnSpanKey];
-             } withGetter:^id(id target) {
-                 return [[target gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey];
              }]];
 }
 ```

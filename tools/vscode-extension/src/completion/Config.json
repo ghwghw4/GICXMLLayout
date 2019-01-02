@@ -582,6 +582,12 @@
                     "desc": "行间距"
                 }
             ],
+            "attachAttributes":[
+                {
+                    "name": "column-span",
+                    "desc": "跨列数量"
+                } 
+            ],
             "desc": "提供宫格(瀑布流)布局的面板。",
             "isui": true
         },
@@ -1386,6 +1392,12 @@
                     ]
                 }
             ],
+            "attachAttributes":[
+                {
+                    "name": "column-span",
+                    "desc": "跨列数量"
+                } 
+            ],
             "desc": "列表(UICollectionView)",
             "subElements": [
                 {
@@ -1452,7 +1464,8 @@
                                     "desc": "cell选中事件",
                                     "type": "event"
                                 }
-                            ]
+                            ],
+                            "isui": true
                         },
                         {
                             "elementName": "header",

@@ -14,7 +14,7 @@
                 </dock-panel>
             </header>
             <for>
-                <list-item selection-style="2">
+                <list-item selection-style="2" collection-view.column-span="{{ ((this==60 || this== 100)?2:1)}}">
                     <dock-panel height="{{}}" background-color="gray">
                         <lable text="{{ }}" font-size="15" font-color="white"/>
                     </dock-panel>

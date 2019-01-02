@@ -9,6 +9,13 @@
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/ASLayoutSpec+Subclasses.h>
 
+#define  GridPanelAttachColumnSpanKey @"grid-panel.column-span" //column-span 的属性名称
+
+struct GICGirdPanelCellHeightInfo {
+    NSInteger index;
+    CGFloat height;
+};
+
 @interface GICGridLayoutSpec:ASLayoutSpec
 @property (nonatomic,assign)NSInteger rows;
 @property (nonatomic,assign)NSInteger columns;
@@ -20,17 +27,32 @@
 @implementation GICGridLayoutSpec
 #pragma mark - ASLayoutSpec
 // 计算获取最小高度的列索引
-- (NSUInteger)_shortestColumnIndexWithColumnHeights:(NSArray *)columnHeights
+- (struct GICGirdPanelCellHeightInfo)_shortestColumnIndexWithColumnHeights:(NSArray *)columnHeights columnSpan:(NSInteger)columnSpan
 {
-    __block NSUInteger index = 0;
-    __block CGFloat shortestHeight = CGFLOAT_MAX;
+     __block struct GICGirdPanelCellHeightInfo info = {0,CGFLOAT_MAX};
+//    [columnHeights enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
+//        if (height.floatValue < shortestHeight) {
+//            index = idx;
+//            shortestHeight = height.floatValue;
+//        }
+//    }];
+//    return index;
+    
+//    NSArray *heights = columnHeights[section];
     [columnHeights enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
-        if (height.floatValue < shortestHeight) {
-            index = idx;
-            shortestHeight = height.floatValue;
+        if(idx<=columnHeights.count - columnSpan){
+            if (height.floatValue < info.height) {
+                info.index = idx;
+                info.height = height.floatValue;
+            }
         }
     }];
-    return index;
+    for(NSInteger i=info.index+1;(i<info.index+columnSpan) && i<columnHeights.count;i++){
+        if([columnHeights[i] floatValue]>info.height){
+            info.height = [columnHeights[i] floatValue];
+        }
+    }
+    return info;
 }
 
 - (ASLayout *)calculateLayoutThatFits:(ASSizeRange)constrainedSize
@@ -46,14 +68,27 @@
     
     NSMutableArray *sublayouts = [NSMutableArray arrayWithCapacity:self.children.count];
     for (NSUInteger idx = 0; idx < self.children.count; idx++) {
-        NSUInteger columnIndex = [self _shortestColumnIndexWithColumnHeights:columnHeights];
         id<ASLayoutElement> element = self.children[idx];
-        ASSizeRange sizeRange = ASSizeRangeMake(CGSizeMake(columnWidth, 0), CGSizeMake(columnWidth, CGFLOAT_MAX));
+        NSInteger columnSpan = [GICGridPanel columnSpanFromElement:element];
+        if(columnSpan>self.columns){
+            columnSpan = self.columns;
+        }
+        struct GICGirdPanelCellHeightInfo cellHeightInfo = [self _shortestColumnIndexWithColumnHeights:columnHeights columnSpan:columnSpan];
+        
+        CGFloat width = columnWidth;
+        if(columnSpan>1){
+            width += (columnWidth+self.columnSpacing)*(columnSpan-1);
+        }
+        
+        ASSizeRange sizeRange = ASSizeRangeMake(CGSizeMake(width, 0), CGSizeMake(width, CGFLOAT_MAX));
         ASLayout *sublayout = [element layoutThatFits:sizeRange];
-        sublayout.position = CGPointMake((columnWidth + self.columnSpacing) * columnIndex,
-                                       [columnHeights[columnIndex] floatValue]);
+        sublayout.position = CGPointMake((columnWidth + self.columnSpacing) * cellHeightInfo.index,
+                                       cellHeightInfo.height);
         [sublayouts addObject:sublayout];
-        columnHeights[columnIndex] = @(CGRectGetMaxY(sublayout.frame) + self.rowSpacing);
+        
+        for(NSInteger i=cellHeightInfo.index;i<cellHeightInfo.index +columnSpan;i++){
+             columnHeights[i] = @(CGRectGetMaxY(sublayout.frame) + self.rowSpacing);
+        }
     }
     
     __block CGFloat contentHeight = 0;
@@ -93,6 +128,24 @@
                  return  @(((GICGridPanel *)target)->rowSpacing);
              }],
              };
+}
+
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
+    return @{
+             @"column-span":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GridPanelAttachColumnSpanKey];
+             } withGetter:^id(id target) {
+                 return [[target gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey];
+             }]
+             };
+}
+
++(NSInteger)columnSpanFromElement:(id)element{
+    NSInteger columnSpan = [[[element gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey] integerValue];
+    if(columnSpan<1){
+        return 1;
+    }
+    return columnSpan;
 }
 
 -(id)init{

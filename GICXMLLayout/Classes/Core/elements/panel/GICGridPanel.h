@@ -9,5 +9,5 @@
 #import "GICPanel.h"
 
 @interface GICGridPanel : GICPanel
-
++(NSInteger)columnSpanFromElement:(id)element;
 @end

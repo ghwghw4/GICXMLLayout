@@ -3,7 +3,7 @@
     <scroll-view background-color="white">
         <inset-panel inset="0 15 15 15">
             <stack-panel>
-                <template-ref t-name="title" data-context="简单的九宫格布局"/>
+                <template-ref t-name="title" data-context="简单的九宫格布局" />
                 <grid-panel columns="3" column-spacing="10" row-spacing="10">
                     <data-context>
                         [1,2,3,4,5,6,7,8,9]
@@ -13,13 +13,30 @@
                         <ratio-panel background-color="red">
                             <!--使用dock-panel来实现文字居中布局-->
                             <dock-panel>
-                                <lable text="{{}}"/>
+                                <lable text="{{}}" />
                             </dock-panel>
                         </ratio-panel>
                     </for>
                 </grid-panel>
-
-                <template-ref t-name="title" data-context="瀑布流布局"/>
+                <template-ref t-name="title" data-context="column-span" />
+                <grid-panel columns="3" column-spacing="10" row-spacing="10">
+                    <dock-panel height="30" background-color="red" grid-panel.column-span="1">
+                        <lable text="1" />
+                    </dock-panel>
+                    <dock-panel height="30" background-color="red" grid-panel.column-span="2">
+                        <lable text="2" />
+                    </dock-panel>
+                    <dock-panel height="30" background-color="red" grid-panel.column-span="2">
+                        <lable text="3" />
+                    </dock-panel>
+                    <dock-panel height="30" background-color="red" grid-panel.column-span="1">
+                        <lable text="4" />
+                    </dock-panel>
+                     <dock-panel height="30" background-color="red" grid-panel.column-span="3">
+                        <lable text="5" />
+                    </dock-panel>
+                </grid-panel>
+                <template-ref t-name="title" data-context="瀑布流布局" />
                 <grid-panel columns="3" column-spacing="10" row-spacing="10">
                     <data-context>
                         [
@@ -30,7 +47,7 @@
                         <!--使用dock-panel来实现文字居中布局-->
                         <!--dock-panel的height绑定到数据源-->
                         <dock-panel height="{{}}" background-color="red">
-                            <lable text="{{}}"/>
+                            <lable text="{{}}" />
                         </dock-panel>
                     </for>
                 </grid-panel>
@@ -38,4 +55,3 @@
         </inset-panel>
     </scroll-view>
 </page>
-

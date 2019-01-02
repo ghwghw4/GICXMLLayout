@@ -59,6 +59,10 @@
              };;
 }
 
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
+    return nil;
+}
+
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     NSInteger order = 0;
     for(GDataXMLElement *child in children){
@@ -170,6 +174,17 @@
     for(NSString *key in attributeDict.allKeys){
         NSString *value = [attributeDict objectForKey:key];
         GICAttributeValueConverter *converter = [ps objectForKey:key];
+        
+        if(!converter){
+            // 解析附加属性
+            NSArray *strs = [key componentsSeparatedByString:@"."];
+            if(strs.count==2){
+                Class klass = [GICElementsCache classForElementName:strs[0]];
+                NSDictionary *attached = [GICElementsCache classAttachAttributs:klass];
+                converter = [attached objectForKey:strs[1]];
+            }
+        }
+        
         if(converter){
             if([value hasPrefix:@"{{"] && [value hasSuffix:@"}}"]){
                 NSString *expression = [value stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{} "]];

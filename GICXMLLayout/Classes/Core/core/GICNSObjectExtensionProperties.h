@@ -54,4 +54,15 @@ typedef enum {
 -(void)removeSubElements:(NSArray *)subElments;
 
 -(void)removeAllSubElements;
+
+#pragma mark 附加属性
+/**
+ 设置附加属性
+ */
+-(void)setAttachValue:(id)value withAttributeName:(NSString *)attName;
+
+/**
+ 获取附加属性
+ */
+-(id)attachValueWithAttributeName:(NSString *)attName;
 @end

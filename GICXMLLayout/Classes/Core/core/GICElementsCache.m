@@ -14,6 +14,8 @@ static NSMutableDictionary<NSString *,Class> *registedElementsMap = nil;
 static NSMutableDictionary<NSString *,Class> *registedBehaviorElementsMap = nil;
 // 缓存的属性
 static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *_classAttributsCache;
+// 缓存的附加属性
+static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *_classAttachAttributsCache;
 
 static dispatch_queue_t attributsReadWriteQueue;
 
@@ -21,6 +23,7 @@ static dispatch_queue_t attributsReadWriteQueue;
     registedElementsMap = [NSMutableDictionary dictionary];
     registedBehaviorElementsMap = [NSMutableDictionary dictionary];
     _classAttributsCache = [NSMutableDictionary dictionary];
+    _classAttachAttributsCache = [NSMutableDictionary dictionary];
     attributsReadWriteQueue = dispatch_queue_create("GICXMLLayoutRegisetElementQueue", DISPATCH_QUEUE_CONCURRENT);
     
 }
@@ -76,6 +79,19 @@ static dispatch_queue_t attributsReadWriteQueue;
     }
     [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttributs)]];
     
+    // 缓存附加属性
+    {
+        NSMutableDictionary<NSString *, GICAttributeValueConverter *> *attachedDict = [NSMutableDictionary dictionary];
+        if(superClass){
+            NSDictionary * superAtts = [_classAttachAttributsCache objectForKey:NSStringFromClass(superClass)];
+            [attachedDict addEntriesFromDictionary:superAtts];
+        }
+        [attachedDict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttachAttributs)]];
+        if(attachedDict.count>0){
+           [_classAttachAttributsCache setValue:attachedDict forKey:className];
+        }
+    }
+    
     // 保存到缓存中
     dispatch_barrier_async(attributsReadWriteQueue, ^{
           [_classAttributsCache setValue:dict forKey:className];
@@ -105,6 +121,14 @@ static dispatch_queue_t attributsReadWriteQueue;
         value = [self getAtttributesWithClassName:className];
     }
     return value;
+}
+
++(NSDictionary<NSString *, GICAttributeValueConverter *> *)classAttachAttributs:(Class)klass{
+    if(!klass){
+        return nil;
+    }
+    NSString *className = NSStringFromClass(klass);
+    return [_classAttachAttributsCache objectForKey:className];
 }
 
 +(void)registBehaviorElement:(Class)elementClass{

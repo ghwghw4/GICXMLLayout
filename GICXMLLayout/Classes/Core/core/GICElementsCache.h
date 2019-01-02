@@ -18,11 +18,13 @@
 
 /**
  获取某个class的已经所有可支持属性
-
- @param klass <#klass description#>
- @return <#return value description#>
  */
 +(NSDictionary<NSString *, GICAttributeValueConverter *> *)classAttributs:(Class)klass;
+
+/**
+ 获取某个class的已经所有可支持的附加属性
+ */
++(NSDictionary<NSString *, GICAttributeValueConverter *> *)classAttachAttributs:(Class)klass;
 
 
 #pragma mark behavior

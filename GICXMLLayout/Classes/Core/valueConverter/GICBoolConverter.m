@@ -9,6 +9,7 @@
 
 @implementation GICBoolConverter
 -(NSNumber *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     if([stringValue isEqualToString:@"true"]){
         return @(YES);
     }else if ([stringValue isEqualToString:@"false"]){

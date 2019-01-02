@@ -9,6 +9,7 @@
 
 @implementation GICDimensionConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     ASDimension h = ASDimensionMake(stringValue);
     if(ASDimensionEqualToDimension(h, ASDimensionAuto)){
         h = ASDimensionMake([stringValue floatValue]);

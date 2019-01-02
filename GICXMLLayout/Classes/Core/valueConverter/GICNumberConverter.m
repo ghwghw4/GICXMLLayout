@@ -9,6 +9,7 @@
 
 @implementation GICNumberConverter
 -(NSNumber *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return @([GICUtils numberConverter:stringValue]);
 }
 

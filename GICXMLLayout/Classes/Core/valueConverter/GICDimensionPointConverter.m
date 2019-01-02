@@ -21,6 +21,7 @@ ASDimensionPoint ASDimensionPointMakeFromString(NSString *str){
 
 @implementation GICDimensionPointConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return [NSValue valueWithASDimensionPoint:ASDimensionPointMakeFromString(stringValue)];
 }
 

@@ -9,6 +9,7 @@
 
 @implementation GICURLConverter
 -(NSURL *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return [NSURL URLWithString:stringValue];
 }
 

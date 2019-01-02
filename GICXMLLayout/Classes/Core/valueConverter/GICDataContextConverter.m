@@ -10,6 +10,7 @@
 
 @implementation GICDataContextConverter
 -(id)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     id obj = [NSJSONSerialization JSONObjectWithData:[stringValue dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
     if(obj){
         return obj;

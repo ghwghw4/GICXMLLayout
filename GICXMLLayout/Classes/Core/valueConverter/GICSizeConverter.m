@@ -9,6 +9,7 @@
 
 @implementation GICSizeConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     NSArray *array = [stringValue componentsSeparatedByString:@" "];
     CGSize size = CGSizeZero;
     if (array.count == 2){

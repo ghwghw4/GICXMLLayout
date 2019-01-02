@@ -9,6 +9,7 @@
 
 @implementation GICFontConverter
 -(UIFont *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     NSArray *strs = [stringValue componentsSeparatedByString:@","];
     if(strs.count==1){
         return [UIFont fontWithName:strs[0] size:12];

@@ -118,7 +118,7 @@
     NSArray *allKeys = nil;
     if([self.dataSource isKindOfClass:[NSDictionary class]]){
         allKeys = [(NSDictionary *)self.dataSource allKeys];
-        // 为了效率考虑，字典并没有采用注入属性的方法，但是这样一来会有一个bug，那就是如果字典中存储的是某个`class`的实例对象，那么就有可能会出现访问不到属性的情况。后续解决
+        // TODO:为了效率考虑，字典并没有采用注入属性的方法，但是这样一来会有一个bug，那就是如果字典中存储的是某个`class`的实例对象，那么就有可能会出现访问不到属性的情况。后续解决
     }else{
         allKeys = [[self.dataSource class] gic_reflectProperties].allKeys;
         [dsJSValue invokeMethod:@"_elementInit2" withArguments:@[allKeys]];

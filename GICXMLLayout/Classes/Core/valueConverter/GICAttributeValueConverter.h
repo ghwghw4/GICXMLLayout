@@ -9,11 +9,20 @@
 #import "GICValueConverter.h"
 #import <UIKit/UIKit.h>
 
+#define checkDefualtValue(stringValue) if(stringValue == nil) return self.defualtValue
+
 typedef void (^GICPropertySetter)(NSObject *target,id value);
 
 typedef id (^GICPropertyGetter)(id target);
 
 @interface GICAttributeValueConverter : GICValueConverter
+
+@property (nonatomic,strong)NSString *name;
+
+/**
+ 默认值
+ */
+@property (nonatomic,strong,readonly)id defualtValue;
 
 #pragma mark setter
 @property (nonatomic,copy)GICPropertySetter propertySetter;
@@ -28,4 +37,5 @@ typedef id (^GICPropertyGetter)(id target);
 #pragma mark init
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter;
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter;
+-(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter withDefualtValue:(id)defualtValue;
 @end

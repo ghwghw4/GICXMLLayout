@@ -25,6 +25,12 @@
     return self;
 }
 
+-(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter withDefualtValue:(id)defualtValue{
+    self = [self initWithPropertySetter:propertySetter withGetter:propertyGetter];
+    _defualtValue = defualtValue;
+    return self;
+}
+
 -(NSString *)valueToString:(id)value{
     return nil;
 }

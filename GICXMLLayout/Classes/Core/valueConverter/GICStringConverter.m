@@ -9,6 +9,7 @@
 
 @implementation GICStringConverter
 -(NSString *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return [stringValue copy];
 }
 

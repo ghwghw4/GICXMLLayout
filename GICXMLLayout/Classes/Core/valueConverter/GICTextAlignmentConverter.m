@@ -9,6 +9,7 @@
 
 @implementation GICTextAlignmentConverter
 -(NSNumber *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     if([stringValue isEqualToString:@"0"] || [stringValue isEqualToString:@"left"]){
         return @(NSTextAlignmentLeft);
     }else if ([stringValue isEqualToString:@"1"] || [stringValue isEqualToString:@"center"]){

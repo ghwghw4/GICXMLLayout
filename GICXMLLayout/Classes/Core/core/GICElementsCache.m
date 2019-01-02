@@ -77,7 +77,11 @@ static dispatch_queue_t attributsReadWriteQueue;
     if(superClass){
         [dict addEntriesFromDictionary:[self getAtttributesWithClassName:NSStringFromClass(superClass)]];
     }
-    [dict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttributs)]];
+    
+    [[klass performSelector:@selector(gic_elementAttributs)] enumerateKeysAndObjectsUsingBlock:^(NSString *key, GICAttributeValueConverter *obj, BOOL * _Nonnull stop) {
+        obj.name = key;
+        [dict setObject:obj forKey:key];
+    }];
     
     // 缓存附加属性
     {
@@ -86,7 +90,10 @@ static dispatch_queue_t attributsReadWriteQueue;
             NSDictionary * superAtts = [_classAttachAttributsCache objectForKey:NSStringFromClass(superClass)];
             [attachedDict addEntriesFromDictionary:superAtts];
         }
-        [attachedDict addEntriesFromDictionary:[klass performSelector:@selector(gic_elementAttachAttributs)]];
+        [[klass performSelector:@selector(gic_elementAttachAttributs)] enumerateKeysAndObjectsUsingBlock:^(NSString *key, GICAttributeValueConverter *obj, BOOL * _Nonnull stop) {
+            obj.name = key;
+            [attachedDict setObject:obj forKey:key];
+        }];
         if(attachedDict.count>0){
            [_classAttachAttributsCache setValue:attachedDict forKey:className];
         }

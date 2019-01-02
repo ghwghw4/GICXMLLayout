@@ -7,8 +7,11 @@
 
 #import "CGPointConverter.h"
 
+
+
 @implementation CGPointConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     NSArray *array = [stringValue componentsSeparatedByString:@" "];
     CGPoint point = CGPointZero;
     if (array.count == 2){

@@ -9,6 +9,7 @@
 
 @implementation GICEdgeConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     NSArray *array = [stringValue componentsSeparatedByString:@" "];
     UIEdgeInsets edg;
     if(array.count == 4){

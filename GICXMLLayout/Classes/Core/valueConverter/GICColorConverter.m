@@ -10,6 +10,7 @@
 
 @implementation GICColorConverter
 -(UIColor *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return [GICUtils colorConverter:stringValue];
 }
 

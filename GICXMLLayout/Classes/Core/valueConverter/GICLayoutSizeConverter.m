@@ -21,6 +21,7 @@ ASLayoutSize ASLayoutSizeMakeFromString(NSString *str){
 
 @implementation GICLayoutSizeConverter
 -(NSValue *)convert:(NSString *)stringValue{
+    checkDefualtValue(stringValue);
     return [NSValue valueWithASLayoutSize:ASLayoutSizeMakeFromString(stringValue)];
 }
 

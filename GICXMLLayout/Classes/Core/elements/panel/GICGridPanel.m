@@ -29,16 +29,7 @@ struct GICGirdPanelCellHeightInfo {
 // 计算获取最小高度的列索引
 - (struct GICGirdPanelCellHeightInfo)_shortestColumnIndexWithColumnHeights:(NSArray *)columnHeights columnSpan:(NSInteger)columnSpan
 {
-     __block struct GICGirdPanelCellHeightInfo info = {0,CGFLOAT_MAX};
-//    [columnHeights enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
-//        if (height.floatValue < shortestHeight) {
-//            index = idx;
-//            shortestHeight = height.floatValue;
-//        }
-//    }];
-//    return index;
-    
-//    NSArray *heights = columnHeights[section];
+    __block struct GICGirdPanelCellHeightInfo info = {0,CGFLOAT_MAX};
     [columnHeights enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
         if(idx<=columnHeights.count - columnSpan){
             if (height.floatValue < info.height) {
@@ -60,7 +51,7 @@ struct GICGirdPanelCellHeightInfo {
     CGFloat layoutWidth = constrainedSize.max.width;
     
     NSMutableArray *columnHeights = [NSMutableArray array];
-    // 
+    //
     CGFloat columnWidth = (constrainedSize.max.width - (self.columns - 1)*self.columnSpacing)/self.columns;
     for (NSUInteger idx = 0; idx < self.columns; idx++) {
         [columnHeights addObject:@(0)];
@@ -83,11 +74,11 @@ struct GICGirdPanelCellHeightInfo {
         ASSizeRange sizeRange = ASSizeRangeMake(CGSizeMake(width, 0), CGSizeMake(width, CGFLOAT_MAX));
         ASLayout *sublayout = [element layoutThatFits:sizeRange];
         sublayout.position = CGPointMake((columnWidth + self.columnSpacing) * cellHeightInfo.index,
-                                       cellHeightInfo.height);
+                                         cellHeightInfo.height);
         [sublayouts addObject:sublayout];
         
         for(NSInteger i=cellHeightInfo.index;i<cellHeightInfo.index +columnSpan;i++){
-             columnHeights[i] = @(CGRectGetMaxY(sublayout.frame) + self.rowSpacing);
+            columnHeights[i] = @(CGRectGetMaxY(sublayout.frame) + self.rowSpacing);
         }
     }
     

@@ -2,9 +2,9 @@
 
 现在`gic`也支持style了，你甚至可以将style以单独的文件引入。这样你就可以很容易的为您的app制作主题了。
 
-在`style`里面，你可以为各种元素定义不同的样式(设置不同的属性)，然后给该元素设置一个`style-name`属性，这样你就可以在后面的xml中直接以名字来引入样式。如果您没有为该元素设置`style-name`属性，那么该样式默认作用于所有同类元素上，该方式只有当您启用了默认样式以后才会生效，下面细说。在`style`里面，你也可以定义`模板`。
+在`style`里面，你可以为各种元素定义不同的样式(设置不同的属性)，然后给该元素设置一个`style.name`的附加属性，这样你就可以在后面的xml中直接以名字来引入样式。如果您没有为该元素设置`style.name`属性，那么该样式默认作用于所有同类元素上，该方式只有当您启用了默认样式以后才会生效，下面细说。在`style`里面，你也可以定义`模板`。
 
-样式也是有`作用域`的概念的，只有在定义该样式的子孙节点才能引用，子孙节点也可以使用相同的`style-name`来覆盖父节点的样式，同样也是只能作用于该节点的子孙元素。
+样式也是有`作用域`的概念的，只有在定义该样式的子孙节点才能引用，子孙节点也可以使用相同的`style.name`来覆盖父节点的样式，同样也是只能作用于该节点的子孙元素。
 
 ## 属性
 
@@ -12,19 +12,27 @@
 | ---- | -------- | ----------------------------- | ------------ | ------------ |
 | path | String   | 引入本地单独style文件的path。 | 是           | 否           |
 
+## 附加属性
+
+| 名称       | 数据类型 | 介绍                 |
+| ---------- | -------- | -------------------- |
+| style.name | String   | 该元素作为样式的名称 |
+
+
+
 ## 例子
 
-1. 以`style-name`来引用。
+1. 以附加属性`style.name`来引用。
 
-   > Step1:定义样式。为该样式设置一个`style-name`的属性
+   > Step1:定义样式。为该样式设置一个`style.name`的属性
 
    ```xml
    <style>
-       <lable font-size="25" font-color="red" style-name="red-lable"/>
+       <lable font-size="25" font-color="red" style.name="red-lable"/>
    </style>
    ```
 
-   > Step2:引用样式。在引用的地方添加一个`style`，属性，value即是上面定义的`style-name`的名称。
+   > Step2:引用样式。在引用的地方添加一个`style`，属性，value即是上面定义的`style.name`的名称。
 
    ```xml
    <lable text="style lable" space-before="10" style="red-lable"/>
@@ -39,7 +47,7 @@
        [GICXMLLayout enableDefualtStyle:YES];
    ```
 
-   然后是定义样式。默认样式无需设置`style-name`。
+   然后是定义样式。默认样式无需设置`style.name`。
 
    ```xml
    <style>
@@ -59,7 +67,7 @@
 
    ```xml
    <style>
-       <lable font-size="25" font-color="red" style-name="red-lable"/>
+       <lable font-size="25" font-color="red" style.name="red-lable"/>
    </style>
    ```
 
@@ -83,7 +91,7 @@
 
    ```xml
    <style>
-       <lable font-size="25" font-color="red" style-name="red-lable"/>
+       <lable font-size="25" font-color="red" style.name="red-lable"/>
        <templates>
            <template t-name="desc">
                <lable text="{{ }}" space-after="5" space-before="5" font-size="25" font-color="666666"/>

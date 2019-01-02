@@ -12,8 +12,6 @@
 }
 -(id)init{
     self = [super init];
-    _dockHorizalModel = GICDockPanelHorizalModel_Center;
-    _dockVerticalModel = GICDockPanelVerticalModel_Center;
     _subElements = [NSMutableArray array];
     attachedProerties = [NSMutableDictionary dictionary];
     return self;

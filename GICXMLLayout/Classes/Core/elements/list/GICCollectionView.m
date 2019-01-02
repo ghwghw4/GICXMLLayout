@@ -17,7 +17,7 @@
 #import "GICListFooter.h"
 #import "GICListSection.h"
 
-#define  CollectionViewAttachColumnSpanKey @"column-span" //column-span 的属性名称
+#define  CollectionViewAttachColumnSpanKey @"collection-view.column-span" //column-span 的属性名称
 
 @interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting,GICListSectionProtocol>{
     BOOL t;
@@ -95,8 +95,6 @@
 +(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
     return @[[[GICNumberConverter alloc] initWithName:CollectionViewAttachColumnSpanKey withSetter:^(NSObject *target, id value) {
         [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:CollectionViewAttachColumnSpanKey];
-    } withGetter:^id(id target) {
-        return [[target gic_ExtensionProperties] attachValueWithAttributeName:CollectionViewAttachColumnSpanKey];
     }]];
 }
 

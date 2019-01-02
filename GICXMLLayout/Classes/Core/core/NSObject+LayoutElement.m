@@ -177,7 +177,7 @@
             if(strs.count==2){
                 Class klass = [GICElementsCache classForElementName:strs[0]];
                 NSDictionary *attached = [GICElementsCache classAttachAttributs:klass];
-                converter = [attached objectForKey:strs[1]];
+                converter = [attached objectForKey:key];
             }
         }
         

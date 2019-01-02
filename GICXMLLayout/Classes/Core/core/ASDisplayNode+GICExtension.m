@@ -138,18 +138,6 @@
              } withGetter:^id(id target) {
                  return @([(ASDisplayNode*)target style].alignSelf);
              }],
-             @"dock-horizal":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 (target.gic_ExtensionProperties).dockHorizalModel = (GICDockPanelHorizalModel)[value integerValue];
-                 [(ASDisplayNode *)target layoutAttributeChanged];
-             } withGetter:^id(id target) {
-                 return @([target gic_ExtensionProperties].dockHorizalModel);
-             }],
-             @"dock-vertical":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
-                 (target.gic_ExtensionProperties).dockVerticalModel = (GICDockPanelVerticalModel)[value integerValue];
-                 [(ASDisplayNode *)target layoutAttributeChanged];
-             } withGetter:^id(id target) {
-                 return @([target gic_ExtensionProperties].dockVerticalModel);
-             }],
              @"hidden":[[GICBoolConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(ASDisplayNode *)target setHidden:[value boolValue]];
              } withGetter:^id(id target) {

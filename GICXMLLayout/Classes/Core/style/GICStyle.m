@@ -10,7 +10,7 @@
 #import "GICStringConverter.h"
 #import "GICURLConverter.h"
 
-static NSString * const GICSTyleNameString =  @"style-name";
+static NSString * const GICSTyleNameString =  @"style.name";
 
 @implementation GICStyle
 +(NSString *)gic_elementName{
@@ -22,6 +22,12 @@ static NSString * const GICSTyleNameString =  @"style-name";
                  [(GICStyle *)target setPath:value];
              }],
              };;
+}
+
++(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
+    return @[[[GICStringConverter alloc] initWithName:GICSTyleNameString withSetter:^(NSObject *target, id value) {
+        [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GICSTyleNameString];
+    }]];
 }
 
 -(id)init{
@@ -68,6 +74,7 @@ static NSString * const GICSTyleNameString =  @"style-name";
             [child.attributes enumerateObjectsUsingBlock:^(GDataXMLNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [attributeDict setValue:[obj stringValueOrginal] forKey:[obj name]];
             }];
+            
             NSString *styleName = [attributeDict objectForKey:GICSTyleNameString];
             if(styleName){
                 [attributeDict removeObjectForKey:GICSTyleNameString];

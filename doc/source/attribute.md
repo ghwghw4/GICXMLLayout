@@ -52,8 +52,6 @@ UI元素的属性较多，设计到布局属性以及显示属性。具体如下
 | flex-shrink       | Integer       | flex布局中，元素的收缩规则，默认为0不收缩，**只在`stack-panel`中生效** | 是           | 是           |
 | flex-basics       | ASDimension   | 用于设置该元素在flex布局中，伸缩基准值。**只在`stack-panel`中生效** | 是           | 是           |
 | align-self        | integer(枚举) | 允许覆盖单个的 flex item（flex项）默认对齐方式。**只在`stack-panel`中生效** | 是           | 是           |
-| dock-horizal      | integer(枚举) | 水平停靠位置。**只有在dock-panel中生效**                     | 是           | 是           |
-| dock-vertical     | integer(枚举) | 垂直停靠位置。**只有在dock-panel中生效**                     | 是           | 是           |
 | event-tap         | String        | 单击事件。可以直接绑定到ViewModel中的事件名称。              | 否           | 否           |
 | event-double-tap  | String        | 双击事件。可以直接绑定到ViewModel中的事件名称。              | 否           | 否           |
 | event-touch-begin | String        | 触摸开始事件。可以直接绑定到ViewModel中的事件名称。          | 否           | 否           |
@@ -102,34 +100,4 @@ UI元素的属性较多，设计到布局属性以及显示属性。具体如下
 
 ```xml
 align-self = "1"
-```
-
-
-
-###  dock-horizal
-
-| 枚举值  | 对应枚举                            | 说明         |
-| ---- | ------------------------------- | ---------- |
-| 0    | GICDockPanelHorizalModel_Left   | 停靠在水平方向的左边 |
-| 1    | GICDockPanelHorizalModel_Center | 停靠在水平方向的中间 |
-| 2    | GICDockPanelHorizalModel_Right  | 停靠在水平方向的右边 |
-
-示例：水平居中
-
-```Xml
-dock-horizal="1"
-```
-
-### dock-vertical
-
-| 枚举值  | 对应枚举                             | 说明         |
-| ---- | -------------------------------- | ---------- |
-| 0    | GICDockPanelVerticalModel_Top    | 停靠在垂直方向的左边 |
-| 1    | GICDockPanelVerticalModel_Center | 停靠在垂直方向的中间 |
-| 2    | GICDockPanelVerticalModel_Bottom | 停靠在垂直方向的右边 |
-
-示例：垂直居中
-
-```Xml
-dock-vertical="1"
 ```

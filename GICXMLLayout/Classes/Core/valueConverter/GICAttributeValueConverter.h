@@ -38,5 +38,5 @@ typedef id (^GICPropertyGetter)(id target);
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter;
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter;
 -(id)initWithPropertySetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter withDefualtValue:(id)defualtValue;
--(id)initWithName:(NSString *)name withSetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter;
+-(id)initWithName:(NSString *)name withSetter:(GICPropertySetter)propertySetter;
 @end

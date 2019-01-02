@@ -97,10 +97,6 @@
             "desc": "占位模板的名称(需要在template-ref的子元素中使用)"
         },
         {
-            "name": "style-name",
-            "desc": "该元素作为样式用的名字(只能在Style元素内才能起作用)"
-        },
-        {
             "name": "style",
             "desc": "元素引用样式的名字"
         }
@@ -228,50 +224,6 @@
                     "name": "ASStackLayoutAlignSelfStretch",
                     "value": 4,
                     "desc": "均匀分布在主轴上"
-                }
-            ]
-        },
-        {
-            "name": "dock-horizal",
-            "desc": "水平停靠位置。只有在dock-panel中生效",
-            "type": "enum",
-            "enums": [
-                {
-                    "name": "GICDockPanelHorizalModel_Left",
-                    "value": 0,
-                    "desc": "停靠在水平方向的左边"
-                },
-                {
-                    "name": "GICDockPanelHorizalModel_Center",
-                    "value": 1,
-                    "desc": "停靠在水平方向的中间"
-                },
-                {
-                    "name": "GICDockPanelHorizalModel_Right",
-                    "value": 2,
-                    "desc": "停靠在水平方向的右边"
-                }
-            ]
-        },
-        {
-            "name": "dock-vertical",
-            "desc": "垂直停靠位置。只有在dock-panel中生效",
-            "type": "enum",
-            "enums": [
-                {
-                    "name": "GICDockPanelVerticalModel_Top",
-                    "value": 0,
-                    "desc": "停靠在垂直方向的左边"
-                },
-                {
-                    "name": "GICDockPanelVerticalModel_Center",
-                    "value": 1,
-                    "desc": "停靠在垂直方向的中间"
-                },
-                {
-                    "name": "GICDockPanelVerticalModel_Bottom",
-                    "value": 2,
-                    "desc": "停靠在垂直方向的右边"
                 }
             ]
         },
@@ -539,6 +491,52 @@
         {
             "elementName": "dock-panel",
             "attributes": [],
+            "attachAttributes":[
+                {
+                    "name": "horizal",
+                    "desc": "水平停靠位置。只有在dock-panel中生效",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "GICDockPanelHorizalModel_Left",
+                            "value": 0,
+                            "desc": "停靠在水平方向的左边"
+                        },
+                        {
+                            "name": "GICDockPanelHorizalModel_Center",
+                            "value": 1,
+                            "desc": "停靠在水平方向的中间"
+                        },
+                        {
+                            "name": "GICDockPanelHorizalModel_Right",
+                            "value": 2,
+                            "desc": "停靠在水平方向的右边"
+                        }
+                    ]
+                },
+                {
+                    "name": "vertical",
+                    "desc": "垂直停靠位置。只有在dock-panel中生效",
+                    "type": "enum",
+                    "enums": [
+                        {
+                            "name": "GICDockPanelVerticalModel_Top",
+                            "value": 0,
+                            "desc": "停靠在垂直方向的左边"
+                        },
+                        {
+                            "name": "GICDockPanelVerticalModel_Center",
+                            "value": 1,
+                            "desc": "停靠在垂直方向的中间"
+                        },
+                        {
+                            "name": "GICDockPanelVerticalModel_Bottom",
+                            "value": 2,
+                            "desc": "停靠在垂直方向的右边"
+                        }
+                    ]
+                }
+            ],
             "desc": "提供停靠布局的面板",
             "isui": true
         },
@@ -2109,6 +2107,12 @@
                 {
                     "name": "path",
                     "desc": "引入单独style文件的path"
+                }
+            ],
+            "attachAttributes":[
+                {
+                    "name": "name",
+                    "desc": "该元素作为样式用的名字"
                 }
             ]
         },

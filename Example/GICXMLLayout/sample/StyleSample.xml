@@ -1,7 +1,9 @@
 <page title="样式">
     <scroll-view background-color="white">
         <style path="style/CommonStyle.xml">
-            <lable font-size="25" font-color="red" style-name="red-lable"/>
+            <lable font-size="25" font-color="red" style.name="red-lable"/>
+            <!-- lable的默认样式 -->
+            <lable font-size="30" font-color="blue"/>
         </style>
         <inset-panel inset="15 15 15 15">
             <stack-panel>

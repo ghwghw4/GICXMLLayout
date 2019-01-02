@@ -9,17 +9,45 @@
 #import "GICNumberConverter.h"
 #import "ASDisplayNode+GICExtension.h"
 
+static NSString * const GICDockPanelHorizalString =  @"dock-panel.horizal";
+static NSString * const GICDockPanelVerticalString =  @"dock-panel.vertical";
+
 @implementation GICDockPanel
 +(NSString *)gic_elementName{
     return @"dock-panel";
 }
 
++(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
+    return @[
+             [[GICNumberConverter alloc] initWithName:GICDockPanelHorizalString withSetter:^(NSObject *target, id value) {
+                 [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GICDockPanelHorizalString];
+             }],
+             [[GICNumberConverter alloc] initWithName:GICDockPanelVerticalString withSetter:^(NSObject *target, id value) {
+                 [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GICDockPanelVerticalString];
+             }]];
+}
+
++(GICDockPanelHorizalModel)attachValueHorizalModel:(id)element{
+    id v = [[element gic_ExtensionProperties] attachValueWithAttributeName:GICDockPanelHorizalString];
+    if(v){
+        return (GICDockPanelHorizalModel)[v integerValue];
+    }
+    return GICDockPanelHorizalModel_Center;
+}
+
++(GICDockPanelVerticalModel)attachValueVerticalModel:(id)element{
+    id v = [[element gic_ExtensionProperties] attachValueWithAttributeName:GICDockPanelVerticalString];
+    if(v){
+        return (GICDockPanelVerticalModel)[v integerValue];
+    }
+    return GICDockPanelVerticalModel_Center;
+}
+
 -(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     NSMutableArray *children= [NSMutableArray array];
     for(id node in self.gic_displayNodes){
-        GICNSObjectExtensionProperties *properties = [node gic_ExtensionProperties];
         ASRelativeLayoutSpecPosition hor = ASRelativeLayoutSpecPositionStart;
-        switch (properties.dockHorizalModel) {
+        switch ([GICDockPanel attachValueHorizalModel:node]) {
             case GICDockPanelHorizalModel_Left:
                 hor = ASRelativeLayoutSpecPositionStart;
                 break;
@@ -32,7 +60,7 @@
         }
         
         ASRelativeLayoutSpecPosition ver = ASRelativeLayoutSpecPositionStart;
-        switch (properties.dockVerticalModel) {
+        switch ([GICDockPanel attachValueVerticalModel:node]) {
             case GICDockPanelVerticalModel_Top:
                 ver = ASRelativeLayoutSpecPositionStart;
                 break;

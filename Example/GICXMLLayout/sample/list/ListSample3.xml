@@ -10,9 +10,9 @@
     </templates>
     <stack-panel>
         <dock-panel height="60" background-color="yellow" space-before="64">
-            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-horizal="0"/>
-            <template-ref t-name="button" data-context="插入一个" event-tap="insertItem" dock-horizal="1"/>
-            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-horizal="2"/>
+            <template-ref t-name="button" data-context="增加一个" event-tap="addItem" dock-panel.horizal="0"/>
+            <template-ref t-name="button" data-context="插入一个" event-tap="insertItem" dock-panel.horizal="1"/>
+            <template-ref t-name="button" data-context="减少一个" event-tap="deleteItem" dock-panel.horizal="2"/>
         </dock-panel>
         <list  flex-grow="1" background-color="blue" flex-shrink="1">
             <section>

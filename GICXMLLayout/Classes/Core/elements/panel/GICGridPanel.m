@@ -9,7 +9,7 @@
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/ASLayoutSpec+Subclasses.h>
 
-#define  GridPanelAttachColumnSpanKey @"column-span" //column-span 的属性名称
+#define  GridPanelAttachColumnSpanKey @"grid-panel.column-span" //column-span 的属性名称
 
 struct GICGirdPanelCellHeightInfo {
     NSInteger index;
@@ -124,8 +124,6 @@ struct GICGirdPanelCellHeightInfo {
 +(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
     return @[[[GICNumberConverter alloc] initWithName:GridPanelAttachColumnSpanKey withSetter:^(NSObject *target, id value) {
                  [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GridPanelAttachColumnSpanKey];
-             } withGetter:^id(id target) {
-                 return [[target gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey];
              }]];
 }
 

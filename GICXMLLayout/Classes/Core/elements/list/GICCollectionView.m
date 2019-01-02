@@ -17,6 +17,8 @@
 #import "GICListFooter.h"
 #import "GICListSection.h"
 
+#define  CollectionViewAttachColumnSpanKey @"column-span" //column-span 的属性名称
+
 @interface GICCollectionView ()<ASCollectionDataSource,ASCollectionDelegate,ASCollectionViewLayoutInspecting,GICListSectionProtocol>{
     BOOL t;
     id<RACSubscriber> insertItemsSubscriber;
@@ -24,10 +26,10 @@
     GICCollectionLayoutDelegate *layoutDelegate;
     
     
-//    GICListHeader *header;
-//    GICListFooter *footer;
+    //    GICListHeader *header;
+    //    GICListFooter *footer;
     
-//    NSMutableArray<GICListSection *> *_sections;
+    //    NSMutableArray<GICListSection *> *_sections;
     NSMutableDictionary<NSNumber *,GICListSection *>*_sectionsMap;
 }
 @end
@@ -90,6 +92,24 @@
              };
 }
 
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
+    return @{
+             CollectionViewAttachColumnSpanKey:[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:CollectionViewAttachColumnSpanKey];
+             } withGetter:^id(id target) {
+                 return [[target gic_ExtensionProperties] attachValueWithAttributeName:CollectionViewAttachColumnSpanKey];
+             }]
+             };
+}
+
++(NSInteger)columnSpanFromElement:(id)element{
+    NSInteger columnSpan = [[[element gic_ExtensionProperties] attachValueWithAttributeName:CollectionViewAttachColumnSpanKey] integerValue];
+    if(columnSpan<1){
+        return 1;
+    }
+    return columnSpan;
+}
+
 - (instancetype)initWithLayoutDelegate:(id<ASCollectionLayoutDelegate>)layoutDelegate layoutFacilitator:(id<ASCollectionViewLayoutFacilitatorProtocol>)layoutFacilitator
 {
     self = [super initWithLayoutDelegate:layoutDelegate layoutFacilitator:layoutFacilitator];
@@ -144,30 +164,30 @@
             [self dealItems:[items subarrayWithRange:NSMakeRange(RACWindowCount, items.count - RACWindowCount)]];
         }];
     }
-   
+    
 }
 
 -(id)gic_willAddAndPrepareSubElement:(id)subElement{
-//    if([subElement isKindOfClass:[GICListItem class]]){
-//        [subElement gic_ExtensionProperties].superElement = self;
-//        if(!self.isNodeLoaded){
-//            [listItems addObject:subElement];
-//        }else{
-//            [self->insertItemsSubscriber sendNext:subElement];
-//        }
-//        return subElement;
-//    }else
+    //    if([subElement isKindOfClass:[GICListItem class]]){
+    //        [subElement gic_ExtensionProperties].superElement = self;
+    //        if(!self.isNodeLoaded){
+    //            [listItems addObject:subElement];
+    //        }else{
+    //            [self->insertItemsSubscriber sendNext:subElement];
+    //        }
+    //        return subElement;
+    //    }else
     if ([subElement isKindOfClass:[GICListSection class]]){
         [self->_sectionsMap setObject:subElement forKey:@([subElement sectionIndex])];
         return subElement;
     }
-//    else if ([subElement isKindOfClass:[GICListHeader class]]){
-//        header = subElement;
-//        return subElement;
-//    }else if ([subElement isKindOfClass:[GICListFooter class]]){
-//        footer = subElement;
-//        return subElement;
-//    }
+    //    else if ([subElement isKindOfClass:[GICListHeader class]]){
+    //        header = subElement;
+    //        return subElement;
+    //    }else if ([subElement isKindOfClass:[GICListFooter class]]){
+    //        footer = subElement;
+    //        return subElement;
+    //    }
     else{
         return [super gic_willAddAndPrepareSubElement:subElement];
     }
@@ -238,11 +258,11 @@
 
 -(id)gic_parseSubElementNotExist:(GDataXMLElement *)element{
     NSString *elName = [element name];
-//    if([elName isEqualToString:[GICListHeader gic_elementName]]){
-//        return  [GICListHeader new];
-//    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
-//        return  [GICListFooter new];
-//    }else
+    //    if([elName isEqualToString:[GICListHeader gic_elementName]]){
+    //        return  [GICListHeader new];
+    //    }else if([elName isEqualToString:[GICListFooter gic_elementName]]){
+    //        return  [GICListFooter new];
+    //    }else
     if([elName isEqualToString:[GICListSection gic_elementName]]){
         return  [[GICListSection alloc] initWithOwner:self withSectionIndex:_sectionsMap.count];
     }

@@ -7,7 +7,13 @@
 
 #import "GICCollectionLayoutDelegate.h"
 #import <AsyncDisplayKit/ASCollectionElement.h>
+#import "GICCollectionView.h"
 
+struct GICCollectionCellHeightInfo {
+    NSInteger index;
+    CGFloat height;
+    NSInteger columnSpan;
+};
 
 @implementation GICCollectionLayoutInfo
 - (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns
@@ -73,9 +79,9 @@
     self = [super init];
     if (self != nil) {
         _layoutInfo = [[GICCollectionLayoutInfo alloc] initWithNumberOfColumns:numberOfColumns
-                                                           columnSpacing:10.0
-                                                           sectionInsets:UIEdgeInsetsZero
-                                                        interItemSpacing:UIEdgeInsetsMake(0, 0, 0, 0)];
+                                                                 columnSpacing:10.0
+                                                                 sectionInsets:UIEdgeInsetsZero
+                                                              interItemSpacing:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     return self;
 }
@@ -139,21 +145,31 @@
         // 计算列宽
         CGFloat columnWidth = [self _columnWidthForSection:section withLayoutWidth:layoutWidth info:info];
         for (NSUInteger idx = 0; idx < numberOfItems; idx++) {
-            NSUInteger columnIndex = [self _shortestColumnIndexInSection:section withColumnHeights:columnHeights];
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:section];
             ASCollectionElement *element = [elements elementForItemAtIndexPath:indexPath];
+            id node = element.node;
+            NSInteger columnSpan = [GICCollectionView columnSpanFromElement:node];
+            if(columnSpan>info.numberOfColumns){
+                columnSpan = info.numberOfColumns;
+            }
+            
+            struct GICCollectionCellHeightInfo cellHeightInfo = [self _shortestColumnIndexInSection:section withColumnHeights:columnHeights columnSpan:columnSpan];
+            cellHeightInfo.columnSpan = columnSpan;
+            
             UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
             
-            ASSizeRange sizeRange = [self _sizeRangeForItem:element.node atIndexPath:indexPath withLayoutWidth:layoutWidth info:info];
+            ASSizeRange sizeRange = [self _sizeRangeForItem:node atIndexPath:indexPath withLayoutWidth:layoutWidth info:info cellHeightInfo:cellHeightInfo];
             CGSize size = [element.node layoutThatFits:sizeRange].size;
-            CGPoint position = CGPointMake(info.sectionInsets.left + (columnWidth + info.columnSpacing) * columnIndex,
-                                           [columnHeights[section][columnIndex] floatValue]);
+            CGPoint position = CGPointMake(info.sectionInsets.left + (columnWidth + info.columnSpacing) * cellHeightInfo.index,
+                                           cellHeightInfo.height);
             CGRect frame = CGRectMake(position.x, position.y, size.width, size.height);
             
             attrs.frame = frame;
             [attrsMap setObject:attrs forKey:element];
-            // TODO Profile and avoid boxing if there are significant retain/release overheads
-            columnHeights[section][columnIndex] = @(CGRectGetMaxY(frame) + info.interItemSpacing.bottom);
+
+            for(NSInteger i=cellHeightInfo.index;i<cellHeightInfo.index +columnSpan;i++){
+                columnHeights[section][i] = @(CGRectGetMaxY(frame) + info.interItemSpacing.bottom);
+            }
         }
         
         NSUInteger columnIndex = [self _tallestColumnIndexInSection:section withColumnHeights:columnHeights];
@@ -210,25 +226,40 @@
 
 + (CGFloat)_columnWidthForSection:(NSUInteger)section withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
 {
+//    CGFloat width= ([self _widthForSection:section withLayoutWidth:layoutWidth info:info] - ((info.numberOfColumns - 1) * info.columnSpacing)) / info.numberOfColumns;
+//    if(cellHeightInfo.columnSpan>1){
+//        width += (width+info.columnSpacing)*(cellHeightInfo.columnSpan-1);
+//    }
+//    return width;
     return ([self _widthForSection:section withLayoutWidth:layoutWidth info:info] - ((info.numberOfColumns - 1) * info.columnSpacing)) / info.numberOfColumns;
 }
 
-+ (NSUInteger)_shortestColumnIndexInSection:(NSUInteger)section withColumnHeights:(NSArray *)columnHeights
++ (struct GICCollectionCellHeightInfo)_shortestColumnIndexInSection:(NSUInteger)section withColumnHeights:(NSArray *)columnHeights columnSpan:(NSInteger)columnSpan
 {
-    __block NSUInteger index = 0;
-    __block CGFloat shortestHeight = CGFLOAT_MAX;
-    [columnHeights[section] enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
-        if (height.floatValue < shortestHeight) {
-            index = idx;
-            shortestHeight = height.floatValue;
+    __block struct GICCollectionCellHeightInfo info = {0,CGFLOAT_MAX};
+    NSArray *heights = columnHeights[section];
+    [heights enumerateObjectsUsingBlock:^(NSNumber *height, NSUInteger idx, BOOL *stop) {
+        if(idx<=heights.count - columnSpan){
+            if (height.floatValue < info.height) {
+                info.index = idx;
+                info.height = height.floatValue;
+            }
         }
     }];
-    return index;
+    for(NSInteger i=info.index+1;(i<info.index+columnSpan) && i<heights.count;i++){
+        if([heights[i] floatValue]>info.height){
+            info.height = [heights[i] floatValue];
+        }
+    }
+    return info;
 }
 
-+ (ASSizeRange)_sizeRangeForItem:(ASCellNode *)item atIndexPath:(NSIndexPath *)indexPath withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info
++ (ASSizeRange)_sizeRangeForItem:(ASCellNode *)item atIndexPath:(NSIndexPath *)indexPath withLayoutWidth:(CGFloat)layoutWidth info:(GICCollectionLayoutInfo *)info cellHeightInfo:(struct GICCollectionCellHeightInfo)cellHeightInfo
 {
-    CGFloat itemWidth = [self _columnWidthForSection:indexPath.section withLayoutWidth:layoutWidth info:info];
+    CGFloat itemWidth= [self _columnWidthForSection:indexPath.section withLayoutWidth:layoutWidth info:info];
+    if(cellHeightInfo.columnSpan>1){
+        itemWidth += (itemWidth+info.columnSpacing)*(cellHeightInfo.columnSpan-1);
+    }
     itemWidth = MAX(itemWidth, 0);
     return ASSizeRangeMake(CGSizeMake(itemWidth, 0), CGSizeMake(itemWidth, CGFLOAT_MAX));
 }

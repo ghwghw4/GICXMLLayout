@@ -12,4 +12,6 @@
 - (instancetype)initWithLayoutDelegate:(id<ASCollectionLayoutDelegate>)layoutDelegate layoutFacilitator:(id<ASCollectionViewLayoutFacilitatorProtocol>)layoutFacilitator;
 
 -(void)onItemAddedInSection:(NSDictionary *)itemInfo;
+
++(NSInteger)columnSpanFromElement:(id)element;
 @end

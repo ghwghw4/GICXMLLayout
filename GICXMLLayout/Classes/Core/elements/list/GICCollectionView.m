@@ -97,7 +97,7 @@
         [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:CollectionViewAttachColumnSpanKey];
     } withGetter:^id(id target) {
         return [[target gic_ExtensionProperties] attachValueWithAttributeName:CollectionViewAttachColumnSpanKey];
-    } withDefualtValue:@(1)]];
+    }]];
 }
 
 +(NSInteger)columnSpanFromElement:(id)element{

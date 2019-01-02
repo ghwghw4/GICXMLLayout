@@ -126,7 +126,7 @@ struct GICGirdPanelCellHeightInfo {
                  [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GridPanelAttachColumnSpanKey];
              } withGetter:^id(id target) {
                  return [[target gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey];
-             } withDefualtValue:@(1)]];
+             }]];
 }
 
 +(NSInteger)columnSpanFromElement:(id)element{

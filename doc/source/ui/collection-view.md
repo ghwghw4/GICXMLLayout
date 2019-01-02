@@ -17,6 +17,12 @@
 | content-inset          | UIEdgeInsets  | 内容边距                          | 是           | 是           |
 | content-inset-behavior | Integer(枚举) | 内容边距行为。iOS11.0以上生效     | 是           | 否           |
 
+## 附加属性
+
+| 名称                        | 数据类型 | 介绍       |
+| --------------------------- | -------- | ---------- |
+| collection-view.column-span | Integer  | 跨列数量。 |
+
 ### separator-style 枚举
 
 | 枚举值 | 对应枚举                                | 说明       |

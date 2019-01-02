@@ -246,6 +246,10 @@ pod 'GICXMLLayout', '~> 0.4.8'
 
    > 现在GIC已经可以支持ES8中的`async`、`await`了。
 
+### 0.5.0 
+
+1. 新增附加属性系统。
+
 
 
 ## Author

@@ -10,9 +10,18 @@
       "path": "desc.html"
     },
     {
-      "text": "属性介绍",
+      "text": "属性系统",
+      "type": "label"
+    },
+    {
+      "text": "通用属性",
       "type": "link",
       "path": "attribute.html"
+    },
+    {
+      "text": "附加属性",
+      "type": "link",
+      "path": "attachAttribute.html"
     },
     {
       "text": "布局系统",

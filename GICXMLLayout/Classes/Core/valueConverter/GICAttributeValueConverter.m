@@ -31,8 +31,8 @@
     return self;
 }
 
--(id)initWithName:(NSString *)name withSetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter withDefualtValue:(id)defualtValue{
-    self = [self initWithPropertySetter:propertySetter withGetter:propertyGetter withDefualtValue:defualtValue];
+-(id)initWithName:(NSString *)name withSetter:(GICPropertySetter)propertySetter withGetter:(GICPropertyGetter)propertyGetter{
+    self = [self initWithPropertySetter:propertySetter withGetter:propertyGetter];
     self.name = name;
     return self;
 }

@@ -90,9 +90,10 @@ static dispatch_queue_t attributsReadWriteQueue;
             NSDictionary * superAtts = [_classAttachAttributsCache objectForKey:NSStringFromClass(superClass)];
             [attachedDict addEntriesFromDictionary:superAtts];
         }
-        [[klass performSelector:@selector(gic_elementAttachAttributs)] enumerateKeysAndObjectsUsingBlock:^(NSString *key, GICAttributeValueConverter *obj, BOOL * _Nonnull stop) {
-            obj.name = key;
-            [attachedDict setObject:obj forKey:key];
+        
+        [[klass performSelector:@selector(gic_elementAttachAttributs)] enumerateObjectsUsingBlock:^(GICAttributeValueConverter *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSAssert(obj.name, @"please set attribute name");
+            [attachedDict setObject:obj forKey:obj.name];
         }];
         if(attachedDict.count>0){
            [_classAttachAttributsCache setValue:attachedDict forKey:className];

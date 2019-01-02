@@ -9,7 +9,7 @@
 #import "GICNumberConverter.h"
 #import <AsyncDisplayKit/ASLayoutSpec+Subclasses.h>
 
-#define  GridPanelAttachColumnSpanKey @"grid-panel.column-span" //column-span 的属性名称
+#define  GridPanelAttachColumnSpanKey @"column-span" //column-span 的属性名称
 
 struct GICGirdPanelCellHeightInfo {
     NSInteger index;
@@ -117,18 +117,16 @@ struct GICGirdPanelCellHeightInfo {
                  ((GICGridPanel *)target)->rowSpacing = MAX(0, [value floatValue]);
              } withGetter:^id(id target) {
                  return  @(((GICGridPanel *)target)->rowSpacing);
-             }],
+             } withDefualtValue:@(1)],
              };
 }
 
-+(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
-    return @{
-             @"column-span":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
++(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs{
+    return @[[[GICNumberConverter alloc] initWithName:GridPanelAttachColumnSpanKey withSetter:^(NSObject *target, id value) {
                  [[target gic_ExtensionProperties] setAttachValue:value withAttributeName:GridPanelAttachColumnSpanKey];
              } withGetter:^id(id target) {
                  return [[target gic_ExtensionProperties] attachValueWithAttributeName:GridPanelAttachColumnSpanKey];
-             }]
-             };
+             } withDefualtValue:@(1)]];
 }
 
 +(NSInteger)columnSpanFromElement:(id)element{

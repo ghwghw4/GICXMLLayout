@@ -29,14 +29,6 @@
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs;
 
 /**
- 支持的附加属性列表。
- 附加属性表示的是该属性是提供给子元素设置的属性。无法直接对该元素本身使用
-
- @return <#return value description#>
- */
-+(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs;
-
-/**
  获取所有的子元素
  
  @return 子元素
@@ -82,6 +74,15 @@
  @param attributeName <#attributeName description#>
  */
 -(void)gic_createTowWayBindingWithAttributeName:(NSString *)attributeName withSignalBlock:(void (^)(RACSignal *signal))signalBlock;
+
+#pragma mark attach property
+/**
+ 支持的附加属性列表。
+ 附加属性表示的是该属性是提供给子元素设置的属性。无法直接对该元素本身使用
+ 
+ @return <#return value description#>
+ */
++(NSArray<GICAttributeValueConverter *>*)gic_elementAttachAttributs;
 @end
 
 

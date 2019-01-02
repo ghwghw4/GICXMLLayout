@@ -59,10 +59,6 @@
              };;
 }
 
-+(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
-    return nil;
-}
-
 -(void)gic_parseSubElements:(NSArray<GDataXMLElement *> *)children{
     NSInteger order = 0;
     for(GDataXMLElement *child in children){
@@ -254,5 +250,10 @@
         }
         return nil;
     }
+}
+
+#pragma mark attach property
++(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttachAttributs{
+    return nil;
 }
 @end

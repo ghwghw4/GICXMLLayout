@@ -139,7 +139,7 @@ Object.prototype.executeBindExpression = function (expStr, selfElement) {
  * @returns {*}
  */
 Object.prototype.executeBindExpression2 = function (props, expStr) {
-  let jsStr = '';
+  let jsStr = 'var $item = this;';
   props.forEach((key) => {
     jsStr += `var ${key}=this.${key};`;
   });

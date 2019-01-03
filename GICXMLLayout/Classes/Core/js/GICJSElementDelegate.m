@@ -154,19 +154,19 @@
 - (JSValue *)convertPoint:(JSValue *)point toElement:(JSValue *)elementValue{
     id element = [elementValue toObject];
     if([element isKindOfClass:[GICJSElementDelegate class]]){
-        if(ISAsdisplayNode(self.element) && ISAsdisplayNode(element)){
-            CGPoint p= [(ASDisplayNode *)self.element convertPoint:[point toPoint] toNode:element];
+        if(ISAsdisplayNode(self.element) && ISAsdisplayNode([element element])){
+            CGPoint p= [(ASDisplayNode *)self.element convertPoint:[point toPoint] toNode:[element element]];
             return [JSValue valueWithPoint:p inContext:[JSContext currentContext]];
         }
     }
     return nil;
 }
 
-- (JSValue *)convertRect:(JSValue *)rect toNode:(JSValue *)elementValue{
+- (JSValue *)convertRect:(JSValue *)rect toElement:(JSValue *)elementValue{
     id element = [elementValue toObject];
     if([element isKindOfClass:[GICJSElementDelegate class]]){
-        if(ISAsdisplayNode(self.element) && ISAsdisplayNode(element)){
-            CGRect r= [(ASDisplayNode *)self.element convertRect:[rect toRect] toNode:element];
+        if(ISAsdisplayNode(self.element) && ISAsdisplayNode([element element])){
+            CGRect r= [(ASDisplayNode *)self.element convertRect:[rect toRect] toNode:[element element]];
             return [JSValue valueWithRect:r inContext:[JSContext currentContext]];
         }
     }

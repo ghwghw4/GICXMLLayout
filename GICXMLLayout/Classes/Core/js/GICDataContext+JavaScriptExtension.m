@@ -178,6 +178,10 @@
     JSValue *selfValue = [GICJSElementDelegate getJSValueFrom:self.target inContext:nil];
     if(value && ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])){
         [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,value]];
+    }else if ([value isKindOfClass:[UITouch class]]){
+        UITouch *t = value;
+        CGPoint p = [t locationInView:t.view];
+        [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,[JSValue valueWithPoint:p inContext:selfValue.context]]];
     }else{
         [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js]];
     }

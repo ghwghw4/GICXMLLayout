@@ -30,7 +30,7 @@ GICXMLLayout is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'GICXMLLayout', '~> 0.4.8'
+pod 'GICXMLLayout', '~> 0.5.0'
 ```
 
 ## IDE & 脚手架支持
@@ -249,7 +249,12 @@ pod 'GICXMLLayout', '~> 0.4.8'
 ### 0.5.0 
 
 1. 新增附加属性系统。
+
 2. `grid-panel`和`collection-view `增加`column-span`附加属性。
+
+3. 触摸事件增加touch point 的`eventInfo`。
+
+   > 代码中使用`$eventInfo` 来访问
 
 
 

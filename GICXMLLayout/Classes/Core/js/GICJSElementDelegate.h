@@ -35,8 +35,8 @@ JSExportAs(_setEvent, - (void)_setEvent:(NSString *)eventName eventFunc:(JSValue
 
 
 #pragma mark convert
-- (JSValue *)convertPoint:(JSValue *)point toElement:(JSValue *)elementValue;
-- (JSValue *)convertRect:(JSValue *)rect toNode:(JSValue *)elementValue;
+JSExportAs(convertPoint,- (JSValue *)convertPoint:(JSValue *)point toElement:(JSValue *)elementValue);
+JSExportAs(convertRect,- (JSValue *)convertRect:(JSValue *)rect toElement:(JSValue *)elementValue);
 @end
 
 

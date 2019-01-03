@@ -49,3 +49,43 @@
    > 触摸结束事件
 
 不同的元素可能提供不同的事件，具体的可以查看对应元素的文档。
+
+
+
+## 访问事件参数
+
+所有的事件都可以通过eventInfo来访问。
+
+如果是在`JS`中访问，可以通过`$eventInfo`来访问。比如：点击事件获取`point`参数
+
+```xml
+<lable text="触摸事件。摸我" event-touch-move="js:$el.text='('+$eventInfo.x+','+$eventInfo.y+')';" />
+```
+
+上面`$eventInfo`表示的是由`GIC`传来的`CGPoint`，可以直接通过属性`x,y`访问。
+
+
+
+## convertPoint & convertRect
+
+`convertPoint` & `convertRect`两个方式是提供给JS使用的，用来将某个点转换到另外一个view上面。具体的可以参考sample中的示例。
+
+下面提供`convertPoint`的代码示例。
+
+```xml
+<lable text="触摸事件。" event-touch-move="js:convertPoint($el,$eventInfo)">
+    <behaviors>
+        <script>
+            var scrollView = document.getElementsByName('scrollView')[0];
+            function convertPoint(el,point){
+                    var str = '在按钮上的点：\n('+point.x.toFixed(2)+','+point.y.toFixed(2)+')'+'\n';
+            		// 将point 转换到 scrollView 上的点
+                    var convertP = el.convertPoint(point,scrollView);
+                    str+= '将point转换到scroll-view上:\n('+convertP.x+','+convertP.y+')';
+                    el.text = str;
+             }               
+         </script>
+    </behaviors>
+</lable>
+```
+

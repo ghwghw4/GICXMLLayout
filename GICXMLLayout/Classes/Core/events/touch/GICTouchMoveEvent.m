@@ -26,7 +26,7 @@
             if(self->isRejectEnum){
                 [(_ASDisplayView *)((ASDisplayNode *)self.target).view __forwardTouchesMoved:x[0] withEvent:x[1]];
             }
-            [self.eventSubject sendNext:x];
+            [self.eventSubject sendNext:[x[0] anyObject]];
         }];
     });
 }

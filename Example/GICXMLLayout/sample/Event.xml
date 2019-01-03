@@ -1,16 +1,31 @@
 <page title="事件" data-context="DataBindingViewModel">
     <style path="style/CommonStyle.xml" />
-    <scroll-view background-color="white">
+    <scroll-view background-color="white" name="scrollView">
         <inset-panel inset="0 15 15 15">
             <stack-panel>
-                <template-ref t-name="desc" data-context="单击事件。点我" event-tap="js:$el.text='好疼';"/>
-                <template-ref t-name="desc" data-context="双击事件。双击我" event-double-tap="js:$el.text='double kill';"/>
-                <template-ref t-name="desc" data-context="触摸事件。摸我" event-touch-begin="js:$el.text='你摸我了';" event-touch-move="js:$el.text='你摸我了...';" event-touch-end="js:$el.text='摸完了';"/>
-
-                <template-ref t-name="desc" data-context="自定义事件，请参考行为中对于下拉刷新中对事件的定义"/>
-                <template-ref t-name="desc" data-context="事件在使用的时候也是属性的一种"/>
+                <template-ref t-name="desc" data-context="单击事件。点我" event-tap="js:$el.text='好疼';" />
+                <template-ref t-name="desc" data-context="双击事件。双击我" event-double-tap="js:$el.text='double kill';" />
+                <template-ref t-name="desc" data-context="触摸事件。摸我" event-touch-begin="js:$el.text='你摸我了';" event-touch-move="js:$el.text='你摸我了...';" event-touch-end="js:$el.text='摸完了';" />
+                <template-ref t-name="desc" data-context="自定义事件，请参考行为中对于下拉刷新中对事件的定义" />
+                <template-ref t-name="desc" data-context="事件在使用的时候也是属性的一种" />
+                <template-ref t-name="title" data-context="获取point" />
+                <lable text="触摸事件。摸我" event-touch-move="js:$el.text='('+$eventInfo.x+','+$eventInfo.y+')';" />
+                <template-ref t-name="title" data-context="convert point" />
+                <lable text="触摸事件。摸我" event-touch-move="js:convertPoint($el,$eventInfo)">
+                    <behaviors>
+                        <script>
+                            var scrollView = document.getElementsByName('scrollView')[0];
+                            function convertPoint(el,point){
+                                var str = '在按钮上的点：\n('+point.x.toFixed(2)+','+point.y.toFixed(2)+')'+'\n';
+                                // 将point 转换到 scrollView 上的点
+                                var convertP = el.convertPoint(point,scrollView);
+                                str+= '将point转换到scroll-view上:\n('+convertP.x+','+convertP.y+')';
+                                el.text = str;
+                            }
+                        </script>
+                    </behaviors>
+                </lable>
             </stack-panel>
         </inset-panel>
     </scroll-view>
 </page>
-

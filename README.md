@@ -252,7 +252,7 @@ pod 'GICXMLLayout', '~> 0.5.0'
 
 2. `grid-panel`和`collection-view `增加`column-span`附加属性。
 
-3. 触摸事件增加touch point 的`eventInfo`。
+3. 触摸事件的`eventInfo`增加touch point 。
 
    > 代码中使用`$eventInfo` 来访问
 

@@ -249,6 +249,7 @@ pod 'GICXMLLayout', '~> 0.4.8'
 ### 0.5.0 
 
 1. 新增附加属性系统。
+2. `grid-panel`和`collection-view `增加`column-span`附加属性。
 
 
 

@@ -159,18 +159,13 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     self.attributedText = [self->mutAttString copy];
 }
 
+-(NSArray *)gic_subElements{
+    return attbuteStringArray;
+}
+
 -(id)gic_willAddAndPrepareSubElement:(NSMutableAttributedString *)subElement{
     if([subElement isKindOfClass:[NSMutableAttributedString class]]){
         [attbuteStringArray addObject:subElement];
-        if(subElement.gic_Bindings.count>0){
-            @weakify(self)
-            for(GICDataBinding *b in subElement.gic_Bindings){
-                b.valueUpdate = ^(id value) {
-                    @strongify(self)
-                    [self updateString];
-                };
-            }
-        }
     }
     return [super gic_willAddAndPrepareSubElement:subElement];
 }
@@ -189,5 +184,9 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
     if(linkTapEvent){
         [linkTapEvent fire:URL.absoluteString];
     }
+}
+
+-(void)gic_setNeedDisplay{
+    [self updateString];
 }
 @end

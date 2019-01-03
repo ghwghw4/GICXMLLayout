@@ -37,6 +37,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSForegroundColorAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSForegroundColorAttributeName];
@@ -44,14 +45,17 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"font-size":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:[UIFont systemFontOfSize:[value floatValue]] forKey:NSFontAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          }],
                          @"font":[[GICFontConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSFontAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          }],
                          @"background-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSBackgroundColorAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSBackgroundColorAttributeName];
@@ -62,11 +66,13 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              textAttachment.image = [UIImage imageNamed:value];
                              NSAttributedString *attImage=[NSAttributedString attributedStringWithAttachment:textAttachment];
                              [str appendAttributedString:attImage];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          }],
                          @"text":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str deleteCharactersInRange:NSMakeRange(0, str.length)];
                              [str appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str string];
@@ -75,6 +81,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:kLinkAttributeName];
                              [str.gic_attributDict setValue:value forKey:[(NSURL *)value absoluteString]];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSLinkAttributeName];
@@ -82,6 +89,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"underline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSUnderlineStyleAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSUnderlineStyleAttributeName];
@@ -89,6 +97,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                          @"throughline-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:value forKey:NSStrikethroughStyleAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return [str.gic_attributDict objectForKey:NSStrikethroughStyleAttributeName];
@@ -98,6 +107,7 @@ static NSDictionary<NSString *,GICAttributeValueConverter *> *propertyConverts =
                              [paragraphStyle setLineSpacing:[value integerValue]];//行间距
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              [str.gic_attributDict setValue:paragraphStyle forKey:NSParagraphStyleAttributeName];
+                             [str.gic_getSuperElement gic_setNeedDisplay];
                          } withGetter:^id(id target) {
                              NSMutableAttributedString *str = (NSMutableAttributedString *)target;
                              return @([(NSMutableParagraphStyle *)[str.gic_attributDict objectForKey:NSParagraphStyleAttributeName] lineSpacing]);

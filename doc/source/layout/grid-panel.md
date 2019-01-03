@@ -69,3 +69,27 @@
    ```
 
    ![24](../images/24.jpg)
+
+   3. column-span
+
+      ```xml
+      <grid-panel columns="3" column-spacing="10" row-spacing="10">
+          <dock-panel height="30" background-color="red" grid-panel.column-span="1">
+              <lable text="1" />
+          </dock-panel>
+          <dock-panel height="30" background-color="red" grid-panel.column-span="2">
+              <lable text="2" />
+          </dock-panel>
+          <dock-panel height="30" background-color="red" grid-panel.column-span="2">
+              <lable text="3" />
+          </dock-panel>
+          <dock-panel height="30" background-color="red" grid-panel.column-span="1">
+              <lable text="4" />
+          </dock-panel>
+          <dock-panel height="30" background-color="red" grid-panel.column-span="3">
+              <lable text="5" />
+          </dock-panel>
+      </grid-panel>
+      ```
+
+      ![](../images/26.jpg)

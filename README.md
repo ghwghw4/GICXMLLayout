@@ -248,11 +248,11 @@ pod 'GICXMLLayout', '~> 0.5.0'
 
 ### 0.5.0 
 
-1. 新增附加属性系统。
+1. 新增附加属性系统。[文档](http://gicxmllayout.gonghaiwei.cn/attachAttribute.html)
 
 2. `grid-panel`和`collection-view `增加`column-span`附加属性。
 
-3. 触摸事件的`eventInfo`增加touch point 。
+3. 触摸事件的`eventInfo`增加touch point 。[文档](http://gicxmllayout.gonghaiwei.cn/core/event.html)
 
    > 代码中使用`$eventInfo` 来访问
 

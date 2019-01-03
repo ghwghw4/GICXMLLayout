@@ -21,4 +21,6 @@ typedef NS_OPTIONS(NSUInteger, GICCustomTouchEventMethodOverride)
     BOOL isRejectEnum;//知否注入了枚举
 }
 @property (nonatomic,assign,readonly)GICCustomTouchEventMethodOverride overrideType;
+
++(void)performThreadSafe:(dispatch_block_t)block;
 @end

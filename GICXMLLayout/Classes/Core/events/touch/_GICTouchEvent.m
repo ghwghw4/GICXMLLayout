@@ -8,6 +8,10 @@
 #import "_GICTouchEvent.h"
 
 @implementation _GICTouchEvent
+static dispatch_queue_t queue;
++(void)initialize{
+    queue = dispatch_queue_create("rac thread safe queue", NULL);
+}
 -(BOOL)onlyExistOne{
     return YES;
 }
@@ -39,5 +43,9 @@
 //            [self.eventSubject sendNext:nil];
 //        }
 //    }];
+}
+
++(void)performThreadSafe:(dispatch_block_t)block{
+    dispatch_async(queue, block);
 }
 @end

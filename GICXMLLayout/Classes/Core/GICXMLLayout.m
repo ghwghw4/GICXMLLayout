@@ -216,7 +216,7 @@ static int GICParseElementQueueSpecific;
     static dispatch_queue_t queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        queue = dispatch_queue_create("parse xml element", nil);
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         // 标记队列
         CFStringRef queueSpecificValue = CFSTR("parse xml element Specific");
         dispatch_queue_set_specific(queue, &GICParseElementQueueSpecific, (void *)queueSpecificValue, (dispatch_function_t)CFRelease);

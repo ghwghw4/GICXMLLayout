@@ -17,7 +17,7 @@
 -(id)initWithInterval:(uint64_t)interval block:(dispatch_block_t)block queue:(dispatch_queue_t)queue{
     self = [self init];
     timer =dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, 0);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, interval), interval, 0);
     // 设置回调
     dispatch_source_set_event_handler(timer, block);
     // 启动定时器

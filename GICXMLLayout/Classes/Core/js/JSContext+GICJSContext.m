@@ -54,9 +54,10 @@ void JSSynchronousGarbageCollectForDebugging(JSContextRef ctx);
     self[@"document"] = [[GICJSDocument alloc] init];
     
     self[@"setInterval"] =^(JSValue* function, JSValue* timeout) {
+        JSManagedValue *man = [function gic_ToManagedValue:nil];
         GICGCDTimer *timer = [GICGCDTimer scheduledTimerWithTimeInterval:(uint64_t)([timeout toInt32] *NSEC_PER_MSEC) block:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [function callWithArguments:@[]];
+                [man.value callWithArguments:@[]];
             });
         } queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         return timer;

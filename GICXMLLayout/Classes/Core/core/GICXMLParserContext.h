@@ -11,8 +11,8 @@
  解析上下文.临时的。 解析完毕就会释放.采用链表结构存储。
  */
 @interface GICXMLParserContext : NSObject
-@property (nonatomic,strong,readonly)GDataXMLDocument *xmlDoc;
-@property (nonatomic,strong,readonly)NSMutableDictionary *currentTemplates;
+@property (nonatomic,readonly)GDataXMLDocument *xmlDoc;
+@property (nonatomic,readonly)NSMutableDictionary *currentTemplates;
 // 解析完成事件
 @property (nonatomic,readonly,strong)RACSubject *parseCompeteSubject;
 -(id)initWithXMLDoc:(GDataXMLDocument *)xmlDoc;

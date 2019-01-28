@@ -17,14 +17,14 @@ static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueC
 // 缓存的附加属性
 static NSMutableDictionary<NSString *,NSDictionary<NSString *,GICAttributeValueConverter *> *> *_classAttachAttributsCache;
 
-static dispatch_queue_t attributsReadWriteQueue;
+//static dispatch_queue_t attributsReadWriteQueue;
 
 +(void)initialize{
     registedElementsMap = [NSMutableDictionary dictionary];
     registedBehaviorElementsMap = [NSMutableDictionary dictionary];
     _classAttributsCache = [NSMutableDictionary dictionary];
     _classAttachAttributsCache = [NSMutableDictionary dictionary];
-    attributsReadWriteQueue = dispatch_queue_create("GICXMLLayoutRegisetElementQueue", DISPATCH_QUEUE_CONCURRENT);
+//    attributsReadWriteQueue = dispatch_queue_create("GICXMLLayoutRegisetElementQueue", DISPATCH_QUEUE_CONCURRENT);
     
 }
 
@@ -47,11 +47,9 @@ static dispatch_queue_t attributsReadWriteQueue;
 }
 
 +(id)getAtttributesWithClassName:(NSString *)className{
-    __block id value;
-    dispatch_sync(attributsReadWriteQueue, ^{
-        value = [_classAttributsCache objectForKey:className];
-    });
-    return value;
+    @synchronized(_classAttributsCache){
+        return  [_classAttributsCache objectForKey:className];
+    }
 }
 
 +(void)registClassAttributs:(Class)klass{
@@ -100,10 +98,10 @@ static dispatch_queue_t attributsReadWriteQueue;
         }
     }
     
-    // 保存到缓存中
-    dispatch_barrier_async(attributsReadWriteQueue, ^{
-          [_classAttributsCache setValue:dict forKey:className];
-    });
+     // 保存到缓存中
+    @synchronized(_classAttributsCache){
+        [_classAttributsCache setValue:dict forKey:className];
+    }
 }
 
 +(BOOL)injectAttributes:(NSDictionary<NSString *,GICAttributeValueConverter *> *)attributs forElementName:(NSString *)elementName{

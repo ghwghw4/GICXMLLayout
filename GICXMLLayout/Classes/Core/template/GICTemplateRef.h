@@ -19,7 +19,7 @@
     __weak id target;
     GDataXMLDocument *selfElement;
 }
-@property (nonatomic,strong)NSString *templateName;
+@property (nonatomic,copy)NSString *templateName;
 //-(NSObject *)parseTemplate:(GICTemplate *)t;
 
 -(NSObject *)parseTemplateFromTarget:(id)target;

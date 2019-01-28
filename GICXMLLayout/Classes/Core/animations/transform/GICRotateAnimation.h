@@ -11,6 +11,6 @@
 @interface GICRotateAnimation : GICTransformAnimation{
     GICNumberConverter *numberConverter;
 }
-@property (nonatomic,strong)NSNumber *fromValue;
-@property (nonatomic,strong)NSNumber *toValue;
+@property (nonatomic,copy)NSNumber *fromValue;
+@property (nonatomic,copy)NSNumber *toValue;
 @end

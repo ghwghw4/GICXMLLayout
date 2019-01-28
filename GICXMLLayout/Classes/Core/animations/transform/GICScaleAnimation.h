@@ -11,6 +11,6 @@
 @interface GICScaleAnimation : GICTransformAnimation{
     GICSizeConverter *sizeConverter;
 }
-@property (nonatomic,strong)NSValue *fromValue;
-@property (nonatomic,strong)NSValue *toValue;
+@property (nonatomic,copy)NSValue *fromValue;
+@property (nonatomic,copy)NSValue *toValue;
 @end

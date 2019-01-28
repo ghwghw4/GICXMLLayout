@@ -20,7 +20,7 @@
 @property (nonatomic,assign,readonly)BOOL isOnce;
 @property (nonatomic,weak,readonly)id target;
 
-@property (nonatomic,strong)NSString *name;
+@property (nonatomic,copy)NSString *name;
 
 /**
  将Behavior附加到目标

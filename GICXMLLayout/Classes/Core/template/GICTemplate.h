@@ -14,7 +14,7 @@
     
 }
 @property (nonatomic,strong)NSString *name;
-@property (nonatomic,strong,readonly)NSString *xmlDocString;
+@property (nonatomic,readonly)NSString *xmlDocString;
 
 
 //#pragma mark 全局模板

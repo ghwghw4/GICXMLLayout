@@ -17,12 +17,12 @@ typedef id (^GICPropertyGetter)(id target);
 
 @interface GICAttributeValueConverter : GICValueConverter
 
-@property (nonatomic,strong)NSString *name;
+@property (nonatomic,copy)NSString *name;
 
 /**
  默认值
  */
-@property (nonatomic,strong,readonly)id defualtValue;
+@property (nonatomic,readonly)id defualtValue;
 
 #pragma mark setter
 @property (nonatomic,copy)GICPropertySetter propertySetter;

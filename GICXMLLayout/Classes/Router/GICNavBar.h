@@ -8,6 +8,6 @@
 @interface GICNavBar : NSObject{
    __weak ASViewController *page;
 }
-@property (nonatomic,strong,readonly)GICNavbarButtons *rightButtons;
-@property (nonatomic,strong,readonly)GICNavbarButtons *leftButtons;
+@property (nonatomic,readonly)GICNavbarButtons *rightButtons;
+@property (nonatomic,readonly)GICNavbarButtons *leftButtons;
 @end

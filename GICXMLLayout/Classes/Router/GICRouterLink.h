@@ -8,6 +8,6 @@
 #import <Foundation/Foundation.h>
 
 @interface GICRouterLink : GICBehavior
-@property (nonatomic,strong)NSString *path;
+@property (nonatomic,copy)NSString *path;
 @property (nonatomic,strong)id params;
 @end

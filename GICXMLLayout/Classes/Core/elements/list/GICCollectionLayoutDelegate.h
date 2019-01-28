@@ -25,6 +25,6 @@
 
 
 @interface GICCollectionLayoutDelegate:NSObject <ASCollectionLayoutDelegate>
-@property (nonatomic,strong,readonly)GICCollectionLayoutInfo *layoutInfo;
+@property (nonatomic,readonly)GICCollectionLayoutInfo *layoutInfo;
 - (instancetype)initWithNumberOfColumns:(NSInteger)numberOfColumns;
 @end

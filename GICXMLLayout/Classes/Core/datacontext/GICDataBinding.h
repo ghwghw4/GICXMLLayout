@@ -25,8 +25,8 @@ typedef void (^GICDataBingdingValueUpdateBlock)(id value);
 @property (nonatomic,weak,readonly)id dataSource;//数据源
 @property (nonatomic,weak)id target; // 绑定的目标对象
 @property (nonatomic,weak)GICAttributeValueConverter *attributeValueConverter;// 属性转换器
-@property (nonatomic,strong)NSString *expression;// 绑定的js 表达式
-@property (nonatomic,strong)NSString *attributeName;//绑定的属性名称
+@property (nonatomic,copy)NSString *expression;// 绑定的js 表达式
+@property (nonatomic,copy)NSString *attributeName;//绑定的属性名称
 
 @property (nonatomic,strong)GICDataBingdingValueConverter *valueConverter;//转换器
 @property (nonatomic,assign,readonly)BOOL isInitBinding;

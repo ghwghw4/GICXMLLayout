@@ -16,7 +16,7 @@
 导航参数。
  tips:这里一开始考虑的是使用NSDicatinary的，但是有时候可能需要直接以一个对象多为参数，那么NSDicatinary就可能不方便了。因此这里使用id
  */
-@property(nonatomic,strong,readonly)id data;
+@property(nonatomic,readonly)id data;
 
 @property(nonatomic,weak,readonly)UIViewController *fromPage;
 

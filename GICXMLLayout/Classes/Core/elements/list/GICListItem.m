@@ -113,7 +113,9 @@
     if(self.subnodes.count == 0){
         [self createContentView:self.xmlDoc];
     }
-    self.gic_isAutoInheritDataModel = NO;
-    [self gic_updateDataContext:self.gic_DataContext];
+    id ds = self.gic_DataContext;
+    if(ds){
+        [self gic_updateDataContext:self.gic_DataContext];
+    }
 }
 @end

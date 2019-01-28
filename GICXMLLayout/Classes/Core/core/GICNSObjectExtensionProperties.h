@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 @interface GICNSObjectExtensionProperties : NSObject
-@property (nonatomic,strong)NSString *name;
+@property (nonatomic,copy)NSString *name;
 // 临时的数据源
 @property (nonatomic,strong)id tempDataContext;
 

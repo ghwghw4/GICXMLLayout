@@ -16,6 +16,7 @@
 
 @implementation GICInpute{
     GICEvent *returnEvent;
+    GICEvent *textChangedEvent;
 }
 +(NSDictionary<NSString *,GICAttributeValueConverter *> *)gic_elementAttributs{
     return @{
@@ -23,6 +24,7 @@
                  GICInpute *input = (GICInpute *)target;
                  [input->placeholdString deleteCharactersInRange:NSMakeRange(0, input->placeholdString.length)];
                  [input->placeholdString appendAttributedString:[[NSAttributedString alloc] initWithString:value]];
+                 [input updatePlacholdString];
              }],
              @"placehold-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [((GICInpute *)target)->placeholdAttributs setObject:value forKey:NSForegroundColorAttributeName];
@@ -65,6 +67,10 @@
                  GICInpute *input = (GICInpute *)target;
                  input->returnEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-return" toTarget:target];
              }],
+             @"event-text-changed":[[GICStringConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 GICInpute *input = (GICInpute *)target;
+                 input->textChangedEvent =  [GICEvent createEventWithExpresion:value withEventName:@"event-text-changed" toTarget:target];
+             }],
              };
 }
 
@@ -87,6 +93,14 @@
 -(void)didLoad{
     [super didLoad];
     [(UITextField *)self.view setDelegate:self];
+    [(UITextField *)self.view addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
+}
+
+-(void)textChanged:(UITextField *)textField{
+    if(self->textChangedEvent){
+        [self->textChangedEvent fire:textField.text];
+    }
+
 }
 
 -(void)updatePlacholdString{
@@ -119,4 +133,11 @@
     }
     return YES;
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    if(self->textChangedEvent){
+//        [self->textChangedEvent fire:textField.text];
+//    }
+//    return true;
+//}
 @end

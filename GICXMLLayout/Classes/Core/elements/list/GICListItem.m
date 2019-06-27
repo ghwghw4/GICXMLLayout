@@ -12,6 +12,7 @@
 #import "GICEdgeConverter.h"
 #import "GICPanel.h"
 #import "GICInsetPanel.h"
+#import "GICColorConverter.h"
 
 @implementation GICListItem{
     ASDisplayNode *seperateLine;
@@ -31,6 +32,11 @@
              }],
              @"separator-style":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  ((GICListItem *)target).separatorStyle = [value integerValue];
+             } withGetter:^id(id target) {
+                 return @(((GICListItem *)target).separatorStyle);
+             }],
+             @"separator-color":[[GICColorConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                 ((GICListItem *)target).separatorColor = value;
              } withGetter:^id(id target) {
                  return @(((GICListItem *)target).separatorStyle);
              }],
@@ -90,7 +96,7 @@
         // 分割线
         if(seperateLine==nil){
             seperateLine = [[ASDisplayNode alloc] init];
-            seperateLine.backgroundColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+            seperateLine.backgroundColor = self.separatorColor?self.separatorColor:[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
             seperateLine.style.height = ASDimensionMake(0.5);
         }
         ASInsetLayoutSpec *insetBox = [ASInsetLayoutSpec new];

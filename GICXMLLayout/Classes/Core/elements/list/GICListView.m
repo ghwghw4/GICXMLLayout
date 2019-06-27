@@ -16,7 +16,7 @@
 #import "GICColorConverter.h"
 
 
-#define RACWindowCount 10
+//#define RACWindowCount 10
 
 @interface GICListView ()<ASTableDelegate,ASTableDataSource,GICListSectionProtocol>{
     id<RACSubscriber> insertItemsSubscriber;
@@ -57,6 +57,9 @@
                      [(UITableView *)view setSectionIndexColor:value];
                  }];
              }],
+             @"window-count":[[GICNumberConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
+                   ((GICListView *)target)->_windowCount = [value integerValue];
+             }],
              @"content-inset":[[GICEdgeConverter alloc] initWithPropertySetter:^(NSObject *target, id value) {
                  [(GICListView *)target setValue:value forKey:@"contentInset"];
              } withGetter:^id(id target) {
@@ -78,6 +81,7 @@
     _sectionsMap = [NSMutableDictionary dictionary];
     self.dataSource = self;
     self.delegate = self;
+    _windowCount = 10;// 默认k节流窗口为10
     // 创建一个0.1秒的节流阀
     @weakify(self)
     [[[RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
@@ -106,7 +110,7 @@
         GICListSection *section = self->_sectionsMap[[itemInfo objectForKey:@"section"]];
         [insertArray addObject:[NSIndexPath indexPathForRow:section.items.count inSection:section.sectionIndex]];
         [section.items addObject:itemInfo[@"item"]];
-        if(insertArray.count == RACWindowCount){
+        if(insertArray.count == self.windowCount){
             // 取满了RACWindowCount 个
             break;
         }
@@ -114,8 +118,8 @@
     
     // 截取剩余的内容
     NSArray *subArray = nil;
-    if(items.count > RACWindowCount){
-        subArray =[items subarrayWithRange:NSMakeRange(RACWindowCount, items.count - RACWindowCount)];
+    if(items.count > self.windowCount){
+        subArray =[items subarrayWithRange:NSMakeRange(self.windowCount, items.count - self.windowCount)];
     }
     
     if(self.visibleNodes.count==0){
@@ -274,7 +278,7 @@
     if(_sectionsMap.count==0){
         [self reloadData];
     }else if(idxSet.count>0){
-        [self reloadSections:idxSet withRowAnimation:UITableViewRowAnimationFade];
+        [self reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
@@ -305,7 +309,7 @@
 }
 
 - (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths {
-    [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)reloadSections:(NSIndexSet *)sections {

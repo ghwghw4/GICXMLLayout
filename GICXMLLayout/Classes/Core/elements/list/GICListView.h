@@ -10,4 +10,5 @@
 @interface GICListView : ASTableNode
 // 是否显示索引
 @property (nonatomic,readonly)BOOL showIndexs;
+@property (nonatomic,readonly)NSInteger windowCount;
 @end

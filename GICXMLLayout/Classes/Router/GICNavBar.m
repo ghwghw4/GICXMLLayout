@@ -9,9 +9,7 @@
 #import "GICPage.h"
 #import "GICStringConverter.h"
 
-@implementation GICNavBar{
-    ASDisplayNode *titleNode;
-}
+@implementation GICNavBar
 +(NSString *)gic_elementName{
     return @"nav-bar";
 }
@@ -75,11 +73,7 @@
     }
     
     if(titleNode){
-        if (@available(iOS 10.0, *)) {
-            
-        }else{
-            titleNode.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
-        }
+        titleNode.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
         self->page.navigationItem.titleView = titleNode.view;
     }
 }

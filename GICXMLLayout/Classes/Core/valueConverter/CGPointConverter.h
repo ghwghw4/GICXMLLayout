@@ -5,7 +5,6 @@
 //  Created by 龚海伟 on 2018/7/11.
 //
 
-#import <GICXMLLayout/GICXMLLayout.h>
 #import "GICAttributeValueConverter.h"
 @interface CGPointConverter : GICAttributeValueConverter
 -(NSValue *)convert:(NSString *)stringValue;

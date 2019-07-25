@@ -100,7 +100,7 @@
         }
     }
     if(deleteArray.count>0){
-       [self.target gic_removeSubElements:deleteArray];
+        [self.target gic_removeSubElements:deleteArray];
     }
 }
 
@@ -127,7 +127,7 @@
             resultString = [result isUndefined]?@"":[result toString];
         }
     }
-  
+    
     id value = nil;
     if(self.valueConverter){
         value = [self.valueConverter convert:resultString?:@""];
@@ -183,7 +183,12 @@
         CGPoint p = [t locationInView:t.view];
         [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,[JSValue valueWithPoint:p inContext:selfValue.context]]];
     }else{
-        [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js]];
+        if(value){
+            [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js,value]];
+        }else{
+            [selfValue invokeMethod:@"_fireEvent_" withArguments:@[js]];
+        }
+        
     }
 }
 @end
